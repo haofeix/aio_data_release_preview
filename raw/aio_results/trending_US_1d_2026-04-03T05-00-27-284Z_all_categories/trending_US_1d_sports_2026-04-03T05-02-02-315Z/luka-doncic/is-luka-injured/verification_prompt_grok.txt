@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is luka injured"
+
+Claims:
+[1] "Luka Dončić is a Los Angeles Lakers star."
+[2] "Luka Dončić left the April 2, 2026, game against the Oklahoma City Thunder with a strained left hamstring."
+[3] "Luka Dončić appeared to tweak his left hamstring in the first half."
+[4] "Luka Dončić re-aggravated his left hamstring in the third quarter."
+[5] "Luka Dončić did not return to the game."
+[6] "Luka Dončić is scheduled to undergo an MRI to determine the severity of the injury."
+[7] "Luka Dončić's injury occurred with 7:39 remaining in the third quarter."
+[8] "Luka Dončić appeared to be in significant pain."
+[9] "Luka Dončić lay down on the baseline before leaving."
+[10] "Luka Dončić was ruled out for the remainder of the game."
+[11] "Luka Dončić walked to the locker room on his own but with a limp."
+[12] "Luka Dončić was named Western Conference Player of the Month for March."
+
+Cited text snippets from the AI Overview (for additional context):
+- Luka Doncic exits Lakers' game in OKC with hamstring strain: "Email,and L.A. trailing 90-58."
+- Bleacher Report | Luka was ruled out of the game vs OKC after ...: "bleacherreport-,Luka was ruled out of the game vs OKC after,him a speedy recovery 🙏"
+- Luka Doncic injury update: Lakers star leaves Thunder game with hurt hamstring: "Luka Doncic injury update: Lakers,This article will be updated."
+- Lakers' Luka Doncic leaves game after apparent hamstring injury, does not return to court: "Lakers' Luka Doncic leaves game,return to court - Yahoo Sports"
+- Luka Dončić to undergo MRI after injuring hamstring in Lakers ...: "of NBA Growth-,Luka Dončić to undergo MRI after injuring hamstring in Lakers,2026 12:17 am EDT"
+Reference Sources:
+
+[R1] Luka Doncic (hamstring) exits Lakers' loss in OKC; MRI next - ESPN
+(https://www.espn.com/nba/story/_/id/48382849/luka-doncic-exits-lakers-game-okc-hamstring-strain)
+"""
+Dave McMenaminApr 2, 2026, 11:47 PM ETCloseLakers and NBA reporter for ESPN. Covered the Lakers and NBA for ESPNLosAngeles.com from 2009-14, the Cavaliers from 2014-18 for ESPN.com and the NBA for NBA.com from 2005-09.OKLAHOMA CITY -- Los Angeles Lakers star Luka Doncic exited Thursday's 139-96 loss to the Oklahoma City Thunder early because of a strained left hamstring and was ruled out.Doncic will undergo an MRI on Friday to determine the extent of the injury, coach JJ Redick said after the game."At this point, at this juncture of the season, it's the last thing you want to see," LeBron James said. "When you have an MVP candidate on your team, the last thing you want to see is somebody go down with a hamstring injury. ... So, pray for the best, for sure, and a speedy recovery."Doncic first appeared to tweak the hamstring late in the first half and then hurt it again midway through the third quarter. He planted his left leg while dribbling against the Thunder's Jalen Williams when his hamstring seized, causing him to double over and then lie down on the baseline with his hands covering his face when L.A. called a timeout.After teammates surrounded him, Doncic walked to the visitors locker room on his own, albeit gingerly, with 7:39 remaining in the third quarter and L.A. trailing 90-58. He hung his head walking off the court and pulled at the collar of his jersey, as if he were going to tear it off in frustration.Doncic pulled a leg sleeve over his left hamstring before limping out of the locker room to head to the team bus taking the Lakers to the airport for their postgame flight to Dallas. He did not speak to reporters.Redick said Doncic received treatment on the hamstring at halftime and received approval from the team medical staff to stay in the game."We checked him out," Redick said. "He got work done. He was cleared. I mean, again, we're not going to put a player at risk."Doncic sat out four games in February leading up to All-Star Weekend because of a left hamstring strain and made a token appearance in the All-Star Game while still rehabbing the injury.Thursday's injury ended what was already a poor performance by Doncic, as he checked out with 12 points on 3-for-10 shooting (1-for-7 from 3), four rebounds, seven assists and six turnovers.The Lakers were outscored by 25 in the 26 minutes Doncic was on the court.After the Lakers went 15-2 in March and Doncic was named Western Conference Player of the Month for averaging 37.5 points, 8.0 rebounds, 7.4 assists and 2.3 steals, the start to April was a major disappointment on several levels for L.A.In what was billed as a late-season game that could sway MVP voters still deciding where to place Doncic and the reigning MVP, Shai Gilgeous-Alexander, on their ballots, Gilgeous-Alexander was dominant, putting up 28 points, seven rebounds, seven assists and just one turnover in three quarters.Depending on how much time Doncic has to miss, Thursday might have cost him not only a shot at his first MVP but even his eligibility for the award at all. The game was his 64th of the season, and players must play 65 to qualify for end-of-season awards. The Lakers have five games remaining.There is an exception for players who reach 62 games and play at least 85% of their team's games at the time of a season-ending injury, but that would not apply to Doncic. He has played in 64 of the Lakers' 77 games, which is 83%.Furthermore, Doncic's hamstring injury would have to qualify as a "season-ending injury" as the CBA defines it. That means it would need to be an injury that, in the opinion of a physician jointly selected by the NBA and players' association, makes it substantially more likely than not that the player would be unable to play through May 31 following the date of his injury. Otherwise, it would simply be an injury that happens to coincide with the end of the regular season, which is what appears to be the case with Doncic right now.Meanwhile, the Lakers' potential as title contenders in the upcoming playoffs was called into question with a no-show against the defending NBA champs."They beat the s--- out of us," said Austin Reaves, who committed four of the Lakers' 18 turnovers in the first quarter as the Thunder built a 44-21 lead. "They're the defending champs, [but] we've got to, you know, be better."L.A. (50-27) is No. 3 in the Western Conference, one game ahead of the No. 4 Denver Nuggets, 2½ games ahead of the No. 5 Houston Rockets and 3½ games ahead of the No. 6 Minnesota Timberwolves. The Lakers own the tiebreaker against those three teams, too, by winning the season series against each of them.Even if Doncic misses time and the Lakers struggle -- they are 7-6 without him this season -- they have already clinched a playoff berth, which will earn Doncic an extra week for rest and rehabilitation between the end of the regular season and the start of the postseason while the play-in tournament is held."There's never a time to get comfortable in this league," James said. "The only thing we do know is that we won't be in the play-in, so we have that week. But health is wealth."James was asked whether Thursday's debacle will challenge the Lakers' resolve, after he called them a "tight-knit group" just days before."Nothing has changed," James said. "We still will be [together]. Obviously we'll be tested with the head of the snake [missing]. ... But nothing is rattled. It's one game, it's part of the NBA season, it's the defending champions. We get it. We understand."
+"""
+
+[R2] Luka Dončić injures hamstring in Lakers’ blowout loss to Thunder
+(https://www.nytimes.com/athletic/7168488/2026/04/02/luka-doncic-injury-hamstring-lakers-thunder/)
+"""
+OKLAHOMA CITY — What was supposed to be an MVP-candidate showdown ended as badly as possible for the Los Angeles Lakers, with LA getting blown out 139-96 and — much more importantly — Luka Dončić limping off the court midway through the third quarter with a left hamstring injury.A Friday MRI revealed a Grade 2 hamstring strain that will sideline Dončić for at least the rest of the regular season, the team announced.With the Lakers trailing 90-58 and 7:39 remaining, Dončić came up limping after driving to the basket against Jalen Williams. Dončić took the weight off his left leg before lying down on the baseline. The Lakers called a timeout, and Dončić limped to the back. He reacted as if something significant had occurred, flipping the ball behind his back and out of bounds, surrendering the possession.“At this juncture of the season, it’s the last thing you want to see,” LeBron James said after the game. “Especially, anybody on our team, but when you have an MVP candidate on your team, the last thing you want to see is somebody go down with a hamstring injury.”Your browser does not support the video tag.The Lakers trailed by at least 30 points most of the game after a disastrous start in which they repeatedly turned the ball over against the Thunder’s pressure. Dončić, who was named the Western Conference Player of the Month for March earlier in the day, was having his worst game in weeks. He made just 3-of-10 from the field with six turnovers before exiting after 25 minutes. He began grabbing at his hamstring after a jumping pass to Luke Kennard late in the first half. “We checked him out, he got worked on, he was cleared,” Lakers coach JJ Redick said of that incident. “Again, we’re not going to put a player at risk.Dončić’s second-half exit came after teammate Austin Reaves needed a trip to the locker room in the first quarter. With the Lakers already being badly beaten, Reaves began grabbing at his left side after he tipped a loose ball to himself for a rebound. He stayed in the game for multiple minutes, clearly reaching at his left side.Reaves, who has been dealing with multiple nagging minor injuries, returned to the court midway through the second period. He left for good in the third quarter as the NBA’s defending champions were routing the Lakers.Thursday was Dončić’s 64th game this season. The NBA requires players to play in at least 65 games to be considered for several postseason awards, so Dončić must participate in one of the Lakers’ final five games to be eligible for MVP and all-NBA. (Dončić was suspended for the Lakers’ win Monday against Washington after receiving his 16th technical foul in the previous game.)Your browser does not support the video tag.Dončić missed four games with a left hamstring injury before the All-Star break. He’d played in 21 of the Lakers’ next 22 games (only missing for the suspension) while averaging 35.8 points on 25 shot attempts and 7.8 assists per game. His 38.1 usage rate leads the NBA and is a career high.The Lakers’ next game is Sunday in Dallas against Dončić’s former team, the Mavericks. Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R3] Luka Doncic injury update: Lakers star injures left hamstring in loss vs Thunder
+(https://www.oklahoman.com/story/sports/nba/thunder/2026/04/02/luka-doncic-injury-update-lakers-star-exits-vs-thunder-leg-status/89445744007/)
+"""
+April 2, 2026Updated April 3, 2026, 1:31 a.m. CTLuka Doncic exited the Los Angeles Lakers' 139-96 loss to the OKC Thunder with a left hamstring injury Thursday night at Paycom Center.The Lakers ruled Doncic out for the remainder of the game near the start of the fourth quarter. Doncic appeared to tweak his hamstring mid play before walking toward the baseline and laying down. The injury occurred with 7:39 remaining in the third quarter as the Lakers trailed OKC 90-58.Doncic previously had been grabbing at his hamstring before Los Angeles went into the halftime break trailing by 31.Lakers coach JJ Redick said that LA's medical staff cleared Doncic to play after having his hamstring checked at halftime."We wish for the best," Lakers guard Austin Reaves said. "Obviously you don't want to see anybody get hurt, but you just hold on to some faith for the best news possible. I've gotten to know him last year and a half. He's a competitor, so he'll do all he can do to put himself in a position to come back when he can."Doncic will undergo an MRI on Friday to determine the extent of his left hamstring injury, according to ESPN's Dave McMenamin.He exited the game with 12 points, seven assists, four rebounds and six turnovers on 3-of-10 shooting from the field.Doncic needs just one more game played to meet the NBA's 65-game requirement for to be considered for major postseason awards. He was named the Western Conference Player of the Month for March on Thursday after averaging 37.5 points, 8.0 rebounds, and 7.4 assists.Los Angeles (50-27) has just five games remaining in the regular season with a road matchup against the Dallas Mavericks up next on Sunday night. The Lakers' next home game will be a rematch against OKC on Tuesday.Doncic's loss comes at a crucial time for the Lakers as the team is in pursuit of locking up the third seed in the Western Conference playoff picture. LA currently holds a one game lead in the third seed over Denver in the standings with Houston trailing by 2.5 games and Minnesota behind by 3.5 games.And with Doncic's status up in the air with the playoffs set to kick off in two weeks away, the Lakers are aiming to stay optimistic."We're already out with Marcus (Smart) right now and now Luka," Lakers star LeBron James said. "Obviously we'll be tested without the head of the snake — don't want to make no conclusions — but we'll see what happens from there." Luka Doncic statsEntering play Thursday:Games played: 63Points per game: 33.8Assists per game: 8.3Rebounds per game: 7.8Field-goal shooting: 47.7%3-point shooting: 36.8%Free-throw shooting: 77.9%Jordan Davis covers high school sports for The Oklahoman. Have a story idea for Jordan? He can be reached atjdavis@oklahoman.com or on X/Twitter at@thejordancdavis. Sign up forThe Varsity Club newsletter to access more high school coverage. Support Jordan’s work and that of other Oklahoman journalists by purchasing adigital subscription today at subscribe.oklahoman.com.
+"""
+
+[R4] Lakers' Luka Doncic leaves game after apparent hamstring injury, does not return to court
+(https://sports.yahoo.com/articles/lakers-luka-doncic-leaves-game-034927627.html)
+"""
+Lakers fans are hoping this is not as bad as it first looked.In the third quarter of the Thunder blowing out the Lakers by more than 30, Luka Doncic tried to drive on Jalen Williams, pulled up sharply for what looked to be a jumper, but then instantly dropped the ball, grabbing his hamstring in pain. After being on the ground for a minute, he limped directly to the locker room under his own power, but was very emotional about the injury.The Lakers soon confirmed Doncic would not return to the game. He will get an MRI on Friday, according to the team.AdvertisementDoncic has played at an MVP-level this season — he scored 600 points in March alone and turned the Lakers into a threat in the West — but he has played in 64 games this season. If this is a hamstring strain that sidelines him until the playoffs, he would not be eligible for any postseason awards under the NBA's 65-game rule (which has already knocked Anthony Edwards out of award eligibility and will do the same to Cade Cunningham).The NBA playoffs are 16 days away. Whether Doncic would be out that long depends on the severity of the strain, but it's not uncommon for players to be out three weeks or more with a serious strain.Doncic has felt hamstring soreness going back to before the All-Star Game, and in February he had an MRI on his left hamstring, which did not show anything that sidelined him.This season Doncic has averaged 33.8 points, 7.8 rebounds and 8.3 assists per game. The Lakers have a -1.3 net rating when he is off the court this season.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

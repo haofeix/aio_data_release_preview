@@ -1,0 +1,1305 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "monte carlo"
+
+Claims:
+[1] "Monte Carlo is an administrative area and ward in the Principality of Monaco."
+[2] "Monte Carlo is situated on the French Riviera."
+[3] "Casino de Monte-Carlo is a gambling venue."
+[4] "Casino de Monte-Carlo was built in 1861."
+[5] "Casino de Monte-Carlo was built to boost Monaco’s economy."
+[6] "Monte Carlo is located on the Mediterranean coast."
+[7] "Monte Carlo is located at the base of the Maritime Alps."
+[8] "Monte Carlo hosts the Formula 1 Monaco Grand Prix."
+[9] "Monte Carlo hosts opera performances."
+[10] "Monte Carlo hosts ballet performances."
+[11] "Montecarlo, Tuscany is a historic walled hilltop town near Lucca in Italy."
+[12] "The Monte Carlo method is a computational technique in mathematics/statistics."
+[13] "The Monte Carlo method uses random sampling to find numerical solutions to complex problems."
+[14] "There is a "Monte Carlo Data" company focusing on AI observability."
+
+Cited text snippets from the AI Overview (for additional context):
+- Monte Carlo Data: "Monte Carlo is a data and AI,know, and how to resolve them fast"
+- Montecarlo, Tuscany - Wikipedia: "Montecarlo is a comune (municipality) in the,12 kilometres (7 mi) east of Lucca.&text=Castle (Rocca del Cerruglio) of Montecarlo."
+- Monte Carlo Travel Guide: "Monte Carlo is a well-known area in,Monaco is a premier destination in Europe."
+- Monte-Carlo, Monaco: All You Must Know Before You Go (2026): "Monte-Carlo is home to the celebrated Monte,rush at May's Formula 1 Grand Prix."
+- Monte-Carlo | VisitMonaco: "The soul of Monte-Carlo In Monaco, Monte-Carlo,elegant space ideal for strolling and contemplation."
+- What are Monte Carlo methods?: "Monte Carlo methods encompass various computational algorithms,solutions are challenging or impossible to solve."
+Reference Sources:
+
+[R1] Monte Carlo
+(https://www.montecarlodata.com/)
+"""
+Trust your Agents in Production Close the loop between data inputs and agent outputs with Monte Carlo’s Data and AI Observability Platform. Meet the Agent That Debugs Your Agents Close the loop between data inputs and agent outputs to monitor, trace, and troubleshoot enterprise agents in production. The Rise of the Data + AI Trust Gap AI adoption is accelerating, but organizational trust isn't keeping pace. Data inputs are often incomplete, inaccurate, or delayed. AI outputs can drift, hallucinate, or produce biased results. Business leaders don't trust AI in production, stalling innovation and adoption. “More than 40% of companies don’t trust the outputs of their AI/ML models and more than 45% of companies cite data quality as the top obstacle to AI success ” BARC Observability for AI Innovation Study CUSTOMER STORIES Reliability designed for the enterprise Our customers scale trust, reduce risk, and deliver better business outcomes. See how you can too. Testimonial carousel with 3 items Integrate seamlessly with your entire data + AI ecosystem Gain visibility into every layer of your ecosystem with deep integrations from ingestion to consumption. The only end-to-end data and AI observability platform. Data and AI Observability is a comprehensive approach to observing your data, system, code, and agents to help enterprise teams deliver trust, performance, and business impact at scale. Resources Unlock your reliability strategy
+"""
+
+[R2] Montecarlo, a town famous for wine and a striking fortress | Visit Tuscany
+(https://www.visittuscany.com/en/towns-and-villages/montecarlo/)
+"""
+A medieval hill town near Lucca, famed for its wine Montecarlo is a magical medieval town that sits above the Lucca plain. It has earned the Touring Club's Orange Flag, a symbol of a high-quality tourist destination. Famed for the dazzling beauty of its surrounding landscape, it is also known as a major wine-producing area, as its far-stretching vineyards testify. The town's well-preserved historic centre stands within a splendid circuit of walls on top of a lone hill, which reaches a height of 163 metres above sea level. This Montecarlo - Tuscany's rather than Monaco's - has illustrious roots. It was founded by Charles IV, who had freed Lucca from Pisan dominion: hence the name Montecarlo (Mons Caroli in Latin), meaning Charles' mountain. The untarnished historic centre is surrounded by magnificent defensive walls even today. It tops the Cerruglio hill, which gives its name to the town's symbolic Cerruglio fortress. The fortress was built between the fourteenth and sixteenth centuries, centring around a semicircular main tower and two square auxiliaries, the Torre dell'Apparizione and the Torre di Santa Barbara. Together, they form a hefty triangular stronghold. The Torre dell'Apparizione takes its name from an old legend, which maintains that in 1400 the Madonna del Soccorso appeared on the walls and defended the fortress from the attacking Pisan forces. If you walk the circuit of the walls, you will see the surviving three of the original fifteen city gates. The most important of these is the Porta Fiorentina, which sets you on the road for Florence; the Porticciola points towards Lucca, while the Porta Nuova leads south. In the old centre, it is worth visiting the collegiate church of Sant'Andrea, which was originally built in the first half of the sixteenth century but was later restructured in the eighteenth. Have a look also at the small, delightful Teatro dei Rassicurati, where Giacomo Puccini often dropped by. The parish church of San Piero (sometimes called San Piero in Campo) stands at the foot of the Cerruglio Hill. This church can claim to be one of Tuscany's oldest, with origins in the earliest days of Christianity. The Montecarlo area - indeed, all the Lucchesia - is full of opportunities to walk among olive groves and vineyards and to glory in nature and the silence. One gorgeous route is the walk to the hamlet of San Martino in Colle. Here, on the slopes of a hill, you find a vast oak tree more than 500 years old. According to legend, witches would gather beneath its broad branches for their sabbaths, for which reason it has always been known as the Quercia delle Streghe (witches' oak). One date that should go straight in the diary is the local wine festival, which takes place in Montecarlo at the end of August. Wineries and osterias converge on the town to show off their wines and dishes, all traditionally Tuscan. The festa dei sapori d'autunno (festival of autumn flavours) takes place, unsurprisingly, in autumn. This is where you can taste the new wine, the new olive oil and the latest crop of chestnuts, simply by strolling from market stall to stall. There could be no better place than Montecarlo in which to try traditional Tuscan flavours. The town's history is inseparable from its wine: Montecarlo DOC promises wonderful balance and delightful aromas. Its whites go well with antipasti, like the vegetable soups typical of Lucca, risottos and fish dishes. It also complements the Garfagnana's classic cold meats, such as biroldo or bazzone prosciutto crudo. Montecarlo's reds, meanwhile, are equally versatile, and work with just about any meal. The younger ones are meant for roasts, game and other typical dishes of the Lucchesia. And don't forget the famous torta co' becchi, a sweet puffed pastry stuffed with spices and sweet herbs. What’s nearby? Must-see places, stage-by-stage routes, events and tips for your trip Piana di Lucca The beauty of Lucca with its historic center, villas surrounded by stunning gardens and delicate camellias of Compitese Piana di Lucca The beauty of Lucca with its historic center, villas surrounded by stunning gardens and delicate camellias of Compitese
+"""
+
+[R3] Monte Carlo method
+(https://en.wikipedia.org/wiki/Monte_Carlo_method)
+"""
+The approximation of a normal distribution with a Monte Carlo method Monte Carlo methods, also called the Monte Carlo experiments or Monte Carlo simulations, are a broad class of computational algorithms based on repeated random sampling for obtaining numerical results. The underlying concept is to use randomness to solve deterministic problems. Monte Carlo methods are mainly used in three distinct problem classes: optimization, numerical integration, and non-uniform random variate generation, available for modeling phenomena with significant input uncertainties, e.g. risk assessments for nuclear power plants. Monte Carlo methods are often implemented using computer simulations. They can provide approximate solutions to problems too complex for mathematical analysis. The name comes from the Monte Carlo Casino in Monaco, where the primary developer of the method, mathematician Stanisław Ulam, was inspired by his uncle's gambling habits. Monte Carlo methods are widely used in various fields of science, engineering, and mathematics, such as physics, chemistry, biology, statistics, artificial intelligence, finance, and cryptography. They have also been applied to social sciences, such as sociology, psychology, and political science. Monte Carlo methods have been recognized as one of the most important and influential ideas of the 20th century, and they have enabled many scientific and technological breakthroughs.[citation needed] Monte Carlo methods also have some limitations and challenges, such as the trade-off between accuracy and computational cost, the curse of dimensionality, the reliability of random number generators, and the verification and validation of the results. Monte Carlo methods vary, but tend to follow a particular pattern: Define a domain of possible inputs. Generate inputs randomly from a probability distribution over the domain. Perform a deterministic computation of the outputs. Aggregate the results. Monte Carlo method applied to approximating the value of π For example, consider a quadrant (circular sector) inscribed in a unit square. Given that the ratio of their areas is ⁠π/4⁠, the value of π can be approximated using the Monte Carlo method:[1] Draw a square, then inscribe a quadrant within it. Uniformly scatter a given number of points over the square. Count the number of points inside the quadrant, i.e. having a distance from the origin of less than 1. The ratio of the inside-count and the total-sample-count is an estimate of the ratio of the two areas, ⁠π/4⁠. Multiply the result by 4 to estimate π. In this procedure, the domain of inputs is the square that circumscribes the quadrant. One can generate random inputs by scattering grains over the square, then performing a computation on each input to test whether it falls within the quadrant. Aggregating the results yields our final result, the approximation of π.[citation needed] There are two important considerations: If the points are not uniformly distributed, the approximation will be poor. The approximation improves as more points are randomly placed in the whole square. Uses of Monte Carlo methods require large amounts of random numbers, and their use benefitted greatly from pseudorandom number generators, which are far quicker to use than the tables of random numbers that had been previously employed. Monte Carlo methods are often used in physical and mathematical problems and are most useful when it is difficult or impossible to use other approaches. Monte Carlo methods are mainly used in three problem classes:[2] optimization, numerical integration, and generating draws from a probability distribution. In physics-related problems, Monte Carlo methods are useful for simulating systems with many coupled degrees of freedom, such as fluids, disordered materials, strongly coupled solids, and cellular structures, e.g. cellular Potts model, interacting particle systems, McKean–Vlasov processes, kinetic models of gases.[citation needed] Other examples include modeling phenomena with significant uncertainty in inputs such as the calculation of risk in business and, in mathematics, evaluation of multidimensional definite integrals with complicated boundary conditions. In application to systems engineering problems (space, oil exploration, aircraft design, etc.), Monte Carlo–based predictions of failure, cost overruns and schedule overruns are routinely better than human intuition or alternative "soft" methods.[3] In principle, Monte Carlo methods can be used to solve any problem having a probabilistic interpretation. By the law of large numbers, integrals described by the expected value of some random variable can be approximated by taking the empirical mean (a.k.a. the 'sample mean') of independent samples of the variable. When the probability distribution of the variable is parameterized, mathematicians often use a Markov chain Monte Carlo (MCMC) sampler.[4][5][6] The central idea is to design a judicious Markov chain model with a prescribed stationary probability distribution. That is, in the limit, the samples being generated by the MCMC method will be samples from the desired (target) distribution.[7][8] By the ergodic theorem, the stationary distribution is approximated by the empirical measures of the random states of the MCMC sampler.[citation needed] In other problems, the objective is generating draws from a sequence of probability distributions satisfying a nonlinear evolution equation. These flows of probability distributions can always be interpreted as the distributions of the random states of a Markov process whose transition probabilities depend on the distributions of the current random states (see McKean–Vlasov processes, nonlinear filtering equation).[9][10] In other instances, a flow of probability distributions with an increasing level of sampling complexity arise (path spaces models with an increasing time horizon, Boltzmann–Gibbs measures associated with decreasing temperature parameters, and many others). These models can also be seen as the evolution of the law of the random states of a nonlinear Markov chain.[10][11] A natural way to simulate these sophisticated nonlinear Markov processes is to sample multiple copies of the process, replacing in the evolution equation the unknown distributions of the random states by the sampled empirical measures. In contrast with traditional Monte Carlo and MCMC methodologies, these mean-field particle techniques rely on sequential interacting samples. The terminology mean field reflects the fact that each of the samples (a.k.a. particles, individuals, walkers, agents, creatures, or phenotypes) interacts with the empirical measures of the process. When the size of the system tends to infinity, these random empirical measures converge to the deterministic distribution of the random states of the nonlinear Markov chain, so that the statistical interaction between particles vanishes.[citation needed] Suppose one wants to know the expected value of a population (and knows that exists), but does not have a formula available to compute it. The simple Monte Carlo method gives an estimate for by running simulations and averaging the simulations' results. It has no restrictions on the probability distribution of the inputs to the simulations, requiring only that the inputs are randomly generated and are independent of each other and that exists. A sufficiently large will produce a value for that is arbitrarily close to ; more formally, it will be the case that, for any , . [12] Typically, the algorithm to obtain is s = 0; for i = 1 to n do run the simulation for the ith time, giving result ri; s = s + ri; repeat m = s / n; Suppose we want to know how many times we should expect to throw three eight-sided dice for the total of the dice throws to be at least . We know the expected value exists. The dice throws are randomly distributed and independent of each other. So simple Monte Carlo is applicable: s = 0; for i = 1 to n do throw the three dice until T is met or first exceeded; ri = the number of throws; s = s + ri; repeat m = s / n; If is large enough, will be within of for any . Determining a sufficiently large n[edit] Let . Choose the desired confidence level – the percent chance that, when the Monte Carlo algorithm completes, is indeed within of . Let be the -score corresponding to that confidence level. Let be the estimated variance, sometimes called the "sample" variance; it is the variance of the results obtained from a relatively small number of "sample" simulations. Choose a ; Driels and Shin observe that "even for sample sizes an order of magnitude lower than the number required, the calculation of that number is quite stable."[13] The following algorithm computes in one pass while minimizing the possibility that accumulated numerical error produces erroneous results:[12] s1 = 0; run the simulation for the first time, producing result r1; m1 = r1; //mi is the mean of the first i simulations for i = 2 to k do run the simulation for the ith time, producing result ri; δi = ri - mi−1; mi = mi-1 + (1/i)δi; si = si-1 + ((i - 1)/i)(δi)2; repeat s2 = sk/(k - 1); Note that, when the algorithm completes, is the mean of the results. The value is sufficiently large when [12][13] If , then ; sufficient sample simulations were done to ensure that is within of . If , then simulations can be run "from scratch," or, since simulations have already been done, one can just run more simulations and add their results into those from the sample simulations: s = mk * k; for i = k + 1 to n do run the simulation for the ith time, giving result ri; s = s + ri; m = s / n; Formulae for simulations' results with bounds[edit] An alternative formula can be used in the special case where all simulation results are bounded above and below. Choose a value for that is twice the maximum allowed difference between and . Let be the desired confidence level, expressed as a percentage. Let every simulation result be such that for finite and . To have confidence of at least that , use a value for such that: For example, if , then .[12] Computational costs[edit] Despite its conceptual and algorithmic simplicity, the computational cost associated with a Monte Carlo simulation can be staggeringly high. In general the method requires many samples to get a good approximation, which may incur an arbitrarily large total runtime if the processing time of a single sample is high.[14] Although this is a severe limitation in very complex problems, the embarrassingly parallel nature of the algorithm allows this large cost to be reduced (perhaps to a feasible level) through parallel computing strategies in local processors, clusters, cloud computing, GPU, FPGA, etc.[15][16][17][18] In financial and safety-critical applications, floating-point non-determinism across hardware platforms can compound these costs, as results may vary between runs or across different processors (x86, ARM, GPU), sometimes requiring redundant simulations or consensus mechanisms to verify numerical correctness.[19] Before the Monte Carlo method was developed, simulations tested a previously understood deterministic problem, and statistical sampling was used to estimate uncertainties in the simulations. Monte Carlo simulations invert this approach, solving deterministic problems using probabilistic metaheuristics (see simulated annealing).[citation needed] An early variant of the Monte Carlo method was devised to solve the Buffon's needle problem, in which π can be estimated by dropping needles on a floor made of parallel equidistant strips. In the 1930s, Enrico Fermi first experimented with the Monte Carlo method while studying neutron diffusion, but he did not publish this work.[20] In the late 1940s, Stanisław Ulam invented the modern version of the Markov Chain Monte Carlo method while he was working on nuclear weapons projects at the Los Alamos National Laboratory. In 1946, nuclear weapons physicists at Los Alamos were investigating neutron diffusion in the core of a nuclear weapon.[20] Despite having most of the necessary data, such as the average distance a neutron would travel in a substance before it collided with an atomic nucleus and how much energy the neutron was likely to give off following a collision, the Los Alamos physicists were unable to solve the problem using conventional, deterministic mathematical methods. Ulam proposed using random experiments. He recounts his inspiration as follows: The first thoughts and attempts I made to practice [the Monte Carlo Method] were suggested by a question which occurred to me in 1946 as I was convalescing from an illness and playing solitaires. The question was what are the chances that a Canfield solitaire laid out with 52 cards will come out successfully? After spending a lot of time trying to estimate them by pure combinatorial calculations, I wondered whether a more practical method than "abstract thinking" might not be to lay it out say one hundred times and simply observe and count the number of successful plays. This was already possible to envisage with the beginning of the new era of fast computers, and I immediately thought of problems of neutron diffusion and other questions of mathematical physics, and more generally how to change processes described by certain differential equations into an equivalent form interpretable as a succession of random operations. Later [in 1946], I described the idea to John von Neumann, and we began to plan actual calculations.[21] Being secret, the work of von Neumann and Ulam required a code name.[22] A colleague of von Neumann and Ulam, Nicholas Metropolis, suggested using the name Monte Carlo, which refers to the Monte Carlo Casino in Monaco where Ulam's uncle would borrow money from relatives to gamble.[20] Monte Carlo methods were central to the simulations required for further postwar development of nuclear weapons, including the design of the H-bomb, though severely limited by the computational tools at the time. Von Neumann, Nicholas Metropolis and others programmed the ENIAC computer to perform the first fully automated Monte Carlo calculations, of a fission weapon core, in the spring of 1948.[23] In the 1950s Monte Carlo methods were used at Los Alamos for the development of the hydrogen bomb, and became popularized in the fields of physics, physical chemistry, and operations research. The Rand Corporation and the U.S. Air Force were two of the major organizations responsible for funding and disseminating information on Monte Carlo methods during this time, and they began to find a wide application in many different fields.[citation needed] The theory of more sophisticated mean-field type particle Monte Carlo methods had certainly started by the mid-1960s, with the work of Henry P. McKean Jr. on Markov interpretations of a class of nonlinear parabolic partial differential equations arising in fluid mechanics.[24][25] An earlier pioneering article by Theodore E. Harris and Herman Kahn, published in 1951, used mean-field genetic-type Monte Carlo methods for estimating particle transmission energies.[26] Mean-field genetic type Monte Carlo methodologies are also used as heuristic natural search algorithms (a.k.a. metaheuristic) in evolutionary computing. The origins of these mean-field computational techniques can be traced to 1950 and 1954 with the work of Alan Turing on genetic type mutation-selection learning machines[27] and the articles by Nils Aall Barricelli at the Institute for Advanced Study in Princeton, New Jersey.[28][29] Quantum Monte Carlo, and more specifically diffusion Monte Carlo methods can also be interpreted as a mean-field particle Monte Carlo approximation of Feynman–Kac path integrals.[30][31][32][33][34][35][36] The origins of Quantum Monte Carlo methods are often attributed to Enrico Fermi and Robert Richtmyer who developed in 1948 a mean-field particle interpretation of neutron-chain reactions,[37] but the first heuristic-like and genetic type particle algorithm (a.k.a. Resampled or Reconfiguration Monte Carlo methods) for estimating ground state energies of quantum systems (in reduced matrix models) is due to Jack H. Hetherington in 1984.[36] In molecular chemistry, the use of genetic heuristic-like particle methodologies (a.k.a. pruning and enrichment strategies) can be traced back to 1955 with the seminal work of Marshall N. Rosenbluth and Arianna W. Rosenbluth.[38] The use of sequential Monte Carlo in advanced signal processing and Bayesian inference is more recent. It was in 1993, that Gordon et al., published in their seminal work[39] the first application of a Monte Carlo resampling algorithm in Bayesian statistical inference. The authors named their algorithm 'the bootstrap filter', and demonstrated that compared to other filtering methods, their bootstrap algorithm does not require any assumption about that state-space or the noise of the system. Another pioneering article in this field was Genshiro Kitagawa's, on a related "Monte Carlo filter",[40] and the ones by Pierre Del Moral[41] and Himilcon Carvalho, Pierre Del Moral, André Monin and Gérard Salut[42] on particle filters published in the mid-1990s. Particle filters were also developed in signal processing in 1989–1992 by P. Del Moral, J. C. Noyer, G. Rigal, and G. Salut in the LAAS-CNRS in a series of restricted and classified research reports with STCAN (Service Technique des Constructions et Armes Navales), the IT company DIGILOG, and the LAAS-CNRS (the Laboratory for Analysis and Architecture of Systems) on radar/sonar and GPS signal processing problems.[43][44][45][46][47][48] These Sequential Monte Carlo methodologies can be interpreted as an acceptance-rejection sampler equipped with an interacting recycling mechanism. From 1950 to 1996, all the publications on sequential Monte Carlo methodologies, including the pruning and resample Monte Carlo methods introduced in computational physics and molecular chemistry, present natural and heuristic-like algorithms applied to different situations without a single proof of their consistency, nor a discussion on the bias of the estimates and on genealogical and ancestral tree based algorithms. The mathematical foundations and the first rigorous analysis of these particle algorithms were written by Pierre Del Moral in 1996.[41][49] Branching type particle methodologies with varying population sizes were also developed in the end of the 1990s by Dan Crisan, Jessica Gaines and Terry Lyons,[50][51][52] and by Dan Crisan, Pierre Del Moral and Terry Lyons.[53] Further developments in this field were described in 1999 to 2001 by P. Del Moral, A. Guionnet and L. Miclo.[31][54][55] There is no consensus on how Monte Carlo should be defined. For example, Ripley[56] defines most probabilistic modeling as stochastic simulation, with Monte Carlo being reserved for Monte Carlo integration and Monte Carlo statistical tests. Sawilowsky[57] distinguishes between a simulation, a Monte Carlo method, and a Monte Carlo simulation: a simulation is a fictitious representation of reality, a Monte Carlo method is a technique that can be used to solve a mathematical or statistical problem. A Monte Carlo simulation uses repeated sampling to obtain the statistical properties of some phenomena. Here are some examples: Simulation: Drawing one pseudo-random uniform variable from the interval [0,1] can be used to simulate the tossing of a coin: If the value is less than or equal to 0.50 designate the outcome as heads, but if the value is greater than 0.50 designate the outcome as tails. This is a simulation, but not a Monte Carlo simulation. Monte Carlo method: Pouring out a box of coins on a table, and then computing the ratio of coins that land heads versus tails is a Monte Carlo method of determining the behavior of repeated coin tosses, but it is not a simulation. Monte Carlo simulation: Drawing a large number of pseudo-random uniform variables from the interval [0,1] at one time, or once at many different times, and assigning values less than or equal to 0.50 as heads and greater than 0.50 as tails, is a Monte Carlo simulation of the behavior of repeatedly tossing a coin. Kalos and Whitlock[58] point out that such distinctions are not always easy to maintain. For example, the emission of radiation from atoms is a natural stochastic process. It can be simulated directly, or its average behavior can be described by stochastic equations that can themselves be solved using Monte Carlo methods. "Indeed, the same computer code can be viewed simultaneously as a 'natural simulation' or as a solution of the equations by natural sampling." Convergence of the Monte Carlo simulation can be checked with the Gelman-Rubin statistic.[citation needed] Monte Carlo and random numbers[edit] The main idea behind this method is that the results are computed based on repeated random sampling and statistical analysis. The Monte Carlo simulation is, in fact, random experimentations, in the case that, the results of these experiments are not well known. Monte Carlo simulations are typically characterized by many unknown parameters, many of which are difficult to obtain experimentally.[59] Monte Carlo simulation methods do not always require truly random numbers to be useful (although, for some applications such as primality testing, unpredictability is vital).[60] Many of the most useful techniques use deterministic, pseudorandom sequences, making it easy to test and re-run simulations. The only quality usually necessary to make good simulations is for the pseudo-random sequence to appear "random enough" in a certain sense.[citation needed] What this means depends on the application, but typically they should pass a series of statistical tests. Testing that the numbers are uniformly distributed or follow another desired distribution when a large enough number of elements of the sequence are considered is one of the simplest and most common ones. Weak correlations between successive samples are also often desirable/necessary.[citation needed] Sawilowsky lists the characteristics of a high-quality Monte Carlo simulation:[57] the (pseudo-random) number generator has certain characteristics (e.g. a long "period" before the sequence repeats) the (pseudo-random) number generator produces values that pass tests for randomness there are enough samples to ensure accurate results the proper sampling technique is used the algorithm used is valid for what is being modeled it simulates the phenomenon in question. Pseudo-random number sampling algorithms are used to transform uniformly distributed pseudo-random numbers into numbers that are distributed according to a given probability distribution. Low-discrepancy sequences are often used instead of random sampling from a space as they ensure even coverage and normally have a faster order of convergence than Monte Carlo simulations using random or pseudorandom sequences. Methods based on their use are called quasi-Monte Carlo methods.[citation needed] In an effort to assess the impact of random number quality on Monte Carlo simulation outcomes, astrophysical researchers tested cryptographically secure pseudorandom numbers generated via Intel's RDRAND instruction set, as compared to those derived from algorithms, like the Mersenne Twister, in Monte Carlo simulations of radio flares from brown dwarfs. No statistically significant difference was found between models generated with typical pseudorandom number generators and RDRAND for trials consisting of the generation of 107 random numbers.[61] Monte Carlo simulation versus "what if" scenarios[edit] There are ways of using probabilities that are definitely not Monte Carlo simulations – for example, deterministic modeling using single-point estimates. Each uncertain variable within a model is assigned a "best guess" estimate. Scenarios (such as best, worst, or most likely case) for each input variable are chosen and the results recorded.[62] By contrast, Monte Carlo simulations sample from a probability distribution for each variable to produce hundreds or thousands of possible outcomes. The results are analyzed to get probabilities of different outcomes occurring.[63] For example, a comparison of a spreadsheet cost construction model run using traditional "what if" scenarios, and then running the comparison again with Monte Carlo simulation and triangular probability distributions shows that the Monte Carlo analysis has a narrower range than the "what if" analysis.[example needed] This is because the "what if" analysis gives equal weight to all scenarios (see quantifying uncertainty in corporate finance), while the Monte Carlo method hardly samples in the very low probability regions. The samples in such regions are called "rare events".[citation needed] Monte Carlo methods are especially useful for simulating phenomena with significant uncertainty in inputs and systems with many coupled degrees of freedom. Areas of application include: Monte Carlo methods are very important in computational physics, physical chemistry, and related applied fields, and have diverse applications from complicated quantum chromodynamics calculations to designing heat shields and aerodynamic forms as well as in modeling radiation transport for radiation dosimetry calculations.[64][65][66] Statistical physics[edit] In Bayesian statistics, two classes of technique are commonly used to reconstruct unobserved parameters based on observed data. This plot shows the application of each to a two-dimensional toy problem. In statistical physics, Monte Carlo molecular modeling is an alternative to computational molecular dynamics, and Monte Carlo methods are used to compute statistical field theories of simple particle and polymer systems.[38][67] Quantum Monte Carlo methods solve the many-body problem for quantum systems.[9][10][30] Radiation material science[edit] In radiation materials science, the binary collision approximation for simulating ion implantation is usually based on a Monte Carlo approach to select the next colliding atom.[68] In experimental particle physics, Monte Carlo methods are used for designing detectors, understanding their behavior and comparing experimental data to theory. In astrophysics, they are used in such diverse manners as to model both galaxy evolution[69] and microwave radiation transmission through a rough planetary surface.[70] Monte Carlo methods are also used in the ensemble models that form the basis of modern weather forecasting. Monte Carlo methods are widely used in engineering for sensitivity analysis and quantitative probabilistic analysis in process design. The need arises from the interactive, co-linear and non-linear behavior of typical process simulations. For example: In microelectronics engineering, Monte Carlo methods are applied to analyze correlated and uncorrelated variations in analog and digital integrated circuits. In geostatistics and geometallurgy, Monte Carlo methods underpin the design of mineral processing flowsheets and contribute to quantitative risk analysis.[22] In fluid dynamics, in particular rarefied gas dynamics, where the Boltzmann equation is solved for finite Knudsen number fluid flows using the direct simulation Monte Carlo[71] method in combination with highly efficient computational algorithms.[72] In autonomous robotics, Monte Carlo localization can determine the position of a robot. It is often applied to stochastic filters such as the Kalman filter or particle filter that forms the heart of the SLAM (simultaneous localization and mapping) algorithm. In telecommunications, when planning a wireless network, the design must be proven to work for a wide variety of scenarios that depend mainly on the number of users, their locations and the services they want to use. Monte Carlo methods are typically used to generate these users and their states. The network performance is then evaluated and, if results are not satisfactory, the network design goes through an optimization process. In reliability engineering, Monte Carlo simulation is used to compute system-level response given the component-level response. In signal processing and Bayesian inference, particle filters and sequential Monte Carlo techniques are a class of mean-field particle methods for sampling and computing the posterior distribution of a signal process given some noisy and partial observations using interacting empirical measures.[73] Climate change and radiative forcing[edit] The Intergovernmental Panel on Climate Change relies on Monte Carlo methods in probability density function analysis of radiative forcing.[74] Computational biology[edit] Monte Carlo methods are used in various fields of computational biology, for example for Bayesian inference in phylogeny, or for studying biological systems such as genomes, proteins,[75] or membranes.[76] The systems can be studied in the coarse-grained or ab initio frameworks depending on the desired accuracy. Computer simulations allow monitoring of the local environment of a particular molecule to see if some chemical reaction is happening for instance. In cases where it is not feasible to conduct a physical experiment, thought experiments can be conducted, e.g. breaking bonds, introducing impurities at specific sites, changing the local/global structure, or introducing external fields.[citation needed] Path tracing, occasionally referred to as Monte Carlo ray tracing, renders a 3D scene by randomly tracing samples of possible light paths. Repeated sampling of any given pixel will eventually cause the average of the samples to converge on the correct solution of the rendering equation, making it one of the most physically accurate 3D graphics rendering methods in existence. The standards for Monte Carlo experiments in statistics were set by Sawilowsky.[77] In applied statistics, Monte Carlo methods may be used for at least four purposes: To compare competing statistics for small samples under realistic data conditions. Although type I error and power properties of statistics can be calculated for data drawn from classical theoretical distributions (e.g., normal curve, Cauchy distribution) for asymptotic conditions (i. e, infinite sample size and infinitesimally small treatment effect), real data often do not have such distributions.[78] To provide implementations of hypothesis tests that are more efficient than exact tests such as permutation tests (which are often impossible to compute) while being more accurate than critical values for asymptotic distributions. To provide a random sample from the posterior distribution in Bayesian inference. This sample then approximates and summarizes all the essential features of the posterior. To provide efficient random estimates of the Hessian matrix of the negative log-likelihood function that may be averaged to form an estimate of the Fisher information matrix.[79][80] Monte Carlo methods are also a compromise between approximate randomization and permutation tests. An approximate randomization test is based on a specified subset of all permutations (which entails potentially enormous housekeeping of which permutations have been considered). The Monte Carlo approach is based on a specified number of randomly drawn permutations (exchanging a minor loss in precision if a permutation is drawn twice—or more frequently—for the efficiency of not having to track which permutations have already been selected). Artificial intelligence for games[edit] Monte Carlo methods have been developed into a technique called Monte-Carlo tree search that is useful for searching for the best move in a game. Possible moves are organized in a search tree and many random simulations are used to estimate the long-term potential of each move. A black box simulator represents the opponent's moves.[81] The Monte Carlo tree search (MCTS) method has four steps:[82] Starting at root node of the tree, select optimal child nodes until a leaf node is reached. Expand the leaf node and choose one of its children. Play a simulated game starting with that node. Use the results of that simulated game to update the node and its ancestors. The net effect, over the course of many simulated games, is that the value of a node representing a move will go up or down, hopefully corresponding to whether or not that node represents a good move. Monte Carlo Tree Search has been used successfully to play games such as Go,[83] Tantrix,[84] Battleship,[85] Havannah,[86] and Arimaa.[87] Monte Carlo methods are also efficient in solving coupled integral differential equations of radiation fields and energy transport, and thus these methods have been used in global illumination computations that produce photo-realistic images of virtual 3D models, with applications in video games, architecture, design, computer generated films, and cinematic special effects.[88] The US Coast Guard utilizes Monte Carlo methods within its computer modeling software SAROPS in order to calculate the probable locations of vessels during search and rescue operations. Each simulation can generate as many as ten thousand data points that are randomly distributed based upon provided variables.[89] Search patterns are then generated based upon extrapolations of these data in order to optimize the probability of containment (POC) and the probability of detection (POD), which together will equal an overall probability of success (POS). Ultimately this serves as a practical application of probability distribution in order to provide the swiftest and most expedient method of rescue, saving both lives and resources.[90] Finance and business[edit] Monte Carlo simulation is commonly used to evaluate the risk and uncertainty that would affect the outcome of different decision options. Monte Carlo simulation allows the business risk analyst to incorporate the total effects of uncertainty in variables like sales volume, commodity and labor prices, interest and exchange rates, as well as the effect of distinct risk events like the cancellation of a contract or the change of a tax law.[citation needed] Monte Carlo methods in finance are often used to evaluate investments in projects at a business unit or corporate level, or other financial valuations. They can be used to model project schedules, where simulations aggregate estimates for worst-case, best-case, and most likely durations for each task to determine outcomes for the overall project.[91] Monte Carlo methods are also used in option pricing, default risk analysis.[92][93] Additionally, they can be used to estimate the financial impact of medical interventions.[94] A Monte Carlo approach was used for evaluating the potential value of a proposed program to help female petitioners in Wisconsin be successful in their applications for harassment and domestic abuse restraining orders. It was proposed to help women succeed in their petitions by providing them with greater advocacy thereby potentially reducing the risk of rape and physical assault. However, there were many variables in play that could not be estimated perfectly, including the effectiveness of restraining orders, the success rate of petitioners both with and without advocacy, and many others. The study ran trials that varied these variables to come up with an overall estimate of the success level of the proposed program as a whole.[95] Monte Carlo approach had also been used to simulate the number of book publications based on book genre in Malaysia. The Monte Carlo simulation utilized previous published National Book publication data and book's price according to book genre in the local market. The Monte Carlo results were used to determine what kind of book genre that Malaysians are fond of and was used to compare book publications between Malaysia and Japan.[96] Nassim Nicholas Taleb writes about Monte Carlo generators in his 2001 book Fooled by Randomness as a real instance of the reverse Turing test: a human can be declared unintelligent if their writing cannot be told apart from a generated one. Mathematical applications[edit] In general, the Monte Carlo methods are used in mathematics to solve various problems by generating suitable random numbers (see also Random number generation) and observing that fraction of the numbers that obeys some property or properties. The method is useful for obtaining numerical solutions to problems too complicated to solve analytically. The most common application of the Monte Carlo method is Monte Carlo integration.[citation needed] Monte-Carlo integration works by comparing random points with the value of the function. Errors reduce by a factor of . Deterministic numerical integration algorithms work well in a small number of dimensions, but encounter two problems when the functions have many variables. First, the number of function evaluations needed increases rapidly with the number of dimensions. For example, if 10 evaluations provide adequate accuracy in one dimension, then 10100 points are needed for 100 dimensions—far too many to be computed. This is called the curse of dimensionality. Second, the boundary of a multidimensional region may be very complicated, so it may not be feasible to reduce the problem to an iterated integral.[97] 100 dimensions is by no means unusual, since in many physical problems, a "dimension" is equivalent to a degree of freedom. Monte Carlo methods provide a way out of this exponential increase in computation time. As long as the function in question is reasonably well-behaved, it can be estimated by randomly selecting points in 100-dimensional space, and taking some kind of average of the function values at these points. By the central limit theorem, this method displays convergence—i.e., quadrupling the number of sampled points halves the error, regardless of the number of dimensions.[97] A refinement of this method, known as importance sampling in statistics, involves sampling the points randomly, but more frequently where the integrand is large. To do this precisely one would have to already know the integral, but one can approximate the integral by an integral of a similar function or use adaptive routines such as stratified sampling, recursive stratified sampling, adaptive umbrella sampling[98][99] or the VEGAS algorithm. A similar approach, the quasi-Monte Carlo method, uses low-discrepancy sequences. These sequences "fill" the area better and sample the most important points more frequently, so quasi-Monte Carlo methods can often converge on the integral more quickly.[citation needed] Another class of methods for sampling points in a volume is to simulate random walks over it (Markov chain Monte Carlo). Such methods include the Metropolis–Hastings algorithm, Gibbs sampling, Wang and Landau algorithm, and interacting type MCMC methodologies such as the sequential Monte Carlo samplers.[100] Simulation and optimization[edit] Another powerful and very popular application for random numbers in numerical simulation is in numerical optimization. The problem is to minimize (or maximize) functions of some vector that often has many dimensions. Many problems can be phrased in this way: for example, a computer chess program could be seen as trying to find the set of, say, 10 moves that produces the best evaluation function at the end. In the traveling salesman problem the goal is to minimize distance traveled. There are also applications to engineering design, such as multidisciplinary design optimization. It has been applied with quasi-one-dimensional models to solve particle dynamics problems by efficiently exploring large configuration space. Reference[101] is a comprehensive review of many issues related to simulation and optimization. The traveling salesman problem is what is called a conventional optimization problem. That is, all the facts (distances between each destination point) needed to determine the optimal path to follow are known with certainty and the goal is to run through the possible travel choices to come up with the one with the lowest total distance. If instead of the goal being to minimize the total distance traveled to visit each desired destination but rather to minimize the total time needed to reach each destination, this goes beyond conventional optimization since travel time is inherently uncertain (traffic jams, time of day, etc.). As a result, to determine the optimal path a different simulation is required: optimization to first understand the range of potential times it could take to go from one point to another (represented by a probability distribution in this case rather than a specific distance) and then optimize the travel decisions to identify the best path to follow taking that uncertainty into account.[citation needed] Probabilistic formulation of inverse problems leads to the definition of a probability distribution in the model space. This probability distribution combines prior information with new information obtained by measuring some observable parameters (data). As, in the general case, the theory linking data with model parameters is nonlinear, the posterior probability in the model space may not be easy to describe (it may be multimodal, some moments may not be defined, etc.).[citation needed] When analyzing an inverse problem, obtaining a maximum likelihood model is usually not sufficient, as normally information on the resolution power of the data is desired. In the general case many parameters are modeled, and an inspection of the marginal probability densities of interest may be impractical, or even useless. But it is possible to pseudorandomly generate a large collection of models according to the posterior probability distribution and to analyze and display the models in such a way that information on the relative likelihoods of model properties is conveyed to the spectator. This can be accomplished by means of an efficient Monte Carlo method, even in cases where no explicit formula for the a priori distribution is available.[citation needed] The best-known importance sampling method, the Metropolis algorithm, can be generalized, and this gives a method that allows analysis of (possibly highly nonlinear) inverse problems with complex a priori information and data with an arbitrary noise distribution.[102][103] Popular exposition of the Monte Carlo Method was conducted by McCracken.[104] The method's general philosophy was discussed by Elishakoff[105] and Grüne-Yanoff and Weirich.[106] Auxiliary-field Monte Carlo Biology Monte Carlo method – Method for simulating ion transport Direct simulation Monte Carlo – Monte Carlo method Dynamic Monte Carlo method Ergodicity – Branch of mathematics that studies dynamical systems Genetic algorithms – Competitive algorithm for searching a problem space Kinetic Monte Carlo – Statistical simulation method List of computational physics software List of open-source Monte Carlo software List of software for Monte Carlo molecular modeling Mean-field particle methods – Probabilistic problem-solving algorithms Monte Carlo method for photon transport – Modeling application Monte Carlo methods for electron transport Monte Carlo N-Particle Transport Code – Software package for simulating nuclear processes Morris method – Analysis in applied statistics Multilevel Monte Carlo method Quasi-Monte Carlo method – Numerical integration process Sobol sequence – Type of sequence in numerical analysis Temporal difference learning – Computer programming concept ^ Kalos & Whitlock 2008. ^ Kroese, D. P.; Brereton, T.; Taimre, T.; Botev, Z. I. (2014). "Why the Monte Carlo method is so important today" (PDF). WIREs Comput Stat. 6 (6): 386–392. doi:10.1002/wics.1314. S2CID 18521840. Archived from the original on June 27, 2024. Retrieved January 30, 2026.{{cite journal}}: CS1 maint: bot: original URL status unknown (link) ^ Hubbard, Douglas; Samuelson, Douglas A. (October 2009). "Modeling Without Measurements". OR/MS Today: 28–33. ^ Metropolis, Nicholas; Rosenbluth, Arianna W.; Rosenbluth, Marshall N.; Teller, Augusta H.; Teller, Edward (June 1, 1953). "Equation of State Calculations by Fast Computing Machines". The Journal of Chemical Physics. 21 (6): 1087–1092. Bibcode:1953JChPh..21.1087M. doi:10.1063/1.1699114. ISSN 0021-9606. OSTI 4390578. S2CID 1046577. ^ Hastings, W. K. (April 1, 1970). "Monte Carlo sampling methods using Markov chains and their applications". Biometrika. 57 (1): 97–109. Bibcode:1970Bimka..57...97H. doi:10.1093/biomet/57.1.97. ISSN 0006-3444. S2CID 21204149. ^ Liu, Jun S.; Liang, Faming; Wong, Wing Hung (March 1, 2000). "The Multiple-Try Method and Local Optimization in Metropolis Sampling". Journal of the American Statistical Association. 95 (449): 121–134. Bibcode:2000JASA...95..121L. doi:10.1080/01621459.2000.10473908. ISSN 0162-1459. S2CID 123468109. ^ Spall, J. C. (2003). "Estimation via Markov Chain Monte Carlo". IEEE Control Systems Magazine. 23 (2): 34–45. Bibcode:2003ICSys..23b..34S. doi:10.1109/MCS.2003.1188770. ^ Hill, Stacy D.; Spall, James C. (2019). "Stationarity and Convergence of the Metropolis-Hastings Algorithm: Insights into Theoretical Aspects". IEEE Control Systems Magazine. 39 (1): 56–67. Bibcode:2019ICSys..39a..56H. doi:10.1109/MCS.2018.2876959. S2CID 58672766. ^ Jump up to: a b Kolokoltsov, Vassili (2010). Nonlinear Markov processes. Cambridge University Press. p. 375. ^ Jump up to: a b c Del Moral, Pierre (2013). Mean field simulation for Monte Carlo integration. Chapman & Hall/CRC Press. p. 626. Monographs on Statistics & Applied Probability ^ Del Moral, P.; Doucet, A.; Jasra, A. (2006). "Sequential Monte Carlo samplers". Journal of the Royal Statistical Society, Series B. 68 (3): 411–436. arXiv:cond-mat/0212648. doi:10.1111/j.1467-9868.2006.00553.x. S2CID 12074789. ^ Jump up to: a b c d Owen, Art B. (2013). Monte Carlo Theory, Methods and Examples (PDF). Work in progress. pp. 15–36. ^ Jump up to: a b Driels, Morris R.; Shin, Young S. (April 2004). "Determining the number of Iterations for Monte Carlo Simulations of Weapon Effectiveness". Naval Postgraduate School Technical Report (March 2003 - March 2004): 10–11. ^ Shonkwiler, R. W.; Mendivil, F. (2009). Explorations in Monte Carlo Methods. Springer. ^ Atanassova, E.; Gurov, T.; Karaivanova, A.; Ivanovska, S.; Durchova, M.; Dimitrov, D. (2016). "On the parallelization approaches for Intel MIC architecture". AIP Conference Proceedings. 1773 (1): 070001. Bibcode:2016AIPC.1773g0001A. doi:10.1063/1.4964983. ^ Cunha Jr, A.; Nasser, R.; Sampaio, R.; Lopes, H.; Breitman, K. (2014). "Uncertainty quantification through the Monte Carlo method in a cloud computing setting". Computer Physics Communications. 185 (5): 1355–1363. arXiv:2105.09512. Bibcode:2014CoPhC.185.1355C. doi:10.1016/j.cpc.2014.01.006. S2CID 32376269. ^ Wei, J.; Kruis, F.E. (2013). "A GPU-based parallelized Monte-Carlo method for particle coagulation using an acceptance–rejection strategy". Chemical Engineering Science. 104: 451–459. Bibcode:2013ChEnS.104..451W. doi:10.1016/j.ces.2013.08.008. ^ Lin, Y.; Wang, F.; Liu, B. (2018). "Random number generators for large-scale parallel Monte Carlo simulations on FPGA". Journal of Computational Physics. 360: 93–103. Bibcode:2018JCoPh.360...93L. doi:10.1016/j.jcp.2018.01.029. ^ IEEE 754-2008 - IEEE Standard for Floating-Point Arithmetic. IEEE. 2008. pp. 1–70. doi:10.1109/IEEESTD.2008.4610935. ISBN 978-0-7381-5752-8. ^ Jump up to: a b c Metropolis 1987. ^ Eckhardt 1987. ^ Jump up to: a b Mazhdrakov, Benov & Valkanov 2018, p. 250. ^ Haigh, Thomas; Priestley, Mark; Rope, Crispin (2014). "Los Alamos Bets on ENIAC: Nuclear Monte Carlo Simulations, 1947-1948". IEEE Annals of the History of Computing. 36 (3): 42–63. Bibcode:2014IAHC...36c..42H. doi:10.1109/MAHC.2014.40. S2CID 17470931. ^ McKean, Henry P. (1967). "Propagation of chaos for a class of non-linear parabolic equations". Lecture Series in Differential Equations, Catholic Univ. 7: 41–57. ^ McKean, Henry P. (1966). "A class of Markov processes associated with nonlinear parabolic equations". Proc. Natl. Acad. Sci. USA. 56 (6): 1907–1911. Bibcode:1966PNAS...56.1907M. doi:10.1073/pnas.56.6.1907. PMC 220210. PMID 16591437. ^ Herman, Kahn; Theodore, Harris E. (1951). "Estimation of particle transmission by random sampling" (PDF). Natl. Bur. Stand. Appl. Math. Ser. 12: 27–30. ^ Turing, Alan M. (1950). "Computing machinery and intelligence". Mind. LIX (238): 433–460. doi:10.1093/mind/LIX.236.433. ^ Barricelli, Nils Aall (1954). "Esempi numerici di processi di evoluzione". Methodos: 45–68. ^ Barricelli, Nils Aall (1957). "Symbiogenetic evolution processes realized by artificial methods". Methodos: 143–182. ^ Jump up to: a b Del Moral, Pierre (2004). Feynman–Kac formulae. Genealogical and interacting particle approximations. Probability and Its Applications. Springer. p. 575. ISBN 978-0-387-20268-6. Series: Probability and Applications ^ Jump up to: a b Del Moral, P.; Miclo, L. (2000). "Branching and interacting particle systems approximations of Feynman–Kac formulae with applications to non-linear filtering". Séminaire de Probabilités XXXIV. Lecture Notes in Mathematics. Vol. 1729. Berlin: Springer. pp. 1–145. doi:10.1007/BFb0103798. ISBN 978-3-540-67314-9. MR 1768060. ^ Del Moral, Pierre; Miclo, Laurent (2000). "A Moran particle system approximation of Feynman–Kac formulae". Stochastic Processes and Their Applications. 86 (2): 193–216. doi:10.1016/S0304-4149(99)00094-0. ^ Del Moral, Pierre (2003). "Particle approximations of Lyapunov exponents connected to Schrödinger operators and Feynman–Kac semigroups". ESAIM Probability & Statistics. 7: 171–208. doi:10.1051/ps:2003001. ^ Assaraf, Roland; Caffarel, Michel; Khelif, Anatole (2000). "Diffusion Monte Carlo Methods with a fixed number of walkers" (PDF). Phys. Rev. E. 61 (4): 4566–4575. Bibcode:2000PhRvE..61.4566A. doi:10.1103/physreve.61.4566. PMID 11088257. Archived from the original (PDF) on November 7, 2014. ^ Caffarel, Michel; Ceperley, David; Kalos, Malvin (1993). "Comment on Feynman–Kac Path-Integral Calculation of the Ground-State Energies of Atoms". Phys. Rev. Lett. 71 (13): 2159. Bibcode:1993PhRvL..71.2159C. doi:10.1103/physrevlett.71.2159. PMID 10054598. ^ Jump up to: a b Hetherington, Jack H. (1984). "Observations on the statistical iteration of matrices". Phys. Rev. A. 30 (2713): 2713–2719. Bibcode:1984PhRvA..30.2713H. doi:10.1103/PhysRevA.30.2713. ^ Fermi, Enrique; Richtmyer, Robert D. (1948). "Note on census-taking in Monte Carlo calculations" (PDF). LAM. 805 (A). Declassified report Los Alamos Archive ^ Jump up to: a b Rosenbluth, Marshall N.; Rosenbluth, Arianna W. (1955). "Monte-Carlo calculations of the average extension of macromolecular chains". J. Chem. Phys. 23 (2): 356–359. Bibcode:1955JChPh..23..356R. doi:10.1063/1.1741967. S2CID 89611599. ^ Gordon, N.J.; Salmond, D.J.; Smith, A.F.M. (April 1993). "Novel approach to nonlinear/non-Gaussian Bayesian state estimation". IEE Proceedings F - Radar and Signal Processing. 140 (2): 107–113. doi:10.1049/ip-f-2.1993.0015. ISSN 0956-375X. S2CID 12644877. ^ Kitagawa, G. (1996). "Monte carlo filter and smoother for non-Gaussian nonlinear state space models". Journal of Computational and Graphical Statistics. 5 (1): 1–25. doi:10.2307/1390750. JSTOR 1390750. ^ Jump up to: a b Del Moral, Pierre (1996). "Non Linear Filtering: Interacting Particle Solution" (PDF). Markov Processes and Related Fields. 2 (4): 555–580. Archived from the original (PDF) on March 4, 2016. Retrieved June 11, 2015. ^ Carvalho, Himilcon; Del Moral, Pierre; Monin, André; Salut, Gérard (July 1997). "Optimal Non-linear Filtering in GPS/INS Integration" (PDF). IEEE Transactions on Aerospace and Electronic Systems. 33 (3): 835–850. Bibcode:1997ITAES..33..835C. doi:10.1109/7.599254. S2CID 27966240. Archived from the original (PDF) on November 10, 2022. Retrieved June 11, 2015. ^ P. Del Moral, G. Rigal, and G. Salut. "Estimation and nonlinear optimal control: An unified framework for particle solutions". LAAS-CNRS, Toulouse, Research Report no. 91137, DRET-DIGILOG- LAAS/CNRS contract, April (1991). ^ P. Del Moral, G. Rigal, and G. Salut. "Nonlinear and non Gaussian particle filters applied to inertial platform repositioning." LAAS-CNRS, Toulouse, Research Report no. 92207, STCAN/DIGILOG-LAAS/CNRS Convention STCAN no. A.91.77.013, (94p.) September (1991). ^ P. Del Moral, G. Rigal, and G. Salut. "Estimation and nonlinear optimal control: Particle resolution in filtering and estimation: Experimental results". Convention DRET no. 89.34.553.00.470.75.01, Research report no.2 (54p.), January (1992). ^ P. Del Moral, G. Rigal, and G. Salut. "Estimation and nonlinear optimal control: Particle resolution in filtering and estimation: Theoretical results". Convention DRET no. 89.34.553.00.470.75.01, Research report no.3 (123p.), October (1992). ^ P. Del Moral, J.-Ch. Noyer, G. Rigal, and G. Salut. "Particle filters in radar signal processing: detection, estimation and air targets recognition". LAAS-CNRS, Toulouse, Research report no. 92495, December (1992). ^ P. Del Moral, G. Rigal, and G. Salut. "Estimation and nonlinear optimal control: Particle resolution in filtering and estimation". Studies on: Filtering, optimal control, and maximum likelihood estimation. Convention DRET no. 89.34.553.00.470.75.01. Research report no.4 (210p.), January (1993). ^ Del Moral, Pierre (1998). "Measure Valued Processes and Interacting Particle Systems. Application to Non Linear Filtering Problems". Annals of Applied Probability. 8 (2) (Publications du Laboratoire de Statistique et Probabilités, 96-15 (1996) ed.): 438–495. CiteSeerX 10.1.1.55.5257. doi:10.1214/aoap/1028903535. ^ Crisan, Dan; Gaines, Jessica; Lyons, Terry (1998). "Convergence of a branching particle method to the solution of the Zakai". SIAM Journal on Applied Mathematics. 58 (5): 1568–1590. doi:10.1137/s0036139996307371. S2CID 39982562. ^ Crisan, Dan; Lyons, Terry (1997). "Nonlinear filtering and measure-valued processes". Probability Theory and Related Fields. 109 (2): 217–244. doi:10.1007/s004400050131. S2CID 119809371. ^ Crisan, Dan; Lyons, Terry (1999). "A particle approximation of the solution of the Kushner–Stratonovitch equation". Probability Theory and Related Fields. 115 (4): 549–578. doi:10.1007/s004400050249. S2CID 117725141. ^ Crisan, Dan; Del Moral, Pierre; Lyons, Terry (1999). "Discrete filtering using branching and interacting particle systems" (PDF). Markov Processes and Related Fields. 5 (3): 293–318. ^ Del Moral, Pierre; Guionnet, Alice (1999). "On the stability of Measure Valued Processes with Applications to filtering". C. R. Acad. Sci. Paris. 39 (1): 429–434. ^ Del Moral, Pierre; Guionnet, Alice (2001). "On the stability of interacting processes with applications to filtering and genetic algorithms". Annales de l'Institut Henri Poincaré. 37 (2): 155–194. Bibcode:2001AIHPB..37..155D. doi:10.1016/s0246-0203(00)01064-5. ^ Ripley 1987 ^ Jump up to: a b Sawilowsky 2003 ^ Kalos & Whitlock 2008 ^ Shojaeefard, M.H.; Khalkhali, A.; Yarmohammadisatri, Sadegh (2017). "An efficient sensitivity analysis method for modified geometry of Macpherson suspension based on Pearson Correlation Coefficient". Vehicle System Dynamics. 55 (6): 827–852. Bibcode:2017VSD....55..827S. doi:10.1080/00423114.2017.1283046. S2CID 114260173. ^ Davenport 1992 ^ Route, Matthew (August 10, 2017). "Radio-flaring Ultracool Dwarf Population Synthesis". The Astrophysical Journal. 845 (1): 66. arXiv:1707.02212. Bibcode:2017ApJ...845...66R. doi:10.3847/1538-4357/aa7ede. S2CID 118895524. ^ Vose 2008, p. 13. ^ Vose 2008, p. 16. ^ Jia, Xun; Ziegenhein, Peter; Jiang, Steve B (2014). "GPU-based high-performance computing for radiation therapy". Physics in Medicine and Biology. 59 (4): R151–R182. Bibcode:2014PMB....59R.151J. doi:10.1088/0031-9155/59/4/R151. PMC 4003902. PMID 24486639. ^ Hill, R.; Healy, B.; Holloway, L.; Kuncic, Z.; Thwaites, D.; Baldock, C. (March 2014). "Advances in kilovoltage x-ray beam dosimetry". Physics in Medicine and Biology. 59 (6): R183–R231. Bibcode:2014PMB....59R.183H. doi:10.1088/0031-9155/59/6/R183. PMID 24584183. S2CID 18082594. ^ Rogers, D.W.O. (2006). "Fifty years of Monte Carlo simulations for medical physics". Physics in Medicine and Biology. 51 (13): R287–R301. Bibcode:2006PMB....51R.287R. doi:10.1088/0031-9155/51/13/R17. PMID 16790908. S2CID 12066026. ^ Baeurle 2009 ^ Möller, W.; Eckstein, W. (March 1, 1984). "Tridyn — A TRIM simulation code including dynamic composition changes". Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms. 2 (1): 814–818. Bibcode:1984NIMPB...2..814M. doi:10.1016/0168-583X(84)90321-5. ^ MacGillivray & Dodd 1982 ^ Golden 1979 ^ G. A. Bird, Molecular Gas Dynamics, Clarendon, Oxford (1976) ^ Dietrich, S.; Boyd, I. (1996). "A Scalar optimized parallel implementation of the DSMC technique". Journal of Computational Physics. 126 (2): 328–42. Bibcode:1996JCoPh.126..328D. doi:10.1006/jcph.1996.0141. ^ Chen, Shang-Ying; Hsu, Kuo-Chin; Fan, Chia-Ming (March 15, 2021). "Improvement of generalized finite difference method for stochastic subsurface flow modeling". Journal of Computational Physics. 429 110002. Bibcode:2021JCoPh.42910002C. doi:10.1016/J.JCP.2020.110002. S2CID 228828681. ^ Climate Change 2013 The Physical Science Basis (PDF). Cambridge University Press. 2013. p. 697. ISBN 978-1-107-66182-0. Retrieved July 6, 2023. ^ Ojeda et al. 2009. ^ Milik & Skolnick 1993. ^ Cassey; Smith (2014). "Simulating confidence for the Ellison-Glaeser Index". Journal of Urban Economics. 81: 93. doi:10.1016/j.jue.2014.02.005. ^ Sawilowsky & Fahoome 2003 ^ Spall, James C. (2005). "Monte Carlo Computation of the Fisher Information Matrix in Nonstandard Settings". Journal of Computational and Graphical Statistics. 14 (4): 889–909. CiteSeerX 10.1.1.142.738. doi:10.1198/106186005X78800. S2CID 16090098. ^ Das, Sonjoy; Spall, James C.; Ghanem, Roger (2010). "Efficient Monte Carlo computation of Fisher information matrix using prior information". Computational Statistics & Data Analysis. 54 (2): 272–289. doi:10.1016/j.csda.2009.09.018. ^ Chaslot, Guillaume; Bakkes, Sander; Szita, Istvan; Spronck, Pieter. "Monte-Carlo Tree Search: A New Framework for Game AI" (PDF). Sander.landofsand.com. Retrieved October 28, 2017. ^ "Monte Carlo Tree Search - About". Archived from the original on November 29, 2015. Retrieved May 15, 2013. ^ Chaslot, Guillaume M. J. -B; Winands, Mark H. M.; Van Den Herik, H. Jaap (2008). "Parallel Monte-Carlo Tree Search". Computers and Games. Lecture Notes in Computer Science. Vol. 5131. pp. 60–71. CiteSeerX 10.1.1.159.4373. doi:10.1007/978-3-540-87608-3_6. ISBN 978-3-540-87607-6. ^ Bruns, Pete. Monte-Carlo Tree Search in the game of Tantrix: Cosc490 Final Report (PDF) (Report). ^ Silver, David; Veness, Joel. "Monte-Carlo Planning in Large POMDPs" (PDF). 0.cs.ucl.ac.uk. Archived from the original (PDF) on July 18, 2016. Retrieved October 28, 2017. ^ Lorentz, Richard J. (2011). "Improving Monte–Carlo Tree Search in Havannah". Computers and Games. Lecture Notes in Computer Science. Vol. 6515. pp. 105–115. Bibcode:2011LNCS.6515..105L. doi:10.1007/978-3-642-17928-0_10. ISBN 978-3-642-17927-3. ^ Jakl, Tomas. "Arimaa challenge – comparison study of MCTS versus alpha-beta methods" (PDF). Arimaa.com. Retrieved October 28, 2017. ^ Szirmay-Kalos 2008. ^ "How the Coast Guard Uses Analytics to Search for Those Lost at Sea". Dice Insights. January 3, 2014. ^ Stone, Lawrence D.; Kratzke, Thomas M.; Frost, John R. "Search Modeling and Optimization in USCG's Search and Rescue Optimal Planning System (SAROPS)" (PDF). Ifremer.fr. Retrieved October 28, 2017. ^ "Project Risk Simulation (BETA)". risk.octigo.pl. Retrieved May 21, 2024. ^ Carmona, René; Del Moral, Pierre; Hu, Peng; Oudjane, Nadia (2012). "An Introduction to Particle Methods with Financial Applications". In Carmona, René A.; Moral, Pierre Del; Hu, Peng; et al. (eds.). Numerical Methods in Finance. Springer Proceedings in Mathematics. Vol. 12. Springer Berlin Heidelberg. pp. 3–49. CiteSeerX 10.1.1.359.7957. doi:10.1007/978-3-642-25746-9_1. ISBN 978-3-642-25745-2. ^ Kroese, D. P.; Taimre, T.; Botev, Z. I. (2011). Handbook of Monte Carlo Methods. John Wiley & Sons. ^ Arenas, Daniel J.; Lett, Lanair A.; Klusaritz, Heather; Teitelman, Anne M. (2017). "A Monte Carlo simulation approach for estimating the health and economic impact of interventions provided at a student-run clinic". PLOS ONE. 12 (12) e0189718. Bibcode:2017PLoSO..1289718A. doi:10.1371/journal.pone.0189718. PMC 5746244. PMID 29284026. ^ Elwart, Liz; Emerson, Nina; Enders, Christina; Fumia, Dani; Murphy, Kevin (December 2006). "Increasing Access to Restraining Orders for Low Income Victims of Domestic Violence: A Cost-Benefit Analysis of the Proposed Domestic Abuse Grant Program" (PDF). State Bar of Wisconsin. Archived from the original (PDF) on November 6, 2018. Retrieved December 12, 2016. ^ Dahlan, Hadi Akbar (October 29, 2021). "Perbandingan Penerbitan dan Harga Buku Mengikut Genre di Malaysia dan Jepun Menggunakan Data Akses Terbuka dan Simulasi Monte Carlo" (PDF). Kajian Malaysia. 39 (2): 179–202. doi:10.21315/km2021.39.2.8. S2CID 240435973. ^ Jump up to: a b Press et al. 1996 ^ MEZEI, M (December 31, 1986). "Adaptive umbrella sampling: Self-consistent determination of the non-Boltzmann bias". Journal of Computational Physics. 68 (1): 237–248. Bibcode:1987JCoPh..68..237M. doi:10.1016/0021-9991(87)90054-4. ^ Bartels, Christian; Karplus, Martin (December 31, 1997). "Probability Distributions for Complex Systems: Adaptive Umbrella Sampling of the Potential Energy". The Journal of Physical Chemistry B. 102 (5): 865–880. doi:10.1021/jp972280j. ^ Del Moral, Pierre; Doucet, Arnaud; Jasra, Ajay (2006). "Sequential Monte Carlo samplers". Journal of the Royal Statistical Society, Series B. 68 (3): 411–436. arXiv:cond-mat/0212648. doi:10.1111/j.1467-9868.2006.00553.x. S2CID 12074789. ^ Spall, J. C. (2003), Introduction to Stochastic Search and Optimization: Estimation, Simulation, and Control, Wiley, Hoboken, NJ. http://www.jhuapl.edu/ISSO ^ Mosegaard & Tarantola 1995 ^ Tarantola 2005 ^ McCracken, D. D., (1955) The Monte Carlo Method, Scientific American, 192(5), pp. 90-97 ^ Elishakoff, I. (2003). "Notes on Philosophy of the Monte Carlo Method". International Applied Mechanics. 39 (7): 753–762. Bibcode:2003IAM....39..753E. doi:10.1023/A:1026236621486. ^ Grüne-Yanoff, Till; Weirich, Paul (2010). "The Philosophy and Epistemology of Simulation: A Review". Simulation & Gaming. 41 (1): 20–50. doi:10.1177/1046878109353470. Anderson, Herbert L. (1986). "Metropolis, Monte Carlo and the MANIAC" (PDF). Los Alamos Science. 14: 96–108. Benov, Dobriyan M. (2016). "The Manhattan Project, the first electronic computer and the Monte Carlo method". Monte Carlo Methods and Applications. 22 (1): 73–79. doi:10.1515/mcma-2016-0102. S2CID 30198383. Baeurle, Stephan A. (2009). "Multiscale modeling of polymer materials using field-theoretic methodologies: A survey about recent developments". Journal of Mathematical Chemistry. 46 (2): 363–426. doi:10.1007/s10910-008-9467-3. S2CID 117867762. Berg, Bernd A. (2004). Markov Chain Monte Carlo Simulations and Their Statistical Analysis (With Web-Based Fortran Code). Hackensack, NJ: World Scientific. ISBN 978-981-238-935-0. Binder, Kurt (1995). The Monte Carlo Method in Condensed Matter Physics. New York: Springer. ISBN 978-0-387-54369-7. Caflisch, R. E. (1998). Monte Carlo and quasi-Monte Carlo methods. Acta Numerica. Vol. 7. Cambridge University Press. pp. 1–49. Davenport, J. H. (1992). "Primality testing revisited". Papers from the international symposium on Symbolic and algebraic computation - ISSAC '92. pp. 123–129. CiteSeerX 10.1.1.43.9296. doi:10.1145/143242.143290. ISBN 978-0-89791-489-5. S2CID 17322272. Doucet, Arnaud; Freitas, Nando de; Gordon, Neil (2001). Sequential Monte Carlo methods in practice. New York: Springer. ISBN 978-0-387-95146-1. Eckhardt, Roger (1987). "Stan Ulam, John von Neumann, and the Monte Carlo method" (PDF). Los Alamos Science (15): 131–137. Fishman, G. S. (1995). Monte Carlo: Concepts, Algorithms, and Applications. New York: Springer. ISBN 978-0-387-94527-9. C. Forastero and L. Zamora and D. Guirado and A. Lallena (2010). "A Monte Carlo tool to simulate breast cancer screening programmes". Phys. Med. Biol. 55 (17): 5213–5229. Bibcode:2010PMB....55.5213F. doi:10.1088/0031-9155/55/17/021. PMID 20714045. S2CID 30021759. Golden, Leslie M. (1979). "The Effect of Surface Roughness on the Transmission of Microwave Radiation Through a Planetary Surface". Icarus. 38 (3): 451–455. Bibcode:1979Icar...38..451G. doi:10.1016/0019-1035(79)90199-4. Gould, Harvey; Tobochnik, Jan (1988). An Introduction to Computer Simulation Methods, Part 2, Applications to Physical Systems. Reading: Addison-Wesley. ISBN 978-0-201-16504-3. Grinstead, Charles; Snell, J. Laurie (1997). Introduction to Probability. American Mathematical Society. pp. 10–11. Hammersley, J. M.; Handscomb, D. C. (1975). Monte Carlo Methods. London: Methuen. ISBN 978-0-416-52340-9. Hartmann, A.K. (2009). Practical Guide to Computer Simulations. World Scientific. ISBN 978-981-283-415-7. Archived from the original on February 11, 2009. Hubbard, Douglas (2007). How to Measure Anything: Finding the Value of Intangibles in Business. John Wiley & Sons. p. 46. ISBN 978-0-470-11012-6. Hubbard, Douglas (2009). The Failure of Risk Management: Why It's Broken and How to Fix It. John Wiley & Sons. Kahneman, D.; Tversky, A. (1982). Judgement under Uncertainty: Heuristics and Biases. Cambridge University Press. Kalos, Malvin H.; Whitlock, Paula A. (2008). Monte Carlo Methods. Wiley-VCH. ISBN 978-3-527-40760-6. Kroese, D. P.; Taimre, T.; Botev, Z.I. (2011). Handbook of Monte Carlo Methods. New York: John Wiley & Sons. p. 772. ISBN 978-0-470-17793-8. MacGillivray, H. T.; Dodd, R. J. (1982). "Monte-Carlo simulations of galaxy systems". Astrophysics and Space Science. 86 (2): 419–435. doi:10.1007/BF00683346. S2CID 189849365. MacKeown, P. Kevin (1997). Stochastic Simulation in Physics. New York: Springer. ISBN 978-981-3083-26-4. Metropolis, N. (1987). "The beginning of the Monte Carlo method" (PDF). Los Alamos Science (1987 Special Issue dedicated to Stanislaw Ulam): 125–130. Metropolis, N.; Rosenbluth, Arianna W.; Rosenbluth, Marshall N.; Teller, Augusta H.; Teller, Edward (1953). "Equation of State Calculations by Fast Computing Machines". Journal of Chemical Physics. 21 (6): 1087. Bibcode:1953JChPh..21.1087M. doi:10.1063/1.1699114. OSTI 4390578. S2CID 1046577. Metropolis, N.; Ulam, S. (1949). "The Monte Carlo Method". Journal of the American Statistical Association. 44 (247): 335–341. doi:10.1080/01621459.1949.10483310. JSTOR 2280232. PMID 18139350. Milik, M.; Skolnick, J. (January 1993). "Insertion of peptide chains into lipid membranes: an off-lattice Monte Carlo dynamics model". Proteins. 15 (1): 10–25. doi:10.1002/prot.340150104. PMID 8451235. S2CID 7450512. Mosegaard, Klaus; Tarantola, Albert (1995). "Monte Carlo sampling of solutions to inverse problems" (PDF). J. Geophys. Res. 100 (B7): 12431–12447. Bibcode:1995JGR...10012431M. doi:10.1029/94JB03097. Archived from the original (PDF) on March 10, 2021. Retrieved November 1, 2017. Ojeda, P.; Garcia, M.; Londono, A.; Chen, N.Y. (February 2009). "Monte Carlo Simulations of Proteins in Cages: Influence of Confinement on the Stability of Intermediate States". Biophys. J. 96 (3): 1076–1082. Bibcode:2009BpJ....96.1076O. doi:10.1529/biophysj.107.125369. PMC 2716574. PMID 18849410. Int Panis, L.; De Nocker, L.; De Vlieger, I.; Torfs, R. (2001). "Trends and uncertainty in air pollution impacts and external costs of Belgian passenger car traffic". International Journal of Vehicle Design. 27 (1–4): 183–194. doi:10.1504/IJVD.2001.001963. Int Panis, L.; Rabl, A.; De Nocker, L.; Torfs, R. (2002). Sturm, P. (ed.). "Diesel or Petrol ? An environmental comparison hampered by uncertainty". Mitteilungen Institut für Verbrennungskraftmaschinen und Thermodynamik. Heft 81 Vol 1. Technische Universität Graz Austria: 48–54. Press, William H.; Teukolsky, Saul A.; Vetterling, William T.; Flannery, Brian P. (1996) [1986]. Numerical Recipes in Fortran 77: The Art of Scientific Computing. Fortran Numerical Recipes. Vol. 1 (2nd ed.). Cambridge University Press. ISBN 978-0-521-43064-7. Ripley, B. D. (1987). Stochastic Simulation. Wiley & Sons. Robert, C.; Casella, G. (2004). Monte Carlo Statistical Methods (2nd ed.). New York: Springer. ISBN 978-0-387-21239-5. Rubinstein, R. Y.; Kroese, D. P. (2007). Simulation and the Monte Carlo Method (2nd ed.). New York: John Wiley & Sons. ISBN 978-0-470-17793-8. Savvides, Savvakis C. (1994). "Risk Analysis in Investment Appraisal" (PDF). Project Appraisal Journal. 9 (1). doi:10.2139/ssrn.265905. S2CID 2809643. Sawilowsky, Shlomo S.; Fahoome, Gail C. (2003). Statistics via Monte Carlo Simulation with Fortran. Rochester Hills, MI: JMASM. ISBN 978-0-9740236-0-1. Sawilowsky, Shlomo S. (2003). "You think you've got trivials?". Journal of Modern Applied Statistical Methods. 2 (1) jmasm.eP1744: 218–225. doi:10.22237/jmasm/1051748460. Silver, David; Veness, Joel (2010). "Monte-Carlo Planning in Large POMDPs" (PDF). In Lafferty, J.; Williams, C. K. I.; Shawe-Taylor, J.; Zemel, R. S.; Culotta, A. (eds.). Advances in Neural Information Processing Systems 23. Neural Information Processing Systems 2010. Neural Information Processing Systems Foundation. Archived from the original (PDF) on May 25, 2012. Retrieved March 15, 2011. Szirmay-Kalos, László (2008). Monte Carlo Methods in Global Illumination - Photo-realistic Rendering with Randomization. VDM Verlag Dr. Mueller e.K. ISBN 978-3-8364-7919-6. Tarantola, Albert (2005). Inverse Problem Theory. Philadelphia: Society for Industrial and Applied Mathematics. ISBN 978-0-89871-572-9. Vose, David (2008). Risk Analysis, A Quantitative Guide (3rd ed.). John Wiley & Sons. ISBN 978-0-470-51284-5. Mazhdrakov, Metodi; Benov, Dobriyan; Valkanov, Nikolai (2018). The Monte Carlo Method. Engineering Applications. ACMO Academic Press. ISBN 978-619-90684-3-4.
+"""
+
+[R4] Monte Carlo
+(https://en.wikipedia.org/wiki/Monte_Carlo)
+"""
+Monte Carlo Monte-Carlo (French)Munte Carlu (Monégasque)Quarter and wardMonte Carlo in Monaco (ward shown)Monte CarloLocation in relation to EuropeCoordinates: 43°44′23″N 7°25′38″E / 43.73972°N 7.42722°ECountry MonacoEstablished1 June 1866Government • TypePrincipality • Prince of MonacoAlbert IIArea • Urban0.281 km2 (0.108 sq mi)Population • Quarter and ward15,200 (in the quarter) 3,500 (in the ward)Postcode98000 Monte Carlo ( MON-tee KAR-loh; Italian: [ˈmonte ˈkarlo]; French: Monte-Carlo [mɔ̃te kaʁlo] or colloquially Monte-Carl [mɔ̃te kaʁl]; Monégasque: Munte Carlu, Ligurian: [ˈmuŋte ˈkaɾlu]; lit. 'Mount Charles') is an official administrative area of Monaco, specifically the ward of Monte Carlo/Spélugues, where the Monte Carlo Casino is located. Informally, the name also refers to a larger district, the Monte Carlo Quarter (corresponding to the former municipality of Monte Carlo), which besides Monte Carlo/Spélugues also includes the wards of La Rousse/Saint Roman, Larvotto/Bas Moulins and Saint Michel. The permanent population of the ward of Monte Carlo is about 3,500, while that of the quarter is about 15,000. Monaco has four traditional quarters, from west to east they are: Fontvieille (the newest), Monaco-Ville (the oldest), La Condamine, and Monte Carlo. Monte Carlo is situated on a prominent escarpment at the base of the Maritime Alps along the French Riviera. Near the quarter's western end is the "world-famous Place du Casino, the gambling center ... that has made Monte Carlo an international byword for the extravagant display and reckless dispersal of wealth".[1] It is also the location of the Hôtel de Paris, Café de Paris and Salle Garnier (the casino theatre which is the home of the Opéra de Monte-Carlo). The quarter's eastern part includes the community of Larvotto with Monaco's only public beach, as well as its new convention center (the Grimaldi Forum), and the Monte-Carlo Bay Hotel & Resort. At the quarter's eastern border, one crosses into the French town of Beausoleil (sometimes referred to as Monte-Carlo-Supérieur), and 8 kilometres (5 mi) to its east is the western border of Italy. Charles III of Monaco was responsible for turning the Monte Carlo district and Monaco into a thriving town. In 1856, Charles III of Monaco granted a concession to Napoleon Langlois and Albert Aubert,[2] to establish a sea-bathing facility for the treatment of various diseases, and to build a German-style casino.[3] St Charles Church, Monte Carlo The initial casino opened in La Condamine in 1862, but was unsuccessful. It relocated several times, before reaching its present location in the "Les Spélugues" (The Caves) area of Monte Carlo. Success came slowly, largely because Monaco was inaccessible from much of Europe. The railway, installed in 1868, brought with it an influx of people, and Monte Carlo grew in wealth.[3] Saint-Charles Church on Monte Carlo's Avenue Sainte-Charles was completed in 1883. It was restored in its centenary year.[4][5] The municipality of Monte Carlo was created in 1911, when the constitution divided the principality of Monaco into three municipalities. Monte Carlo encompassed the existing neighborhoods of La Rousse/Saint Roman, Larvotto/Bas Moulins, and Saint Michel. The municipalities merged in 1917, after accusations that the government used them to "divide and conquer". Since then, they became wards. Today, Monaco is divided into 9 wards, which are grouped into 4 quartiers. The quarter of Monte Carlo was served by tramways from 1898 to 1931. It linked all parts of Monaco (see transportation in Monaco). In 2003 a new cruise ship pier was completed in the harbour at Monte Carlo. Monte Carlo has an area of 28.14 hectares (0.28 square kilometers or 69.19 acres) and faces the Mediterranean Sea, bordered to the west by Ravin de Sainte-Dévote and La Condamine, and to the east by La Rousse and Larvotto. Monte Carlo has a hot-summer Mediterranean climate (Köppen climate classification: Csa), which is influenced by oceanic climate and humid subtropical climate. As a result, it has warm, dry summers and mild, rainy winters.[6] Climate data for Monte Carlo, Monaco Month Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec Year Mean daily maximum °C (°F) 12.5(54.5) 13.1(55.6) 14.5(58.1) 16.7(62.1) 19.8(67.6) 23.3(73.9) 26.4(79.5) 26.6(79.9) 24.2(75.6) 20.8(69.4) 16.2(61.2) 13.5(56.3) 19.0(66.2) Daily mean °C (°F) 8.7(47.7) 9.4(48.9) 10.9(51.6) 13.2(55.8) 16.4(61.5) 19.9(67.8) 22.9(73.2) 23.0(73.4) 20.5(68.9) 17.0(62.6) 12.4(54.3) 9.6(49.3) 15.3(59.5) Mean daily minimum °C (°F) 4.9(40.8) 5.6(42.1) 7.2(45.0) 9.7(49.5) 13.0(55.4) 16.4(61.5) 19.3(66.7) 19.3(66.7) 16.9(62.4) 13.2(55.8) 8.6(47.5) 5.7(42.3) 11.7(53.1) Average precipitation mm (inches) 82.7(3.26) 76.4(3.01) 70.5(2.78) 62.2(2.45) 48.6(1.91) 36.9(1.45) 15.6(0.61) 31.3(1.23) 54.4(2.14) 108.2(4.26) 104.2(4.10) 77.5(3.05) 768.5(30.26) Average precipitation days 6.8 6.4 6.1 6.3 5.2 4.1 1.9 3.1 4.0 5.8 7.0 6.0 62.7 Mean monthly sunshine hours 148.8 152.6 201.5 228.0 269.7 297.0 341.0 306.9 240.0 204.6 156.0 142.6 2,668.7 Percentage possible sunshine 53 55 54 58 58 66 73 71 67 60 52 51 60 Source 1: Hong Kong Observatory[7] Source 2: Weather Atlas (possible sunshine) [8] Climate data for Monaco Month Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec Year Mean daily maximum °C (°F) 12.3(54.1) 12.5(54.5) 14.0(57.2) 16.1(61.0) 19.4(66.9) 23.0(73.4) 25.8(78.4) 25.9(78.6) 23.8(74.8) 19.9(67.8) 16.1(61.0) 13.4(56.1) 18.5(65.3) Mean daily minimum °C (°F) 8.1(46.6) 8.2(46.8) 9.6(49.3) 11.6(52.9) 14.8(58.6) 18.5(65.3) 21.2(70.2) 21.5(70.7) 19.3(66.7) 15.6(60.1) 11.9(53.4) 9.3(48.7) 14.1(57.4) Average precipitation days 5.9 5.2 6.7 6.0 5.6 2.8 1.3 2.5 4.5 7.5 7.7 6.8 62.5 Source: Monaco website[9] Climate data for Monte Carlo Month Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec Year Average sea temperature °C (°F) 13.4(56.2) 13.0(55.5) 13.4(56.1) 14.6(58.4) 18.0(64.3) 21.8(71.3) 23.1(73.6) 23.6(74.4) 22.2(71.9) 19.6(67.2) 17.4(63.3) 14.9(58.9) 17.9(64.3) Mean daily daylight hours 9.0 10.0 12.0 13.0 15.0 15.0 15.0 14.0 12.0 11.0 10.0 9.0 12.1 Average Ultraviolet index 1 2 4 5 7 8 8 7 5 3 2 1 4.4 Source: Weather Atlas [8] Monte Carlo Casino Monte Carlo is home to an ATP Masters 1000 tennis tournament during the clay court season usually played during the end of March through mid to late April. Monte Carlo is a popular tax haven for many tennis professionals and home to many active and retired athletes. Monte Carlo is host to most of the Circuit de Monaco, on which the Formula One Monaco Grand Prix takes place. It also hosts world championship boxing bouts, the European Poker Tour Grand Final and the World Backgammon Championship as well as the Monaco International Auto Show (Fr: Salon International de l'Automobile de Monaco[10]), fashion shows and other events. Although the Monte Carlo Masters tennis tournament is billed as taking place in the community, its actual location is in the adjacent French commune of Roquebrune-Cap-Martin. The Monte Carlo Rally is one of the longest running and most respected car rallies; from 1973 to 2008 and again from 2012, it marks the start of World Rally Championship season, having also served as the curtain-raiser for the Intercontinental Rally Challenge between 2009 and 2011. The rally, however, takes place outside the Monte Carlo quarter and is run mostly on French roads. Monte Carlo has been visited by royalty as well as the public and movie stars for decades. Monte Carlo is one of Europe's leading tourist resorts, although many of the key tourist destinations are in other parts of Monaco, including such attractions as Monaco Cathedral, the Napoleon Museum, the Oceanographic Museum and aquarium, and the Prince's Palace, all of which are in Monaco-Ville. Entrance to the Salle Garnier, home of the Opéra de Monte-Carlo The Opéra de Monte-Carlo or Salle Garnier was built to designs of the architect Charles Garnier, who also designed the Paris opera house now known as the Palais Garnier. Although much smaller, the Salle Garnier is very similar in style with decorations in red and gold, and frescoes and sculptures all around the auditorium. It was inaugurated on 25 January 1879 with a performance by Sarah Bernhardt dressed as a nymph. The first opera performed there was Robert Planquette's Le Chevalier Gaston on 8 February 1879, and that was followed by three more in the first season.[11] Other famous twentieth-century singers to appear at Monte Carlo included Titta Ruffo, Geraldine Farrar, Mary Garden, Tito Schipa, Beniamino Gigli, Claudia Muzio, Georges Thill, and Lily Pons. Hôtel de Paris Monte-Carlo The Hôtel de Paris, established in 1864 by Charles III of Monaco, is located on the west side of the Place du Casino in the heart of Monte Carlo. It belongs to the Société des bains de mer de Monaco (SBM), and is part of the elite Palace Grand Hotels in Monaco with the Hotel Hermitage, the Monte-Carlo Beach Hotel, Monte-Carlo Bay Hotel & Resort, the Hotel Metropole and Fairmont hotel.[12] The hotel has 106 rooms divided into four groups based on type of view, decoration and luxury.[13] The Exclusive City View offers 20 rooms, the Superior Courtyard has 29 large rooms, the Exclusive Sea View 59 and the Exclusive Casino has six. Additionally, there are 74 suites and junior suites which are grouped similarly, offering more luxury than the rooms. There are single and double suites as well as courtyard junior suites and Sea/Casino Junior suites.[13] There is also one Presidential suite.[14] In October 2014, a renovation project began, to create a garden courtyard, add a new spa, fitness and pool area, exceptional suites, and a “rooftop villa” with a private garden and pool.[15] Cultural depictions[edit] Monte Carlo has been the setting of many films, books, television shows, and video games. Foolish Wives (1922), although it was filmed in California. Rebecca (1940), an Alfred Hitchcock film with Monte Carlo and its famous casino as the setting, starring Laurence Olivier and Joan Fontaine. To Catch a Thief (1954), an Alfred Hitchcock film with Monte Carlo and its famous casino as the setting, starring Cary Grant and Grace Kelly, the future Princess Grace of Monaco. Grand Prix (1966), starring James Garner, Eva Marie Saint, and Yves Montand. Monte Carlo or Bust! (1969) also known by its American title, Those Daring Young Men in Their Jaunty Jalopies starring Tony Curtis & Terry Thomas. Herbie Goes to Monte Carlo (1977) starring Dean Jones & Don Knotts. The James Bond films Never Say Never Again (1983), and GoldenEye (1995) feature the Monte Carlo Casino. A Ghost in Monte Carlo (1990), a Barbara Cartland TV movie[16] starring Christopher Plummer, Oliver Reed, Lysette Anthony. Once Upon a Crime (1992) The plot revolves around a series of couples in Monte Carlo, Monaco. I Spy (2002) Iron Man 2 (2010) features the Monaco Grand Prix. Monte Carlo (2011) The DreamWorks film, Madagascar 3: Europe's Most Wanted (2012), features the Monte Carlo Casino. Rebecca (2020), a Netflix production with Lily James, Armie Hammer and Kristin Scott Thomas as main characters. Monte Carlo is featured in Edith Wharton's novel The House of Mirth (1905) as a backdrop for the leisure activities of New York's upper class in the early 20th century. The first few chapters of the Gothic novel Rebecca (1938) are set in Monte Carlo. The 1891 music hall song "The Man Who Broke the Bank at Monte Carlo", written by Fred Gilbert about a real life English trickster in Monte Carlo and popularised in 1892 by singer and comedian Charles Coborn.[17] The Prince and Princess of Monte Carlo are characters in the Savoy opera The Grand Duke (1896) by Gilbert and Sullivan.[18] Monte Carlo is an Edwardian musical comedy in two acts with a book by Sidney Carlton, music by Howard Talbot and lyrics by Harry Greenbank first performed in 1896.[19] La Dame de Monte Carlo is a monologue for soprano and orchestra composed by Francis Poulenc in 1961 based on a poem from Jean Cocteau’s Théâtre de poche.[20] "Monte Carlo Nights" is a song by Grover Washington Jr composed in 2001.[21] "Goin' Down To Monte Carlo" is a song by Van Morrison composed in 2012.[21] The television series "I Love Lucy" had an episode set in Monte Carlo in 1956, Season 5, episode 25 "Lucy Goes to Monte Carlo".[22] In the British private detective series, Randall and Hopkirk (Deceased), the eleventh episode, "The Ghost who Saved the Bank at Monte Carlo" (1969), is set in Monte Carlo. The Bold and the Beautiful series (1987–) featured a number of episodes filmed on location in the city in 2016 and 2017. It is the location for the annual Spencer Summit. The Gran Turismo series often features the Circuit de Monaco, albeit credited as "Côte d'Azur" and marked as being in France. The indie game Monaco: What's Yours is Mine The 1992 point-and-click game Indiana Jones and the Fate of Atlantis Various Formula One video games features the historic Circuit de Monaco. The Colin McRae Rally and DiRT series, as well as the World Rally Championship series, feature Monte Carlo as rally stages. James Bond 007: Blood Stone features a level set in Monte Carlo. Panorama of La Condamine and Monte Carlo from the lookout near the Prince's Palace of Monaco in Monaco-Ville Monte Carlo city panorama from train station, May 2015 Monaco's twin cities are: Ostend, Belgium since 1958[23] Macau, China since 1992 Lucciana, Corsica, France since 2009[24] Campagna, Campania, Italy since 2015 Alex Albon (Formula One driver) Victoria Azarenka (tennis player)[25] Bono (singer) Björn Borg (former tennis player) Jenson Button (former Formula One driver) Loris Capirossi (former MotoGP rider) Jolanda Čeplak (former athlete) Marin Čilić (tennis player)[26] David Coulthard (former Formula One driver) Julian Cochran (classical composer) Grigor Dimitrov (tennis player)[27] Novak Djokovic (tennis player)[28] Richard Dunne (former professional footballer) Mohamed Al-Fayed (ex-Harrods owner)[29] Giancarlo Fisichella (former Formula One driver) Matthew Goss (professional cyclist) Philip Green (businessman) Stelios Haji-Ioannou (businessman) Lewis Hamilton (Formula One driver) Daniela Hantuchová (former tennis player) Justin Hayward (singer with the Moody Blues) Justine Henin (former tennis player) Markus Hipfl (former tennis player) Dominik Hrbatý (former tennis player) Hubert Hurkacz (tennis player) Thor Hushovd (cyclist) Eddie Jordan (former Formula One team owner) Robert Kubica (former Formula One driver)[30] Karol Kučera (former tennis player) Petra Kvitová (former tennis player)[31] Charles Leclerc (Formula One driver) Gina Lollobrigida (actress) Felipe Massa (former Formula One driver) John McLaughlin, guitar player Andriy Medvedev (former tennis player) Daniil Medvedev (tennis player)[32] Gian Carlo Menotti (classical composer) Andreas Mikkelsen (WRC driver) Thierry Neuville (WRC driver) Helmut Newton (photographer) Lando Norris (Formula One driver) Mike Oldfield (musician) Stefano Pessina (businessman) Paula Radcliffe (athlete) Milos Raonic (tennis player)[33] Jean-Raymond Boulle (businessman) Daniel Ricciardo (former Formula One driver) Cristiano Ronaldo (footballer) Keke Rosberg (former Formula One driver) Nico Rosberg (former Formula One driver) Marc Rosset (former tennis player) Lucie Šafářová (tennis player)[34] Marat Safin (former tennis player) Ayrton Senna (Formula One driver)[a] David Shilling (milliner) Matteo Berrettini (tennis player) Jannik Sinner (tennis player) Robin Söderling (tennis player) Ringo Starr (drummer with the Beatles)[35] Bernard Tomic (tennis player)[36] Edwina Tops-Alexander (equestrian rider) Valentin Vacherot (tennis player) Stoffel Vandoorne (former Formula One driver) Max Verstappen (Formula One driver) Yanina Wickmayer (former tennis player) Jeff Wooller (accountant) Caroline Wozniacki (tennis player) Alexander Zverev (tennis player)[37] Mischa Zverev (former tennis player)[38] Valtteri Bottas (Formula One driver) Monte-Carlo at night from the pier Place du Casino, Monte Carlo Hotel de Paris, Monaco Interior of Hotel Hermitage Monte Carlo Buildings Monte Carlo ^ Senna lived in Monte Carlo and he never retired since he died at Imola in 1994. Chevrolet Monte Carlo – a two-door coupé produced by Chevrolet for six generations Municipality of Monaco Monaco Heliport Monte Carlo method Monte Carlo Resort and Casino – hotel and casino in Paradise, Nevada, on the Las Vegas Strip. Radio Monte Carlo Télé Monte Carlo ^ "Monaco" in The New Encyclopædia Britannica, 15th edition (Chicago, 1991), vol. 8, p. 243. ^ Saige, Gustave (1897). Monaco: Ses Origines et Son Histoire. Imprimerie de Monaco. ^ a b "History of Monte Carlo Casino". Craps Dice Control. Retrieved 23 March 2009. ^ "Monuments". Visit Monaco – Monuments. Visit Monaco. Retrieved 23 August 2014. ^ "English Community". Saint-Charles Church. Retrieved 25 August 2014. ^ "Monaco weather, climate and geography". Worldtravelguide.net. Archived from the original on 21 August 2012. Retrieved 6 September 2012. ^ "Climatological Information for Monte Carlo, Monaco" Archived 25 October 2019 at the Wayback Machine – Hong Kong Observatory ^ a b "Monte Carlo, Monaco – Climate data". Weather Atlas. Retrieved 15 March 2017. ^ "Monaco – Climate". Monaco website. Retrieved 15 March 2017. ^ "1er Salon International de l'Automobile de Monaco – 2017". 1er salon international de l'automobile de Monaco (in French). Retrieved 4 April 2016. ^ "Obituary:Arturo Vigna" (PDF). The New York Times. 30 January 1927. Archived from the original on 4 August 2023. Retrieved 15 June 2018. ^ Warhol, Andy; Hackett, Pat (1989). The Andy Warhol Diaries. New York, NY: Warner Books. p. 302. ISBN 978-0-446-51426-2. ^ a b "Luxury hotel rooms and luxurious suites in the Hotel de Paris". En.hoteldeparismontecarlo.com. Archived from the original on 16 February 2007. Retrieved 2 July 2010. ^ "Palace Hotel de Paris in Monte-Carlo". En.hoteldeparismontecarlo.com. Retrieved 2 July 2010. ^ "Monte-Carlo Société des Bains de Mer, Hotels, restaurants, casinos in Monaco". www.montecarlosbm.com. ^ Hough, John (2 April 1990), A Ghost in Monte Carlo (Drama, Romance), Sarah Miles, Oliver Reed, Christopher Plummer, Samantha Eggar, Gainsborough Pictures, The Grade Company, Turner Pictures (I), retrieved 28 February 2021 ^ "The Man Who Broke the Bank at Monte Carlo — music hall hit was inspired by a shady character". Financial Times. Retrieved 19 February 2025. ^ "The Grand Duke Plot Summary". www.gsarchive.net. ^ "Monte Carlo". gsarchive.net. ^ "La Dame de Monte-Carlo (Cocteau, set by (Francis Poulenc)) (The LiederNet Archive: Texts and Translations to Lieder, mélodies, canzoni, and other classical vocal music)". www.lieder.net. ^ a b "Lyrics containing the term: monte carlo". www.lyrics.com. ^ "Lucy Goes to Monte Carlo". IMDb. ^ "JUMELAGE OOSTENDE MONACO (1958) | deplate.be". www.deplate.be. ^ "Monaco celebrates the 10th anniversary of its twinning with Lucciana". 17 September 2019. ^ "US Open – Victoria Azarenka Player Profile". ^ "Marin Cilic – Overview". atptour.com. ^ "Grigor Dimitrov – Overview". atptour.com. ^ "Novak Djokovic – Overview". atptour.com. ^ "ExclusiveGP". Archived from the original on 15 June 2013. Retrieved 30 January 2013. ^ Grupa Wirtualna Polska. "Formuła 1". sportowefakty.wp.pl. ^ "US Open – Petra Kvitova Player Profile". usopen.org. ^ "Daniil Medvedev – Overview". atptour.com. ^ Laughton, Max (10 January 2020). "They represent Australia, but this is why Nick Kyrgios and Alex de Minaur 'reside' in The Bahamas". Fox Sports. Retrieved 12 May 2023. ^ "AO – Lucie Safarova". ausopen.com. ^ World Entertainment News Network (30 June 2005). "Ringo Moves To Monte Carlo To Avoid Tax Laws". Contactmusic.com. ^ "Bernard Tomic – Overview". atptour.com. ^ "Alexander Zverev – Overview". atptour.com. ^ "Mischa Zverev – Overview". atptour.com. Monte Carlo Monaco Portal
+"""
+
+[R5] Monte Carlo Basics
+(https://aiichironakano.github.io/phys516/01-1MCbasics.pdf)
+"""
+Monte Carlo Basics
+§1 Introduction
+
+WHAT IS THE MONTE CARLO METHOD?
+
+• Monte Carlo (MC) method: A computational method that utilizes random numbers.
+• Two major applications of the MC method:
+ 1. Multidimensional integrations (e.g., statistical mechanics in physics);
+ 2. Simulation of stochastic natural phenomena (e.g., stock price).
+• Numerical vs. MC Integration
+ The simplest numerical integration of a one-dimensional function, f(x), in the range, [a, b], samples
+ function values at regular intervals, f(xn = a + (n − 1/2)Δx) (n = 1, ..., M; Δx = (b − a)/M), see the
+ figure below (this is just an average of (b − a)f(xn)):
+ M
+ b
+ ∫ dxf (x) ≅ ∑ Δxf (x ) .
+ a n
+ 1
+
+ n=1
+
+ The MC method instead generates a sequence of random numbers, rn, in the range, [a, b], and
+ approximates the integral as (the only difference being random instead of regular points)
+ M
+ b b−a
+ ∫ dxf (x) ≅ ∑ M f (r ) .
+ a n
+ n=1
+
+ Both methods may look similar in this one-dimensional example.
+ Consider now an integration of an N-dimensional function, f(x1, ..., xN), in a unit hypercube, [0, 1]N,
+ 1 1
+ ∫ dx  ∫ dx f (x ,…, x ) .
+ 0 1 0 N 1 N
+
+ For example, even a crude numerical integration with 10 function evaluations for each of the N
+ coordinates requires 10N function evaluations. This is intractable for a large N, say N = 106. The
+ error of the MC estimates scales with the number, M, of the sample points as 1/M1/2 (to be proven
+ later). The MC method provides an approximate estimation of the integral with increased accuracy
+ with an increased number of sample points.
+
+Figure: Numerical integration of a one-dimensional Figure: Numerical integration of a two-dimensional
+function, f(x). function, f(x).
+
+1
+ This is the simplest numerical integration with an error on the order of O(Δx). For the integration of smooth functions,
+higher-order numerical integration methods with smaller errors can be used, such as the O(Δx2) trapezoid rule and the O(Δx4)
+Simpson’s rule.
+ 1
+• MC simulation of stochastic natural phenomena
+ (Example) stock price
+ The MC method simulates a stochastic natural phenomenon by generating random numbers.
+
+ Stock portfolio trading at Quantlab Financial LLC (courtesy of Dr. Andrey Omeltchenko, 1997
+ graduate of the Collaboratory for Advanced Computing and Simulations)
+
+ Technology Stock Basket Performance
+
+ 63-Stock Basket
+ 500 S&P 500
+ NASDAQ
+
+ 450
+
+ 400
+
+ 350
+
+ 300
+
+ 250
+
+ 200
+
+ 150
+
+ 100
+
+ 50
+
+ Aug-98 Apr-99 Aug-99
+ Mar-98
+ Oct-99
+ Sep-98
+ May-98 Nov-98 Dec-98 Mar-99 May-99 Nov-99 Dec-99
+ Dec-97
+ Feb-98 Apr-98 Jun-98 Jul-98 Jan-99 Feb-99 Jun-99 Jul-99 Sep-99 Jan-00
+ Jan-98 Oct-98
+
+ 2
+MC INTEGRATION 1: HIT AND MISS
+
+ Consider a square, {(x, y) | 0 ≤ x < 1, 0 ≤ y < 1}, of unit area. Consider
+a subspace inside this square, {(x, y) | 0 ≤ x < 1, 0 ≤ y < 1, x2 + y2 ≤ 1}.
+This subspace is a quarter of a unit circle, so that its area is 1/4 × π × 12 =
+π/4.
+ The subspace area is estimated by the MC method as follows.
+Generate Ntry pairs of random numbers, (x, y), in the range [0, 1]. For each
+pair, test the condition, x2 + y2 ≤ 1. If this is true, then the pair hits the
+subspace and we increment the number, Nhit, of hits. The area is estimated
+by
+ Nhit/Ntry × the area of the square = Nhit/Ntry
+
+The value of π is estimated by multiplying this value by four.
+• Program: hit.c
+/* Monte Carlo integration of PI by hit and miss */
+#include <stdio.h>
+#include <stdlib.h>
+main() {
+ double x, y, pi;
+ int hit = 0, try, ntry;
+ printf("Input the number of MC trials\n");
+ scanf("%d",&ntry);
+ srand((unsigned)time((long *)0));
+ for (try=0; try<ntry; try++) {
+ x = rand()/(float)RAND_MAX;
+ y = rand()/(float)RAND_MAX;
+ if (x*x+y*y < 1.0) ++hit;
+ }
+ pi = 4.0*hit/ntry;
+ printf("MC estimate for PI = %f\n", pi);
+}
+> cc hit.c
+> a.out
+Input the number of MC trials
+10000
+Ntry Hit = 10000 7874
+MC estimate for PI = 3.149600
+ Figure: 10,000 randomly generated
+> a.out
+ points, (x, y), in [0, 1]2. The 7,874
+Input the number of MC trials
+10000 blue points satisfy x2 + y2 < 1, while
+Ntry Hit = 10000 7798 the remaining 2,126 (= 10,000 -
+MC estimate for PI = 3.119200 7,874) red points do not.
+
+• Random-number generator in the standard library: The Unix standard library on bit includes a
+ random-number generator, int rand(), note the header file, #include <stdlib.h>. Successive
+ calls to this routine generate a sequence of random numbers in the range, [0, 231 − 1 =
+ 2,147,483,647].
+• void srand( (unsigned) time((int *)0) );
+ To initialize the sequence of random numbers, use void srand(unsigned seed), where seed is a
+ random starting point of a sequence. In the above, the seed depends on the time the program is run.
+ The int time(int *tloc) system call returns the time since 00:00:00 GMT, January 1, 1970,
+ 3
+ measured in seconds. If tloc is nonzero, the return value is also stored in the place to which tloc
+ points.
+ 31
+• RAND_MAX is the maximum random number, 2 − 1 = 2,147,483,647, defined in
+ /usr/include/stdlib.h. The expression, rand()/(float)RAND_MAX, generates a random number
+ in the range, [0,1].
+
+MC INTEGRATION 2: SAMPLE MEAN
+
+Recall the MC integration of a one-dimensional function, f(x), in the range, [a, b],
+ M
+ b b−a
+ ∫ dxf (x) ≅ ∑ M f (r ) .
+ a n
+ n=1
+
+Let’s apply this method to f(x) = 4/(1 + x2) in the range, [0, 1]. Note that
+ 1 4 π /4 dθ 4 π /4
+ ∫ dx 1+ x = ∫
+ 0 2 0 2 2
+ cos θ 1+ tan θ
+ = ∫ 4 dθ = π .
+ 0
+
+(We have changed the variable from x to θ where x = tan θ.)
+• Program: mean.c
+/* Monte Carlo integration of PI by sample mean */
+#include <stdio.h>
+#include <stdlib.h>
+main() {
+ double x, pi, sum = 0.0;
+ int try, ntry;
+ printf("Input the number of MC trials\n");
+ scanf("%d",&ntry);
+ srand((unsigned)time((int *)0));
+ for (try=0; try<ntry; try++) {
+ x = rand()/(float)RAND_MAX;
+ sum += 4.0/(1.0 + x*x);
+ }
+ pi = sum/ntry;
+ printf("MC estimate for PI = %f\n", pi);
+}
+> cc mean.c
+> a.out
+Input the number of MC trials
+100
+MC estimate for PI = 3.127413 Figure: Function values, f(x) = 4/(1
+ + x2) for 100 random points, x = rn
+APPLICATION: STATISTICAL MECHANICS (n = 1, ..., 100).
+
+Consider a cubic box of length, L, which contains N particles. Statistical mechanics deals with the long-
+time average behavior of such a system.
+ Let’s specify a configuration of the system using a set of coordinates,
+  
+{ri = (xi , yi , zi ) | 0 < xi , yi , zi < L;i = 1,..., N} . The long-time average of any physical quantity, A({ri }) , is
+given by a multidimensional integral,
+
+ 4
+ 
+   V ({ri }) 
+ ∫ dr1  ∫ drN exp(− )A({ri })
+  k BT
+ A({ri }) =  .
+   V ({ri })
+ 
+ ∫ 1 ∫ N
+ d r d r exp(− )
+ k BT
+ 
+Here T is the temperature in Kelvin, kB = 1.38×10-16 erg/K is the Boltzmann constant, and V ({ri }) is the
+ 
+potential energy of the system in erg. (An example of A({ri }) is
+the average distance of a pair of particles.)
+ For example, if the particles have a charge, e, in the
+electrostatic unit, then the potential energy is given by
+  e2
+ V ({ri }) = ∑ .
+ i< j ri − rj
+
+State-of-the-art particle simulations involve 1 billion particles,
+for which the above expression contains 3-billion dimensional
+integrals. Numerical integration using regular mesh points is
+prohibitive for such large systems. The simplest MC integration
+would generate a random point in the 3 billion-dimensional space
+by generating 3 billion random numbers in [0, L], and then
+evaluate the function at the point. In many cases, however, the
+ 
+factor exp(−V ({ri }) / kBT ) (called the Boltzmann factor) is Figure: A set of N particles in a cubic box
+extremely small in most of the points except for the neighbor of of length L.
+ 
+the point where V ({ri }) takes its minimum value.
+ To illustrate this, let’s consider a single particle in one-dimensional space of length 1 cm. The
+particle is subjected to a potential, V(x) = CkB(x − 0.5)2, where C = 1 K/cm2. The figure shows the factor
+ 
+ exp(−V ({ri }) / kBT ) for temperatures 0.1, 0.01,
+and 0.001 K. For the lowest temperature, 0.001
+K, the ranges, [0, 0.4] and [0.6, 1], contribute
+negligibly to the integration. By generating
+random numbers uniformly in [0, 1], therefore,
+we are wasting 80 % of the computing time. If
+there are 100 particles in the same 1-
+dimensional space all subjected to the same
+potential, only 0.2100 = 1.27×10 70 of the total
+ −
+
+random points contribute to the integral. Your
+random numbers make a contribution once in
+every 1070 attempts!
+ An efficient MC method should generate
+random points preferentially near the potential
+minimum, x = 0.5. Techniques to sample
+important points preferentially are called
+importance sampling, which is essential for
+successful MC applications. Figure: Boltzmann factor for a particle in one-dimensional factor.
+
+ 5
+§2 Probability—Foundation of the MC Method
+
+ELEMENTS OF PROBABILITY THEORY2
+
+• Random variable: Arises when repeated attempts under apparently identical conditions to measure
+ a quantity produce different results. For example, the reading from tossing a dice, x (∈ {1, 2, 3, 4, 5,
+ 6}), is a random variable.
+• Probability density function: Defines the probability, p(x), when the variable is sampled, that the
+ value x will result. For a large number of samples,
+ p(x) = (Number of samples with result x)/(Total number of samples)
+ For example, the probability that the reading of dice is 1, p(1), is 1/6.
+• Normalization condition: Satisfied by the probability density function simply states that the
+ number of samples for all the readings add up to the total number of samples.
+
+ ∑ p(x ) = 1 ,
+ k
+ k
+
+ i.e., Σx(Number of samples with result, x)/(Total number of samples) = 1. For example, for a dice,
+ p(1) + p(2) + ••• + p(6) = 1.
+• Expectation (mean): of a random variable, x, is defined as
+ E[x] = x = ∑ xk p(xk ) .
+ k
+
+ For example, the expected reading of a dice is,
+ 1 1 6 × (1+ 6) 1
+ 1× +6 × = × = 3.5 .
+ 6 6 2 6
+
+CONTINUOUS RANDOM VARIABLES
+
+Random variables can be continuous, e.g., the position of an atom along x axis in a box. The probability
+density function now defines the probability that, when the variable is sampled, a value lying in the
+range x to x + dx will result; this probability is
+ p(x)dx.
+This is realized in the limit of very large number of sample points such that p(x)dx = (Number of
+samples in the range, [x, x+dx])/(Total number of samples).
+
+The normalization condition now involves an integral,
+
+2
+ M. H. Kalos and P. A. Whitlock, Monte Carlo Methods, Vol. I: Basics (John Wiley & Sons, New York, 1986)—a good
+introduction to the general MC method; P. K. MacKeown, Stochastic Simulation in Physics (Springer, Singapore, 1997)—
+contains a practical introduction to probability with many applications in physics; W. Feller, An Introduction to Probability
+Theory and Its Application, Vol. I, 3rd Ed. (John Wiley & Sons, New York, 1968)—a classic of probability theory with
+rigorous treatment of Markov chains.
+ 6
+ ∞
+ ∫ dxp(x) = 1 .
+ −∞
+and the mean is calculated as
+ ∞
+ E[x] = x = ∫ dxxp(x) .
+ −∞
+
+We can also define the expectation of a function value,
+ ∞
+ E[ f (x)] = f (x) = ∫ dxf (x)p(x) ,
+ −∞
+
+i.e., if we repeatedly generate random numbers, x, and sample the function value, f(x), then 〈f(x)〉 is the
+average value over the entire samples.
+
+ Figure: A continuous probability density function. Figure: Uniform probability in the range [a, b].
+For example, if a random variable, x, is uniformly distributed in the range, [a, b], then the probability
+density function is,
+ p(x) = 1/(a − b).
+The mean of the random variable, x, is
+ b
+ b 1 1  x2  b2 − a2 b + a
+ x = ∫ dxx =   = = .
+ a
+ b − a b − a  2 a 2(b − a) 2
+For a function, f(x) = x2, the expected value is given by
+ b
+ 2 b 12 1  x3  b3 − a 3 b 2 + ab + a 2
+ x = ∫ dxx =   = = .
+ a
+ b − a b − a  3 a 3(b − a) 3
+
+VARIANCE AND STANDARD DEVIATION
+
+• Variance of a random variable, x, is defined as
+ 2 2 2
+ Var[x] = ( x − x ) = x 2 − 2x x + x = x2 − x .
+
+For the above uniform distribution, the variance is
+ 2
+ b 2 + ba + a 2 " b + a % (b − a)2
+ Var[x] = −$ ' = .
+ 3 # 2 & 12
+• Standard deviation (standard error) of a random variable, x, is the square root of its variance,
+ Std[x] = Var[x] ,
+ and it measures how broadly the probability density spreads around its mean. In the above example,
+ the standard deviation is | b − a | /2 3 .
+
+ 7
+§3 MC Estimation
+
+SAMPLE MEAN MC
+
+The sample mean MC estimation of a one-dimensional integral is derived as follows. Let p(x) be some
+probability density function. (We assume that p(x) is nonzero in the range, [a, b].) Then rewrite the
+integration as
+ b b  f (x)  f (x)
+ F = ∫ dxf (x) = ∫ dx   p(x) = .
+ a a
+  p(x)  p(x)
+
+(Recall that E[ f (x)] = ∫ dxp(x) f (x) .) Thus the deterministic integration of a function is replaced by the
+mean value, 〈f(x)〉, of the function value over stochastic samples.
+ Consider a uniform distribution, p(x) = 1/(b − a), then
+ b
+ ∫ dxf (x) = (b − a) f (x) ,
+ a
+
+i.e., generate a uniformly distributed random number sequence, x = rn (n = 1, ..., M), in the range, [a, b],
+and calculate the mean, 〈f(x)〉, of the function value. The MC estimate of the integral is
+ b 1 M
+ ∫ dxf (x) = (b − a) f (x) = (b − a) ×
+ a
+ ∑ f (rn ) ,
+ M n=1
+and this is what we have programmed in mean.c in the previous section.
+Example: Statistical mechanics
+     
+ A({ri }) = ∫ dr1  ∫ drN P({ri })A({ri }) ,
+where
+ 
+ V ({ri })
+ exp(− )
+  k BT
+ P({ri }) =  .
+   V ({ri })
+ ∫ dr1 ∫ drN exp(− k T )
+ B
+
+ESTIMATION BY FINITE SAMPLING
+
+The above argument is based on the probability density function, p(x), which is defined as the limit of a
+large number of samples. In reality, we estimate the mean values from finite samples. The question is
+what is the error associated with the estimation? We now distinguish the mean in the infinite
+population,
+ f (x) = ∫ dxf (x)p(x) ,
+from that in a finite population,
+ 1 M
+ f (x) = ∑ f (rn ) .
+ M n=1
+Here we assume that the random numbers, {rn | n = 1, ..., M}, are sampled according to the underlying
+probability density function. Note that a finite sample itself is a random variable (repeated M-samplings
+will produce different results), and accordingly has the mean and the standard deviation.
+ 8
+• Unbiased estimator: If an estimate of a statistical quantity using M samples converges to the
+ underlying population value, the estimator is unbiased.
+
+(Theorem) The mean of M sampled random variables, f (x) , converges to its expected value, f (x) .
+
+ 1 M 1 M 1
+  E { f (x)} = ∑ E { f (rn )} = ∑ f (x) = M f (x) = f (x) .
+ M n=1 M n=1 M
+The second equality holds since each sample is independent and follows the underlying probability
+density function.
+
+VARIANCE OF SAMPLE MEAN
+
+Variance of an MC estimate, f (x) , of the mean is related to the standard deviation of the underlying
+population.
+ 1 M  1 M M
+ Var{ f (x)} = Var  ∑ f (rn ) = 2 ∑ ∑  f (rm ) − f (x)  f (rn ) − f (x)  .
+  M n=1  M m=1 n=1
+Now an important assumption is that each sample is independent of each other, i.e., there is no
+correlation between any two samples. Mathematically the lack of correlation between two random
+variable, A and B, is expressed as 〈AB〉 = 〈A〉〈B〉. In the above equation,
+  Var{ f (x)} (m = n)
+  f (rm ) − f (x)  f (rn ) − f (x)  =  .
+  f (rm ) − f (x) f (rn ) − f (x) = 0 (else)
+
+Substituting this relation to the above,
+ 1 M Var{ f (x)}
+ 2 ∑
+ Var{ f (x)} = Var{ f (x)} = .
+ M m=1 M
+By taking the square root,
+ Std{ f (x)}
+ Std{ f (x)} = .
+ M
+(Bottom line) The error of an MC estimation decreases as 1 / M .
+
+UNBIASED ESTIMATOR FOR THE STANDARD DEVIATION
+
+The above equation expresses the standard deviation of the mean of finite samples in terms of that of
+infinite samples. The problem is that we do not know the latter. Fortunately there is an estimator for the
+standard deviation of the underlying infinite population from finite samples.
+Let’s define the variance, sM, measured in M samples,
+ 2
+ 1 M #1 M &
+ sM = ∑ f 2 (rn ) − % ∑ f (rn )( .
+ M n=1 $ M n=1 '
+Note again that sM itself is a random variable. The value may vary from time to time, but its expectation
+value is
+
+ 9
+ 1 M 2 1 M M
+ sM = ∑
+ M n=1
+ f (x) − ∑ ∑ f (rm ) f (rn )
+ M 2 m=1 n=1
+ 1 M 2 1 M M
+ = f (x) − 2 ∑ f (x) − 2 ∑ ∑ f (rm ) f (rn ) .
+ 2
+
+ M m=1 M m=1 n=1(n≠m)
+For uncorrelated random numbers,
+ f (rm ) f (rn ) = f (x) f (x) ,
+and therefore
+  1 M (M −1)
+ sM = 1−  f 2 (x) − f (x) f (x)
+  M M2
+  1
+ = 1− Var{ f (x)}.
+  M
+For the large M limit,
+  1 M  
+ 2
+ M M 1 M 2
+ sM =  ∑ f (rn ) −  ∑ f (rn )  → Var{ f (x)} (M → ∞)
+ M −1 M −1  M n=1  M n=1  
+
+converges to Var{f(x)} and thus it is an unbiased estimator of the latter.
+
+VARIANCE OF SAMPLE MEAN IN PRACTICE
+
+We can now use the relation
+ Var{ f (x)}
+ Var{ f (x)} = ,
+ M
+to estimate the variance of the MC mean (i.e., what is the uncertainty associated with the MC sample
+mean), since we now have an estimator for Var{f(x)},
+  1 M  
+ 2
+ M M 1 M 2
+ sM =  ∑ f (rn ) −  ∑ f (rn )  → Var{ f (x)} (M → ∞) .
+ M −1 M −1  M n=1  M n=1  
+
+Combining these two equations, we have
+  1 M  
+ 2
+ 1 1 1 M 2 Var{ f (x)}
+ Var{ f (x)} = sM =  ∑ f (rn ) −  ∑ f (rn )  → (M → ∞) .
+ M −1 M −1  M n=1  M n=1   M
+
+ 10
+Let us summarize the main results on the sample mean MC method.
+ Mean:
+ 1 M
+ f (x) = ∑ f (rn ) →
+ M n=1
+ f (x) = ∫ dxf (x)p(x) (M → ∞) .
+
+ Variance of the mean:
+  1 M  
+ 2
+ 1 1 1 M 2 Var{ f (x)}
+ Var{ f (x)} = sM =  ∑ f (rn ) −  ∑ f (rn )  → (M → ∞) .
+ M −1 M −1  M n=1  M n=1   M
+
+CENTRAL THEOREM ON MC SAMPLING
+
+ 2
+ f 2 −( f )
+ ∫ dxf (x)p(x) ≅ f ± M −1
+ ,
+
+where finite-samplings are defined through random variables, rn, according to p(x), as
+ 1 M
+ A≡ ∑ A (rn ) .
+ M n=1
+
+ 11
+§4 Importance Sampling
+
+In the previous section, we have learned how we can estimate the mean value of a random function and
+its standard error both from random sampling. The question now is how to sample random variables
+according to the underlying probability density, p(x). For example, recall the statistical mechanics in the
+     
+previous section. The statistical average of a function A(r N ) (where r N = {r1, r2 ,..., rN } ) is estimated by
+   
+generating random samples, {r1 N , r2N ,..., rMN } , as
+ M
+ ! !
+ !N !N !N ∑ A(rnN )exp (−V (rnN ) / kBT )
+ A =
+ ∫ dr A(r )exp (−V (r ) / kBT ) ≈ n=1 .
+ ! !
+ ∫ dr N exp (−V (r N ) / kBT ) M
+ !N
+ ∑ exp (−V (rn ) / kBT )
+ n=1
+
+However, we have learned that this approach is practically useless and we instead need to generate
+ 
+random points according to the probability that is proportional to exp(−V (r N ) / kBT ) . This is called
+importance sampling.
+
+IMPORTANCE SAMPLING
+
+The discussion of the sample mean MC method in the previous section has assumed that we can
+generate a sequence of random points, r1, r2, ..., so that their population follows a given probability
+density function, p(x).
+• Importance sampling: Chooses random numbers from a probability density function, p(x).
+One importance sampling method generates a sequence of random points so that the population of the
+entire points follows the given probability density rather than generating each point with the probability
+density (the latter is more difficult).
+
+MARKOV CHAIN
+
+For simplicity, let’s consider a finite-state system which at any moment
+can be in one of the states, {Γ1, Γ2, ..., ΓN}. An example is a system of n
+atoms in a cubic box in which the coordinate in each direction is
+discretized so that it takes only one of m discretized grid points. A state
+of the system is specified by 3n discretized points, and there are m3n
+combinations for possible states. The probability density function in
+this case is a 3n-dimensional function, p(Γ1, Γ2,..., ΓN).
+• Markov chain: A sequence of trials that satisfies two conditions:
+ Figure: A two-dimensional system
+ (a) The outcome of each trial belongs to a finite set of outcomes, with 5 atoms discretized on 11 grid
+ {Γ1, Γ2, ..., ΓN}, called the state space; points in each direction. The
+ (b) The outcome of each trial depends only on the outcome of the number of all possible
+ combinations of atomic positions is
+ trial that immediately precedes it (the system has a very short 1110.
+ memory).
+• Transition probability matrix: Any two states Γn and Γm are linked by a transition probability, πmn,
+ which is the conditional probability that the next state is Γm given that the current state Γn, i.e., the
+
+ 12
+ probability of state transition, n → m. Each transition probability πmn is an element of the transition
+ probability matrix,
+  π 11 π 12  π 1N 
+  
+ Π =  π 21 π 22 .
+  
+  π N1 π NN 
+• Normalization: Given that the system is in the state, Γn, then the next state must be one of the N
+ possible states so that
+ N
+
+ ∑π mn =1.
+ m=1
+
+ Suppose we start (with 100% probability) from one of the states, say n, then the next state is
+ stochastic with probability,
+  p1   0 
+     
+ ρ (1) =  p2  = Πρ (0)
+ = Π .
+  p   1  n
+   
+  N 
+ N
+ ( pm(1) = ∑ π mn′δn′n = π mn , where δnn' = 1 if n = n' and 0 otherwise.)
+ n′=1
+
+ The probability distribution of the τ-th time step is given by successive matrix multiplications:
+ ρ (τ ) = Πρ (τ −1) = Π 2 ρ (τ −2) = = Πτ ρ (0) .
+The following theorem3 gives us a clue how a Markov chain is used to achieve a population with a given
+probability density.
+• Perron-Frobenius theorem: A transition probability matrix has one eigenvalue that equals unity,
+ and the corresponding eigenvector is the limiting distribution of the chain. The absolute values of all
+ the other eigenvalues are less than unity.
+1. The consequence of the Perron-Frobenius theorem is that Π for large τ converges to a matrix which,
+ τ
+
+ acting on any initial probability distribution, ρ(0), converges to the eigenvector of the unit eigenvalue.
+ All the other eigenvectors, whose eigenvalue being less than unity, are filtered out by successive
+ matrix multiplications. ( ρ ∞ = lim Πτ ρ (0) .)
+ τ →∞
+
+2. In order to achieve a distribution of states, which follows a given probability density, find a
+ transition probability matrix whose eigenvector with unit eigenvalue (the existence of which is
+ guaranteed by the above normalization condition) equals the desired probability density.
+(Example—Two State System)4
+Suppose the reliability of a (rather unreliable) computer follows a certain pattern. If it is up and running
+on one day, it has a 60% of running correctly on the next. If it is down, it has a 70% chance of also
+being down the next day.
+
+3
+ For a proof, see W. Feller, Introduction to Probability Theory and Its Applications, Vol. I (John Wiley & Sons, New York,
+1968).
+4
+ M. P. Allen and D. J. Tildesley, Computer Simulation of Liquids (Oxford Univ. Press, Oxford, 1987) p. 115.
+ 13
+The transition probability matrix of this computer is given by,
+ ↑ ↓
+ Π= ↑
+ ↓ ( a 1− b
+ 1− a b ),
+where a = 0.6 and b = 0.7. For example, if the computer is up today,
+  p(1) 
+ 0.4 0.7 ) ( 0 ) ( 0.4 )
+ ( 0.6
+  ↑(1)  = 0.3 1 = 0.6 ,
+  p↓ 
+i.e., it will be 60% up and 40 % down tomorrow. For the day after tomorrow,
+  p(2) 
+  ↑(2)  =
+  p↓ 
+ ( 0.6
+ 0.4 0.7 ) ( 0.4 ) ( 0.52 )
+ 0.3 0.6 = 0.48 .
+
+In order to obtain a closed form for the probability on day n, we need to solve an eigenvalue problem,
+ Πw = λ w ,
+where λ is an eigenvalue and the corresponding eigenvector is
+
+ w= ( uv ) .
+We can rewrite the eigenvalue equation as
+
+ ( 1−a a 1−b b ) ( uv ) = λ ( uv ) ,
+or
+
+ ( λa −−1a λb −−1b ) ( uv ) = ( 00 ) .
+For the above equation to have a nontrivial solution (trivial solution is u = v = 0), there should not exist
+the inverse matrix of Π, or the determinant of the matrix must be zero,
+ Π = (λ − a)(λ − b) − (a −1)(b −1) = (λ − a − b +1)(λ −1) = 0 .
+
+There are two solutions, λ+ = 1 and −1 < λ = a+b−1 < 1. (For each eigenvalue, the two equations
+ −
+
+constituting the matrix equation become identical: (1−a)u+ + (b−1)v+ = 0 for λ+ and u + v = 0 for λ .)− − −
+
+The corresponding eigenvectors are
+  u  1  
+ w+ =  +  = (
+ 1− b
+  v+  2 − a − b 1− a ) and w =  uv  = ( −11 ) .
+ −
+ −
+
+ −
+
+(Normalization of the vector is not important.) We can combine the two eigensolutions in a matrix
+equation,
+ ΠU = UΛ ,
+where U is called the transformation matrix,
+  (1− b) 
+  u u−   −1   λ+ 0 
+ (2 − a − b)
+ U =  v+
+  +
+  = 
+ v −   (1− a) 1 
+  and Λ =  0
+  λ −  = ( 10 a + 0b −1 ) .
+  (2 − a − b) 
+
+ 14
+
+ ( 1−a a 1−b b ) uv  = λ  uv  =  λλ uv 
+ +
+ +
+ +
+ +
+ +
+ + +
+ + +
+
+ ( 1−a a 1−b b ) uv  = λ  uv  =  λλ uv 
+ −
+ −
+ −
+ −
+ −
+ − −
+ − −
+
+By combining these two matrix equations,
+
+ ( 1−a a 1−b b ) uv uv  =  λλ uv λλ uv  =  uv uv  λ0 λ0  //
+ +
+ +
+ −
+ −
+ + +
+ + +
+ − −
+ − −
+ +
+ + −
+ − +
+ −
+
+Or, by multiplying the inverse of U from the right on both sides of the above matrix equation,
+ Π = UΛU −1 ,
+where the inverse of the transformation matrix is
+  1 1 
+ U −1 =  (a −1) (1− b)  .
+  (2 − a − b) (2 − a − b) 
+Let’s multiply the transition probability matrix repeatedly to an arbitrary initial probability distribution,
+  p(n)  n p 
+  1(n)  = Π  p1  .
+  p2   2 
+Meaning of such a vector is as follows. Starting from the same initial condition, we monitor the time
+sequence of up and down state for many samples. On day τ, count the number of up’s and down’s in the
+ensemble, and these give the up and down probabilities on the day.
+  p(n)  n p 
+  1(n)  = Π  p1 
+  p2   2 
+  p 
+ = UΛ nU −1  1 
+  p2 
+  u −1  λ+n 0  1 1  p1 
+ = +  
+  v+ 1  0 λ−  n  −v+ u+
+ (
+  p2  )
+  u −1  1 0 1  p1  (n → ∞)
+ =  +
+  v+ 1  0 0
+  ( 1
+ )(
+ −v+ u+  p2  )
+  u (p + p )   u 
+ =  + 1 2  =  + .
+  v+ ( p1 + p2 )   v+ 
+Note that in the above derivation,
+ UΛU −1UΛU −1 UΛU −1 = UΛ (U −1U ) ΛΛ (U −1U ) ΛU −1 = UΛ nU −1 .
+
+Therefore repeated application of the transition probability matrix to an arbitrary initial probability
+density converges to the eigenvector corresponding to the unit eigenvalue, and this proves the Perron-
+Frobenius theorem for an arbitrary two-state system. Note that we have used the fact,
+
+ λ−n → 0 (n → ∞, λ−n < 1) .
+
+ 15
+Eventually, the computer has a u+ = (1 − b)/(2 − a − b) = 0.3/0.7 = 0.4286 chance of being up and
+running at any day, and u = (1 − a)/(2 − a − b) = 0.4/0.7 = 0.5714 chance of being down.
+ −
+
+METROPOLIS ALGORITHM5
+
+Now the question of generating a desired probability distribution has reduced to finding a transition
+probability matrix whose eigenvector with unit eigenvalue equals to the probability density function. To
+do this, recall the eigenvalue equation with unit eigenvalue,
+ N
+ Πρ = ρ or ∑Π ρ = ρ .mn n m
+ n=1
+The problem is that given a desired ρ, how to find Π which satisfies the above relation. A trick is to
+impose the stronger condition below.
+• Detailed balance condition: For any pair of states,
+ π mn ρn = π nm ρ m .
+ The left-hand side is a flux of probability that the current state is n and that the next state is m. The
+ right-hand side is a flux from m to n. For any pair of states this balance of fluxes must be
+ microscopically balanced.
+In order to show that above detailed balance condition is sufficient for the unit-eigenvalue relation, sum
+the both side over n.
+ N N
+  ∑ π mn ρn = ∑ (π ) ρ nm m
+ n=1 n=1
+ 1
+ N
+ ∴ ∑ π mn ρn =ρ m .
+ n=1
+
+• Metropolis’ transition probability matrix: Called an asymmetric solution uses a symmetrical (αmn
+ = αnm) attempt matrix:
+ 
+  α mn ρm ≥ ρn m≠n
+ 
+ π mn =  ( ρ m ρn ) α mn ρm < ρn m≠n .
+  1− π
+  ∑ m'n m=n
+ m'≠n
+
+The Metropolis’s method is a kind of rejection method—propose and accept/reject: It first attempts a
+move from n → m with probability αmn. If the destination probability is larger than the source
+probability, then unconditionally accept the attempt. Otherwise if the destination probability is smaller
+than the source, accept the attempt with a probability, ρm/ρn. The last relation guarantees the
+normalization condition on the transition probability matrix.
+Proof of detailed balance:
+Assume that ρm < ρn (similar proof for the other case). π nm ρ m = α nm ρ m = α mn ρ m due to the symmetrical
+attempt. On the other hand, π mn ρn = ( ρ m / ρn ) α mn ρn = α mn ρ m .//
+
+5
+ N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller, and E. Teller, Equation of states calculations by fast
+computing machines, J. Chem. Phys. 21, 1087 (1953).
+ 16
+An advantage of the Metropolis’ algorithm is that the relative probability density ρm/ρn is relatively easy
+to calculate compared with the absolute probability ρn. For example, let’s consider the probability
+density in statistical mechanics,
+ 
+ V ({ri })
+ exp(− )
+  k BT
+ P({ri }) =  ,
+   V ({ri })
+ ∫ dr1 ∫ drN exp(− k T )
+ B
+
+which is known only after we integrate the exponential factor over the entire configuration space (an
+intractable task). The Metropolis’ method only requires the evaluation of a relative probability,
+  
+ ( )
+ P {ri next } ( (
+ exp −V {ri next } kBT ) )  
+ (  current =
+ )  current ( (
+ = exp −δ V {ri next }, {ri current } kBT , ) )
+ P {ri ( (
+ } exp −V {ri } kBT ) )
+where
+    
+ ( ) ( ) ( )
+ δV {ri next }, {ri current } = V {ri next } −V {ri current } .
+
+Note the denominator of the probability density function (or the normalization factor) cancels out. Now
+the only requirement is that we are able to calculate the change in the potential energy after and before
+each attempted change in configuration.
+* Caution: The system remains in the same state if an attempt fails according to the third relation. If
+ you are calculating the statistical average of some quantity, this same next state must be taken into
+ account in the averaging process again in addition to the already counted current state. The
+ following pseudocode demonstrates this point.
+• Template: Metropolis algorithm for statistical mechanics
+Sum_A = 0
+for n = 1 to Ntrial
+ X’ ← X + dX
+ Compute dV = V(X’) - V(X)
+ if dV < 0 then /* Greedy */
+ Accept X ← X’
+ else if rand() < exp(-dV/kBT) then /* Uphill move accepted with a probability*/
+ Accept X ← X’
+ /* else the state remains X */
+ endif
+ Sum_A = Sum_A + A(X) /* Counting X more than once if a move rejected */
+endfor
+Avg_A = Sum_A/Ntrial
+* Often an attempt used in the Metropolis’ algorithm is a random displacement. For example, in the
+ discretized 3D atom system, an attempt is made with equal probability, 1/6, from 6 neighbor grid
+ points, {north, south, east, west, up, down}.
+
+ 17
+§5 Random Number Generator
+
+LINEAR CONGRUENTIAL GENERATOR6
+
+• Uniform random number generator: A routine to generate a sequence of random numbers within
+ a specified range (typically 0 to 1).
+ The simplest uniform random number generator uses a sequence of large positive integers Xi, each
+generated from the previous one by multiplication conducted in finite modulus arithmetic:
+ Xi+1 = aXi mod M,
+where a and M are large positive integers and mod is the modulo operator. Each integer in the sequence
+lies in the range [1, M − 1]. Random numbers ri in the range [0, 1] is obtained by
+ ri = Xi/M.
+Since Xi can never exceed M − 1 the sequence must repeat after at most M − 1 iterations. If M is chosen
+to be prime and a is carefully chosen, the maximum possible period of M − 1 is achieved.
+ The most famous generator is (M, a) = (231 − 1 = 2147483647, 75 = 16807), in which M is the largest
+prime that can be represented by a signed 32-bit integer. This cannot be implemented using the 32-bit
+integer arithmetic since the multiplication can easily overflow.
+ The following algorithm (due to Schrage) solves this difficulty by using a factorization of m,
+ m = aq + r, i.e., q = [m/a], r = m mod a
+with square brakets denoting integer part. If r < q, then we can show, for an arbitrary z in the range (0,
+m − 1), that both a(z mod q) and r[z/q] lie in the range [0, m − 1] and
+
+ az mod m = { a(za(zmodmodq)q)− r[z− r[z/ q]+
+ / q] if ≥ 0
+ m otherwise
+ .
+
+ Let factorize z = xq + y (y < q: remainder) so that x = [z/q] and y = z mod q. Then
+ az = a(xq + y)
+ = x(m − r) + ay
+ = xm + (ay − xr).
+ This suggests that ay - xr is equal to az mod m in finite modulus arithmetic. Now note that
+ 0 < ay < aq = m - r ≤ m, therefore 0 < ay < m
+ 0 < xr ≤ ar (z < m and x & a are their respective quotients) < aq (r is a remainder with divider q)
+ = m - r ≤ m, therefore 0 < xr < m
+ Therefore -m < ay - xr < m, and it is equal to either (az mod m) itself or (az mod m - m). //
+ The following random number generator uses this algorithm with q = [2147483647/16807] = 127773
+and r = 2147483647 - 16807×127773 = 2836.
+• The cycle of this random number generator is m − 1 = 231 − 2 ~ 2.1 × 109: You can obtain up to 2
+ billion independent random numbers.
+
+6
+ M. P. Allen and D. J. Tildesley, Computer Simulation of Liquids (Oxford Univ. Press, Oxford, 1987) Appendix G; W. H.
+Press, S. A. Teukolsky, W. T. Vetterling, and B. P. Flannery, Numerical Recipes in C, 2nd Ed. (Cambridge Univ. Press,
+Cambridge, 1992) p. 274.
+ 18
+• Program ran0.c
+#define IA 16807
+#define IM 2147483647
+#define AM (1.0/IM)
+#define IQ 127773
+#define IR 2836
+float ran0(int *idum) {
+/*
+Random number generator. Returns a uniform random number between 0.0 and 1.0.
+Set *idum (to be modified) to any nonzero integer value to initialize the sequence.
+*/
+ long k;
+ float ans;
+
+ k = (*idum)/IQ;
+ *idum = IA*(*idum - k*IQ) - IR*k;
+ if (*idum < 0) *idum += IM;
+ ans = AM*(*idum);
+ return ans;
+}
+
+The “perfect random-number generator” in Numerical Recipes by W. H. Press, B. P. Flannery, S. A.
+Teukolsky, and W. T. Vetterling (Cambridge Univ. Press) is an extension of this routine with “shuffle”
+and “mix” operations.
+
+SHIFT-REGISTER (XOR) GENERATOR
+
+ We are often interested in generating single random bits, with 0 and 1 equally probable. The shift-
+register or Tausworthe generator uses a recurrence relation for obtaining a new random bit from the n
+preceding ones.7 Let the bits be numbered from 1 (most recently generated) through n (generated n
+steps ago), and denoted a1, a2, ..., an. We want to give a formula for a new bit a0. After generating a0 we
+will shift all the bits by one, so that the old an is finally lost, and the new a0 becomes a1. We then apply
+the formula again, and so on.
+ Particularly useful recurrence relations are obtained from the theory of primitive polynomial modulo
+2 of order n. One can seed the sequence with any initial bit pattern (except all zeros), and get 2n - 1
+random bits before the sequence repeats. An example of order n = 18 is
+ a0 = a18 ⊕ a5 ⊕ a2 ⊕ a1 ,
+where the “exclusive or” (XOR) logical operator is used.
+
+7
+ R. C. Tausworthe, Mathematics of Computation 19, 201 (1965).
+ 19
+ This is suited to hardware implementation using a shift register. In the C programming language, we
+can use the 18 low-significant bits of unsigned integer variables and the >> (shift right) and << (shift
+left) operators to implement the recursion.8
+• Program: irbit1.c
+#define IB1 1 /* Bit masks */
+#define IB2 2
+#define IB5 16
+#define IB18 131072
+int irbit1(unsigned long *iseed) {
+ unsigned long newbit;
+ newbit = (*iseed & IB18) >> 17 /* Get bit 18 at the right-most digit */
+ ^ (*iseed & IB5) >> 4 /* XOR with bit 5 */
+ ^ (*iseed & IB2) >> 1
+ ^ (*iseed & IB1);
+ *iseed = (*iseed << 1) | newbit /* Left shift the seed & fill bit 1 with newbit
+*/
+ return (int) newbit;
+}
+
+FIBONACCI GENERATOR9
+
+Constructing a lagged sequence can be done modulo m > 2, e.g., taking the p-th and q-th preceding
+numbers and combining them with some operation,
+ ν i = (ν i−q ◊ν i−p ) mod m ,
+
+where ◊ is the conventional bitwise XOR. Recently, however, the arithmetic subtraction has also been
+used. In the latter case, we add m to ν i−q ◊ν i−p if it becomes negative.
+
+NCSA’S SPRNG10
+
+Most modern random-number generators involve the combination of two or more of elementary
+generators. The scalability and portability issues are addressed in some public-domain software systems
+such as the SPRNG at the NCSA at University of Illinois, Urbana.
+
+8
+ W. H. Press, S. A. Teukolsky, W. T. Vetterling, and B. P. Flannery, Numerical Recipes in C, 2nd Ed. (Cambridge Univ.
+Press, Cambridge, 1992).
+9
+ P. K. MacKeown, Stochastic Simulation in Physics (Springer, Singapore, 1997) p. 76.
+10
+ http://www.ncsa.uiuc.edu/Apps/SPRNG
+ 20
+APPENDIX A—GAUSSIAN INTEGRAL
+
+Consider the Gaussian integral,
+ ∞
+ I = ∫ dx exp (−x 2 ) .
+ −∞
+
+A common trick is instead to evaluate
+ ∞ ∞
+ I 2 = ∫ dx exp (−x 2 ) ∫ dy exp (−y 2 )
+ −∞ −∞
+ ∞ ∞
+ = ∫ dx ∫ dy exp (−(x 2 + y 2 ))
+ −∞ −∞
+
+and to introduce a polar coordinate, (x = r cosθ, y = r sinθ). Note that
+ ∂x ∂x
+ 2π
+∫
+ ∞ ∞
+ ∫ dx dy = ∫
+ ∞
+ ∫ 0 dr dθ ∂∂ ry ∂θ = ∫ ∞ ∫ 2 π dr dθ cosθ −r sin θ = ∫ ∞ ∫ 2 π dr dθ r cos2 θ + r sin 2 θ
+ −∞ −∞ 0 ∂y 0 0 sin θ r cosθ 0 0
+
+ ∂r ∂θ
+ ∞ 2π
+ = ∫ ∫ r dr dθ
+ 0 0
+
+(2D integration is a summation of function values multiplied by a small area, see Appendix B). Using
+this transformation,
+ ∞ 2π ∞
+ I 2 = ∫ dr ∫ dθ r exp (−r 2 ) = 2π ∫ drr exp (−r 2 ) .
+ 0 0 0
+
+Now a further coordination transformation, x = r2 and dx = (dx/dr)dr = 2rdr, makes
+ ∞ ∞
+ I 2 = π ∫ dx exp (−x ) = π [−exp(−x)]0 = π .
+ 0
+
+ ∞
+Therefore, I = ∫ dx exp (−x 2 ) = π .
+ 0
+
+APPENDIX B—TRANSFORMATION OF AREAL ELEMENT
+
+Q. Consider a variable transformation from (x, y) to (ξ, ζ) = (ξ(x, y), ζ(x, y)) and a tiny rectangle in the
+ xy-space with area dxdy, which will be transformed to a parallelogram in the ξζ-space shown below.
+ What is the area of the transformed parallelogram?
+
+ 21
+ ∂ξ ∂ξ
+A. S = ∂ x ∂ y dxdy =  ∂ξ ∂ζ − ∂ξ ∂ζ  dxdy , where a b = ad − bc is the determinant of matrix
+ ∂ζ ∂ζ   c d
+ ∂ x ∂ y ∂ y ∂ x 
+ ∂x ∂y
+
+ ( ac db ) .
+(Proof)
+  
+Consider a parallelogram formed by two 2D vectors k = (a, b) and l = (c, d) with the angle θ between
+them. Note that
+  
+ k •l ac + bd
+ cosθ =   =
+ k l (a 2 + b 2 )(c 2 + d 2 )
+
+ 2
+ 2
+ (a 2 + b 2 )(c 2 + d 2 ) − ( ac + bd ) ad − bc
+ sin θ = 1− cos θ = =
+ (a 2 + b 2 )(c 2 + d 2 ) (a 2 + b 2 )(c 2 + d 2 )
+The area of the parallelogram is
+  
+ S = k l sin θ = a 2 + b 2 c 2 + d 2 sin θ = ad − bc
+
+The parallelogram under question is instead formed by two vectors,
+   ∂ξ ∂ζ 
+ k =  dx, dx  ,
+ ∂ x ∂x 
+   ∂ξ ∂ζ 
+ l =  dy, dy  .
+ ∂ y ∂y 
+
+ 22
+Here, we have used the linear approximation,
+ ∂ξ ∂ξ ∂ζ ∂ζ
+ (ξ (x + dx, y + dy), ζ (x + dx, y + dy)) ≈ (ξ (x, y) + dx + dy, ζ (x, y) + dx + dy)
+ ∂x ∂y ∂x ∂y
+With this substitution, we get
+ ∂ξ ∂ξ
+ ∂ξ ∂ζ ∂ζ ∂ξ ∂ξ ∂ζ ∂ζ ∂ξ
+ S= dx dy − dx dy = − dxdy = ∂ x ∂ y dxdy .
+ ∂x ∂y ∂x ∂y ∂x ∂y ∂x ∂y ∂ζ ∂ζ
+ ∂x ∂y
+
+PROBLEM—NORMAL DISTRIBUTION
+What is the standard deviation of the random number, ζ, that follow the normal probability density,
+ 1  ζ2 
+ P (ζ ) = exp  − 2  ?
+ 2πσ  2σ 
+(Answer)
+Note that
+ ∞  ζ2  ∞
+ I (σ ) = ∫ dζ exp  − 2  = ∫ 2σ ds exp (−s 2 ) = 2πσ ,
+ −∞
+  2σ  −∞
+
+where we have introduced a new variable, s, through ζ = 2σ s . By differentiate both sides by σ,
+
+ dI ∞ ζ2  ζ2 
+ = ∫ dζ 3 exp  − 2  = 2π .
+ dσ −∞
+ σ  2σ 
+Or
+ ∞ dζ " ζ2 %
+ ∫ ζ 2 exp $ − 2 ' = ζ 2 = σ 2 .
+ −∞
+ 2πσ # 2σ &
+ 2
+From the symmetry, the average value, 〈ζ〉 = 0, and therefore the variance of ζ is ζ 2 − ζ = σ 2 and
+the standard deviation is σ.
+
+ 23
+"""
+
+[R6] What are Monte Carlo methods?
+(https://www.educative.io/answers/what-are-monte-carlo-methods)
+"""
+Monte Carlo methods encompass various computational algorithms that depend on repetitive random sampling to derive numerical outcomes. These methods utilize randomness to solve complex problems where deterministic solutions are challenging or impossible to solve. They find applications in physics, mathematics, and various other fields.Steps involved in Monte CarloIn Monte Carlo methods, specific rules and procedures are implemented to enhance the obtained results. The steps involved in Montel Carlo methods are:Problem formulation using a mathematical model: Develop a mathematical equation that links the input and output variables.Random sampling: We generate random samples from a specific probability distribution or use random number generators. These samples represent different possible scenarios or inputs for the problem.Model evaluation: The generated random samples serve as inputs to our mathematical model, where calculations are performed.Iteration: Repeat steps 2 to 4 to enhance estimation accuracy, with a greater number of samples leading to closer approximations of true valuesConvergence: Convergence occurs when results stabilize within an acceptable level of uncertainty.Estimation of π using Monte CarloThrough the Monte Carlo method, we can approximate the value of π\pi by utilizing a random number generator. Prior to initiating the estimation process, it is essential to establish the mathematical model and equations involved to achieve the most accurate estimation of π\pi.Mathematical model and random samplingOne approach is to estimateπ\piby using the circumference and diameter of a circle. However, this approach may not yield highly accurate results due to the potential for human errors and limitations in measurement devices, which can introduce uncertainties and impact the precision of the outcomes.Circumference of a circle: C = πd\pi d and therefore π=dC\pi = \frac{d}{C} We can use another method where we can use a Cartesian plane to estimate the value of π\pi. The diagram below shows a circle with the equation y2+x2=1y^{2} + x^{2} = 1 which is inscribed in a square that has length 'l' = 2.
+"""
+
+[R7] Monte Carlo Travel Guide - Forbes Travel Guide
+(https://www.forbestravelguide.com/destinations/monte-carlo-monaco/travel-guide)
+"""
+X VIEW ALL RESULTS VIEW ALL RESULTS Discover our 2026 Star Award winners here Destinations|Europe Monte Carlo SHARE As the world’s second-smallest country — only behind Vatican City — Monaco has plenty to offer visitors. Known for its classic casino (Casino de Monte-Carlo), its royal family and the Formula One Monaco Grand Prix, Monaco is where the rich come to play. Monte Carlo, Monaco’s most well-known area, is synonymous with luxury — from mega-yachts to designer stores, there’s nothing short of over-the-top glamour here. The city sits snuggly on the coast of southern France overlooking the gleaming Mediterranean Sea and is one of the premier destinations in Europe with its legendary luxury hotels, fine dining and rich history.LESS As the world’s second-smallest country — only behind Vatican City — Monaco has plenty to offer visitors. Known for its classic casino (Casino de Monte-Carlo), its royal family and the Formula One Monaco Grand Prix, Monaco is where ...READ MORE VIEW PROPERTIES FILTER BYAll All Attractions and Landmarks Food and Wine Guide Hotels Travel Tips Food and Wine | Guide Why You Should Visit Monaco Right Now Guide | Souvenirs The Best Souvenirs To Buy In Monaco Attractions and Landmarks | Guide 10 Top Things To Do In Monaco Attractions and Landmarks | Guide How To Spend A Weekend In Monaco Food and Wine | Guide How To Eat Your Way Around Monaco Like A Local Interviews | Sports How the L.A. Chargers’ Melvin Ingram Tackles Jet Lag Events | Hotels 5 European Cities We Can’t Wait To Visit In 2019 Attractions and Landmarks | Guide How To Spend A Weekend In Monte Carlo Cruises | Guide How To Experience Europe On The Luxurious Seas Attractions and Landmarks | Family 5 Best Things To Do With Kids In Monte Carlo Destinations | Guide Spending Two Perfect Days in Monaco Guide | Travel Tips The 7 Best Things To Do In Monaco Bars | Destinations Las Vegas’ Three Best Cognac Lounges Dreaming of your next trip? Let us inspire you with stories about what's new and exciting in luxury travel. YOU'RE ALMOST DONE. PLEASE COMPLETE YOUR REGISTRATION BY CLICKING THE LINK IN THE EMAIL WE JUST SENT. Please click the checkbox to complete your sign-up. I agree to the Forbes Travel Guide Privacy Policy, Terms, and Cookie Policy. I understand I can withdraw my consent at any time. Sign up for our newsletter * indicates required Email Address *
+"""
+
+[R8] Monte-Carlo | History, Geography, Map, & Points of Interest
+(https://www.britannica.com/place/Monte-Carlo-resort-Monaco)
+"""
+News • Top Questions How big is Monaco compared to other countries? What language do people speak in Monaco? Why is Monaco famous for its wealth and tourism? What are some famous events held in Monaco, like the Monaco Grand Prix? Monaco, sovereign principality located along the Mediterranean Sea in the midst of the resort area of the Côte d’Azur (French Riviera). The city of Nice, France, lies 9 miles (15 km) to the west, the Italian border 5 miles (8 km) to the east. Monaco’s tiny territory occupies a set of densely clustered hills and a headland that looks southward over the Mediterranean. Many unusual features, however, have made Monaco among the most luxurious tourist resorts in the world and have given it a fame far exceeding its size.Many visitors to Monaco alternate their hours between its beaches and boating facilities, its international sports-car races, and its world-famous Place du Casino, the gambling centre in the Monte-Carlo section that made Monte-Carlo an international byword for the extravagant display and reckless dispersal of wealth. The country has a mild Mediterranean climate with annual temperatures averaging 61 °F (16 °C) and with only about 60 days of rainfall. Monthly average temperatures range from 50 °F (10 °C) in January to 75 °F (24 °C) in August. Quick Facts Audio File: National anthem of Monaco Head Of Government1: Minister of State: Pierre Dartout, assisted by the Council of Government Population: (2026 est.) 38,500 Form Of Government: constitutional monarchy with one legislative house (National Council [24]) Official Language: French Official Religion: Roman Catholicism Official Name: Principauté de Monaco (Principality of Monaco) Population Rank: (2025) 218 Population Projection 2030: 39,800 Density: Persons Per Sq Mi: (2026) 48,125 Density: Persons Per Sq Km: (2026) 18,333 Urban-Rural Population: Urban: (2024) 100% Rural: (2024) 0% Life Expectancy At Birth: Male: (2023–2024) 84 years Female: (2023–2024) 90.2 years Literacy: Percentage Of Population Age 15 And Over Literate: Male: not available Female: not available Gni (U.S.$ ’000,000): (2019) 7,424 Gni Per Capita (U.S.$): (2019) 192,848 Officially: Principality of Monaco French: Principauté de Monaco Evidences of Stone Age settlements in Monaco are preserved in the principality’s Museum of Prehistoric Anthropology. In ancient times the headland was known to the Phoenicians, Greeks, Carthaginians, and Romans. In 1191 the Genoese took possession of it, and in 1297 the long reign of the Grimaldi family began. The Grimaldis allied themselves with France except for the period from 1524 to 1641, when they were under the protection of Spain. In 1793 they were dispossessed by the French Revolutionary regime, and Monaco was annexed to France. With the fall of Napoleon I, however, the Grimaldis returned; the Congress of Vienna (1815) put Monaco under the protection of Sardinia. The principality lost the neighboring towns of Menton and Roquebrune in 1848 and finally ceded them to France under the terms of the Franco-Monegasque treaty of 1861. The treaty did restore Monaco’s independence, however, and in 1865 a customs union was established between the two countries. Another treaty that was made with France, in 1918, contained a clause providing that, in the event that the Grimaldi dynasty should become extinct, Monaco would become an autonomous state under French protection. A revision to the constitution in 2002 added females and their legitimate children to the line of succession. In 1997 the Grimaldi family commemorated 700 years of rule, and in 1999 Prince Rainier III marked 50 years on the throne. Upon his death in April 2005, he was succeeded by his son, Albert; Albert formally assumed the throne on July 12, 2005. The principality joined the United Nations in 1993. Though not a member of the European Union (EU), Monaco phased out the French franc for the single European currency of the euro by 2002. Britannica Quiz Which Country Is Larger By Population? Quiz Monaco’s refusal to impose income taxes on its residents and on international businesses that have established headquarters in the principality led to a severe crisis with France in 1962. A compromise was reached by which French citizens with less than five years residence in Monaco were taxed at French rates and taxes were imposed on Monegasque companies doing more than 25 percent of their business outside the principality. In the early 21st century, some European nations criticized Monaco’s loose banking regulations, claiming that the principality sheltered tax evaders and money launderers. In 2002 the Organisation for Economic Co-operation and Development (OECD) added Monaco to its “blacklist” of uncooperative tax havens. The principality was removed from the blacklist in 2009 after committing to OECD transparency standards.Monaco’s constitution of 1911 provided for an elected National Council, but in 1959 Prince Rainier III suspended part of the constitution and dissolved the National Council because of a disagreement over the budget. In 1961 he appointed instead a national assembly. The aforementioned crisis of 1962 with France led him to restore the National Council and to grant a new, liberal constitution. The council comprises 18 members, elected by universal suffrage for a term of five years. Government is carried on by a minister of state (who must be a French citizen) and three state councillors acting under the authority of the prince, who is the official chief of state. Legislative power is shared by the prince and the National Council. Since 1819 the judicial system has been based on that of France; since 1962 the highest judicial authority has been the Supreme Tribunal.A substantial portion of the government’s revenues comes from taxes on commercial transactions; additional revenue is drawn from franchises on radio, television, and the casino, from state-operated monopolies on tobacco and postage stamps, from sales taxes, and from the taxes imposed since 1962.Monaco’s chief industry is tourism, and its facilities make it one of Europe’s most luxurious resorts. Once a winter attraction, it now draws summer visitors as well to its beaches and expanded mooring facilities. Business conferences are especially important. The social life of Monte-Carlo revolves around the Place du Casino. The casino was built in 1861, and in 1967 its operations were taken over by the principality. Banking and finance and real estate are other important components of the diverse services sector.More than one-fourth of Monaco’s population is composed of French citizens, and a smaller but significant number are Italian, Swiss, and Belgian. Only about one-fifth of the population claims Monegasque descent. Most of the people are Roman Catholics. The official language is French.The four sections, or quartiers, of Monaco are the town of Monaco, or “the Rock,” a headland jutting into the sea on which the old town is located; La Condamine, the business district on the west of the bay, with its natural harbor; Monte-Carlo, including the gambling casino; and the newer zone of Fontvieille, in which various light industries have developed.In Monaco are the Roman Catholic cathedral, the prince’s Genoese and Renaissance palace, and the Oceanographic Museum of Monaco, built in 1910. The casino itself contains a theater designed by the 19th-century French architect Charles Garnier, which is the home of the Opéra de Monte Carlo. During the 1920s many of the works of the famous Ballets Russes of Serge Diaghilev were given their premieres there. There is also a Monte-Carlo national orchestra. The best known of the automobile events held in the principality are the Monte-Carlo Rally and the Grand Prix de Monaco.
+"""
+
+[R9] Monte-Carlo
+(https://www.visitmonaco.com/en/explore/monaco-s-neighborhoods/monte-carlo)
+"""
+The soul of Monte-CarloIn Monaco, Monte-Carlo embodies a certain art of living. Around the Place du Casino, the district brings together some of the destination's most iconic landmarks. Completely redesigned, this legendary square remains the beating heart of the Principality, an open, elegant space ideal for strolling and contemplation. The Casino de Monte-CarloThe Casino de Monte-Carlo remains one of the great symbols of the area. A jewel of the Belle Époque, it is not just about gambling: its legendary façade, majestic lounges and incomparable atmosphere make it a visit in its own right. At its heart is the The Opéra Garnier Monte-Carlo adds a major cultural dimension: the jewel in the Casino's crown, it perpetuates Monegasque artistic excellence in a setting of gold, velvet and noble woods. Just a few steps away, the prestigious hotels and terraces extend the Monte-Carlo experience, which is both historic and resolutely contemporary. Gardens, heritage and greeneryMonte-Carlo can also be discovered at a more leisurely pace. Nestling at the foot of the Casino, the Jardins des Boulingrins and the Jardins de la Petite Afrique offer a breath of fresh air and serenity in the midst of the hustle and bustle of Monaco. With their French-style elegance, lush vegetation, fountains and beautiful views over Place du Casino, these green spaces are an invitation to take a stroll.Further up the district, the Saint-Charles church brings another facet to the discovery. Inaugurated in 1883 at a time when Monte-Carlo was expanding, the Renaissance-style church was designed by architect Charles Lenormand. Restored in 2013, it features a painted vault, a Romanesque-symphonic organ installed in 2016 and 19 stained glass windows that illuminate the nave. Shopping, a complete offerThe district is also a top-of-the-range shopping destination. In the Carré d'Or, One Monte-Carlo, due to open in 2019, extends the stroll between heritage and contemporary architecture. The Monte-Carlo Shopping Promenade brings together prestigious boutiques and restaurants in a refined environment, entirely dedicated to the Monegasque art of living.The Métropole Shopping Monte-Carlo extends the experience of the district with an interlude dedicated to prestige shopping. Located on avenue des Spélugues, this elegant centre brings together a wide range of boutiques, fashion houses, accessories, beauty shops and gourmet addresses in a refined setting, just a stone's throw from Place du Casino. Easy to get to, it is an integral part of the Monegasque art of living, combining shopping, strolling and elegance in one of the Principality's most emblematic areas.The boulevard des Moulins is also well worth a visit. This historic thoroughfare, which stretches from the Park Palace to the Place des Moulins, reveals a different side to Monte-Carlo: more local, more peaceful, but still elegant, with its independent boutiques, galleries, jewellers and perfume shops. The art of living by day and by nightMonte-Carlo boasts some of the Principality's best-known restaurants, from the Café de Paris Monte-Carlo at Louis XV - Alain Ducasse as well as Pavyllon Monte-Carlo or Les Ambassadeurs by Christophe Cussac gourmets will be spoilt for choice.When night falls, the district changes tempo even more: the Buddha-Bar Monte-Carlo extends the experience in a lounge atmosphere conducive to both relaxation and partying, while the Amazónico Monte-Carlo is a showcase for Monegasque nightlife, with its bar, live music and Club Selva, a festive setting on the Place du Casino. The thrill of the legendary Monaco CircuitMonte-Carlo also offers the thrill of motor sport. The district includes part of the Circuit de Monaco, inextricably linked to the history of the Principality. Here, the adrenalin takes over the urban setting: during the Grand Prix, the cars pass through the Place du Casino in particular, giving this iconic location a unique intensity. Further down, near the Fairmont Monte-Carlo the famous Fairmont Hairpin is the embodiment of the Monegasque legend: the slowest bend in the calendar, a mythical passage that underlines the technical nature of the event. In Monte-Carlo, elegance meets performance, and not just at major sporting events.
+"""
+
+[R10] Monte-Carlo, Monaco: All You Must Know Before You Go (2026) - Tripadvisor
+(https://www.tripadvisor.com/Tourism-g190409-Monte_Carlo-Vacations.html)
+"""
+Skip to main contentEuropeMonacoMonte-CarloMonte-CarloMonte-Carlo TourismMonte-Carlo HotelsMonte-Carlo RestaurantsThings to Do in Monte-CarloMonte-Carlo Travel ForumMonte-Carlo PhotosMonte-Carlo MapHotelsAll Monte-Carlo HotelsMonte-Carlo Hotel DealsLast Minute Hotels in Monte-CarloHotels Near MeBy Hotel TypeMonte-Carlo Luxury HotelsRomantic Hotels in Monte-CarloMonte-Carlo Green HotelsMonte-Carlo Spa ResortsMonte-Carlo Business HotelsMonte-Carlo Family HotelsMonte-Carlo CasinosMonte-Carlo Beach HotelsBy Hotel Class3-Star Hotels in Monte-Carlo4-Star Hotels in Monte-Carlo5-Star Hotels in Monte-CarloBy Hotel BrandAccor Hotels in Monte-CarloThe Leading Hotels Of The World in Monte-CarloPopular AmenitiesMonte-Carlo Hotels with PoolsPet Friendly Hotels in Monte-CarloPopular Monte-Carlo CategoriesMonte-Carlo Affordable HotelsHotels with Shuttle in Monte-CarloCouples Hotels in Monte-CarloMonte-Carlo Modern HotelsMonte-Carlo Hotels with BalconiesMonte-Carlo Historic HotelsMonte-Carlo Beach Suite HotelsMonte-Carlo Hot Tub Suite HotelsMonte-Carlo Cruise Port HotelsMonte-Carlo City Center HotelsNear LandmarksHotels near Oceanographic Museum of MonacoHotels near Casino De Monte-carloHotels near Casino SquareHotels near Port De Monaco Hotels near Japanese GardenHotels near The Private Collection of Antique Cars of H.S.H. Prince Rainier IIIHotels near Casino Café de ParisHotels near Larvotto BeachHotels near Monaco Grand PrixHotels near Saint Paul's Church MonacoNear Train StationsHotels near Monaco - Monte Carlo StationHotels near Cap d'Ail StationHotels near Country Club StationHotels near Roquebrune-Cap-Martin StationHotels near Carnolès StationHotels near Menton StationHotels near Menton - Garavan StationHotels near Olivetta San Michele StationHotels near Bevera StationHotels near Ventimiglia StationNear AirportsHotels near Cote D'Azur Airport (NCE)Motels near Cote D'Azur Airport (NCE)Near CollegesHotels near Universite de Nice-Sophia AntipolisPopular Hotel CategoriesPopular All-Inclusive ResortsPopular Apartment HotelsPopular Family ResortsPopular Ski ResortsPopular Bed and BreakfastsPopular Boutique HotelsPopular HostelsPopular RyokanPopular All-Inclusive Family ResortsPopular Family HotelsThings to DoRestaurantsTravel StoriesCruisesMoreToursAdd a PlaceTravel ForumAirlinesTravelers' ChoiceHelp CenterTrip PlannerPlan Your Trip to Monte-Carlo: Best of Monte-Carlo TourismBy Management45,931Monte-Carlo, Monaco SaveSave this place to a Trip, where you can track your faves and get personalized picks as you plan.Monte-Carlo is home to the celebrated Monte Carlo Casino. This glamorous palace is full of frescoes, sculptures, and features an astonishing gold and marble atrium—not to mention the main attraction—gambling! Steeped in 700 years of Grimaldi royal history, Monte-Carlo’s location is stunning, tucked between French medieval villages and the Alps. Take in a world-class opera or ballet, bask in the sun on Larvotto Beach or get an adrenaline rush at May's Formula 1 Grand Prix.Read moreDiscover your perfect Monte-CarloLooking for places to stay, eat, or explore?Luxury hotels near Monte-Carlo casinoGourmet restaurants with sea viewsDay trips from Monte-Carlo for couplesEssential Monte-CarloPick a category to filter your recsEssentialsTravelers' ChoiceFamily friendlyHidden gemsOutdoorsArts & theaterNightlifeHistoryThings to doSee all The Private Collection of Antique Cars of H.S.H. Prince Rainier III4.64.6 of 5 bubbles(1,306)Speciality MuseumsPort De Monaco4.44.4 of 5 bubbles(2,455)Piers & Boardwalks, Points of Interest & LandmarksCasino Square4.44.4 of 5 bubbles(3,029)Historic Walking Areas, Points of Interest & LandmarksMonaco Grand Prix4.54.5 of 5 bubbles(377)Auto Racing TracksOpera de Monte-Carlo4.54.5 of 5 bubbles(164)OperasFairmont Hairpin Curve4.34.3 of 5 bubbles(235)Points of Interest & LandmarksPlaces to staySee all Hôtel Hermitage Monte-Carlo4.64.6 of 5 bubbles(2,052)from $1,666/nightHôtel de Paris4.64.6 of 5 bubbles(1,367)from $2,247/nightHotel Metropole, Monte Carlo4.64.6 of 5 bubbles(1,346)from $1,180/nightFairmont Monte-Carlo4.34.3 of 5 bubbles(416)from $898/nightNovotel Monte Carlo4.24.2 of 5 bubbles(2,952)from $531/nightLe Méridien Beach Plaza4.04 of 5 bubbles(2,297)from $763/nightFood & drinkSee all MICHELINLes Ambassadeurs By Christophe Cussac4.94.9 of 5 bubbles(104)$$$$ • French, Mediterranean, HealthyLa Reginella4.84.8 of 5 bubbles(344)$$ - $$$ • Italian, European, NeapolitanCaffè Milano4.74.7 of 5 bubbles(1,426)$$ - $$$ • Italian, Bar, PizzaAmù Monte Carlo4.54.5 of 5 bubbles(1,301)$$$$ • French, Mediterranean, Vegetarian friendlyMICHELINBlue Bay Marcel Ravin4.74.7 of 5 bubbles(700)$$$$ • French, Mediterranean, EuropeanMICHELINLe Grill4.54.5 of 5 bubbles(764)$$$$ • French, Vegetarian friendly, Vegan optionsTrending in the forumsSee allGeneral questions about Casino de Monte-CarloBy Dan7 repliesAdvice for My 1st Visit to Monte Carlo PleaseBy Patricia8 repliesDay trip to casino from Nice (Large Birthday group)By Stephen L2 repliesMonte-Carlo Is Great ForCultural ToursMonaco, Monte-Carlo and Eze Village Small Group Half-Day Tour4.84.8 of 5 bubbles(609)from $78 per adultThe Best of the French Riviera Small group Guided Tour from Nice4.94.9 of 5 bubbles(337)from $114 per adultMonaco Formula 1 Circuit Self Guided Walking Tour with App4.14.1 of 5 bubbles(18)from $7 per adultBest of the Riviera Full Day Tour4.54.5 of 5 bubbles(73)from $150 per adultMonaco, Monte Carlo, Eze, La Turbie 7H Shared Tour from Nice4.84.8 of 5 bubbles(338)from $111 per adultLikely To Sell OutItalian Riviera and Monaco Monte Carlo Full Day Tour from Nice4.94.9 of 5 bubbles(10)from $138 per adultMonaco, Monte Carlo & Eze Private Tour5.05 of 5 bubbles(78)from $590 per groupLikely To Sell OutMonaco & Monte-Carlo: Classics & Hidden Gems - Walking & Boat4.94.9 of 5 bubbles(25)from $78 per adultMonaco & Monte Carlo Tour-F1, Grace Kelly & Royal Secrets5.05 of 5 bubbles(57)from $157 per adultNice, Eze, Monaco, and Monte Carlo Private Tour5.05 of 5 bubbles(12)from $578 per groupEat & drinkMICHELINBlue Bay Marcel Ravin4.74.7 of 5 bubbles(700)$$$$ • French, Mediterranean, EuropeanMICHELINLe Louis XV - Alain Ducasse à l'Hôtel de Paris4.54.5 of 5 bubbles(1,069)$$$$ • French, Healthy, Vegetarian friendlyMICHELINYoshi4.54.5 of 5 bubbles(490)$$$$ • Japanese, Sushi, AsianMICHELINLe Grill4.54.5 of 5 bubbles(764)$$$$ • French, Vegetarian friendly, Vegan optionsMICHELINPavyllon Monte-Carlo, Un Restaurant De Yannick Alléno4.44.4 of 5 bubbles(657)$$$$ • French, Mediterranean, EuropeanPolpetta4.34.3 of 5 bubbles(530)$$ - $$$ • Italian, Mediterranean, EuropeanMayaBay4.34.3 of 5 bubbles(1,402)$$$$ • Vegetarian friendly, Vegan options, Gluten free optionsIl Terrazzino4.34.3 of 5 bubbles(1,379)$$ - $$$ • Italian, Mediterranean, EuropeanBuddha-Bar Monte-Carlo4.34.3 of 5 bubbles(2,278)$$$$ • Chinese, Japanese, SushiAmù Monte Carlo4.54.5 of 5 bubbles(1,301)$$$$ • French, Mediterranean, Vegetarian friendlyTemporarily closedHistorical ToursMonaco, Monte Carlo, Eze, La Turbie 7H Shared Tour from Nice4.84.8 of 5 bubbles(338)from $111 per adultLikely To Sell OutItalian Riviera and Monaco Monte Carlo Full Day Tour from Nice4.94.9 of 5 bubbles(10)from $138 per adultMonaco, Monte Carlo & Eze Private Tour5.05 of 5 bubbles(78)from $590 per groupLikely To Sell OutMonaco & Monte-Carlo: Classics & Hidden Gems - Walking & Boat4.94.9 of 5 bubbles(25)from $78 per adultMonaco & Monte Carlo Tour-F1, Grace Kelly & Royal Secrets5.05 of 5 bubbles(57)from $157 per adultNice, Eze, Monaco, and Monte Carlo Private Tour5.05 of 5 bubbles(12)from $578 per groupMonaco, Monte Carlo, Eze Day from Villefranche Small-Group and Shore Excursion5.05 of 5 bubbles(10)from $138 per adultAfter darkFairmont Monte-Carlo4.34.3 of 5 bubbles(416)Caffè Milano4.74.7 of 5 bubbles(1,426)$$ - $$$ • Italian, Bar, PizzaLobby Lounge Restaurant & Bar4.34.3 of 5 bubbles(414)$$ - $$$ • French, Bar, MediterraneanGerhard's Cafe4.24.2 of 5 bubbles(188)$$ - $$$ • EuropeanHôtel de Paris4.64.6 of 5 bubbles(1,367)Flashman4.44.4 of 5 bubbles(19)$$ - $$$ • Mediterranean, Italian, FrenchNikki Beach Fairmont Monte Carlo4.24.2 of 5 bubbles(782)$$ - $$$ • Bar, Mediterranean, EuropeanTemporarily closedSun Casino3.63.6 of 5 bubbles(31)CasinosCantinetta Antinori Monaco3.73.7 of 5 bubbles(219)$$ - $$$ • Italian, Vegetarian friendlyCasino De Monte-carlo4.04 of 5 bubbles(4,382)CasinosTemporarily closedArt & historyHôtel Hermitage Monte-Carlo4.64.6 of 5 bubbles(2,052)Hotel Metropole, Monte Carlo4.64.6 of 5 bubbles(1,346)Hôtel de Paris4.64.6 of 5 bubbles(1,367)Oceanographic Museum of Monaco4.34.3 of 5 bubbles(5,614)Aquariums, Speciality MuseumsCasino Square4.44.4 of 5 bubbles(3,029)Historic Walking Areas, Points of Interest & LandmarksHector Berlioz Statue4.34.3 of 5 bubbles(41)Monuments & StatuesLiberation Monument3.73.7 of 5 bubbles(3)Monuments & Statues, Points of Interest & LandmarksPort De Monaco4.44.4 of 5 bubbles(2,455)Piers & Boardwalks, Points of Interest & LandmarksPort Hercule4.54.5 of 5 bubbles(60)Scenic Walking Areas, Points of Interest & LandmarksÉglise Saint Charles4.54.5 of 5 bubbles(67)Religious Sites, Churches & CathedralsExplore more from our sponsorsSponsoredDiscover Universal Orlando ResortFind out why travelers like you are raving about Universal Orlando ResortExplore nowFrequently Asked Questions about Monte-CarloWhere should I stay in Monte-Carlo?We recommend staying at one of the most popular hotels in Monte-Carlo, which include: Fairmont Monte-CarloHôtel de Paris Hôtel Hermitage Monte-CarloLe Méridien Beach PlazaNovotel Monte CarloWhat are the best places to eat in Monte-Carlo?Some of the most popular restaurants in Monte-Carlo include: Caffè MilanoAmù Monte CarloCafé De ParisLe GrillLa ReginellaWhat is Monte-Carlo known for?Monte-Carlo is known for some of its popular attractions, which include: Casino De Monte-carloOceanographic Museum of MonacoThe Private Collection of Antique Cars of H.S.H. Prince Rainier IIILarvotto BeachPort De Monaco What is there to do in Monte-Carlo?We recommend checking out these popular tours when looking for something to do in Monte-Carlo: Monaco Hop on Hop Off Sightseeing Bus TourMonaco Formula 1 Circuit Self Guided Walking Tour with AppMonaco & Monte Carlo Tour-F1, Grace Kelly & Royal Secrets2-Hour Guided Tour of Monaco with a certified guideFerrari Sports Car Experience from MonacoWhen is the cheapest time to visit Monte-Carlo?If you're a more budget-conscious traveler, then you may want to consider traveling to Monte-Carlo between December and February, when hotel prices are generally the lowest. Peak hotel prices generally start between June and August.
+"""
+
+[R11] Montecarlo, Tuscany
+(https://en.wikipedia.org/wiki/Montecarlo,_Tuscany)
+"""
+From Wikipedia, the free encyclopedia MontecarloComuneComune di Montecarlo Coat of armsMontecarloLocation of Montecarlo in ItalyShow map of ItalyShow map of TuscanyShow bothCoordinates: 43°51′05″N 10°40′04″E / 43.85139°N 10.66778°ECountryItalyRegionTuscanyProvinceLucca (LU)FrazioniSan Giuseppe, San Piero in Campo, San Salvatore, TurchettoGovernment • MayorVittorio FantozziArea[1] • Total15.67 km2 (6.05 sq mi)Elevation162 m (531 ft)Population (31 March 2017)[2] • Total4,397 • Density280.6/km2 (726.8/sq mi)DemonymMontecarlesiTime zoneUTC+1 (CET) • Summer (DST)UTC+2 (CEST)Postal code55015Dialing code0583WebsiteOfficial website Castle (Rocca del Cerruglio) of Montecarlo. Montecarlo is a comune (municipality) in the Province of Lucca in the Italian region Tuscany, located about 50 kilometres (31 mi) west of Florence and about 12 kilometres (7 mi) east of Lucca. Fort and village Montecarlo was founded in 1333 by future Bohemian king and Holy Roman Emperor Charles IV (Montecarlo in Italian means "Charles' Mountain"), who freed the nearby city of Lucca from the Pisan rule. A true settlement, however, appeared only after the Florentines destroyed the nearby castle of Vivinaia, and the authorities of the Republic of Lucca moved the population to the same hill of Charles' castle. Montecarlo was a possession of the Republic of Florence from 1437. Sant'Andrea- Collegiate church first built in the 14th century, but much of the structure, including the interior, was refurbished in 1783. It is the tallest building in the village. The crypt retains the Romanesque architecture. San Piero in Campo- Pieve or rural parish church at the foot of Montecarlo's castle. The building, among the first mentioned in Early Medieval Lucchese documents, has one of the oldest bell towers in the whole diocese of Lucca. The church was completely rebuilt in the 12th century and again after the village was destroyed in the 14th century. Rocca del Cerruglio Teatro dei Rassicurati Montecarlo is twinned with: Montecarlo (wine) Battle of Altopascio ^ "Superficie di Comuni Province e Regioni italiane al 9 ottobre 2011". Italian National Institute of Statistics. Retrieved 16 March 2019. ^ All demographics and other statistics: Italian statistical institute Istat. Official website of Comune of Montecarlo Media related to Montecarlo (comune, Italy) at Wikimedia Commons
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

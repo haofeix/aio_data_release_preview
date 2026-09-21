@@ -1,0 +1,418 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "irs extension 2026"
+
+Claims:
+[1] "For the 2026 tax season, taxpayers can request an automatic extension to file their federal income tax return until October 15, 2026."
+[2] "The extension request must be filed by April 15, 2026."
+[3] "The extension request must be filed using Form 4868."
+[4] "An extension grants more time to file, not to pay."
+[5] "Estimated taxes owed are still due by April 15, 2026, to avoid penalties."
+[6] "IRS Free File can be used to submit Form 4868 electronically at no cost."
+[7] "Paying all or part of estimated taxes via IRS Direct Pay, debit/credit card, or EFTPS and selecting "Extension" as the reason avoids the need to file a separate Form 4868."
+[8] "A paper Form 4868 mailed to the IRS must be postmarked by April 15, 2026."
+[9] "Taxpayers must pay 90% of their total tax liability by April 15, 2026 to avoid estimated payment penalties."
+[10] "U.S. citizens living outside the country may receive an automatic two-month extension."
+[11] "Taxpayers in specific declared disaster areas may have postponed deadlines."
+[12] "Taxpayers impacted by Winter Storm Fern in Tennessee may have postponed deadlines"
+
+Cited text snippets from the AI Overview (for additional context):
+- Act now to file, pay, or request an extension - IRS: "The form must be completed,a tax balance over time."
+- IRS announces tax relief for taxpayers impacted by Winter ...: "Info Menu Mobile,postponed to May 22, 2026"
+- If you need more time to file, request an extension - IRS: "IR-2026-52, April,the reason for the payment."
+- Need more time to file? Don't wait, request an extension - IRS: "IRS Tax Tip 2026-30,Request an extension by mail."
+- How to file a tax extension for free by the April 15 deadline: "The federal tax deadline is,monthly, with the same cap."
+- IRS Tax Deadline 2026: How To File Last-Minute Extension: "When Are 2026 Taxes Due,who successfully file Form 4868."
+Reference Sources:
+
+[R1] Form 4868 Application for Automatic Extension of Time
+(https://www.irs.gov/pub/irs-pdf/f4868.pdf)
+"""
+Form 4868 Application for Automatic Extension of Time
+ To File U.S. Individual Income Tax Return
+ OMB No. 1545-0074
+
+Department of the Treasury
+Internal Revenue Service
+ Go to www.irs.gov/Form4868 for the latest information. 2025
+There are three ways to request an automatic extension of time to
+file a U.S. individual income tax return. Pay Electronically
+ 1. You can pay all or part of your estimated income tax due and
+indicate that the payment is for an extension using your bank You don’t need to file Form 4868 if you make a payment using our
+account; a digital wallet such as Click to Pay, PayPal, and Venmo; electronic payment options. The IRS will automatically process an
+cash; or a credit or debit card. See How To Make a Payment, later, extension of time to file when you pay part or all of your estimated
+and www.irs.gov/Payments for more information. income tax electronically. You can pay online or by phone. See How
+ 2. You can file Form 4868 electronically by accessing IRS e-file To Make a Payment, later.
+using your tax software or by using a tax professional who uses E-file Using Your Tax Software
+e-file.
+ or Through a Tax Professional
+ 3. You can file a paper Form 4868 and enclose payment of your
+estimate of tax due (optional). Refer to your tax software package or tax preparer for ways to file
+ electronically. Be sure to have a copy of your 2024 tax return—
+ It’s Convenient, you’ll be asked to provide information from the return for taxpayer
+ verification. If you wish to make a payment, you should pay
+ Safe, and Secure electronically (see How To Make a Payment, later).
+IRS e-file is the IRS’s electronic filing program. You can get an
+automatic extension of time to file your tax return by filing Form File a Paper Form 4868
+4868 electronically. You’ll receive an electronic acknowledgment
+once you complete the transaction. Keep it with your records. Don’t
+ If you wish to file on paper instead of electronically, complete the
+mail in Form 4868 if you file electronically, unless you’re making a
+ Form 4868 below and mail it to the address shown under Where To
+payment with a check or money order.
+ File a Paper Form 4868, later.
+ Complete Form 4868 to use as a worksheet. If you think you may
+ For information on using a private delivery service, see Private
+owe tax when you file your return, you’ll need to estimate your total
+ Delivery Services, later.
+tax liability and subtract how much you’ve already paid (lines 4, 5,
+and 6 below). Note: If you’re a fiscal year taxpayer, you must file a paper Form
+ 4868.
+ Several companies offer free e-filing of Form 4868 through the
+Free File Program. For more details, go to www.irs.gov/FreeFile.
+
+ General Instructions
+Purpose of Form 1. Properly estimate your 2025 tax liability using the information
+ available to you,
+Use Form 4868 to apply for 6 more months (4 if “out of the
+country” (defined later under Taxpayers who are out of the country) 2. Enter your total tax liability on line 4 of Form 4868, and
+and a U.S. citizen or resident) to file Form 1040, 1040-SR, 1040-NR, 3. File Form 4868 by the due date of your return. If you were
+or 1040-SS. affected by a disaster, you may have additional time to file Form
+Gift and generation-skipping transfer (GST) tax return (Form 709 4868. See www.irs.gov/DisasterRelief for more information.
+ Although you aren’t required to make a payment of the tax
+or 709-NA). An extension of time to file your 2025 calendar year
+income tax return also extends the time to file Form 709 or 709-NA
+for 2025. However, it doesn’t extend the time to pay any gift and
+ ▲
+ !
+ CAUTION
+ you estimate as due, Form 4868 doesn’t extend the time to
+ pay taxes. If you don’t pay the amount due by the due date,
+GST tax you may owe for 2025. To make a payment of gift and GST you’ll owe interest. You may also be charged penalties. For more
+tax, see Form 8892. If you don’t pay the amount due by the due details, see Interest and Late Payment Penalty, later. Any remittance
+date for Form 709 or 709-NA, you’ll owe interest and may also be you make with your application for extension will be treated as a
+charged penalties. If the donor died during 2025, see the payment of tax.
+instructions for Forms 709 or 709-NA, and 8892. You don’t have to explain why you’re asking for the extension.
+ We’ll contact you only if your request is denied.
+Qualifying for the Extension Don’t file Form 4868 if you want the IRS to figure your tax or
+To get the extra time, you must: you’re under a court order to file your return by the due date.
+ DETACH HERE
+
+Form 4868 Application for Automatic Extension of Time
+ To File U.S. Individual Income Tax Return
+ OMB No. 1545-0074
+
+Department of the Treasury
+Internal Revenue Service For calendar year 2025, or other tax year beginning , 2025, and ending , 20 .
+ 2025
+ Part I Identification Part II Individual Income Tax
+ 1 Your name(s) (see instructions) 4 Estimate of total tax liability for 2025 . . . $
+ 5 Total 2025 payments . . . . . . .
+ Address (see instructions) 6 Balance due. Subtract line 5 from line 4.
+ See instructions . . . . . . . . .
+ 7 Amount you’re paying (see instructions) . .
+ City, town, or post office State ZIP code 8 Check here if you’re “out of the country” and a U.S. citizen or
+ resident. See instructions . . . . . . . . . . . .
+ 2 Your social security number 3 Spouse’s social security number 9 Check here if you file Form 1040-NR and didn’t receive wages
+ as an employee subject to U.S. income tax withholding . . .
+For Privacy Act and Paperwork Reduction Act Notice, see page 4. Cat. No. 13141W Form 4868 (2025) Created 10/1/25
+Form 4868 (2025) Page 2
+
+When To File Form 4868 Interest
+File Form 4868 by the due date of your Form 1040, 1040-SR, You’ll owe interest on any tax not paid by the due date of your
+1040-NR, or 1040-SS. For a 2025 calendar year return, this is April return, even if you qualify for the 2-month extension because you
+15, 2026, for most people. Fiscal year taxpayers file Form 4868 by were out of the country. The interest runs until you pay the tax. Even
+the due date of the fiscal year return. If you were affected by a if you had a good reason for not paying on time, you will still owe
+disaster, you may have additional time to file Form 4868. See interest.
+www.irs.gov/DisasterRelief for more information. Late Payment Penalty
+Taxpayers who are out of the country. If, on the due date of your The late payment penalty is usually ½ of 1% of any tax (other than
+return, you’re out of the country (as defined below) and a U.S. estimated tax) not paid by the due date of your return, which is April
+citizen or resident, you’re allowed 2 extra months to file your return 15, 2026, for most people. It’s charged for each month or part of a
+and pay any amount due without requesting an extension. Interest month the tax is unpaid. The maximum penalty is 25%.
+will still be charged, however, on payments made after the due
+ The late payment penalty won’t be charged if you can show
+date, without regard to the extension. If you’re out of the country
+ reasonable cause for not paying on time. Attach a statement to your
+and file a calendar year income tax return, you can pay the tax and
+ return fully explaining the reason. Don’t attach the statement to
+file your return or this form by June 15, 2026. File this form and be
+ Form 4868.
+sure to check the box on line 8 if you need an additional 4 months
+to file your return. You’re considered to have reasonable cause for the period
+ covered by this automatic extension if both of the following
+ If you’re out of the country and a U.S. citizen or resident, you may
+ requirements have been met.
+qualify for special tax treatment if you meet the bona fide residence
+or physical presence test. If you don’t expect to meet either of 1. At least 90% of the total tax on your 2025 return is paid on or
+those tests by the due date of your return, request an extension to a before the due date of your return through withholding, estimated
+date after you expect to meet the tests by filing Form 2350, tax payments, or payments made with Form 4868.
+Application for Extension of Time To File U.S. Income Tax Return. 2. The remaining balance is paid with your return.
+ You’re out of the country if: Late Filing Penalty
+• You live outside the United States and Puerto Rico and your main A late filing penalty is usually charged if your return is filed after the
+place of work is outside the United States and Puerto Rico, or due date (including extensions). The penalty is usually 5% of the
+• You’re in military or naval service on duty outside the United amount due for each month or part of a month your return is late.
+States and Puerto Rico. The maximum penalty is 25%. If your return is more than 60 days
+ If you qualify as being out of the country, you’ll still be eligible for late, the minimum penalty is $525 (adjusted for inflation) or the
+the extension even if you’re physically present in the United States balance of the tax due on your return, whichever is smaller. You
+or Puerto Rico on the due date of the return. might not owe the penalty if you have a reasonable explanation for
+ For more information on extensions for taxpayers out of the filing late. Attach a statement to your return fully explaining your
+country, see Pub. 54, Tax Guide for U.S. Citizens and Resident reason for filing late. Don’t attach the statement to Form 4868.
+Aliens Abroad. How To Claim Credit for Payment Made With This
+Form 1040-NR filers. If you can’t file your return by the due date, Form
+you should file Form 4868. You must file Form 4868 by the due date When you file your 2025 return, include the amount of any payment
+of the return. you made with Form 4868 on the appropriate line of your tax return.
+ If you didn’t receive wages as an employee subject to U.S. The instructions for the following line of your tax return will tell
+income tax withholding, and your return is due June 15, 2026, you how to report the payment.
+check the box on line 9.
+ • Form 1040, 1040-SR, or 1040-NR, Schedule 3, line 10.
+ For more information on extensions for nonresident filers, see
+Pub. 519, U.S. Tax Guide for Aliens. • Form 1040-SS, Part I, line 9.
+ If you and your spouse each filed a separate Form 4868 but later
+Total Time Allowed file a joint return for 2025, enter the total paid with both Forms 4868
+Generally, we can’t extend the due date of your return for more than on the appropriate line of your joint return.
+6 months (October 15, 2026, for most calendar year taxpayers). If you and your spouse jointly file Form 4868 but later file separate
+However, there may be an exception if you’re living out of the returns for 2025, you can enter the total amount paid with Form
+country. See Pub. 54 for more information. 4868 on either of your separate returns. Or you and your spouse
+ can divide the payment in any agreed amounts.
+Filing Your Tax Return
+You can file your tax return any time before the extension expires.
+Don’t attach a copy of Form 4868 to your return.
+Form 4868 (2025) Page 3
+
+ Specific Instructions
+How To Complete Form 4868 increase amounts from 50 to 99 cents to the next dollar. For
+ example, $1.39 becomes $1 and $2.50 becomes $3. If you have to
+Part I—Identification add two or more amounts to figure the amount to enter on a line,
+Enter your name(s) and address. If you plan to file a joint return, include cents when adding the amounts and only round off the total.
+include both spouses’ names in the order in which they will appear Line 4—Estimate of Total Tax Liability for 2025
+on the return.
+ Enter on line 4 the total tax liability you expect to report on your
+ If you want correspondence regarding this extension to be sent to
+ 2025:
+you at an address other than your own, enter that address. If you
+want the correspondence sent to an agent acting for you, include • Form 1040, 1040-SR, or 1040-NR, line 24; or
+the agent’s name (as well as your own) and the agent’s address. • Form 1040-SS, Part I, line 7.
+ If you changed your name after you filed your last return because If you expect this amount to be zero, enter -0-.
+ Make your estimate as accurate as you can with the
+of marriage, divorce, etc., be sure to report this to the Social
+Security Administration (SSA) before filing Form 4868. This prevents
+delays in processing your extension request.
+ ▲
+ !
+ CAUTION
+ information you have. If we later find that the estimate
+ wasn’t reasonable, the extension will be null and void.
+ If you changed your mailing address after you filed your last Line 5—Estimate of Total Payments for 2025
+return, you should use Form 8822, Change of Address, to notify the Enter on line 5 the total payments you expect to report on your
+IRS of the change. Showing a new address on Form 4868 won’t 2025:
+update your record. You can download or order IRS forms at
+ • Form 1040, 1040-SR, or 1040-NR, line 33 (excluding Schedule 3,
+www.irs.gov/FormsPubs.
+ line 10); or
+ If you plan to file a joint return, enter on line 2 the social security
+ • Form 1040-SS, Part I, line 12 (excluding Part I, line 9).
+number (SSN) that you’ll show first on your return. Enter on line 3
+the other SSN to be shown on the joint return. If you’re filing Form
+1040-NR as an estate or trust, enter your employer identification
+number (EIN) instead of an SSN on line 2. In the left margin, next to
+ ▲
+ !
+ CAUTION
+ Don’t include on line 5 the amount you’re paying with this
+ Form 4868.
+
+the EIN, write “estate” or “trust.” Line 6—Balance Due
+IRS individual taxpayer identification numbers (ITINs) for aliens. Subtract line 5 from line 4. If line 5 is more than line 4, enter -0-.
+If you’re a nonresident or resident alien and you don’t have and
+aren’t eligible to get an SSN, you must apply for an ITIN. Although
+ Line 7—Amount You’re Paying
+an ITIN isn’t required to file Form 4868, you’ll need one to file your If you find you can’t pay the amount shown on line 6, you can still
+income tax return. For details on how to apply for an ITIN, see Form get the extension. But you should pay as much as you can to limit
+W-7 and its instructions. If you already have an ITIN, enter it the amount of interest you’ll owe. Also, you may be charged a late
+wherever an SSN is requested. If you don’t have an ITIN, enter “ITIN payment penalty on the unpaid tax from the due date of your return.
+TO BE REQUESTED” wherever an SSN is requested. See Late Payment Penalty, earlier.
+ An ITIN is for tax use only. It doesn’t entitle you to social Line 8—Out of the Country
+▲
+!CAUTION
+ security benefits or change your employment or immigration
+ status under U.S. law.
+ If you’re out of the country on the due date of your return, check the
+ box on line 8. “Out of the country” is defined under Taxpayers who
+Part II—Individual Income Tax are out of the country, earlier.
+Rounding off to whole dollars. You can round off cents to whole Line 9—Form 1040-NR Filers
+dollars on Form 4868. If you do round to whole dollars, you must If you didn’t receive wages subject to U.S. income tax withholding,
+round all amounts. To round, drop amounts under 50 cents and and your return is due June 15, 2026, check the box on line 9.
+
+ How To Make a Payment
+Electronic Payments Confirmation number. You’ll receive a confirmation number when
+ you pay online or by phone. Enter the confirmation number below
+The IRS recommends paying electronically whenever possible. You
+ and keep it for your records.
+can make a secure payment:
+• Online using IRS Direct Pay, or your IRS online account; or Enter confirmation number here:
+• Online or by phone using the Electronic Federal Tax Payment Note: If you use an electronic payment method and indicate the
+System (EFTPS), a debit card, a credit card, or a digital wallet such payment is for an extension, you don’t have to file Form 4868. You
+as Click to Pay, PayPal, or Venmo. should pay the entire estimated tax owed or you could be subject to
+ Go to www.irs.gov/Payments for more information and to see all a penalty. Your extension will be automatically processed when you
+your payment options. pay part or all of your estimated income tax electronically.
+Form 4868 (2025) Page 4
+
+ Where To File a Paper Form 4868
+ And you’re not making a payment,
+ And you’re making a payment, send Form 4868 to
+ send Form 4868 with your payment to Department of the Treasury,
+If you live in: Internal Revenue Service: Internal Revenue Service Center:
+Alabama, Florida, Georgia, Louisiana, Mississippi,
+ P.O. Box 1302, Charlotte, NC 28201-1302 Austin, TX 73301-0045
+North Carolina, South Carolina, Tennessee, Texas
+Arizona, Arkansas, New Mexico, Oklahoma P.O. Box 931300, Louisville, KY 40293-1300 Austin, TX 73301-0045
+Connecticut, Delaware, District of Columbia, Illinois, Indiana,
+Iowa, Kentucky, Maine, Maryland, Massachusetts, Minnesota,
+Missouri, New Hampshire, New Jersey, New York, P.O. Box 931300, Louisville, KY 40293-1300 Kansas City, MO 64999-0045
+Pennsylvania, Rhode Island, Vermont, Virginia, West Virginia,
+Wisconsin
+
+Alaska, California, Colorado, Hawaii, Idaho, Kansas, Michigan,
+Montana, Nebraska, Nevada, North Dakota, Ohio, Oregon, P.O. Box 931300, Louisville, KY 40293-1300 Ogden, UT 84201-0045
+South Dakota, Utah, Washington, Wyoming
+A foreign country, American Samoa, or Puerto Rico, or are
+excluding income under Internal Revenue Code section 933,
+or use an APO or FPO address, or file Form 2555 or 4563, P.O. Box 1303, Charlotte, NC 28201-1303 USA Austin, TX 73301-0215 USA
+or are a dual-status alien, or nonpermanent resident of Guam
+or the U.S. Virgin Islands
+All foreign estate and trust Form 1040-NR filers P.O. Box 1303, Charlotte, NC 28201-1303 USA Kansas City, MO 64999-0045 USA
+All other Form 1040-NR and 1040-SS filers P.O. Box 1303, Charlotte, NC 28201-1303 USA Austin, TX 73301-0215 USA
+
+Private Delivery Services Privacy Act and Paperwork Reduction Act Notice. We ask for the
+ information on this form to carry out the Internal Revenue laws of
+You can use certain private delivery services designated by the IRS
+ the United States. We need this information so that our records will
+to meet the “timely mailing as timely filing/paying” rule for tax
+ reflect your intention to file your individual income tax return within 6
+returns and payments. These private delivery services include only
+ months after the due date. If you choose to apply for an automatic
+the following.
+ extension of time to file, you’re required by Internal Revenue Code
+• United Parcel Service (UPS): UPS Next Day Air Early AM, UPS section 6081 to provide the information requested on this form.
+Next Day Air, UPS Next Day Air Saver, UPS 2nd Day Air, UPS 2nd Under Internal Revenue Code section 6109, you must disclose your
+Day Air A.M., UPS Worldwide Express Plus, and UPS Worldwide social security number or individual taxpayer identification number.
+Express. Routine uses of this information include giving it to the Department
+• Federal Express (FedEx): FedEx First Overnight, FedEx Priority of Justice for civil and criminal litigation, and to cities, states, the
+Overnight, FedEx Standard Overnight, FedEx 2 Day, FedEx District of Columbia, and U.S. commonwealths and territories for
+International Next Flight Out, FedEx International Priority, FedEx use in administering their tax laws. We may also disclose this
+International First, and FedEx International Economy. information to other countries under a tax treaty, to federal and
+• DHL Express: DHL Express 9:00, DHL Express 10:30, DHL state agencies to enforce federal nontax criminal laws, or to federal
+Express 12:00, DHL Express Worldwide, DHL Express Envelope, law enforcement and intelligence agencies to combat terrorism. If
+DHL Import Express 10:30, DHL Import Express 12:00, and DHL you fail to provide this information in a timely manner or provide
+Import Express Worldwide. incomplete or false information, you may be liable for penalties.
+ To check for any updates to the list of designated private delivery You aren’t required to provide the information requested on a
+services, go to www.irs.gov/PDS. For the IRS mailing address to form that is subject to the Paperwork Reduction Act unless the form
+use if you’re using a private delivery service, go to displays a valid OMB control number. Books or records relating to a
+www.irs.gov/PDSStreetAddresses. form or its instructions must be retained as long as their contents
+ The private delivery service can tell you how to get written proof may become material in the administration of any Internal Revenue
+of the mailing date. law. Generally, tax returns and return information are confidential,
+ as required by Internal Revenue Code section 6103.
+ Private delivery services can’t deliver items to P.O. boxes.
+▲
+!CAUTION
+ You must use the U.S. Postal Service to mail any item to an
+ IRS P.O. box address.
+ The average time and expenses required to complete and file this
+ form will vary depending on individual circumstances. For the
+ estimated averages, see the instructions for your income tax return.
+ If you have suggestions for making this form simpler, we would
+ be happy to hear from you. See the instructions for your income tax
+ return.
+"""
+
+[R2] How to file a tax extension for free by the April 15 deadline
+(https://www.cnbc.com/2026/04/15/irs-tax-extension.html)
+"""
+Xavier Lorenzo | Moment | Getty ImagesThe federal tax deadline is April 15 for most taxpayers, but if you’re not ready to file, there’s still time to request an IRS tax extension, experts say.“If you have not filed yet, don’t panic. You still have many options,” Candace Harden, senior tax analyst with the IRS, said during a webinar on Tuesday. One option is filing a tax extension via Form 4868, which pushes the due date to October 15. But you still must pay taxes by the original April 15 deadline to avoid penalties and interest. The failure-to-file penalty is 5% of your unpaid taxes monthly, up to 25%, while the failure-to-pay penalty is 0.5% of your balance monthly, with the same cap. You should estimate your total liability, subtract taxes paid and send the balance by the original due date, according to the IRS. Read more CNBC personal finance coverageTrump officials give mixed guidance on new student loan cap: financial aid groupTrump’s Fed pick Kevin Warsh signals approach to interest ratesGen Z looks for scholarships on TikTok. There’s a better way, experts sayWhat a looming jet fuel shortage could mean for summer travelIncoming college freshmen may owe $43,000 in student loans by graduationRetirement savings for caregivers a focus of new bipartisan bills in CongressThis year’s college graduates face a changed student loan landscapeThere’s an ‘art’ to writing AI prompts for personal finance, MIT professor saysAs AI restructures workforce, some young adults turn to grad schoolAverage tax refund is 11.2% higher, latest IRS filing data showsBessent says to adjust paycheck withholdings, but mistakes may trigger a tax billWhy the stock market is hitting records despite Iran war35% of Gen Z homebuyers are single women. Here’s why they need an estate planCommunity college enrollment rises as more grads pursue associate degreesCNBC’s Financial Advisor 100: Best financial advisors, top firms rankedRoughly 30% of Americans said they expected to procrastinate on their taxes this season, according to a survey from IPX1031, a real estate firm. The survey polled about 1,000 filers in January.But in many cases, last-minute filers don’t have the tax forms needed for a complete and accurate return, experts say.“If you’re missing information, I would not suggest filing with what you’ve got” and then amending your return later, said Tom O’Saben, director of tax content and government relations at the National Association of Tax Professionals. Taxpayers often experience “long wait times” for the IRS to process amended returns and issue refunds for those filings, National Taxpayer Advocate Erin Collins wrote in January. During fiscal year 2025, individuals waited an average of five months, while businesses had average delays of 13 months, she reported. “I prefer an extension over an amended return,” said O’Saben.If you don’t have all your tax forms, you should file an extension by April 15 with a “best guestimate” of your 2025 taxes owed, he said. Here are some options to file for a tax extension this season.How to file an IRS tax extension If you’re running out of time, there are ways to request a tax extension for free, according to the IRS.One option is to make a tax payment online and choose “extension” as the reason for your payment, which automatically submits Form 4868. You won’t need additional forms, but you should save the confirmation for your records.You can also file Form 4868 via IRS Free File, which is a public-private partnership between the agency and several tax software companies. This season, the adjusted gross income cap is $89,000 for IRS Free File, but “there’s no income limit for extensions,” Harden said during the webinar on Tuesday. Filers also have the option to mail Form 4868, but it must be postmarked by April 15, which isn’t guaranteed by dropping it in your mailbox on Wednesday. For this choice, you could bring it to the post office and opt for certified mail, which offers proof of mailing and a date stamp.
+"""
+
+[R3] IRS tax deadline 2026: How to file a last-minute extension
+(https://www.newsweek.com/irs-tax-deadline-2026-how-to-file-last-minute-extension-11794028)
+"""
+If you haven't filed your tax return yet and don't have the time or just don't feel like doing it by the deadline, you can file an extension for free online.The IRS tax filing deadline for most Americans is April 15, and failing to file a tax return by the deadline can result in a late filing fee. Millions of people each year request and receive a filing extension, which eliminates the late filing penalties, although, if a person owes taxes they're still required to pay them by the deadline or they could get a financial penalty. How to File an IRS Tax Return Extension Filing a federal tax extension is straightforward and automatic if it’s done by the deadline. The IRS offers several ways to do it, all centered on Form 4868, the Application for Automatic Extension of Time to File U.S. Individual Income Tax Return. You can request an extension in one of three main ways:File Form 4868 electronically: Most tax software programs and IRS‑authorized e‑file providers allow taxpayers to submit Form 4868 online. This is the fastest option and provides confirmation that the IRS accepted the request. Use IRS Free File or Free Fillable Forms: The IRS allows anyone, regardless of income, to file an extension for free using its Free File system or Free Fillable Forms. Make an electronic payment and mark it as an extension: Taxpayers who make a payment through IRS Direct Pay, debit or credit card, or a digital wallet can indicate that the payment is for an extension. In that case, a separate Form 4868 is not required. File Form 4868 by mail: the extension request form can be sent by mail to the relevant IRS office depending on where individuals list. Addresses are listed in the form. Internal Revenue Service is engraved over the entrance to the headquarters building on March 24, 2026, in Washington. | J. David Ake/Getty ImagesForm 4868 automatically grants a six‑month extension, moving the filing deadline to October 15, as long as it is submitted by April 15.It’s important to note that the extension applies only to filing the return, not to paying taxes owed. Any unpaid balance after April 15 may accrue penalties and interest, even if the extension is approved. How Much Does It Cost to File a Tax Extension Filing a tax extension with the IRS does not cost anything. The agency offers multiple no‑cost options, including IRS Free File and electronic payments that trigger an automatic extension.However, taxpayers who use private filing services might see small fees:Some commercial e‑file providers charge fees to submit Form 4868, depending on the service and filing method.IRS Free File partners and paper filing remain free options. There is no penalty for requesting an extension as long as it is filed on time. Penalties apply only if:The extension request is filed late, orTaxes owed are not paid by the April 15 deadline.The IRS consistently emphasizes that filing an extension—even if you cannot pay in full—is better than failing to file at all, because late‑filing penalties are steeper than late‑payment penalties. When Are 2026 Taxes Due?For most individual taxpayers, the key 2026 federal tax dates are fixed:Tax Day: April 15, which falls on a Wednesday and is not affected by holidays or weekend rules.Extension request deadline: April 15 Extended filing deadline: October 15 for those who successfully file Form 4868.Automatic ExtensionsSome taxpayers automatically receive additional time to file their returns even if they do not request an extension. These individuals include: Military members on duty outside the U.S. and Puerto Rico - they receive an automatic two-month extension until June 15. However, tax payments are still due on April 15 to avoid interest. Taxpayers serving in combat zones - they have at least 180 days after leaving the combat zone to file returns and pay taxes due. U.S. citizens and resident aliens who live and work outside the U.S. and Puerto Rico - they have a two-month extension to file. Taxpayers in certain federally declared disaster areas.
+"""
+
+[R4] Need more time to file? Don’t wait, request an extension | Internal Revenue Service
+(https://www.irs.gov/newsroom/need-more-time-to-file-dont-wait-request-an-extension)
+"""
+EnglishEspañol IRS Tax Tip 2026-30 April 9, 2026The April 15 deadline to file federal income tax returns is coming up fast. Taxpayers who need more time to file, should request an extension by the filing due date. An extension gives people until October 15 to file without penalties.It’s important to know, the extension is only for filing a return and not for extra time to pay, if taxes are owed. Taxpayers are still obligated to pay taxes due on April 15, 2026, to avoid penalties and interest. There are options available for people who can’t pay the full balance before the deadline, but they shouldn’t delay any longer.Three ways to request an extensionPay online and select extension. Taxpayers can pay what they owe using an online payment option, then click on extension as the reason for the payment. The taxpayer will receive a confirmation number of their extension for their records. There’s no need to file any additional forms.Use IRS Free File. All individual filers can use the program to request an automatic extension, regardless of income and at no cost to them. However, there are income requirements when using IRS Free File to file taxes.Request an extension by mail. File Form 4868, Application for Automatic Extension of Time To File U.S. Individual Income Tax Return. Taxpayers can file by mail, online with an IRS e-filing partner or through a tax professional. They must estimate how much tax is owed for the year on the extension form and subtract the taxes already paid for the filing year and pay the balance owed.Taxpayers serving in a combat zone or qualified hazardous duty areas, living outside of the United States, or affected by certain disaster situations may be eligible for additional time to file and pay. They should check their eligibility before the tax filing deadline.People who can’t pay the full balance owed by April 15 should still pay what they can and apply for a payment plan, also called an installment agreement or online payment agreement. Most applicants receive immediate notification of approval or denial, without having to call or write to the IRS.Subscribe to IRS Tax Tips News items may not be updated after their release. Please verify the date before relying on the language.
+"""
+
+[R5] IRS announces tax relief for taxpayers impacted by Winter Storm Fern in Tennessee; various deadlines postponed to May 22, 2026 | Internal Revenue Service
+(https://www.irs.gov/newsroom/irs-announces-tax-relief-for-taxpayers-impacted-by-winter-storm-fern-in-tennessee-various-deadlines-postponed-to-may-22-2026)
+"""
+Updated on 4/15/2026: The relief described below has been expanded to taxpayers in ALL 95 counties in the state of Tennessee. Tennessee taxpayers now have until June 8, 2026, to file various federal individual and business tax returns and make tax payments.TN-2026-01, April 3, 2026WASHINGTON — The Internal Revenue Service announced today tax relief for individuals and businesses in Tennessee affected by Winter Storm Fern that began on Jan. 22, 2026. These taxpayers now have until May 22, 2026, to file various federal individual and business tax returns and make tax payments.Following the disaster declaration issued by the State of Tennessee, individuals and households that reside or have a business in Cheatham, Chester, Clay, Davidson, Decatur, Dickson, Hardeman, Hardin, Henderson, Hickman, Lawrence, Lewis, Macon, Maury, McNairy, Perry, Robertson, Rutherford, Summer, Trousdale, Wayne, Williamson and Wilson counties qualify for tax relief. The declaration permits the IRS to postpone certain tax-filing and tax-payment deadlines for taxpayers who reside or have a business in the disaster area. For instance, for certain deadlines falling on or after Jan. 22, 2026, and on or before May 22, 2026, taxpayers are granted additional time to file.As a result, affected individuals and businesses will have until May 22, 2026, to file returns and pay any taxes that were originally due during this period.The May 22, 2026, deadline applies to individual income tax returns and payments normally due on or after Jan. 22, 2026. Penalties on payroll and excise tax deposits due on or after Jan. 22, 2026, and before Feb. 6, 2026, will be abated as long as the tax deposits are made by Feb. 6, 2026.This May 22, 2026, deadline also applies to affected quarterly payroll and certain excise tax returns normally due on Feb. 2, 2026, and April 30, 2026.If an affected taxpayer receives a late filing or late payment penalty notice from the IRS that has an original filing, payment or deposit due date that falls within the postponement period, the taxpayer should call the telephone number on the notice to have the IRS abate the penalty.The IRS automatically identifies taxpayers located in the covered disaster area and applies filing and payment relief. But affected taxpayers who reside or have a business located outside the covered disaster area should call the IRS Special Services toll-free number at 866-562-5227 to request this tax relief. Tax practitioners in the covered disaster area, who maintain records necessary to meet a filing or payment deadline for taxpayers located outside the disaster area, may contact the IRS Special Services; if the practitioner maintains the necessary records of ten or more clients, please refer to Bulk requests from practitioners for disaster relief for additional guidance.Covered disaster areaThe locality listed above constitutes a covered disaster area for purposes of Treas. Reg. §301.7508A-1(d)(2) and affected taxpayers in the locality are entitled to the relief detailed below.Affected taxpayersTaxpayers considered to be affected taxpayers eligible for the postponement of time to file returns, pay taxes and perform other time-sensitive acts are those taxpayers listed in Treas. Reg. § 301.7508A-1(d)(1), and include individuals who live, and businesses (including tax-exempt organizations) whose principal place of business is located, in the covered disaster area. Taxpayers not in the covered disaster area, but whose records necessary to meet a deadline listed in Treas. Reg. § 301.7508A-1(c) are in the covered disaster area, are also entitled to relief. In addition, all relief workers affiliated with a recognized government or philanthropic organization assisting in the relief activities in the covered disaster area and any individual visiting the covered disaster area who was killed or injured as a result of the disaster are entitled to relief.Under section 7508A, the IRS gives affected taxpayers until May 22, 2026, to file most tax returns (including individual, corporate, and estate and trust income tax returns; partnership returns, S corporation returns, and trust returns; estate, gift, and generation-skipping transfer tax returns; annual information returns of tax-exempt organizations; and employment and certain excise tax returns), that have either an original or extended due date occurring on or after Jan. 22, 2026, and before May 22, 2026.Estimated income tax payments originally due on or after Jan. 22, 2026, are postponed through May 22, 2026, and affected taxpayers will not be subject to penalties for failure to pay estimated tax installments as long as such payments are paid on or before May 22, 2026.The IRS also gives affected taxpayers until May 22, 2026, to perform other time-sensitive actions described in Treas. Reg. § 301.7508A-1(c)(1) and Rev. Proc. 2018-58, 2018-50 IRB 990 (December 10, 2018), that are due to be performed on or after Jan. 22, 2026, and on or before May 22, 2026.Unless an act is specifically listed in Rev. Proc. 2018-58, the postponement of time to file and pay does not apply to information returns in the W-2, 1094, 1095, 1097, 1098 or 1099 series; to Forms 1042-S, 3921, 3922 or 8027; or to employment and excise tax deposits. However, penalties on deposits due on or after Jan. 22, 2026, and before Feb. 6, 2026, will be abated as long as the tax deposits were made by Feb. 6, 2026.Casualty lossesAffected taxpayers in a federally declared disaster area have the option of claiming disaster-related casualty losses on their federal income tax return for either the year in which the event occurred, or the prior year. Taxpayers have extra time – up to six months after the due date of the taxpayer’s federal income tax return for the disaster year (without regard to any extension of time to file) – to make the election. For individual taxpayers, this means Oct. 15, 2026. See Publication 547 for details. Individuals may deduct personal property losses that are not covered by insurance or other reimbursements. For details, see Form 4684, Casualties and Thefts PDF and its instructions PDF. Affected taxpayers claiming the disaster loss on their return should put “Tennessee Winter Storm Fern” on any return.Other reliefThe IRS will waive the usual fees for requests for copies of previously filed tax returns for affected taxpayers. Taxpayers should put “Tennessee Winter Storm Fern” in bold letters at the top of Form 4506, Request for Copy of Tax Return PDF, or Form 4506-T, Request for Transcript of Tax Return, as appropriate PDF, and submit it to the IRS.Qualified disaster relief payments are generally excluded from gross income. This means that affected taxpayers can exclude from their gross income amounts received from a government agency for reasonable and necessary personal, family, living or funeral expenses, as well as for the repair or rehabilitation of their home, or for the repair or replacement of its contents. See Publication 525 for details.Additional relief may be available to affected taxpayers who participate in a retirement plan or individual retirement arrangement (IRA). For example, a taxpayer may be eligible to take a special disaster distribution that would not be subject to the additional 10% early distribution tax and that the taxpayer may take into income over three years. See Form 8915-F, Qualified Disaster Retirement Plan Distributions and Repayments and Disaster relief frequently asked questions: Retirement plans and IRAs under the SECURE 2.0 Act of 2022. Taxpayers may also be eligible to make a hardship withdrawal. Each plan or IRA has specific rules and guidance for their participants to follow.The IRS may provide additional disaster relief in the future.Taxpayers who do not qualify for disaster tax relief may qualify for reasonable cause penalty abatement. See Penalty relief for reasonable cause for additional information.Affected taxpayers who are contacted by the IRS on a collection or examination matter should explain how the disaster impacts them so that the IRS can provide appropriate consideration to their case. Taxpayers may download forms and publications from the official IRS website, IRS.gov.Reminder about tax return preparation optionsEligible individuals or families can get free help preparing their tax return at Volunteer Income Tax Assistance (VITA) or Tax Counseling for the Elderly (TCE) sites. To find the closest free tax help site, use the VITA Locator Tool or call 800-906-9887. Note that normally, VITA sites cannot help claim disaster losses.To find an AARP Tax-Aide site, use the AARP Site Locator Tool or call 888-227-7669.Any individual or family whose adjusted gross income (AGI) was $89,000 or less in 2025 can use IRS Free File’s Guided Tax Software at no cost. There are products in English and Spanish.Another Free File option is Free File Fillable Forms. These are electronic federal tax forms, equivalent to a paper 1040 and are designed for taxpayers who are comfortable filling out IRS tax forms. Anyone, regardless of income, can use this option.MilTax, a Department of Defense program, offers free return preparation software and electronic filing for federal tax returns and up to three state income tax returns. It’s available for all military members and some veterans, with no income limit.
+"""
+
+[R6] If you need more time to file, request an extension | Internal Revenue Service
+(https://www.irs.gov/newsroom/if-you-need-more-time-to-file-request-an-extension)
+"""
+EnglishEspañol中文 (简体) IR-2026-52, April 14, 2026WASHINGTON — As the end of filing season approaches, the Internal Revenue Service reminds taxpayers they can get an extension to file their federal income tax return until Oct. 15, 2026, but they must request the extension by April 15, 2026, in order to avoid penalties.An extension provides extra time to file, not additional time to pay. Taxes owed are still due by April 15. To avoid or minimize penalties and interest, taxpayers should estimate their total tax liability, subtract any payments already made, and pay the remaining balance by the deadline.Ways to request an extension to Oct. 15Use IRS Free File. All individual filers can use IRS Free File guided software at IRS.gov to electronically request an extension at no cost.Use Free File Fillable Forms. Taxpayers can complete and submit Form 4868, Application for Automatic Extension of Time To File U.S. Individual Income Tax Return PDF, electronically, regardless of income.Pay online and select “extension.” Taxpayers who pay all or part of what they owe using IRS online payment options, including IRS Online Account, Direct Pay, or Electronic Federal Tax Payment System (if already registered), can select “extension” as the reason for the payment. This automatically generates an extension; no additional forms are required. Taxpayers should keep their confirmation number in their records.File Form 4868 by mail. Taxpayers can complete and mail Form 4868, Application for Automatic Extension of Time To File U.S. Individual Income Tax Return PDF, to the address listed in the form instructions.Automatic extensions for certain taxpayersSome taxpayers automatically receive additional time to file, even if they do not request an extension:Members of the military on duty outside the United States and Puerto Rico receive an automatic two-month extension to file, until June 15. However, tax payments are still due April 15 to avoid interest.Taxpayers serving in combat zones generally have at least 180 days after leaving the combat zone to file returns and pay any taxes due.U.S. citizens and resident aliens who live and work outside of the United States and Puerto Rico receive an automatic two-month extension of time to file, until June 15. Interest will still apply to payment received after April 15.Taxpayers in certain federally declared disaster areas may receive additional time to file and pay. Those eligible do not need to request an extension. Information on the most recent tax relief for disaster situations is available on IRS.gov.Payment optionsThe IRS offers several options to make a payment and get the automatic filing extension:IRS Individual Online AccountIRS Direct PayElectronic Federal Tax Payment SystemCredit card, debit card, or digital walletMore informationForm 4868, Application for Automatic Extension of Time To File U.S. Individual Income Tax Return PDFPublication 54, Tax Guide for U.S. Citizens and Resident Aliens AbroadTax information for members of the military provides general information for members of the U.S. Armed Forces and their familiesIRS Free File at IRS.gov/FreeFileOnline payment options at IRS.gov/paymentsDisaster relief information at IRS.gov/disaster News items may not be updated after their release. Please verify the date before relying on the language.
+"""
+
+[R7] Act now to file, pay, or request an extension | Internal Revenue Service
+(https://www.irs.gov/newsroom/act-now-to-file-pay-or-request-an-extension)
+"""
+IR-2026-44, April 3, 2026WASHINGTON — With the April 15 tax deadline fast approaching, the Internal Revenue Service reminds taxpayers that there is still time to file their federal income tax return electronically and request direct deposit for any refund due. Taxpayers can avoid interest and some penalties by filing their tax return, and if they owe, paying the full amount due by the deadline.Use IRS.gov for the quickest and easiest informationIRS.gov is available 24 hours a day and offers a variety of tools and resources to help taxpayers meet their tax obligations.Let Us Help You. This page provides tips, tools, and answers to frequently asked tax questions.IRS Individual Online Account. Taxpayers can securely view tax account information, manage payments, check the status of refunds, and communicate with the IRS.No-cost electronic filing optionsFiling electronically reduces errors because tax software performs calculations, flags common mistakes, and prompts users for missing information. Most taxpayers qualify to file electronically at no cost, and when they choose direct deposit, they usually receive their refund within 21 days.IRS Free File and Fillable Forms. Qualified taxpayers with income of $89,000 or less in 2025 can use IRS Free File to prepare and file their federal tax returns. Taxpayers who are comfortable preparing their own taxes can use IRS Free File Fillable Forms, regardless of income.MilTax. Military members and some veterans can use the Department of Defense program MilTax for free return preparation and electronic filing.IRS-certified volunteers. The Volunteer Income Tax Assistance and Tax Counseling for the Elderly programs provide free basic tax preparation to eligible individuals in communities nationwide.Payment options for taxpayers who oweTaxpayers can make payments directly from a checking or savings account using their IRS Individual Online Account. Other electronic payment options include IRS Direct Pay, debit or credit cards, digital wallets, Electronic Federal Tax Payment System, and electronic funds withdrawal.Taxpayers who cannot pay the full amount owed by the tax deadline should pay what they can now and apply for an online payment plan. Most applicants receive immediate notification of approval or denial, without having to call or write to the IRS.Unable to file by the April 15 deadlineIndividuals who cannot file their tax return by April 15 can request an automatic extension of time to file. An extension to file is not an extension to pay; taxpayers must estimate and pay any taxes owed by the deadline to avoid penalties and interest. Taxpayers can request an extension by:Making an electronic payment using Direct Pay, a debit card, a credit card, or a digital wallet, and indicating the payment is for an extension.Filing a Form 4868, Application for Automatic Extension of Time to File U.S. Individual Income Tax Return, using IRS Free File, regardless of income.Mailing Form 4868 PDF if filing an extension on paper. The form must be completed and postmarked by the tax deadline and mailed to the address listed in the instructions.Taxpayers serving in a combat zone or qualified hazardous duty areas, living outside the United States, or affected by certain disaster declarations may be eligible for additional time to file and pay. Taxpayers should check their eligibility before the tax deadline.More informationPublication 594, The IRS Collection Process PDFPublication 6103, Get Help with Tax Debt PDFBoth publications provide details on payment options and plans for paying a tax balance over time.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

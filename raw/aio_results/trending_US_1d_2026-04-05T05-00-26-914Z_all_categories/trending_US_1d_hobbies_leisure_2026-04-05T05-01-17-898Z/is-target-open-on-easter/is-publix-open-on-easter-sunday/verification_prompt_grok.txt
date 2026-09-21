@@ -1,0 +1,103 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is publix open on easter sunday"
+
+Claims:
+[1] "All Publix stores and pharmacies are closed on Easter Sunday (April 5, 2026)."
+[2] "Easter is one of three holidays when all Publix locations close, along with Thanksgiving and Christmas."
+[3] "Publix regular hours resume on Monday."
+[4] "Walmart generally remains open on Easter Sunday."
+[5] "Trader Joe's generally remains open on Easter Sunday."
+[6] "Whole Foods generally remains open on Easter Sunday."
+[7] "Winn-Dixie generally remains open on Easter Sunday."
+[8] "Target is closed on Easter Sunday."
+[9] "Costco is closed on Easter Sunday."
+[10] "Sam's Club is closed on Easter Sunday."
+[11] "Aldi is closed on Easter Sunday."
+
+Cited text snippets from the AI Overview (for additional context):
+- What grocery stores are open on Easter across Tampa Bay?: "Is Publix open on Easter,will operate with modified hours."
+- Publix Easter Sunday hours: Is the grocery store open?: "A notice on Publix's corporate site states:,our associates time with family and friends.''"
+- Locations | Publix Super Markets: "All stores and pharmacies will,on Easter Sunday, April 5th."
+- EASTER SUNDAY 2026: WHAT WILL BE OPEN? Here's a ...: "🐣 EASTER SUNDAY 2026: WHAT,a safe and happy Easter!"
+Reference Sources:
+
+[R1] Publix Easter Sunday hours: Is the grocery store open?
+(https://www.naplesnews.com/story/news/2025/04/19/publix-easter-sunday-hours-is-the-grocery-store-open/83176948007/)
+"""
+NEWSIs Publix open Easter Sunday in Naples, Fort Myers, Florida? Jennifer SangalangUSA TODAY NETWORK - FloridaApril 19, 2025, 5:30 p.m. ETOf all the holidays celebrated in a year, Publix is only closed for three of them: Easter, Thanksgiving and Christmas Day.On the retail side, holidays are so popular, businesses try to cash in on deals or longer hours to shop. But for one of Florida's largest grocery chains, Publix, you can't shop on Easter Sunday.
+"""
+
+[R2] Are supermarkets open on Easter Sunday? Depends where you shop. See the list
+(https://www.aol.com/articles/supermarkets-open-easter-sunday-depends-090000666.html)
+"""
+Sat, April 4, 2026 at 9:00 AM UTCNeed a last-minute ingredient for your Easter gathering? Take note: Some supermarkets in South Florida are closed for the holiday.Although Publix is closed on Easter Sunday, April 5, Winn-Dixie, Milam’s and other grocery stores are open. Convenience stores and gas station minju-marts are generally open as well.Here’s a look at what supermarkets in Miami-Dade and Broward are open or closed on Easter:SupermarketsMilam’s Market at 11701 South Dixie Hwy. in Pinecrest has its Easter display up well ahead of the April 6, 2026, holiday. Milam’s markets around South Florida will be open on Easter. (Howard Cohen/hcohen@miamiherald.com)Publix: Closed.Walmart/Sam’s Club: Walmart stores will be open regular hours; Sam’s Club closed.Costco: Closed.Target: Closed.Winn-Dixie: Open regular hours.Aldi: Closed.Milam’s Markets: Open regular hours.Sedano’s Supermarket: Open.Presidente Supermarket: Open.Price Choice Supermarket: Open; but some locations may close at 2 p.m.BJ’s Warehouse Club: Open 8 a.m. to 6 p.m.The Fresh Market: Open regular hours.Whole Foods Market: Most stores in South Florida open 8 a.m. to 8 p.m., but several will close at 6 p.m., including the Pinecrest area location at 7930 SW 104th St.Trader Joe’s: Open.Sprouts Farmers Market: Open.Here are the malls that are open or closed on Easter:PharmaciesDrug stores, which also sell food items, are generally open on Easter but check with yours for the hours:CVS: Open.Walgreens: Open.
+"""
+
+[R3] What grocery stores are open on Easter across Tampa Bay?
+(https://www.wtsp.com/article/news/local/publix-open-easter-hours-walmart-costco-target-whole-foods/67-fe8d3260-a151-4a3f-b551-e62eb168ef53)
+"""
+If you're scrambling for last-minute groceries, or just need to grab something on the go, knowing which stores will be open — and which won't — can save you a trip. TAMPA, Fla. — Easter Sunday falls on April 5 this year, and if the holiday arrives and you're scrambling for last-minute groceries, or just need to grab something on the go, knowing which stores will be open — and which won't — can save you a trip. While some grocery stores across Tampa Bay will be closed, you'll still be in luck, as a handful will still keep their doors open and/or have modified hours during the holiday. Here's what you need to know before you head out the door. Is Publix open on Easter? No, all Publix stores are closed on Easter. Is Target open on Easter? Is Walmart open on Easter? Yes, Walmart stores are open on Easter Sunday for 2026. Is Costco open on Easter? No, Costco is not open on Easter 2026. Easter Sunday is one of the seven holidays that Costco closes its U.S. warehouses. Is Aldi open on Easter? No, Aldi will be closed on Easter. Is Trader Joe's open on Easter? Yes, Trader Joe's locations will be open on Easter. Is Whole Foods open on Easter? Yes, Whole Foods will be open on Easter, but many locations will operate with modified hours. TEGNA Digital's Megan Divers contributed to this story.
+"""
+
+[R4] Locations | Publix Super Markets
+(https://www.publix.com/locations)
+"""
+Skip to Main Content This is the main content. Locations Locations Searching... Allow access to current location Pharmacy Liquor Open Now Pharmacy Liquor Retail Services Aprons Meal Kits Burritos and Bowls Cafe Catering Consultants Curbside Pharmacy Curbside Pickup Drive Thru Pharmacy Electric Car Charging Stations Hot Bar Instacart Pizza POURS Salad Bar Sushi Tag Renewal Kiosk Privacy Request CenterPrivacy Request CenterOverviewThis websiteOther sales/targeted advertisingOverviewWelcome to our Privacy Request Center! You can learn about your rights to opt out and how to exercise your rights here in our Privacy Request Center by clicking on the applicable tabs. More information about how we process your personal information and your rights can be found in our Privacy Policy.This website This website NoOpt-out of third party sales/targeted advertising We use cookies and other tracking technologies ("Tracking Technologies") on our websites that may make your personal data available to third parties in a manner that is considered "targeted advertising" or a "sale" under applicable consumer privacy laws. To opt-out of third party sales and targeted advertising using Tracking Technologies on this website, please slide the toggle above to the left, and it will display YES to indicate that you have opted out. If you later change your mind, you can opt back in by sliding the toggle to the right so that it says NO. Please Note: This opt-out only applies to the website that you have accessed this opt-out from. Because of the way our opt-out technology currently works, you will also need to opt-out if you access this website from other browsers or devices. Cookie-enabled opt-out signals may no longer be effective if you block or clear cookies. Opting-out will not affect our ability to personalize your experience on our website. You may still receive advertisements that do not rely on targeted advertising or sales.Other sales/targeted advertising Other sales/targeted advertising NoOpt-out of other third party sales/targeted advertising As a consumer you may have engaged with us in other ways than just visiting our websites or using our mobile apps. For example, we may collect data about you when you participate in one of our loyalty programs. In some cases, we may disclose data that we collect about you by means other than Tracking Technologies in a way that may be considered a "sale" under applicable consumer privacy laws and/or targeted advertising under applicable consumer privacy laws. If you would like us to update our internal records so that we do not disclose such personal data collected in contexts outside of Tracking Technologies for these purposes, please submit your request(s) using the following opt-out link: here. You may also submit your request(s) by calling us at: 800-242-1227 Back ButtonCookie List Filter ButtonConsent Leg.Interest checkbox label label checkbox label label checkbox label labelClear checkbox label labelApply CancelConfirm
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

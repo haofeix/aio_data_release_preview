@@ -1,0 +1,114 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "uconn mullins related to chris mullins"
+
+Claims:
+[1] "Braylon Mullins is a UConn freshman guard."
+[2] "Chris Mullin is an NBA Hall of Famer."
+[3] "Braylon Mullins is not related to Chris Mullin."
+[4] "National Today, MARCA, and MSN note that Braylon Mullins hails from Indiana."
+[5] "National Today, MARCA, and MSN note that Braylon Mullins is the son of Josh and Katie Mullins."
+[6] "Braylon Mullins spells his last name with an "s" at the end (Mullins)."
+[7] "Chris Mullin spells his last name without an "s" at the end (Mullin)."
+[8] "Braylon Mullins is from Greenfield, Indiana."
+[9] "Braylon Mullins's father is Josh Mullins."
+[10] "Josh Mullins played college basketball at Lincoln Trail College."
+[11] "Josh Mullins played college basketball at IUPUI."
+[12] "Josh Mullins has no connection to Chris Mullin's family."
+[13] "Braylon Mullins hit a game-winner to send UConn to the Final Four during the 2026 NCAA tournament."
+
+Cited text snippets from the AI Overview (for additional context):
+- Braylon Mullins’ Dad Has 6-Word Reaction to UConn Game Winner: "More Related Stories,(@CBSSports) March 29, 2026"
+- Who is Braylon Mullins' father? Is the UConn star the son of Chris Mullin?: "The UConn Huskies continue,family connection between the two."
+- Is Braylon Mullins related to Chris Mullin? What to know about connection between UConn star, former NBA All-Star: "Mullins was selected to the,Purdue University Indianapolis (IUPUI)."
+- UConn's Braylon Mullins not related to NBA legend Chris Mullin: "While Mullins' last name may,connected to Chris Mullin's family."
+- Who is Braylon Mullins? What to know about his NBA Draft stock, hometown, dad: "For those wondering, they aren,Trending Reporter/Audience Producer"
+- COMEBACK FOR THE AGES | Braylon Mullins hits game ...: "Wally Szczerbiak, Chris Walker, and Jon Rothstein,comeback win over Duke in the Elite"
+- Is Braylon Mullins related to Chris Mullin? What to know about ... - MSN: "to Chris Mullin?-,What to know about connection,star, former NBA All-Star&text=SmartAsset-,For Dan Hurley's men's team, one exciting young face in,a Basketball Hall of Famer."
+Reference Sources:
+
+[R1] Is Braylon Mullins related to Chris Mullin? What to know about connection between UConn star, former NBA All-Star | Sporting News
+(https://www.sportingnews.com/us/ncaa-basketball/uconn/news/braylon-mullins-chris-mullin-connection-uconn-nba/0a17c1fd9a99acc46c143852)
+"""
+For years, the UConn Huskies have been producing elite college basketball talent, both in their men's and women's programs. Thanks to top-tier coaches and young players, the team is an annual threat to win the NCAA Tournament.For Dan Hurley's men's team, one exciting young face in 2025-26 has been guard Braylon Mullins. As a freshman, Mullins has been a significant contributor to a deep Huskies unit, looking to help lead his squad deep into March. The last name "Mullins" may sound a bit familiar to basketball fans; Chris Mullin was a five-time NBA All-Star and a Basketball Hall of Famer.Is Braylon Mullins related to Chris Mullin? Here's what to know.MARCH MADNESS HQ: Live NCAA bracket | TV schedule | Latest news and moreWho is Braylon Mullins?Braylon Mullins is a freshman guard at UConn, listed at 6-6 and 196 pounds. The 19-year-old was a consensus top-25 prospect in the 2025 recruiting class, receiving offers from schools like Indiana and UNC, but ultimately deciding on the Huskies.Mullins enjoyed a terrific freshman season at UConn, a team that often prides itself on depth over one or two star-level names. He's averaged 12.1 points, which ranks fourth on the team, along with 3.5 rebounds and 1.5 assists per game. The guard has helped guide UConn to the NCAA Tournament, where he had a 17-point game against UCLA in the second round.Mullins was selected to the Big East All-Freshman Team in 2025-26. He is regarded as a potential lottery pick in the 2026 NBA Draft, if he decides to leave UConn after one year.MORE: Ranking every Sweet 16 head coachIs Braylon Mullins related to Chris Mullin?While they have similar last names and have a background in basketball, UConn guard Braylon Mullins is not related to former NBA All-Star and Basketball Hall of Famer Chris Mullin. It's a small distinction, but the Huskies star has an "S" at the end of his last name, while the NBA legend does not.However, Mullins' father does have a background in basketball — Josh Mullins played college hoops at Lincoln Trail College and Indiana University–Purdue University Indianapolis (IUPUI).HISTORY OF UPSETS BY SEED:16 vs. 1 | 15 vs. 2 | 14 vs. 3 | 13 vs. 4 | 12 vs. 5Where is Braylon Mullins from?Braylon Mullins is from Greenfield, Indiana. He attended Greenfieled Greenfield-Central, where he led the team to a 23–4 record while averaging 32.9 points, 7.2 rebounds, 4.2 assists and 3.7 steals per game as a senior.Mullins was named a 2025 McDonald's All American and was recognized as Indiana's Mr. Basketball soon afterward.MORE: Is Bill Murray a UConn fan?Where is Chris Mullin from?Former NBA star Chris Mullin is from Brooklyn, New York. He began his high school career at Power Memorial Academy before transferring to Xaverian High School, leading them to a New York Class A state championship in 1981.Mullin then went on to play at St. John's in college, then become the No. 7 overall pick of the Warriors in the 1985 NBA Draft.MORE MARCH MADNESS NEWS:SN's 2026 NBA Mock Draft10 best NBA prospects in March MadnessRanking the college basketball's loaded freshmen classMeet the Cinderella stars who could bust brackets
+"""
+
+[R2] Braylon Mullins' dad has 6-word reaction to UConn game winner
+(https://www.newsweek.com/sports/ncaa/braylon-mullins-dad-has-6-word-reaction-to-uconn-game-winner-11754423)
+"""
+The UConn Huskies have had many heroes during their program's March Madness runs, and freshman Braylon Mullins became the latest after his incredible shot to dethrone the No. 1 overall seed Duke Blue Devils in the East Region.With a trip to the Final Four on the line, Duke dominated UConn throughout the game. Despite big man Taris Reed Jr. carrying the team, the other Huskies also shot horribly from long-range, unable to find any three-pointers most of the night.That was until they stormed back to make things interesting in the final stretch of the game. After Silas Demary Jr. made one of his two free throws with just 10 seconds on the clock, Duke needed to inbound the clock and get fouled or run the clock out.However, the Huskies used pressure defense on the full-court inbound, and Mullins forced a turnover, giving the Huskies a chance to tie or take a lead. They did the latter on a heroic shot by Mullins, who connected from near the logo on a three, giving UConn a 73-72 lead with 0.4 left in the game.Duke was unable to come up with a full-court heave and game-winner, getting stunned before the final buzzer by the No. 2 seed UConn.Read more: UConn’s Braylon Mullins Has Strong Reaction to Game-Winning Shot vs DukeWASHINGTON, DC - MARCH 29: Braylon Mullins #24 celebrates with Jayden Ross #23 and Malachi Smith #0 of the UConn Huskies after Mullins shot the game-w... | Photo by Patrick Smith/Getty ImagesThe big hero was Mullins due to his epic shot, which joins other Huskies greats in the history books. While Mullins didn't have his best shooting night, he came up clutch at just the right time, with a half-court three Steph Curry would've been proud of.Speaking of the Golden State Warriors, there may be some misconceptions about Braylon Mullins being related to Warriors legend Chris Mullin, but they have different spellings of their last names.However, Braylon Mullins' dad was also a witness to his son's incredible shot. Active on X (formerly Twitter), Josh Mullins fired off a six-word message reacting to his son and UConn going to the Final Four."INDY.... HOLLA IF YA HEAR ME!!!" Mullins' dad wrote, adding a hashtag for "FINAL4" with the message.This year's Final Four for the NCAA Tournament takes place in Indianapolis, Indiana. UConn will face Illinois next, with the winner advancing to play either Michigan or Arizona for the championship.Fittingly, Braylon Mullins hails from Greenfield, Indiana, played his high school ball for Greenfield-Central High School, and now gets to play again in his home state in front of his family, including his father.Mullins, considered among NBA Draft picks in June, is also known as "Indiana Mr. Basketball," an award he received from The Sporting News as the state's top basketball player, becoming a highly sought-after recruit that Hurley and UConn landed. Previous winners include fellow tournament star, Braden Smith of Purdue, and former NBA great Glenn "Big Dog" Robinson.For Braylon, basketball definitely runs in the family, too. His father, Josh, played for Lincoln Trail College and Indiana University-Purdue University, Indianapolis (IUPUI).The younger Mullins has immediately become one of UConn's March Madness heroes, thanks to his late-game shot, which tipped the lead in favor of UConn with 0.4 on the clock.Read more: UConn’s Dan Hurley Clarifies Luke Murray ‘Goodbye’ Amid March MadnessFor more about college basketball, visit Newsweek Sports.
+"""
+
+[R3] UConn's Braylon Mullins not related to NBA legend Chris Mullin - Greenfield Today
+(https://nationaltoday.com/us/in/greenfield-in/news/2026/03/27/uconns-braylon-mullins-not-related-to-nba-legend-chris-mullin/)
+"""
+Mar. 27, 2026 at 8:40am Got story updates? Submit your updates here. ›Braylon Mullins, a freshman guard for the UConn Huskies, has emerged as a key contributor this season. With his last name resembling that of NBA Hall of Famer Chris Mullin, some have wondered if the two are related. However, it has been confirmed that Braylon Mullins and Chris Mullin are not actually related, despite their shared basketball background. Why it matters The similarity in last names between Braylon Mullins and Chris Mullin has led to some confusion and speculation about a potential family connection between the two basketball players. Clarifying that they are not actually related helps provide accurate information to fans and media following Braylon Mullins' promising freshman season at UConn. The details Braylon Mullins is a 19-year-old freshman guard at the University of Connecticut, listed at 6-foot-6 and 196 pounds. He has been a key contributor for the Huskies this season, averaging 12.1 points, 3.5 rebounds and 1.5 assists per game. Mullins was a consensus top-25 recruit in the 2025 class and is considered a potential NBA draft pick. While Mullins' last name may sound familiar to basketball fans due to its similarity to Chris Mullin, the former NBA All-Star and Hall of Famer, the two are not actually related. Braylon's father, Josh Mullins, played college basketball but is not connected to Chris Mullin's family. Braylon Mullins is a freshman at UConn during the 2025-26 season. The players Braylon MullinsA 19-year-old freshman guard for the UConn Huskies, Braylon Mullins has emerged as a key contributor this season, averaging 12.1 points, 3.5 rebounds and 1.5 assists per game.Chris MullinA Basketball Hall of Famer and five-time NBA All-Star, Chris Mullin is a legendary basketball player, but he is not related to UConn's Braylon Mullins despite the similarity in their last names.Josh MullinsBraylon Mullins' father, Josh Mullins, played college basketball at Lincoln Trail College and Indiana University–Purdue University Indianapolis (IUPUI). Got photos? Submit your photos here. › The takeaway While the last names of Braylon Mullins and Chris Mullin may sound similar, the two basketball players are not actually related. Braylon Mullins is making a name for himself as a promising freshman at UConn, and his family basketball background comes from his father, Josh Mullins, not the NBA legend Chris Mullin.
+"""
+
+[R4] Who is Braylon Mullins? NBA Draft stock, height, weight, hometown, dad
+(https://www.ctinsider.com/sports/uconn-mens-basketball/article/who-is-braylon-mullins-shot-duke-ncaa-tournament-22158819.php)
+"""
+UConn men's basketball star Braylon Mullins punctuated an instant NCAA Tournament classic, as his 35-foot heave gave the Huskies a 73-72 lead over Duke with 0.4 seconds remaining in Sunday's Elite Eight thriller.  Mullins will now head back to his home state of Indiana next weekend with a new legion of admirers, as UConn prepares to face Illinois Saturday evening at the Final Four from Indianapolis' Lucas Oil Stadium. Here's everything you need to know about March's latest hero. Braylon Mullins is a freshman from Indiana Mullins displayed fortitude beyond his years by stepping up and drilling Sunday's buzzer-beater. Mullins is still three weeks away from his 20th birthday and around 10 months out of high school, continuing a standout freshman season for Dan Hurley and UConn.  Raised in Greenfield, Ind., Mullins quickly blossomed into a star at local Greenfield-Central High School, averaging 16.9 points and over five rebounds per game as a sophomore. Greenfield is a half-hour ride, or so, from the site of the Final Four. He capped off his outstanding high-school basketball career by earning the title of Indiana Mr. Basketball and being selected to play in the prestigious McDonald's All-American Game.  Braylon Mullins and the NBA Draft Mullins is channeling all his NCAA Tournament magic into one legendary March run for the Huskies, as the shooting guard is widely projected as a first-round selection in this summer's NBA Draft. Mullins arrived in Storrs already on NBA radars, billed as the premier perimeter shooting prospect in his high-school class, and the youngster shot 38% on 3-point range in Big East play. He was tabbed as the No. 13 overall pick to Golden State in ESPN's most recent mock draft, released ahead of the NCAA Tournament. Mullins hasn't been a star of late, but the potential and upside is clearly there. "Mullins has an interesting stay-or-go case this spring, as a freshman with a lot of fans in NBA front offices, but one who could feasibly be selected higher next year," ESPN's NBA Draft analyst Jeremy Woo writes about Mullins. "A high-level perimeter shooter with positional size (6-6) and scoring instincts, some feel he's capable of much more than he's shown this season in a supporting role on an experienced UConn team." Son of college basketball player Josh Mullins Mullins' sharp-shooting genes were passed down from his father, Josh Mullins, who was a prolific shooter in the early 2000s. During his senior season at IUPUI, now known as IU-Indy, Josh Mullins shot 45 percent from 3-point range on more than five attempts per game.  He finished third on the team in scoring and helped lead the Jaguars to their first and only NCAA Tournament appearance in 2003 after winning the now-defunct Mid-Continental Conference. Mullins' March magic is a new concoction, however, as IUPUI suffered a 95-64 first-round loss to No. 2 seed Kentucky. For those wondering, they aren't related to Chris Mullin, the former NBA All-Star - they have an 'S' at the end of their last name. Braylon Mullins height and weight Braylon Mullins is a 6-foot-6 shooting guard and weighs in at 196 pounds, according to UConn.
+"""
+
+[R5] Who is Braylon Mullins' father? Is the UConn star the son of Chris Mullin?
+(https://www.marca.com/en/ncaa/2026/03/30/69c9d458e2704ed2778b45cb.html)
+"""
+The UConn Huskies continue to establish themselves as one of the premier talent factories in college basketball, and during the 2025-26 season, one of the most exciting names has been freshman guard Braylon Mullins. However, his last name has sparked a common question among fans: is he related to NBA legend Chris Mullin?To watch this video, agree to share video information with third partiesAgree|More infoThe short answer is no. Despite the similarity in their last names-with a slight difference in spelling-there is no family connection between the two.Who is Braylon Mullins' father?The young standout's father is Josh Mullins, who also has a background in basketball. He played at the college level for Lincoln Trail College and later at Indiana University-Purdue University Indianapolis (IUPUI), which helps explain Braylon's strong foundation in the sport.While he never reached the professional level or the spotlight of bigger names, Josh Mullins provided a solid basketball upbringing that is now evident in his son's development within the NCAA.Braylon Mullins' rise at UConnOriginally from Greenfield, Indiana, Braylon Mullins arrived at UConn as one of the top prospects in the 2025 recruiting class. Standing at 6-foot-6, he quickly earned playing time in a deep rotation led by head coach Dan Hurley.In his freshman season, Mullins averaged 12.1 points, 3.5 rebounds, and 1.5 assists per game, ranking among the team's most productive players. He was also named to the Big East All-Freshman Team and delivered key performances in the NCAA Tournament, including a 17-point outing against UCLA.Why the confusion with Chris Mullin?The confusion is understandable. Chris Mullin is a basketball icon-a five-time NBA All-Star and Hall of Famer with an illustrious career in both the NBA and international competition.However, beyond the similar last name and shared basketball ties, there is no relation. Braylon Mullins is carving out his own path, with roots in the sport through his father, but building a distinct identity of his own.A name to watchWith potential to become a high pick in the 2026 NBA Draft, Braylon Mullins is already making a name for himself. And while he isn't related to Chris Mullin, his talent suggests that the Mullins name could soon gain recognition at the professional level in its own right.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

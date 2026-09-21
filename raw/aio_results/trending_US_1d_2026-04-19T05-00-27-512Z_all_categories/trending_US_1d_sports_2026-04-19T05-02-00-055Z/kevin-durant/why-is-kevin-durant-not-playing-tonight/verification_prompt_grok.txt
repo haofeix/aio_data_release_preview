@@ -1,0 +1,95 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "why is kevin durant not playing tonight"
+
+Claims:
+[1] "Kevin Durant is not playing in the Game 1 matchup against the Los Angeles Lakers on April 18, 2026."
+[2] "Kevin Durant has a right knee contusion."
+[3] "Kevin Durant sustained the right knee contusion after bumping knees in practice on Wednesday."
+[4] "The injury occurred during a Rockets practice on Wednesday."
+[5] "Rockets Head Coach Ime Udoka said the injured area is too tender and sore to play on."
+[6] "Kevin Durant is ruled out for Game 1."
+[7] "Imaging showed no structural damage to Kevin Durant's knee."
+[8] "Kevin Durant's knee is tender."
+[9] "The tenderness in Kevin Durant's knee affects his movement."
+[10] "Kevin Durant was considered a game-time decision."
+[11] "Kevin Durant tested the knee."
+[12] "ESPN reported that Kevin Durant did not feel comfortable enough to play"
+
+Cited text snippets from the AI Overview (for additional context):
+(No cited text snippets available)
+Reference Sources:
+
+[R1] Rockets' Kevin Durant out for G1 vs. Lakers with knee injury - ESPN
+(https://www.espn.com/nba/story/_/id/48526113/rockets-kevin-durant-g1-vs-lakers-knee-contusion)
+"""
+Stephen A.: KD hasn't been relevant in the postseason in years (1:37)Stephen A. Smith explains why he believes Kevin Durant has more on the line than LeBron James does in the Rockets' series vs. the Lakers. (1:37)Dave McMenaminApr 18, 2026, 07:39 PM ETCloseLakers and NBA reporter for ESPN. Covered the Lakers and NBA for ESPNLosAngeles.com from 2009-14, the Cavaliers from 2014-18 for ESPN.com and the NBA for NBA.com from 2005-09.ReactionsLOS ANGELES -- The Houston Rockets will be without star Kevin Durant for Game 1 of their first-round series against the Los Angeles Lakers because of a right knee injury sustained at practice this week, Rockets coach Ime Udoka told reporters Saturday."He bumped a knee in practice on Wednesday," Udoka said. "Hopefully, it's a one-game thing, but he tried it out just [a] short [time] ago and didn't feel good enough."Game 2 is in Los Angeles on Tuesday, which would be nearly a week after Durant suffered the injury.Durant, 37, averaged a team-high 26 points per game, and added 5.5 rebounds and 4.8 assists during the regular season.Udoka said Durant underwent medical imaging on the knee after the injury, and no structural damage was revealed."It's very tender, tough to bend certain ways," Udoka said of Durant's knee. "He hit it in a very awkward spot, I guess, more than anything. If he had a regular bumped knee, I think he could kind of play through that. But right above the knee, the patellar tendon area, up there, it's just very tender and sore."Pain tolerance is one thing, but actually limited movement is more the cause [of Durant being out]."With Durant unavailable, Udoka said he would start Reed Sheppard, Josh Okogie, Jabari Smith Jr., Amen Thompson and Alperen Sengun in Game 1."We do go nine or 10 deep, depending on who starts for us, and we had a rotating fifth starter all year, so I feel very comfortable playing with a certain amount of guys," Udoka said. "With guys in and out of the lineup at certain times this year, we've gone to a lot of different bodies, so I'm very comfortable [with the players available]."Houston closed the season by winning nine out of 10 games to secure the No. 5 seed vs. the No. 4-seeded Lakers. The Lakers will also be missing two of their star players for Game 1. Luka Doncic is sidelined because of a Grade 2 left hamstring strain, and Austin Reaves is out because of a Grade 2 left oblique strain.Doncic flew back to L.A. on Friday after spending the past couple of weeks in Europe to receive specialized treatment on his hamstring.It will be the first game Doncic will be with the Lakers since he suffered the injury April 2 against the Oklahoma City Thunder. The Lakers finished the season 3-2 in his absence."I talked to him yesterday when he landed," Redick said of Doncic. "He's in good spirits, and we're excited to see him today."
+"""
+
+[R2] Kevin Durant (right knee) ruled out for Game 1 vs. Lakers
+(https://www.nba.com/news/kevin-durant-out-game-1)
+"""
+Kevin Durant was ruled out of Saturday’s Game 1 vs. the Lakers after suffering a knee injury in practice. LOS ANGELES (AP) — Kevin Durant missed the Houston Rockets’ playoff-opening loss against the Los Angeles Lakers with a knee injury, as both teams were left without their top scorer to begin the first-round series. Durant was ruled out for Game 1 on Saturday night by coach Ime Udoka, but the Rockets seem confident Durant’s bruised right knee isn’t a long-term problem. “Hopefully it’s a one game thing, but he tried it out in practice and it didn’t feel good enough,” Udoka said. Durant bumped knees with a teammate during practice on Wednesday, and he was added to the Rockets’ injury report on Friday. The fifth-leading scorer in NBA history led the Rockets with 26.0 points per game this season, his first in Houston. Udoka said Durant’s knee is “very tender. … Tough to bend in certain ways. Hit it in a very awkward spot, I suppose. Pain tolerance is one part, but (also) limited movement.” Reed Sheppard took Durant’s spot in the fifth-seeded Rockets’ starting lineup for the opener against the fourth-seeded Lakers, who were playing without NBA scoring champion Luka Doncic and high-scoring guard Austin Reaves indefinitely. Doncic (hamstring) and Reaves (oblique) were injured April 2. Both of their injuries typically take several weeks to heal, but Doncic traveled to Europe this month for treatment in hopes of getting back on the court sooner. Durant’s absence injects some hope into the Lakers’ intention to hang with the Rockets long enough for Doncic and Reaves to have an opportunity to return to the postseason. “We’re going try to make this season as long as possible so that we can get those guys back at some point,” Lakers coach JJ Redick said Friday. “We don’t know what that is, but that’s just our job. And their job is to do everything they can to be in a position to come back at some point. It may not work, but that’s what we’re trying to do.” It is the 37-year-old Durant’s 14th trip to the NBA playoffs. The series is his fourth career postseason meeting with 41-year-old LeBron James, who has faced off against Durant in three NBA Finals.
+"""
+
+[R3] Shorthanded Lakers knock off Durant-less Rockets in Game 1 - Los Angeles Times
+(https://www.latimes.com/sports/lakers/story/2026-04-18/los-angeles-lakers-houston-rockets-game-1-playoff-series-recap)
+"""
+Even if they were missing their starting backcourt of Luka Doncic and Austin Reaves, the Lakers were committed to being resilient and poised against the rugged and physical Houston Rockets in Game 1 of their playoff series.As a group the Lakers were, and they followed the lead of LeBron James and a career-best outing from Luke Kennard to pull out a gritty 107-98 win Saturday night at Crypto.com Arena.“Just thought we were really poised as a team,” coach JJ Redick said. “We had a great next-play mentality. Wasn’t a perfect game. None of these games are gonna be perfect. Got contributions from a lot of people in a lot of different ways and made enough winning plays, despite the turnovers and the offensive rebounds.”James was magnificent as the leader of the Lakers, collecting a near triple-double with 19 points on nine-for-15 shooting, 13 assists and eight rebounds.Kennard was outstanding in his new role as facilitator and a main hub of the offense, scoring a playoff career-high 27 points. His three three-pointers in the fourth quarter gave the Lakers the separation they needed to lead the best-of-seven series that resumes here Tuesday night. He was five for five from three-point range — after leading the league for the third time — and nine for 13 overall.James tied Hall of Famers Karl Malone and John Stockton for the record by beginning his 19th postseason, and he and Kennard had plenty of help from the Lakers’ other starters.Deandre Ayton had a double-double with 19 points and 11 rebounds, Marcus Smart had 15 points and eight assists, and Rui Hachimura scored 14.“We don’t have a choice. It has to be that way. It has to be a collective group,” said James, who had eight assists in the first quarter, his career high for any quarter of a playoff game. “When you’re missing so much firepower, like we are right now with AR and Luka being out, we all have to pitch in. We all have to do our job. And even do a little bit more. Protect one another offensively and defensively, and I think we did that tonight.”The Lakers started the game with purpose, making 15 of 19 shots in the first quarter — 78.9%. Kennard was the best, making five of six for 11 points to help the Lakers open a 33-29 lead. But the game slowed down in the second quarter when the Lakers scored just 17 points to the Rockets’ 19. Injured Rockets star Kevin Durant, third from left on bench, watches Lakers star LeBron James inbound the basketball during Game 1. (Allen J. Schaben / Los Angeles Times) The Rockets took the lead to open the second half, but the Lakers used a balanced attack to take a 75-66 lead into the fourth quarter and quickly pulled away.The Rockets, playing without Kevin Durant, shot 38% and were held to their fewest points since a 100-92 loss to the Lakers on March 16.Forty minutes before tipoff, Doncic walked down the hallway with his bodyguard toward the locker room. Doncic was returning to the team after getting treatment for his hamstring strain in Europe, but not playing, joining Reaves (oblique strain) on the bench in street clothes.They were not the only stars sitting out as Durant, the Rockets’ All-Star forward and leading scorer at 26 points per game, missed the game because of a right knee contusion. Durant worked out before the game but was unable to play because of “soreness and tenderness,” coach Ime Udoka said. The Rockets hope he’ll be available for Game 2.“Bumped a knee in practice one of our days, on Wednesday,” Udoka said. “Hopefully it’s a one-game thing, but [he] tried it out just shortly ago and didn’t feel good enough.”For the Lakers, there was an element of shock they had to overcome when Doncic and Reaves were injured at Oklahoma City on April 2. The Lakers eventually got past that, winning their last three games of the regular season.They had a game plan for Durant for the playoffs, but the Lakers quickly made another shift once they learned he was out, even overcoming 20 turnovers and the 21 offensive rebounds the Rockets collected.“Again, this is all we’ve talked about for two months, is just our playoff mentality,” Redick said. “You can’t worry about who’s in or out of the lineup. It’s our game plan, it’s our standards, it’s how we play. And we’ve built toward that. And I thought our guys just responded well and met the moment. I mean, that’s the biggest thing: You got to meet the moment in every game. And they were able to do that. There’s a lot that you have to do with Kevin, and you just kind of scrap that and move on to all the other stuff we worked on.” More to Read
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

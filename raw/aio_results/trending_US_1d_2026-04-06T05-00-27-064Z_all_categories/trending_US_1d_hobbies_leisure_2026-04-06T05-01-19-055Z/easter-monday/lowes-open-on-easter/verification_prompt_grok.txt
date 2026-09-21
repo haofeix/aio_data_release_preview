@@ -1,0 +1,89 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "lowes open on easter"
+
+Claims:
+[1] "Lowe's stores will be closed on Easter Sunday, April 5, 2026."
+[2] "Lowe's stores will reopen with normal business hours on Monday, April 6, 2026."
+[3] "Customers can shop online at Lowes.com."
+
+Cited text snippets from the AI Overview (for additional context):
+- Is Lowe's Open or Closed on Easter? What to Know for 2026: "Is Lowe's Open on Easter 2026?,a full list right here."
+- This Easter, our stores will be closed so our associates can ...: "This Easter, our stores will,jamies_daily_deals"
+- Some major retailers and other stores will close their doors on ...: "Lowe's to close all 1751,serve customers on Easter Sunday."
+- Lowe's Will Close Stores on Easter Sunday, Giving Associates ...: "Lowe's Will Close Stores on,Lowe's Corporate"
+Reference Sources:
+
+[R1] Planning a Trip to Lowe's This Easter? Find Out if Stores Will Be Open on Sunday
+(https://www.today.com/life/holidays/is-lowes-open-easter-2026-rcna262769)
+"""
+Is Lowe's Open or Closed on Easter? What to Know for 2026Whether you're painting the kitchen or shopping for new deck furniture, find out if Lowe's will be open this Sunday.April 4, 2026, 2:00 PM CDTPlanning to shop at Lowe's this Easter? Here's what to know about the home improvement retailer's hours this Sunday.Bloomberg / Getty ImagesCreate your free account or log in to save this articleEaster falls on Sunday, April 5. Whether you plan to celebrate the holiday by gathering with loved ones or you're expecting Peter Cottontail to drop by with baskets for the kids, you may need to head out for a few essentials this weekend. Much like Christmas and Thanksgiving, Easter Sunday is one of the biggest commemorations of the year. Because of that, many businesses, restaurants and stores are closed to give employees the day off to enjoy the April holiday. Among them? Costco, Target, Aldi and a variety of others. But what about Lowe's? If you are working on a home improvement project or need last-minute necessities for Easter brunch, you may be wondering if Lowe's is open on Easter.To help ensure you have everything you need to make this year's Easter celebration a success, TODAY.com reached out to the home-improvement retailer to find out the latest information on whether or not stores will be welcoming customers this Sunday. See below to find out the answer, as well as to learn what other retailers and grocers will be open on April 5. According to a Lowe's spokesperson, stores will be closed on Sunday in observance of the Easter holiday. Doors will reopen on Monday, April 6, during normal business hours. To confirm local Lowe's store hours, check the locator, which you'll find right here. Stores Open on Easter 2026While Lowe's locations will be closed this Easter, see below for a sampling of retailers that will be open on Sunday or find a full list right here. BJ’s Wholesale Club: A majority of BJ’s clubs will be open on Easter Sunday from 8 a.m. to 6 p.m. BJ’s recommends confirming local hours before going. Find local hours here.Home Depot: Stores will be open from 8 a.m. to 6 p.m. Hours may vary by location. Find local hours here.IKEA: Most stores will be open from 11 a.m. to 6 p.m. Confirm hours before going. Find local hours here.Kroger: A majority of stores will be open during normal business hours. Find local hours here.Menards: Stores will be open from 8 a.m. to 6 p.m. Find local hours here.Trader Joe’s: Stores will be open during regular business hours. Find local hours here.Walmart: Stores will be open during normal business hours. Find local hours here.Whole Foods: Stores will be open until 6 p.m. Find local hours here.
+"""
+
+[R2] Costco and Lowe’s stores will be shut down on April 5. Here’s why
+(https://www.nj.com/business/2026/03/walmart-costco-and-lowes-stores-will-be-shut-down-on-april-5-heres-why.html)
+"""
+BusinessLowe's and Costco will be closed all day on Easter 2026 in observance of the holiday on Sunday, April 5.Canva/Lowe's/Katherine RodriguezBy Katherine Rodriguez | NJ.comCORRECTION: An earlier version of this article originally included Walmart as one of the stores closed on on Easter Sunday (April 5), however Walmart will be open from 6 a.m. - 11 p.m. Hours will vary by location. Check your local store for the most accurate operating hours.If you’re looking to get your shopping in at Costco and Lowe’s on April 5, you might want to adjust your plans.All three stores, as well as many others, are closed on Sunday, April 5 because the Easter holiday falls on that date this year.These stores often close to celebrate the Easter holiday, giving employees more time to spend with their loved ones.Here is what you need to know about all the stores that will be closed this Sunday.Stores that will be closed on Easter 2026Is Walmart open on Easter? Holiday hours for April 5Which grocery stores are open — and closed — on Easter Sunday 2026? Driving on Easter Sunday 2026? Here’s what to know about gas station hoursWhat stores are open on Easter Sunday 2026? Walmart, Dunkin’ and moreKatherine Rodriguez is the Trending News Reporter for the Content Innovation Team at NJ.com. For 4+ years now, Katherine has covered trending topics such as travel advisories, TSA-related news, recalls (food,...
+"""
+
+[R3] Lowe’s Will Close Stores on Easter Sunday, Giving Associates a Day Off for the Seventh Year | Lowe’s Corporate
+(https://corporate.lowes.com/newsroom/stories/inside-lowes/lowes-will-close-stores-easter-sunday-giving-associates-day-seventh-year)
+"""
+Skip to main content Story Image Story Image Story Image Home Newsroom Stories Inside Lowe's Lowe’s Will Close Stores on Easter Sunday, Giving Associates a Day Off for the Seventh Year Mar 25, 2026 Lowe’s Will Close Stores on Easter Sunday, Giving Associates a Day Off for the Seventh Year Madelaine Vander WoudeMar 25, 2026 Share: FacebookXLinkedInEmailCopy Link Lowe’s will close all stores on Easter Sunday, April 5, so associates can take the day off and spend it with the people who matter most. This is the seventh year in a row Lowe’s has made this commitment, and it is one way the company recognizes the teams who support customers and communities throughout the year, especially during the busy spring season. What customers should know Stores will be closed on Easter Sunday, April 5. Customers can still shop and find project ideas anytime at Lowes.com. Stores will reopen the next day with regular hours. Closing stores on Easter Sunday is a small pause in a busy season, but it reflects Lowe’s continued focus on associate well-being and recognition. The holiday closure underscores the company’s commitment to supporting the teams who keep stores running and serve customers every day. Featured news Off Related Stories View All Company 01/23/2026 Steady in the Storm: Inside Lowe’s Command Center Winter Response Read More Company 12/22/2025 Lowe’s 2025 Openings: 8 New Stores, Over 800 Jobs and Investment in Local Communities Read More Company 12/03/2025 No Peeking: Lowe's Launches Sneaky Gift Boxes to Save Holiday Surprises Read More × Location Alert You have not selected location from suggestion drop down: location Please select correct location from suggestion box Close Copy link✓Thanks for sharing!Find any serviceAddToAnyMore…
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

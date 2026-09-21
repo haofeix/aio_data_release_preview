@@ -1,0 +1,116 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch miami heat vs cleveland cavaliers"
+
+Claims:
+[1] "The Miami Heat vs. Cleveland Cavaliers game is on March 25, 2026 at 7:30 p.m. ET."
+[2] "The Miami Heat vs. Cleveland Cavaliers game on March 25, 2026 at 7:30 p.m. ET is at Rocket Mortgage FieldHouse, Cleveland, OH."
+[3] "The Miami Heat vs. Cleveland Cavaliers game on March 25, 2026 at 7:30 p.m. ET can be watched locally on FanDuel Sports Network Sun (Heat)."
+[4] "The Miami Heat vs. Cleveland Cavaliers game on March 25, 2026 at 7:30 p.m. ET can be watched locally on FanDuel Sports Network Ohio (Cavs)."
+[5] "FanDuel Sports Network was formerly Bally Sports."
+[6] "The FanDuel Sports Network app is a streaming option for the Miami Heat vs. Cleveland Cavaliers game on March 25, 2026."
+[7] "Fubo (free trial) is a streaming option for the Miami Heat vs. Cleveland Cavaliers game on March 25, 2026."
+[8] "NBA League Pass is a streaming option for the Miami Heat vs. Cleveland Cavaliers game on March 25, 2026."
+[9] "Hulu + Live TV is a streaming option for the Miami Heat vs. Cleveland Cavaliers game on March 25, 2026."
+[10] "FuboTV is a streaming option for the Miami Heat vs. Cleveland Cavaliers game on March 25, 2026."
+[11] "Amazon Prime Video (with trial) can be used by out-of-market viewers to watch the Miami Heat vs. Cleveland Cavaliers game on March 25, 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- Heat vs. Cavaliers: Prediction, How to Watch for Free (3/25/26): "How to Watch Heat vs,games for $13.99 per month."
+- Cavs vs. Heat: How to watch, odds, and injury report: "Who: Cleveland Cavaliers (45-,Young - OUT (G League)"
+- Where to Watch the Cleveland Cavaliers vs. Miami Heat Game Tonight: Time, Streaming, Breakdown: "Where to watch the Heat,Time: 7:30 p.m. EST"
+- Where To Watch Miami HEAT Games - NBA: "Local TV & Streaming,watch via your TV provider.&text=Watch HEAT games on FanDuel,, Breezline, or Summit Broadband."
+- Watch NBA live on Hulu: "With a Hulu + Live TV,on Hulu all season long."
+Reference Sources:
+
+[R1] Heat vs. Cavaliers: Prediction, How to Watch for Free (3/25/26)
+(https://globelynews.com/sports/heat-vs-cavaliers-prediction-how-to-watch-for-free-3-25-26/)
+"""
+The Miami Heat (38–34) face the Cleveland Cavaliers (45–27) tonight at Rocket Arena in Cleveland. Miami enters in urgent need of a win, having dropped five straight during a difficult stretch of its schedule following a six-game winning streak. The Heat have fallen to several playoff-caliber opponents, including the Charlotte Hornets, Los Angeles Lakers, Houston Rockets, and, most recently, the San Antonio Spurs, who handed them a 136–111 defeat on Monday night. In that loss, Norman Powell led Miami with 21 points on 7-of-18 shooting, reflecting the team’s broader offensive struggles as the Heat shot just 40% from the field. Bam Adebayo and Tyler Herro added 18 points apiece, but Miami had difficulty containing San Antonio’s balanced attack. Victor Wembanyama paced the Spurs with 26 points, while Keldon Johnson and Dylan Harper each contributed 21. The Heat enter tonight in 10th place in the Eastern Conference. They are tied in the standings with the Orlando Magic and the Hornets, separated only by tiebreakers. Miami sits just two games out of the final automatic playoff spot but remains positioned, at minimum, for a play-in tournament berth. Cleveland, meanwhile, arrives in strong form with four consecutive victories and currently holds fourth place in the East. The Cavaliers are 2.5 games behind the second-place team, with the top seed appearing largely out of reach at this stage. But they maintain a comfortable 4.5-game cushion over the fifth-place Toronto Raptors, making a top-four finish increasingly likely with 10 games remaining in the regular season. The Cavaliers defeated the Magic 136–131 last night behind a dominant performance from Donovan Mitchell, who poured in 42 points. James Harden added 26, while Evan Mobley finished with 19. Cleveland shot a blistering 60% from the field and 40% from three-point range, underscoring how dangerous the team can be when its primary scorers find their rhythm. Expect a tight matchup that will ultimately be determined by the efficiency of Miami’s backcourt. Cleveland has the edge here as the Heat have struggled against the league’s top teams lately. Final Score Prediction: Cleveland Cavaliers 121, Miami Heat 114 Injury Report Miami Heat Jahmir Young — GTD (Undisclosed) Terry Rozier — Out (Not injury related) Cleveland Cavaliers Max Strus — Out (Foot) Larry Nance Jr. — GTD (Illness) Jarrett Allen — Out (Knee) Jaylon Tyson — Out (Toe) Craig Porter Jr. — Out (Groin) How to Watch Heat vs. Cavaliers Tip-off for tonight’s Heat-Cavaliers game is set for 7:00 PM Eastern at Rocket Arena in Cleveland. The game airs live locally on FanDuel Sports Network Sun and FanDuel Sports Network Ohio. Out-of-market viewers can stream the matchup on NBA League Pass for free on Amazon Prime Video with a 7-day free trial here. Amazon also offers a discounted subscription that starts at $12.74 for the first two months (then $16.99/month). The subscription also includes access to NBA TV. Fans can also choose a Team Pass to follow one team’s games for $13.99 per month. Miami Heat vs. Cleveland Cavaliers Date: Wednesday, March 25, 2026 Time: 7:00 PM Eastern Venue: Rocket Arena, Cleveland, OH TV: FanDuel Sports Network Sun, FanDuel Sports Network Ohio Streaming: NBA League Pass (out-of-market)
+"""
+
+[R2] Where to Watch the Cleveland Cavaliers vs. Miami Heat Game Tonight: Time, Streaming, Breakdown
+(https://ca.sports.yahoo.com/news/where-watch-cleveland-cavaliers-vs-191332297.html)
+"""
+Nov 10, 2025; Miami, Florida, USA; Cleveland Cavaliers guard Donovan Mitchell (45) and the Cavaliers bench react against the Miami Heat during the second half at Kaseya Center. Mandatory Credit: Rhona Wise-Imagn Images | Rhona Wise-Imagn ImagesThe Cleveland Cavaliers played in a high scoring matchup last night against the Orlando Magic. The Magic were on a six-game losing streak looking to turn things around, but they were unsuccessful as the Cavs outscored them 136-131.Donovan Mitchell scored 42, his best scoring night since he last scored 46 against the same team earlier this season.AdvertisementSitting on a 45-27 record, the Cavaliers have 10 games left to play this season and have some important things to work on if they want success in the post season.Cavs head coach Kenny Atkinson, in his time with the press after the win, spoke about the defense from this team and the lack of it. He told the team after the game that this defense is not going to bring them far in the playoffs.Atkinson is not wrong, having the mentality of just trying to outscore the other team is not something to ride on in the playoffs.AdvertisementTheir tactics of trying to score more has also shown to not work multiple times throughout the season. When the Cavs can't hit their shots, they are not winning those games.Defense is really going to be needed tonight. Miami has a better offense than Cleveland overall this season. Shutting down Bam Adebayo and Tyler Herro is important in success tonight.Channel: FanDuel Sports Network OhioTime: 7:30 p.m. ESTAdvertisementInjury ReportCavs: Jarrett Allen (knee) is out. Craig Porter Jr. (groin) is out. Jaylon Tyson (toe) is a game time decision. Tyrese Proctor (quad) is questionable.Heat:NoneProjected Starting LineupsCavsDonovan MitchellJames HardenSam MerrillDean WadeEvan MobleyHeatDavion MitchellTyler HerroPelle LarsonAndrew WigginsBam AdebayoHeat at Cavaliers predictions, odds, best betsOdds: Cavs -2.5O/U: 242.5Best Bet: Donovan Mitchell over 30 PTS. -102.Cavaliers 129, Heat 119: The Cavs are 8-4 on the second night of a back-to-back which does them good. However the Heat are 10-4 in their second night of a back-to-back.AdvertisementMiami is on a five game losing streak so confidence could be low and they are desperately looking to get back into winning form.All NBA Odds on FanDuelGame odds refresh periodically and are subject to change.If you or someone you know has a gambling problem and wants help, call 1-800-GAMBLER.Cavaliers 2025-2026 ScheduleFriday, Mar. 27 vs. MiamiMonday, Mar. 30 @ UtahTuesday, Mar. 31 @ LALThis article was originally published on www.si.com/nba/cavaliers/onsi as Where to Watch the Cleveland Cavaliers vs. Miami Heat Game Tonight: Time, Streaming, Breakdown.
+"""
+
+[R3] Where To Watch Miami HEAT Games - Miami HEAT
+(https://www.nba.com/heat/wheretowatch)
+"""
+Where To WatchFrom Opening Night through Game 82, here's how and where to watch the HEAT, all season long:FanDuel Sports NetworkNational TVOut-Of-MarketWhere To Watch Upcoming GamesVSWednesday, April 1 - 7:30PM EDTVSSaturday, April 4 - 3:00PM EDTATTuesday, April 7 - 7:30PM EDTATThursday, April 9 - 7:00PM EDTATFriday, April 10 - 7:00PM EDTVSSunday, April 12 - 6:00PM EDTPrevious slideNext slideLocal TV & StreamingStream the HEAT live on your mobile device or smart TV with the FanDuel Sports Network app or watch via your TV provider.FanDuel Sports NetworkWatch HEAT games on FanDuel Sports Network through Xfinity, DIRECTV, U-verse, Fubo, Hotwire, Blue Stream Fiber, Breezline, or Summit Broadband.Stream games on the FanDuel Sports Network app or FanDuelSportsNetwork.com with season, monthly, annual, or single-game options. Subscribe*.Click here for options in your zip code.If you subscribe through the FanDuel Sports Network app, you can only watch games on the FanDuel Sports Network app.Amazon Prime VideoStream the HEAT on Prime Video with a FanDuel Sports Network add-on subscription. Subscribe If you subscribe through Amazon, you can only watch games on Amazon Prime Video.Weekends with WPLG Local 10We're teaming up with WPLG Local 10 to bring HEAT fans 12 games over the air throughout the 25-26 season.View GamesPrevious slideNext slideNational TV GamesThroughout the season, select HEAT games will be aired nationally outside FanDuel Sports Network:Wed, Apr. 1 - 7:30PM EDTvs Boston CelticsOut-Of-MarketStream out-of-market HEAT games live and on-demand via NBA League Pass. Available on mobile, desktop, and connected devices. Sign UpRadioEnglishMiami-Dade / Ft Lauderdale: FM 104.3 WQAM, AM 560West Palm Beach: WESP ESPN West Palm 106.3 FMFort Myers / Naples: WFSX Fox Sports Radio 105.9 FMStuart: WSTU 1450 AMFlorida Keys: WAVK 97.7 FMSpanishMiami-Dade / Ft Lauderdale: WAQI Radio Mambí 710 AMWest Palm Beach: WEFL ESPN Deportes 760AMHave a question about FanDuel Sports Network? Visit help.fanduelsportsnetwork.comFaqsWhat is the simplest way to watch HEAT games this season?What if I already have Amazon Prime? Do I still need to subscribe to FanDuel Sports Network to watch HEAT games on Amazon?If I buy FanDuel Sports Network through Amazon, can I also log into the FanDuel Sports Network app to watch HEAT games?What if I already have cable?What if I live outside of South Florida?Can I watch games on my phone or tablet?Where can I listen to HEAT games if I can't watch?*Eligibility restrictions apply. Content availability varies by region. Visit fanduelsportsnetwork.com for details. Your Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I Understand
+"""
+
+[R4] How to watch Heat vs. Cavaliers: TV channel and streaming options for March 25
+(https://www.nytimes.com/athletic/7146923/2026/03/25/how-to-watch-heat-vs-cavaliers-tv-channel-and-streaming-options-for-march-25/)
+"""
+The Miami Heat (38-34) will try to stop a five-game losing streak when they hit the road to play the Cleveland Cavaliers (45-27) on March 25, 2026 at Rocket Arena.How to watch Miami Heat vs. Cleveland Cavaliers Venue: Rocket Arena Time: 7:30 p.m. ET TV: FDSSUN, FDSOH Watching in person? Get tickets on StubHub. Miami vs. Cleveland odds Spread: Cleveland -2.5 (-115), Miami +2.5 (-105) Favorite Moneyline: Cleveland -150 Underdog Moneyline: Miami +125 Total: 243.5 Total Over Odds: -105 Total Under Odds: -115 Odds provided by BetMGM.Injury reportsCavaliersMax Strus: Out (Injury Management), Craig Porter Jr.: Out (Groin), Jaylon Tyson: Out (Toe), Larry Nance Jr.: Questionable (Illness), Jarrett Allen: Out (Knee)HeatNo injuries listedStats to know The Cavaliers put up only 1.7 more points per game (119.2) than the Heat surrender (117.5). The Heat put up an average of 120.2 points per game, which is 5.3 more points than the 114.9 the Cavaliers allow to opponents. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports termsSUPPORTED BY
+"""
+
+[R5] Cavs vs. Heat: How to watch, odds, and injury report
+(https://www.fearthesword.com/cavs-injury-report/47061/cavs-vs-heat-how-to-watch-odds-and-injury-report)
+"""
+The Cleveland Cavaliers are in the midst of a three-game stretch against teams from the Sunshine State. On Wednesday, they’ll take on the Miami Heat for the first of two games in a row against an opponent they could face in the first round of the playoffs.The Cavs’ position at fourth in the conference is seemingly set. Spots five through 10 in the standings aren’t. Right now, two-and-a-half games separate the fifth-seeded Toronto Raptors and the 10th-seeded Heat.Miami is struggling and has fallen to the bottom of the Play-In as a result. They’ve lost five in a row. We’ll see if the Cavs can extend that losing streak a couple of games further this week.Anything bought from the links helps support Fear the Sword. You can also shop all of Homage’s Cavs gear HERE. The link to the 2016 championship shirt HERE.Who: Cleveland Cavaliers (45-27) vs. Miami Heat (38-34)Where: Rocket Arena - Cleveland, OHWhen: Wed., March 25 at 7:30 PMTV: FanDuel Sports Network Ohio, FanDuel Sports App, NBA League PassPoint spread: Cavs -2.5Cavs injury report: Max Strus - OUT (injury management), Dean Wade - QUESTIONABLE (ankle), Jaylon Tyson - OUT (toe), Jarrett Allen - OUT (knee), Craig Porter Jr. - OUT (groin), Larry Nance Jr. - QUESTIONABLE (illness), Olivier Sarr - OUT (G League)Heat injury report: Terry Rozier - OUT (not with team), Vladislav Goldin - OUT (G League), Trevor Keels - OUT (G League), Jahmir Young - OUT (G League)Cavs expected starting lineup: James Harden, Donovan Mitchell, Keon Ellis, Sam Merrill, Evan MobleyHeat expected starting lineup: Davion Mitchell, Tyler Herro, Pelle Larsson, Andrew Wiggins, Bam AdebayoPrevious matchup: The shorthanded (and later fined) Cavs defeated the Heat 130-116 on Nov. 12.Here’s a look at both teams’ impact stats via Cleaning the Glass.Offensive RatingDefensive RatingNet RatingCavs118.9 (6th)114.5 (13th)+4.4 (9th)Heat116 (13th)113.2 (7th)+2.7 (11th)Dealing with a busted bracket?The Sweet 16 is almost here - who’s still alive? We’re reviewing the week that was in the first week of the NCAA tournament and turning our focus to remaining teams. How bad (or good!) is your bracket? Join us in the SB Nation March Madness Feed and let’s talk about who’s most likely to make a run to glory.1 Comment
+"""
+
+[R6] Watch NBA live on Hulu
+(https://help.hulu.com/article/hulu-nba-availability)
+"""
+Oct 01, 2025 With a Hulu + Live TV subscription, you can watch and record live NBA basketball games on Hulu all season long. Log in to Hulu on any device that supports Live TV, and you'll have instant access to the live games airing through the local and regional sports networks available in your area — as well as through national networks like ABC, ESPN, ESPN2, and TNT. Select one of the options below to learn more about watching NBA on Hulu: What do I need to watch NBA on Hulu?What NBA games are available on Hulu? How do I find NBA games on Hulu? What you’ll need to watch NBA on Hulu To get in on the NBA action, you’ll need the following: Live TV subscriptionSupported deviceHome networkLive TV network coverage * *Enter your ZIP Code to confirm the network coverage in your region. BACK TO TOP Determining NBA game availability Game day availability can vary and is subject to regional restrictions and blackouts — out-of-market games may be unavailable. These restrictions are determined by sports leagues and other rights holders. With Hulu + Live TV, you can confirm if an upcoming game is unavailable or blacked out by using the Live Guide. BACK TO TOP How to find NBA games on Hulu Hulu + Live TV subscribers can go to the NBA Games Sports collection to view live games and see what match-ups are airing next (you can also search the Hulu app for the "NBA Basketball" series page). To keep track of your favorite teams and game start times, add them to My Stuff and enable push notifications on your mobile devices. BACK TO TOP
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

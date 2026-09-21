@@ -1,0 +1,102 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch timberwolves vs pacers"
+
+Claims:
+[1] "The April 7, 2026, matchup is between the Minnesota Timberwolves and Indiana Pacers."
+[2] "The April 7, 2026, Minnesota Timberwolves and Indiana Pacers game is held at Gainbridge Fieldhouse."
+[3] "The April 7, 2026, Minnesota Timberwolves and Indiana Pacers game is at 7 p.m. ET."
+[4] "The April 7, 2026, Minnesota Timberwolves and Indiana Pacers game can be watched on FanDuel Sports Network North (FDSN)."
+[5] "The April 7, 2026, Minnesota Timberwolves and Indiana Pacers game can be watched on FanDuel Sports Network Indiana (FDSIN)."
+[6] "FDSN is the regional TV channel for Minnesota."
+[7] "FDSIN is the regional TV channel for Indiana."
+[8] "The FanDuel Sports Network app is a streaming option for the April 7, 2026, Minnesota Timberwolves and Indiana Pacers game."
+[9] "NBA League Pass is an alternative streaming option for out-of-market viewers of the April 7, 2026, Minnesota Timberwolves and Indiana Pacers game."
+[10] "Tickets for in-person viewing of the April 7, 2026, Minnesota Timberwolves and Indiana Pacers game are available via StubHub."
+
+Cited text snippets from the AI Overview (for additional context):
+- How to watch Timberwolves vs. Pacers: TV channel and ...: "The Pulse Newsletter-,How to watch Timberwolves vs. Pacers: TV channel and streaming,Get tickets on StubHub."
+- Where to Watch and Listen | Indiana Pacers - NBA: "Where to Watch the Indiana,on 93.5/107.5 The Fan."
+- Local TV and Radio Listings | Indiana Pacers - NBA: "Watch the Pacers on FanDuel,U-verse, Mediacom Xtream."
+- Help with where to watch : r/pacers - Reddit: "NBA League Pass with VPN: To watch,spoof your location and bypass blackout restrictions."
+Reference Sources:
+
+[R1] Local TV and Radio Listings | Indiana Pacers
+(https://www.nba.com/pacers/local-tv-and-radio-listings)
+"""
+How to Watch and Listen to the PacersHow to Watch and Stream the Indiana PacersBroadcast details for the 2026-27 season are not yet available.Frequently Asked QuestionsHow do I watch the Pacers if I live outside the Pacers TV territory?Fans who live outside the Pacers’ home TV territory defined by the NBA can subscribe to NBA League Pass, the league’s out-of-market package.Radio ListingsBelow is a list of radio stations where you can listen to Pacers games:107.5 the Fan & 93.5 FM, Indianapolis (Flagship)WNDI FM 95.3 SullivanW287BC FM 105.3, WPGW AM 1440, WPGW 100.9 FM PortlandWZBD FM 92.7 BerneWLTI AM 1550 New CastleWXVW AM 1450 and WXVW FM 96.1 JeffersonvilleWKJG AM 1380 and WKJG FM 100.9 Fort WayneWSLM AM 1220 and FM 97.9 SalemWAXL FM 103.3 Santa ClausWORX FM 96.7 MadisonWGCL 96.1 FM and 1370 AM BloomingtonWWBL FM 106.5 WashingtonWYFX FM 106.7 Mt. VernonWMUN 92.5 FM and 1340 AM MuncieWFNF 92.7 FM BrazilWRBI 103.9 FM Batesville Welcome to the Indiana Pacers Chat 👋! Please note that reps are only available during business hours. If we miss you, we will be sure to reach out as soon as possible! 0Your Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I Understand
+"""
+
+[R2] How to watch Timberwolves vs. Pacers: TV channel and streaming options for April 7
+(https://www.nytimes.com/athletic/7178186/2026/04/07/timberwolves-vs-pacers-stream-how-to-watch-april-7/)
+"""
+The Minnesota Timberwolves (46-32) will look to break a three-game losing streak when they visit the Indiana Pacers (18-60) on April 7, 2026 at Gainbridge Fieldhouse.How to watch Minnesota Timberwolves vs. Indiana Pacers Venue: Gainbridge Fieldhouse Time: 7 p.m. ET TV: FDSN, FDSIN Watching in person? Get tickets on StubHub. Minnesota vs. Indiana odds Spread: Minnesota -12.5 (-110), Indiana +12.5 (-110) Favorite Moneyline: Minnesota -901 Underdog Moneyline: Indiana +575 Total: 233.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsTimberwolvesJaden McDaniels: Out (Knee), Anthony Edwards: Out (Knee)PacersJohnny Furphy: Out For Season (Knee), Ivica Zubac: Out For Season (Rib), Tyrese Haliburton: Out For Season (Achilles), T.J. McConnell: Out (Hamstring), Andrew Nembhard: Out (Back), Ben Sheppard: Questionable (Hip), Pascal Siakam: Out (Back), Jarace Walker: Questionable (Back), Aaron Nesmith: Out (Neck), Obi Toppin: Probable (Foot)Stats to know The 117.5 points per game the Timberwolves average are only 3.2 fewer points than the Pacers surrender (120.7). The Pacers score only 1.7 fewer points per game (112.5) than the Timberwolves give up on average (114.2). This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R3] How to watch Timberwolves vs. Pacers: TV channel and streaming options for April 7
+(https://www.nytimes.com/athletic/7178186/2026/04/07/how-to-watch-timberwolves-vs-pacers-tv-channel-and-streaming-options-for-april-7/)
+"""
+The Minnesota Timberwolves (46-32) will look to break a three-game losing streak when they visit the Indiana Pacers (18-60) on April 7, 2026 at Gainbridge Fieldhouse.How to watch Minnesota Timberwolves vs. Indiana Pacers Venue: Gainbridge Fieldhouse Time: 7 p.m. ET TV: FDSN, FDSIN Watching in person? Get tickets on StubHub. Minnesota vs. Indiana odds Spread: Minnesota -12.5 (-110), Indiana +12.5 (-110) Favorite Moneyline: Minnesota -901 Underdog Moneyline: Indiana +575 Total: 233.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsTimberwolvesJaden McDaniels: Out (Knee), Anthony Edwards: Out (Knee)PacersJohnny Furphy: Out For Season (Knee), Ivica Zubac: Out For Season (Rib), Tyrese Haliburton: Out For Season (Achilles), T.J. McConnell: Out (Hamstring), Andrew Nembhard: Out (Back), Ben Sheppard: Questionable (Hip), Pascal Siakam: Out (Back), Jarace Walker: Questionable (Back), Aaron Nesmith: Out (Neck), Obi Toppin: Probable (Foot)Stats to know The 117.5 points per game the Timberwolves average are only 3.2 fewer points than the Pacers surrender (120.7). The Pacers score only 1.7 fewer points per game (112.5) than the Timberwolves give up on average (114.2). This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R4] Where to Watch and Listen | Indiana Pacers
+(https://www.nba.com/pacers/where-to-watch)
+"""
+Where to Watch the Indiana PacersCheck out where to watch the Indiana Pacers’ upcoming game along with every other game this season below.During the 2025-26 NBA season, you can watch the Indiana Pacers on national television through ESPN, Amazon Prime Video, Peacock, and NBC. Fans outside of the Indiana Pacers viewing region can also watch select games on NBA League Pass. Learn more here. All Pacers preseason and regular season games, home and away, will be broadcast live on radio on 93.5/107.5 The Fan.Below is the current TV and radio broadcast schedule for the 2025-26 Pacers season:There are currently no upcoming games with broadcast details for the 2025-26 Pacers season.Frequently Asked QuestionsHow do I watch the Pacers if I live outside the Pacers TV territory?Fans who live outside the Pacers’ home TV territory defined by the NBA can subscribe to NBA League Pass, the league’s out-of-market package.Where can I listen to Pacers games on the radio?Below is a list of radio stations where you can listen to Pacers games:107.5 the Fan & 93.5 FM, Indianapolis (Flagship)WNDI FM 95.3 SullivanW287BC FM 105.3, WPGW AM 1440, WPGW 100.9 FM PortlandWZBD FM 92.7 BerneWLTI AM 1550 New CastleWXVW AM 1450 and WXVW FM 96.1 JeffersonvilleWKJG AM 1380 and WKJG FM 100.9 Fort WayneWSLM AM 1220 and FM 97.9 SalemWAXL FM 103.3 Santa ClausWORX FM 96.7 MadisonWGCL 96.1 FM and 1370 AM BloomingtonWWBL FM 106.5 WashingtonWYFX FM 106.7 Mt. VernonWMUN 92.5 FM and 1340 AM MuncieWFNF 92.7 FM BrazilWRBI 103.9 FM Batesville Welcome to the Indiana Pacers Chat 👋! Please note that reps are only available during business hours. If we miss you, we will be sure to reach out as soon as possible! 0Your Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I Understand
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

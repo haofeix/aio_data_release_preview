@@ -1,0 +1,119 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "st patrick's day parade dallas"
+
+Claims:
+[1] "The 45th Annual Dallas Mavericks St. Patrick’s Parade and Festival is on Saturday, March 14, 2026."
+[2] "The 45th Annual Dallas Mavericks St. Patrick’s Parade starts at 11 AM on Greenville Avenue at Blackwell Street."
+[3] "The 45th Annual Dallas Mavericks St. Patrick’s Parade ends at SMU Blvd around 2 PM."
+[4] "The 45th Annual Dallas Mavericks St. Patrick’s Parade and Festival is the biggest St. Paddy's celebration in Texas."
+[5] "The 45th Annual Dallas Mavericks St. Patrick’s Parade and Festival features over 90 floats."
+[6] "The 45th Annual Dallas Mavericks St. Patrick’s Parade and Festival features food trucks."
+[7] "The 45th Annual Dallas Mavericks St. Patrick’s Parade and Festival features a 5K race."
+[8] "The 45th Annual Dallas Mavericks St. Patrick’s Parade runs from 11 AM to 2 PM."
+[9] "The 45th Annual Dallas Mavericks St. Patrick’s Festival runs from 9 AM to 3 PM."
+[10] "The 45th Annual Dallas Mavericks St. Patrick’s Parade and Festival is located on Greenville Avenue between Park Lane and SMU Blvd, Dallas, TX."
+[11] "The 45th Annual Dallas Mavericks St. Patrick’s Parade and Festival is free to attend."
+[12] "St. Patrick's Day Dash 5K occurs on the morning of the 45th Annual Dallas Mavericks St. Patrick’s Parade."
+[13] "Lower Greenville Block Party is located on Lower Greenville."
+[14] "Lower Greenville Block Party runs from 9 AM to 6 PM."
+[15] "Lower Greenville Block Party features live music."
+[16] "Www.dallasstpp.com is the official parade website."
+
+Cited text snippets from the AI Overview (for additional context):
+- It's going down here for the St. Patrick's Parade & Festival ...: "The 45th annual Dallas St. Patrick's Day,take place on Saturday, March 14th 2026"
+- Everything you need to know for St. Patrick’s Day.: "If you're new here,Like Comment Share"
+- Lower Greenville St. Patrick's Block Party - Dallas: "There are several block parties in Lower,and restaurants * Cash only gate admission"
+Reference Sources:
+
+[R1] March 14th | 2026 NGX Presents the 45th Annual St. Patrick’s Parade and Festival
+(https://www.dallasstpp.com/)
+"""
+top of pageSkip to Main ContentPARADE MAP APPLICATIONS ST. PADDY'S DAY DASH 5K FOR MORE INFO CLICK THE LINK BELOWLEARN MORE ApplicationsPARADE MAPStart PointBlackwell Street 11 AMFestival Hours9 AM to 3 PMDart StationsPark Lane Station Lovers Lane StationSt. Paddy's Day Dash 5KPrivate TailgateAT&T/Concentra Urgent Care 5521 Greenville Ave. Dallas, TX 75206Parade EndSMU Blvd 2 PMParade MapGETTING THERE & BACKDART Park Lane Station Lovers Lane StationRide-Hailing Service Please make use of services such as Uber, Lyft, and Alto to ensure a safe time for everyone.Market Vendor RegistrationOrganizers have again partnered with the management of the Meadows Building, Westwood Financial Corp, and lots from Office Depot to CVS to provide exhibitor accommodations, food trucks, and activities for all ages. Join the tradition and sign up for exclusive float and exhibitor entries.APPLY ONLINE ApplicationsParade Float RegistrationBecome a part of the city’s biggest tradition. Register your float, group, or vehicle todayAPPLY ONLINE ApplicationsPRESENTING SPONSORSPONSORSMEDIAPARTNERSPRODUCED BYThe Dallas St. Patricks Day Parade will implement all CDC recommended practices/guidelines to reduce the spread of COVID-19.bottom of page
+"""
+
+[R2] The Official Lower Greenville St Patrick's Block Party
+(https://www.lowergreenvilleblockparty.com/)
+"""
+MUSIC 〰️ DRINKS 〰️ FOOD 〰️ 〰️ BEER TENTS 〰️ LIVE DJS 〰️ 8 PARTICIPATING BARS & RESTAURANTS 〰️ AGES 21+ ONLY 〰️ 7 GATE ENTRANCES 〰️ Gate Admission Cash Only 〰️ ATMs at gates and throughout 〰️ RAIN OR SHINE 〰️ MUSIC 〰️ DRINKS 〰️ FOOD 〰️ PARTY 〰️ BEER TENTS 〰️ LIVE DJS 〰️ 8 PARTICIPATING BARS & RESTAURANTS 〰️ AGES 21+ ONLY 〰️ 7 GATE ENTRANCES 〰️ Gate Admission Cash Only 〰️ ATMs at gates and throughout 〰️ RAIN OR SHINE 〰️ THE OFFICIAL LOWER GREENVILLE SAINT pATRICK’S BLOCK PARTY Dallas’ Most Iconic St. Patrick’s Celebration ReturnsSaT march 14 20269 am - 6 pmbars stay open until 2 am Dallas’s Biggest St. Patrick’s Day CelebrationBrought to you by the Vanderbilt to Vickery Association, the Lower Greenville St. Patrick’s Day Block Party in Dallas is one of the city’s most anticipated St Patrick’s Day events, turning Lower Greenville Avenue into a massive 21+ street celebration. Each year, Greenville Ave fills with thousands of guests enjoying outdoor beer tents, live DJs across multiple music stages, and a lineup of popular Lower Greenville bars and restaurants. With the street closed to traffic, attendees can move freely between venues, experience exclusive drink specials, and take part in one of the most energetic St Patrick’s Day parties in Dallas.How to attend$20 cash AT ADMISSION GATE | 21+ Arrive at Lower Greenville between Vanderbilt and Vickery on Saturday, March 14, from 9 AM to 6 PM, and enter through any official admission gate. Participating bars and restaurants remain open until 2 AM.Gate entry is $20 per person (cash only). There are multiple entry gates. All guests receive an event wristband upon admission. Once inside, enjoy access to participating venues, street beer tents, music stages, and event specials.Valid government-issued ID required. This is a 21+ only event. Be sure to review the Event Details and FAQ for additional information. important event information21+ Only • Valid ID Required At Gate$20 Cash Admission at Entry7 different Block Party Entry GatesBeer Tents ThroughoutCredit & Debit Accepted Inside Bars & RestaurantsATMs Located at Entry Gates & Throughout EventLower Greenville Between Vanderbilt & VickeryRain or Shine Event3 Music Stages • Live DJs • Green Beer • Street Drinks • All-Day Party Atmosphere • entire block closed for partyNo Pets AllowedNo Backpacks, Large Bags, Containers, or CoolersCheck Participating Bars & Restaurants for Venue SpecialsUse Public Transportation & Rideshare To Get to EventPlease Review Event Details & FAQ to Plan Your VisitFollow Our Social Media for Updates You can see a Google Map of the Block Party with approximate location pins for the entry gates and participating venues here.
+"""
+
+[R3] Dallas St. Patrick's Day Parade & Festival 2026 | Visit Dallas
+(https://www.visitdallas.com/events/annual-events/st-patricks-day-parade-festival/)
+"""
+Lower Greenville St. Patrick's Day Block Party Don't miss the annual Lower Greenville St. Patrick's Day Block Party! The block party will occur during the parade and festival, featuring live music, delectable bites, and more. Watch talented performances on three stages, experience a beer tasting, and try culinary delights from local restaurants. Date & Times - Saturday, March 14 | 9:00 a.m. - 6:00 p.m. (bars stay open until 2:00 a.m.) Location - 2908 Greenville Ave, Dallas, TX 75206 St. Patrick's Day Parade & Festival Dates & Hours Date - Saturday, March 14, 2026Parade Start - 11:00 a.m.Festival Hours - 9:00 a.m. - 3:00 p.m. Parade & Festival Location & Directions Parade Starting Point - Blackwell Street and Greenville Avenue, running south on Greenville Avenue | 11:00 a.m. Parade Ending Point - SMU Boulevard | 2:00 p.m. Getting there - The parade route starts on Greenville Avenue at Blackwell Street and ends at SMU Boulevard at Central Expressway. Parade-goers are encouraged to ride share or ride the DART Rail, as parking is extremely limited. Recommended DART Rail stations include Mockingbird Station, Lovers Lane Station, and Park Lane Station. The parade is free to attend. Featured Experiences The parade features more than 90 colorful floats, food trucks, local vendors, family-friendly activities and more. Don’t miss the Dallas St. Patrick’s Parade Official Concert after the parade, located at Energy Square! Previous headliners have included major acts like Jimmy Eat World, Third Eye Blind and Toadies. More Ways to Celebrate St. Patrick's Day Start the day with the St. Paddy's Day Dash 5K at Energy Square! Held on March 14 and running from 8:00 a.m. to 10:00 a.m., don your shamrock-themed gear and run through an upbeat atmosphere. Bask in St. Patrick's Day excitement with mouthwatering eats, refreshing beer, and exciting prizes during this 5K run. Expand your spring holiday itinerary with visits to a variety of popular breweries, enjoying craft brews and local flavors. Explore More
+"""
+
+[R4] Know before you go: Dallas' St. Patrick's Day Parade & Festival
+(https://www.cbsnews.com/texas/news/know-before-you-go-dallas-st-patricks-day-parade-festival/)
+"""
+Updated on: March 15, 2024 / 7:48 AM CDT / CBS Texas Add CBS News on Google St. Patrick's Day is almost here which means the 43rd Dallas Mavericks St. Patrick's Parade and Festival on Greenville Avenue is getting closer!It kicks off with honorary grand marshal Mike Modano and his family leading the parade. Afterward, Modano will be attending the unveiling of his statue outside the American Airlines Center at 4 p.m.Here's what you need to know before you head to Greenville Avenue.When and where is the parade?It starts on Saturday, March 16 at 11 a.m. and runs until 2 p.m. The festival, however, is from 9 a.m. to 3 p.m.The route begins on Greenville Avenue at Blackwell Street and ends at SMU Boulevard at Central Expressway.Do I need to pay to get to the parade? Admission to the parade is free, but there are plenty of bars and restaurants along the route. What will the weather look like on Saturday?Have your rain gear handy! CBS News Texas meteorologists are tracking scattered showers. An isolated storm or two could develop but the threat for severe weather remains low. Otherwise, we'll see mostly cloudy skies with highs in the low to mid-60s. CBS News Texas Will there be road closures?The stretch of Greenville Avenue from Park Lane to Mockingbird Lane will be closed for the parade route.Additional road closures include the following that intersect with US-75: Caruth Haven Lane, Southwestern Boulevard, Lovers Lane, University Boulevard and SMU Boulevard. Dallas Mavericks St. Patrick's Parade and Festival How can I get to the parade?If you want to opt out of driving or rideshare, the DART Park Lane Station, Lovers Lane Station and Mockingbird Station are in the vicinity of the route. In: Instagram St. Patrick's Day Dallas
+"""
+
+[R5] Dallas Mavericks St. Patrick's Parade & Festival
+(https://dfwchild.com/events/dallas-mavs-st-patricks-parade-festival/)
+"""
+Date/Time March 15, 2025 09:00 AM until 03:00 PM Location Lower Greenville Avenue View map Dallas, TX, Additional Information Website: https://www.dallasstpp.com Line/Box Office Phone: 214/600-1533; navarro@navarrogrp.com Cost: Free admission Description On Saturday, March 15, venture out to Lower Greenville Avenue for the 44th Dallas Mavericks St. Patrick’s Parade and Festival, hosted by the Greenville Avenue Area Business Association (G.A.A.B.A.) and presented by the Dallas Mavericks. Serving as the 2025 Honorary Grand Marshals are Kellie Rasberry, J-Si Chavez, and Big Al Mack from the one and only Kidd Kraddick Morning Show, heard in DFW on 106.1 KISSFM. The parade steps off at Greenville Avenue at Blackwell Street at 11am and ends on SMU Blvd around 2pm. The festival runs from 9am–3pm. About G.A.A.B.A. & the Dallas St. Patrick’s Parade & Festival The Greenville Avenue Area Business Association (G.A.A.B.A.) was formed in 1987 to help unify businesses in the area and to promote the Greenville Avenue region. Its first objective is and always will be the presentation of the annual Dallas St. Patrick’s Parade & Festival. The Parade has grown to be one of the largest St. Patrick's Parades in the country, with over 125,000 attendees and more than 100 parade entries. Proceeds go toward the G.A.A.B.A. Scholarship Fund, benefiting Dallas ISD high school seniors. Currently, more than $150,000 in scholarships have been awarded. For more updates as they are announced, visit facebook.com/DallasStPatricksParade. St. Paddy’s Day Dash A toast to St. Paddy’s Day Dash running down Greenville Ave for 3 decades. Gather ’round for the grandest St. Paddy’s Day Race in all of Texas! Don your luckiest garb and join the sea of green for the finest 5K and post-race shindig this side of the rainbow. ‘Twill be a splendid morning for celebrating with plenty o’ beer, grub, jolly music, and pots of lucky prizes. Register at runproject.org/st-paddys-day-dash. Find more family fun events every day of the week at dfwchild.com/calendar.
+"""
+
+[R6] Everything you need to know for St. Patrick’s Day
+(https://www.dmagazine.com/micropost/everything-you-need-to-know-for-st-patricks-day/)
+"""
+Halperin Park will open in May. Dallas’ second deck park, Halperin Park, will open in a little more than a month, just ahead of the World Cup. The Southern Gateway Public Green Foundation and Dallas Park and Recreation announced Wednesday that the opening ceremony for the first phase of the park is set for May 9, with a weekend of events planned, including live performances by local musicians and dancers, yoga and fitness classes, storytime and arts workshops, food trucks and limited edition “Picnic in the Park” baskets, and book giveaways.The 5-acre park spans I-35E between Ewing and Marsalis Avenues near the Dallas Zoo in Oak Cliff. When it opens in May, it will boast a playground, sprayground, a community building, an amphitheater, and space for food trucks. It is meant to stitch together neighborhoods separated by highway construction in the 1950s, restoring the street grid and providing new amenities for the community and visitors. The importance of the park hasn’t been lost on those planning it, including Southern Gateway Public Green Foundation CEO April Allen, who is also a longtime Oak Cliff resident. In a 2022 interview, she spoke about the importance of engaging the community in planning the park and making sure it represented them. More recently, she admitted to The Lab Report that not everyone has been completely won over, but she understands the layers of mistrust that come from historic disinvestment in the communities around the shiny new park. “Have we cracked the code to win over everyone?” she said. “No, and I get that. There have been a lot of broken promises to these communities.” She’s positive that once the park opens, many of those fears will abate.The park’s website indicates that the foundation still has additional fundraising before phase 2 kicks off. It’s more expensive than the first phase, Allen told D in 2022, because the additional decking over I-35 turns the stretch of highway into a tunnel, which requires fire suppression and other safety features. The park gets its name from the Halperin family, who pledged $23 million toward the park’s construction in 2024. You can read more about Jim Halperin and his family’s donation in the story below.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

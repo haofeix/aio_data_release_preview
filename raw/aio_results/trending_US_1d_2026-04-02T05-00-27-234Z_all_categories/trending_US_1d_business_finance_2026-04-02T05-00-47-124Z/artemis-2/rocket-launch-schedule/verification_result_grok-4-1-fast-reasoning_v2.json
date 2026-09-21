@@ -1,0 +1,69 @@
+{
+  "keyword": "rocket launch schedule",
+  "model": "grok-4-1-fast-reasoning",
+  "n_claims": 4,
+  "n_verified": 4,
+  "label_counts": {
+    "CLEAR": 1,
+    "VAGUE": 1,
+    "AMBIGUOUS": 0,
+    "INCORRECT": 1,
+    "OMITTED": 1
+  },
+  "consistent": 2,
+  "inconsistent": 2,
+  "fidelity_rate": 0.5,
+  "verifications": [
+    {
+      "claim_id": 1,
+      "claim": "As of April 2, 2026, SpaceX Starlink 17-35 is scheduled for April 2, 2026 from Space Launch Complex 4E, Vandenberg Space Force Base, CA using a Falcon 9 at 4:03 p.m. PT with a 4-hour window.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R4"
+      ],
+      "evidence": "\"Thursday, April 2: Starlink 17-35 ... Launch window: 4:03 to 8:03 p.m. PT Thursday, April 2, 2026 ... Space Launch Complex 4E from Vandenberg Space Force Base ... Falcon 9\"",
+      "reasoning": "R4 directly matches mission name, date, location, rocket, exact start time, and 4-hour window (4:03 to 8:03 p.m. PT)."
+    },
+    {
+      "claim_id": 2,
+      "claim": "As of April 2, 2026, SpaceX Starlink 10-58 is scheduled for April 2, 2026 from Launch Complex 40, Cape Canaveral Space Force Station, FL using a Falcon 9 at 7:52 a.m. ET.",
+      "label": "VAGUE",
+      "confidence": 0.9,
+      "matched_references": [
+        "R1",
+        "R6"
+      ],
+      "evidence": "R1: \"April 2: SpaceX Falcon 9 on the Starlink 10-58 mission ... from Cape Canaveral Space Force Station\u2019s Space Launch Complex 40 at 7:55 a.m.\"; R6: \"Thursday, April 2, SpaceX Starlink 10-58 ... Launch window: 7:55 a.m. ... Launch Complex 40 at Cape Canaveral Space Force Station.\"",
+      "reasoning": "Refs confirm mission, date, location, and rocket exactly, but time is 7:55 a.m. ET (not 7:52), making it slightly less precise."
+    },
+    {
+      "claim_id": 3,
+      "claim": "As of April 2, 2026, NASA Artemis II is the first crewed Artemis mission with 4 astronauts to the moon, scheduled for April 2026 (TBD) from Launch Pad 39B, Kennedy Space Center, FL using Space Launch System (SLS), targeting April 2026 with opportunities starting in early April after resolving technical issues.",
+      "label": "INCORRECT",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1",
+        "R2",
+        "R3",
+        "R6"
+      ],
+      "evidence": "R1: \"April 1: NASA Artemis II mission ... from KSC\u2019s Launch Pad 39-B at 6:35 p.m.\" (listed as launched); R2: \"launched ... on Wednesday evening [April 1] ... from Kennedy Space Center ... at 6:35 p.m.\"; R6: \"Wednesday, April 1, NASA Artemis II ... Launch: 6:24 p.m. ... Pad 39B at NASA's Kennedy Space Center.\"",
+      "reasoning": "Refs confirm details like first crewed mission, 4 astronauts, location, rocket, but show it launched April 1 (past event by April 2), contradicting 'scheduled for April 2026 (TBD)' status."
+    },
+    {
+      "claim_id": 4,
+      "claim": "As of April 2, 2026, Northrop Grumman CRS-24 is scheduled for April 8, 2026 from Cape Canaveral Space Force Station, FL using SpaceX Falcon 9 for cargo delivery to the International Space Station.",
+      "label": "OMITTED",
+      "confidence": 1.0,
+      "matched_references": [],
+      "evidence": "No relevant content found",
+      "reasoning": "No reference mentions CRS-24 or any Northrop Grumman mission on April 8; R1 lists NG-24 on April 11 and other CRS missions later (e.g., CRS-34 NET May)."
+    }
+  ],
+  "elapsed_s": 18.7,
+  "prompt_tokens": 47363,
+  "cached_tokens": 582,
+  "completion_tokens": 899,
+  "error": null
+}

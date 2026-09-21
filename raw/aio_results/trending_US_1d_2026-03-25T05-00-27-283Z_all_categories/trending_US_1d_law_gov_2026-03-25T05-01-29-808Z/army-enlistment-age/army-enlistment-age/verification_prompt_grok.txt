@@ -1,0 +1,123 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "army enlistment age"
+
+Claims:
+[1] "Effective April 20, 2026, the United States Army raised its maximum enlistment age to 42 years old."
+[2] "The updated policy applies to the Regular Army, Army National Guard, and Army Reserve."
+[3] "Individuals can enlist up to and including age 42, with or without prior military service."
+[4] "As of April 2026, the minimum enlistment age is 17 years old with parental consent or 18 years old without parental consent."
+[5] "As of April 2026, the maximum enlistment age is 42 years old."
+[6] "The maximum age was previously 34 or 35, depending on the specific component."
+[7] "The new policy is outlined in the updated Army Regulation 601-210."
+[8] "Applicants with prior service may qualify if their age minus prior honorable active service is less than 43."
+[9] "Recruits must be a U.S. citizen or permanent resident with a valid Green Card."
+[10] "The Army removed the waiver requirement for individuals with a single prior conviction for marijuana possession or paraphernalia."
+[11] "The Air Force maximum enlistment age is 42."
+[12] "The Space Force maximum enlistment age is 42."
+[13] "The Coast Guard maximum enlistment age is 42."
+[14] "The Navy accepts recruits up to 41."
+[15] "The Marine Corps maintains a limit of 28."
+
+Cited text snippets from the AI Overview (for additional context):
+- U.S Army ups max enlistment age to 42 : r/LessCredibleDefence: "U.S Army ups max enlistment age to 42 : r/LessCredibleDefence"
+- Army Raises Maximum Enlistment Age to 42 Under New Regulation, ...: "Under the revision, the Army,requirements, and adjusts recruiting responsibilities.&text=Connect with Anthony W. Haddad,Send an email."
+- Requirements to join the U.S. military | USAGov: "Air Force: 17 - 42,Space Force: 17 - 42"
+- Eligibility & Requirements to Join | U.S. Army: "Be between 17 and 34,of Soldiers under your command."
+- Army raises enlistment age to 42, eases marijuana restrictions: "The Army upped the age,promoted than their younger peers."
+- Military Requirements for Joining - Today's Military: "On This Page,17-22"
+- U.S. Army Increases Max Enlistment Age to 42, Changes ...: "2-,U.S. Army Increases Max Enlistment Age to 42, Changes Marijuana,or 17 with parental permission."
+- The U.S. Army has officially raised its maximum enlistment age to 42, ...: "JUST IN - Effective April 20,GUYS READ TO GO BACK ?&text=Nellie Rosales Ticzon ► AnyThingGoes-Chat!"
+Reference Sources:
+
+[R1] Requirements to join the U.S. military | USAGov
+(https://www.usa.gov/military-requirements)
+"""
+Every branch of the military sets its own standards for enlisting. Learn about the specific requirements for each, including the Armed Services Vocational Aptitude Battery (ASVAB). Contact a military recruiterCitizenship and residencyU.S. citizens and some non-citizens can join the military. If you are not a U.S. citizen, you must:Have a U.S. Permanent Resident Card (Green Card)Speak, read, and write English fluentlyYou cannot join the military to enter the U.S. or to get a visa.Age limitsEach branch of the military has age limits to enlist in active duty:Air Force: 17 - 42Army: 17 - 35Coast Guard: 17 - 41Marine Corps: 17 - 28Navy: 17 - 41Space Force: 17 - 42In some cases, you can be older to join the U.S. military. Talk to a recruiter to learn more.Education and testing requirementsASVAB testing Everyone who wants to enlist in the military must take the Armed Services Vocational Aptitude Battery (ASVAB). Each branch sets its own minimum score to join. Your score will help decide which jobs you can do after you enlist.Use ASVAB online resources to:Find out where to take the testGet tips for taking the testSee sample questions from the 10 sectionsUnderstand ASVAB scoresContact a recruiter, who can help you set up a time to take the ASVAB and tell you about the scores you will need.Education requirementsYou must have a high school or general equivalency diploma (GED) to enlist in the military. There are fewer spots for GED holders to enter the military. If you have a GED, you will have a better chance of joining if you have:Earned college creditsScored higher on the ASVABYou must have a degree from a four-year college to join as an officer.Physical and medical requirementsA medical exam is part of the enlistment process. The exam will assess if you are healthy enough to serve in the military.Each branch requires recruits to be physically fit. You will have to pass a physical fitness test as part of your enlistment process. Speak with a recruiter to find out the physical requirements for the branch you want to join. LAST UPDATED: August 27, 2025 Have a question? Ask a real person any government-related question for free. They will get you the answer or let you know where to find it.
+"""
+
+[R2] Eligibility & Requirements to Join
+(https://www.goarmy.com/how-to-join/requirements)
+"""
+My Jobs You have no saved jobs. Take a short quiz or explore more than 200 jobs that might interest you. Army Career Match All Jobs Contact a Recruiter. Take the first step towards a future of endless possibilities. There’s no obligation to join when you reach out. Tell us about yourself. First Name Please enter a First Name. Last Name Please enter a Last Name. Birth Date Please enter a valid Birth Date. Email Address Please enter a valid Email Address. Phone Number Please enter a valid Phone Number. ZIP Code Please enter a valid ZIP Code. Please select the responses that best describe you. This section is optional. Find ROTC programs at schools you’re most interested in. This helps us connect you to the right person. If you’re not sure yet, just select undecided. Find ROTC programs at schools you’re most interested in. Please select the responses that best describe you. This section is optional. By checking this box and submitting this form, I agree to receive email communications from the U.S. Army. I verify this is my mobile number and consent to being contacted by individual recruiters via text. I also agree to the Waiver & Release of Liability and the Privacy Policy. Message and Data rates may apply. I consent to receive automated marketing and informational texts from the U.S. Army. Message frequency varies. Message and data rates may apply. Text HELP for support, STOP to opt out. See Terms and Conditions and Privacy Policy. (Optional) Privacy Act Notice: The above disclosure is voluntary. All information will be used strictly for recruiting purposes. The authority for the collection of this information is Title 10, United States Code, Sections 503, 505, 508, and 12102, and EO 9397. For more information, please review our Privacy & Security Notice.
+"""
+
+[R3] Army Raises Maximum Enlistment Age to 42 Under New Regulation, Document Shows
+(https://gvwire.com/2026/03/24/army-raises-maximum-enlistment-age-to-42-under-new-regulation-document-shows/)
+"""
+The U.S. Army has increased the maximum enlistment age to 42 under a revised personnel policy set to take effect next month. The change is included in an expedited update to Army Regulation 601–210, released March 20 and effective April 20, which governs eligibility and procedures for enlistment across the Regular Army, Army Reserve, and Army National Guard. Under the revision, the Army raises the maximum enlistment age to “up to and including age 42” for both non-prior service applicants and those with prior military service. Previously, the maximum enlistment age was set at 34. The policy also outlines how prior service is factored into eligibility, stating applicants may qualify if their age, minus prior honorable active service, is less than 43 and they can meet retirement eligibility requirements. In some cases, prior service applicants may enter active duty after age 42 if specific conditions are met, including not requiring additional training and already being qualified in a military occupational specialty. The updated regulation applies broadly to the Regular Army, the Army National Guard, and the Army Reserve, and takes precedence over conflicting enlistment eligibility policies unless otherwise directed by the Secretary of the Army, the document shows. The enlistment age increase is part of a broader set of changes in the revision, which also updates medical standards, modifies waiver requirements, and adjusts recruiting responsibilities. — Connect with Anthony W. Haddad on social media. Got a tip? Send an email.
+"""
+
+[R4] Military Requirements for Joining | Today’s Military
+(https://www.todaysmilitary.com/joining-eligibility/eligibility-requirements)
+"""
+Joining & Eligibility Eligibility Requirements While the Services have similar eligibility requirements, they may also reserve the right to enlist recruits using criteria that are based on the needs or vacancies of the current mission. The general requirements listed here apply to the U.S. Military as a whole. For specifics, please contact a recruiter. On This Page Age Requirements Physical Requirements Educational Requirements Security and Background Checks Citizenship Requirements Selective Service Military and service academy minimum entrance age requirements are 17 with parental consent or 18 without parental consent. Service academy applicants must meet the age requirements as of July 1 of the year of entry. ENLISTED You must be 17–42 years of age, a U.S. citizen and have a high school diploma, GED with 15 college credits or GED. OFFICER You must be a U.S. citizen. Physical Requirements Physical requirements vary greatly across each Service branch. Generally speaking, potential recruits should be in good physical condition, of appropriate weight and able to pass a standard physical screening prior to entry. For specific information, please contact a recruiter. Educational Requirements Success in any branch of the Military depends on a good education. A high school diploma is most desirable. Candidates with a GED (General Education Development) certificate can enlist, but some Services may limit their opportunities. It is very difficult to be considered a serious candidate without either a high school diploma or an accepted alternative credential. Security and Background Checks For safety and security purposes, and to uphold the high standards of the Military, all Military Entrance Processing Station (MEPS) applicants are asked to complete a background check. Generally, felons or individuals with several convictions on their record are not eligible to join the Military. However, each branch has its own policy and, in certain cases, may grant moral conduct waivers or felony waivers: ArmyFelons and individuals with multiple convictions cannot join, but waivers are available on a case-by-case basis. Marine CorpsAll interested individuals must clear a criminal background check and have no felony convictions. NavyIndividuals who have been convicted of a felony as an adult or juvenile for offenses involving violence, domestic violence, illegal drugs or sexual misconduct will be disqualified. Air ForceA criminal record can impact enlistment eligibility (this includes an excessive number of traffic-related violations within a one-year period). Coast GuardThe Recruiting Command can authorize case-by-case waivers.If you have additional questions or would like further clarification, contact a recruiter to discuss your particular situation in more detail. Citizenship Requirements U.S. citizens or Legal Permanent Residents (people who have valid alien registration form, I-551 or green card, from the US Immigration and Citizenship services). For more information on citizenship and naturalization, visit the USCIS website. Properly documented noncitizens may enlist. However, opportunities may be limited. Contact a recruiter for more advice on a specific situation. For enlistment purposes, the United States includes Guam, Puerto Rico, the U.S. Virgin Islands, the Northern Mariana Islands, American Samoa, the Federated States of Micronesia, the Marshall Islands and Palau. Selective Service For almost all male U.S. citizens and male aliens living in the United States who are ages 18 through 25, there is a requirement to register with the Selective Service.
+"""
+
+[R5] U.S. Army Increases Max Enlistment Age to 42, Changes Marijuana Conviction Rule
+(https://people.com/us-army-increases-max-enlistment-age-42-changes-marijuana-conviction-rule-11933842)
+"""
+The minimum age limit remains 18, or 17 with parental permission Published on March 24, 2026 10:10PM EDT Stock photo of soldiers. Credit : Getty Stock Images NEED TO KNOW The U.S. Army raised its maximum enlistment age to 42, aligning with other military branches, including the Air Force and Coast GuardThe change applies to those who want to enlist in the Regular Army, the Army National Guard and the Army ReservesRecruits with a single marijuana possession conviction can now enlist without a waiver under the revised policy The U.S. Army announced that the age range for those seeking to enlist has expanded amid the ongoing war in Iran. On March 20, the Army announced in a revised Army Regulation 601-210 that the maximum age to enlist is 42, effective April 20. Previously, the maximum age was 35 to enlist in the Regular Army, the Army National Guard and the Army Reserves. The minimum age limit remains 18, or 17 with parental permission. The revised regulation also permits recruits to enlist if they have a single marijuana possession or drug paraphernalia possession conviction without a waiver. An Army spokesperson said the policy intends to align the service with Defense Department standards, according to Stars and Stripes. Stock photo of soldiers lining up. Getty Stock Images The Army's enlistment age now aligns with other military forces, including the Air Force, Space Force and Coast Guard. Both the Air Force and Space Force increased their age limit in 2023, according to Air Force Times. The Navy changed the cap to 41 in 2022, while the Marine Corps remains at 28, according to the Navy Times. Each branch has the same minimum age limit. This marks the second time in 20 years that the Army shifted the enlistment age to 42. In 2006, the military branch increased the age to 40 and then to 42, according to The New York Times. At the time, the U.S. was engaged in the Iraq War and the War in Afghanistan. The age limit moved back to 35 in 2016, according to Stars and Stripes. Related Stories Never miss a story — sign up for PEOPLE's free daily newsletter to stay up-to-date on the best of what PEOPLE has to offer​​, from celebrity news to compelling human interest stories. PEOPLE reached out to the U.S. Army for comment.
+"""
+
+[R6] Army raises enlistment age to 42, eases marijuana restrictions
+(https://taskandpurpose.com/news/army-enlistment-age-marijuana-waiver/)
+"""
+The Army upped the age cap for enlistment from 35 to 42 years old, amid other changes to its enlistment policies. Army photo by Sgt. Seth Cohen. A major update to Army recruiting regulations this week raises the maximum age a recruit can join to 42, and removes a barrier to joining for recruits with a single legal conviction for marijuana or drug paraphernalia possession. The Army’s previous limit was 35, though exceptions are occasionally made. The higher age limit brings the Army in line with other services’ limits of 41 in the Navy and 42 in the Air Force and Space Force, Kate Kuzminski, who studies military recruiting for the Center for a New American Security, told Task & Purpose. Army recruiting officials have noted in recent years that the average age of recruits is increasing, with officials telling reporters in 2024 that the average recruit was 22 years, 4 months, and that it was still “going up.” Kuzminski said the change has positives and negatives. According to a report she authored for the RAND Corporation, many older recruits scored higher on enlistment qualification tests than recruits who joined before 20. Those older recruits were also more likely to reenlist and be promoted than their younger peers. However, older recruits were also less likely to graduate from basic training and had higher attrition rates. The older enlistment cap is the latest in the military’s multi-billion-dollar overhaul of recruiting, launched after years of missed recruiting goals. The Army, the largest branch in the military, failed to meet annual recruiting goals in 2022 and 2023. Changes in recent years to the Army’s recruiting enterprise include installing a pre-boot camp prep course for recruits who do not initially meet fitness and academic standards and creating marketing schemes to move the Army’s messaging past the post-9/11 wars and appeal to Gen Z. The changes also reflect an evolving Army workforce with more education and job skills. In 2024, then-Army Secretary Christine Wormuth announced that the service’s goal was to have one-third of the entire force to hold college degrees. For officers, the service has expanded its direct commissioning program for professionals who have worked in the tech sector for a few years and have expertise in artificial intelligence and space, in order to help bolster the Army’s technical knowledge across its formations. Col. Angela Chipman, chief military personnel accessions & retention division said the enlistment age increase reflects the need for technical talent, even in the enlisted force. “We’re kind of looking at a more mature audience that might have experience in technical fields,” Chipman said. “We need warrant officers with extreme technical capabilities, and those will come from the enlisted ranks.” Marijuana laws vary between states The Army also changed a specification in its waiver process for drug offenses. According to the regulation, recruits no longer need a waiver for a single conviction of possession of marijuana or possession of drug paraphernalia like bongs, roach clips, miniature spoons, and various pipes. Under the previous regulation, a recruit with one conviction for possession of marijuana or drug paraphernalia required a waiver from officials in the Pentagon. Recruits also previously had to wait 24 months to enlist, and would have to pass a drug test at a Military Entrance Processing Stations facility before their waiver could be approved. Kuzminski said the waiver modification “accounts for changes in society.” She noted that the change is for a single offense but that recruits with a “pattern” of convictions or behavior would still need a waiver. “The updated regulation allows for one mistake, which likely represents the bulk of potential recruits who previously needed a waiver for marijuana use considering use in the Army,” Kuzminski said. “Reducing the number of characteristics that need to be reviewed for waivers frees up capacity for other candidates who need waivers, thus speeding up the process across the board and helping to ensure that the Army does not lose interested candidates.” The looser approach to marijuana use comes as the broader military tightens its drug policies for troops currently serving. In recent years, the military added psychedelic mushrooms and products with kratom and related substances to its list of banned substances. Earlier this week, the Army said it will begin flagging all soldiers with positive drug tests — not just those with security clearances — to the Defense Counterintelligence and Security Agency. And both Republican and Democratic in Congress have signaled a more lenient approach to recruits’ marijuana use — which is legal for recreational use in almost half of the U.S. and legal for medical use in the majority of states. “It’s just us looking at, as the states continue to legalize marijuana versus those that don’t, and the federal government not yet legalizing,” Chipman said, “at what point are we hindering ourselves by holding people to this type of conviction that in some states is okay and some states isn’t?” Recruit waivers reviewed at lower levels The regulation, which governs the enlistment process for active duty and Reserve components, also codifies a change made in January, which put Army Recruiting Command in charge of waivers for recruits with mental health or misconduct histories. Now, two and three-star commanders who are in charge of street-level recruiters, rather than the Army Secretary level, will approve or deny major misconduct waivers for an offense. Chipman said waivers were being approved at a 95% rate so the higher approval authority created an “unnecessary administrative burden.” “The standards, when it comes to felonious behavior, that has not changed,” she said. “We’re not going to lower that.” Task & Purpose Video Each week on Tuesdays and Fridays our team will bring you analysis of military tech, tactics, and doctrine.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

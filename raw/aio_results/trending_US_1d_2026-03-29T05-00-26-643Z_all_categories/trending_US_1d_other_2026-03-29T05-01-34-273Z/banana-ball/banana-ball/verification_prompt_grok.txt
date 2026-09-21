@@ -1,0 +1,126 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "banana ball"
+
+Claims:
+[1] "Banana Ball was created by the Savannah Bananas."
+[2] "In Banana Ball, games have a two-hour time limit."
+[3] "In Banana Ball, bunting is not allowed."
+[4] "In Banana Ball, if a fan catches a foul ball, the batter is out."
+[5] "In Banana Ball, every inning is worth a point."
+[6] "In Banana Ball, if the game is tied, it is decided by a one-on-one competition between a hitter and a pitcher."
+[7] "In Banana Ball, batters can attempt to steal first base during a pitch."
+[8] "The Savannah Bananas are owned by Fans First Entertainment."
+[9] "The Savannah Bananas play against opponents like the Party Animals."
+[10] "The Savannah Bananas have a larger social media footprint than many MLB teams."
+[11] "The Savannah Bananas play a nationwide tour."
+[12] "Fans must join a ticket lottery to attend Banana Ball games."
+[13] "The 2026 Banana Ball tour includes games at First Horizon Park."
+[14] "The 2026 Banana Ball tour includes games at the Caesars Superdome."
+[15] "Banana Ball players are professional athletes."
+[16] "Many Banana Ball players earn roughly $100,000 annually."
+[17] "Roughly $100,000 annually is significantly more than what most minor league players earn."
+[18] "Banana Ball is often called the “Harlem Globetrotters of baseball.”"
+
+Cited text snippets from the AI Overview (for additional context):
+- Savannah Bananas | San Diego Padres - MLB.com: "enter the tour.-,BANANA BALL,the history of the game."
+- About Us | The Savannah Bananas: "Banana Ball was born out,the Banana Ball teams here."
+- Banana Ball: June 18-20, 2026 — First Horizon Park: "Banana Ball is bringing back,Park's Health and Safety protocols."
+- From Southern California to Arizona to South Carolina, Banana Ball ...: "The Bananas are often referred,Bananas baseball?”"
+- I Played With The Savannah Bananas In The SUPERDOME ...: "The Savannah Bananas took Banana Ball to,the moment we walked into the stadium,"
+- WATCH: Dunkin’ surprises youth baseball team with tickets to Conway Banana Ball games: "Banana Ball has several signature,All rights reserved."
+- The Average Salary Of A Savannah Bananas Player Is Out - Yahoo Sports: "While MLB players are making,revealed 🍌 ," FOS reported."
+- Viral baseball sensation Savannah Bananas coming to Ohio, Kentucky, Indiana next year: "The Savannah Bananas, a baseball team that,foul ball, it counts as an out"
+Reference Sources:
+
+[R1] About Us | The Savannah Bananas
+(https://thesavannahbananas.com/about_us/)
+"""
+In October of 2015, we first arrived in Savannah as a college summer team with a goal in mind: make baseball fun and bring fans back to Historic Grayson Stadium. For the first time, minor league baseball had left the city of Savannah after calling it home for 90 years. Because of this, we started to realize that getting fans excited for a college summer team was going to be harder than we ever could have imagined. In our first few months, we sold only a handful of tickets. By January of 2016, just months before our first game, the team had over-drafted our bank account. Our owners, Jesse and Emily Cole, were forced to sell their home to keep the team and their dream going. But on February 25, 2016 when we announced the team name as the “Savannah Bananas”… everything changed. This announcement created massive attention locally and nationally, being covered by CBS, NBC, and Sports Illustrated, even being featured as SportsCenter’s “Logo of the Year”. Despite all the attention, the team name was not liked or appreciated by most people in Savannah. We heard comments like “the owner should be thrown out of town” and “you’ll never sell a ticket.” However, even with mixed reviews, we were finally on the map and people knew who we were. With all the buzz, we were able to sell out Opening Night. Our fans were met with a completely unique experience including all-inclusive food, a senior citizen dance team, the first Banana Baby, and dancing baseball players. Since our first season, we’ve sold out every single game.. From NFL and MLB stadiums across the country to our beloved Grayson Stadium, every stop reminds us where it all started.
+"""
+
+[R2] WATCH: Dunkin’ surprises youth baseball team with tickets to Conway Banana Ball games
+(https://www.wmbfnews.com/2026/03/28/watch-dunkin-surprises-youth-baseball-team-with-tickets-conway-banana-ball-games/)
+"""
+CONWAY, SC (WMBF) - A well-known coffee chain recognized a Horry County youth baseball team for all their hard work. Dunkin’ surprised the North Myrtle Beach Chiefs All-Stars youth baseball team Saturday with 20 tickets to the Party Animals vs. Loco Beach Coconuts sellout games this weekend at Spring Brooks Stadium.The North Myrtle Beach Chiefs All-Stars were celebrated at the Conway Dunkin’ at 1477 Highway 544 for their recent championship win at the Diamond Youth Baseball World Series.Credit: Alliance Marketing PartnersRELATED COVERAGE: In addition, from 9 to 11 a.m., players stepped behind the counter to serve guests, take photos and sign autographs.WATCH: Dunkin’ surprises youth baseball team with tickets to Conway Banana Ball games(Alliance Marketing Partners)According to a news release, fans enjoyed Dunkin’ merchandise and $5 promotional gift card giveaways.The Party Animals and Loco Beach Coconuts faced off in a two-game series on Saturday and Sunday. The teams are in the Banana Ball Championship League.Banana Ball has become a staple of entertainment across the country over the last few years.Banana Ball has several signature rules that set it apart from traditional baseball, including a point-based inning system, no bunting, no mound visits, a strict game-time limit and a rule that a batter is out if a fan catches a foul ball.Dunkin’ is the official coffee and breakfast partner of the Banana Ball Championship League.Feel more informed, prepared, and connected with WMBF. For more free content like this, download our apps. Have feedback that can help us improve? Click here.Copyright 2026 WMBF. All rights reserved.
+"""
+
+[R3] Viral baseball sensation Savannah Bananas coming to Ohio, Kentucky, Indiana next year
+(https://www.wlwt.com/article/savannah-bananas-2024-tour-ohio-kentucky-indiana/45466158)
+"""
+A unique game of baseball is coming to Ohio, Kentucky and Indiana next year.The Savannah Bananas announced their Banana Ball world tour, heading to cities across the country, including in Ohio, Kentucky and Indiana.You may have seen the team on the internet because their "Banana ball" style of play has gone viral. Some of the strange rules are:Every inning is worth a point, so you win the inning. It's one point until the last inning, where every run counts.Also, no bunting and if a fan catches a foul ball, it counts as an out!Originally a member of the Coastal Plain League, a summer collegiate league featuring some of the best collegiate players in the country, the Bananas left league play in 2022 to focus on Banana Ball full time.It isn't just rule changes that differentiate Banana Ball from a more traditional baseball game. Players performing choreographed dances, bats being set on fire and the Banana Nanas senior citizen dance team are all parts of the Bananas enhanced experience.The team will play in Columbus at Huntington Park May 24-26. Next, they'll head to Indianapolis to play at Victory Field June 27-29. Then, they'll head to Louisville to play at Louisville Slugger Field Aug. 1-3 before heading to Cleveland to play at Progressive Field on Aug. 10. To join the ticket lottery list, go to bananaslottery2024.fansfirsttickets.com. A unique game of baseball is coming to Ohio, Kentucky and Indiana next year.The Savannah Bananas announced their Banana Ball world tour, heading to cities across the country, including in Ohio, Kentucky and Indiana. You may have seen the team on the internet because their "Banana ball" style of play has gone viral. Some of the strange rules are:Every inning is worth a point, so you win the inning. It's one point until the last inning, where every run counts.Also, no bunting and if a fan catches a foul ball, it counts as an out! Originally a member of the Coastal Plain League, a summer collegiate league featuring some of the best collegiate players in the country, the Bananas left league play in 2022 to focus on Banana Ball full time. It isn't just rule changes that differentiate Banana Ball from a more traditional baseball game. Players performing choreographed dances, bats being set on fire and the Banana Nanas senior citizen dance team are all parts of the Bananas enhanced experience.The team will play in Columbus at Huntington Park May 24-26. Next, they'll head to Indianapolis to play at Victory Field June 27-29. Then, they'll head to Louisville to play at Louisville Slugger Field Aug. 1-3 before heading to Cleveland to play at Progressive Field on Aug. 10. To join the ticket lottery list, go to bananaslottery2024.fansfirsttickets.com.
+"""
+
+[R4] Savannah Bananas | San Diego Padres
+(https://www.mlb.com/padres/tickets/events/savannah-bananas)
+"""
+Go bananas! Back by popular demand, the Savannah Bananas are returning to Petco Park March 21 and 22, 2026.The Banana Ball Ticket Lottery is closed, but there are still Premium Tickets available for purchase. Please email Events@padres.com to learn more.Show times for the Loco Beach Coconuts vs. Savannah Bananas have officially been announced! Get ready for a fun-filled day at Petco Park featuring player appearances, the Before the Peel Show, and more.Saturday, March 21 Gallagher Square Opens: 2 PM All Gates Open: 4:30 PM Show Time: 6:30 PM Sunday, March 22 Gallagher Square Opens: 10 AM All Gates Open: 12:30 PM Show Time: 2:30 PM Get ready for the return of Banana Ball at Petco Park!VIP BANANA TOURSGuests can add on to their Banana Ball experience with a newly announced VIP Tour. This pregame experience gives guests insider access into areas of the stadium normally reserved for players, as well as offers a unique look at the fun, energy, and magic that makes every Savannah Bananas game unforgettable. The tour ends with the viral Petco Park banana pudding and first access to merchandise!VIP Banana Tours are available for each game and a separate ticket is required. Guests must have both a Savannah Bananas game ticket for the same date and a VIP Banana Tour ticket to enter the tour.BANANA BALLBased in Savannah, GA, the Savannah Bananas are a professional baseball team and play their home games at Historic Grayson Stadium, but they are taking the show on the road!What is Banana Ball? Banana Ball is a fast-paced, action-packed style of baseball with rules that include no bunting, a two-hour time limit, fans catching foul balls for outs, batters stealing first base, and a one-on-one tiebreaker showdown at the end of the game if the game is tied.Want to learn more about Banana Ball? Check out Banana Ball rules here and brush up on the history of the game.Savannah Bananas Know Before You GoWe look forward to seeing you at Petco Park for the Loco Beach Coconuts vs. Savannah Bananas on March 21 and 22! Guests are encouraged to arrive early. Re-entry is not permitted. For an enjoyable event experience, please read the following important information before your arrival.ENTRY TIMES AND POLICIES Pre-Game Plaza in Gallagher Square gates open at 2 PM on Saturday and 10 AM on Sunday. Entry gates include: Gaslamp Gate located at the intersection of K Street and 7th Avenue. East Village Gate located at the intersection of K Street and 10th Avenue. Balboa Gate located at the intersection of J Street and 9th Avenue. All remaining gates will open at 4:30 PM on Saturday and 12:30 PM on Sunday. No re-entry will be allowed. Factory-sealed plastic bottled water that is still, clear, and unflavored and is one (1) liter or less are permitted into Petco Park. In addition, one (1) liter reusable water bottles (no glass) are permitted and must be empty upon entry into the ballpark. No other outside food or beverage is permitted. For enhanced ballpark security and to expedite the entry process for all our guests, Petco Park prohibits bags with the exception for single compartment clear plastic bags not exceeding 12" X 6" X 12" and infant and medical bags. Clutches and purses no larger than 5" X 7".. Click here for more information on Petco Park's prohibited items. Petco Park offers Lock & Go Lockers for a flat $14 rate. There are (4) four Lock & Go Lockers located around Petco Park - Balboa Gate, East Village Gate Box Office, Lexus Premier Lot, and at the intersection of Tony Gwynn Dr. and L Street. Guests will need to pick up their belongings no later than 30 minutes after the end of the game. DIGITAL TICKETINGSeating Bowl, Suite, & Hospitality Spaces: Tickets purchased through the Padres Season Ticket Member presale, or tickets for a suite or hospitality space will be accessible via the MLB Ballpark app. View our digital ticketing guide for information on how to access and transfer tickets. In advance of the game, be sure to transfer tickets to everyone in your party so each individual has access to their own ticket.Savannah Banana Lottery Ticket Holders: Your digital tickets on the Banana Ball ticket platform, FansFirst, will be available for downloading to your mobile wallet 72 hours before the first pitch. For the fastest, smoothest entry, please add all tickets to your digital wallet. Log into your ticket account here. For more information or to view steps on how to download tickets to your digital wallet, visit the Banana Ball Ticket FAQ.Please note: If you pre-purchased parking, your parking pass will be delivered digitally to your MLB Ballpark app.GETTING TO PETCO PARKWe are expecting a sold-out crowd for this show and strongly recommend ticket holders arrive early, as well as take advantage of public transportation or rideshare options. Padres parking lots will open at Noon (12 PM) on Saturday and 8 AM on Sunday for pre-purchased passes in the Lexus Premier Lot, Padres Parkade, and Tailgate Lot. Day-of parking will be limited and subject to availability. Purchase pre-paid Padres parking below. If you pre-purchase parking, your parking pass will be delivered digitally to your MLB Ballpark app.Please note: Tailgating is not permitted in the Tailgate Lot for this event.Looking for parking in additional lots in downtown San Diego? Reserve a space on SpotHero, the proud parking partner of the San Diego Padres.For guests using rideshare, a designated rideshare loading zone is located across the street from the Bayfront Hilton Hotel (next to the Convention Center) on Harbor Drive and Park Boulevard. We encourage guests to get dropped off and picked up at this location and then take the pedestrian sky bridge towards Petco Park.Explore the MTS Trolley and take the easy way to get to the show! For more information, including the Trolley and Coaster schedule, click here.TRAFFIC WARNING FOR SATURDAY 3/21Please note the intersection at 16th St. and Imperial Ave. will be closed on Saturday 3/21 to all traffic from 6 AM - 6 PM and could cause delays arriving to the event.MERCHANDISE There will be an early merchandise opportunity on Friday, March 20 from 2–5 PM on the exterior of the East Village Gate. On event days, Banana Ball merchandise tents will be located both outside and inside the ballpark. Merchandise stands located on J Street will open at 11 AM on Saturday and 10 AM on Sunday. Petco Park is a cashless venue. SAVANNAH BANANAS SPECIALTY ITEMSEntrées & Shareables Havana Banana Pork Sandwich: Roasted plantains, mojo pork, smoked ham, crispy onions, Swiss cheese and jalapeño aioli served on a potato roll. Available at: Seaside Market (Section 105) Plantain Nachos: Crispy plantain chips served with peach salsa, perfect for sharing. Available at: Seaside Market (Section 105) and Section 100 (F/G) portable Banana Pizza: Grilled peach, stracciatella, prosciutto, pistachio, hot honey, arugula and Aleppo pepper. Available at: Gelati and Peccati (Section 102) Desserts Loconut Donuts: Mini Donut Company donuts finished with pineapple icing and toasted coconut. Available at: Mini Donut (Section 107) Banana Pudding: Fresh bananas, hazelnut crumbles and whipped cream. Available at: Seaside Market (Section 105) Banana Lumpia: Filled with chocolate, hazelnut and marzipan butter, finished with horchata whipped crème. Available at: Tony Gwynn Terrace Ballpark Eats (Gallagher Square) and Seaside Market (Section 105) Specialty Beverages Carajillo (Banana Twist): A Spanish and Latin American coffee cocktail with a banana‑inspired twist. Available at: Karl Strauss, Pacifico, and Swinging Friar bars in Sections 110, 121, 122, 320, and Gallagher Square. Banana Mudslide: Cutwater Banana Mudslide cocktail. Available at: Karl Strauss, Pacifico, and Swinging Friar bars in Sections 110, 121, 122, 320, and Gallagher Square. Non‑Alcoholic Offerings Loco Coco Lemonade: A tropical blend of coconut and lemonade. Available at: VW Bus and all Pizza Port locations. PLAZA IN GALLAGHER SQUAREThe Pre-Game Plaza in Gallagher Square offers an unforgettable experience filled with energy, excitement, and entertainment for fans of all ages. From live performances, special appearances from players, cast, mascots, and other surprise guests, it’s a must-see event. There will also be merchandise tents in the pre-game plaza. Fans must have ticket to the game to access the Plaza, no additional purchase required.
+"""
+
+[R5] Banana Ball: June 18-20, 2026 — First Horizon Park
+(https://firsthorizonpark.com/banana-ball)
+"""
+Banana Ball: June 18-20, 2026 — First Horizon Park Back Book An Event Cosmic Baseball: May 22-23, 2026 Banana Ball: June 18-20, 2026 Calendar Weddings Back Park History SULPHUR DELL First Horizon Back Safety Policies How To Get Here Buy Tickets BANANA BALLParty Animals vs. Texas TailgatersJune 18-20, 2026 Banana Ball is coming back to First Horizon Park! GROUP HOSPITALITY SPACES ARE NOW AVAILABLE Group Ticket information What is Banana Ball? We will let them explain. Banana Ball is bringing back their “World Famous Baseball Circus” to First Horizon Park June 18-20, 2026 for three nights of epic performances and baseball. In addition to the cast of characters, dancers, performers, mascots, and musicians, the Bananas are bringing their own twist of baseball to First Horizon Park with independent professional players on their rosters. Coming to First Horizon Park in 2026 are the Party Animals and Texas Tailgaters. Join the Ticket Lottery A clear bag policy will also be enforced to reduce the need for security to inspect the belongings of guests. View First Horizon Park’s Health and Safety protocols.
+"""
+
+[R6] The Average Salary Of A Savannah Bananas Player Is Out
+(https://sports.yahoo.com/articles/average-salary-savannah-bananas-player-191152237.html)
+"""
+The Savannah Bananas are baseball's newest craze.The league, founded by Jesse Cole, is worth $500 million. The league regularly sells out baseball and football stadiums across the country.“We’ve got to make this the greatest show, the greatest experience possible,” Cole says. “That’s what I’m obsessed with.”AdvertisementCole, though, never thinks about money. Instead, he thinks about the fans.“I never, ever think, ‘How can we bring in more money?’” he says. “The north star is always: ‘How can we create more fans?’ If you create more fans, the money takes care of itself.”Jun 7, 2025; Charlotte, NC, USA; Team owner and master of ceremonies Jesse Cole during the exhibition game between the Savannah Bananas and the Pary Animals at Bank of America Stadium. Mandatory Credit: Jim Dedmon-Imagn Images© Jim Dedmon-Imagn Images (&copy; Jim Dedmon-Imagn Images)The league is made up of former college and professional baseball players. But how much do they get paid?While MLB players are making millions, they're making six figuresThe average salary of a Savannah Bananas player is $100,000. That's significantly more than minor league baseball players make.Advertisement"Banana Ball players make $100K in average salary, the club has revealed 🍌 ," FOS reported."The Savannah Bananas were already on a growth wave, and a first-of-its-kind report from the team details how big. In 2025, the club sold 2.2M tickets to 113 shows (what the club calls games), averaged 500K viewers on TV, and sold 1.9M items of merch."It's impressive how big the league has gotten.This story was originally published by The Spun on Feb 1, 2026, where it first appeared in the Trending section. Add The Spun as a Preferred Source by clicking here.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

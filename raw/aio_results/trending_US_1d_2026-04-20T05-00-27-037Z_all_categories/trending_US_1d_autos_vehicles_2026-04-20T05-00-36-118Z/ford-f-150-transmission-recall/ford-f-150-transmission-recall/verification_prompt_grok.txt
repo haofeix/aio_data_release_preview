@@ -1,0 +1,96 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "ford f-150 transmission recall"
+
+Claims:
+[1] "Ford is recalling nearly 1.4 million 2015–2017 F-150 trucks with 6-speed transmissions due to a faulty sensor."
+[2] "The faulty sensor can cause unexpected downshifts to first gear."
+[3] "Unexpected downshifts to first gear can potentially lock rear wheels."
+[4] "The unexpected downshift issue stems from signal loss between the faulty sensor and powertrain control module."
+[5] "The unexpected downshift issue has been linked to 444 warranty claims."
+[6] "The unexpected downshift issue has been linked to 121 field reports."
+[7] "The unexpected downshift issue has been linked to at least one accident."
+
+Cited text snippets from the AI Overview (for additional context):
+- Ford Recalls 1.4M F-150 Pickup Trucks: What to Know | National News: "The recall is for Ford F-150 trucks,transmission produced between 2015-2017, according to NHTSA."
+Reference Sources:
+
+[R1] Ford Recalls 1.4M F-150 Pickup Trucks: What to Know
+(https://www.usnews.com/news/national-news/articles/2026-04-17/ford-recalls-1-4m-f-150-pickup-trucks-what-to-know)
+"""
+Ford Motor Co. is recalling around 1.4 million F-150 pickup trucks in the United States after a National Highway Traffic Safety Administration investigation uncovered a gearshift issue in the vehicles.The NHTSA report cites unexpected downshifts that potentially led to two injuries and one accident.The recall is for Ford F-150 trucks produced between March 12, 2014, and Aug. 18, 2017, with a six-speed automatic transmission.A preliminary evaluation first opened in March 2025 over complaints related to F-150 trucks with a six-speed automatic transmission produced between 2015-2017, according to NHTSA. The report describes the safety risk as connected to a lower gear that may cause an “abrupt wheel speed reduction for a short duration, which in some situations could cause the rear tires to slide until the vehicle speed slows.” This increases the risk of a crash.Vehicle owners may be able to identify an illuminated malfunction indicator light or wrench light on the dashboard, according to the report.How Do I Check if My Vehicle Has Been Recalled?Beginning April 27, Ford will notify vehicle owners by mail with instructions to take their car to a Ford or Lincoln dealer to have their engine and transmission software updated.If not, a vehicle’s identification number can help. The 17-digit number located on the dashboard on the driver’s side can be inputted into Ford's support website. The site will produce manufacturer-specific information about a vehicle and any potential recalls.NHTSA also tracks all vehicle recalls. Cross check with the government website to ensure which cars are being recalled.Where Do I Take My Recalled Vehicle to Get Fixed?A Ford or Lincoln dealer is the best option. Vehicle owners can use the Ford dealer locator to find the closest option. Affected components may need to be updated or replaced.Ford also offers remote and mobile services that will send a technician to a vehicle owner’s home.Sign Up for U.S. News Decision PointsYour trusted source for breaking down the latest news from Washington and beyond, delivered weekdays.By clicking "Sign Up", you will receive the latest updates, including emails, from U.S. News & World Report and our trusted partners and sponsors, and you agree to our Terms and Conditions & Privacy Policy.Who Pays for Recall Repairs?Ford is required to pay for all repairs. If a safety recall is administered, the manufacturer is responsible for fixing the vehicle at minimal cost.“Manufacturers are required to fix the problem by repairing it, replacing it, offering a refund, or in rare cases repurchasing the vehicle,” NHTSA said.How Often Has Ford Had Recalls?Ford is no stranger to recalls. In 2025, the company had over 150 recalls on its vehicles, the most recalls notices by an automaker in one year. That doubled the previous record of 77 recalls set by General Motors.Around 13 million Ford and Lincoln vehicles were affected, the most by any automaker. Information about Ford's past recalls can be found here.
+"""
+
+[R2] Ford recalls nearly 1.4M vehicles. See affected models
+(https://www.usatoday.com/story/cars/recalls/2026/04/17/ford-f-150-recall/89658362007/)
+"""
+April 17, 2026Updated April 20, 2026, 3:07 p.m. ETFord has recalled nearly 1.4 million F-150 pickup trucks due to a transmission problem that has led to at least one car wreck and two injuries.The Michigan-based car manufacturer announced the recall on Tuesday, April 14, on the National Highway Traffic Safety Administration (NHTSA) website. The recall includes 1,392,935 F-150 vehicles manufactured between 2015 and 2017. According to Ford, there is an issue with the truck’s transmission, leading to a loss of signal between the transmission range sensor and the powertrain control module. “(This) can cause the transmission to unexpectedly downshift into second gear,” Ford wrote in the announcement, adding that an unexpected downshift into second gear could cause drivers to lose control of the vehicle or crash.Ford said that by April 2 the company had confirmed two injuries and one wreck potentially related to the transmission issue, as well as 444 warranty claims, 121 field reports, 105 customer service reports and 316 formal complaints filed with the NHTSA in the United States.How did Ford find out about the issue?On Oct. 30, 2024, the NHTSA contacted Ford regarding complaints, also known as vehicle owner questionnaires (VOQs). The agency said the complaints may be related to the unintended downshift issues on 2015, 2016 and 2017 F-150 vehicles. Ford’s Critical Concern Review Group began investigating the following day.Between late fall 2024 and early 2025, Ford’s review group, CCRG, reviewed prior investigations and found that the affected vehicles contained electrical connections that degraded due to thermal cycling and vibration. “High mileage vehicle transmissions can experience a wide range of issues with different failure modes and performance consequences due to wear and aging of subcomponents,” Ford wrote. Ford’s review group assessed the issue and customer experiences.What’s Ford doing about the issue?Dealers will update the powertrain control module software for free, Ford said. Ford began notifying dealers about the issue on April 15. The company will mail letters to owners notifying them of the safety risk by April 27. Once Ford finds a final fix, which the company said will likely be between July 13 and July 17, it will send another letter to update drivers.Owners who have questions can contact Ford customer service at 1-866-436-7332. The NHTSA ID number for the recall is 26V237000. Ford’s ID number is 26S28.Saleen Martin is a reporter on USA TODAY’s trending team. She is from Norfolk, Virginia – the 757. Email her atsdmartin@usatoday.com.
+"""
+
+[R3] Ford recalls nearly 1.4 million F-150 pickup trucks due to gearshift issue
+(https://www.cbsnews.com/news/ford-recall-f-150-pickup-trucks-gearshift-issue/)
+"""
+April 17, 2026 / 9:10 AM EDT / CBS News Add CBS News on Google Ford Motor Company is recalling nearly 1.4 million F-150 pickup trucks due to a gearshift issue that can increase the risk of a crash, according to a notice from the National Highway Traffic Safety Administration.Federal regulators said a loss in signal between the transmission range sensor and the powertrain control module transmission can cause certain F-150 trucks to unexpectedly downshift into second gear, which could result in a loss of vehicle control. The recall affects F-150 vehicles equipped with six-speed automatic transmission produced between March 12, 2014, and Aug. 18, 2017.In its recall report, NHTSA said some vehicle owners may notice an illuminated malfunction indicator light or wrench light on the vehicle's dashboard if there's an issue with the transmission range sensor.Ford is aware of two injuries and one accident potentially related to the gearshift issue, according to NHTSA.The Michigan-based carmaker plans to send letters to vehicle owners beginning April 27. Owners can take their vehicle to a Ford or Lincoln dealer to have affected components of their F-150 updated or replaced. Edited by Mark Osborne In: Ford Motor Company Product Recall Auto Industry National Highway Traffic Safety Administration
+"""
+
+[R4] Ford recalls more than 1.3 million F-150 trucks because of a transmission problem
+(https://www.pennlive.com/news/2026/04/ford-recalls-more-than-13-million-f-150-trucks-because-of-a-transmission-problem.html)
+"""
+NewsFord has recalled more than 1 million F-150 vehicles from model years 2015-17 because they may unexpectedly downshift into second gear and cause the driver to lose control. (AP file photo) APBy Deb Kiner | dkiner@pennlive.comFord Motor Co. has recalled 1,392,935 F-150 pickup trucks because the transmission can unexpectedly downshift into second gear which could cause the driver to lose control.The recall includes model years 2015-17. Ford said the trucks affected have a 6-speed automatic transmission and were built between March 12, 2014, and August 18, 2017. Ford said the issue happens when the transmission sensor fails to communicate properly with the vehicle’s computer system, according to documents filed with the U.S. National Highway Traffic Safety Administration.In some cases, Ford said, the driver may notice an illuminated malfunction indicator light or wrench light in the instrument panel.Ford said it is aware of 444 warranty claims, 121 field reports, 105 customer service reports and 316 formal complaints in the United States potentially related to this concern, received between April 24, 2015, and Nov. 3, 2025. Ford is aware of two injuries and one accident potentially related to this issue. Dealers will update the powertrain control module software at no charge.Letters to owners are expected to be mailed April 27. Additional letters will be mailed when a final remedy is available, anticipated to be in July.For more information, owners can call Ford customer service at 866-436-7332. Vehicle identification numbers are searchable on nhtsa.gov.These magnetic toys sold on Amazon pose potentially fatal hazard, safety officials sayFederal safety officials issue urgent warning about these infant walkers This mini trampoline sold at Walmart is recalled after a frightening injury This gaming PC component is missing a crucial warning that could save your lifeWhy you should immediately remove two pieces from this pet vet toy your child might ownDeb Kiner has worked at PennLive.com/The Patriot-News since 1987 having served in a variety of positions including reporter, copy editor and editor. Since 2014 she has coordinated the annual PA Media Group Best...
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

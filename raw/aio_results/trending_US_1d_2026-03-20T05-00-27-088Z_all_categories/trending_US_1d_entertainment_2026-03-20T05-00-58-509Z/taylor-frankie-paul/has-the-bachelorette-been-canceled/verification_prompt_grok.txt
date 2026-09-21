@@ -1,0 +1,87 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "has the bachelorette been canceled"
+
+Claims:
+[1] "ABC has canceled Season 22 of The Bachelorette."
+[2] "Season 22 of The Bachelorette featured Taylor Frankie Paul."
+[3] "Season 22 of The Bachelorette was originally scheduled for March 2026."
+[4] "A 2023 video shows a violent altercation involving Taylor Frankie Paul."
+[5] "ABC's decision to cancel Season 22 of The Bachelorette followed the release of a 2023 video showing a violent altercation involving Taylor Frankie Paul."
+[6] "The 2023 video showing a violent altercation involving Taylor Frankie Paul surfaced just before the premiere of Season 22 of The Bachelorette."
+[7] "ABC decided not to proceed with Taylor Frankie Paul's season in light of the 2023 video."
+
+Cited text snippets from the AI Overview (for additional context):
+- 'Bachelorette' Season With Taylor Frankie Paul Canceled After ...: "In an affidavit filed with,pushing and hitting Mr. Mortensen."
+- ABC has just canceled its upcoming season of "The Bachelorette" ...: "cnn-,ABC has just canceled its upcoming season of "The Bachelorette,the link in our bio.&text=Abc has just canceled its upcoming season of The Bachelorette,representatives for Paul and Mortensen."
+- It's official. Taylor Frankie Paul's season of The Bachelorette has ...: "It's official.,The Bachelorette has been canceled."
+- Why Taylor Frankie Paul was cast as the next Bachelorette: "This baffling question surrounds Taylor,a group of 25 bachelors."
+Reference Sources:
+
+[R1] Why Taylor Frankie Paul was cast as the next Bachelorette
+(https://news.northeastern.edu/2026/03/18/taylor-frankie-paul-bachelorette/)
+"""
+How does someone who was famous for being a wife, and is now under investigation for alleged domestic assault find herself as one of the most eligible single women in the country? This baffling question surrounds Taylor Frankie Paul, from the hit Hulu show “The Secret Lives of Mormon Wives,” who was announced as the next “Bachelorette,” to be featured starting March 22 on the eponymous reality dating show where an eligible woman tries to find a husband from a group of 25 bachelors. It’s unclear whether the controversy surrounding Paul will impact whether “The Bachelorette” will indeed premiere as scheduled. A spokesperson for the Draper City Police Department told media outlets earlier this week that they are investigating claims of domestic assault between Paul and her previous boyfriend, Dakota Mortensen. No charges had been filed as of March 18. Paul told People magazine on March 17 that the allegations are “heavy” and “unfortunate”, especially given the timing coinciding with her season premiere. She did not confirm or deny the allegations. This is not the first time Paul has been in trouble with the law. In February 2023, she was charged with one felony count of assault, two felony counts of domestic violence in the presence of a child and misdemeanor counts for child abuse and criminal mischief for an alleged domestic incident with Mortensen, according to Salt Lake County court records. The Salt Lake City Tribune later reported Paul entered a plea in abeyance for the felony charge which means a defendant will have the charges dismissed if they adhere to certain conditions after a period of time. The other charges were dismissed with prejudice, the newspaper reported. Why would ABC, the network behind “The Bachelorette” take a chance in casting Paul as the lead given her history? Steven Granelli, a pop culture expert and teaching professor of communication studies at Northeastern University, told Northeastern Global News (NGN) that he suspects Paul’s “penchant for scandal” and connection with “The Secret Lives of Mormon Wives” was part of the appeal of casting her. Northeastern Global News, in your inbox.Sign up for NGN’s daily newsletter for news, discovery and analysis from around the world. “You already have the audience who will tune into every season of “The Bachelor/Bachelorette” regardless of who is cast,” Granelli said. “Now you have the additional audience who is hoping for a continuation of storylines from “Secret Lives” added in.” Casting Paul may have seemed like a wise business move at the time, but the recent allegations have had an impact. Baked goods chain Cinnabon announced they were canceling a brand deal with “The Bachelorette” and Paul in light of the allegations against her. Hayat Bearat, director of the Domestic Violence Law Institute at Northeastern, told NGN that ABC may have overlooked Paul’s history given that most of the charges were dropped. Additionally, Bearat said sometimes domestic incidents where the woman is the aggressor are dismissed given that the assumption among many is that a woman can’t harm a man. But, she said, a show that encourages romantic relationships should take these types of allegations even more seriously given the vulnerable position they put contestants in. “My gut feeling is they’re doing this for viewership,” Bearat added. Another interesting sidebar: The casting of Paul, 31, will mark one of the first times that an actor from a prior season of the the 24-year-old ABC network show wasn’t chosen to lead a future season of the show. This choice highlights a shifting mindset in the world of entertainment, Northeastern University experts told NGN, where executives tend to have a low tolerance for risk. They instead want stars with an existing audience that will follow them as they move to bigger platforms, and social media influencers like Paul offer just that. “This is the attention economy,” said Amy Pei, an assistant marketing professor who researches influencers and social media. “If people are already following [an influencer like Paul] and paying attention to her, they’re going to continue to follow her. You can bring in a whole new audience.” Earlier in the 2000’s, Paul found fame through “#MomTok,” a community of Mormon moms in Utah who created TikTok videos together. With their matching workout gear and long hair styled into loose waves with sleek ends (known as “Utah curls”), short videos of the women dancing to pop music gained traction online. Some of the women said they gained up to 60,000 followers in a week. These are exactly the types of celebrities who hold appeal to brands and casting directors, Northeastern experts said. Even though the audience spends more time on social media per week than they spend watching TV — indeed research from the marketing firm GWI recently found that consumers spend over 13 hours a week on social media versus about nine hours watching some form of TV — it opens potential new doors. Casting influencers is a way to spark viewers’ investment in other types of media, according to Granelli. He pointed out that even the latest season of the Netflix dating show “Love is Blind,” which aired its season finale earlier this month, featured participants who already had thousands of social media followers. “If [networks] populate their reality shows with influencers, they’re bringing in all of their disparate audiences…at the start,” Granelli said. It’s the calculation that Hulu, a streaming subsidiary of Disney, seemed to have made when they helped #MomTok make the leap from phone screens to TV screens. When the first season of “The Secret Lives of Mormon” Lives aired in September 2024, the eight women featured had a collective 18.17 million TikTok followers. The show became Hulu’s most watched season premiere among unscripted shows that year. Three more seasons quickly followed, with the latest having been released just this month. Since then, the show has built an eager audience ready to follow the moms through their different ventures. Simone Lord, 26, of Brookline, Mass., prefers watching prestige TV shows like “The Bear,” a comedy-drama that highlights a chef who takes over his family’s sandwich shop, or sitcoms like “New Girl,” about the daily shenanigans of a school teacher who moves in with three single men after a bad breakup. She has never watched a full season of “The Bachelorette,” but she said she was keen to tune in this time because of Paul. “The cross-promotion is a smart move,” she told NGN. “It makes me care about something I never cared about before.” But if these influencers resonate with an audience, Granelli said networks will continue using the tried-and-tested formulas. It’s why the Bravo show “The Real Housewives of Beverly Hills” has spin-offs like “VanderPump Rules” and “VanderPump Villa.” It’s also why two “Mormon Wives” stars, Jen Affleck and Whitney Leavitt, competed in the latest season of “Dancing with the Stars.” These shows, along with “The Bachelorette” are all under the Disney umbrella. And as long as it works, it’ll continue, Granelli said. “We’re going to be fed the same stuff if we keep watching the same stuff,” he added. In a way, we, the viewers, “are much more risk-averse,” he said.
+"""
+
+[R2] ‘Bachelorette’ Season With Taylor Frankie Paul Canceled After Assault Video
+(https://www.nytimes.com/2026/03/19/arts/television/bachelorette-canceled-taylor-frankie-paul-video.html)
+"""
+AdvertisementSKIP ADVERTISEMENTTaylor Frankie Paul, who was set to star in the TV show, had pleaded guilty to aggravated assault after an encounter with her partner in 2023.Listen · 6:26 min Taylor Frankie Paul, right, in a preview for her season of “The Bachelorette.”Credit...John Fleenor/DisneyMarch 19, 2026An upcoming season of “The Bachelorette” was pulled on Thursday, a spokesperson for Disney said, after a video of its star attacking the father of one of her children was leaked.Taylor Frankie Paul, a reality star who was to lead the new season slated to premiere on Sunday, has been under scrutiny in recent days after it emerged that she was facing a domestic violence investigation, years after pleading guilty to aggravated assault in a separate encounter.Disney’s ABC, which broadcasts “The Bachelorette,” had appeared to be committed to continuing its plans to air the show. But on Thursday, TMZ published leaked footage of a physical altercation from 2023 in which Ms. Paul, who rose to fame in the reality series “The Secret Lives of Mormon Wives,” is shown putting her partner in a headlock and throwing metal chairs at him.“In light of the newly released video just surfaced today, we have made the decision to not move forward with the new season of ‘The Bachelorette’ at this time,” the Disney spokesperson said in a statement, “and our focus is on supporting the family.”“The Bachelor” franchise has dealt with its share of controversy in the past, but this is the most significant fallout in the show’s history.Through a spokesperson, Ms. Paul said she is “very grateful for ABC’s support as she prioritizes her family’s safety and security.” The statement added: “She is currently exploring all of her options, seeking support, and preparing to own and share her story.”Subscribe to The Times to read as many articles as you like.Julia Jacobs is an arts and culture reporter who often covers legal issues for The Times.John Koblin covers the television industry for The Times.A version of this article appears in print on March 21, 2026, Section C, Page 4 of the New York edition with the headline: A Video Derails ‘The Bachelorette’. Order Reprints | Today’s Paper | SubscribeAdvertisementSKIP ADVERTISEMENT
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

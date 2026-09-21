@@ -1,0 +1,109 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "asteroid approaching earth"
+
+Claims:
+[1] "Several small, non-threatening asteroids are frequently passing near Earth in early 2026."
+[2] "NASA is tracking asteroid 2026 EG1 at safe distances."
+[3] "NASA is tracking asteroid 2026 CR2 at safe distances."
+[4] "A bus-sized asteroid passed within 198,000 miles of Earth on March 12, 2026, posing no danger."
+[5] "NASA finds no significant impact risks within the next 100 years."
+
+Cited text snippets from the AI Overview (for additional context):
+- NASA Tracking Bus-Sized Asteroid Approaching Earth Tomorrow: "A stock image of an,size of eight football fields."
+- NASA Tracking Car-Sized Asteroid Approaching Earth Tomorrow: "The space rock, 2026 CR2,2,630,000 miles from our planet.&text=While small asteroids measuring up,of this size or larger.""
+- An asteroid the size of a bus made a close flyby of Earth, NASA says: "But NASA said the object,of its planetary defense efforts."
+- NASA Tracking Bus-Sized Asteroid Approaching Earth Today: "2026 AJ is one of,the Earth, the JPL notes.&text=Asteroids are small, rocky masses,size of eight football fields."
+Reference Sources:
+
+[R1] An asteroid the size of a bus made a close flyby of Earth, NASA says
+(https://www.cbs8.com/article/news/nation-world/asteroid-passes-near-earth/507-ee0971ef-a406-47f9-9425-ac9b45cb9e8d)
+"""
+NASA said asteroid 2026 EG1 passed about 198,000 miles from Earth at more than 21,500 mph as part of its elliptical orbit around the sun. WASHINGTON — An asteroid the size of a bus made a relatively close flyby of Earth late Thursday night, according to NASA’s asteroid tracking program. The space rock, known as 2026 EG1, is estimated to be about 40 feet wide and passed roughly 198,000 miles from Earth — closer than the moon’s average distance of about 239,000 miles. But NASA said the object poses no threat to the planet. The asteroid reached its closest approach late Thursday night Eastern time as it travels at more than 21,500 miles per hour. NASA’s Center for Near-Earth Object Studies, which monitors and analyzes the paths of asteroids and comets, said 2026 EG1 follows an elliptical orbit around the sun that brings it into Earth’s orbital neighborhood before sending it back toward the outer solar system. Near-Earth objects are defined as asteroids or comets whose orbits bring them within about 120 million miles of the sun. While tens of thousands of these objects have been identified, the vast majority do not pose an impact risk, and NASA doesn't predict any dangerous asteroids in the next 100 years. According to NASA, most asteroids considered potentially hazardous are typically much larger more than about 460 feet wide and pass significantly closer to Earth’s orbit than 2026 EG1. Scientists continuously track newly discovered objects using data collected by observatories around the world and conduct long-term impact monitoring. The flyby of 2026 EG1 is one of several close approaches cataloged by NASA each year as part of its planetary defense efforts.
+"""
+
+[R2] NASA tracking bus-sized asteroid approaching Earth tomorrow
+(https://www.newsweek.com/nasa-tracking-bus-sized-asteroid-approaching-earth-tomorrow-2026-eg1-11665690)
+"""
+NASA is monitoring a bus-sized asteroid that is speeding towards our planet at more than 21,500 miles per hour, according to the the space agency's Center for Near Earth Object Studies (CNEOS).Measuring around 40 feet in diameter, the space rock—known as “2026 EG1”—is expected to make its closest approach tomorrow, coming to within just 198,000 miles of us, closer than the moon. (The average distance between our planet and the moon is about 239,000 miles, says NASA’s Jet Propulsion Laboratory [JPL].)Asteroids are small, rocky masses left over from the formation of the solar system about 4.6 billion years ago. They are concentrated in the main asteroid belt, which lies around the sun between the orbits of Mars and Jupiter.Some asteroids “follow paths that circulate into the inner solar system, including near-Earth asteroids, while others remain outside the orbit of Neptune,” NASA explains.Near-Earth objects have orbits that bring them within 120 million miles of the sun and into the Earth’s “orbital neighborhood.”A stock image of an asteroid hovering over Earth, with an inset picture of a school bus. | GettyEarlier this year, in January, scientists discovered the fastest-spinning asteroid, which is over 0.3 miles in diameter and rotates about once every two minutes. Measuring around 2,300 feet across, this space rock, known “2025 MN45,” spans nearly the size of eight football fields.The record-breaking space rock is one of 19 “super- and ultra-fast-rotating” asteroids found among around 1,900 asteroids that were discovered for the first time in June 2025.Last year in February, NASA found that the impact probability of an asteroid called “2024 YR4” in 2032 was at 3.1 percent, which was “the highest impact probability NASA has ever recorded for an object of this size or larger,” the space agency noted at the time.Further observations found that “the object poses no significant impact risk to Earth in 2032 and beyond,” the agency concluded.“The majority of near-Earth objects have orbits that don’t bring them very close to Earth, and therefore pose no risk of impact,” NASA says.However, a small portion of them, known as potentially hazardous asteroids (PHAs), do require closer attention. PHAs have orbits that bring them as close as within 4.6 million miles of the Earth’s orbit around the sun, notes NASA.Despite the number of PHAs out in our solar system, none are likely to hit our planet any time soon."The 'potentially hazardous' designation simply means over many centuries and millennia the asteroid's orbit may evolve into one that has a chance of impacting Earth. We do not assess these long-term, many-century possibilities of impact," Paul Chodas, manager of the CNEOS, previously told Newsweek.Do you have a tip on a science story that Newsweek should be covering? Do you have a question about asteroids? Let us know via science@newsweek.com
+"""
+
+[R3] NASA tracking car-sized asteroid approaching Earth tomorrow
+(https://www.newsweek.com/nasa-tracking-car-sized-asteroid-approaching-earth-tomorrow-11529682)
+"""
+NASA is currently tracking a car-sized asteroid set to zip past the Earth tomorrow, February 17, at a whopping 12,616 miles per hour. The space rock, 2026 CR2, is estimated to be about 9.7 feet across and will make its closest approach at a distance of 84,800 miles, according to NASA's Jet Propulsion Laboratory (JPL). More asteroids are expected to zoom past the Earth this week. Today, a stadium-sized asteroid known as 2026 BX4, will make its closest approach at a much larger distance of 1,830,000 miles. On Tuesday, a second asteroid, this time airplane-sized, known as 2026 AJ17, will pass within 4,140,000 miles. Meanwhile on Wednesday, another plane-sized space rock, 2026 CU, will come as close as 1,290,000 miles distant. On Thursday, a third plane-sized asteroid, 2026 CA2, 110 feet across, will get up to 2,630,000 miles from our planet. A stock image shows an asteroid approaching planet Earth, elements of this image furnished by NASA. | Getty ImagesWhile small asteroids measuring up to 30 feet across impact the Earth roughly once every ten years, these collisions usually result in a bright fireball and a powerful sonic boom and may occasionally break a window, but they generally do not cause any significant damage. In February 2025, an asteroid estimated to be between 174 and 220 feet in size—"2024 YR4"—was calculated to have a 3.1 percent chance of striking Earth in 2032, which was described as "the highest impact probability NASA has ever recorded for an object of this size or larger." An asteroid of this size could destroy an entire city if it impacted Earth. However, updated calculations indicate that an Earth impact is very unlikely, and some scientists now suggest that 2024 YR4 may instead be on its path to possibly collide with the Moon in December 2032. "Asteroid 2024 YR4 is now too far away to observe with either space or ground-based telescopes. NASA expects to make further observations when the asteroid's orbit around the Sun brings it back into the vicinity of Earth in 2028," NASA said on their website. Scientists and volunteers around the world work together to monitor asteroids that could pose a threat to Earth. Any information received is then collected and verified by the Minor Planet Center, based at the Smithsonian Astrophysical Observatory in Cambridge, Massachusetts. These observations are made publicly available through NASA’s Small Bodies Node, ensuring open access to critical information. When a newly discovered object appears to travel near Earth’s orbit, it is flagged for additional monitoring. Scientists track these near-Earth objects closely to determine their paths. If an object’s trajectory raises concern, the Center for Near Earth Object Studies conducts detailed calculations and alerts NASA’s Planetary Defense Coordination Office to refine impact predictions with analysis and international collaboration. Do you have a tip on a science story that Newsweek should be covering? Do you have a question about asteroids? Let us know via science@newsweek.com.
+"""
+
+[R4] An asteroid the size of a bus made a close flyby of Earth, NASA says
+(https://www.kare11.com/article/news/nation-world/asteroid-passes-near-earth/507-ee0971ef-a406-47f9-9425-ac9b45cb9e8d)
+"""
+NASA said asteroid 2026 EG1 passed about 198,000 miles from Earth at more than 21,500 mph as part of its elliptical orbit around the sun. WASHINGTON — An asteroid the size of a bus made a relatively close flyby of Earth late Thursday night, according to NASA’s asteroid tracking program. The space rock, known as 2026 EG1, is estimated to be about 40 feet wide and passed roughly 198,000 miles from Earth — closer than the moon’s average distance of about 239,000 miles. But NASA said the object poses no threat to the planet. The asteroid reached its closest approach late Thursday night Eastern time as it travels at more than 21,500 miles per hour. NASA’s Center for Near-Earth Object Studies, which monitors and analyzes the paths of asteroids and comets, said 2026 EG1 follows an elliptical orbit around the sun that brings it into Earth’s orbital neighborhood before sending it back toward the outer solar system. Near-Earth objects are defined as asteroids or comets whose orbits bring them within about 120 million miles of the sun. While tens of thousands of these objects have been identified, the vast majority do not pose an impact risk, and NASA doesn't predict any dangerous asteroids in the next 100 years. According to NASA, most asteroids considered potentially hazardous are typically much larger more than about 460 feet wide and pass significantly closer to Earth’s orbit than 2026 EG1. Scientists continuously track newly discovered objects using data collected by observatories around the world and conduct long-term impact monitoring. The flyby of 2026 EG1 is one of several close approaches cataloged by NASA each year as part of its planetary defense efforts.
+"""
+
+[R5] Next Five Asteroid Approaches | NASA Jet Propulsion Laboratory (JPL)
+(https://www.jpl.nasa.gov/asteroid-watch/next-five-approaches/)
+"""
+JavaScript is required Skip to main content This view of asteroid Bennu ejecting particles from its surface on Jan. 6, 2019, was created by combining two images taken by the NavCam 1 imager aboard NASA's OSIRIS-REx spacecraft. Credit: NASA/Goddard/University of Arizona/Lockheed Martin Full Image Details Next Five Asteroid ApproachesBUS-SIZEApproximate Size29 Feet29FT|MClosest Earth Approach404,000 Miles404,000MI|KMName(2026 FB4)DateMarch 26, 2026HOUSE-SIZEApproximate Size53 Feet53FT|MClosest Earth Approach1,750,000 Miles1,750,000MI|KMName(2026 FB3)DateMarch 26, 2026HOUSE-SIZEApproximate Size53 Feet53FT|MClosest Earth Approach1,780,000 Miles1,780,000MI|KMName(2026 FA3)DateMarch 27, 2026HOUSE-SIZEApproximate Size45 Feet45FT|MClosest Earth Approach1,160,000 Miles1,160,000MI|KMName(2026 FL4)DateMarch 28, 2026HOUSE-SIZEApproximate Size47 Feet47FT|MClosest Earth Approach1,830,000 Miles1,830,000MI|KMName(2026 FX5)DateMarch 28, 2026About the Asteroid Watch DashboardThe Asteroid Watch dashboard tracks asteroids and comets that will make relatively close approaches to Earth. The dashboard displays the date of closest approach, approximate object diameter, relative size and distance from Earth for each encounter. The object's name is displayed by hovering over its encounter date. Clicking on the encounter date will display a Web page with details about that object.The dashboard displays the next five Earth approaches to within 4.6 million miles (7.5 million kilometers or 19.5 times the distance to the moon); an object larger than about 150 meters that can approach the Earth to within this distance is termed a potentially hazardous object.The average distance between Earth and the moon is about 239,000 miles (385,000 kilometers).Find Out MoreAsteroid Watch home page
+"""
+
+[R6] NASA tracking bus-sized asteroid approaching Earth today
+(https://www.newsweek.com/nasa-tracking-bus-sized-asteroid-approaching-earth-today-2-11345212)
+"""
+NASA is monitoring a bus-sized asteroid that is speeding toward Earth at nearly 20,500 miles per hour, according to the Center for Near Earth Object Studies (CNEOS).Measuring around 40 feet in diameter, the asteroid known as "2026 AJ" is expected to come as close as around 961,000 miles from our planet on Monday, according to NASA’s Jet Propulsion Laboratory (JPL).2026 AJ is one of five asteroids approaching Earth today that are being tracked by NASA, and it is forecast to come closest to our planet among the five.Three asteroids, ranging from 73 to 130 feet in diameter, are also being monitored, including one named "2026 AO" that is coming as close as 990,000 miles from our planet. Another space rock, known as "2022 GR3” and 29 feet in diameter, is projected to make its closest approach at 3.45 million miles from the Earth, the JPL notes.A stock image illustration of an asteroid approaching Earth, with an inset picture of a school bus. | GettyAsteroids are small, rocky masses left over from the formation of the solar system about 4.6 billion years ago. They are found concentrated in the main asteroid belt, which lies around the sun between the orbits of Mars and Jupiter.These so-called "near-Earth objects" are asteroids whose orbits bring them within 120 million miles of the sun and into the Earth’s "orbital neighborhood."Last week, scientists revealed they had discovered the fastest-spinning asteroid, measuring over 0.3 miles in diameter and rotating about once every two minutes. Known as "2025 MN45," this asteroid is around 2,300 feet across and spans nearly the size of eight football fields.The record-breaking space rock is one of 19 "super- and ultra-fast-rotating" asteroids found among around 1,900 asteroids that were detected for the first time last June.Last year in February, data from the CNEOS showed that the impact probability of an asteroid known as "2024 YR4” in 2032 was at 3.1 percent, which was "the highest impact probability NASA has ever recorded for an object of this size or larger," the space agency said at the time.Further studies led NASA to conclude that "the object poses no significant impact risk to Earth in 2032 and beyond," according to NASA."The majority of near-Earth objects have orbits that don’t bring them very close to Earth, and therefore pose no risk of impact," the space agency advises.However, a small portion of them, known as potentially hazardous asteroids (PHAs), do require closer tracking. Measuring over 460 feet in size, PHAs have orbits that bring them as close as within 4.6 million miles of the Earth’s orbit around the sun, NASA notes.Despite the number of PHAs out in our solar system, none is likely to hit our planet any time soon."The 'potentially hazardous' designation simply means over many centuries and millennia the asteroid's orbit may evolve into one that has a chance of impacting Earth. We do not assess these long-term, many-century possibilities of impact," Paul Chodas, manager of the CNEOS, previously told Newsweek.Do you have a tip on a science story that Newsweek should be covering? Do you have a question about asteroids? Let us know via science@newsweek.com
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is lehigh university"
+
+Claims:
+[1] "Lehigh University is a private research university."
+[2] "Lehigh University is located in Bethlehem, Pennsylvania."
+[3] "Lehigh University is located within the Lehigh Valley region."
+[4] "Lehigh University's campus is situated on the north slope of South Mountain."
+[5] "Lehigh University's campus is approximately 10 minutes from downtown Bethlehem."
+[6] "Lehigh University has three contiguous campus areas totaling over 2,000 acres."
+[7] "Lehigh University's Asa Packer Campus is the main, historic campus."
+[8] "Lehigh University's Asa Packer Campus contains most academic buildings, libraries, and residence halls."
+[9] "Lehigh University's Mountaintop Campus is located on South Mountain."
+[10] "Lehigh University's Mountaintop Campus is home to the College of Education."
+[11] "Lehigh University's Mountaintop Campus is home to Iacocca Hall."
+[12] "Lehigh University's Murray H. Goodman Campus is situated south of the Asa Packer Campus."
+[13] "Lehigh University's Murray H. Goodman Campus features athletic facilities, including the Goodman Stadium and Stabler Arena."
+[14] "Lehigh Valley is Pennsylvania's third-largest metropolitan area."
+
+Cited text snippets from the AI Overview (for additional context):
+- Bethlehem & the Lehigh Valley: "Lehigh University's campus is located in the,* **Installing bike racks** * **Tutoring students**"
+- Maps & Directions | Lehigh University: "Lehigh University has three contiguous campuses in,stadium, Stabler Arena, and the Rauch Fieldhouse"
+- Exploring the stunning campus of Lehigh University! A private ...: "Lehigh University has a stunning campus. It,was founded in 1865 by Asa Packer."
+Reference Sources:
+
+[R1] Maps & Directions | Lehigh University
+(https://www2.lehigh.edu/about/maps-directions)
+"""
+Search the Lehigh Website SearchX Image Maps & Directions Nested on South Mountain in Bethlehem, Pennsylvania, Lehigh University has one of the most charming and welcoming campuses in the country. Interactive Map The Lehigh campus map provides a fast and convenient way to search for—and navigate to or from—any of the hundreds of offices, departments, facilities and venues located on the university's three contiguous campuses. View our interactive map > Printable Directions & University Maps It’s easy to get to each of Lehigh’s three campuses, and there are parking garages on both sides of the Asa Packer Campus, a number of parking meters both on- and off-campus and free visitor parking lots available on the Mountaintop and Goodman campuses. To see how Lehigh is situated in the Lehigh Valley, download our Regional Travel Maps (PDF). Asa Packer Campus The Admissions Office is on Lehigh's original and most historic campus, where most classrooms, residence halls, dining facilities and libraries are located.Directions to Asa Packer Campus >Asa Packer Campus Map (PDF) Mountaintop Campus Crowning South Mountain, this campus contains the College of Education, Iacocca Hall, Mountaintop Building C, academic departments and major research facilities.Directions to Mountaintop Campus >Mountaintop and Murray H. Goodman Campus Map (PDF) Murray H. Goodman Campus Located on the other side of South Mountain in Saucon Valley, this campus is home to Lehigh's athletic complex, the Murray H. Goodman football stadium, Stabler Arena and the Rauch Fieldhouse.Directions to Goodman Campus >Mountaintop and Murray H. Goodman Campus Map (PDF)For driving directions to additional athletic facilities, visit www.lehighsports.com. Building Directions Alumni Memorial Building27 Memorial Drive West, Bethlehem, PA 18015 Building C113 Research Drive, Bethlehem, PA 18015 Building J/ Mailing and Printing118 ATLSS Drive, Bethlehem, PA 18015 Clayton University Center at Packer Hall29 Trembley Drive, Bethlehem, PA 18015 Coppee Hall33 Coppee Drive, Bethlehem, PA 18015 Grace Hall39 University Drive, Bethlehem, PA 18015 Iacocca Hall111 Research Drive, Bethlehem, PA 18015 Johnson Hall36 University Drive, Bethlehem, PA 18015 Linderman Library30 Library Drive, Bethlehem, PA 18015 Maginnes Hall9 West Packer Avenue, Bethlehem, PA 18015 Murray H. Goodman Stadium150 Goodman Drive, Bethlehem, PA 18015 Packard Laboratory19 Memorial Drive West, Bethlehem, PA 18015 Packer Memorial Church18 University Drive, Bethlehem, PA 18015 Price Hall681 Taylor Street, Bethlehem, PA 18015 Rathbone Hall63 University Drive, Bethlehem, PA 18015 Rauch Business Center621 Taylor Street, Bethlehem, PA 18015 Rauch Field House123 Goodman Drive, Bethlehem, PA 18015 Stabler Arena and Convocation Center124 Goodman Drive, Bethlehem, PA 18015 STEPS1 West Packer Avenue, Bethlehem, PA 18015 Taylor Gymnasium641 Taylor Street, Bethlehem, PA 18015 Ulrich Fields Sports Complex151 Goodman Drive, Bethlehem, PA 18015 University Police Department321 East Packer Ave, Bethlehem, PA 18015 Whitaker Laboratory5 East Packer Avenue, Bethlehem, PA 18015 Zoellner Arts Center420 East Packer Avenue, Bethlehem, PA 18015 Explore Lehigh from HomeExperience campus no matter where you are through our virtual tour. You’ll follow the route of the undergraduate admissions tour to see academic and student life buildings, learning about life at Lehigh along the way.Visit the Virtual Tour > Use of personal data and cookiesWe use cookies and similar technologies to understand how you use our site, to personalize content and to improve functionality. By continuing to use this site, we will assume you agree with our use of these technologies as described in the Privacy Statement.Accept and Continue
+"""
+
+[R2] An Overview from Past and Present < Lehigh University
+(https://catalog.lehigh.edu/overviewfrompastandpresent/)
+"""
+Lehigh University is independent, nondenominational, and coeducational. Founded in 1865 as a predominantly technical four-year school, the university now has approximately 7,200 undergraduate and graduate students. There are five colleges: the College of Arts and Sciences, the College of Business, the P. C. Rossin College of Engineering and Applied Science, the College of Education (graduate), and the newest, the College of Health, which welcomed its inaugural class during the 2020-21 academic year. Lehigh students come from every state and U.S. territory and more than 40 foreign nations. The university is primarily situated on the Asa Packer Campus on the north slope of South Mountain overlooking Bethlehem, Pennsylvania. Sayre Park, the wooded refuge located toward the top of the mountain, is the setting for many living groups. The residences are reached via winding private roads. Many residential units on campus command a panoramic view of the Lehigh Valley. The Appalachians are visible to the west, with an especially good view from The Lookout on Packer Campus. Both the tower and dining room in Iacocca Hall on the Mountaintop Campus afford panoramic views of the Lehigh Valley. The campus at its highest point is 971 feet above sea level. A substantial portion of the upper level of Lehigh’s campus is maintained as a nature preserve. The preserve supports deer, squirrels, chipmunks, raccoons, wild turkeys, and other birds. Besides the Asa Packer Campus, the university has extensive athletic fields and facilities on the Murray H. Goodman Campus, two miles to the south in Saucon Valley. The university acquired the Mountaintop Campus in 1986; it links the Packer and Goodman campuses. In 2012, the university received a gift from the Donald B. and Dorothy L. Stabler Foundation: 755 acres in nearby Upper Saucon Township. That brought total land holdings to 2,358 acres, making Lehigh one of the largest private universities in the country. The board of trustees and university officers have established and enforce policies designed to preserve Lehigh’s natural beauty. It is their contention that the environment in which the young adult university student pursues knowledge can make the total educational experience more meaningful, and that the ideal environment is separate and unique from the distractions of the nonacademic community. There are approximately 540 full-time members of the faculty, teaching a total of more than 2,000 course titles (not all of which are offered every semester). Among faculty members who are tenured and to whom the university has a permanent commitment, nearly all hold the doctorate degree (typically Ph.D. or Sc.D.). In total, there are more than 2,000 employees of the university, making it the second-largest employer in the community.
+"""
+
+[R3] Bethlehem & the Lehigh Valley
+(https://www2.lehigh.edu/about/bethlehem-lehigh-valley)
+"""
+Located in the heart of the beautiful Lehigh Valley, Bethlehem is a vibrant city, rich in history and known for its small-town friendliness and feel. Our campus is in the Lehigh Valley, which is comprised of Allentown, Bethlehem and Easton, and the third largest metropolitan area in Pennsylvania. More adventures are also within driving distance, including the 1½-hour trip to New York City and both the 1-hour trips to Philadelphia or the Pocono Mountains. Maps & Directions > Shopping in Bethlehem, PA Bethlehem is home to numerous unique shops and national chains, offering visitors and locals alike a great shopping experience. Within walking distance from campus on the SouthSide are stores for trendy women’s apparel and new and vintage music finds. On the historic north side, shoppers can stroll down cobblestone-paved Main Street and peruse the Moravian Book Shop, Aardvark Sports Shop and Season’s Olive Oil and Vinegar Taproom.Shopping in Bethlehem > Restaurants in Bethlehem Nearly every world cuisine imaginable is available in Bethlehem. The city boasts a wealth of restaurants serving up Japanese, Indian, Malaysian, Italian, Thai, Mexican and more. With more than 80 restaurants in downtown alone, local foodies can find everything from high-end dining to pizza shops. In celebration of its local food scene, Bethlehem celebrates Restaurant Week each year, allowing patrons to enjoy prix fixe meals at hugely discounted prices.GoldPLUS Card >Places to Eat in Bethlehem>Places to Eat in the Greater Lehigh Valley > Fun Things to Do in the Lehigh Valley Beyond the city of Bethlehem itself, the Lehigh Valley is home to several top-notch entertainment centers, shopping malls and award-winning restaurants. Simple day or weekend trips can be taken to New York City, Philadelphia, the Pocono Mountains and the New Jersey and Delaware beaches. Sports fans, meanwhile, can follow the region’s local minor league teams—the Lehigh Valley IronPigs baseball team, the Lehigh Valley Phantoms hockey team and Bethlehem Steel FC, which plays its matches at Lehigh’s Goodman Stadium.Discover Lehigh Valley > 1741Bethlehem was founded by the Moravian Church 7colleges within 10 miles 39parks (encompassing 568 acres) 1M+Musikfest attracts one million people to Bethlehem each August 246light bulbs in the Star of Bethlehem atop South Mountain COMMUNITY SERVICE OFFICE Our mission is to provide students, faculty and staff of Lehigh University a readily accessible doorway through which they can explore the rewards and benefits of providing service to the community. Visit the Community Service Office > CENTER FOR COMMUNITY ENGAGEMENT The Lehigh University Center for Community Engagement assists Lehigh’s faculty, staff and students who are involved with service-learning classes or community-based research projects and helps cultivate engaged citizens. Visit the Center for Community Engagement > COMMUNITY & REGIONAL AFFAIRS Lehigh's Community and Regional Affairs effort is dedicated to the utilization of the University's resources—both human and capital—for the advancement of the larger community consistent with the University's interests and goals. Learn about Community & Regional Affairs > Fresh Finds Right on Campus If you’re looking for fresh produce, lunch items, baked goods, natural soaps and delicious offerings from food trucks, just head down to the Bethlehem Farmers' Market every Thursday from May-October. Festival of Music Musikfest is Bethlehem’s premier music festival. In fact, it is one of the nation’s largest music festivals, with nearly one million attendees, 500-plus performances, local retailers, food vendors and lots of fun. Community Engagement Students work to build bridges and create change by participating in tutoring services at local elementary and middle schools. Students make valuable contributions and make lasting impacts by helping local students succeed in math and reading. A Fixture for Fajitas Located just a short walk from campus, La Lupita offers delicious, traditional Mexican fare. It’s a favorite amongst the community for its cozy atmosphere and fast servings. A Path Runs through It The South Bethlehem Greenway is a quaint paved trail that connects neighborhoods with the city’s business district. It’s the perfect path for a run, bike ride or stroll. Play Ball! Coca-Cola Park is home to the Lehigh Valley IronPigs, the Philadelphia Phillies’ AAA team, and is the perfect outing for a fun getaway with plenty of great food options and an exciting atmosphere. Spring on the SouthSide The SouthSide celebrates the arts and food with the annual Chili Cook-Off. Local food vendors and merchants get involved with an exciting day filled with delicious chili, live music and an arts festival. A Giant Yard Sale The Great SouthSide Sale started when a professor noticed how much was in dumpsters when students moved out. This massive yard sale is a community staple where you can find great hidden treasures, clothing and household items.
+"""
+
+[R4] University Campuses < Lehigh University
+(https://catalog.lehigh.edu/overviewfrompastandpresent/universitycampuses/)
+"""
+Lehigh University’s three campuses are located in Bethlehem, Pa., and comprise 1,600 acres. Asa Packer Campus. Lehigh’s main academic campus, encompassing approximately 360 acres on the north slope of South Mountain overlooking Bethlehem, is a wooded area where most students attend class and live. This contains the original campus of the university. Murray H. Goodman Campus. During the 1960s, the university acquired extensive acreage in the Saucon Valley just south of South Mountain. Development of one of the nation’s finest collegiate athletic complexes has continued since that time. The 500-acre campus now includes the Murray H. Goodman Stadium and other athletic fields, as well as the 6,000-seat Stabler Athletic and Convocation Center, the Philip Rauch Field House, the Cundey Varsity House, the Lewis Indoor Tennis Facility, and the Ulrich Sports Complex. The campus is named for a major benefactor, Lehigh alumnus Murray H. Goodman. Mountaintop Campus. Lehigh bought this campus from Bethlehem Steel Corp. in 1986. It contains 670 acres of woods and a 72-acre research site with 8 buildings, including a landmark tower building visible for miles around. Acquisition of the facilities connected the two older campuses. The Mountaintop Campus houses the College of Education; the departments of Biological Sciences and Chemical Engineering; programs in biochemistry, biotechnology, bioengineering, ATLSS (Advanced Technology for Large Structural Systems) Center, Energy Research Center, the Military Science and Leadership program (Army ROTC), and Ben Franklin TechVentures headquarters and incubator companies. This campus is also home to the Mountaintop Experience, where students work together beyond the traditional classroom setting on innovative projects that can potentially become business ventures.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

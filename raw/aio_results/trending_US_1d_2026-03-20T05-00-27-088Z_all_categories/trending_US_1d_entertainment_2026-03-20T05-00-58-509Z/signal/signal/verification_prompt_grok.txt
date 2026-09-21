@@ -1,0 +1,113 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "signal"
+
+Claims:
+[1] "Signal is free."
+[2] "Signal is open-source."
+[3] "Signal is a messaging app."
+[4] "Signal utilizes the Signal Protocol."
+[5] "The Signal Protocol protects all messages, voice/video calls, and file transfers."
+[6] "Signal is available for iOS, Android, Windows, Mac, and Linux."
+[7] "Signal secures all communication by default."
+[8] "In Signal, messages are encrypted before they leave your device."
+[9] "In Signal, messages can only be decrypted by the recipient."
+[10] "Signal operates under a non-profit foundation."
+[11] "Signal does not collect user data."
+[12] "Signal does not sell personal information."
+[13] "The Signal Protocol is open-source."
+[14] "The Signal Protocol is used by other messaging services."
+[15] "Signal is developed by a non-profit."
+[16] "Signal offers encrypted voice and video calls."
+[17] "Signal offers disappearing group chats."
+[18] "Signal users can set usernames to hide their phone numbers from contacts."
+[19] "Signal is available on the Google Play Store."
+[20] "Signal is available on the Apple App Store."
+[21] "Signal registration requires a phone number."
+[22] "The Signal desktop client is available for Windows 10/11, macOS 12+, and Linux."
+[23] "Signal allows users to set messages to disappear."
+[24] "Signal allows users to verify safety numbers"
+
+Cited text snippets from the AI Overview (for additional context):
+- ‎Signal - Private Messenger App - App Store: "Signal is a free, privacy-focused messaging app.,* 13+ age rating * In-app purchases"
+Reference Sources:
+
+[R1] Signal’s Creator Is Helping Encrypt Meta AI
+(https://www.wired.com/story/signals-creator-is-helping-encrypt-meta-ai/)
+"""
+Moxie Marlinspike, the privacy advocate who created the secure communication app Signal and its widely used open source encryption protocol, said this week that his privacy-focused AI platform, Confer, will start incorporating its technology into Meta’s AI systems.Every day, billions of chat messages sent through Signal, Meta’s WhatsApp, and Apple’s Messages are protected by end-to-end encryption. The feature, which makes it impossible for tech companies and anyone other than the sender and recipient to snoop on your messages, has become mainstream over the past decade. As generative AI platforms explode in popularity, though, people are now also exchanging billions of messages a day with AI chatbots that don’t offer the protection of end-to-end encryption—making it easy for AI firms to access what you talk about.This is by design, given that platforms often want to train their AI models on as much user data as possible and have made it hard to opt out of having your information used as training data. But as chatbots and AI agents have become more capable, some technologists and companies are pushing to create more constrained and privacy-focused systems.“As LLMs continue to be able to do more, we should expect even more data to flow into them,” Marlinspike wrote in a short blog post about his collaboration with Meta published on Tuesday. “Right now, none of that data is private. It is shared with AI companies, their employees, hackers, subpoenas, and governments. As is always the case with unencrypted data, it will inevitably end up in the wrong hands.”Marlinspike wrote that he will “work to integrate Confer’s privacy technology so that it underpins Meta AI.” He also emphasized that Confer, which debuted at the beginning of this year, will continue to operate independent of Meta. The project’s goal, Marlinspike added, is to offer a technology that “allows everyone to get the full power of AI along with the full privacy of an encrypted conversation.”In 2016, Marlinspike worked with WhatsApp, which is owned by Meta, to roll out end-to-end encryption to more than a billion accounts simultaneously. Over the last year, WhatsApp has introduced a Meta AI chatbot into its app, which isn’t shielded from the company in the same way individual chats are.“People use AI in ways that are deeply personal and require access to confidential information,” WhatsApp head Will Cathcart wrote on Wednesday on the social media platform X about the collaboration with Confer. “It's important that we build that technology in a way that gives people the power to do that privately.”The adoption of encrypted AI is still emerging. The cryptographic schemes used in end-to-end encryption for traditional digital communication aren’t easily or directly translatable into data protections for generative AI. For its part, Confer is still a new project, and Marlinspike’s blog post did not provide specific details about how exactly the collaboration with Meta will work or what the specific goals are for integration.Neither Marlinspike nor Meta provided WIRED with additional comment ahead of publication.Mallory Knodel, a cryptography researcher at New York University, says it would be “great for people using chatbots that use Meta AI to have confidentiality and privacy within that exchange.” Crucially, that means Meta would not be able to access AI chat data for training, says Knodel, who along with colleagues recently published a study on end-to-end encryption and AI. “I really hope more AI chatbots adopt this approach.”Knodel’s preliminary, initial assessments of Confer indicate that the platform isn’t perfect, but is an important example of how to build a private AI chatbot.
+"""
+
+[R2] Signal Messenger: Speak Freely
+(https://signal.org/)
+"""
+Say "hello" to a different messaging experience. An unexpected focus on privacy, combined with all of the features you expect. Get Signal Why use Signal?Explore below to see why Signal is a simple, powerful, and secure messengerShare Without Insecurity State-of-the-art end-to-end encryption (powered by the open source Signal Protocol) keeps your conversations secure. We can't read your messages or listen to your calls, and no one else can either. Privacy isn’t an optional mode — it’s just the way that Signal works. Every message, every call, every time. Say AnythingShare text, voice messages, photos, videos, GIFs and files for free. Signal uses your phone's data connection so you can avoid SMS and MMS fees. Speak FreelyMake crystal-clear voice and video calls to people who live across town, or across the ocean, with no long-distance charges. Make Privacy StickAdd a new layer of expression to your conversations with encrypted stickers. You can also create and share your own sticker packs. Get Together with GroupsGroup chats make it easy to stay connected to your family, friends, and coworkers.No ads. No trackers. No kidding. There are no ads, no affiliate marketers, and no creepy tracking in Signal. So focus on sharing the moments that matter with the people who matter to you.Free for Everyone Signal is an independent nonprofit. We're not tied to any major tech companies, and we can never be acquired by one either. Development is supported by grants and donations from people like you. Donate to Signal
+"""
+
+[R3] Signal - Private Messenger App - App Store
+(https://apps.apple.com/us/app/signal-private-messenger/id874139669)
+"""
+Say “hello” to privacy. Free · In‑App Purchases Signal is a messaging app with privacy at its core. It is free and easy to use, with strong end-to-end encryption that keeps your communication completely private. • Send texts, voice messages, photos, videos, GIFs, and files for free. Signal uses your phone’s data connection, so you avoid SMS and MMS fees. • Call your friends with crystal-clear encrypted voice and video calls. Group calls supported for up to 50 people. • Stay connected with group chats up to 1,000 people. Control who can post and manage group members with admin permission settings. • Share image, text, and video Stories that disappear after 24 hours. Privacy settings keep you in charge of exactly who can see each Story. • Signal is built for your privacy. We know nothing about you or who you’re talking to. Our open source Signal Protocol means that we can’t read your messages or listen to your calls. Neither can anyone else. No back doors, no data collection, no compromises. • Signal is independent and not for profit; a different kind of tech from a different kind of organization. As a 501c3 nonprofit we are supported by your donations, not by advertisers or investors. • For support, questions, or more information please visit https://support.signal.org/ To check out our source code, visit https://github.com/signalapp Follow us on Twitter @signalapp and Instagram @signal_app The front end of Signal, and its user interface, is absolutely wonderful. It is as smooth and pleasant to use as iMessage for sure. Knowing that my messages and calls are end to end encrypted brings a great peace of mind to one’s day to day conversations. But it’s not just pretty and functional on the front end, the technical details and workings of the back end as revealed in Signal’s documentation really shows, in my humble opinion, that this app does what it’s makers say it does, and that the developers do not make false or exaggerated claims about their work. Most importantly, again in my humble opinion, it shows that the beautiful and functional front end, the technically impressive back end, and the resulting full stack of this app was developed by engineers that really care for, and have passion for, the privacy and security of their end users as well as privacy and security overall. It is a rare thing indeed, in this day and age, for a business to back up and follow through on their promises regarding their product. I will use Signal until the day I die unless things somehow dramatically change for the worse. I’m not normally a review writer, and when I do I could never be described as being verbose in what I have to say about something I’m reviewing but Signal and the developers behind it deserve all the praise we can muster! Thank you for the fruits of your labor enhancing my quality of life and peace of mind :) *WARNING* Do not download, install, and use this app! The app developers are responsible for not warning users ahead of time that there will be data loss if you run out of storage space. GitHub is rife with stories of the “Problem Retrieving Data” bug, and there still isn’t a fix. Also they have the signing keys to your data, so your data is not really yours. What’s the point of all that security? I’ve been waiting since October for a bug fix, but there isn’t one, and I have a feeling that there isn’t going to be one. I’m using WhatsApp now, and I love it!! I can’t tell you how many times my phone has ran out of storage space and of course I have gotten the “Storage is full” message from WhatsApp, but as soon as I have freed up even just a little bit of space, I’ve been able to get back into WhatsApp every single time, no problem! And I haven’t even been able to make a chat backup in a long time. This is not the case with Signal. It took just one time of running out of storage space for me to get the “Problem Retrieving Data” popup, saying that some of my “message history may be corrupted.” Unbelievable. What a waste of time. Years of memories wasted. If I would’ve known this years in advance, I would’ve NEVER used this app!! Guys, don’t waste your time, save yourself the trouble and the stress of investing your time and energy in using an app that could possibly cost you major data loss!! • We added convenient shortcuts to open chats or view profile details during group calls. Now you can long-press on any call participant and press them to say something (or tell them you're impressed with the point they just made). • This update also includes several VoiceOver accessibility improvements, particularly for quoted replies. Data Not Linked to You The following data may be collected but it is not linked to your identity: Contact Info Information Seller Signal Messenger, LLC Size 197.3 MB Category Social Networking Compatibility Requires iOS 15.0 or later. iPhoneRequires iOS 15.0 or later. iPadRequires iPadOS 15.0 or later. iPod touchRequires iOS 15.0 or later. Apple VisionRequires visionOS 1.0 or later. Languages English and 41 more English, Arabic, Belarusian, Bengali, Catalan, Croatian, Czech, Danish, Dutch, Finnish, French, German, Greek, Gujarati, Hebrew, Hindi, Hungarian, Indonesian, Irish, Italian, Japanese, Korean, Malay, Marathi, Norwegian Bokmål, Persian, Polish, Portuguese, Romanian, Russian, Serbian, Simplified Chinese, Slovak, Spanish, Swedish, Thai, Traditional Chinese, Turkish, Uighur, Ukrainian, Urdu, Vietnamese Age Rating 13+ 13+ InfrequentProfanity or Crude HumorMature or Suggestive ThemesMedical Treatment informationContainsMessaging and Chat In-App Purchases Yes Signal Secure Backups $1.99 Copyright © Signal Foundation Supports
+"""
+
+[R4] Installing Signal
+(https://support.signal.org/hc/en-us/articles/360008216551-Installing-Signal)
+"""
+Fast, simple, secure. Signal is privacy that fits in your pocket (or on your desk).Download Signal here or follow the installation steps for your platform. Android iOS Linked Desktop Signal users can send private messages and make secure calls to other Signal users anywhere in the world for free over the internet. All Signal-to-Signal communication is private and end-to-end encrypted. Signal-to-Signal messages are secure and free to send and receive using any internet connection enabled on your phone, including WiFi and mobile data. AndroidHow to get started Confirm that your phone is running Android 6.0 or later.Note: Android tablets are not supported. Install and open Signal from the Google Play Store. Follow the on-screen instructions to complete the registration process. Having issues installing on an Android phone? Follow these troubleshooting steps.Reinstalling? Follow these steps to restore from a previously created backup or transfer from an existing phone. iOSHow to get started iPhone/iPod iPad linked to a phone iPad as a separate device iPhone/iPod Confirm that your iOS device is running iOS 15 or later. Install and open Signal from the Apple App Store. Follow the on-screen instructions to complete the registration process. Having issues installing on an iPhone? Follow these troubleshooting steps.Reinstalling on a new device? Follow these steps to transfer from another iOS device.iPad linked to a phone Confirm that your iPad is running iPadOS 15 or later. Install and open Signal from the Apple App Store. Follow the on-screen instructions to link the iPad to your phone.Note: Chat history is not transferred from the phone. Already using an iPad? Update to the latest version or follow these troubleshooting steps for linking.iPad as a separate device Confirm that your iPad is running iPadOS 15 or later. Confirm you can receive SMS (not iMessage) or phone calls to that number. Install and open Signal from the Apple App Store. Select the unlink icon in the top right. Follow the on-screen instructions to complete the registration process. Linked DesktopYou can link Signal Desktop to your mobile device to send and receive Signal messages from your laptop or desktop computer.How to get started Confirm Signal is installed and working on your Android phone or iPhone. Confirm that your OS supports Signal Desktop: Windows 10 and 11. macOS 12 (Monterey) and above. Linux 64-bit distributions supporting APT, like Ubuntu or Debian. Download and open Signal Desktop. Windows: Follow prompts from the install link. macOS: Move Signal to the Applications folder. Non-admin users should search for ~/Applications using Spotlight and move Signal's install file into that directory. Linux: Follow the instructions to configure the Signal repository and install the Signal package. Link Signal Desktop with your phone. Can I install Signal Desktop without a mobile device?No. Signal Desktop must be linked with either Signal Android or Signal iOS to send and receive messages.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

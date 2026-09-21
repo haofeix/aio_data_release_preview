@@ -1,0 +1,88 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "ties at the oscars"
+
+Claims:
+[1] "A tie occurred at the 2026 Oscars in the Best Live Action Short Film category between The Singers and Two People Exchanging Saliva."
+[2] "The tie marks only the seventh time a tie has happened in nearly 100 years."
+[3] "Ties require an exact, identical number of votes from Academy members"
+
+Cited text snippets from the AI Overview (for additional context):
+- A (Brief) History of Ties at the Oscars - Vogue: "By Emma Specter,category at the 2026 Oscars."
+- How Many Ties Have There Been in Oscars History? - Parade: "A tie has occurred for,Best Picture winner if needed."
+- There Was Genuinely Just A Tie At The Oscars: "Believe it or not, there,ABC"
+Reference Sources:
+
+[R1] Oscars 2026: Surprise Tie In Short Film Category
+(https://www.buzzfeed.com/natashajokic1/oscars-2026-tie-short-film)
+"""
+Believe it or not, there was a tie at the 2026 Oscars. ABC A tie is so rare that it's only happened six times before. The most recent tie occurred in 2013 in the Sound Editing Category, when both Zero Dark Thirty (Paul N. J. Ottosson) and Skyfall (Per Hallberg and Karen Baker Landers) won. Oscars are voted on by online ballots of eligible members, so a tie isn't impossible. Oscars This year, Kumail Nanjiani presented the Oscar for Best Live Action Short Film. Except when it came to opening the envelope, he looked more surprised than you might expect: ABC "And the Oscar goes to... It's a tie. I'm not joking," he said. "Everyone calm down, we're going to get through this. Focus up." ABC The first Oscar was for The Singers, which was won by Sam A. Davis and Jack Piatt. Fittingly, when Sam got to the stage, he said, "A tie, wow. I didn't know that was a thing." ABC "Ironic that the Short Film Oscar is going to take twice as long," Kumail then said, before Two People Exchanging Saliva was announced as the second winner. ABC "We are so happy to be sharing this Oscar with The Singers, we love all our fellow nominees," director and writer Natalie Musteata said once she got on stage. ABC History in the making, folks! Check out the rest of our Oscars coverage here.
+"""
+
+[R2] How Many Ties Have There Been in Oscars History?
+(https://parade.com/news/how-many-ties-have-there-been-in-oscars-history)
+"""
+Key PointsThe Oscars had a tie in Best Live Action Short Film at the 98th ceremony.Ties occur when nominees receive exactly equal votes; no tiebreaker is used, except for Best Picture.This was only the 7th tie in Oscars history, with prior ties listed across various categories. A tie has occurred for the 7th time in Oscars history! During the 98th Academy Awards on Sunday, Mar. 15, a rare tie occurred in the Best Live Action Short Film category between The Singers and Two People Exchanging Saliva. Ties only occur when nominees receive the exact same number of votes. The Academy does not have a tiebreaker system in place, however, the Academy and accounting firm PricewaterhouseCoopers told The Wrap that the Oscars would use tiebreakers to determine a single Best Picture winner if needed. What are the other ties in Oscars history? Best Actor: Fredric March (Dr. Jekyll and Mr. Hyde) and Wallace Beery (The Champ) in 1932 Best Documentary Short: So Much for So Little and A Chance to Live in 1950 Best Actress: Katharine Hepburn (The Lion in Winter) and Barbra Streisand (Funny Girl) in 1969 Best Documentary Feature: Artie Shaw: Time Is All You’ve Got and Down and Out in America in 1987 Best Live-Action Short Film: Trevor and Franz Kafka’s It’s a Wonderful Life in 1995 Sound Editing: Zero Dark Thirty and Skyfall in 2013 🎬 SIGN UP for Parade’s Daily newsletter to get the latest pop culture news & celebrity interviews delivered right to your inbox 🎬 About the authorGrace Galante is a freelance journalist from Chicago with a passion for arts, culture, and entertainment stories. Before joining Parade, she produced these stories for digital, radio, and broadcast for NBC News, TMZ, Viewpoints Radio, among other publications.Trending Stories
+"""
+
+[R3] From Barbra Streisand to ‘Zero Dark Thirty’: A (Brief) History of Ties at the Oscars
+(https://www.vogue.com/article/brief-history-of-ties-at-the-oscars-since-1932)
+"""
+Ingrid Bergman, shocked and awed to announce the tie between Barbra Streisand (for Funny Girl) and Katharine Hepburn (for The Lion in Winter) at the 1969 Academy Awards.The Oscars aren’t immune from unplanned strangeness (after all, who can forget 2017’s Moonlight vs. La La Land best-picture mix-up and all the inimitable celebrity reactions it spawned?), but sometimes, the shocker is coming from inside the Academy.There have been a whopping seven ties over the Oscars’ nearly 100-year history, with the latest taking place on Sunday night, when Sam Davis’s The Singers and Alexandre Singh and Natalie Musteata’s Two People Exchanging Saliva both won in the best-live-action-short category at the 2026 Oscars.Here—for the Hollywood trivia fans out there—we’ve rounded up the rest of the Oscars’ shocking ties. Revisit every one below.Fredric March and Wallace Beery for Best Actor, 1932Photo: Getty ImagesMarch technically beat out Beery by one vote, but they both took home Oscar statuettes that night (and forced the Academy to change its rules with their tandem wins).So Much for So Little and A Chance to Live for Best Documentary Short, 1950Thanks to the magic of YouTube, you can actually watch at least one of these Oscar-winning short films above (and marvel at how far we’ve come).Katharine Hepburn and Barbra Streisand for Best Actress, 1969Oh, Ingrid Bergman was delighted about this one, you could tell. It’s only too bad that Hepburn wasn’t there to share in the excitement.Artie Shaw: Time is All You’ve Got and Down and Out in America for Best Documentary (Feature), 1987Sure, a tie might not be any filmmaker’s explicit Oscars dream, but it’s still pretty damn good (especially when Oprah is informing you that you’ve made one of the two top documentary features of the year!).Trevor and Franz Kafka’s It’s A Wonderful Life for Best Live-Action Short Film, 1995“It’s a tie! Oh, mon Dieu,” said presenter Tim Allen as he awarded the Oscar to two different live-action short films for the first (but not last!) time in Oscars history.Zero Dark Thirty and Skyfall for Best Sound Editing, 2013Both of these films were nominated for a slew of different Oscars in 2013, so it’s safe to say that nobody went home a loser.The Singers and Two People Exchanging Saliva for Best Live-Action Short, 2026Am I the only one who thought presenter Kumail Nanjiani was doing a comedy-boy prank when he announced that these two films had tied for the Oscar? As it turns out, he was not.Emma Specter is the Culture Writer at Vogue, where she covers film, TV, books, politics, news, and (almost) anything queer. She has previously worked at Garage and LAist and has freelanced for outlets including The Hairpin, Bon Appetit, them, The Hollywood Reporter, and more. Her first book, More Please: On ... Read More
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

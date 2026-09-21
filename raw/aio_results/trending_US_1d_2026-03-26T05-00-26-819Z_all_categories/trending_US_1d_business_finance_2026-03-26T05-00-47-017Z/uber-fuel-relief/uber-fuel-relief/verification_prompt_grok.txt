@@ -1,0 +1,104 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "uber fuel relief"
+
+Claims:
+[1] "Uber is expanding U.S. fuel relief through May 26, 2026."
+[2] "Uber offers delivery drivers up to 21¢ off per gallon via Shell Fuel Rewards through May 26, 2026."
+[3] "Uber offers delivery drivers up to $1.00 off per gallon via Upside through May 26, 2026."
+[4] "Combined with the Uber Pro Card, top-tier couriers can save up to $1.44 per gallon."
+[5] "Delivery drivers receive mileage-based bonuses of $5–$15 starting March 30, 2026."
+[6] "Delivery driver bonuses are weekly bonuses based on miles driven on active deliveries."
+[7] "Delivery driver bonuses are $5 for 125 miles."
+[8] "Delivery driver bonuses are $10 for 200 miles."
+[9] "Delivery driver bonuses are $15 for 250 miles."
+[10] "Through the Green Future Program, drivers using EVs may receive additional earnings per trip."
+[11] "Through the Green Future Program, drivers using EVs may receive reduced charging costs"
+
+Cited text snippets from the AI Overview (for additional context):
+- Gas Savings for Delivery Drivers: "Shell® Fuel Rewards®,of your earnings and tips."
+- Gas Savings for U.S. Drivers & Couriers: "We know the price of,U.S. through May 26, 2026."
+- New fuel surcharge to help drivers and delivery people - Uber: "We've made a commitment,the latest information, visit here."
+- The delivery company will offer weekly relief payments and cash ...: "The delivery company will offer,rising prices at the pump.""
+- Discounts with Upside | Driving & Delivering - Uber Help: "Sign up for Upside * Open your,Follow the on-screen instructions to sign up."
+Reference Sources:
+
+[R1] Gas Savings for U.S. Drivers & Couriers
+(https://www.uber.com/us/en/newsroom/us-gas-price-relief-2026/)
+"""
+We know the price of gas is top of mind for many rideshare and delivery drivers across the country right now. To help mitigate the exceptional and rapid price increases that drivers have been seeing at the pump, we are significantly expanding the fuel discounts and offers available to Uber drivers and couriers in the U.S. through May 26, 2026. We are also increasing incentives and promos for drivers and couriers to help ensure that their earnings keep pace with higher gas prices.Significantly expanded discounts on gas via Upside and Shell® Fuel Rewards®¹ :Upside: Drivers and couriers can now get up to $1.00 off per gallon of gas with Upside (up from max 25¢ per gallon), based on Uber Pro or Uber Eats Pro tier.Shell: Drivers and couriers can also now get up to 21¢ off per gallon of gas with Shell® Fuel Rewards® (up from max 7¢ per gallon), based on tier.Offers from Upside and Shell® Fuel Rewards® can each be individually combined with the Uber Pro Card, netting even more savings.Up to 15% cash back on gas with the Uber Pro Card ²:Every driver and courier can now also get an additional 5% cash back—on top of existing rates—at any gas station in the country with an Uber Pro Card, no matter their Uber Pro or Uber Eats Pro tier.Blue/Green now earns 7% cash back (up from 2%)Gold earns 8%Platinum earns 9%Diamond earns 11%Plus an additional 3% cash back at Exxonᵀᴹ or Mobilᵀᴹ gas pumps and another 1% cash back at Mastercard Easy Savings stations, meaning top drivers and couriers can now get up to an industry-leading 15% cash back at the pump with an Uber Pro Card—up from the previous 10% max rate.Altogether, top-tier drivers and couriers can save up to $1.44 per gallon when they fill up their tank using these combined offers and discounts. These savings via the Uber Pro Card, Upside, and Shell® Fuel Rewards® will begin on Friday, March 27 and remain in place in the U.S. through May 26, 2026.Assumes average gas price of $3.97/gallon. Actual savings may vary.Increased promos and incentives for drivers & couriersWe are also investing in promos and incentives across the board for drivers and couriers to help offset higher gas prices, as well as continuing to find ways to support drivers who want to transition to electric vehicles. Uber drivers already make up the largest electric vehicle fleet out of any ridehail platform in the world, with 286,000 monthly active ZEV drivers. ###¹ Terms apply. See Uber Pro Terms, Uber Eats Pro Terms, Upside Terms, and Shell® Fuel Rewards® Terms for details.² The Uber Pro Card is a business debit card available to all drivers and couriers, subject to approval. User must select Credit or Bypass PIN to receive cash back for qualifying purchases. Selecting Debit or entering your PIN number will disqualify your purchase from earning cash back.For US Users: Banking services are provided by Evolve Bank & Trust, Member FDIC. The Uber Pro Card is a Mastercard debit card powered by Branch and issued by Evolve Bank & Trust pursuant to a license from Mastercard and may be used everywhere Mastercard debit cards are accepted. Uber is not responsible for the products and/or services offered by other companies, or for the terms and conditions (including financial terms) under which those products and/or services are offered. Exxon and Mobil are trademarks or registered trademarks of Exxon Mobil Corporation or one of its subsidiaries. Other trademarks shown are property of their respective owners.Up to 15% is available for drivers and couriers with Diamond status who pay with the Uber Pro Card at the pump at ExxonMobilᵀᴹ stations associated with the Mastercard Easy Savings program. Base cash back benefit is between 7% and 11% for gas purchases, depending on your Uber Pro status. Total cash back you can earn with the Uber Pro Card on refueling (gas or EV charging) is $105 per month, excluding any Mastercard Easy Savings cash back (see their Terms and Conditions here. Mastercard Easy Savings may not be available in all locations. For more information on Mastercard Easy Savings, visit their Terms and Conditions page here. Select Credit or Bypass PIN to receive cash back for qualifying purchases. Selecting Debit or entering your PIN number will disqualify your purchase from earning cash back. In addition, only payments made at the pump are eligible. Please visit Uber Pro Card Rewards Terms & Conditions for more information on how to qualify your purchase for cash back.
+"""
+
+[R2] Gas Savings for Delivery Drivers
+(https://www.uber.com/blog/gas-savings-for-delivery-drivers/)
+"""
+We know the price of gas is top of mind for many delivery drivers across the country right now. To help mitigate the exceptional and rapid price increases that drivers have been seeing at the pump, we are significantly expanding the fuel discounts and offers available to Uber couriers through May 26, 2026. We are also increasing incentives and promos for couriers to help ensure that their earnings keep pace with higher gas prices.Expanded rebates and discounts on gas through Uber Eats Pro*Every driver and courier can now get an additional 5% cash back—on top of existing rates—at any gas station in the country with an Uber Pro Card, no matter their Uber Pro or Uber Eats Pro tier.** Blue/Green now earns 7% cash back Gold earns 8% Platinum earns 9% Diamond earns 11% Plus an additional 3% cash back at Exxon™ or Mobil™ gas pumps and another 1% cash back at Mastercard Easy Savings stations, meaning top drivers and couriers can now get up to an industry-leading 15% cash back at the pump—up from the previous 10% max rate. Significantly expanded discounts on gas via Upside and Shell Fuel Rewards:*** Shell® Fuel Rewards® program: Delivery drivers can get up to 21¢ off per gallon of gas with Shell (up from max 7¢ per gallon) Upside: Delivery drivers can now get up to $1.00 off per gallon off of gas with Upside (up from max 25¢ per gallon) Offers from Upside and Shell Fuel Rewards can each be individually combined with the Uber Pro Card, netting even more savings.Altogether, top-tier couriers can save up to $1.44 per gallon when they fill up their gas tank using these combined offers and discounts. These savings via the Uber Pro Card, Upside, and Shell Fuel Rewards will begin on Friday, March 27 and remain in place in the U.S. through May 26, 2026.Increased promos and incentives for delivery driversWe are additionally providing mileage-based relief for delivery drivers that will be paid out on a weekly basis starting on Monday, March 30th, based on a driver’s utilized mileage that week. This incentive is initially set to end on May 3, 2026. After 125 miles on active deliveries, delivery drivers will get $5 on top of your earnings and tips. After 200 miles on active deliveries, delivery drivers get $10 on top of your earnings and tips. After 250 miles on active deliveries, delivery drivers get $15 on top of your earnings and tips. For the purposes of this reward, miles for active deliveries are calculated from the moment you accept the order through drop-off. This incentive is currently set to end on May 3, 2026. We are also investing in promos and incentives across the board for drivers and couriers to help offset higher gas prices, as well as continuing to find ways to support drivers who want to transition to electric vehicles. Uber drivers already make up the largest electric vehicle fleet out of any ridehail platform in the world, with 286,000 monthly active ZEV drivers. Uber Pro terms apply. See Uber Pro terms and conditions. See Uber Eats Pro terms and conditions.*All mentioned promotions may be modified or changed at any time, without notice, in Uber’s sole discretion, subject to applicable law.**Banking services are provided by Evolve Bank & Trust, Member FDIC. The Uber Pro Card is a Mastercard debit card powered by Branch and issued by Evolve Bank & Trust pursuant to a license from Mastercard and may be used everywhere Mastercard debit cards are accepted. Uber is not responsible for the products and/or services offered by other companies, or for the terms and conditions (including financial terms) under which those products and/or services are offered. Exxon and Mobil are trademarks or registered trademarks of Exxon Mobil Corporation or one of its subsidiaries. Other trademarks shown are property of their respective owners.Up to 15% is available for drivers and couriers with Diamond status who pay with the Uber Pro Card at the pump at ExxonMobilᵀᴹ stations associated with the Mastercard Easy Savings program. Base cash back benefit is between 7% and 11% for gas purchases, depending on your Uber Pro status. Total cash back you can earn with the Uber Pro Card on refueling (gas or EV charging) is $105 per month, excluding any Mastercard Easy Savings cash back (see their Terms and Conditions here. Mastercard Easy Savings may not be available in all locations. For more information on Mastercard Easy Savings, visit their Terms and Conditions page here. Select Credit or Bypass PIN to receive cash back for qualifying purchases. Selecting Debit or entering your PIN number will disqualify your purchase from earning cash back. In addition, only payments made at the pump are eligible. Please visit Uber Pro Card Rewards Terms & Conditions for more information on how to qualify your purchase for cash back.***Upside: Each deal is valid for up to 50 gallons. You can claim up to 5 fuel offers daily. You’re limited to 2 offers per gas station each day. See Upside Terms. See Shell® Fuel Rewards® Terms for details on those terms.
+"""
+
+[R3] Discounts with Upside | Driving & Delivering | Uber Help
+(https://help.uber.com/en/driving-and-delivering/article/discounts-with-upside?nodeId=d66968d7-5e77-4725-9c5d-8b853cadc029)
+"""
+Upside is a discount platform that Uber has partnered with to help you save money. If you’re a driver, you can get cash back on purchases like: Gas Groceries Food at restaurants Items from convenience stores Simply use the pit stop feature in the Uber Driver app to find participating locations and start saving. Sign up for Upside Open your Uber Driver app. Tap “Cash-back on fuel.” Follow the on-screen instructions to sign up. Using Upside Sign into your Uber Driver app and go online. Tap the coffee mug icon to see pit stop deals on the map. Choose a pit stop to get more details. Tap “Navigate” to get directions to the location. Drive to the pit stop. Select “Claim deal at this stop” to open Upside and sign up. Use the card linked to your Upside account to pay. After your break, tap “Resume” to go back online. You’ll get cash back in your Wallet after 10-14 business days once Upside confirms your transaction. Limitations of Upside offers Each deal is valid for up to 50 gallons. You can claim up to 5 fuel offers daily. You’re limited to 2 offers per gas station each day. Additional savings with Uber Pro Card 2%-6% cash back on fuel, based on your Uber Pro tier. 4%-12% cash back on electric vehicle charging. Use Mastercard Easy Savings for an extra 1% cash back at selected places. Terms of Upside discounts Uber isn’t responsible for external company products, services, or terms. Banking services provided by Evolve Bank & Trust, Member FDIC. Uber Pro Card is a Mastercard debit card issued by Evolve Bank & Trust. Cash-back benefits vary by your Uber Pro status. Mastercard Easy Savings might not be available everywhere. Remember, always read the terms and conditions carefully for any financial services or offers you participate in.
+"""
+
+[R4] New fuel surcharge to help drivers and delivery people
+(https://www.uber.com/ca/en/newsroom/new-fuel-surcharge-to-help-drivers-and-delivery-people/)
+"""
+Many people are feeling the sting of record-high prices at the pump—and that’s doubly true of drivers and delivery people. While earnings on our platform remain elevated compared to historical trends, the recent spike in gas prices has affected rideshare and delivery drivers more than most. To help reduce the burden, we are rolling out a temporary fuel surcharge.Beginning Wednesday, March 16, rideshare riders will pay a $0.50 surcharge on every ride and, on Uber Eats where trips are shorter, consumer fees will be adjusted to cover the equivalent of a $0.35 surcharge on every delivery. 100% of surcharges will go directly to drivers and delivery people. The temporary fee is designed to reduce the burden of high gas prices, not to cover the full cost of a tank. The fee is temporary but lasts for at least the next 60 days, but we will continue to review feedback and monitor gas prices throughout that period. Importantly, we will also seize this moment to bolster our efforts to help more drivers make the switch to electric vehicles, which will both limit the impact of the volatility in fuel prices and lower emissions. We’ve made a commitment to operate a zero-emission platform globally by 2040, and in Canadian cities with supportive policies—like Toronto, Montreal and Vancouver—by 2030. Earlier this year, we announced a partnership with Plug’n Drive to create and offer webinars as well as host test drive opportunities for drivers. This will give drivers the opportunity to learn about the total cost of owning an EV and the benefits of making the switch from gas to electric. Drivers who switch to EVs can enjoy higher earnings potential due to Uber’s Green Future Program, which provides incentives – such as $1 more per trip up to $4,000 annually – for drivers to transition from gas-powered vehicles to EVs. For the latest information, visit here.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

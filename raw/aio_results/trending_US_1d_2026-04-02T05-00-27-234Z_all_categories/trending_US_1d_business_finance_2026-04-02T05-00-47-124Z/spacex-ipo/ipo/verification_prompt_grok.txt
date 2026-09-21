@@ -1,0 +1,359 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "ipo"
+
+Claims:
+[1] "An Initial Public Offering (IPO) is the process where a private company first sells shares to the public."
+[2] "An IPO involves hiring underwriters."
+[3] "An IPO involves filing a SEC registration statement (Form S-1)."
+[4] "An IPO involves undergoing a roadshow to gauge investor interest."
+[5] "Companies hire investment banks (underwriters) to manage the offering."
+[6] "Underwriters determine the initial stock price."
+[7] "The initial stock price is based on company fundamentals, demand, and market conditions."
+[8] "Companies must meet exchange listing requirements."
+[9] "Companies must comply with SEC regulations, including filing a prospectus detailing their financial health."
+[10] "An underwriting syndicate is a team of banks that manages the issuance and sale of shares."
+[11] "A prospectus is a formal document providing investors with detailed financial information, risk factors, and the company's business plan."
+[12] "IPO pricing is determined by underwriters based on demand in the order book."
+
+Cited text snippets from the AI Overview (for additional context):
+- What Is An IPO? - Fidelity Investments: "Investing in IPOs and other,as part of the IPO."
+- Initial public offering - Wikipedia: "IPOs generally involve one or,broker-dealer selling the shares."
+- IPO News Unveiled: Decoding Market Trends: "The company files a registration statement, including,with institutional investors and other potential buyers."
+Reference Sources:
+
+[R1] New Issue Stocks: IPOs and DPOs Public
+(https://www.schwab.com/stocks/ipo-direct-listing)
+"""
+Upbeat music plays throughout. Narrator: An IPO, or Initial Public Offering, is the initial sale of a company's stock to the public. Prior to the IPO, the company's stock is privately held and cannot be sold to the public. Startup companies may go public to raise money to develop and grow their business. Other companies may go public to expand existing products or services. There are some other advantages to going public. Companies can raise capital without increasing debt and allow existing shareholders to profit from company growth by liquidating their shares. But on the flip side, public companies have increased reporting requirements and additional marketing, accounting, and legal costs. So how exactly does a company go public? First, a company gets the help of an investment bank to underwrite the public offering of shares. This means they set the price for how much each share sells for. In turn, the underwriter gets a commission on the sale of these shares. Often, the lead underwriter will gather other investment banks into a syndicate, allowing more institutions to get involved. The company, along with the underwriting syndicate, will develop a prospectus—a report detailing the specifics of the offering—and will register with the SEC and then get purchase commitments from institutional investors, brokers, and other banks. These groups then make the shares available, generally to high-value customers, typically in exchange for holding the stock for a period of time. This placement of shares is the Initial Public Offering. Once the IPO is complete, shares start trading on a stock exchange. It's here that the stock price is determined by market forces, not the underwriters or company. Often, there is a great deal of excitement driving buying and selling. Investors interested in participating in the initial placement should check with their broker for share availability. But for the average retail investor, buying shares at the offering price before the stock starts trading is difficult. Most will have to wait until it trades on the stock exchange. It's important to realize that the risk of an IPO varies based on the company going public. Some companies have a long history of earnings growth prior to going public, while others might be going public to generate money to pay their bills. There are also risks common to most IPOs, including the lack of previous trading history, limited company information, and initial price volatility. And the risk of loss is substantial. But with the risk of loss comes the potential for profit as well. And this potential is one reason many traders pay so much attention to IPOs. Onscreen text: [Schwab logo] Own your tomorrow®
+"""
+
+[R2] Important Information about Initial Public Offerings
+(https://www.bairdwealth.com/globalassets/pdfs/help/important-information-about-ipos.pdf)
+"""
+Important Information about Initial Public Offerings
+ We have prepared this document to help you prospectus (or other documents permitted by law).
+ understand the characteristics and risks associated During its review, the SEC staff may provide
+ with investing in initial public offerings (“IPOs”), to comments to the company and require the
+ assist you in making a more informed decision when company to make changes or additions to the
+ buying securities in an IPO. This document is prospectus in order to comply with disclosure
+ compiled for your information and is intended to be requirements. Once the SEC staff’s comments have
+ a conversation starter between you and your Baird been addressed, the SEC will declare the
+ Financial Advisor or other appropriate experts, such registration statement effective. At that time, the
+ as your tax or legal advisors. Your Baird Financial company will determine the IPO price (the initial
+ Advisor is available to address your questions and price offered to the public) after consultations and
+ discuss the features, characteristics, costs, and risks negotiations with the underwriters who will provide
+ of any particular investment. Additionally, the their perspectives based on market conditions,
+ Securities and Exchange Commission (SEC) has analyses and indications of interest received. Once
+ issued an Investor Bulletin, “Investing in an IPO,” the IPO prices, sales to investors will be made at that
+ that provides useful information about IPOs, which price. Please note that the declaration by the SEC of
+ can be found at www.sec.gov/investor/alerts/ipo- the effectiveness of the registration statement does
+ investorbulletin.pdf. IPOs can be speculative not mean that the SEC has approved the merits of
+ investments and involve significant risks. As a result, the IPO or that the SEC has determined the
+ IPO investments may not be suitable for all clients. prospectus to be accurate or complete.
+
+ Characteristics of IPOs Before deciding to invest in an IPO an investor
+ An initial public offering, or IPO, refers to the first should receive a copy of the preliminary prospectus,
+ time a company offers and sells its stock to the which will omit certain price-related information.
+ general public. Typically, the company selects an After agreeing to buy the shares offered in the IPO,
+ underwriter or group of underwriters to make offers investors will either receive the final prospectus or a
+ and sales of the stock to the public. The notice informing them how to obtain the final
+ underwriters buy the stock from the company at a prospectus. Investors will also receive a
+ discount from the price at which the stock is offered confirmation of the trade, which may contain the
+ to the public. This discount is called the notice on how to obtain the final prospectus.
+ “underwriting discount” and for many IPOs it is 7%.
+ Thus, when Baird serves as an underwriter for an Following the IPO, the company’s stock will be listed
+ IPO, Baird will receive an underwriting discount, on an exchange, such as the New York Stock
+ providing Baird with an incentive to sell the stock to Exchange or NASDAQ. The IPO stock can then be
+ its clients. traded in the secondary market, subject to
+ applicable trading volumes that may affect liquidity,
+ An IPO must be registered with the Securities and and the price of the stock will trade at a market price
+ Exchange Commission (SEC). The company files a which is likely to vary from the IPO price based on
+ registration statement with the SEC, and the supply and demand and other factors. The
+ registration statement is reviewed by the SEC staff. exchanges impose certain obligations on listed
+ The registration statement includes a prospectus, companies, including governance requirements. In
+ which is the document delivered or made available addition, the company will become a reporting
+ to investors in the IPO. The prospectus describes company, which means it will be required to make
+ the company, the securities being offered, the terms certain filings with the SEC and deliver certain
+ of the offering, and other information that is reports to shareholders. These filings and reports
+ important for investors to know when deciding to include current reports (Form 8-K), quarterly reports
+ buy stock in the IPO. (Forms 10-Q), annual reports (Forms 10-K) and
+ proxy statements. Reporting companies are also
+ While the registration statement is being reviewed subject to other requirements under the Securities
+ by the SEC staff, the company and the underwriters Exchange Act of 1934.
+ may offer (but not sell) the shares to potential buyers
+ to obtain indications of interest. If any offers are Obtaining information about the IPO
+ made in writing, the company and the underwriters A company pursuing an IPO is required to file a
+ may generally only do so by means of a preliminary registration statement, which includes a prospectus,
+
+©2025 Robert W. Baird & Co. Incorporated 1.800.RWBAIRD
+777 East Wisconsin Avenue www.rwbaird.com
+ 1 of 4
+Milwaukee, Wisconsin 53202 Member FINRA & SIPC
+ Important Information about Initial Public Offerings
+ (Continued)
+ as well as any amendments to the registration o Management’s discussion and analysis. In this
+ statement. The company will also be required to file section, the company’s management provides its
+ the final prospectus with the SEC. The registration narrative perspective on the company’s financial
+ statement, any amendments to the registration results, condition, liquidity and capital resources,
+ statement and the final prospectus are publicly and contains an explanation for changes in the
+ available on the SEC’s EDGAR database at company’s financial results from year to year.
+ www.sec.gov. Additionally, the underwriters are
+ required to deliver a preliminary prospectus. You o Business. This section describes the company’s
+ can also obtain a copy of the preliminary prospectus products, services, markets, strategies,
+ from an underwriter. competition, properties and litigation.
+
+ The preliminary prospectus and final prospectus for o Management. This section includes
+ an IPO contain information that is important to biographical information about the company’s
+ consider before investing in the IPO. You should directors and executive officers, as well as an
+ read the preliminary prospectus carefully and ask employment or related contracts and other
+ your Baird Financial Advisor any questions you may relationships with them.
+ have. The prospectus is divided into various
+ sections, including the following: o Principal Shareholders. This provides
+ information on the ownership of the company’s
+ o Prospectus summary. Briefly summarizes stock by its officers, directors and principal
+ information disclosed in more detail in the shareholders.
+ prospectus.
+ o Financial statements. This section, found in the
+ o Risk factors. This section describes relevant back of the prospectus, provides financial
+ risks associated with an investment in the statements on the company’s financial condition
+ company and the securities being offered. and performance, and notes to the financial
+ statements. Typically, the financial statements
+ o Use of proceeds. Specifies how the company cover the past three fiscal years, except for
+ plans to use the proceeds it receives from the emerging growth companies and smaller
+ IPO. reporting companies which report for the past
+ two fiscal years, which financial statements are
+ o Dividend policy. This describes the company’s audited and include the auditor’s report. The
+ history of paying dividends and what its financial statements may also include interim
+ intentions are in that regard. financial results through the quarter preceding
+ the IPO.
+ o Dilution. This section compares the price that
+ investors are paying for the stock in the IPO to Understanding the Risks
+ the book value of the stock and the average price Risk is inherent in any investment product or
+ paid by existing shareholders. Often, there is a strategy. Certain of the common risks and other
+ meaningful disparity in this comparison. important considerations associated with
+ investment in IPOs are highlighted below. You are
+ o Capitalization. A table describes the company’s strongly encouraged to review the prospectuses or
+ outstanding indebtedness and securities on a other disclosure documents associated with any
+ pro forma basis (assuming completion of the product for a more fulsome discussion of additional
+ IPO). risks and other important considerations before
+ making any invest decision. Additional information
+ o Selected financial data. This section shows regarding investment risks generally and other
+ certain key financial and other data in a summary important consideration is also available at:
+ tabular format. Its purpose is to enable investors https://www.bairdwealth.com/retailinvestor
+ to focus on key information and to identify
+ trends. Normally this data is provided for the IPOs can be speculative investments and involve
+ prior five fiscal years, plus any interim quarterly special risks and other considerations which are
+ periods. important to consider when making a purchase
+
+©2025 Robert W. Baird & Co. Incorporated 1.800.RWBAIRD
+777 East Wisconsin Avenue www.rwbaird.com
+ 2 of 4
+Milwaukee, Wisconsin 53202 Member FINRA & SIPC
+ Important Information about Initial Public Offerings
+ (Continued)
+ decision. The prospectus for each IPO will contain generally only those that were sold in the IPO.
+ a “Risk Factors” section that describes the specific Other outstanding shares, such as those held by
+ risks applicable to that IPO, including risks founders, early investors and employees that
+ associated with the company and the common have not been included in the IPO, may not be
+ stock. sold in the public market because they have
+ resale restrictions or limitations or may be
+ o Offering price. The public offering or IPO price subject to lock-up agreements. Although shares
+ is determined by the company in consultation issued in an IPO may be listed on a national
+ and negotiation with the underwriters, taking exchange and be freely saleable, trading
+ into account market condition, analyses of volumes may be limited because of supply and
+ possible valuations, and the underwriters’ order demand which may create challenges in selling
+ book. The order book is a compilation of the shares in sufficient quantities or at attractive
+ investors’ indications of interest, showing how prices.
+ many shares each investor would be willing to
+ buy and at what price. The public offering price o Market overhang. When a company does an
+ is not a reflection of the market price, as no IPO it is only registering and selling a certain
+ market price has been established prior to the number of shares. The company will have other
+ IPO. It is important to understand that shares outstanding which are not included in the
+ competing interests affect the determination of IPO. Many of the outstanding shares may be
+ the public offering price. On the one hand, the restricted from trading at the time of the IPO,
+ company seeks to maximize the public offering with those restrictions lapsing or expiring at
+ price because the higher the price the more certain points in time. As any restrictions lapse or
+ capital it can raise without having to issue more expire on outstanding shares, the market price
+ shares. Underwriters are interested in a high may decline because of a potential increase in
+ price in order to meet the company’s objectives, the supply of shares that can be sold. The
+ but at the same time they want a price that is company will describe the number of its
+ attractive to investors. Underwriters thus have an outstanding shares and the applicable
+ incentive to price an IPO that will increase restrictions on the resale of those shares in the
+ demand and enable the underwriters to sell all prospectus for the IPO.
+ of the shares. Often, the market or trading price
+ of shares that were offered in an IPO may vary o Company history; stage of development;
+ dramatically from the IPO price, even shortly emerging growth companies. Many IPOs
+ after the IPO is completed. The market price can feature high-profile or highly developed or
+ be higher or lower than the IPO price. seasoned companies, including those that have
+ a long history and years of consistent earnings.
+ o Market risk. The market price of shares issued However, some IPO companies may be in earlier
+ in the IPO will move up or down based on stages of development, have short operating
+ various factors, including macro-economic histories or lack earnings, which causes an
+ conditions, governmental policies, prevailing investment in those companies to be more
+ interest rates, movements in the stock markets speculative and the stock prices to be more
+ generally, consumer and investor sentiment, volatile. In addition, certain companies may be
+ conditions or developments affecting the “emerging growth companies,” which are
+ industry or sector in which the company companies with revenues of less than $1 billion.
+ operates, and conditions, events or Emerging growth companies are eligible for
+ developments that are specific to the company. relief from some of the requirements that apply
+ to other public companies, such as reduced
+ o Price volatility and liquidity risk. The market financial disclosures, delayed adoption of
+ price of shares issued in an IPO may fluctuate financial accounting standards, an exemption
+ significantly, particularly in the brief period of from auditor attestations relating to the
+ time after the IPO. The market price may also be company’s internal control over financial
+ affected by a limited supply of shares in the reporting, scaled-back executive compensation
+ market following the IPO. The shares that are information, and exemptions from say-on-pay
+ traded in the early days after the IPO are shareholder advisory votes.
+
+©2025 Robert W. Baird & Co. Incorporated 1.800.RWBAIRD
+777 East Wisconsin Avenue www.rwbaird.com
+ 3 of 4
+Milwaukee, Wisconsin 53202 Member FINRA & SIPC
+ Important Information about Initial Public Offerings
+ (Continued)
+ o Market capitalization. Some IPO companies For more information on investing in IPOs, please
+ may have smaller market capitalizations. A review the SEC Investor Bulletin, “Investing in an
+ company’s market capitalization is determined IPO,” located on the SEC’s website at:
+ by multiplying the market price of its commons http://www.sec.gov/investor/alerts/ipo-
+ stock by the number of outstanding shares. investorbulletin.pdf
+ Companies with smaller market capitalizations
+ involve greater risk than larger companies.
+ Stocks of smaller companies tend to be more
+ volatile and less liquid than larger companies.
+ The frequency and volume of trading of smaller
+ company stocks may be substantially less than is
+ typical of larger companies. Smaller company
+ stocks are more likely to be adversely affected by
+ poor economic or market conditions. Smaller
+ companies may also lack management depth
+ and experience, financial resources and product
+ or customer diversification, making them more
+ susceptible to market pressure and business
+ failure.
+
+ o Common stock rights; takeover defenses.
+ Some companies engaging in IPOs may create
+ separate classes of common stock, with one class
+ having greater voting power than the class being
+ sold in the IPO. This structure is often used when
+ the current owners (such as the family or
+ founders) wish to continue to exercise control by
+ retaining super-voting stock. The holders of the
+ common stock issued to the public in the IPO
+ thus have little influence over management and
+ the decisions it makes. Additionally, many IPO
+ companies adopt various takeover defenses,
+ such as staggered boards, control share
+ limitations and others, making it more difficult for
+ change of control transactions to occur.
+
+ o Specific company risk. Any investment in an
+ IPO involves risks specific to the company and its
+ business, products, strategies and prospects.
+ Such risks are described in more detail in the
+ prospectus for that company.
+
+ More Information
+ Before investing in an IPO, it is important to
+ understand and discuss with your Baird Financial
+ Advisor the terms of the offering and company’s
+ business and the potential risks. Investors in IPOs
+ should have a high tolerance for risk, including the
+ willingness and ability to accept significant price
+ volatility, potential lack of liquidity and potential loss
+ of their investment. Before buying shares in an IPO,
+ you should obtain and read the prospectus
+ carefully.
+
+©2025 Robert W. Baird & Co. Incorporated 1.800.RWBAIRD
+777 East Wisconsin Avenue www.rwbaird.com
+ 4 of 4
+Milwaukee, Wisconsin 53202 Member FINRA & SIPC
+"""
+
+[R3] Initial Listings | NYSE Regulation
+(https://www.nyse.com/regulation/initial-listings)
+"""
+The Initial Listings group at NYSE Regulation is responsible for reviewing and approving companies seeking to list securities on the Exchange. Companies are required to meet rule-based eligibility standards related to financial strength, governance practices, and market suitability. Links to the exchange listing rules and other reference materials to support prospective issuers can be found below. RulesThe complete set of NYSE rules can be found in the NYSE Listed Company Manual.StandardsQuantitativeDisclaimer: The information presented below provides an overview of the standards for reference purposes. For a complete description of the quantitative listing requirements, please refer to the NYSE Listed Company Manual.QualitativeThe Exchange has broad discretion regarding the listing of a company. All listed companies must comply with the Exchange's corporate governance standards of Section 3 of the NYSE Listed Company Manual. In addition, companies must meet other qualitative criteria including but not limited to being suitable for auction market trading and maintaining a healthy level of financial liquidity.ApplicationsThe NYSE application process involves two steps: a confidential eligibility review and a formal application. To apply for listing, please contact the Exchange to request a confidential review of eligibility. If the company is deemed eligible for listing by NYSE Regulation, the company may proceed with the electronic submission of the application. For reference purposes only, the following links provide examples of the information submitted electronically in Listing Manager during the formal application. A company should not submit an original listing application until the Exchange has provided a letter advising the company that it has been cleared to apply.Fees and Listing ProcessNYSE's listing fees are detailed in Section 902 of the NYSE Listed Company Manual. For additional information about fees and the listing process (including ticker reservation and DMM selection), please contact us.
+"""
+
+[R4] formacionpoliticaisc.buenosaires.gob.ar
+(https://formacionpoliticaisc.buenosaires.gob.ar/breaking-review/ipo-news-unveiled-decoding-market-trends-1767648430)
+"""
+This site can’t be reached formacionpoliticaisc.buenosaires.gob.ar took too long to respond. Try: Checking the connection Checking the proxy and the firewall ERR_CONNECTION_TIMED_OUT Reload Details Check your Internet connection Check any cables and reboot any routers, modems, or other network devices you may be using. Allow Chrome to access the network in your firewall or antivirus settings. If it is already listed as a program allowed to access the network, try removing it from the list and adding it again. If you use a proxy server… Go to Applications > System Settings > Network, select the active network, click the Details… button, and deselect any proxies that may have been selected. formacionpoliticaisc.buenosaires.gob.ar took too long to respond.
+"""
+
+[R5] Initial public offering
+(https://en.wikipedia.org/wiki/Initial_public_offering)
+"""
+From Wikipedia, the free encyclopedia An initial public offering (IPO) or stock launch is a public offering in which shares of a company are sold to institutional investors[1] and usually also to retail investors.[2] An IPO is typically underwritten by one or more investment banks, who also arrange for the shares to be listed on one or more stock exchanges. Through this process, colloquially known as floating or going public, a privately held company is transformed into a public company. IPOs can be used to raise new equity capital for companies, to monetize the investments of private shareholders such as company founders or private equity investors, and to enable easy trading of existing holdings or future capital raising by becoming publicly traded. After the IPO, shares are traded freely in the open market at what is known as the free float. Stock exchanges stipulate a minimum free float both in absolute terms (the total value as determined by the share price multiplied by the number of shares sold to the public) and as a proportion of the total share capital (i.e., the number of shares sold to the public divided by the total shares outstanding). Although IPO offers many benefits, there are also significant costs involved, chiefly those associated with the process such as banking and legal fees, and the ongoing requirement to disclose important and sometimes sensitive information. Details of the proposed offering are disclosed to potential purchasers in the form of a lengthy document known as a prospectus. Most companies undertake an IPO with the assistance of an investment banking firm acting in the capacity of an underwriter. Underwriters provide several services, including help with correctly assessing the value of shares (share price) and establishing a public market for shares (initial sale). Alternative methods such as the Dutch auction have also been explored and applied for several IPOs. The earliest form of a company which issued public shares was the case of the publicani during the Roman Republic, although this claim is not shared by all modern scholars.[3] Like modern joint-stock companies, the publicani were legal bodies independent of their members whose ownership was divided into shares, or parts.[4] There is evidence that these shares were sold to public investors and traded in a type of over-the-counter market in the Forum, near the Temple of Castor and Pollux. The shares fluctuated in value, encouraging the activity of speculators, or quaestors. Mere evidence remains of the prices for which parts were sold, the nature of initial public offerings, or a description of stock market behavior. Publicani lost favor with the fall of the Republic and the rise of the Empire.[5] In the United States, the first IPO was the public offering of Bank of North America around 1783.[6] IPO procedures are governed by different laws in different countries. In the United States, IPOs are regulated by the United States Securities and Exchange Commission under the Securities Act of 1933.[7] In the United Kingdom, the UK Listing Authority reviews and approves prospectuses and operates the listing regime.[8] Planning is crucial to a successful IPO. Following highlights some general steps to planning[9] (simplified, may have more steps): develop impressive management and professional team grow the company's business with an eye to the public marketplace obtain audited financial statements using IPO-accepted accounting principles clean up the company's act establish antitakeover defenses develop good corporate governance create insider bail-out opportunities and take advantage of IPO windows. Retention of underwriters[edit] IPOs generally involve one or more investment banks known as "underwriters". The company offering its shares, called the "issuer", enters into a contract with a lead underwriter to sell its shares to the public. The underwriter then approaches investors with offers to sell those shares. A large IPO is usually underwritten by a "syndicate" of investment banks, the largest of which take the position of "lead underwriter". Upon selling the shares, the underwriters retain a portion of the proceeds as their fee. This fee is called an underwriting spread. The spread is calculated as a discount from the price of the shares sold (called the gross spread). Components of an underwriting spread in an initial public offering (IPO) typically include the following (on a per-share basis): manager's fee, underwriting fee—earned by members of the syndicate, and the concession—earned by the broker-dealer selling the shares. The manager would be entitled to the entire underwriting spread. A member of the syndicate is entitled to the underwriting fee and the concession. A broker-dealer who is not a member of the syndicate but sells shares would receive only the concession, while the member of the syndicate who provided the shares to that broker-dealer would retain the underwriting fee.[10] Usually, the managing/lead underwriter, also known as the bookrunner, typically the underwriter selling the largest proportions of the IPO, takes the highest portion of the gross spread, up to 8% in some cases. Multinational IPOs may have many syndicates to deal with differing legal requirements in both the issuer's domestic market and other regions. For example, an issuer based in the E.U. may be represented by the major selling syndicate in its domestic market, Europe, in addition to separate group corporations or selling them for US/Canada and Asia. Usually, the lead underwriter in the head selling group is also the lead bank in the other selling groups. Because of the wide array of legal requirements and because it is an expensive process, IPOs also typically involve one or more law firms with major practices in securities law, such as the Magic Circle firms of London and the white-shoe firms of New York City. Financial historians Richard Sylla and Robert E. Wright have shown that before 1860 most early U.S. corporations sold shares in themselves directly to the public without the aid of intermediaries like investment banks.[11] The direct public offering (DPO), as they term it,[12] was not done by auction but rather at a share price set by the issuing corporation. In this sense, it is the same as the fixed price public offers that were the traditional IPO method in most non-US countries in the early 1990s. The DPO eliminated the agency problem associated with offerings intermediated by investment banks. Allocation and pricing[edit] The sale (allocation and pricing) of shares in an IPO may take several forms. Common methods include: Best efforts contract Firm commitment contract All-or-none contract Bought deal Public offerings are sold to both institutional investors and retail clients of the underwriters. A licensed securities salesperson (Registered Representative in the US and Canada) selling shares of a public offering to their clients is paid a portion of the selling concession (the fee paid by the issuer to the underwriter) rather than by their client. In some situations, when the IPO is not a "hot" issue (undersubscribed), and where the salesperson is the client's advisor, it is possible that the financial incentives of the advisor and client may not be aligned. The issuer usually allows the underwriters an option to increase the size of the offering by up to 15% under a specific circumstance known as the greenshoe or overallotment option. This option is always exercised when the offering is considered a "hot" issue, by virtue of being oversubscribed. In the US, clients are given a preliminary prospectus, known as a red herring prospectus, during the initial quiet period. The red herring prospectus is so named because of a bold red warning statement printed on its front cover. The warning states that the offering information is incomplete, and may be changed. The actual wording can vary, although most roughly follow the format exhibited on the Facebook IPO red herring.[13] During the quiet period, the shares cannot be offered for sale. Brokers can, however, take indications of interest from their clients. At the time of the stock launch, after the Registration Statement has become effective, indications of interest can be converted to buy orders, at the discretion of the buyer. Sales can only be made through a final prospectus cleared by the Securities and Exchange Commission. The final step in preparing and filing the final IPO prospectus is for the issuer to retain one of the major financial "printers", who print (and today, also electronically file with the SEC) the registration statement on Form S-1. Typically, preparation of the final prospectus is actually performed at the printer, wherein one of their multiple conference rooms the issuer, issuer's counsel (attorneys), underwriter's counsel (attorneys), the lead underwriter(s), and the issuer's accountants/auditors make final edits and proofreading, concluding with the filing of the final prospectus by the financial printer with the Securities and Exchange Commission.[14] Before legal actions initiated by New York Attorney General Eliot Spitzer, which later became known as the Global Settlement enforcement agreement, some large investment firms had initiated favorable research coverage of companies in an effort to aid corporate finance departments and retail divisions engaged in the marketing of new issues. The central issue in that enforcement agreement had been judged in court previously. It involved the conflict of interest between the investment banking and analysis departments of ten of the largest investment firms in the United States. The investment firms involved in the settlement had all engaged in actions and practices that had allowed the inappropriate influence of their research analysts by their investment bankers seeking lucrative fees.[15] A typical violation addressed by the settlement was the case of CSFB and Salomon Smith Barney, which were alleged to have engaged in the inappropriate spinning of "hot" IPOs and issued fraudulent research reports in violation of various sections within the Securities Exchange Act of 1934. A company planning an IPO typically appoints a lead manager, known as a bookrunner, to help it arrive at an appropriate price at which the shares should be offered. There are two primary ways in which the price of an IPO can be determined. Either the company, with the help of its lead managers, fixes a price ("fixed price method"), or the price can be determined through analysis of confidential investor demand data compiled by the bookrunner ("book building"). Historically, many IPOs have been underpriced. The effect of underpricing an IPO is to generate additional interest in the stock and a rapid rise in share price when it first becomes publicly traded (known as an "IPO pop"). Flipping, or quickly selling shares for a profit, can lead to significant gains for investors who were allocated shares of the IPO at the offering price. However, underpricing an IPO results in lost potential capital for the issuer. One extreme example is theglobe.com IPO which helped fuel the IPO "mania" of the late 1990s internet era. Underwritten by Bear Stearns on 13 November 1998, the IPO was priced at $9 per share. The share price quickly increased 1,000% on the opening day of trading, to a high of $97. Selling pressure from institutional flipping eventually drove the stock back down, and it closed the day at $63. Although the company did raise about $30 million from the offering, it is estimated that with the level of demand for the offering and the volume of trading that took place they might have left upwards of $200 million on the table. The danger of overpricing is also an important consideration. If a stock is offered to the public at a higher price than the market will pay, the underwriters may have trouble meeting their commitments to sell shares. Even if they sell all of the issued shares, the stock may fall in value on the first day of trading. If so, the stock may lose its marketability and hence even more of its value. This could result in losses for investors, many of whom being the most favored clients of the underwriters. Perhaps the best-known example of this is the Facebook IPO in 2012. Underwriters, therefore, take many factors into consideration when pricing an IPO, and attempt to reach an offering price that is low enough to stimulate interest in the stock but high enough to raise an adequate amount of capital for the company. When pricing an IPO, underwriters use a variety of key performance indicators and non-GAAP measures.[16] The process of determining an optimal price usually involves the underwriters ("syndicate") arranging share purchase commitments from leading institutional investors. Some researchers (Friesen & Swift, 2009) believe that the underpricing of IPOs is less a deliberate act on the part of issuers and/or underwriters, and more the result of an over-reaction on the part of investors (Friesen & Swift, 2009). One potential method for determining to underprice is through the use of IPO underpricing algorithms. Other researchers have discovered that firms with higher revenues from licensing-based technology commercialization exhibit greater IPO underpricing, while a firm's stock of patents mitigates this effect.[17] A Dutch auction allows shares of an initial public offering to be allocated based only on price aggressiveness, with all successful bidders paying the same price per share.[18][19] One version of the Dutch auction is OpenIPO, which is based on an auction system designed by economist William Vickrey. This auction method ranks bids from highest to lowest, then accepts the highest bids that allow all shares to be sold, with all winning bidders paying the same price. It is similar to the model used to auction Treasury bills, notes, and bonds since the 1990s. Before this, Treasury bills were auctioned through a discriminatory or pay-what-you-bid auction, in which the various winning bidders each paid the price (or yield) they bid, and thus the various winning bidders did not all pay the same price. Both discriminatory and uniform price or "Dutch" auctions have been used for IPOs in many countries, although only uniform price auctions have been used so far in the US. Large IPO auctions include Japan Tobacco, Singapore Telecom, BAA Plc and Google (ordered by size of proceeds). A variation of the Dutch auction has been used to take a number of U.S. companies public including Morningstar, Interactive Brokers Group, Overstock.com, Ravenswood Winery, Clean Energy Fuels, and Boston Beer Company.[20] In 2004, Google used the Dutch auction system for its initial public offering.[21] Traditional U.S. investment banks have shown resistance to the idea of using an auction process to engage in public securities offerings. The auction method allows for equal access to the allocation of shares and eliminates the favorable treatment accorded important clients by the underwriters in conventional IPOs. In the face of this resistance, the Dutch auction is still a little used method in U.S. public offerings, although there have been hundreds of auction IPOs in other countries. In determining the success or failure of a Dutch auction, one must consider competing objectives.[22][23] If the objective is to reduce risk, a traditional IPO may be more effective because the underwriter manages the process, rather than leaving the outcome in part to random chance in terms of who chooses to bid or what strategy each bidder chooses to follow. From the viewpoint of the investor, the Dutch auction allows everyone equal access. Moreover, some forms of the Dutch auction allow the underwriter to be more active in coordinating bids and even communicating general auction trends to some bidders during the bidding period. Some have also argued that a uniform price auction is more effective at price discovery, although the theory behind this is based on the assumption of independent private values (that the value of IPO shares to each bidder is entirely independent of their value to others, even though the shares will shortly be traded on the aftermarket). Theory that incorporates assumptions more appropriate to IPOs does not find that sealed bid auctions are an effective form of price discovery, although possibly some modified form of auction might give a better result. In addition to the extensive international evidence that auctions have not been popular for IPOs, there is no U.S. evidence to indicate that the Dutch auction fares any better than the traditional IPO in an unwelcoming market environment. A Dutch auction IPO by WhiteGlove Health, Inc., announced in May 2011 was postponed in September of that year, after several failed attempts to price. An article in the Wall Street Journal cited the reasons as "broader stock-market volatility and uncertainty about the global economy have made investors wary of investing in new stocks".[24][25] Under American securities law, there are two-time windows commonly referred to as "quiet periods" during an IPO's history. The first and the one linked above is the period of time following the filing of the company's S-1 but before SEC staff declare the registration statement effective. During this time, issuers, company insiders, analysts, and other parties are legally restricted in their ability to discuss or promote the upcoming IPO (U.S. Securities and Exchange Commission, 2005). The other "quiet period" refers to a period of 10 calendar days following an IPO's first day of public trading.[26] During this time, insiders and any underwriters involved in the IPO are restricted from issuing any earnings forecasts or research reports for the company. When the quiet period is over, generally the underwriters will initiate research coverage on the firm. A three-day waiting period exists for any member that has acted as a manager or co-manager in a secondary offering.[26] Not all IPOs are eligible for delivery settlement through the DTC system, which would then either require the physical delivery of the stock certificates to the clearing agent bank's custodian or a delivery versus payment (DVP) arrangement with the selling group firm. Stag profit (flipping)[edit] "Stag profit" is a situation in the stock market before and immediately after a company's initial public offering (or any new issue of shares). A "stag" is a party or individual who subscribes to the new issue expecting the price of the stock to rise immediately upon the start of trading. Thus, stag profit is the financial gain accumulated by the party or individual resulting from the value of the shares rising. This term is more popular in the United Kingdom than in the United States. In the US, such investors are usually called flippers, because they get shares in the offering and then immediately turn around "flipping" or selling them on the first day of trading. Company Year Amount (USD billions) Nominal Inflation-adjusted Saudi Aramco 2019 29.4[27] 37.02 Alibaba Group 2014 25[28] 34 SoftBank Group 2018 23.5[29] 30.13 Agricultural Bank of China 2010 22.1[30] 32.63 Industrial and Commercial Bank of China 2006 21.9[31] 34.98 American International Assurance 2010 20.5[32] 30.27 Visa Inc. 2008 19.7[33] 29.46 General Motors 2010 18.15[34] 26.8 NTT Docomo 1998 18.05[33] 35.65 Enel 1999 16.59[33] 32.06 Facebook 2012 16.01[35] 22.45 Largest IPO markets[edit] Prior to 2009, the United States was the leading issuer of IPOs in terms of total value. Year Stock exchange Proceeds(in bn USD) 2009 Hong Kong Stock Exchange[36] 2010 2011 2012[37] New York Stock Exchange 2013[38] 2014[38] 2015[39] Hong Kong Stock Exchange 2016[39] 25.2 2017[39] New York Stock Exchange 29.4 2018[40] Hong Kong Stock Exchange 31.2 2019[41] 40.4 2020[42] Nasdaq 57.8 2021[43] 100.6 2022[44] Shanghai Stock Exchange 56.5 2023[45] 31.3 2024[46] National Stock Exchange of India 20.3 2025[46] Hong Kong Stock Exchange 34.3 Alternative public offering Direct public offering Public offering without listing Reverse takeover Smaller reporting company Special-purpose acquisition company Venture capital ^ Note: the price the company receives from the institutional investors is the IPO price ^ Hirst, Scott; Kastiel, Kobi (1 May 2019). "Corporate Governance by Index Exclusion". Boston University Law Review. 99 (3): 1229. ^ Poitras, Geoffrey; Geranio, Manuela (2016). "Trading of shares in the Societates Publicanorum?" (PDF). Explorations in Economic History. 61: 95–118. doi:10.1016/j.eeh.2016.01.003. S2CID 155816750 – via Elsevier. ^ Malmendier, Ulrike (December 2009). "Law and Finance "at the Origin"". Journal of Economic Literature. 47 (4): 1076–1108. doi:10.1257/jel.47.4.1076. ISSN 0022-0515. ^ "Books & Reading: Chapter One". The Washington Post. Retrieved 27 November 2016. ^ "Exhibits — America's First IPO — Museum of American Finance". Moaf.org. Retrieved 12 July 2012. ^ "The Laws That Govern the Securities Industry". Securities and Exchange Commission. Retrieved 12 December 2014. ^ "UK Listing Authority". Retrieved 12 December 2014. ^ Lipman, International and U.S. IPO Planning, ISBN 978-0-470-39087-0 ^ Series 79 Investment Banking Representative Qualification Examination, Study Manual, 41st Edition. Securities Trading Corporation. 2010. ^ Robert E. Wright, "Reforming the U.S. IPO Market: Lessons from History and Theory", Accounting, Business, and Financial History (November 2002), 419–437. ^ Robert E. Wright and Richard Sylla, "Corporate Governance and Stockholder/Stakeholder Activism in the United States, 1790–1860: New Data and Perspectives". In Jonathan Koppell (ed.), Origins of Shareholder Advocacy (New York: Palgrave Macmillan, 2011), 231–51. ^ "Registration Statement on Form S-1". U.S. Securities and Exchange Commission. 1 February 2012. Retrieved 10 December 2017. ^ Taulli, Tom (26 February 2012). "The Main Players In An Initial Public Offering". InvestorPlace. Archived from the original on 24 July 2014. Retrieved 22 July 2014. ^ "Ten of Nation's Top Investment Firms Settle Enforcement Actions Involving Conflicts of Interest Between Research and Investment Banking". SEC. 28 April 2003. Retrieved 23 July 2014. ^ Gould, Michael. "How Non-GAAP Measures Can Impact Your IPO". Transaction Advisors. ISSN 2329-9134. Archived from the original on 6 November 2018. Retrieved 16 January 2015. ^ Morricone, Serena; Munari, Federico; Oriani, Raffaele; de Rassenfosse, Gaétan (2017). "Commercialization Strategy and IPO Underpricing" (PDF). Research Policy. 46 (6): 1133–1141. doi:10.2139/ssrn.2966036. S2CID 157454297. ^ Demos, Telis (21 June 2012). "What Is a Dutch Auction?". The Wall Street Journal. Retrieved 16 October 2012. ^ "What Is a Dutch Auction IPO?". Slate Magazine. 6 May 1999. Retrieved 16 October 2012. ^ Sommer, Jeff (18 February 2012). "No Bitter Aftertaste From This Stock Offering". The New York Times. ^ "Journal of Business & Technology Law – Academic Journals – University of Maryland Francis King Carey School of Law" (PDF). Archived from the original (PDF) on 27 October 2011. Retrieved 27 November 2016. ^ Hensel, Nayantara (4 November 2005). "Are Dutch Auctions Right for Your IPO?". Working Knowledge. Harvard Business School. Archived from the original on 2 October 2017. Retrieved 16 October 2012. ^ Anand, Anita Indira. "Is The Dutch Auction IPO A Good Idea?". Queen's University Law and Economics Workshop. Queen's University. Retrieved 21 July 2021. ^ "WhiteGlove seeks to raise $32.5 million in 'Dutch auction' IPO". Statesman. Archived from the original on 4 November 2013. Retrieved 16 October 2012. ^ Cowan, Lynn (21 September 2011). "WhiteGlove Health Shelves IPO Indefinitely". The Wall Street Journal. Retrieved 16 October 2012. ^ a b "Regulatory Notice 15-30: Equity Research" (PDF). FINRA. Retrieved 21 July 2021. ^ "Aramco's 'greenshoe option' pushes IPO to $29.4 billion". Arab News. 12 January 2020. Retrieved 15 January 2020. ^ "Alibaba IPO Biggest in History as Bankers Exercise 'Green Shoe' Option". The New York Times. 18 September 2013. ^ "Softbank Corp IPO Second Biggest in History". Fortune.com. 11 December 2018. ^ "Agricultural Bank of China Sets IPO Record as Size Raised to $22.1 Billion". Bloomberg. 15 August 2010. ^ "ICBC completed its record $21.9 billion IPO in October 2006". Bloomberg. 28 July 2010. ^ "AIA's IPO Boosted to $20.5 Billion With Overallotment". Bloomberg. 29 October 2010. ^ a b c Grocer, Stephen (17 November 2010). "How GM's IPO Stacks Up Against the Biggest IPOs on Record". The Wall Street Journal. ^ "GM Says Total Offering Size $23.1 Billion Including Overallotment Options", Bloomberg, 26 November 2010 ^ Rusli, Evelyn M.; Eavis, Peter (17 May 2012), "Facebook Raises $16 Billion in I.P.O.", The New York Times ^ "China eclipses US as top IPO venue". Financial Times. 28 December 2011. Archived from the original on 10 December 2022. ^ "Deloitte releases statistics on Hong Kong and Mainland IPOs in 2012 | Deloitte China | Press Release". ^ a b "Global IPO market booms 50% in 2014". CNBC. 18 December 2014. ^ a b c Bullock, Nicole (27 December 2017). "Global number of IPOs highest since financial crisis". Financial Times. Archived from the original on 10 December 2022. ^ "Hong Kong regains global IPO crown from New York in 2018 thanks to its listing reforms". 24 December 2018. ^ "Hong Kong Ranks Top in Global IPO Markets for 2019". Caixin. Retrieved 26 November 2021. ^ "Hong Kong ranks as 2nd largest IPO market in 2020". 13 January 2021. Archived from the original on 22 September 2023. Retrieved 26 March 2021. ^ "Mainland China and Hong Kong IPO markets - 2021 review and 2022 outlook" (PDF). Retrieved 26 December 2021. ^ "Chinese Mainland and Hong Kong IPO markets 2023 Q1 review" (PDF). Retrieved 24 June 2023. ^ "Chinese Mainland and Hong Kong IPO markets 2023 and 2024 outlook" (PDF). Retrieved 29 January 2024. ^ a b "Chinese Mainland and Hong Kong IPO Markets 2025 Review and 2026 Outlook" (PDF). KPMG. 10 December 2025. Anderlini, Jamil (13 August 2010). "AgBank IPO officially the world's biggest". Financial Times. Retrieved 13 August 2010. "Pricing the 'biggest IPO in history'". China Business. Asia Times. 29 September 2006. Archived from the original on 5 December 2008. Retrieved 21 September 2011. Bradley, D. J.; Jordan, B. D.; Ritter, J. R. (2003). "The Quiet Period Goes Out with a Bang". Journal of Finance. 58 (1): 1–36. CiteSeerX 10.1.1.535.3111. doi:10.1111/1540-6261.00517. Campbell, Dakin (2022). Going Public: How Silicon Valley Rebels Loosened Wall Street's Grip on the IPO and Sparked a Revolution. New York: Twelve. ISBN 9781538707883. OCLC 1257292746. Chambers, Clem (2006-07-14). "Who needs stock exchanges?" Exchanges Handbook. Mondo Visione. Accessed 21 September 2011. Drucker, Steven; Puri, M. (2007). "Banks in Capital Markets". In Eckbo, B. E. (ed.). Handbook of Corporate Finance. Vol. 1. Boston: Elsevier. ISBN 978-0-444-50898-0. Friesen, Geoffrey C.; Swift, Christopher (2009). "Overreaction in the thrift IPO aftermarket". Journal of Banking & Finance. 33 (7): 1285–1298. doi:10.1016/j.jbankfin.2009.01.002. Goergen, M.; Khurshed, A.; Mudambi, R. (2006). "The Strategy of Going Public: How UK Firms Choose Their Listing Contracts". Journal of Business Finance and Accounting. 33 (1&2): 306–328. doi:10.1111/j.1468-5957.2006.00657.x. S2CID 153405433. SSRN 886408. Goergen, M.; Khurshed, A.; Mudambi, R. (2007). "The Long-run Performance of UK IPOs: Can it be Predicted?". Managerial Finance. 33 (6): 401–419. doi:10.1108/03074350710748759. Gregoriou, Greg (2006). Initial Public Offerings (IPOs). Butterworth-Heineman, an imprint of Elsevier. ISBN 978-0-7506-7975-6. Archived from the original on 14 March 2007. Retrieved 15 June 2006. Hu, Bei and Vannucci, Cecile. Bloomberg.com Published 2010-10-29. Retrieved 2011-09-21 "IPO Definitions". IPO Initial Public Offerings. Archived from the original on 21 August 2011. Retrieved 14 September 2011. Khurshed, A.; Mudambi, R. (2002). "The Short Run Price Performance of Investment Trust IPOs on the UK Main Market". Applied Financial Economics. 12 (10): 697–706. doi:10.1080/09603100010025706. S2CID 55180392. Loughran, T.; Ritter, J. R. (2002). "Why Don't Issuers Get Upset About Leaving Money on the Table in IPOs?". Review of Financial Studies. 15 (2): 413–443. doi:10.1093/rfs/15.2.413. Loughran, T.; Ritter, J. R. (2004). "Why Has IPO Underpricing Changed Over Time?" (PDF). Financial Management. 33 (3): 5–37. Mudambi, R.; Treichel, M. Z. (2005). "Cash Crisis in Newly Public Internet-based Firms: An Empirical Analysis". Journal of Business Venturing. 20 (4): 543–571. doi:10.1016/j.jbusvent.2004.03.003. SSRN 535002. "Quiet Period". U.S. Securities and Exchange Commission. 18 August 2005. Retrieved 4 March 2008. Nasdaq database of all U.S. Initial Public Offerings beginning Jan. 1997
+"""
+
+[R6] initial public offering (IPO)
+(https://www.law.cornell.edu/wex/initial_public_offering_(ipo))
+"""
+An initial public offering (IPO) is when a private company publicly offers securities for the first time. Overview Prior to conducting an IPO, a company is considered private, meaning it does not need to disclose information on its operations but faces restrictions on whom it can sell its securities to. Private companies may sell securities in private placements but cannot sell securities on public exchanges (e.g. through the NYSE), limiting their ability to raise capital. A company sells securities to public investors by conducting an initial public offering, which makes them a public company. Once public, the company must file periodic reports with the Securities and Exchange Commission (SEC). IPO Process To prevent securities fraud, the Securities Act and SEC Rules regulate the IPO Process. Section 5 of the Securities Act prevents the sale of any security unless the issuer files a registration statement and regulates the issuers’ ability to offer any security for sale before filing a registration statement. The primary event in an IPO is when the issuer files a Form S-1, which is the most common registration statement used for IPOs. The registration statement contains the bulk of the quantitative and qualitative disclosures to investors. Section 5 and SEC rules strictly regulate when and how the issuer can communicate with and act towards investors prior to SEC review, in what is known as gun-jumping. Prior to filing a Form S-1, the issuer is in the pre-filing period. During this time, Section 5(c) prohibits the issuer from making any “offer” to sell securities, and Section 2(a)(3) defines “offer” as all communications that may condition the market for the sale of the securities. During this time issuers begin consulting underwriters to market the IPO, law firms to manage the drafting and filing of SEC documents, and accounting firms to audit their financial documents. Once the issuer files the S-1, they are in the waiting period. During the waiting period, the issuer and underwriter begin to gauge market interest and the SEC reviews the S-1. Section 5 of the Securities Act allows the issuer to make offers to sell their security under certain conditions. Section 5(b)(1) allows oral offers, and companies often conduct roadshows during this time. For essentially all written offers, however, Section 5(b)(1) requires that written offers satisfy Section 10, which regulates what information prospectuses must contain. Once the SEC approves the issuer’s S-1, then they are in the post-effective period and may sell their security without restriction.
+"""
+
+[R7] What Is An IPO? - Fidelity
+(https://www.fidelity.com/learning-center/trading-investing/trading/investing-in-ipos)
+"""
+Investing in IPOs and other equity new issue offerings In essence, an IPO means that a company's ownership is transitioning from private ownership to public ownership—i.e., "going public." An investment in an IPO has the potential to deliver attractive returns. However, prior to investing, it is important to understand how the process of trading these securities differs from ordinary stock trading, along with the additional risks and rules associated with IPO investments. What is an IPO? When a private company first sells shares of stock to the public, this process is known as an initial public offering (IPO). In essence, an IPO means that a company's ownership is transitioning from private ownership to public ownership. For that reason, the IPO process is sometimes referred to as "going public." Startup companies or companies that have been in business for decades can decide to go public through an IPO. Companies typically issue an IPO to raise capital to pay off debts, fund growth initiatives, raise their public profile, or to allow company insiders to diversify their holdings or create liquidity by selling all or a portion of their private shares as part of the IPO. In an IPO, after a company decides to "go public," it chooses a lead underwriter to help with the securities registration process and distribution of the shares to the public. The lead underwriter then assembles a group of investment banks and broker dealers (a group known as a syndicate) that is responsible for selling shares of the IPO to institutional and individual investors. In addition to IPOs, there are other types of equity new issue offerings for companies with stocks that are already publicly traded, including: Follow-on offering: An issuance of additional shares of stock by a company that is already publicly traded. A follow-on offering has a dilutive effect on an individual's position, as new shares are being issued. Secondary offering: A registered sale of previously issued securities held by large investors, such as a private equity firm or other institution. A secondary offering has no dilutive effect on a customer's position, as the shares were previously issued. Do your homework before you invest If you are considering investing in an IPO, it is also important to avoid getting swept up in the hype that can surround a promising young company. Many companies have debuted with high expectations, only to struggle and go out of business within a few years. Investors became acutely aware of these risks while investing in IPOs during the technology stock boom and bust of the late 1990s and early 2000s. This was a highly speculative period in US stock market history and, as a result, some investors earned impressive gains on their IPO investments, while others experienced significant losses after shares of various technology stocks plummeted. Before investing, be sure to do your own due diligence. This task can be challenging because of the lack of readily available public information on a company that is issuing stock for the first time. However, you should always refer to the issuing company’s preliminary prospectus, also known as a "red herring." This document, provided by the issuer and lead underwriter, will include information on the company's management team, target market, competitive landscape, the company's financials, who is selling shares in the offering, who currently owns shares, expected price range, potential risks, and the number of shares to be issued. Sign up for Fidelity Viewpoints weekly email for our latest insights. Participating in an IPO When you participate in an IPO, you agree to purchase shares of the stock at the offering price before it begins trading on the secondary market. This offering price is determined by the lead underwriter and the issuer based on a number of factors, including the indications of interest received from potential investors in the offering. Before you can invest in an IPO, you first need to determine if your brokerage firm offers access to new issue equity offerings and, if so, what the eligibility requirements are. Typically, higher-net-worth investors or experienced traders who understand the risks of participating in an IPO are eligible. Individual investors may have difficulty obtaining shares in an IPO because demand often exceeds the amount of shares available. Due to the scarcity value of IPOs, many brokerage firms limit who can participate in the offerings by requiring customers to hold a significant amount of assets at the firm, to meet certain trading frequency thresholds, or to have maintained a long-term relationship with their firm. Assuming you have done your research and have been allocated shares in an IPO, it is important to understand that while you are free to sell shares obtained through an IPO whenever you deem appropriate, many firms will restrict your eligibility to participate in future offerings if you sell within the first several days of trading. The practice of quickly selling IPO shares is known as "flipping," and it is something most brokerage firms discourage. Historical returns of IPOs It's also important to remember that there is no guarantee that a stock will continue to trade at or above its initial offering price once it starts trading on a public stock exchange. That said, the reason most people invest in IPOs is for the opportunity to invest in the company relatively early in its life cycle and profit from potential future growth. A review of historical data dating back to 2015 shows that annual returns on IPOs have varied widely from one year to the next. Source: Bloomberg Finance LP, S&P Global, (as of 06/26/2025) *2024 IPO Performance data does not include IPOs priced after 06/26/2024 Investing in a newly public company can be financially rewarding; however, there are many risks, and profits are not guaranteed. If you're new to IPOs, be sure to review all of our educational materials on this topic before investing.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,89 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is rbc heritage 2026"
+
+Claims:
+[1] "The Cardinal Health Retail Business Conference (RBC) 2026 is scheduled to take place from July 22-25, 2026."
+[2] "The Cardinal Health Retail Business Conference (RBC) 2026 is scheduled to take place at the Orange County Convention Center in Orlando, Florida."
+[3] "The Cardinal Health Retail Business Conference (RBC) 2026 brings together independent pharmacy customers, suppliers, and industry experts for networking, education, and professional development."
+[4] "The Rosen Plaza Hotel (9700 International Dr) is the exhibitor hotel."
+[5] "The Rosen Plaza Hotel (9700 International Dr) is noted for exhibitor accommodations."
+
+Cited text snippets from the AI Overview (for additional context):
+- Cardinal Health Retail Business Conference 2026 - Vendelux: "About Cardinal Health Retail Business Conference 2026,Orange County Convention Center in Orlando, Florida."
+- Cardinal Health RBC 2026 - UltiMed, Inc: "Cardinal Health RBC 2026 * Date(s): July,Booth Number: * Event Location: Orlando, FL."
+Reference Sources:
+
+[R1] Cardinal Health Retail Business Conference 2026
+(https://vendelux.com/app/event/cardinal-health-retail-business-conference-2026/2c0abba2-bebc-4d27-9181-c3feef4b8b58)
+"""
+Cardinal Health Retail Business Conference 2026Jul 22 – 25, 2026Orange County Convention Center | Orlando, United StatesClaim Your EventLog in to view your ROIfor this event!Log in to view your ROIfor this event!AboutAttendeesOrganizations​​Status (2)Job titleOrganizationListsFilters (1)Export attendeesNameJob titleNo data found. Please try changing your filters.Rows per page:250–0 of 0Log in to see which of your prospects are likely to attend Cardinal Health Retail Business Conference 2026.Log in​​Status for sponsoring (2)Employee rangeListsFilters (1)Export organizationsOrganizationDomainPresenceat eventStatus forsponsoringStatus forspeakingConfirmedattendeesEmployee rangeCRMAccount ownerCRMDeal recordsCRMDeal ownersCRMDeal stageNo data found. Please try changing your filters.Rows per page:250–0 of 0Log in to see which of your prospects are likely to attend Cardinal Health Retail Business Conference 2026.Log inData missing or incorrect?Upload your list for enrichmentMore from Cardinal Health Retail Business ConferenceCardinal Health Retail Business Conference 2025Jul 9 – 12, 2025DigitalColorado Convention CenterView eventCardinal Health Retail Business Conference 2024Jul 24 – 27, 2024DigitalMcCormick Place Convention CenterView eventCardinal Health Retail Business Conference 2023Jul 19 – 22, 2023DigitalBoston Convention and Exhibition CenterView eventCardinal Health Retail Business Conference 2022Jul 13 – 16, 2022DigitalMandalay BayView eventNewsAboutContactCareersPricingSign inCopyright 2026Terms of servicePrivacy policy HomeExplorePlanner
+"""
+
+[R2] EXHIBITOR HOTEL | Cardinal RBC
+(https://www.rbc.cardinalhealth.com/exhibitorhotel)
+"""
+top of pageSkip to Main ContentExhibitor Hotel ​ Exhibitor registration is now open. Reservations for the designated RBC exhibitor hotel can be completed through your exhibitor registration link. ​Rosen Plaza Hotel 9700 International Dr, Orlando, FL 32819 The Rosen Plaza Hotel is located next door to the Orange County Convention Center, making it convenient for RBC guests. Located in the heart of Orlando's International Drive, the Rosen Plaza Hotel is also minutes from various attractions, restaurants and shops RBC guests can enjoy. Distance to Orange County Convention Center: 0.6 miles Rate: $201/night + tax Chat with us!bottom of page
+"""
+
+[R3] Cardinal Health RBC 2026 | UltiMed, Inc
+(https://www.ultimedinc.com/events/rbc-cardinal-health)
+"""
+Home Corporate Events Cardinal Health RBC 2026 All Events Cardinal Health RBC 2026 Date(s): July 22-25, 2026 Booth Number: Event Location: Orlando, FL Back To Events OUR BRANDS Products Consumer Health Animal Health Safety & Specialty Oral Syringes Resources Purchasing Information Consumer Health Animal Health Safety and Specialty Oral Syringes Corporate History Mission Our Team Events Health Care Transparency Requirements Contact 2026 © UltiMed, Inc. Legal Policy | Privacy Policy
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

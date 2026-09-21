@@ -1,0 +1,119 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "hbo shows"
+
+Claims:
+[1] "A 1m YouTube video by Top10 Filmzone was published on Feb 18, 2026."
+[2] "The Top10 Filmzone YouTube video offers a curated list of top HBO miniseries."
+[3] "The Last of Us is Sci-Fi/Drama."
+[4] "House of the Dragon is Fantasy."
+[5] "The White Lotus is Anthology/Satire."
+[6] "Hacks is Comedy."
+[7] "The Righteous Gemstones is Comedy."
+[8] "The Gilded Age is Historical Drama."
+[9] "The Pitt is Medical Drama."
+[10] "A Knight of the Seven Kingdoms is Fantasy."
+[11] "The Rehearsal is Comedy."
+[12] "Conan O'Brien Must Go is Travel/Comedy."
+[13] "The Sopranos is Crime Drama."
+[14] "The Wire is Crime Drama."
+[15] "Game of Thrones is Fantasy."
+[16] "Sex and the City is Comedy/Romance."
+[17] "Succession is Drama."
+[18] "Curb Your Enthusiasm is Comedy."
+[19] "Chernobyl is Limited Series."
+[20] "Boardwalk Empire is Period Drama."
+[21] "True Blood is Fantasy/Drama."
+[22] "Silicon Valley is Comedy."
+[23] "Users on Reddit https://www.reddit.com/r/hbo/comments/1rhsluj/my_best_ say Silicon Valley is noted for its high rewatchability."
+
+Cited text snippets from the AI Overview (for additional context):
+- My Best HBO shows : r/hbo - Reddit: "Highly Recommended HBO Show: The Sopranos is considered a peak HBO series."
+- My Best HBO shows : r/hbo - Reddit: "HBO Show Recommendation: The Wire is considered,to be the best show on HBO."
+- My Best HBO shows : r/hbo - Reddit: "Limited Series Recommendation: Chernobyl and The Night Of are seen as flawless limited series."
+- My Best HBO shows : r/hbo - Reddit: "Additional Favorites: Boardwalk Empire and The Last of Us are mentioned as user favorites."
+- Patrick Wilson Joins HBO's Hit Sci-Fi Horror Series in Major Season 3 Role: "Video game adaptations have been largely hit,Part II, focused on Ellie (Bella Ramsey)."
+- If You Thought Game Of Thrones' Ending Was Bad, Wait Until You Hear About This Other HBO Show: "Westworld and Game of Thrones are joined,are still praised for their good parts."
+- Here's what's worth streaming in March 2026 on Netflix, Hulu, HBO ...: "In addition to ongoing hits like "The,surprise hit "Jury Duty," among many others."
+- My Best HBO shows : r/hbo - Reddit: "Comedy Show Recommendation: Silicon Valley is considered a very rewatchable comedy series."
+Reference Sources:
+
+[R1] Watch the Best Shows and Series on HBO Max | HBO Max
+(https://www.hbomax.com/mk/en/shows)
+"""
+Watch the Best Shows and Series on HBO Max | HBO Max Legal Terms and PrivacyBy clicking “Agree,” you confirm that you have read and agree to our Terms of Use and you acknowledge the collection and use of data, including cookies and similar technologies, as set forth in our Privacy Policy. Agree Skip To ContentBrowse Audio DescriptionStream Hit ShowsWhat are you binging next? We recommend adding these original series, iconic comedies, and award-winning dramas to your watchlist.Plans start at $10.99/month.Sign Up NowDTF St. LouisRecently Added SeriesSee MoreLost Women of AlaskaHolmes on Homes: Building a LegacyContraband: Seized at the BorderMadam BejaLike Water for ChocolateA Knight of the Seven KingdomsPortobelloBankstersSurviving the Jehovah's WitnessesMurder in Glitterball CityUnexpectedThe Curious Case of...Genndy Tartakovsky's PrimalMax OriginalsSee MoreHacksThe PittAnd Just Like That...The Sex Lives of College GirlsStation ElevenThe Other TwoA World of CalmThe Great Pottery Throw DownAdventure Time: Fionna and CakeDusterLove & DeathTokyo ViceHBO OriginalsSee MoreA Knight of the Seven KingdomsLast Week Tonight With John OliverIndustryNeighborsThe Last of UsMel Brooks: The 99 Year Old Man!Murder in Glitterball CityHouse of the DragonTrue DetectiveVeepSilicon ValleyFavorite ComediesSee MoreSchitt's CreekThe Big Bang TheoryCurb Your EnthusiasmFriendsAbbott ElementaryI Love LAYoung SheldonBarryGirlsThe Larry Sanders ShowVeepConan O'Brien Must GoAvenue 5Best of RealitySee MoreSuddenly AmishUnexpectedGold RushRoad RageNaked Attraction90 Day: The Single LifeMy Strange Addiction1000-lb SistersNaked and AfraidDeadliest CatchBaylen Out LoudMoonshinersFamily TimeSee MoreTeen Titans Go!Guy's Grocery GamesSuperman: The Animated SeriesHome Sweet RomeRoller JamToo Cute!Craig of the CreekHarry Potter: Wizards of BakingThe ZooUnderdogs UnitedBatwheelsCrikey! It's the Irwins
+"""
+
+[R2] HBO Fantasy Show Westworld Had Even Worse Ending Than Game Of Thrones
+(https://screenrant.com/westworld-ending-worse-than-game-of-thrones/)
+"""
+Published Mar 16, 2026, 4:45 PM EDT Adrienne Tyler is a movies & TV features writer, with a focus on horror. She has written for Netflix, FanSided, & more. She was a regular guest on the Netfreaks podcast and was a YouTuber at some point. Guillermo del Toro said “hi” to her once. Sign in to your ScreenRant account Game of Thrones famously had a bad ending that continues to be quite controversial, but there’s another great HBO TV show that had an even worse fate. HBO is well-known for its high-quality TV shows, of which some now rank among the best TV shows of all time, but it has to be said that not all of them ended on a high note. When it comes to fantasy shows by HBO, the one that has to be mentioned is Game of Thrones. Based on George R. R. Martin’s A Song of Ice and Fire book series, Game of Thrones ran from 2011 to 2019 for eight seasons. Game of Thrones was a huge critical success and a cultural phenomenon, but it had a less-than-ideal ending. The ending of Game of Thrones now ranks among the worst TV finales of all time, but there’s another HBO fantasy TV hit show that had an even more frustrating ending: Westworld. Westworld Never Got An Ending Westworld is a dystopian sci-fi Western drama series created by Jonathan Nolan and Lisa Joy. Based on the 1973 movie of the same name by Michael Crichton, Westworld takes the audience to the title setting, a technologically advanced Wild West-themed amusement park hosted by androids indistinguishable from humans. The wealthy can go to Westworld and indulge in all types of fantasies with the hosts. The clients fulfill those fantasies – that range from sexual to violent – safely as the hosts’ programming prevents them from harming humans, and their memories are wiped after every narrative. However, after an update, some hosts retain their memories and develop sentience, prompting them to seek freedom and, eventually, world domination. Despite the story for season 5 of Westworld being outlined and Nolan and Joy having shared plans for it, it’s unlikely it will happen, so the show will remain one that feels inconclusive. Westworld Was Supposed To Be HBO's Next Game Of Thrones Westworld fitted that category with its high-budget, high-end visuals, cinematography, and concept, along with complex world-building, mature themes, and tone. Westworld also had a strong cast with names like Anthony Hopkins, Ed Harris, Thandiwe Newton, Jeffrey Wright, and Evan Rachel Wood, and with the success of its first season, it had the potential to take Game of Thrones’ place when the time came. Unfortunately, and as mentioned above, Westworld couldn’t maintain that season 1 success and quality, both dropping in season 2 and never really recovering. The subsequent seasons of Westworld were convoluted, the characters were underdeveloped, and failed to keep the audience engaged, leading to its cancellation and no longer being the next Game of Thrones. Few Prestige TV Shows Have Managed To End On A High Note Prestige TV shows come with high expectations, and with good reason. Their high budgets, concepts, strong casts, themes, and intriguing stories set the bar high, so much so that not all of them are able to maintain that initial quality and success, as happened with Westworld. Westworld and Game of Thrones are joined on that list by Dexter, Lost, and True Blood, to name a few, while on the opposite side of prestige shows that ended on a high note are Breaking Bad, The Sopranos, and Six Feet Under. Prestige TV shows carry a heavy load, and it surely isn’t an easy task to write and produce one, but even those that didn’t end well are still praised for their good parts. Release Date 2016 - 2022 Network HBO Showrunner Jonathan Nolan, Lisa Joy Dolores Abernathy Maeve Millay Directors Fred Toye, Jennifer Getzinger, Stephen Williams, Vincenzo Natali, Craig William Macneill, Anna Foerster, Craig Zobel, Hanelle M. Culpepper, Helen Shaver, Jonny Campbell, Michelle MacLaren, Neil Marshall, Nicole Kassell, Tarik Saleh, Uta Briesewitz, Lisa Joy, Meera Menon Writers Roberto Patino, Carly Wray, Ron Fitzgerald, Daniel T. Thomsen, Karrie Crouse, Wes Humphrey
+"""
+
+[R3] Patrick Wilson Joins HBO's Hit Sci-Fi Horror Series in Major Season 3 Role
+(https://collider.com/the-last-of-us-cast-season-3-patrick-wilson-abbys-dad/)
+"""
+Image via Faye's Vision/Cover Images Published Mar 16, 2026, 3:28 PM EDT Adam Blevins began working in the entertainment industry in 2022 as a Staff Writer for Agents of Fandom, where he progressed to Senior Editor and interviewed talent from Marvel Studios, House of the Dragon, and Planet of the Apes. He joined Collider as a News Author in April 2024, was promoted to a Senior position in December 2024, and has written over 3,000 articles for the site, including exclusives relating to Avengers: Doomsday, The Penguin, Star Wars: Skeleton Crew, and more. He primarily writes about the latest box office numbers and the hottest movies and TV shows on streaming, while also covering superhero and sci-fi news. He has completed a set visit for The Chosen and even has several months of experience writing Gaming Features at ScreenRant. You can find him on X, LinkedIn, and Muckrack. Sign in to your Collider account Video game adaptations have been largely hit or miss over the years, especially when creatives are afraid to lean into the source material. One project within the last few years that may just be the greatest video game adaptation of all time is The Last of Us, which aired its first season back in 2023. The Last of Us Season 1 adapts the first game in its entirety, but Season 2, which aired last year, adapted only the first half of The Last of Us Part II, focused on Ellie (Bella Ramsey). The upcoming third season will adapt the second half of The Last of Us Part II, which takes place at the same time as the first half, but follows Abby (Kaitlyn Dever). When Does ‘The Last of Us’ Season 3 Come Out? Check out the first two seasons of The Last of Us on HBO Max and stay tuned to Collider for more updates and coverage of Season 3. Release Date January 15, 2023 Network HBO Showrunner Craig Mazin After a global pandemic destroys civilization, a hardened survivor takes charge of a 14-year-old girl who may be humanity's last hope.
+"""
+
+[R4] Most popular TV shows
+(https://www.imdb.com/chart/tvmeter/)
+"""
+IMDb ChartsShareMost popular TV showsAs determined by IMDb users0 OF 100 WATCHED0%100 TitlesSort byRankingRankingIMDb ratingRelease dateNumber of ratingsAlphabeticalPopularityRuntime#1The Madison2026– 12 epsTV-MATV Series8.0 (6.2K)RateMark as watched#2One Piece2023– 17 epsTV-14TV Series8.3 (199K)RateMark as watched#3The Pitt2025– 45 epsTV-MATV Series8.9 (127K)RateMark as watched#4Invincible2021– 33 epsTV-MATV Series8.7 (311K)RateMark as watched#5Scarpetta2026– 16 epsTV-MATV Series5.9 (10K)RateMark as watched#6Peaky Blinders2013–202236 epsTV-MATV Series8.7 (766K)RateMark as watched#7Paradise2025– 17 epsTV-MATV Series7.9 (70K)RateMark as watched#8Steel Ball Run: JoJo's Bizarre Adventure2026– 1 epTV-MATV Series9.8 (20K)RateMark as watched#9Young Sherlock2026– 8 epsTV-14TV Series7.5 (19K)RateMark as watched#10Game of Thrones2011–201974 epsTV-MATV Series9.2 (2.6M)RateMark as watched#11Jury Duty Presents: Company Retreat2023–202616 epsTV-14TV Series8.2 (54K)RateMark as watched#12A Knight of the Seven Kingdoms2026– 12 epsTV-MATV Series8.7 (218K)RateMark as watched#13Shrinking2023– 34 epsTV-MATV Series8.1 (118K)RateMark as watched#14Breaking Bad2008–201362 epsTV-MATV Series9.5 (2.6M)RateMark as watched#15Rooster2026– 10 epsTV-MATV Series7.3 (2.7K)RateMark as watched#16Imperfect Women2026– 8 epsTV-MATV Series5.4 (844)RateMark as watched#17Love Story2026– 9 epsTV-MATV Series7.5 (5.4K)RateMark as watched#18Buffy the Vampire Slayer1997–2003144 epsTV-14TV Series8.3 (174K)RateMark as watched#19DTF St. Louis20267 epsTV-MATV Mini Series7.0 (3.3K)RateMark as watched#20Marshals2026– 14 epsTV-14TV Series6.0 (5.3K)RateMark as watched#21The Rookie2018– 144 epsTV-14TV Series8.0 (124K)RateMark as watched#22The Night Agent2023– 31 epsTV-MATV Series7.4 (158K)RateMark as watched#23High Potential2024– 32 epsTV-14TV Series7.5 (47K)RateMark as watched#24The Boys2019–202640 epsTV-MATV Series8.6 (844K)RateMark as watched#25Monarch: Legacy of Monsters2023– 20 epsTV-14TV Series7.0 (57K)RateMark as watched#26Virgin River2019– 75 epsTV-14TV Series7.4 (59K)RateMark as watched#27Ted2024–202615 epsTV-MATV Series7.9 (42K)RateMark as watched#28Jujutsu Kaisen2020– 59 epsTV-MATV Series8.5 (195K)RateMark as watched#29Stranger Things2016–202542 epsTV-MATV Series8.6 (1.7M)RateMark as watched#30JoJo's Bizarre Adventure2012– 193 epsTV-MATV Series8.5 (54K)RateMark as watched#31Cross2024– 24 epsTV-MATV Series7.2 (34K)RateMark as watched#32Bridgerton2020– 34 epsTV-MATV Series7.5 (226K)RateMark as watched#33Scrubs2026– 9 epsTV Series8.5 (3.8K)RateMark as watched#34One Piece1999– 1177 epsTV-14TV Series9.0 (348K)RateMark as watched#35Outlander2014–2026101 epsTV-MATV Series8.3 (199K)RateMark as watched#36Attack on Titan2013–202398 epsTV-MATV Series9.1 (703K)RateMark as watched#37The Other Bennet Sister2026– 10 epsTV Series7.8 (547)RateMark as watched#38Daredevil: Born Again2025– 18 epsTV-MATV Series8.0 (90K)RateMark as watched#39Yellowstone2018–202453 epsTV-MATV Series8.6 (307K)RateMark as watched#40Deadloch2023– 14 epsTV Series7.5 (16K)RateMark as watched#41Landman2024– 21 epsTV-MATV Series8.2 (103K)RateMark as watched#42Grey's Anatomy2005– 466 epsTV-14TV Series7.6 (372K)RateMark as watched#43The Mentalist2008–2015151 epsTV-14TV Series8.2 (224K)RateMark as watched#44Person of Interest2011–2016103 epsTV-14TV Series8.5 (205K)RateMark as watched#45ER1994–2009331 epsTV-14TV Series7.9 (77K)RateMark as watched#46The White Lotus2021– 22 epsTV-MATV Series8.0 (320K)RateMark as watched#47From2022– 40 epsTV-MATV Series7.8 (171K)RateMark as watched#4856 Days2026– 8 epsTV-MATV Series6.7 (8K)RateMark as watched#49Better Call Saul2015–202263 epsTV-MATV Series9.0 (824K)RateMark as watched#50Heated Rivalry2025– 7 epsTV-MATV Series8.8 (99K)RateMark as watched#51Reacher2022– 32 epsTV-MATV Series8.0 (290K)RateMark as watched#52Fallout2024– 17 epsTV-MATV Series8.3 (386K)RateMark as watched#53The Sopranos1999–200786 epsTV-MATV Series9.2 (574K)RateMark as watched#54The Walking Dead2010–2022177 epsTV-MATV Series8.1 (1.2M)RateMark as watched#55Something Very Bad Is Going to Happen2026– 8 epsTV Mini SeriesRateMark as watched#56Vladimir20268 epsTV-MATV Series6.1 (6.2K)RateMark as watched#57The Man in the High Castle2015–201940 epsTV-MATV Series7.9 (122K)RateMark as watched#58How to Get to Heaven from Belfast2026– 8 epsTV-MATV Series7.4 (9.5K)RateMark as watched#59Beauty in Black2024– 34 epsTV-MATV Series5.8 (5K)RateMark as watched#60The Last Thing He Told Me2023– 15 epsTV-MATV Series6.6 (22K)RateMark as watched#61Supernatural2005–2020327 epsTV-14TV Series8.4 (535K)RateMark as watched#62Euphoria2019–202626 epsTV-MATV Series8.2 (295K)RateMark as watched#63NCIS2003– 508 epsTV-14TV Series7.8 (176K)RateMark as watched#64The Lincoln Lawyer2022– 50 epsTV-MATV Series7.8 (96K)RateMark as watched#65The Beauty2026– 11 epsTV-MATV Series6.6 (9.8K)RateMark as watched#66House of the Dragon2022– 27 epsTV-MATV Series8.3 (521K)RateMark as watched#67The Amazing Digital Circus2023–20269 epsTV-PGTV Series8.2 (12K)RateMark as watched#68The Capture2019– 18 epsTV-MATV Series8.0 (31K)RateMark as watched#69Love & Death20237 epsTV-MATV Mini Series7.5 (51K)RateMark as watched#70Dexter2006–201396 epsTV-MATV Series8.6 (927K)RateMark as watched#71Memory of a Killer2026– 10 epsTV-14TV Series6.9 (3.2K)RateMark as watched#72Gone2026– 6 epsTV Series7.1 (1.5K)RateMark as watched#73Black Mirror2011– 34 epsTV-MATV Series8.7 (733K)RateMark as watched#74The Office2005–2013191 epsTV-14TV Series9.0 (826K)RateMark as watched#75True Detective2014– 31 epsTV-MATV Series8.8 (750K)RateMark as watched#76Pluribus2025– 10 epsTV-MATV Series8.0 (141K)RateMark as watched#77Criminal Minds2005– 365 epsTV-14TV Series8.1 (238K)RateMark as watched#789-1-12018– 143 epsTV-14TV Series7.9 (63K)RateMark as watched#79Walker, Texas Ranger1993–2001196 epsTV-PGTV Series5.7 (21K)RateMark as watched#80Dark Winds2022– 36 epsTV-MATV Series7.7 (32K)RateMark as watched#81Sankalp2026– 10 epsTV Series6.8 (22K)RateMark as watched#82Frieren: Beyond Journey's End2023– 38 epsTV-MATV Series8.9 (72K)RateMark as watched#83Scrubs2001–2010182 epsTV-14TV Series8.4 (285K)RateMark as watched#84The Night Manager2016– 13 epsTV-14TV Series8.0 (136K)RateMark as watched#85The Wire2002–200860 epsTV-MATV Series9.3 (428K)RateMark as watched#86Law & Order: Special Victims Unit1999– 594 epsTV-14TV Series8.1 (144K)RateMark as watched#87Smallville2001–2011217 epsTV-PGTV Series7.5 (152K)RateMark as watched#88Tracker2024– 55 epsTV-14TV Series7.1 (28K)RateMark as watched#89Star Trek: Starfleet Academy2026–202713 epsTV-PGTV Series4.4 (30K)RateMark as watched#90Animal Kingdom2016–202275 epsTV-MATV Series8.2 (56K)RateMark as watched#91Fargo2014–202451 epsTV-MATV Series8.8 (467K)RateMark as watched#92A Woman of Substance2026– 8 epsTV Series7.2 (252)RateMark as watched#93Severance2022– 25 epsTV-MATV Series8.6 (383K)RateMark as watched#94The Hunting Party2025– 23 epsTV-14TV Series6.6 (8.3K)RateMark as watched#95Ted Lasso2020– 44 epsTV-MATV Series8.7 (438K)RateMark as watched#96RJ Decker2026– 9 epsTV-14TV Series7.0 (1.2K)RateMark as watched#97Chernobyl20195 epsTV-MATV Mini Series9.3 (1M)RateMark as watched#98Firefly2002–200314 epsTV-14TV Series8.9 (301K)RateMark as watched#99Succession2018–202339 epsTV-MATV Series8.8 (352K)RateMark as watched#100Radioactive Emergency20265 epsTV-MATV Mini Series7.7 (1.4K)RateMark as watchedOur Most Popular charts use data from the search behavior of IMDb's more than 250 million monthly unique visitors to rank the hottest, most buzzed about movies and TV shows. Chart insightsAverage IMDb rating7.8More to explorePopular chartsTop box office (US)From the past weekend10 titlesMost popular moviesAs determined by IMDb users100 titlesIMDb Top 250 moviesAs rated by regular IMDb voters.250 titlesTop rated English moviesEnglish-language movies as rated by IMDb users250 titlesTop 250 TV showsTop 250 as rated by IMDb Users250 titlesLowest rated moviesBottom 100 as voted by IMDb users100 titlesMost popular celebsAs determined by IMDb users100 peopleTV newsApple TV’s ‘For All Mankind’ Renewed for 6th and Final Season3/24/2026by Drew TaylorThe Wrap‘School Spirits’ Renewed for Fourth Season at Paramount+3/24/2026by Rick PorterThe Hollywood Reporter - Movie NewsNobody Wants This Season 3 Starts Production3/24/2026by Jean BentleyTudum - NetflixCriminal Minds Renewed At Paramount+ Ahead Of Season 19 Premiere — Heated Rivalry's Connor Storrie To Guest Star3/24/2026by Ryan SchwartzTVLine.comHomicide New York Season 2: Trailer and True Story of Each Case3/26/2026by Krutika MallikarjunaTudum - NetflixTop rated TV by genreActionAdventureAnimationBiographyComedyCrimeDocumentaryDramaFamilyFantasyGame-ShowHistoryHorrorMusicMusicalMysteryNewsReality-TVRomanceSci-FiSportTalk-ShowThrillerWarWesternRecently viewedYou have no recently viewed pages Back to top
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

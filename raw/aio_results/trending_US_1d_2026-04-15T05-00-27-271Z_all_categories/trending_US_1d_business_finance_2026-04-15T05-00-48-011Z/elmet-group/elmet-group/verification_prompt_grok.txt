@@ -1,0 +1,121 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "elmet group"
+
+Claims:
+[1] "The Elmet Group is a U.S.-based advanced manufacturing company."
+[2] "The Elmet Group specializes in high-performance refractory metals (tungsten, molybdenum)."
+[3] "The Elmet Group specializes in high-power microwave systems for defense, aerospace, and medical sectors."
+[4] "The Elmet Group is the largest U.S.-owned producer of its type."
+[5] "The Elmet Group has over 550 employees."
+[6] "The Elmet Group comprises Elmet Technologies (materials/metals) and Microwave Techniques (high-power RF/microwave components)."
+[7] "The Elmet Group is a vertically integrated manufacturer."
+[8] "The Elmet Group processes raw powder into finished products like wire, sheet, plate, and machined components."
+[9] "The Elmet Group serves the aerospace industry."
+[10] "The Elmet Group serves the defense industry including the US Navy."
+[11] "The Elmet Group serves the semiconductor industry."
+[12] "The Elmet Group serves the medical industry (diagnostic imaging)."
+[13] "The Elmet Group serves the energy industries."
+[14] "The Elmet Group originated from a Philips Lighting plant founded in 1929."
+[15] "Anania & Associates acquired The Elmet Group in 2015."
+[16] "The Elmet Group acquired competitor H.C. Starck Solutions Americas in 2023."
+[17] "The Elmet Group announced its IPO in April 2026."
+[18] "The Elmet Group's IPO offers approximately 7.7 million shares."
+[19] "The Elmet Group has key manufacturing sites in Lewiston, ME; Coldwater, MI; and Euclid, OH."
+[20] "The Elmet Group supplies high-density tungsten materials for projects like the NASA Artemis lunar missions."
+
+Cited text snippets from the AI Overview (for additional context):
+- The Elmet Group | Securing Critical U.S. Components Supply ...: "Our Capabilities,Precision Manufacturing"
+- The Elmet Group - LinkedIn: "View all 105 employees,Michigan, Germany, and beyond."
+- Elmet Group IPO : r/stocks - Reddit: ""The Elmet Group is a,key to secure supply chains.""
+- Maine company that made components for Artemis II to become publicly traded: "Elmet Technologies in Lewiston supplied,potential investors before going public."
+- Medical - The Elmet Group: "Cleanroom To Clinical,platforms, and isotope production equipment."
+- The Elmet Group Co. Announces Launch of Initial Public Offering: "About The Elmet Group,advanced high-power microwave systems."
+- Parent company of Lewiston manufacturer Elmet to go public with IPO: "Elmet Technologies was owned by,the applications growing each year."
+Reference Sources:
+
+[R1] The Elmet Group | Securing Critical U.S. Components Supply Chain
+(https://theelmetgroup.com/)
+"""
+Markets Key industry applications support critical national initiatives, including domestic manufacturing for Department of War and Department of Energy efforts. Energy Critical energy systems demand supply chain certainty and precision-engineered components to keep core infrastructure online. Key products for energy applications include nuclear fuel boats, transmission devices for fusion research, and microwave delivery systems for hydrogen, carbon capture, and fossil fuels processing. Learn More Medical When device failure is not an option, our components deliver the utmost reliability and ultra-precision that critical medical applications require. Our products support medical detection and treatment, imaging and oncology, isotope production, shielding, medical foam and polymer production, and x-ray filtering. Learn More Industrial Critical infrastructure depends on secure supply chains to ensure continuous uptime and maximum process efficiency. Our industrial materials, components, and systems support applications in chemical processing, glass manufacturing, food production, material transformation, vacuum furnaces, and more. Learn More Semiconductor & Electronics Supporting advanced semiconductor manufacturing with high-performance materials and components for extreme ultraviolet lithography, metal-organic chemical vapor deposition grids, ion implantation devices, heat sinks and studs, high-reliability diodes, high-density plasma generation components, and more. Learn More Aerospace, Defense & Government Our components and systems support high profile segments in missile systems, rocket launch vehicles, commercial and military aircraft, munitions, ordnance systems, satellite platforms, nuclear submarines, propulsion technology, radar tracking communications, directed energy systems, and beyond. Learn More
+"""
+
+[R2] The Elmet Group Co. Announces Launch of Initial Public Offering
+(https://www.globenewswire.com/news-release/2026/04/14/3273164/0/en/The-Elmet-Group-Co-Announces-Launch-of-Initial-Public-Offering.html)
+"""
+April 14, 2026 06:40 ET | Source: The Elmet Group PORTLAND, Maine, April 14, 2026 (GLOBE NEWSWIRE) -- The Elmet Group Co. ("Elmet" or the "Company"), a U.S.-based provider of precision-engineered components and advanced high-energy systems, today announced that it has launched the roadshow for its proposed initial public offering of approximately 7.7 million shares of its common stock, all of which are being offered by Elmet. In addition, Elmet intends to grant the underwriters a 30-day option to purchase up to approximately an additional 1.2 million shares of common stock from Elmet at the initial public offering price, less underwriting discounts and commissions. The initial public offering price is expected to be between $12.00 and $14.00 per share. Elmet intends to list its common stock on the Nasdaq Capital Market under the ticker symbol “ELMT.” Cantor is acting as lead book-running manager for the proposed offering. Needham & Company and Canaccord Genuity are acting as joint book-running managers. Roth Capital Partners is acting as co-manager. The proposed offering will be made only by means of a prospectus. When available, a copy of the preliminary prospectus related to the proposed offering may be obtained for free by visiting EDGAR on the SEC’s website at www.sec.gov. Alternatively, when available, a copy of the preliminary prospectus related to the proposed offering may be obtained from: Cantor Fitzgerald & Co., Attention: Capital Markets, 110 East 59th Street, 6th Floor, New York, New York 10022 or by email to prospectus@cantor.com. A registration statement relating to these securities has been filed with the Securities and Exchange Commission but has not yet become effective. These securities may not be sold, nor may offers to buy be accepted, prior to the time the registration statement becomes effective. This press release shall not constitute an offer to sell or the solicitation of an offer to buy these securities, nor shall there be any sale of these securities in any state or jurisdiction in which such offer, solicitation or sale would be unlawful prior to registration or qualification under the securities laws of any such state or jurisdiction. About The Elmet GroupThe Elmet Group is a U.S.-based provider of precision-engineered components and advanced high-energy systems for the Aerospace, Defense and Government, Industrial, Medical, Semiconductor and Electronics, and Energy industries. The Company operates through two segments, Critical Materials Components (CMC) and Engineered Microwave Products (EMP), leveraging materials science and precision engineering expertise to deliver-high-performance solutions. The Elmet Group is dedicated to strengthening domestic manufacturing capabilities to support the U.S. and its allies’ needs in both critical materials and advanced high-power microwave systems. Forward Looking StatementsThe information in this press release includes forward-looking statements within the meaning of the federal securities laws. These statements generally relate to future events or our future financial or operating performance and include statements regarding the expected size, timing and results of the proposed initial public offering. When used in this press release, words such as “expect,” “project,” “estimate,” “believe,” “anticipate,” “intend,” “plan,” “seek,” “forecast,” “target,” “predict,” “may,” “should,” “would,” “could,” and “will,” the negative of these terms and similar expressions are intended to identify forward-looking statements, although not all forward-looking statements contain such identifying words. Forward-looking statements are based on management’s current expectations and assumptions, and are subject to inherent uncertainties, risks and changes in circumstances that are difficult to predict. As a result, actual results could differ materially from those indicated in these forward-looking statements. When considering these forward-looking statements, you should keep in mind the risk factors and other cautionary statements in Elmet’s prospectus. Elmet undertakes no obligation and does not intend to update these forward-looking statements to reflect events or circumstances occurring after this press release. You are cautioned not to place undue reliance on these forward-looking statements, which speak only as of the date of this press release.
+"""
+
+[R3] Maine company that made components for Artemis II to become publicly traded
+(https://www.wmtw.com/article/maine-company-elmet-components-artemis-publicly-traded/71014058)
+"""
+Elmet Technologies in Lewiston supplied high-performance materials and precision-machined parts for the Artemis II lunar flyby, including high-density tungsten heavy alloy materials that were produced at the company's manufacturing headquarters in Lewiston.Elmet Technologies also provided components for the Artemis I mission.Elmet Technologies touts itself as the only U.S.-owned and operated, vertically integrated tungsten and molybdenum manufacturer.Now, the company's parent company, The Elmet Group Co. (Elmet), is preparing to go public.Elmet, which makes precision-engineered components and advanced high-energy systems, announced on Tuesday that it has launched the roadshow for its proposed initial public offering (IPO) of approximately 7.7 million shares of its common stock.An IPO roadshow is a series of presentations, typically spanning one to two weeks, to market a company's shares to potential investors before going public. It serves to create momentum, generate demand, and gather feedback to determine the final IPO priceElmet said it also plans to grant the underwriters a 30-day option to buy up to approximately an additional 1.2 million shares of common stock from Elmet at the initial public offering price.The initial public offering price is expected to be between $12 and $14 per share.Elmet intends to list its common stock on the Nasdaq Capital Market under the ticker symbol “ELMT.”The Elmet Group has two segments, Critical Materials Components (CMC) and Engineered Microwave Products (EMP), leveraging materials science and precision engineering expertise to deliver high-performance solutions. LEWISTON, Maine —Elmet Technologies in Lewiston supplied high-performance materials and precision-machined parts for the Artemis II lunar flyby, including high-density tungsten heavy alloy materials that were produced at the company's manufacturing headquarters in Lewiston.Elmet Technologies also provided components for the Artemis I mission. Elmet Technologies touts itself as the only U.S.-owned and operated, vertically integrated tungsten and molybdenum manufacturer. Now, the company's parent company, The Elmet Group Co. (Elmet), is preparing to go public.Elmet, which makes precision-engineered components and advanced high-energy systems, announced on Tuesday that it has launched the roadshow for its proposed initial public offering (IPO) of approximately 7.7 million shares of its common stock. An IPO roadshow is a series of presentations, typically spanning one to two weeks, to market a company's shares to potential investors before going public. It serves to create momentum, generate demand, and gather feedback to determine the final IPO price Elmet said it also plans to grant the underwriters a 30-day option to buy up to approximately an additional 1.2 million shares of common stock from Elmet at the initial public offering price.The initial public offering price is expected to be between $12 and $14 per share.Elmet intends to list its common stock on the Nasdaq Capital Market under the ticker symbol “ELMT.”The Elmet Group has two segments, Critical Materials Components (CMC) and Engineered Microwave Products (EMP), leveraging materials science and precision engineering expertise to deliver high-performance solutions.
+"""
+
+[R4] Parent company of Lewiston manufacturer Elmet to go public with IPO
+(https://www.sunjournal.com/2026/04/14/parent-company-of-lewiston-manufacturer-elmet-to-go-public-with-ipo/)
+"""
+Elmet Technologies at 156 Lisbon St. in Lewiston on Tuesday. (Russ Dillingham/Staff Photographer) The Elmet Group Co., the parent company of Lewiston-based Elmet Technologies, has announced the launch of its initial public offering, or IPO, of 7.7 million shares of its common stock. The IPO is expected to raise between $92 million and $107 million, with an expected valuation of between $12 and $14 a share. The company plans to grant the underwriters the option to purchase an additional 1.2 million shares, potentially raising another $14 million-$17 million. Elmet intends to list its stock on the Nasdaq Composite index under the symbol ELMT. An aerial view of Elmet Technologies at 156 Lisbon St. in Lewiston on Tuesday. (Russ Dillingham/Staff Photographer) Purchase this image Elmet Technologies was owned by Philips Lighting from 1929 until the early 2000s, with the Lewiston plant producing tungsten filament for lightbulbs as its primary product for 60 years. With the shift to LED lighting, Philips sold Elmet to the management team and a former vice president of sales and marketing, Jack Jensen. The company focused on two metals — tungsten and molybdenum — as the core elements around which the company based the majority of its products. Elmet Technologies was acquired by Anania and Associates of Portland in 2015 and has made huge strides under the leadership of principal Peter Anania, acquiring competitor H.C. Starck Solutions Americas in November 2023, making it the largest U.S.-based producer of tungsten and molybdenum materials and products, with more than 400 employees in three states. Elmet is one of only a few manufacturers in the country with the experience and machinery to take tungsten and molybdenum powder, which is semi-refined, and process it into wire, plate, sheet and foil, cubes and spheres. It does so by pressure rolling and heat treating it. The company is also making alloys from the metals, with the applications growing each year. A molybdenum plate is removed from an oven at Elmet Technologies in Lewiston in November 2022. (Daryn Slover/Staff Photographer) Purchase this image The Elmet plant has quietly undergone significant technical changes over the past few years, increasingly targeting defense, aerospace and the medical field. Elmet supplied NASA with high-density tungsten heavy alloy materials produced in Lewiston for the Artemis II lunar mission, and previously supplied components for the Artemis I mission. In 2024, Elmet was recognized for its 95 years of contributions to the state earning the 2023 Governor’s Award for Business Excellence. Later that year Elmet entered into a $30 million agreement with an Australian mining company to secure a supply of tungsten, following China’s moves to limit or cut off sales of the metal. China is the world’s largest supplier of tungsten and Australia is the world’s second largest supplier. A long-time journalist, Christopher got his start with Armed Forces Radio & Television after college. Seventeen years at CNN International brought exposure to major national and international stories... More by Christopher Wheelock Post navigation Some areas of this page may shift around if you resize the browser window. Be sure to check heading and document order.
+"""
+
+[R5] Medical | The Elmet Group
+(https://theelmetgroup.com/markets/medical/)
+"""
+Driving innovation and Enhancing Precision ForMedical Applications When device failure is not an option, our components deliver the reliability and precision that critical medical applications require. Our products support medical detection and treatment, imaging and oncology, isotope production, shielding, medical foam and polymer production, and x-ray filtering. Used By Them. Relied upon across the medical device supply chain, providing the precision components and continuity that patient-critical manufacturing demands. Made By Us. A qualified and trusted line of highly-engineered components and specialized materials for advanced medical platforms requiring ultra-precision. 95+ National Laboratory Programs Long-standing support of medical discovery and complex scientific programs at national laboratories and high-powered energy research facilities. Talent is our strongest material. Our engineers, researchers, metallurgists, and technicians bring the expertise medical standards require. 95+ Year Legacy of Innovation Our legacy of innovation began nearly a century ago, when the first Elmet site was established in 1929 as The American Electro Metal Corporation. Cleanroom To Clinical Manufactured for ultra-precise patient outcomes, our components are embedded in diagnostic imaging systems, robotic-assisted surgical devices, radiation oncology platforms, and isotope production equipment. Trusted By Them. When device performance is measured in microns and outcomes are measured in lives, medical technology OEMs trust us to deliver without compromise. Tested By Us. With quality and validation embedded into every step of our process, we deliver the material and component consistency that ultra-precise applications require. Precision Meets Performance. Critical Materials. Critical Processes. Critical Engineering. Critical Manufacturing. When medical technology demands accuracy, our components rise to the occasion.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

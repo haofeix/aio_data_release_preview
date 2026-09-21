@@ -1,0 +1,986 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "canadian citizenship for americans"
+
+Claims:
+[1] "Americans can acquire Canadian citizenship primarily through descent or naturalization."
+[2] "Bill C-3 is effective 2023/2024."
+[3] "Bill C-3 expands eligibility beyond the previous first-generation limit for citizenship by descent."
+[4] "Bill C-3 allows those with a Canadian parent or grandparent to prove an unbroken line of citizenship."
+[5] "Many Americans with a Canadian ancestor (parent or grandparent) can claim citizenship following Bill C-3."
+[6] "Applicants must apply for a Citizenship Certificate from Immigration, Refugees and Citizenship Canada (IRCC) to obtain proof of citizenship."
+[7] "Permanent residence can be obtained through work, family sponsorship, or economic immigration (e.g., Express Entry)."
+[8] "Permanent residents must be physically present in Canada for at least 1,095 days (3 years) out of the five years preceding the citizenship application."
+[9] "Naturalization applicants must file personal income tax for at least three years within the five-year period."
+[10] "Naturalization requires demonstrating proficiency in English or French."
+[11] "Naturalization requires passing a test regarding Canadian history, geography, government, and rights."
+[12] "The language and knowledge tests for naturalization apply to applicants aged 18–54."
+[13] "Canada allows dual citizenship."
+[14] "Americans can hold both U.S. and Canadian citizenship."
+[15] "Proving citizenship by descent requires official, unbroken documentation, such as birth, marriage, or adoption certificates."
+[16] "A criminal record (including some misdemeanors like DUI) can make an American inadmissible to Canada."
+
+Cited text snippets from the AI Overview (for additional context):
+- Canadian citizenship for adults and minor children: Who can apply - Canada.ca: "To be eligible for Canadian citizenship as,and security reasons (inside and outside Canada)"
+- Millions of Americans now eligible for Canadian citizenship 'just in ...: "Ellen Robillard, who lives outside,(Courtesy Ellen Robillard)&text=Canada's revised citizenship laws, effective,citizenship amid U.S. political unrest."
+- Immigration, Work, & Study Visa Options - Canadavisa.com: "U.S citizens and residents who,be allowed to enter Canada."
+- Explained | Why more Americans are applying for Canadian citizenship after new ancestry law: "When President Donald Trump returned,and uncertainty in the US."
+- Americans flock to claim Canadian citizenship by descent amid US ...: "How to claim Canadian citizenship,proof under the new law."
+- Dual citizens - Travel.gc.ca: "You may need a passport,child was born in Canada."
+- Canadian Citizenship by Descent for Americans | Bill C-3 Guide: "This is the most common,retroactively recognized as Canadian citizens."
+- Canadian citizenship | Allen and Hodgman: "To apply for Canadian citizenship, you must:,where you recite the oath of allegiance."
+- 🚨 A major shift in Canadian citizenship rules is driving a surge in applications from Americans. Experts say demand for proof of citizenship has significantly increased after the recent legal change. Stay updated on eligibility and new opportunities 👇 Source: CTV News #CanadaCitizenship #ImmigrationNews #CanadaUpdates #sunivyas #appraiseimmigration: "📌 Breaking News: More Americans are applying,their Canadian status after new laws passed."
+Reference Sources:
+
+[R1] CHAPTER SEVENTEEN: CITIZENSHIP
+(https://www.lslap.bc.ca/uploads/2/9/3/5/29358111/17_-_citizenship.pdf)
+"""
+CHAPTER SEVENTEEN: CITIZENSHIP
+ Edited by Kirika Blaine
+ With the Assistance of Laura Schemitsch, Heron Law Offices
+ Current as of August 1, 2024
+
+TABLE OF CONTENTS
+I. INTRODUCTION .......................................................................................................................1
+II. GOVERNING LEGISLATION AND RESOURCES............................................................................2
+ A. LEGISLATION ........................................................................................................................................... 2
+ B. RESOURCES ............................................................................................................................................ 3
+III. WHO IS A CANADIAN CITIZEN? .................................................................................................4
+ A. GRANT OF CITIZENSHIP VS. PROOF OF CITIZENSHIP......................................................................................... 4
+IV. ADVANTAGES AND RESPONSIBILITIES OF BEING A CITIZEN .......................................................5
+V. CITIZENSHIP GRANTS: HOW TO BECOME A CANADIAN CITIZEN .................................................6
+ A. GRANT OF CITIZENSHIP UNDER S 5 .............................................................................................................. 6
+ B. RESUMPTION OF CITIZENSHIP, S 11 ............................................................................................................. 7
+ C. PROHIBITIONS (SS 19 & 22 OF THE ACT) ....................................................................................................... 7
+ D. MINORS ................................................................................................................................................. 8
+ E. SPECIAL CASES ....................................................................................................................................... 9
+VI. HOW TO APPLY FOR A CITIZENSHIP GRANT ............................................................................ 10
+ A. THE PROCESS........................................................................................................................................ 10
+ 1. Mail-in Process .................................................................................................................... 10
+ 2. Materials Required with Application ....................................................................................... 10
+ 3. Fees ................................................................................................................................... 11
+ 4. Filing................................................................................................................................... 11
+ 5. After Filing the Application ..................................................................................................... 12
+ 6. Processing Time ................................................................................................................... 12
+ B. THE CITIZENSHIP INTERVIEW AND TEST ....................................................................................................... 13
+ 1. Interview and Test ................................................................................................................ 13
+ 2. Citizenship Judge ................................................................................................................. 14
+ C. THE OATH OF CITIZENSHIP AND THE CITIZENSHIP CEREMONY.......................................................................... 15
+ D. JUDICIAL REVIEWS .................................................................................................................................. 15
+VII. LOSS AND RENUNCIATION OF CITIZENSHIP ........................................................................... 17
+VIII. PROOF .................................................................................................................................. 18
+IX. SEARCH OF CITIZENSHIP RECORD ......................................................................................... 19
+X. REFERRALS ........................................................................................................................... 20
+CHAPTER SEVENTEEN: CITIZENSHIP
+
+This Manual is intended for informational purposes only and does not constitute legal advice or an
+opinion on any issue. Nothing herein creates a solicitor-client relationship. All information in this Manual
+is of a general and summary nature that is subject to exceptions, different interpretations of the law by
+courts, and changes to the law from time to time. LSLAP and all persons involved in writing and editing this
+Manual provide no representations or warranties whatsoever as to the accuracy of, and disclaim all liability
+and responsibility for, the contents of this Manual. Persons reading this Manual should always seek
+independent legal advice particular to their circumstances.
+
+I. INTRODUCTION
+ This chapter is primarily intended to be a short guide of the basic process of obtaining a citizenship
+ grant. For more detailed information, refer to the Citizenship Act, RSC 1985, c C-29 and Citizenship
+ Regulations, SOR/93-246.
+
+ This manual may aid individuals in determining whether they or their family members qualify for
+ Canadian citizenship, and may assist those facing the loss of their citizenship status. Applying for
+ citizenship as soon as you become eligible is encouraged. It is important to be as thorough as
+ possible with the initial citizenship application, as this is the best chance for obtaining citizenship.
+
+NOTE: The COVID-19 pandemic has affected the efficiency of Immigration, Refugees and Citizenship
+ Canada (“IRCC”) and other organizations that provide assistance related to Canadian citizenship.
+ There are currently delays in processing citizenship applications. For more details and the latest
+ information, please see the IRCC website: https://www.canada.ca/en/immigration-refugees-
+ citizenship/services/coronavirus-covid19.html.
+
+ 17-1
+II. GOVERNING LEGISLATION AND RESOURCES
+ Changes to the Citizenship Act 2 were completed on June 11th, 2015. Applications submitted since
+ June 11th, 2015 are bound by these changes. Those whose applications were submitted before this
+ date should review the version of the Act that was in effect at the time the application was
+ submitted.
+
+ A. Legislation
+ The governing legislation is the Citizenship Act, RSC 1985, c C-29 (“the Act”). The Act is
+ relevant where an individual wishes to obtain, resume, or retain their citizenship, or to
+ determine how it may be forfeited. Under the Act, citizenship is granted after certain
+ requirements are met. Citizenship cannot be arbitrarily withheld as was possible under the
+ Act’s predecessor, the Canadian Citizenship Act, RSC 1970, c C-19.
+
+ For the purposes of this Chapter, the following terms are commonly used when discussing
+ Canadian citizenship:
+
+ Citizen: A Canadian citizen.
+
+ Ceremony Room: An office of the Department of Immigration, Refugees and
+ Citizenship of Canada or other place where a citizenship judge
+ performs his or her duties under the Act.
+
+ Citizenship Judge: Any citizen appointed by the Governor in Council to be a citizenship
+ judge and to perform duties as the Minister prescribes for carrying
+ into effect the purposes and provisions of the Act under s 26.
+
+ Minister: The Minister of Immigration, Refugees and Citizenship of Canada.
+
+ Permanent Resident: A person conferred with this status under the Immigration and
+ Refugee Protection Act.
+
+ Minor: A person who has not attained the age of 18 years.
+
+ Parent: The father or mother of a child. This includes an adoptive parent.
+
+ NOTE: On July 9, 2020, IRCC announced a change in the interpretation of “parent”
+ under ￼the Citizenship Act. The change allows non-biological Canadian parents
+ who are ￼their child’s legal parent at birth to pass down Canadian citizenship to
+ their children ￼born abroad in the first generation. This new interpretation helps
+ Canadian parents ￼who have relied on assisted human reproduction to start a
+ family, including ￼members of the LGBTQ2+ community and couples with
+ fertility issues. Until now, a child born abroad was automatically recognized
+ as a citizen at birth only if the ￼child shared a genetic link to the Canadian parent
+ or if the child was born to a ￼Canadian parent in the first generation. For more
+ information, visit the website below: https://www.canada.ca/en/immigration-
+ refugees-citizenship/news/2020/07/citizenship-change-benefits-couples-with-
+ fertility-issues-and-same-sex-couples.html
+
+ Registrar: The Registrar of Canadian Citizenship
+
+ 17-2
+B. Resources
+ Immigration, Refugees and Citizenship Canada
+ Toll-free in Canada: 1-888-242-2100
+ Website: www.cic.gc.ca
+ Online Manuals Website: www.cic.gc.ca/english/resources/manuals/index.asp
+ Canadian citizenship law undergoes constant and sometimes unpredictable change. To
+ ensure that you are using the correct forms, and the most current policies and procedures,
+ it is important to check the IRCC website: https://www.canada.ca/en/immigration-
+ refugees-citizenship.html.
+ Here you can find information, downloadable forms, and links to the IRPA, Regulations, and
+ Policy Manuals. Operational Manuals and Bulletins published by IRCC are available online
+ under the Publications heading, and explain the policies and procedures used by immigration
+ officials to interpret the IRPA.
+
+ Vancouver Offices - Citizenship
+ 200 - 877 Expo Boulevard
+ Vancouver, B.C. V6B 8P8
+
+ AND
+
+ 1148 Hornby Street
+ Vancouver, B.C. V6Z 2C3
+
+ Surrey Office - Citizenship
+ #70 – 9900 King George Boulevard
+ Surrey, B.C. V3T 0K9
+
+ Case Processing Centre - Citizenship
+ P.O. Box 7000
+ Sydney, Nova Scotia B1P 6V6
+
+ 17-3
+III. WHO IS A CANADIAN CITIZEN?
+ Section 3 of the Act provides that a person is a Canadian citizen if they meet one of the enumerated
+ conditions. In general, a person is a Canadian citizen if:
+
+ • They were born in Canada;
+ • They became a citizen through the naturalization process in Canada (i.e., they were a permanent
+ resident in Canada before becoming a citizen);
+ • They were born outside Canada and one of their parents was a Canadian citizen at the time of
+ their birth (first generation born outside Canada);
+ • They were born outside Canada between January 1,1947 and April 16, 2009, to a Canadian
+ parent who was also born outside Canada to a Canadian parent;
+ • They were adopted outside Canada by a Canadian parent on or after January 1, 1947.
+
+ NOTE: The preconditions of citizenship listed above are not exhaustive.
+
+ NOTE: In May 2024, the Government of Canada introduced Bill C-71: An act to amend the
+ Citizenship Act (2024). If this legislation is enacted, the first-generation restriction on
+ obtaining citizenship would be removed, and citizenship by descent would extend beyond
+ the first generation. Please visit https://www.canada.ca/en/immigration-refugees-
+ citizenship/news/2024/05/bill-c-71-an-act-to-amend-the-citizenship-act-2024.html for
+ more information and check the IRCC website for updates regarding the status of the
+ legislation.
+
+ A. Grant of Citizenship vs. Proof of Citizenship
+ A person who is a Canadian citizen by virtue of being born in Canada or being born outside of
+ Canada to a Canadian parent may apply for proof of citizenship. It is not necessary to pass
+ the citizenship test or take the oath of citizenship to receive proof of citizenship.
+
+ Individuals living outside Canada should contact the Canadian Embassy, high commission
+ or consulate in their country. If access to a Canadian government office is not possible,
+ there is the option to contact a Canadian government office that can provide consular
+ service in a nearby country or a foreign government office. For more information, please
+ check Section VIII of this chapter.
+
+ Permanent Residents of Canada who have fulfilled the necessary requirements can apply
+ for and may be granted citizenship. See section V of this chapter.
+
+ 17-4
+IV. ADVANTAGES AND RESPONSIBILITIES OF BEING A CITIZEN
+Permanent residents are not required to become Canadian citizens. However, permanent residents may
+wish to apply to become citizens because Canadian citizens:
+ • have the right to vote;
+ • have the right to apply for a Canadian Passport;
+ • may receive preference over non-citizens for certain jobs within the government;
+ • cannot be deported from Canada;
+ • are able to run in elections;
+ • are not subject to the same residency requirements as a permanent resident.
+
+ Individuals should find out prior to applying for Canadian citizenship whether the countries of which
+ they are citizens permit dual citizenship. As Canada allows dual citizenship, acquiring a Canadian
+ citizenship is possible regardless of possession of another citizenship. However, if the country of
+ which an individual is presently a citizen does not permit dual citizenship, their citizenship of that
+ country may be extinguished if they acquire Canadian citizenship.
+
+NOTE: Non-citizens may be subject to deportation from Canada if they are convicted of an offence in
+ Canada. Non-citizens who have already been subject to the Canadian criminal justice system for
+ minor offences may benefit from applying for citizenship as soon as they become eligible to avoid the
+ risk of deportation.
+
+ 17-5
+V. CITIZENSHIP GRANTS: HOW TO BECOME A CANADIAN CITIZEN
+ A. Grant of Citizenship Under s 5
+ NOTE: Regulations may change. Please check the IRCC website for information on what is currently
+ required for a grant of citizenship under section 5.
+
+ To be granted citizenship, applicants must meet the requirements as set out in s 5(1) of the
+ Citizenship Act. An applicant must:
+
+ a. Make an application for citizenship, or, in the case of a minor, have a person empowered
+ to act on their behalf make the application;
+ b. Be a permanent resident (“PR”) with no unfulfilled conditions relating to that status;
+ c. Meet the physical presence requirement: applicant must have been physically present
+ in Canada for at least 1095 days within the five years before the date of application;
+ d. Meet the filing obligations: applicant must meet filing obligations under the Income Tax
+ Act for any three taxation years that fall, fully or partially, within the five years before the
+ date of application;
+ e. For those aged 18-54 years old:
+ i. submit proof that they meet the language requirement;
+ ii. take a citizenship knowledge test;
+ f. Not be under a removal order; and
+ g. Not be under a prohibition (see Section V.C Prohibitions).
+
+ NOTE: Applicants may count each day they were physically present in Canada, as a temporary
+ resident or protected person before becoming a permanent resident, as a half-day towards
+ meeting the physical presence requirement for citizenship, up to a maximum credit of 365
+ days. Please refer to the Citizenship Act ss 1.01, 1.02, 1.03, 1.2 & 1.3 for details on
+ exceptions. The Physical Presence Calculator
+ (https://eservices.cic.gc.ca/rescalc/resCalcStartNew.do)on the IRCC website is currently
+ accepted by IRCC as a method for calculating presence in Canada. Applicants can print off
+ the results of the calculator and include them with their citizenship application.
+
+ NOTE: If the individual is between the ages of 18 and 54, they are required to send proof of their ability
+ to speak and listen in English or French in the citizenship application. Examples of acceptable
+ documents that satisfy this requirement are the results of IRCC-approved third-party tests;
+ transcripts or diploma from a secondary or post-secondary educational institution in English
+ or French, in Canada or abroad; evidence of achieving Canadian Language Benchmark
+ (CLB)/Niveau de Compétence Linguistique Canadien (NCLC) (http://www.language.ca/)
+ level 4 or higher in certain government-funded language training programs. The full list of
+ acceptable documents can be found on the IRCC website:
+ https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-
+ citizenship/become-canadian-citizen/eligibility/language-proof.html
+
+ NOTE: If an applicant studied at a post-secondary program in English or French in or outside Canada,
+ they do not need to write a language test; they can submit their diploma, transcript, or
+ certificate with their citizenship application. If the document is not in English or French, they
+ must be accompanied with a certified English or French translation. More information on what
+ is certified can be found at https://www.canada.ca/en/services/immigration-
+ citizenship/helpcentre/glossary.html#certificate_english_french_translations
+
+ 17-6
+B. Resumption of Citizenship, s 11
+ A person who was a Canadian citizen in the past, but who lost citizenship, may apply for a
+ grant of citizenship (resumption) under s 11(1) of the Citizenship Act. A former Canadian
+ citizen may resume citizenship if that person:
+
+ a) Makes an application for resumption of citizenship;
+ b) Was a Canadian citizen and lost citizenship by means other than revocation;
+ c) Became a permanent resident after the loss of citizenship;
+ d) Does not have unfulfilled immigration conditions linked to their permanent resident
+ status
+ e) Lived in Canada as a permanent resident for at least one year during the two years
+ before the application
+ f) Has met applicable requirements under the Income Tax Act and if required, has filed
+ income tax for the last taxation year immediately before the application;
+ g) Is not under a prohibition for certain criminal charges and convictions;
+ h) Is not under a removal order (e.g. deportation), and;
+ i) Does not present a security risk.
+
+ Women who lost their citizenship by a law in force before January 1, 1947, because of their
+ marriage or because their husband acquired foreign nationality can resume their citizenship
+ as soon as they notify the Minister of their intention and produce satisfactory evidence to
+ prove they meet the requirements of s 11(2). The applicant should provide the reasons she
+ wants another certificate of citizenship and should surrender all previous certificates either at
+ the time of application or when she receives her new certificate. Where the applicant has lost
+ or destroyed her certificate of naturalization or citizenship, she must provide the details of that
+ loss or destruction.
+
+C. Prohibitions (ss 19 & 22 of the Act)
+ Generally, a person will not be able to take the oath of citizenship and citizenship will not be
+ granted to them under ss 5(1), (2) or (4) or 11(1) of the Citizenship Act if they:
+
+ a) are under a probation order;
+ b) are a paroled inmate;
+ c) are serving a term of imprisonment;
+ d) are currently serving a sentence outside Canada for an offence committed outside
+ Canada that, if committed in Canada, would constitute an offence under an
+ enactment in force in Canada;
+ e) are currently charged with, on trial for, subject to, or a party to an appeal relating to
+ an offence under the Citizenship Act or any indictable offence under any Act of
+ Parliament, other than an offence that is designated as a contravention under the
+ Contraventions Act, SC 1992, c 47 [Contraventions Act];
+ f) require but have not obtained the consent of the Minister of Immigration, Refugees
+ and Citizenship, under s 52(1) of the Immigration and Refugee Protection Act, SC
+ 2001, c 27 [Immigration and Refugee Protection Act], to be admitted to and remain
+ in Canada as a permanent resident;
+ g) are under investigation by the Minister of Justice, the RCMP, or the Canadian
+ Security Intelligence Service or charged with, on trial for, subject to or a party to an
+ appeal relating to, an offence under any of sections 4 to 7 of the Crimes Against
+ Humanity and War Crimes Act;
+
+ 17-7
+ h) are convicted of certain crimes against humanity or war crimes;
+ i) misrepresent or withhold important or relevant facts that could induce immigration
+ authorities to make an error in administering immigration laws and regulations with
+ respect to your application;
+ j) were prohibited from being granted citizenship or taking the oath due to
+ misrepresentation during the five years immediately before the person’s
+ application;
+
+ NOTE: This list is not exhaustive, and only provides a summary of general
+ prohibitions. For full prohibitions, see:
+ https://laws-lois.justice.gc.ca/eng/acts/c-29/section-22.html
+
+ Additionally, the Minister may make a report to the Review Agency if the Minister is of the
+ opinion that a person should not be granted citizenship where there are reasonable grounds to
+ believe that an applicant has engaged, is engaging or may engage in activity that:
+
+ a) constitutes a threat to the security of Canada, or
+ b) is part of a pattern of criminal activity planned and organized by a number of persons
+ acting in concert to commit any offence that is punishable by indictment under any
+ Act of Parliament.
+
+ If the Governor in Council declares that there are reasonable grounds to believe that an
+ applicant will behave in this way, the person’s applications made under ss 5, 9 or 11(1) is
+ refused and related application for judicial review or appeal is dismissed as well. For more
+ information on this process, please see:
+ https://laws-lois.justice.gc.ca/eng/acts/c-29/page-4.html?wbdisable=true
+
+D. Minors
+ With the 2017 Bill C-6 having received royal assent, the age requirement for citizenship has
+ been removed under subsection 5(1). Minors can now apply for citizenship without a
+ Canadian parent. A person having custody of the minor or empowered to act on their behalf by
+ court order, written agreement or operation of law (s 5(1.04)), can now apply for citizenship on
+ behalf of the minor, unless that requirement is waived by the Minister (ss 5(1.05) & 5(3)(b)(v)).
+
+ The three-year residency requirement does not apply to children under the age of 18. There is
+ no residency requirement for children applying under s 5(2). Parents who are citizens may
+ apply for citizenship for their child as soon as the child becomes a permanent resident (s 5(2)).
+ Adoptive parents who are citizens may bypass the permanent residency requirement and may
+ make an application for citizenship on behalf of their child directly (s 5.1(1)). However, to do
+ so, the adoption must “create a genuine relationship of parent and child”. Additionally, this
+ direct route to citizenship is not available beyond the first generation of Canadians born or
+ adopted abroad (i.e. the parents must derive their own citizenship by being born in Canada or
+ through naturalization).
+
+ Children are not required to write the citizenship test, but children who are 14 and over are
+ required to take the oath. If a child turns 18 before the end of the application process, he or
+ she cannot be granted citizenship as a minor, even if they were under the age of 18 at the time
+ of application. They must submit an adult application of citizenship. Stateless applicants
+ under s 5(5) have until age 23 to complete the application process.
+
+ 17-8
+E. Special Cases
+ In some cases, the Minister may, at his or her discretion, waive on compassionate grounds
+ (s 5(3)):
+
+ a) The requirements of language and knowledge of Canada or of the responsibilities
+ and privileges of citizenship, and
+ b) The requirement to take the oath, in the case of any person who is prevented from
+ understanding the significance of taking the oath of citizenship by reason of mental
+ disability.
+
+ Section 5(3.1) requires that, for the purpose of section 5, if an applicant for citizenship is a
+ disabled person, the Minister to take into consideration the measures that are reasonable to
+ accommodate the needs of that person.
+
+ Section 5(4) allows the Governor in Council, in his or her discretion, to direct the Minister to
+ grant citizenship to any person in order to alleviate cases of statelessness or of special and
+ unusual hardship or to reward service of exceptional value to Canada, notwithstanding any
+ other requirements under the Act. The relevant policy guideline of IRCC can be found at this
+ website:
+ https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-
+ manuals/operational-bulletins-manuals.html
+
+ Consideration of exceptions is strongly encouraged where there is potential for an exception
+ to be granted. The relevant policy guideline should assist in determining whether there is
+ potential for an exception to be granted.
+
+ 17-9
+VI. HOW TO APPLY FOR A CITIZENSHIP GRANT
+ A. The Process
+
+ 1. Apply Online
+ Most applicants can now apply online to become a Canadian citizen. More
+ information on how you can apply online can be found at the IRCC website:
+ https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-
+ citizenship/become-canadian-citizen/apply.html
+
+ 2. Apply on Paper
+ If applying on paper, your citizenship application must be mailed in using the proper
+ forms provided by IRCC. The new forms are easy to understand and to complete. To
+ order a citizenship application, consult the IRCC website (see Section II.B:
+ Resources, above). In-person application assistance is not available from IRCC.
+
+ The IRCC publishes Discover Canada: The Rights and Responsibilities of Citizenship,
+ a book that gives general information regarding the right to vote in elections and run
+ for elected office, voting procedures, and chief characteristics of Canadian physical
+ and political geography. This may be helpful when preparing for the written test. This
+ book is mailed to the applicant after the application for a citizenship grant has been
+ received at the case processing centre. Alternatively, the Discover Canada is
+ available on IRCC’s website and a link to it is provided in a letter from IRCC:
+ https://www.canada.ca/en/immigration-refugees-
+ citizenship/corporate/publications-manuals/discover-canada.html
+
+ An application should be completed as fully as possible. Only the full legal names of
+ the person seeking citizenship will appear on the certificate of citizenship. The name
+ on the permanent resident document will appear on the certificate of citizenship
+ unless legal name-change documents have been submitted.
+
+ 3. Materials Required with Application
+ Individuals should carefully fill in all the forms they receive in the mail or from the
+ website. Those forms are the most current and can be found at
+ http://www.cic.gc.ca/english/citizenship/become-how.asp.
+
+ The application will list the documents that are needed, which will vary depending on
+ the applicant’s particular situation. Any document that is not in English or French
+ must be accompanied by the English or French translation and by an affidavit from
+ the person who completed the translation. Documents that are usually required with
+ all applications are:
+
+ a) A birth certificate or other satisfactory proof of the applicant’s date and place
+ of birth;
+ b) Record of Landing or Permanent Resident Card;
+ c) Satisfactory language evidence;
+ d) Satisfactory proof of entry into Canada and of lawful admission for
+ permanent residence. This could include passport(s) or a Certificate of
+ Identity;
+
+ 17-10
+ e) A Certificate of Marriage or legal name change document if the applicant’s
+ name has recently changed;
+ f) Photocopies of all valid and expired passports or travel documents you had
+ in the past 5 years. If you don’t have these documents or there are gaps in
+ time between travel documents, an explanation will be needed; and
+ g) Photocopies of personal identity documents: e.g. driver’s license, health
+ insurance card, senior citizen’s card, age of majority card.
+
+ In addition to these documents, the applicant must supply two identical photographs
+ that:
+
+ a) Have been taken within the last six months;
+ b) The photographs must show the full front view of the head, with the face in
+ the middle of the photograph, and include the top of the shoulders;
+ c) must be 50 mm (2″) by 70 mm (2 3/4'');
+ d) The size of the head, from chin to crown, must be between 31 mm (1 1/4″)
+ and 36 mm (1 7/16″);
+ e) Crown means the top of the head or (if obscured by hair or a head covering)
+ where the top of the head or skull would be if it could be seen.
+
+4. Fees
+ The fee for an adult grant is $630. This amount includes a $530 processing fee and a
+ $100 Right of Citizenship fee. The fee for minors under 18 is only a $100 processing
+ fee. The processing fee is not refundable unless the applicant withdraws his or her
+ application before processing begins. The Right of Citizenship fee is refundable if the
+ applicant is not approved for citizenship. Fees change regularly. The most recent
+ information about applicable fees may be obtained from the IRCC website (see
+ Section II.B: Resources); see also the Citizenship Regulations, SOR/93-246 in which
+ the fees are proscribed.
+
+ The fee list provided on the IRCC website can be used to determine the applicable
+ fees for all applicants: http://www.cic.gc.ca/english/information/fees/fees.asp
+
+ Payment must be made online at:
+ https://ircc.canada.ca/english/information/fees/pay.asp.
+
+NOTE: In February 2019, the Federal Court in Tammy Lynn Mayes and Justice for
+ Children and Youth v The Minister of Citizenship and Immigration (6 February),
+ Ottawa, T-797-18 (FC) ruled that a Minister may exercise discretion and waive the
+ applicable processing fees to alleviate cases of statelessness or of special and
+ unusual hardship or to reward services of an exceptional value to Canada.
+
+5. Filing
+ After the application form is completed and the applicant collects all the required
+ materials (documents and photographs), the form, all documents, and fee receipt
+ should be submitted online or sent to the Case Processing Centre in Sydney, Nova
+ Scotia. If a family wishes to be processed together, all physical applications should
+ be submitted in the same envelope. Starting from June 3, 2013, all family members
+
+ 17-11
+ who apply together in one citizenship application will no longer be approved at the
+ same time. Applicants who pass the test will now be processed independent of other
+ family members.
+
+ See also the IRCC website:
+
+ https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-
+ citizenship/become-canadian-citizen/apply.html
+
+6. After Filing the Application
+NOTE: It is anticipated that the minimum and maximum age requirements will change after
+ the printing of this manual. Users of this manual are advised to seek current
+ information on the age requirements.
+
+ Once the Registrar receives the application and supporting documents, the
+ Department will begin processing the application and determine whether the
+ applicant meets the requirements of the Act. When it has been determined that an
+ applicant is eligible to apply for citizenship, and they have passed the required
+ clearances, they are scheduled for a citizenship test and an interview with a
+ citizenship official. If the applicant is between the ages of 18 and 54, he or she must
+ pass a test about Canada’s history, geography and the rights and responsibilities of
+ citizenship. The applicant is given at least seven days (usually two - three weeks)
+ written notice prior to the date of the examination. If the applicant is 55 years or
+ older he or she does not have to write the test, however, they are still required to
+ attend an interview.
+
+ Where an applicant has failed to provide all materials relating to the application, the
+ Registrar will give notice to the applicant to provide the appropriate materials. If the
+ applicant fails to comply with this notice, the Registrar will send a second notice.
+ Failure to comply with the second notice will result in the abandonment of the
+ application, and the applicant will have to file a new application.
+
+7. Processing Time
+ According to the IRCC website, the total processing time for a routine application for
+ citizenship varies (Please refer to the IRCC website to see current processing times).
+ An application is considered routine if:
+
+ a) All the necessary documents and correct fees are received by IRCC;
+ b) The applicant meets the residence requirement;
+ c) The applicant is not subject to any immigration, security or criminal
+ prohibitions;
+ d) The applicant passes the citizenship test, and;
+ e) The applicant does not need a hearing with a citizenship judge.
+
+NOTE: Due to COVID-19, IRCC processing times have increased, and there is limited
+ capacity to process citizenship applications and provide processing timelines.
+
+NOTE: If a candidate has an emergency, they can request urgent processing of their
+ citizenship application. More information can be found on the IRCC website:
+ https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-
+ citizenship/become-canadian-citizen/apply/urgently.html
+
+ 17-12
+B. The Citizenship Interview and Test
+
+ 1. Interview and Test
+ All adult applicants and some minor applicants will be scheduled for a meeting with a
+ citizenship officer, which is generally referred to as an “interview”. This interview
+ happens the same day that the citizenship test is scheduled and is conducted at the
+ test location. IRCC is now moving towards online citizenship tests, rather than in-
+ person ones. If you take an online citizenship test, your interview may be conducted
+ at a later date.
+
+ For the interview, the applicant must bring their passports and other documents that
+ they provided as part of their citizenship application. They should be prepared to
+ speak briefly with the citizenship officer conducting the Interview in English or French,
+ and the officer may ask questions about the application (such as requesting
+ clarification on travel dates or other facts that are material to the application).
+
+ Where an applicant meets a minimum language requirement (assessed at the
+ interview), meets the residency requirements, has no suspected prohibitions,and is
+ between the ages of 18 and 54, they will be required to take a written examination.
+ Applicants may be able to have an oral test instead if they have problems like
+ difficulty in reading and writing in English or French. The examination consists of
+ multiple-choice questions and true or false questions. It tests an applicant’s
+ knowledge of Canada, including aspects of history, geography, economy,
+ government, laws, symbols, citizens’ rights and responsibilities. There are 20
+ questions and an applicant needs to get 15 correct answers to pass the test. It is
+ mandatory for citizenship applicants to correctly answer two questions related to s
+ 15(a) of the Citizenship Regulations and one question related to s 15(b). Subsection
+ 15(a) sets out the right to vote and run for elected office and s 15(b) deals with voting
+ procedures. Applicants who fail their first citizenship test, but otherwise meet all
+ other criteria, have the opportunity to rewrite the test about 4-8 weeks after the initial
+ test before being referred to a citizenship officer. If the applicant passes the test, they
+ will attend a citizenship ceremony on a later date.
+
+ Citizenship test questions are based on the information provided in a free booklet
+ called Discover Canada: The Rights and Responsibilities of Citizenship. IRCC will
+ send this booklet to applicants once their applications for citizenship are filed. A PDF
+ version of the booklet can also be downloaded from the IRCC website:
+ (https://www.canada.ca/content/dam/ircc/migration/ircc/english/pdf/pub/discove
+ r.pdf
+
+ The test takes place in a relatively informal environment where the applicants are
+ required to write the exam on their laps. Most people find the 30 minutes provided to
+ be sufficient to finish the exam. Individuals who lack adequate knowledge of English
+ or French could experience difficulties with passing the test.
+
+ NOTE: A local non-profit organization, the B.C. Civil Liberties Association (“BCCLA”),
+ publishes The Citizenship Handbook: A Guide to Democratic Rights and
+ Responsibilities, a free guide intended to help introduce new Canadians to the
+ country’s political process. The handbook is available in English, Chinese, Spanish,
+
+ 17-13
+ Vietnamese and Punjabi. For more information, please visit the BCCLA website:
+ https://bccla.org/resources-learning/?jsf=jet-engine:cases-policy&tax=resource-
+ types:462
+
+2. Citizenship Judge
+ In situations where a person is illiterate, does not meet the residency requirement, is
+ suspected of some prohibition, or fails the written test, they will be requested to
+ attend an oral hearing with a Citizenship Judge. The oral interview offers a second
+ chance to those who fail the written examination. Citizenship Judges are Canadian
+ Federal Government employees and are not appointed through methods used for
+ other Federal Judge positions.
+
+ Diversion to a citizenship judge can add significant time to processing and is not
+ always successful, so if the applicant can avoid this through adequate
+ preparation they should plan to do so.
+
+ The purpose of the hearing is to determine whether or not the applicant fulfils the
+ requirements of the Citizenship Act to become a citizen. Friends and relatives of the
+ applicant may ask to attend the hearing, but it is the judge’s discretion whether to
+ allow them to attend. Applicants should bring all relevant documents to the hearing,
+ such as passport(s), IMM1000 (record of landing), confirmation of permanent
+ residence, permanent resident card, separation or divorce papers, and any additional
+ proof of residency in Canada.
+
+ During the interview, the judge will ask the applicant simple oral questions based on
+ instructional materials to decide if the applicant has an adequate knowledge of
+ French or English. The applicant must show that their vocabulary is appropriate for
+ conducting day-to-day activities with the general public and that they comprehend
+ simple, spoken sentences in the past, present and future tenses and can express
+ themself similarly. The judge will also evaluate whether the applicant has adequate
+ knowledge of Canada and the rights and responsibilities of citizenship, especially the
+ right to vote and participate- in the country’s political life.
+
+ If an applicant is nervous or needs help preparing for the interview, various school
+ boards, community colleges, and voluntary organizations, such as the Immigration
+ Services Society of B.C., provide training courses for this purpose. This series of
+ learning classes, held once or twice weekly, is conducted in English or bilingually, so
+ a basic understanding of English is essential to benefit from it. Applicants may
+ contact those organizations for more information.
+
+ The applicant must inform the citizenship office if they are unable to attend the
+ scheduled hearing. If the applicant does not appear, the file will be held for 60 days. If,
+ at the end of 60 days, the applicant has still not contacted the citizenship office and
+ provided a valid reason for failing to show up, a second notice is sent to the applicant
+ by registered mail. If the applicant still fails to show; the file will be considered
+ abandoned. In the event of abandonment, the applicant must make a new application
+ and pay a new fee, as no further action will be taken with respect to the old one.
+
+ 17-14
+ C. The Oath of Citizenship and the Citizenship Ceremony
+NOTE: Most applicants are now invited to a video oath ceremony.
+ https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-
+ citizenship/become-canadian-citizen/citizenship-ceremony.html
+
+ If an application is approved, successful applicants are notified in writing to attend a formal
+ ceremony to receive their citizenship certificates. Successful applicants attending an in-
+ person ceremony must bring various documents including their original (or certified)
+ Immigration Record of Landing (if you became a permanent resident before June 28, 2022) or
+ Permanent Resident card or Confirmation of Permanent Residence (COPR) and the Records of
+ any minor children who are becoming citizens with them. Immediately before taking the Oath
+ of Citizenship, the Record of Landing/COPR will be stamped, updating the applicant’s status
+ from permanent resident to Canadian citizen.
+
+ If the COPR/Record of Landing has been lost or stolen, the applicant must notify the police
+ immediately. When successful applicants come to their ceremony, they must bring
+ satisfactory evidence that they have reported the loss or theft to the police and will also be
+ required to complete a statutory declaration.
+
+ NOTE: If the applicant forgets to bring the COPR/Record of Landing or evidence of a reported
+ loss or theft, local office staff will make arrangements for the applicant to return with the
+ necessary papers to another ceremony or, where applicable, exercise their discretion to allow
+ the applicant to participate in a ceremony with the understanding that he or she will become a
+ citizen, but only receive the commemorative document at that time. In that case, the
+ applicant’s file with the citizenship certificate will be kept in the local office until the applicant
+ brings or sends the COPR/Record of Landing to be stamped. Citizenship certificates not
+ picked up within a reasonable time will be destroyed. The applicant will need to apply for a
+ new certificate.
+
+ Citizenship ceremonies are open to the public. Applicants who are 14 years of age or over on
+ the day they are granted citizenship are required to take the oath of citizenship, which is
+ repeated after a judge.
+
+ OATH OR AFFIRMATION OF CITIZENSHIP
+
+ “I swear (or affirm) that I will be faithful and bear true allegiance to His
+ Majesty King Charles the Third, King of Canada, His Heirs and Successors,
+ and that I will faithfully observe the laws of Canada, including the
+ Constitution, which recognizes and affirms the Aboriginal and treaty rights of
+ First Nations, Inuit and Métis peoples, and fulfil my duties as a Canadian
+ Citizen.”
+
+ D. Judicial Reviews
+ Where a citizenship application has not been approved, the applicant will be notified of the
+ decision, the reasons for the decision, and his or her right to judicial review. All judicial reviews
+ are made to the Federal Court of Canada. If an applicant decides to seek judicial review, a
+ Notice of Application must be filed in the Court Registry within 30 days of the date the notice
+ of refusal was received. All decisions of the Federal Court are final. However, applicants are
+ free to reapply at any time.
+
+ 17-15
+17-16
+VII. LOSS AND RENUNCIATION OF CITIZENSHIP
+ There are a few reasons Canadian citizenship may be lost under the current Citizenship Act. These are
+ outlined in Part II of the Act. Loss of a Canadian citizenship may occur:
+
+ a) Where a person renounced his or her citizenship by application;
+ b) Where a person has been admitted to Canada for permanent residence by false
+ representation, fraud, or by knowingly concealing material circumstances;
+ c) Where a person became a citizen by false representation, fraud, or by knowingly concealing
+ material circumstances.
+
+ Note that the Act now provides that if a person obtained their citizenship through false representation,
+ fraud, or knowingly concealing material circumstances (including in the permanent resident process),
+ they cannot re-apply for citizenship for 10 years from the date of their loss of citizenship. A person
+ whose citizenship was revoked cannot apply for resumption of citizenship under s 11(1).
+
+ Any person whose citizenship is revoked due to a conviction for terrorism, high treason, treason, or
+ spying offences, depending on the sentence received, or for serving as a member of an armed force of
+ a country or an organized armed group engaged in armed conflict against Canada is permanently
+ barred from being granted citizenship.
+
+NOTE: If a person became a permanent resident by false representation or fraud or by knowingly concealing
+ material circumstances and, because of having acquired that status, the person subsequently
+ obtained or resumed citizenship, then the person has obtained or resumed his or her citizenship by
+ false representation or fraud or by knowingly concealing material circumstances.
+
+NOTE: Under amendments introduced in Bill C-6, the Federal Court is the decision-maker in all revocation
+ cases, unless the individual requests that the Minister make the decision. The law also gives
+ Citizenship Officers clear authority to seize fraudulent or suspected fraudulent documents in
+ citizenship applications.
+
+ 17-17
+VIII. PROOF
+ If you need to prove your Canadian citizenship, you can apply for a citizenship certificate if you:
+
+ • are a Canadian citizen who was born outside Canada;
+ • were born in Canada and need proof besides your Canadian provincial or territorial birth
+ certificate.
+
+ The Government of Canada has stopped issuing citizenship cards. If you apply to update or replace
+ a citizenship card, you will receive a citizenship certificate instead.
+
+ Being unsure about whether you or your minor child are citizens does not mean you must apply for a
+ certificate. A provincial or territorial birth certificate should generally be enough to prove Canadian
+ citizenship, but a Canadian citizen born in Canada may still apply for a citizenship certificate.
+
+ Other documents accepted as proof of citizenship include naturalization certificates issued before Jan
+ 1, 1947, registration of birth abroad certificates issued between Jan 1, 1947 and Feb 14, 1977, and
+ certificates of retention issued between Jan 1, 1947 and Feb 14, 1977. You may also use the “Am I
+ Canadian?” tool on the IRCC website to check whether you or your minor children are Canadian
+ citizens: https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-
+ citizenship/become-canadian-citizen/eligibility/already-citizen.html. Although there are alternative
+ ways to prove citizenship, applying for a certificate is still possible.
+
+ If you want to apply for a citizenship certificate, you should first get the application package, which
+ includes the instruction guide, forms and document checklist, on the IRCC website:
+ https://www.canada.ca/en/immigration-refugees-citizenship/services/application/application-forms-
+ guides/application-citizenship-certificate-adults-minors.html.
+
+ You must download and print the checklist and the forms, fill out all the forms, and include all
+ documents listed in the document checklist. If your documents are not in English or French, you will
+ need to prepare colour copies clear and easy-to-read, a translation of the documents, and a sworn
+ statement (affidavit) from the person who did the translation. You cannot have your family members
+ translate for you.
+
+ Please check your eligibility before paying the application fee ($75). You can pay your application fee
+ online at https://www.cic.gc.ca/english/information/fees/pay.asp, but you may also be able to pay by
+ other ways depending on where you are applying from.
+
+ You can find information about submitting the application at
+ https://www.canada.ca/en/immigration-refugees- citizenship/services/canadian-citizenship/proof-
+ citizenship/apply.html.
+ After submitting the application, you will need to wait for processing. If your matter is complex, IRCC
+ may contact you for more information or documentation, and the processing time can be longer. If you
+ want to make an urgent application or submit your application abroad, you can find relevant
+ information on the same website.
+
+NOTE: Due to the COVID-19 pandemic, processing times for citizenship certificates have increased.
+
+ 17-18
+IX. SEARCH OF CITIZENSHIP RECORD
+ The search of record service verifies the citizenship status of citizens and non-citizens. There are three
+ general reasons someone may request a “record letter”:
+
+ a) The applicant does not have proof of citizenship;
+ b) The applicant had proof, but needs a letter that outlines when and how he or she became a
+ citizen, and
+ c) A third party asks for citizenship confirmation.
+
+ All persons requiring a record letter must make an application for search of citizenship records and pay
+ a $75 fee. All search applications are processed at the centre in Sydney, Nova Scotia. After a search, if
+ no record is found, the applicant will be given a “no record” letter.If a record of citizenship is found, a
+ numbered record letter is issued, which is valid for a specific purpose and stated length of time.
+ Generally, the letter is valid for one month, but it may be valid for a maximum of three months. If an
+ individual is unsure of whether they have been registered as a Canadian citizen in the past, that person
+ should make applications for proof of citizenship and search of citizenship record at the same time and
+ pay only one fee ($75). If the search of citizenship record is positive, they will already be in line to
+ receive a certificate of citizenship.
+
+ 17-19
+X. REFERRALS
+
+ Immigrant Services Society of B.C
+ 2610 Victoria Drive Telephone: (604) 684-2561
+ Vancouver, B.C. V5N 4L2 Fax: (604) 684-2266
+ Website: www.issbc.org
+ E-mail: iss@issbc.org
+
+ • ISS is a non-profit organization committed to identifying the needs of immigrants and refugees
+ and developing/providing programs which meet those needs.
+
+ MOSAIC
+ 5575 Boundary Road Telephone: (604) 254-9626
+ Vancouver, B.C. V5R 2P9 Fax: (604) 254-3932
+ Website: www.mosaicbc.org
+ E-mail: info@mosaicbc.org
+
+ • MOSAIC is a multilingual non-profit organization that addresses issues affecting immigrants and
+ refugees during their settlement and integration into Canadian society.
+
+ S.U.C.C.E.S.S.
+ Head office: 28 West Pender Street Telephone: (604) 684-1628
+ Vancouver, B.C. V6B 1R6
+ Website: https://success.bc.ca
+ E-mail: info@success.bc.ca
+
+ • S.U.C.C.E.S.S. is a non-profit social service agency that helps newly arrived immigrants and
+ refugees. The agency provides Cantonese and Mandarin instructions on how to fill out
+ citizenship forms and study for the citizenship test.
+
+ Immigration & Refugee Legal Clinic
+ 2610 Victoria Dr #103, Vancouver, BC V5N 4L2 Telephone: (778) 372-6583
+ Website: https://www.irlc.ca/
+ E-mail: info@irlc.ca
+
+ Lawyer Referral Service
+ Head office: 300 - 845 Cambie Street Telephone: (604) 687-3221
+ Vancouver, B.C. V6B 4Z9
+ Website:
+ www.accessprobono.ca/node/385
+ E-mail:
+ Appointments@accessprobono.ca
+
+ • The Lawyer Referral Service refers individuals to a lawyer who will provide up to 30 minutes
+ of free legal consultation. When requesting a referral, please request for a lawyer who
+ specializes in immigration or citizenship law as citizenship law is an area of law that changes
+ frequently.
+
+ 17-20
+"""
+
+[R2] Dual citizens - Travel.gc.ca
+(https://travel.gc.ca/travelling/documents/dual-citizenship)
+"""
+You should understand the requirements and impacts of travelling or living outside Canada while holding citizenship of another country or countries even when your Canadian citizenship is recognized. On this page Canadians with dual citizenship Before you go While you're away Returning to Canada Canadians with dual citizenship Canada allows you to have multiple citizenships while keeping your Canadian citizenship. However, not all countries do allow this. Some countries may even consider it illegal for you to have another citizenship. Examples of ways you might have another citizenship(s): you were born in another country you have a parent(s) who was born in, or is a citizen of, another country you officially apply for citizenship of another country Note: You may not even be aware that you have citizenship in another country. For example, even if you’re born in Canada, if you have at least 1 parent who is a citizen of another country, that country may see you as a citizen as well and may not recognize your Canadian citizenship. Having dual citizenship can also impact other aspects of your personal situation. For instance: Child abduction and parenting or custody issues Marriage outside Canada Before you go Before leaving Canada to travel to another country where you also hold citizenship: make sure to understand and meet the requirements of dual citizenship for that country contact that country’s embassy or consulate in Canada for information on the laws and regulations relating to dual citizenship consult Travel Advice and Advisories for country-specific information, including about dual citizenship It’s important that you find out if you have other citizenships if you’re planning to travel outside of Canada. You may be required to follow certain regulations or face restrictions if you hold citizenship there. While you’re away If you hold citizenship in another country, different entry and exit rules may apply to you, even if your Canadian citizenship is recognized there. You may also be subject to enhanced screening, which could result in a denial to enter the country. These rules may not necessarily apply to other Canadian travellers without dual citizenship. Some examples of laws and regulations you may encounter when travelling to or living in a country where you hold citizenship: You may need a passport issued by the country to enter, and in some cases exit, that country. You may need an exit visa on your passport to leave the country. You may need to register your Canadian citizenship upon entry or while you’re there. An exit ban could prevent you from leaving the country. This ban could be due to investigations into you, your family or your employer. It could also be in relation to criminal and civil matters, including business disputes. some countries have laws requiring parental permission to exit, depending on your age, gender or marital status. Your nationality may have an impact on whether these rules might apply to you. You can be forced to register for military service. This could be imposed immediately upon arrival or when attempting to exit the country. You may be required to pay taxes, as any other citizen of that country. You may need to register your child with the country, even if the child was born in Canada. Consider the possible laws and regulations when travelling to other countries where you do not hold citizenship. For example: If your Canadian passport shows you were born outside Canada, some countries may have specific entry requirements. In some cases, you may not be able to enter the country. If your Canadian citizenship is not recognized Limited or no access to Canadian consular services Based on the country's laws, local authorities could be within their right to prevent Canadian consular officials from assisting you in a consular emergency. Local authorities may refuse your request to access Canadian consular services. Renouncing your citizenship You may be forced to give up your Canadian citizenship or be required to renounce your other citizenship. Learn more about giving up your Canadian citizenship. If you need help For help with emergencies outside Canada, contact the: nearest Canadian office abroad Emergency Watch and Response Centre in Ottawa Returning to Canada If you are a Canadian with dual citizenship, you need to carry a valid Canadian passport to return to Canada by air. This applies even if: the country or countries you’re travelling from require you to carry your other passport you’re only passing through You may be able to fly to Canada without a Canadian passport if you qualify for a special authorization. Related links Find a foreign representative in Canada Immigration, Refugees and Citizenship Canada (IRCC) Canadian passports (IRCC) Documents that prove your Canadian citizenship (IRCC) A Guide for Canadians Detained Abroad Date modified: 2025-06-20
+"""
+
+[R3] Canadian Citizenship by Descent for Americans | Bill C-3 Guide
+(https://immigration.ca/canadian-citizenship-by-descent-for-americans/)
+"""
+On This Page What Bill C-3 Changed and Why It Affects U.S. Citizens Do You Qualify? Eligibility for Americans How Citizenship Flows Through Generations U.S.-Canada Dual Citizenship: What Americans Need to Know Tax and Financial Considerations for Dual Citizens How to Apply for Canadian Citizenship by Descent From the United States Documents American Applicants Will Need Common Scenarios for American Applicants Frequently Asked Questions If your parent, grandparent, or great-grandparent was born in Canada, you may already be a Canadian citizen. Canada’s new citizenship law — Bill C-3, An Act to amend the Citizenship Act — has permanently removed the first-generation limit that previously prevented Canadian citizenship from passing beyond one generation born outside Canada. For Americans with Canadian ancestry, the implications are enormous. Millions of Americans have Canadian roots. The historical ties between the two countries run deep: waves of Canadian emigration to the United States occurred throughout the 19th and 20th centuries, including large numbers of French Canadians who settled in New England, Maritimers who moved to the Boston area, and families from across the Canadian provinces who relocated for work in cities like Detroit, Buffalo, Seattle, and beyond. Until now, many of these families were cut off from Canadian citizenship by rules that were rigid, arbitrary, and often discriminatory. Bill C-3 has changed that. Many of these individuals are part of a group known as “Lost Canadians” — people with legitimate Canadian ancestry whose citizenship was never recognized or was stripped away by outdated laws. If you are an American with a Canadian parent, grandparent, great-grandparent, or even more distant Canadian ancestor, you may already qualify for Canadian citizenship by descent — and you may have been a Canadian citizen your entire life without knowing it. Key Takeaway for Americans Canadian citizenship by descent under Bill C-3 is automatic and retroactive for people born before the law came into force. You do not need to apply for a “grant” of citizenship. If you qualify, you are already a Canadian citizen — you simply need to apply for proof of citizenship (a citizenship certificate). There is no deadline to apply. What Bill C-3 Changed and Why It Affects U.S. Citizens Since 2009, Canadian law imposed what was known as the first-generation limit: only the first generation born outside Canada to a Canadian parent could inherit citizenship. If your parent was born in Canada, you were Canadian. But if your parent was also born outside Canada — even if their parent (your grandparent) was born in Canada — citizenship could not pass to you. This rule created a class of people known as “Lost Canadians” — individuals who had Canadian ancestry and should have been citizens, but were excluded by the generational cutoff. Courts found this limit to be unconstitutional, and Bill C-3 was enacted to correct the problem. Under the new law, citizenship now flows through multiple generations for anyone born before the law came into force. There is no generational limit for past births. If you can trace an unbroken line of descent to a Canadian citizen — whether that is your parent, grandparent, great-grandparent, or even further back — you may now be recognized as a Canadian citizen at birth. For full details on how Bill C-3 operates, including the retroactive provisions and the new substantial connection requirement for future births, see our complete guide to claiming Canadian citizenship by descent under Bill C-3. Related news What are the Options for Bringing Parents and Grandparents to Canada in 2026? Latest Express Entry Draw Features Lowest CRS of 2025 For Canadian Experience Class Unpacking Ontario’s Plan To Overhaul The OINP Do You Qualify? Eligibility for Americans You may qualify for Canadian citizenship by descent if any of the following apply to your family: A parent was born in Canada — This is the most straightforward case. You are likely already a Canadian citizen. A grandparent was born in Canada — Under the old rules, you would typically have been excluded by the first-generation limit. Under Bill C-3, your parent’s citizenship is retroactively recognized, and your citizenship flows from that. A great-grandparent (or more distant ancestor) was born in Canada — Bill C-3 allows citizenship to cascade through multiple generations. Each ancestor in the chain is retroactively recognized as a citizen, allowing your claim to connect back to the original Canadian. Your family lost citizenship under older laws — Many Canadian families — often called Lost Canadians — lost citizenship due to discriminatory rules around gender, marriage, or the old “retention requirement” that required people born abroad to apply to keep their citizenship before age 28. How Citizenship Flows Through Generations Under Bill C-3’s retroactive provisions, citizenship cascades down the family tree. The law sequentially recognizes each generation, starting from the original Canadian citizen: GenerationAncestorStatus Under Bill C-3Generation 1Great-Grandparent born in Canada (The Anchor)Canadian citizen — this is the starting point of the claim.Generation 2Grandparent born abroadRetroactively recognized as a Canadian citizen (born to a citizen).Generation 3Parent born in the U.S.Retroactively recognized as a Canadian citizen (born to the newly recognized Gen 2 citizen).Generation 4You (born in the U.S.)Recognized as a Canadian citizen at birth. This holds true even if your parents, grandparents, or other ancestors never claimed or applied for Canadian citizenship during their lifetimes. What matters is whether they would have been citizens under the law. Bill C-3 corrects the record retroactively. U.S.-Canada Dual Citizenship: What Americans Need to Know Both the United States and Canada recognize dual citizenship. Claiming Canadian citizenship by descent will not affect your U.S. citizenship. You do not have to renounce one to hold the other. As a dual U.S.-Canada citizen, you would have the right to: Live and work in Canada without a visa or work permit, with full access to the Canadian labour market Access Canada’s public healthcare system once you establish residency in a province Hold a Canadian passport, which provides visa-free travel to over 180 countries Vote in Canadian elections and participate fully in Canadian civic life Sponsor family members for immigration to Canada, including a spouse or common-law partner Access Canadian education at domestic tuition rates for yourself or your children Pass citizenship to your children, subject to the new substantial connection requirement for children born after Bill C-3 came into force Dual citizenship also offers a form of geographic diversification. In an era of increasing political and economic uncertainty, having legal status in two of the world’s most stable democracies provides options and security for you and your family. Tax and Financial Considerations for Dual Citizens One of the most common questions Americans have about dual citizenship relates to taxes. Here is what you need to understand: U.S. tax obligations continue. The United States taxes its citizens on worldwide income regardless of where they live. Claiming Canadian citizenship does not change this. If you continue to live in the United States, your U.S. tax situation remains essentially the same. Canada does not tax non-residents on worldwide income. If you become a Canadian citizen but continue to reside in the United States, Canada generally will not tax you on your U.S. or worldwide income. Canadian tax obligations arise primarily from residency, not citizenship. This is a key difference from the U.S. system. If you move to Canada, you will be subject to Canadian income tax as a resident. The Canada-U.S. Tax Treaty provides mechanisms to avoid double taxation, including foreign tax credits. However, the interaction between the two tax systems can be complex, particularly for individuals with investment income, retirement accounts (such as 401(k)s and IRAs), or business interests. Important Note Tax rules for dual citizens are complex and depend on individual circumstances. This information is general in nature. We strongly recommend consulting a cross-border tax professional or accountant who specializes in U.S.-Canada tax matters before making any decisions about residency. Documents American Applicants Will Need The documentary requirements for citizenship by descent are substantial, and this is where many applications become complex. For each generation in the chain, you will typically need to provide: Birth certificates for every person in the generational chain, from the Canadian ancestor down to you Marriage certificates where names changed or to establish relationships between generations Immigration and naturalization records for the Canadian ancestor, if they were not born in Canada Death certificates, particularly where an ancestor passed away before ever claiming citizenship Canadian census records or other historical documents to establish that the ancestor was resident in Canada and transitioned into citizenship in 1947 Your valid U.S. passport or other identity documents Canada has an extensive historical record-keeping tradition dating back to the 1800s, including federal censuses, immigration arrival records, military service files, and provincial vital statistics. Many of these records are accessible through Library and Archives Canada and provincial archives, and can be invaluable in building a claim. Why Professional Help Matters The legal and documentary requirements under Bill C-3 are demanding. A missing or incorrect document can result in rejection. Because the law operates retroactively, eligibility often depends on historical facts and the application of laws that were in force at different times. An experienced immigration lawyer can verify that your evidence meets the standard required under the Citizenship Act and ensure your application is complete before submission. Common Scenarios for American Applicants “My grandfather was born in Canada and moved to the U.S.” This is the most common scenario we see from American applicants. Your grandfather (Generation 1) was born in Canada and became a Canadian citizen. He emigrated to the United States, where your parent (Generation 2) was born. You (Generation 3) were born in the U.S. Under the old first-generation limit, your parent was Canadian but you were not. Under Bill C-3, both your parent and you are now retroactively recognized as Canadian citizens. “My great-grandparents were French Canadian and came to New England.” This is extremely common among families in Maine, Vermont, New Hampshire, Massachusetts, Connecticut, and Rhode Island. Large numbers of French Canadians emigrated to New England in the late 1800s and early 1900s. If your great-grandparent was born in Canada (or was present in Canada as a British subject and became a citizen on January 1, 1947), Bill C-3 may restore citizenship through the entire chain down to you — through your grandparent, your parent, and to you. “My grandmother lost her citizenship because she married an American.” Under Canada’s older citizenship and nationality laws, women could lose their status if they married a foreign national. Bill C-3 addresses many of these historical gender-based injustices. If your grandmother was a Canadian citizen who lost her status through marriage, she may now be retroactively recognized as having remained a citizen, which would restore the chain to you. “My parent was born in Canada but I was born in the U.S. — am I already Canadian?” Very likely, yes. If your parent was born in Canada, you almost certainly acquired Canadian citizenship at birth, even under the pre-Bill C-3 rules. The first-generation limit only cut off the second generation born abroad. You should apply for proof of citizenship if you have not already done so. “Can Cajuns or Acadians claim Canadian citizenship?” This is a question that comes up frequently. The Acadian expulsion occurred in the mid-1700s — well before Canada created its own citizenship in 1947. For most Cajun families, the ancestral connection to Canada predates Canadian citizenship itself, which means there is no Canadian citizen ancestor in the chain. However, every family’s circumstances are different. If any ancestor in your family line was present in Canada and became a Canadian citizen in 1947 or later, there may be a path. Frequently Asked Questions: Canadian Citizenship by Descent for Americans Will claiming Canadian citizenship affect my U.S. citizenship? No. Both the United States and Canada recognize dual citizenship. Obtaining proof of Canadian citizenship does not require you to renounce your U.S. citizenship, and it does not put your U.S. citizenship at risk. Can I get Canadian citizenship through a grandparent or great-grandparent? Yes. Under Bill C-3, the old first-generation limit has been removed retroactively for people born before the law came into force. Citizenship can now flow through multiple generations. If your grandparent, great-grandparent, or even more distant ancestor was a Canadian citizen, you may qualify. Do I have to live in Canada to claim citizenship by descent? No. You can apply for proof of Canadian citizenship from the United States. There is no residency requirement for the application itself, and there is no deadline to apply. Will I have to pay Canadian taxes if I become a dual citizen? Generally, no — not if you continue to reside in the United States. Canada taxes based on residency, not citizenship. However, if you move to Canada, you would become subject to Canadian income tax. Consult a cross-border tax advisor for advice specific to your situation. How many generations back can I claim Canadian citizenship? For people born before Bill C-3 came into force, there is no generational limit. As long as you can establish an unbroken chain of descent to a Canadian citizen, the law recognizes your citizenship retroactively. For children born after the law came into force, the Canadian parent must demonstrate a “substantial connection” to Canada (1,095 days of physical presence). Can I get a Canadian passport through citizenship by descent? Yes. Once you receive your Canadian citizenship certificate, you can apply for a Canadian passport. A Canadian passport allows visa-free travel to over 180 countries. Is there a deadline to apply under Bill C-3? No. Because Bill C-3 recognizes citizenship as an automatic, retroactive legal right for people born before the law came into force, there is no deadline. You can apply at any time. What if my parent or grandparent never claimed their Canadian citizenship? That does not prevent your claim. Under Bill C-3, what matters is whether your ancestor would have been a Canadian citizen under the law. If they qualify, their citizenship is recognized retroactively — even if they never applied for it during their lifetime. Do I need an immigration lawyer to apply? Professional guidance is strongly recommended, particularly for claims involving multiple generations or complex family histories. The documentary requirements are demanding, and an incomplete or incorrect application can be rejected. An experienced immigration lawyer can ensure your application is complete and properly documented. Related Pages How to Claim Canadian Citizenship by Descent Under Bill C-3 — Complete Guide Bill C-3: Canada Confirms Major Change to Citizenship by Descent How to Apply for Canadian Citizenship: Step-by-Step Guide Who Qualifies for Canadian Citizenship? Benefits of Canadian Citizenship Book a Consultation with an Immigration Lawyer
+"""
+
+[R4] What are the requirements for becoming a Canadian citizen?
+(https://ircc.canada.ca/english/helpcentre/answer.asp?qnum=355&top=5)
+"""
+What are the requirements for becoming a Canadian citizen? To become a Canadian citizen, you must be a permanent resident have lived in Canada for 3 out of the last 5 years have filed your taxes, if you need to pass a test on your rights, responsibilities and knowledge of Canada prove your language skills Depending on your situation, there may be additional requirements. Find out if you’re eligible Page details Answers others found useful I already have a citizenship application in process. How will the 2015 changes to the citizenship legislation affect my application? Do I become a Canadian when I marry a Canadian? How much does it cost to apply for Canadian citizenship? I am a citizen of another country. Will I lose that citizenship if I become a Canadian? What can I do if my citizenship application is refused? What should I do if I missed my citizenship test? Can I leave Canada after I mail my citizenship application? What is a non-routine citizenship application? Do I have to use the travel journal? If I’m applying for citizenship, do I still have to submit the physical presence calculator if I submit the travel journal? If I’m transferring through different countries at the airport, or by car or train, do I need to record it in my travel journal? How do I get more copies of the travel journal? My application has been returned, because it’s incomplete. Do I have to recalculate my physical presence (time lived in Canada)? Help tool Form and guide Application for Canadian citizenship – Adult Application for Canadian citizenship – Minor applying with parent or guardian Application for Canadian citizenship – Minor applying alone Application for Canadian citizenship – Adopted person Application for Canadian citizenship – Stateless person born to a Canadian parent Application for Canadian Citizenship – Canadian Armed Forces Glossary term Certificate of Canadian citizenship Prohibition Date modified: 2026-02-25
+"""
+
+[R5] Americans flock to claim Canadian citizenship by descent amid US political upheaval and new law changes; h
+(https://m.economictimes.com/us/news/americans-flock-to-claim-canadian-citizenship-by-descent-amid-us-political-upheaval-and-new-law-changes-heres-the-complete-process/articleshow/129916072.cms)
+"""
+Something exemplary is unfolding in one of India’s leading two-wheeler manufacturing facilities. As machines hum with a kind of precision only decades of disciplined engineering can produce, a 125-year-old British motorcycle legend, Norton, is being nurtured back to its former glory on the factory floor of the TVS Motor Company in Hosur, Tamil Nadu.The people instrumental to the visit included Greg Clark—former UK Cabinet Minister and Executive Chair of the Warwick Innovation District—who toured the expansive TVS factory and engaged in a discussion with KN Radhakrishnan, Director and CEO of TVS Motor Company.TVS Motor Company and the West Midlands rewrite the rules of global mobilityFrom the factory floor of TVS Motor Company in Hosur, Tamil Nadu, Greg Clark, Executive Chair of the Warwick Innovation District, and KN Radhakrishnan, Director and CEO of TVS Motor Company, came together to explore one of the most compelling cross-border manufacturing stories of our time.With £250 million invested in Norton Motorcycles' resurgence, a brand-new headquarters in Solihull at the heart of the West Midlands, and decades of research collaboration with the Warwick Manufacturing Group, TVS is proving that Indian engineering scale and British heritage aren't opposites, but a blueprint. The conversation covers the UK-India Free Trade Agreement, the science of lightweighting for EVs, and why India's booming premium motorcycle market is central to Norton's next chapter.A partnership forged in researchClark is not new to India. During his nearly two decades in the UK Parliament, three of which he spent as the Cabinet Minister, he helped build relationships that transcend the transactional."TVS has always had very strong relationships with the UK and the West Midlands," Clark said. That relationship, he explained, runs through a common mentor: the late Professor Lord Bhattacharyya, founder of the Warwick Manufacturing Group (WMG) and the Professor of Manufacturing Systems in UK history. Lord Bhattacharya's influence on both the West Midlands' industrial identity and TVS' growth trajectory is something both Clark and Radhakrishnan deeply acknowledge.“He has been a mentor for all of us and thanks to him, TVS Motor is growing and expanding rapidly, with a network of reputed manufacturers," Radhakrishnan stated, underscoring that the partnership between TVS and West Midlands (and by extension, TVS and Norton Motorcycles) was built over decades through shared research, shared talent, and shared ambition.Norton's second life: £250 million and a new home in SolihullWhen TVS acquired Norton Motorcycles in 2020, the deal raised eyebrows in some quarters. Norton, after all, is an emblem of British industrial heritage, and a name that conjures images of racers on misty English roads.Radhakrishnan frames the acquisition not as a takeover, but a resurgence. TVS has invested approximately £250 million (₹3,079 crore) into Norton, building a world-class headquarters and manufacturing facility in Solihull, right in the heart of the West Midlands. The flagship Norton Manx R, a four-cylinder motorcycle, is being readied for production there."Solihull continues to be the home of Norton. We want to keep up the spirit of the British brand and the 125-year-old legacy here," Radhakrishnan said. Now, this legacy will be amplified by the scale, engineering depth, and global supply chain that only a company of TVS' stature can bring.For those wondering whether the Norton Motorcycles brand will be diluted in any way, the answer is a firm no. "Norton will remain firmly positioned at the top end of each of the segments we are planning to launch," Radhakrishnan emphasised. The brand's soul stays intact; it simply gains a more powerful engine behind it.WMG and the science of lightweightingFor investors tracking the electric vehicle (EV) transition, Warwick Manufacturing Group's strategy is worth paying close attention to. Greg Clark highlighted one area in particular: lightweighting of materials.WMG is conducting research on addressing this issue, work that Clark says will "transform the economics of the transition to electrification".This is not theoretical work done in isolation. Members of Radhakrishnan’s team at TVS are actively pursuing PhDs and high-level qualifications at Warwick, creating a two-way flow of knowledge."I would say we learn as much from TVS as they learn from us," Clark said.From free trade to factory floor: The integrated mobility playNo conversation about UK-India business is complete without mention of the bilateral Free Trade Agreement (FTA). Both Clark and Radhakrishnan are unambiguous about its significance, but also clear-eyed about what makes this moment different from previous attempts.Clark, drawing on his long experience in government, noted that trade agreements have historically suffered from a gap between promise and delivery, but argued that India today is fundamentally different, characterised by a "real sense of momentum, of delivery, and almost of impatience to get on with things." For the automotive sector, the FTA's practical implications are substantial: seamless movement of parts and sub-assemblies, and a clearer path for fully-built motorcycles into a country that is already one of the fastest-growing premium motorcycle markets in the world. Radhakrishnan confirmed that Norton Motorcycles, including the flagship four-cylinder Manx R built in Solihull, will be available in India, while the Hosur facility will simultaneously support global production for the bike. "It's an integrated approach between Solihull and India," he said, "And it will become a great opportunity not only for India and UK, but all markets globally."The result is a dual-axis strategy: premium products crafted in the UK for discerning global buyers and backed by India's engineering scale and cost efficiency, the kind of model that sophisticated investors recognise as durable.The bigger pictureThe West Midlands is home to about 270,000 Indians. Indian conglomerates such TVS, Tata, and the Mahindra Group have infused capital and innovation into what was once the undisputed heart of British automotive manufacturing. This story isn’t about sentiment or diaspora ties as much as it is about hard economics, technological alignment, and a shared bet on the future of mobility.What is unfolding between TVS, Norton, WMG, and the West Midlands is a blueprint for how manufacturing for or by emerging markets can pair well with the research capabilities of legacy brands to create something truly world-class.For investors watching where the next decade of mobility is being shaped, the answer can be in both Hosur and Solihull. (This article is generated and published by ET Spotlight team. You can get in touch with them on etspotlight@timesinternet.in)
+"""
+
+[R6] Canadian citizenship for adults and minor children: Who can apply
+(https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-citizenship/adult-minor/who.html)
+"""
+Apply for Canadian citizenship: adults and minor childrenWho can applyFind out if you can apply for Canadian citizenship as an adult or a minor.On this page Eligibility for adults (18 and above) Eligibility for minors (under 18) Accessibility options and exemptions Spouses of Canadian citizens Children and grandchildren of Canadian citizens Possible loss of current citizenship Eligibility for adults (18 and above)Learn about the eligibility criteria for adult applicants. You can also check your eligibility by answering some questions.To be a Canadian citizen as an adult, you must: be a permanent resident All applicants must have valid permanent resident (PR) status in Canada. This means you must not have a removal order (asked by Canadian officials to leave Canada) unfulfilled conditions related to your PR status (for example, medical screening) If you’re under review for immigration or fraud reasons You can apply for citizenship, but we may not process (suspend) your application while you’re still under review. Before applying, check that you haven’t lost your PR status. If you’re not a PR anymore we would have sent a letter confirming the loss of your status when travelling abroad, a Canada Border Services Agency (CBSA) agent would have told you (for example, at the border or an airport) You can apply with a valid or expired PR card. Learn more about PR status have enough physical presence or time lived in Canada You must have been physically in Canada for at least 1,095 days (3 years) during your 5-year eligibility period. The eligibility period is 5 years before the date you sign your application must include at least 730 days as a permanent resident does not include time in prison, on parole, on probation, or the time you wait for a decision on a refugee claim In your calculation, you may be able to include some of the time spent in these situations: Time in Canada as a temporary resident or protected person Each day as a temporary resident or protected person during your eligibility period counts as 0.5 days of physical presence in Canada. You can use a maximum of 365 days of physical presence as temporary resident or protected person. This is equal to 730 calendar days (730 days x 0.5 = 365 days of physical presence). A temporary resident is someone with a valid status to stay in Canada as a visitor student worker or temporary resident permit holder A protected person is someone who received approval on their refugee or asylum claim (including as part of a family member’s claim) or pre-removal risk assessment (PRRA) application If you include time as a protected person in your calculation, you can count it only from the time your claim or application was approved until 1 day before you became a permanent resident Time outside Canada as a Crown servant or as a family member of a Crown servant Each day employed outside Canada as a Crown servant or as their family member counts as 1 day of physical presence in Canada. A Crown servant is a person employed in or with the Canadian Armed Forces, the federal public administration or the public service of a province or territory is not a locally engaged employee (a foreign citizen hired in their own countries by the Canadian government to support Canadian offices abroad). A family member of a Crown servant includes their spouse common law partner child We encourage you to apply with more than 1,095 days of living in Canada in case there’s a problem with the calculation. How to calculate your physical presence have filed income taxes in Canada if needed You may need to file taxes in Canada for at least 3 years during the 5 years right before the date you apply. Follow these steps: Check if you need to file your taxes. Tell us in your online or paper application if you had to file your taxes and whether you actually filed your taxes or not prove your language skills in English or French (adults 18 to 54 only) English and French are Canada’s 2 official languages. If you’re between 18 and 54 years old on the day you sign your application, you must show that you have an adequate knowledge of English or French. This means you can take part in short, everyday conversations about common topics understand simple instructions, questions and directions use basic grammar, including simple structures and tenses show you know enough common words and phrases to answer questions and express yourself These speaking and listening skills are equivalent to level 4 of the Canadian Language Benchmarks (CLB) for English, or Niveaux de compétence linguistique canadien (NCLC) for French We measure your language skills by reviewing the language proof that you send with your application noting how well you speak when talking to a citizenship official at any time during the application process assessing your language level during a citizenship test with an official if necessary We accept various certificates, diplomas and tests as proof of your language skills. Need help or a waiver (exemption)? Find out how to get an accommodation or a waiver. Check the language proof we accept pass the citizenship test (adults 18 to 54 only) If you’re between 18 and 54 years old on the day you sign your application, you must take the citizenship test. The test will ask questions about the rights and responsibilities of Canadian citizens Canada’s history, geography, economy, government, laws and symbols We’ll invite you to the test after you submit your application. Need help or a waiver (exemption)? Find out how to get an accommodation or a waiver. Learn more about the citizenship test take the oath of citizenship You must take the oath of citizenship at the citizenship ceremony if you’re at least 18 years old and we approve your application Need help or a waiver (exemption)? Find out how to get an accommodation or a waiver. Learn more about taking the oath of citizenship not be under a prohibition We won’t approve your citizenship application if you’re under a prohibition. Most prohibitions are due to criminal and security reasons (inside and outside Canada). Before applying, wait until the situation no longer affects your eligibility. In some cases, a prohibition will apply for only a certain period of time. Time spent serving a term of imprisonment, on parole, or on probation doesn’t count as time in Canada. Find out more about situations that may prevent you from becoming a citizen. Eligibility for minors (under 18)Depending on their parents, a minor can apply through the minor 5(2) or 5(1) process. Minor 5(2) You need to apply under this process if the minor has a Canadian parent or a parent who is applying for citizenship at the same time To apply for the minor, you must be their parent (biological or adoptive) or legal guardian Check all of the requirements for minor 5(2) Minor 5(1) You need to apply under this process if the minor doesn’t have a Canadian parent or a parent who is applying for citizenship at the same time To apply for the minor, you must be someone who has custody of the minor, or can legally act on their behalf don’t have to be a Canadian citizen A minor may apply on their own if there’s no one who can apply for them They need to select the waiver checkbox in the signature section of their online or paper application. By selecting this checkbox, they’re requesting to apply alone. Check all of the requirements for minor 5(1) Requirements for Minor 5(2)Applicants must:
+"""
+
+[R7] Millions of Americans now eligible for Canadian citizenship 'just in case'
+(https://www.ksl.com/article/51474876/millions-of-americans-now-eligible-for-canadian-citizenship-just-in-case)
+"""
+NEW YORK CITY — When Donald Trump was first elected in 2016, New York State resident Ellen Robillard briefly considered obtaining Canadian citizenship. Her mother, after all, was born in Nova Scotia.As a Democrat, Robillard was despondent over the election results, but she abandoned the idea after realizing that her young son wouldn't be eligible for citizenship under a law that barred Canadians born abroad from passing their citizenship to children who were also born outside Canada.In 2023, however, the Canadian courts ruled that the law was unconstitutional and the changes to eligibility came into effect in December, suddenly opening up a pathway to Canadian citizenship for many Americans at a time of political upheaval, violence, and uncertainty in the U.S.Robillard, 52, is applying for citizenship with her son now that the first-generation rule has been scrapped.Since the criteria for citizenship expanded with the passage of Bill C-3 of Canada's Citizenship Act, millions of Americans have become eligible to claim Canadian citizenship. The amendment reverses a "first-generation" limit imposed by Canada's Conservative government in 2009.As the leader of her local Democratic Committee in a suburb of Rochester, New York, Robillard fears that if the political violence escalates, she could have a target on her back.Robillard is an outspoken activist in her town of 3,000, has received veiled threats on social media, and was once followed home after a protest.She's suffered from burnout, depression and insomnia over political disagreements and has fallen out with friends and family. She's become increasingly disillusioned with her life in the U.S."I really don't recognize my world anymore," Robillard said.A spring trip to her mother's birthplace of Nova Scotia last year helped her reconnect with her Canadian heritage and cemented the idea."The experience of being there was so interesting. I felt like a different person there. It was so much less stressful. Everyone was nicer," she said. "I observed so many positive interactions between people and it just made my heart so full to be there."The revised law will allow her to pass on her citizenship to her son, who is now 19. In light of the political climate in the U.S., both are gathering the required documents in preparation for her Plan B."If things start deteriorating here with our economy, I know that I can just get in the car and go. It's an option anyway."Huge uptick in Canadian citizenship queriesSince the new bill was passed, Ottawa-based regulated immigration consultant Cassandra Fultz said her American caseload has soared tenfold, from an average of 10 to 100 applications a month. As long as applicants can provide proof of direct lineage from a Canadian citizen, they can make claims going back generations, be it a grandparent or great-great-grandparent. Should the chain of citizenship break somewhere along the line, however, where an ancestor renounced their citizenship, rights to Canadian citizenship end there.Fultz, who is a dual American-Canadian citizen herself, also points out that she's handled queries from disgruntled Americans after every U.S. election cycle — regardless of political party. But the demand has always been short-lived, she said, peaking in November and waning by January. This wave has been markedly different."There's been a very steady increase in interest in moving to Canada since November 2024, which is unprecedented. I've never seen this in my 17 years in the industry," Fultz said."Usually, people just get over it. But it's already nearing the midterms and people are very interested, even two years later."It's a similar story at the National Library and Archives of Québec. In February 2025, the archive services received 100 requests from the U.S. for marriage, death and baptismal records. In February of this year, that figure ballooned to 1,500, a spokesperson said.At the time of writing, the processing time for citizenship certificates from the U.S. is 10 months, with about 50,900 people currently waiting for a decision, according to Immigration, Refugees and Citizenship Canada.'It's a very scary time right now'When Rachel Rabb left the U.S. in 2018, she thought she was escaping the anti-immigrant policies and threats of racial violence she feared under the first Trump administration. The American citizen assumed that she'd left it all behind as she settled into her new life in Latin America.At least there, Rabb, who is biracial with an African-American father and Irish-German mother, felt that she wouldn't have to worry about being assaulted or harassed for her skin color. She thought she was safe.But Donald Trump's re-election in 2024 reawakened old fears and followed her to Costa Rica and Mexico, where she now divides her time — and where she finds herself, once again, in the crosshairs of Trump's hardline politics.In February, a U.S.-backed military strike against a powerful cartel leader in Mexico led to retaliatory violence across the country and the death of more than 60 people.This month, Trump signed a proclamation that promises more military strikes across Latin America, operations she fears could bring more destabilization, chaos and violence to the region.So when Rabb learned that Canada had recently revised its citizenship laws and widened the pool of eligibility, she took a shot and started looking up her ancestry online. She had nothing to lose and everything to gain.Her gamble paid off: at the age of 34, she belatedly learned that she has distant Canadian ancestry through her great-great-grandmother, who was born in Peterborough, Ontario."It was heaven-sent to discover that I have this Canadian ancestry, given the current political climate," Rabb said.Rabb, who has been mistaken for being Latina over her biracial features, said she wouldn't feel safe returning to the U.S."I don't plan to return to the U.S. at the moment. It's just too dangerous," she said. "So many people are targeted, even if you just look Latino, or if you look like you might be an immigrant. They're even arresting U.S. citizens and allies. It's a very scary time right now because anyone can be targeted."Should the situation in Latin America escalate, Canada will become her exit plan.Seeking citizenship for history, culture and 'just in case'Fultz points out that, like Rabb and Robillard, many American applicants aren't looking to make the move to Canada right away, but are requesting proof of citizenship "just in case."Nor are all applications politically motivated. Some of the most common reasons for requesting citizenship include family reunification, job offers, international studies, and the more basic desire to reconnect with their ancestry."It could be the best president ever in office in the U.S. and I would still apply with as much passion," said Timothy Beaulieu.It wasn't until his early 20s that Beaulieu started spending more time with his U.S.-born grandfather that he began to hear about his family's French-Canadian heritage, which was passed on through his great-great-grandfather."It was like a new world was open," said Beaulieu, now 45, of New Hampshire.He became active in Franco-American associations and traveled to New Brunswick, Nova Scotia and Montreal, where he discovered the local dish poutine — fries, cheese curds and gravy. It was there that a lightbulb went off and in 2016, he founded PoutineFest, which hosts outdoor poutine festivals around New England, home to an estimated two million French-Canadian descendants today.The presence of Franco-Americans in the area can be traced back to 1840-1930, when nearly one million Francophone people emigrated from Quebec, where farmlands were depleted and jobs scarce, to work in textile mills in New England."I feel like Quebec and Canada are part of our family, it's the motherland now," Beaulieu said. "It really means a lot to me to be able to feel more connected to the place where our family came from."Rabb also expresses a keen interest in learning more about the history and culture of Canada's indigenous culture, and salutes Canada for trying to put right past wrongs.Aaron Lowry, who created the fast-growing Facebook page "Canadian Citizenship by Descent," was one of the first Americans to obtain his citizenship through a short-lived interim bill introduced following the court ruling, which was eventually replaced by Bill C-3.Since becoming a Canadian citizen in 2024, the Ann Arbor, Michigan, resident has traveled around Ontario, Quebec and the Maritimes and has taken deep dives into Canadian politics: he can rattle off dates and factoids about Canadian history with ease."I really enjoy learning about Canadian civics and how the parliamentary system works. I find the relationship between the British monarch and Canada very interesting."'A Canadian is a Canadian is a Canadian'Not everyone is happy with the relaxed citizenship rule: on online discussion forums, some Canadians complain it favors Americans with few ties or contributions to the country at the expense of tax-paying, working immigrant households who can face lengthy, complicated citizenship procedures.Some also take umbrage at the fact that Americans are using Canada as a "Plan B" option at all.But Fultz underscores that the bill was introduced because the previous legislation was deemed unconstitutional and discriminatory by Canadian courts. The amendment also restores status to "Lost Canadians," people who lost or never obtained their citizenship because of the outdated and unconstitutional rules."Basically, the outcome of this case is that a Canadian is a Canadian is a Canadian," she said. "We don't have multiple tiers of citizenship here, where if you're naturalized, you can do X, but if you're born in Canada, you can't. This is about fostering and enhancing equitability."She also emphasized that the American applicants she's worked with include doctors, lawyers, and Harvard and MIT grads — "the best and the brightest.""This is a good thing for Canada, and a good thing for Canadians. These are quite literally our cousins. I just don't see a downside." The Key Takeaways for this article were generated with the assistance of large language models and reviewed by our editorial team. The article, itself, is solely human-written.
+"""
+
+[R8] Explained | Why more Americans are applying for Canadian citizenship after new ancestry law
+(https://www.livemint.com/news/us-news/explained-why-more-americans-are-applying-for-canadian-citizenship-after-new-ancestry-law-11774886156349.html)
+"""
+Millions of Americans are now seeking to apply for Canadian citizenship, provided they can prove direct lineage in the country. But why is there an uptick in US applicants for Canadian citizenship?Representative image When President Donald Trump returned to the White House for his second term in January 2025, he expressed a desire to make Canada the 51st state of the United States, a move that was not very well received by his Canadian counterpart. However, a new CNN report has now pointed out that millions of Americans are now seeking Canadian citizenship due to a variety of factors.But, there's a catch. Anyone can get a Canadian citizenship, as long as they can provide proof of direct lineage, a rule that was not applicable before 2023 and has been declared unconstitutional after 2023. The change in Bill C-3 of Canada’s Citizenship Act opened pathways for many Americans seeking Canadian citizenship at a time of political upheaval, violence, and uncertainty in the US.American applications jump tenfoldAccording to Cassandra Fultz, an Ottawa-based regulated immigration consultant, the American caseload has jumped tenfold, from an average of 10 to 100 applications per month. Speaking to CNN, she noted that if Americans can meet the required eligibility, they have a chance of obtaining citizenship. People can make claims going back generations, be it a grandparent or a great-grandparent. However, if the chain of citizenship is broken somewhere along the line, where an ancestor may have given up their citizenship, rights to Canadian citizenship would end there.Increase in requests from the US for marriageCiting the National Library and Archives of Québec (BAnQ), the report noted that back in February 2025, the archive services received 100 requests from the US for marriage, death, and baptismal records. However, in February 2026, that figure ballooned to 1,500.Why are Americans interested in Canadian citizenship?Fultz explained that she has handled queries from Americans after every US election cycle, regardless of the party in power. However, the demand has always been short-lived, which used to peak in November but fade in January. But, she described the current wave as different. She said, “There’s been a very steady increase in interest in moving to Canada since November 2024, which is unprecedented. I’ve never seen this in my 17 years in the industry."US residents cite scary times during Trump administrationNew York State resident Ellen Robillard, a Democrat, who claimed that she has not been able to recognise her world in Washington anymore, said that she was looking for Canadian citizenship in case things start deteriorating in terms of the US economy. She said that having Canadian citizenship would mean that she could get in her car with her family and leave.For Rachel Rabb, a woman who left the US in 2018, Canada's decision to revise Bill C-3 of Canada’s Citizenship Act was “heaven-sent”. Rabb, a biracial woman who left the US to reside in Latin America, said it's a scary time. This is because the Trump administration, in February, ordered a US-backed military strike against a powerful drug cartel leader in Mexico, which led to violence across the country. Additionally, earlier this month, Trump signed a proclamation that vowed more military strikes across Latin America. According to Rabb, such a move could bring more destabilisation, chaos, and violence.She also cited immigration policies inside the US as her reason not to return to Washington. She said, “So many people are targeted, even if you just look Latino, or if you look like you might be an immigrant. They’re even arresting US citizens and allies. It’s a very scary time right now because anyone can be targeted.”While many are citing fear as the primary motivation to look for options in Canada, some others are keeping it as a backup.About the AuthorSwati GandhiSwati Gandhi is a digital journalist with over four years of experience, specialising in international and geopolitical issues. Her work focuses on fo...Read MoreGet Latest real-time updatesStay updated with the latest Trending, India , World and US news. HomeNewsUs NewsExplained | Why more Americans are applying for Canadian citizenship after new ancestry lawMore
+"""
+
+[R9] Move to Canada from the US | Immigration, Work, & Study Visa Options
+(https://www.canadavisa.com/moving-to-canada-from-the-u-s.html)
+"""
+Table of Contents Immigrate as a Skilled Worker Family Sponsorship Work in Canada Start a Business Study in Canada Canadian Citizenship Inadmissibility Frequently Asked Questions Contact our Law Firm for Assistance Immigrate as a Skilled Worker What is the easiest way to immigrate to Canada from the U.S.? Express Entry Express Entry is Canada's main way of managing skilled worker applications for permanent residence. The U.S. is a leading source country of those who immigrate to Canada through Express Entry. A major advantage with the Express Entry immigration selection system is that applications are processed within six months or less. U.S. citizens and residents typically have a strong chance of being invited to apply for Canadian permanent residence through Express Entry, thanks to their strong language skills, skilled work experience, and high levels of education.There are three federal skilled worker immigration programs managed under the Express Entry system that lead to permanent residence in Canada:The Federal Skilled Worker Program for skilled workers with foreign work experience.The Canadian Experience Class for skilled workers with Canadian work experience.The Federal Skilled Trades Program for skilled workers with qualifications in a skilled trade.</figure><h3>What are my other options for moving to Canada other than Express Entry?</h3><p> <strong>Provincial Nominee Program (PNP) </strong></p><p>Like the U.S., Canada is subdivided into different jurisdictions, called provinces and territories. These provinces are, in some ways, similar to the different states that make up the United States. However, unlike American states, Canadian provinces and territories have an important role to play in determining who comes to these jurisdictions as new immigrants. The <a href="https://www.canadavisa.com/provincial-nomination-program.html#gs.j74lwn" target="_blank" rel="noreferrer noopener">Provincial Nominee Program</a>&nbsp;(PNP) can be a great starting point for U.S. citizens and residents who know which province or territory&nbsp;they want to settle in, as well as others who have specific skills and work experience sought by a particular province or territory. If you are eligible for Express Entry, there is another major benefit to submitting an Express Entry profile.&nbsp;Candidates nominated by a Canadian province or territory who have a profile in the Express Entry pool receive an additional 600 points toward their <a href="https://www.canadavisa.com/express-entry-comprehensive-ranking-system.html#gs.jqqy5a" target="_blank" rel="noreferrer noopener">Comprehensive Ranking System</a>&nbsp;(CRS) score, effectively guaranteeing them an <a href="https://www.canadavisa.com/express-entry-invitation-to-apply-for-permanent-residence.html#gs.jqr0lp" target="_blank" rel="noreferrer noopener">Invitation to Apply</a> for Canadian permanent residence.</p><p class="text-center"> <a href="/assess/canada-immigration-assessment-form.htm" class="btn btn-danger">Complete our FREE assessment to find out if you are eligible to immigrate from the US a skilled worker</a></p><hr class="my-4">What are my other options for moving to Canada other than Express Entry? Provincial Nominee Program (PNP) Like the U.S., Canada is subdivided into different jurisdictions, called provinces and territories. These provinces are, in some ways, similar to the different states that make up the United States. However, unlike American states, Canadian provinces and territories have an important role to play in determining who comes to these jurisdictions as new immigrants. The Provincial Nominee Program (PNP) can be a great starting point for U.S. citizens and residents who know which province or territory they want to settle in, as well as others who have specific skills and work experience sought by a particular province or territory. If you are eligible for Express Entry, there is another major benefit to submitting an Express Entry profile. Candidates nominated by a Canadian province or territory who have a profile in the Express Entry pool receive an additional 600 points toward their Comprehensive Ranking System (CRS) score, effectively guaranteeing them an Invitation to Apply for Canadian permanent residence. Complete our FREE assessment to find out if you are eligible to immigrate from the US a skilled worker Family Sponsorship I have a spouse or common-law partner living in Canada, can he or she sponsor me? Sponsorship of a spouse or common-law partner Canadian citizens and permanent residents can sponsor their spouse or common-law partner to obtain Canadian permanent resident status. Since Canada recognizes same-sex marriage, same-sex partners may apply for reunification as long as they meet all of Canada's standard eligibility requirements. Both the sponsoring Canadian citizen and the sponsored person must be approved by IRCC in order for the sponsored person to be granted permanent residence. To receive a visa under this immigration program, the sponsor and the sponsored person must prove that their relationship qualifies under one of these three categories: Spouse; Common-Law Partner; Conjugal Partner. The processing standard for spousal sponsorship applications in Canada is approximately 12 months from the date the application is received. Complete our FREE spousal sponsorship form to see if you are eligible to sponsor your loved one Work in Canada I would like to move to Canada to work, what are my options? Obtaining a Canadian work visa (referred to as a work permit in Canada) is usually an important step towards working legally in Canada on a temporary basis. You and your prospective employer may have to obtain a document called a Labour Market Impact Assessment (LMIA) before you begin working in Canada. However, most work permit holders in Canada however do not need an LMIA. In some cases, an LMIA is needed as it serves as evidence that your employment in Canada is likely to have a neutral or positive effect on the local labour market. Once the LMIA is granted, you will be able to apply for a temporary work permit from the IRCC. There may be opportunities to speed up the process, depending on your occupation and the work you plan to do in Canada. Contact us for work permit assistance Global Talent Stream The Global Talent Stream is part of Canada's Global Skills Strategy. This federal program allows Canadian employers in high growth and IT industries to streamline the hiring of skilled foreign workers when Canadians are not available for particular positions. The hiring process under this fast-track program involves meeting certain requirements, such as completing a Labour Market Assessment (LMIA), commitment to certain salary requirements, among others. Immigration, Refugees and Citizenship Canada (IRCC) aims to process work permit applications from the Global Talent Stream in one month or less. Canada-U.S.-Mexico Agreement (CUSMA) Thanks to the Canada-U.S.-Mexico Agreement (CUSMA), formerly known as the North American Free Trade Agreement (NAFTA), and also known as “USMCA”, U.S. citizens can benefit from a facilitated process when applying for a temporary work permit in Canada. Work permits issued under the provisions of the CUSMA agreement generally do not require an LMIA. U.S. citizens may work in Canada under CUSMA in one of the following categories: CUSMA ProfessionalA CUSMA professional must be qualified to work in one of the more than 60 targeted professions, including teaching, science, medicine, finance, law, and many others. CUSMA intra-company transferIndividuals transferred from the U.S. within a CUSMA company may be temporarily transferred to Canada to work for a branch, subsidiary or affiliate of their employer. These individuals must have worked continuously for their U.S. employer for at least one of the last three years and be employed by the company at the time of their application in a position considered to be managerial, executive or involving specialized knowledge. CUSMA Traders and InvestorsA U.S. CUSMA trader must demonstrate an intention to engage in substantial trade in goods or services between Canada and the U.S.. A CUSMA investor must demonstrate that he or she has made a substantial investment in a new or existing Canadian business and is seeking to enter Canada to develop and operate the Canadian business. Intra-Company Transfer Because Canada is the United States’ largest trading partner, and vice versa, many American businesses have affiliate offices, branches, or subsidiaries in Canada. The Intra-Company Transfer Program allows international businesses to bring key employees to Canada without the requirement to obtain a Labour Market Impact Assessment (LMIA). Employees who work in executive, managerial, or specialized knowledge roles may be eligible to come to Canada with their family and work as an intra-company transferee. Work Without a Work PermitA number of situations may occur when those in the U.S. can perform work in Canada without needing to secure a Temporary Work Permit. This includes individuals who engage in business or trade activities in Canada but will not enter the Canadian labour (labor) market, collectively referred to as Business Visitors. Working Holidays Working Holidays falls under the International Experience Canada (IEC) program and aims to facilitate international exchanges between young people from different nations. U.S. citizens between the ages of 18 to 35, may obtain an open work permit for 12 months under this program, provided that they have been enrolled in full-time post-secondary study at some point in the past twelve months. Final year students not returning to studies are also eligible. Business Immigration Can I move to Canada to start a business? Starting a business in Canada The goal of Canada's business immigration programs is to attract investors, entrepreneurs and self-employed individuals from outside Canada with venture capital, business acumen, and entrepreneurial skills. Provincial Business and Entrepreneur Programs Canadian provinces and territories have an important role to play in the settlement of economic migrants in their territory, and many are looking for energetic and innovative entrepreneurs to help grow their economies. Canadian provinces and territories can nominate individuals for immigration to their province based on their own criteria. Most Provincial Nominee Programs (PNPs) have streams dedicated to business immigration. Self-Employed Persons Program Individuals who wish to settle in one of Canada's provinces or territories as a professional athlete or artisan can obtain a business immigrant visa for themselves and their immediate family. This program is designed to bring people to Canada who will work as self-employed individuals. Applicants must have either relevant experience in cultural activities or athletics. The Start-up Visa Program Under the federal Start-up Visa Program, immigrant entrepreneurs can develop their business in Canada. This program, recognized as one of the most unique immigration streams in the world, grants permanent residence to immigrant entrepreneurs while helping them settle in Canada. Work Permit OptionsFor many entrepreneurs, the fastest way to enter Canada is to obtain a temporary work permit.Under the CUSMA Investors stream, citizens of the United States who invest in new or existing businesses in Canada may be allowed to apply for an Investor Work Permit to manage their Canadian business. Entrepreneurs who intend to maintain the operation of an existing business abroad while expanding into Canada may be eligible for Intra-company Transfer Work Permits. Those who are majority owners of a business in Canada can seek to obtain an Owner-Operator Work Permit. U.S. residents and citizens also have the option to enter Canada through the Global Talent Stream. Employers working in high-growth sectors or wishing to hire highly skilled global IT professionals can apply for work permits through this stream and benefit from quick application processing times. Study in Canada Can I move to Canada from the US to study? There are now some 15,000 U.S. citizens who study in Canada each year. Over 1,500 universities, colleges and other educational institutions are authorized by Immigration, Refugee and Citizenship Canada (IRCC) to admit international students. International students can work while studying in Canada, which helps supplement income and gain work experience. Graduates of eligible Canadian institutions can apply for an open work permit called a Post-Graduation Work Permit (PGWP). The PGWP allows recent graduates to get valuable Canadian work experience, which in turn can make them eligible for permanent residence and increase their odds of successfully obtaining immigration status. Canadian Citizenship How can I apply for Canadian Citizenship? U.S citizens and residents who immigrate to Canada and reside in the country for a few years may eventually apply to become citizens of their adopted country. This is a process known as naturalization, and Canada has one of the most liberal and welcoming naturalization processes in the world. A person can be a citizen of both the U.S. and Canada. Proof of Canadian citizenship certificates can be obtained by those born abroad to Canadian citizens, by Canadian citizens living abroad who wish to work in Canada in jobs reserved for those of Canadian nationality, or for children born abroad to Canadian citizens. Criminal and Medical Inadmissibility Can I move to Canada if I have a criminal conviction? Not everyone may be aware that a prior offence, even apparently as minor as a traffic violation, can render a person inadmissible to Canada. If in doubt, it is necessary to know what steps to take before and during the process of applying for an immigration or temporary resident visa to Canada in order to be allowed to enter Canada. Examples of convictions that could make a person inadmissible to Canada include impaired driving, theft, petty theft, assault, drunkenness and disorderly conduct, obstruction of justice and possession of marijuana, cocaine or other controlled substances/drugs.A person may also be refused entry to Canada on health grounds if their condition is likely to be a danger to public health or safety or might reasonably be expected to cause excessive demand on Canada's health or social services. For family sponsorship cases involving the sponsorship of a spouse/common-law partner and dependent children, this excessive demand component of refusals on medical grounds is removed.Even if a person or family member is found to be medically or criminally inadmissible to Canada, they still have options.
+"""
+
+[R10] Canadian citizenship | Allen and Hodgman
+(https://allhod.com/canada-immigration/citizenship/)
+"""
+A person may become a Canadian citizen by birth, or by naturalization. Canadian citizenship provides certain rights and privileges, including the following: Right to obtain a Canadian passport Right to live and work in Canada Right to live outside Canada for any length of time without loss of status Right to vote in Canadian elections and to run for office Nearly all persons born in Canada are Canadian citizens, regardless of the citizenship or legal status of their parents. Under new laws that became effective in 2009 and 2015, persons born outside Canada are Canadian citizens if either parent was born in Canada or naturalized in Canada. This law extends only to the first generation born abroad. In most cases this law is retroactive, meaning that some persons who had not been Canadian citizens, or who had lost their citizenship under previous law, became Canadian citizens. However, the new law is complex, and you should seek professional advice if you have questions about your Canadian citizenship. Canadian citizens born outside Canada can apply for a Certificate of Citizenship to prove their Canadian citizenship. Once they have their citizenship certificate, they can sponsor their non-Canadian spouse and minor children (under 22) for permanent residence in Canada. A person can apply for Canadian citizenship if the person is a legal permanent resident of Canada, and has lived in Canada for a total of three years (1095 days) out of the previous five years. This means the person must actually have lived in Canada. Living with a Canadian citizen spouse outside Canada, or working for a Canadian company does NOT count, even if this is considered living in Canada for purposes of preserving your permanent resident status. As part of the application process, a person must also demonstrate basic language ability in either English or French, and must also pass a test for knowledge of Canadian history, civics, and the Canadian economy. Once the application is approved, the person is scheduled to attend a citizenship ceremony, where the person recites the oath of allegiance. The person then becomes a Canadian citizen. Canada today does not require that applicants for citizenship renounce their previous citizenship. However, acquiring Canadian citizenship may cause a loss of citizenship under the law of the person’s original nationality. Acquiring Canadian citizenship will not cause a loss of U.S. citizenship unless it is the person’s intent to renounce. U.S. citizens naturalizing in Canada should seek legal advice regarding the potential impact on U.S. citizenship, as well as the potential tax consequences. Our office offers a wide range of citizenship services, including preparing citizenship applications, and counseling persons with respect to the impacts of acquiring or renouncing both U.S. and Canadian citizenship.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,91 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch phoenix suns vs timberwolves"
+
+Claims:
+[1] "The Phoenix Suns vs. Minnesota Timberwolves game is on Tuesday, March 17, 2026, at 8:00 p.m. ET."
+[2] "The Phoenix Suns vs. Minnesota Timberwolves game on Tuesday, March 17, 2026, at 8:00 p.m. ET takes place at the Target Center in Minneapolis, MN."
+[3] "FanDuel Sports Network North is local TV for MN for the Phoenix Suns vs. Minnesota Timberwolves game on Tuesday, March 17, 2026, at 8:00 p.m. ET."
+[4] "Arizona's Family 3TV / Arizona's Family Sports is local TV for AZ for the Phoenix Suns vs. Minnesota Timberwolves game on Tuesday, March 17, 2026, at 8:00 p.m. ET."
+[5] "Fubo offers a free trial and streams the Phoenix Suns vs. Minnesota Timberwolves game on Tuesday, March 17, 2026, at 8:00 p.m. ET."
+[6] "NBA League Pass streams the Phoenix Suns vs. Minnesota Timberwolves game on Tuesday, March 17, 2026, at 8:00 p.m. ET."
+[7] "Amazon Prime Video streams the Phoenix Suns vs. Minnesota Timberwolves game on Tuesday, March 17, 2026, at 8:00 p.m. ET."
+
+Cited text snippets from the AI Overview (for additional context):
+- How to Watch Suns vs. Timberwolves for Free: NBA Streaming, Tipoff Time, Betting Odds: "Suns vs. Timberwolves Tipoff Time,Suns +142, Timberwolves -170"
+- Suns vs. Timberwolves: Prediction, How to Watch for Free (3/17): "How to Watch Suns vs,(out-of-market)"
+Reference Sources:
+
+[R1] How to Watch Suns vs. Timberwolves: NBA Streaming, Tipoff Time, Betting Odds
+(https://sports.yahoo.com/articles/watch-suns-vs-timberwolves-nba-230000991.html)
+"""
+Devin Booker and the Phoenix Suns will hit the road on Tuesday for a matchup against Anthony Edwards and the Minnesota Timberwolves.The Suns come into the game with a 39-29 record, placing them second in the Pacific Division and seventh place in the Western Conference. Phoenix lost its most recent game 120-112 to Jaylen Brown and the Boston Celtics on Sunday. The Suns are led by the five-time All-Star Booker, who leads the team in scoring at 25.7 points per game. The two-time All-NBA guard also leads the team in assists per game at 6.0.AdvertisementThe Timberwolves enter the matchup losing four of their last five games, the latest of which was a 116-103 loss at the hands of Shai Gilgeous-Alexander and the Oklahoma City Thunder. Minnesota is sitting at 41-27, good enough for second in the Northwest Division and sixth in the Western Conference. The Wolves are led by Edwards, their All-NBA guard, in scoring at 29.5 points per game, with Julius Randle providing 21.1 points per game. Four-time Defensive Player of the Year award winner Rudy Gobert holds down the defensive block for Minnesota, averaging 1.6 blocks per game.Phoenix Suns guard Devin Booker (1) defends Minnesota Timberwolves guard Anthony Edwards (5) in the second quarter during game two of the first round for the 2024 NBA playoffs at Target Center. Brad Rempel-USA TODAY Sports (Brad Rempel-USA TODAY Sports)Suns vs. Timberwolves Tipoff TimeSuns vs. Timberwolves will tip off on Tuesday at 8:00 p.m. ET. The game will be played at the Target Center in Minneapolis, Minnesota.AdvertisementWhat TV Channel is Suns vs. Timberwolves on?The matchup between the Suns vs. Timberwolves will air on Arizona's Family 3TV and FanDuel Sports Network North.How to Live Stream Suns vs. Timberwolves for FreeFans can stream Suns vs. Timberwolves for free via Fubo when they sign up for a 7-day free trial. The game can also be streamed with an NBA League Pass membership.Suns vs. Timberwolves Betting OddsSpread: Timberwolves -3.5 (via ESPN Bet)Over/Under: 221.5Money line: Suns +142, Timberwolves -170Related: Lakers React to Luka Doncic Announcement on MondayThis story was originally published by Athlon Sports on Mar 17, 2026, where it first appeared in the NBA section. Add Athlon Sports as a Preferred Source by clicking here.
+"""
+
+[R2] Suns vs. Timberwolves: Prediction, How to Watch for Free (3/17)
+(https://globelynews.com/sports/suns-vs-timberwolves-prediction-how-to-watch-for-free-3-17/)
+"""
+The Phoenix Suns (39–29) visit the Minnesota Timberwolves (41–27) tonight at the Target Center in Minneapolis in a matchup with major playoff implications. The Suns have dropped two straight after a four-game winning streak. They fell to the Toronto Raptors on Friday, 122–115, and then to the Boston Celtics last night, 120–112, despite strong scoring performances from Devin Booker and Jalen Green. Booker poured in 41 points in Monday’s loss to Boston, while Green scored 34 against Toronto. With Dillon Brooks out, Phoenix has a new scoring tandem, with Booker averaging 30.9 PPG this month, with Green close behind at 24.6 PPG. But the supporting cast has struggled to produce. Collin Gillespie has scored just three total points over the past two games, shooting 1-for-11 during that stretch. Phoenix’s typically solid defense has also faltered against two balanced opponents. The Suns sit seventh in the Western Conference, currently positioned for a play-in tournament spot but just two games behind the Timberwolves for the final automatic playoff berth. With Anthony Edwards sidelined for Minnesota due to knee inflammation — an injury expected to keep him out for one to two weeks — Phoenix has an opportunity to gain ground in the standings with a win tonight and continued momentum in the coming games. Edwards scored 19 points in Minnesota’s 116–103 loss to the Oklahoma City Thunder on Sunday, shooting 6-of-17 as the knee issue appeared to limit his effectiveness. Julius Randle led the Timberwolves with 32 points on 11-of-18 shooting, snapping a five-game stretch in which he had failed to reach 20. Prior to Sunday, Randle had averaged just 13.7 points per game over his previous 11 outings. Minnesota will need him to sustain that scoring level in the coming weeks to avoid slipping into play-in tournament territory. With Edwards out and Phoenix holding the edge in late-game shot creation behind Booker and Green, expect the Suns to pull away late. Prediction: Phoenix Suns 120, Minnesota Timberwolves 113 Injury Report Phoenix Suns Haywood Highsmith — GTD (Knee) Grayson Allen — GTD (Knee) Dillon Brooks — Out (Hand) Mark Williams — Out (Foot) Minnesota Timberwolves Anthony Edwards — Out (Knee) How to Watch Suns vs. Timberwolves Tip-off for tonight’s Suns-Timberwolves game is set for 8:00 PM Eastern / 7:00 PM Central / 5:00 PM Mountain at the Target Center in Minneapolis. The game airs live locally on FanDuel Sports Network North and Arizona’s Family Sports. Fans in the Bucks broadcast markets without a FanDuel Sports Network subscription can purchase one on Amazon here. Out-of-market viewers can stream the matchup on NBA League Pass for free on Amazon Prime Video with a 7-day free trial here. Amazon also offers a discounted subscription that starts at $12.74 for the first two months (then $16.99/month). The subscription also includes access to NBA TV. Fans can also choose a Team Pass to follow one team’s games for $13.99 per month. Phoenix Suns vs. Minnesota Timberwolves Date: Tuesday, March 17, 2026 Time: 8:00 PM Eastern / 7:00 PM Central / 5:00 PM Mountain Venue: Target Center, Minneapolis, MN TV: FanDuel Sports Network North, Arizona’s Family Sports Streaming: NBA League Pass (out-of-market)
+"""
+
+[R3] How to Watch Suns vs. Timberwolves for Free: NBA Streaming, Tipoff Time, Betting Odds
+(https://athlonsports.com/nba/phoenix-suns/how-to-watch-suns-vs-timberwolves-for-free-nba-streaming-tipoff-time-betting-odds)
+"""
+The Phoenix Suns face off against the Minnesota Timberwolves during Tuesday’s slate of NBA games.Mar 17, 2026 7:00 PM EDTMinnesota Timberwolves guard Anthony Edwards (5) dribbles the ball around Phoenix Suns guard Devin Booker (1) in the second half during game one of the first round for the 2024 NBA playoffs at Target Center. © Jesse Johnson-USA TODAY Sports In This Story Devin Booker and the Phoenix Suns will hit the road on Tuesday for a matchup against Anthony Edwards and the Minnesota Timberwolves. The Suns come into the game with a 39-29 record, placing them second in the Pacific Division and seventh place in the Western Conference. Phoenix lost its most recent game 120-112 to Jaylen Brown and the Boston Celtics on Sunday. The Suns are led by the five-time All-Star Booker, who leads the team in scoring at 25.7 points per game. The two-time All-NBA guard also leads the team in assists per game at 6.0.Watch More The Timberwolves enter the matchup losing four of their last five games, the latest of which was a 116-103 loss at the hands of Shai Gilgeous-Alexander and the Oklahoma City Thunder. Minnesota is sitting at 41-27, good enough for second in the Northwest Division and sixth in the Western Conference. The Wolves are led by Edwards, their All-NBA guard, in scoring at 29.5 points per game, with Julius Randle providing 21.1 points per game. Four-time Defensive Player of the Year award winner Rudy Gobert holds down the defensive block for Minnesota, averaging 1.6 blocks per game. Phoenix Suns guard Devin Booker (1) defends Minnesota Timberwolves guard Anthony Edwards (5) in the second quarter during game two of the first round for the 2024 NBA playoffs at Target Center. Brad Rempel-USA TODAY Sports Suns vs. Timberwolves Tipoff Time Suns vs. Timberwolves will tip off on Tuesday at 8:00 p.m. ET. The game will be played at the Target Center in Minneapolis, Minnesota. What TV Channel is Suns vs. Timberwolves on? The matchup between the Suns vs. Timberwolves will air on Arizona’s Family 3TV and FanDuel Sports Network North. How to Live Stream Suns vs. Timberwolves for Free Fans can stream Suns vs. Timberwolves for free via Fubo when they sign up for a 7-day free trial. The game can also be streamed with an NBA League Pass membership. Suns vs. Timberwolves Betting Odds Spread: Timberwolves -3.5 (via ESPN Bet) Over/Under: 221.5 Money line: Suns +142, Timberwolves -170 This page may contain affiliate links to legal sports betting or fantasy sports partners. If you sign up, Athlon Sports and The Arena Group may be compensated at no cost to you. Read more about Sports Betting on Athlon Sports.About the authorWill Chesanek is a library and archives professional with a Master of Library Science (Archives concentration) and a Bachelor of History from North Carolina Central University. His experience spans libraries, records management, compliance, tutoring, and project coordination, supported by more than 10 years of customer service.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

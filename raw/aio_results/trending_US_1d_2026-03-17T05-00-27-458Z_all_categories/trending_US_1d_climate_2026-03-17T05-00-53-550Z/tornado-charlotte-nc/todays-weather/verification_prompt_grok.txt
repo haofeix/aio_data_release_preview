@@ -1,0 +1,93 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "todays weather"
+
+Claims:
+[1] "March 17, 2026 is a Tuesday."
+[2] "Forecasts for the Washington D.C./Northern Virginia area on Tuesday, March 17, 2026 predict high temperatures in the upper 30s°F to low 40s°F."
+[3] "Forecasts for the Washington D.C./Northern Virginia area on Tuesday, March 17, 2026 predict partly sunny to cloudy conditions."
+[4] "Forecasts for the Washington D.C./Northern Virginia area on Tuesday, March 17, 2026 predict overnight lows near freezing."
+[5] "The weather conditions on March 17, 2026 in the Washington D.C./Northern Virginia area are partly sunny to mostly cloudy."
+[6] "The high temperature on March 17, 2026 in the Washington D.C./Northern Virginia area is near 36°F to 40°F."
+[7] "The low temperature on March 17, 2026 in the Washington D.C./Northern Virginia area is near 20°F to 30°F."
+[8] "Northwest winds 3-8 mph on March 17, 2026 in the Washington D.C./Northern Virginia area."
+[9] "Northwest winds increasing in some areas on March 17, 2026 in the Washington D.C./Northern Virginia area."
+[10] "Wind chill values drop below freezing on March 17, 2026 in the Washington D.C./Northern Virginia area."
+
+Cited text snippets from the AI Overview (for additional context):
+- Local Forecast & Live Weather Radar - WeatherBug: "Current Weather Details,10-day weather forecast"
+Reference Sources:
+
+[R1] Weather Forecast and Conditions for Tysons Corner, Tysons, Virginia | weather.com
+(https://weather.com/weather/today/l/Tysons+VA?canonicalCityId=f2a26e7d488f12b7ef72f02d27da8b714180bf19be69bed2d811c0b4c6557c0e)
+"""
+Search for a locationSearchAdvertisementTysons Corner, Tysons, Virginia WeatherWatch AlertSmall Craft AdvisoryFrom Thu 12:00 pm until Fri 4:00 pm EDTNow79°78°77°Partly CloudyFeels Like 77° · Day 81° · Night 49°Share your Tysons weather insights. Help locals and travelers plan better.Share your insightsChevron RightShare your Tysons weather insights. Help locals and travelers plan better.Share your insightsWindWindArrow Down13 mph SSWhumidityHumidity33%Air Quality69 - ModerateDew PointDew Point45°pressurePressureArrow Down29.94 inUv IndexUV Index6 of 11ViewVisibility10 miWaxing GibbousMoon PhaseWaxing GibbousSunriseSunrise7:02 amSunsetSunset7:27 pmHourly WeatherA mix of clouds and sunHumidityWindPrecipitation2 pm78°Partly CloudyRain Drop0%Rain Drop0%32%Arrow Down13 mph0 inPlusMinusFeels LikeFeels Like78°Rain DropRain Amount0 inWindWindArrow Down13 mph SWpressurePressure29.9 Cloud CoverCloud Cover30%Dew PointDew Point46°Uv IndexUV Index6 of 11ViewVisibility10 miFoggyAir Quality68 - ModeratehumidityHumidity32%Wind GustWind Gust22 mph3 pm80°Partly CloudyRain Drop0%Rain Drop0%32%Arrow Down14 mph0 inPlusMinus4 pm80°Partly CloudyRain Drop0%Rain Drop0%31%Arrow Down15 mph0 inPlusMinus5 pm79°Partly CloudyRain Drop0%Rain Drop0%33%Arrow Down14 mph0 inPlusMinusNext 48 HoursTrending NowSevere Thunderstorms, Including Hail And Tornadoes, Possible In Midwest AgainJoin Us Live Now: Ask Our Meteorologist About Weather MythsMuch Needed Pattern Change Brings Relief To WestVideo Player1:29Little Legs, Big Snow, Tons Of HeartVideo Player0:18Severe Thunderstorms, Including Hail And Tornadoes, Possible In Midwest AgainJoin Us Live Now: Ask Our Meteorologist About Weather MythsMuch Needed Pattern Change Brings Relief To WestVideo Player1:29Little Legs, Big Snow, Tons Of HeartVideo Player0:18Daily ForecastToday81° / 62°Partly CloudyRain Drop0%Arrow Down15 mphPlusMinusThu 26 | Day81°Rain Drop0%WindSW 15 mphA mix of clouds and sun. High 81F. Winds SW at 10 to 20 mph.humidityHumidity32%Uv IndexUV Index6 of 11SunriseSunrise7:02 amSunsetSunset7:27 pmThu 26 | Night62°Rain Drop24%WindSW 14 mphPartly cloudy skies early will give way to cloudy skies late. Low 62F. Winds SW at 10 to 20 mph.humidityHumidity52%Uv IndexUV Index0 of 11moonriseMoonrise12:37 pmmoonriseMoonset3:26 amWaxing GibbousWaxing GibbousFri 2766° / 32°RainRain Drop81%Arrow Down11 mphPlusMinusSat 2847° / 30°SunnyRain Drop0%Arrow Down15 mphPlusMinusSun 2960° / 47°Partly CloudyRain Drop1%Arrow Down14 mphPlusMinusNext 10 DaysNowMapbox Logo© 2026 Mapbox© OpenStreetMap|Improve this mapAdvertisementAdvertisementTravelAnd The Best State For An Adventure Vacation Is ...Video Player0:42California Wildflower Superblooms Are Back In 2026Video Player0:433 Big Changes Coming To National Parks In 2026Video Player0:42‘Rare And Remarkable’: Lake Superior Ice Caves ReopenVideo Player0:30And The Best State For An Adventure Vacation Is ...Video Player0:42California Wildflower Superblooms Are Back In 2026Video Player0:433 Big Changes Coming To National Parks In 2026Video Player0:42‘Rare And Remarkable’: Lake Superior Ice Caves ReopenVideo Player0:30Home & GardenDon’t Make These Mistakes When Planting Your Spring GardenVideo Player0:35When To Worry About Mold Growing In Your HomeVideo Player0:38Get Ahead For Spring With Essential Winter Garden TipsVideo Player0:30Why Your Home's Air Might Be More Polluted Than OutdoorsVideo Player1:04Don’t Make These Mistakes When Planting Your Spring GardenVideo Player0:35When To Worry About Mold Growing In Your HomeVideo Player0:38Get Ahead For Spring With Essential Winter Garden TipsVideo Player0:30Why Your Home's Air Might Be More Polluted Than OutdoorsVideo Player1:04AdvertisementAdvertisementSponsored ContentHow Much Does A New Roof Cost For A 1500 Sq. Ft. House?HomeBuddy | SponsoredSponsoredUndo9 Out Of 10 American Kitchens Have This Toxic Pan — Here’s The One That’s SafeKitchen-ExpertsUndo12 Expenses Retirees Are Quietly DroppingGreensproutUndo12 Things You Should Cut Immediately When Money Gets Tight (Most People Ignore #11)GreensproutUndoPlumbers Shocked: This $49 Nozzle Does What $300 Pressure Washers Can't Home & GardenUndoShoppers in the US rely on this Shower Head!AfinaUndoUS seniors eligible for walk-in tubsForbesUndo55 Genius Gizmos for Easier Living After 55Unforgettable GadgetsUndoThe 2lb Device That Is Replacing Heavy Gas BlowersSeese ProUndoAir Quality Index69Moderate Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.See detailsAir Quality IndexHealth & ActivitiesgrassSeasonal Allergies and Pollen Count ForecastTree pollen is moderate in your areaChevron RightAdvertisementEditor's PickWhy Your Pet Is Eating GrassBelieve it or not, your pet doesn’t eat grass as an appetizer salad course before their morning kibble. There are actually multiple potential reasons your dog or cat might be eating grass, including just plain, old animal instinct. They also could be trying to supplement their diet with missing nutrients. While it might seem harmless, eating grass can expose your pet to dangerous chemicals and bacteria.Video Player0:35Product Reviews & DealsEmbracing Spring: It's The Perfect Time to Plan Your GardenStay SafeKnow The Difference Between Tornado Watches And WarningsVideo Player0:37
+"""
+
+[R2] National Weather Service
+(https://forecast.weather.gov/zipcity.php?inputstring=Vint%20Hill%20Farms,VA)
+"""
+This AfternoonMostly sunny, with a high near 82. Southwest wind 11 to 14 mph, with gusts as high as 23 mph. TonightA chance of showers after 5am. Mostly cloudy, with a low around 51. Southwest wind 11 to 14 mph, with gusts as high as 23 mph. Chance of precipitation is 30%.FridayRain. Temperature rising to near 64 by 9am, then falling to around 51 during the remainder of the day. North wind around 11 mph, with gusts as high as 21 mph. Chance of precipitation is 90%. New precipitation amounts between a quarter and half of an inch possible. Friday NightRain, mainly before 8pm. Low around 32. Northwest wind 5 to 14 mph, with gusts as high as 24 mph. Chance of precipitation is 80%. New precipitation amounts between a tenth and quarter of an inch possible. SaturdaySunny, with a high near 49. Northwest wind 9 to 13 mph, with gusts as high as 23 mph. Saturday NightMostly clear, with a low around 30.SundaySunny, with a high near 59.Sunday NightPartly cloudy, with a low around 43.MondayPartly sunny, with a high near 66.Monday NightA chance of rain between 8pm and 2am. Mostly cloudy, with a low around 52. Chance of precipitation is 30%.TuesdayA chance of rain. Partly sunny, with a high near 73. Chance of precipitation is 40%.Tuesday NightA chance of rain. Mostly cloudy, with a low around 55. Chance of precipitation is 40%.WednesdayA chance of rain. Partly sunny, with a high near 78. Chance of precipitation is 30%.
+"""
+
+[R3] Weather Today & Tomorrow - Local Forecast & Live Weather Radar | WeatherBug
+(https://www.weatherbug.com/weather-forecast/now)
+"""
+Today's WeatherAs ofMar 26, 2026 1:28 PMWeather Station:WeatherBugOpen weather station selector modal75°degrees FahrenheitFeels like:75°FHi: 78°FLo: 67°FPartly CloudyLive Weather RadarRight arrow© Mapbox © OpenStreetMap Improve this mapExplore interactive weather radar mapCurrent Weather DetailsWindchill75°Daily Rain--"Dew point46°Monthly Rain3.27"Humidity37%Avg. WindSSW 7 mphPressure--" Wind Gust -- mphSunrise7:04 AMMoonWaxing GibbousSunset7:27 PMUV Index6 (High)Weather ForecastRight arrowTodayHi78°FMostly sunny. Highs in the upper 70s. Southwest winds 10 to 15 mph with gusts up to 25 mph.TonightLo67°FMostly cloudy. A chance of rain after midnight. Lows around 50. Southwest winds 10 to 15 mph with gusts up to 25 mph. Chance of rain 50 percent.10-day weather forecastFEATURED VIDEOSRight arrowAIR QUALITYRight arrow36 | FairTop Triggers:pm25Air quality data provided by AmbeeView the Air quality detailsPOLLEN COUNT & ALLERGY FORECASTRight arrow9.4 Medium-HighPredominant Pollen:Elm, Cedar/Juniper and Poplar/Aspen/CottonwoodView the Pollen forecast detailsLIGHTNING MAPRight arrowSafeClosest strike in the last 30 minutes:284.5 milesNo Lightning NearbyReal-time lightning alerts & live MapTop StoriesRight ArrowSevere Storms Rumble Through the Ohio ValleyA potent cold front will bring the threat for severe thunderstorms across the Ohio Valley today.Read MoreToday's Weather OutlookRead MoreActive Weather, Drought Improvements for Eastern Half; Drying Persists ElsewhereRead MoreSun Safety: Protect Your Skin During SpringRead MoreHow Does Hail Form?Read MoreLightning SafetyRead MoreMore NewsRight ArrowToday's National OutlookRight ArrowHurricane TrackerRight ArrowAllergy ForecastRight ArrowCold & FluRight ArrowFire UpdatesRight ArrowTraffic CamerasRight ArrowWeather CamerasRight ArrowTraffic CamerasRight ArrowWeather CamerasRight ArrowOutdoor Sports GuideRight ArrowWe use technologies, such as cookies, to analyze your use (i.e., pages visited), to customize content, for our internal analytics purposes and for security and other purposes. By continuing to use this website, you agree to this usage. Please review our privacy policy for more details as well as for information on how to contact us to object to these activities. Ad Choicessponsoredsponsoredsponsored
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

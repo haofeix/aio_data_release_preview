@@ -1,0 +1,242 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "what is a red flag warning"
+
+Claims:
+[1] "A Red Flag Warning is the highest-level alert issued by the National Weather Service (NWS)."
+[2] "Red Flag Warnings indicate critical, imminent weather conditions such as strong winds, low humidity, and dry fuels."
+[3] "Strong winds, low humidity, and dry fuels create a high risk for rapid, extreme wildfire growth."
+[4] "Red Flag Warnings advise fire agencies and the public to take immediate precautions to prevent new fires."
+[5] "According to Wikipedia, Red Flag Warnings are issued when a combination of low relative humidity (usually <25%), high winds (generally ≥15−20 mph), and warm temperatures is expected."
+[6] "Red Flag Warnings are issued for immediate or near-future dangerous conditions, usually within 24 hours."
+[7] "According to the City of Vista, Red Flag Warnings indicate that conditions are prime for extreme fire behavior, which can include rapid spread, long-range spotting, and plume-dominated fires."
+[8] "The City of Riverside advises not to use fire pits, campfires, or burn debris during a Red Flag Warning."
+[9] "The Truckee Fire Protection District says to avoid using equipment that creates sparks, such as lawnmowers or grinders in dry vegetation during a Red Flag Warning."
+[10] "According to Fire Safe Marin, review evacuation plans and ensure your vehicle is fueled during a Red Flag Warning."
+[11] "The Santa Barbara County Fire Department says to immediately report any signs of smoke to 911 during a Red Flag Warning."
+
+Cited text snippets from the AI Overview (for additional context):
+- Red Flag Warning What You Need to Know - RiversideCA.gov: "Extreme caution should be taken by all,matches appropriately and NEVER on the ground."
+- Red flag warning - Wikipedia: "Red flag warnings are associated with drought,minimum relative humidity, and daytime wind speed."
+- Red Flag Warnings - Santa Barbara County Fire Department: "Citizens should take appropriate precautions if a,suspicious persons or vehicles to law enforcement"
+- Red Flag Warnings - Fire Safe Marin: "During a Red Flag Warning, you should:,* Avoid using barbecues or fire-pits outdoors"
+- What is a red flag warning? What to know amid fire risk in Chicago: "Such a warning is issued when areas,fires that start, according to the NWS."
+Reference Sources:
+
+[R1] What is a red flag warning? What to know as Chicago area faces fire danger
+(https://www.nbcchicago.com/weather/stories/what-is-a-red-flag-warning-what-to-know-as-chicago-area-faces-fire-danger/3895540/)
+"""
+Editor's Note: The fire weather watch has been upgraded to a red flag warning. Our latest story can be found here. Our original story continues below. The Chicago area is under a fire weather watch for Wednesday, but some parts of the region could be upgraded to a “red flag warning.” According to the National Weather Service, the possibility of such an upgrade is highest along and north of Interstate 88, but the entire area is set to see enhanced fire risk conditions because of high temperatures, gusty winds and low relative humidity, according to officials. But what exactly is a red flag warning? Such a warning is issued when areas experience warm temperatures, extremely low humidity, and strong winds, all of which can combine to rapidly accelerate the spread of any fires that start, according to the NWS. The Chicago area is expected to see all of those weather events on Wednesday, with highs soaring into the mid-to-upper 60s, relative humidity of 20% or even lower, and wind gusts that could exceed 40 miles per hour at times. Stories Those wind gusts are expected to be strongest in the northern parts of the Chicago area, but gusty winds and dry conditions are also expected along and north of Interstate 80, as well as in Cook County. In both fire weather watches and red flag warnings, residents are urged not to start open fires outdoors, and to refrain from throwing cigarettes or matches out of a moving vehicle. All fires must be extinguished properly, drowned with plenty of water and stirred to make sure it is cold to the touch, according to officials. Winds will eventually calm heading into Thursday, but another weather threat is expected to develop on Thursday as showers and thunderstorms could occur in the area. Parts of the Chicago area, including LaSalle, Grundy, Will and Kankakee counties in Illinois, are at a marginal risk of severe storms on Thursday, with gusty winds and heavy rain possible. Stay tuned to the NBC 5 Storm Team for all the latest weather news and information, and be sure to download the NBC Chicago app for real-time weather alerts sent directly to your phone.
+"""
+
+[R2] Red Flag Warnings - Fire Safe Marin
+(https://firesafemarin.org/prepare-yourself/red-flag-warnings/)
+"""
+Stay on high alert, watch the news, and prepare for evacuation on days a Red Flag Warning is issued. What is a Red Flag Warning? Red Flag Warnings are issued by the National Weather Service when weather conditions are right for extreme wildfire events. These are days with sustained or gusty winds, and hot and dry conditions, that make wildfires more likely to ignite and spread rapidly. During these times extreme caution is urged by all residents. This is the time to stay on high alert, watch the news, and prepare for evacuation if needed. Red Flag Warnings go out to the Marin community through Nixel, news outlets, and social media. Large signs with “Red Flag Warning” are also posted on major roads and intersections. Red Flag Warnings are posted online on the California Fire Weather web page and on the web page for the San Francisco Bay Area National Weather Service (NWS) office. Links to all fire weather forecasts and other NWS office web pages can be found on the National Fire Weather Page, including the forecasthttps://www.weather.gov/mtrfor the San Francisco Bay Area. What to Do During a Red Flag Warning Review your wildfire evacuation checklist. Walk around the outside of your house and clear anything combustible, including: Leaves from roofs, gutters, and around the base of walls Wicker lawn furniture and all cushions Wood piles or debris near structures Flammable doormats Ensure your family and pets are prepared, and keep your evacuation go-kits nearby. Ensure your car has a full tank of gas or is fully charged. Ensure your cell phone is charged, and monitor phones for emergency alerts. Keep hydrated – it’s usually warm and dry! Activities to Avoid Don’t use barbecues or fire-pits outdoors. Don’t use any source of heat or open flame outdoors, including, cooking, using power tools (gas or electric), or mowers. Don’t smoke outdoors. Avoid driving or parking in dry grass or vegetation. Avoid closed areas and be alert while visiting (open) public lands where wildfires might occur. Red Flag Warning Weather Conditions Red Flag Warning conditions are typically related to: Wind events lasting at least eight hours Dry vegetation Cured annual grasses No rain in the last 24 hours “10-hour” fuels (dead vegetation 1/4 to 1/2 inch in diameter) have less than 6% moisture. Relative humidity and wind speed are the primary factors driving a Red Flag Warning declaration, and must fall into one of the following parameters: Relative Humidity Wind Speed Day, 29-42% and/or Night, 60-80% 30+ mph Day, 19-28% and/or Night, 46-60% 21+ mph Day, 9-18% and/or Night, 31-45% 12+ mph Day, <9% and/or Night, <31% 6+ mph Contributing Factors Climate change is driving extreme weather conditions, making the fire seasons hotter, drier, and longer. Since 1990, the average temperatures in California have risen 2° Fahrenheit; the fire season has increased by about 75 days; and, the acres burned have accelerated from 400,000 to over four million annually. The Diablo Winds are strong wind events that flow northeasterly over Northern California’s coast in the fall when the moisture content is at its lowest. These hot, dry winds can become quite strong with gusts reaching speeds of 40 miles per hour or higher, particularly along the ridges of the Coast Range. This effect is especially dangerous with respect to wildfires as it can enhance the updraft generated by the heat in such fires. Public Land Closures When a Red Flag Warning is issued, the Marin County Fire Department notifies public land owners who determine if land-use restrictions will go into effect. These restrictions may include temporary road closures or suspension of special use permits. For information on Red Flag Land Use Restrictions, call public lands before visiting or call the Marin County Fire Department public information line at (415) 473-7191. Lands within the Marin Municipal Water District (MMWD) are subject to closures on Red Flag Days MMWD’s Mt. Tamalpais watershed lands are closed to public motor vehicle traffic on Sky Oaks Road beyond the Sky Oaks Ranger Station. All watershed land use permits are suspended. Natalie Coffin Greene Park is closed to vehicle traffic. For additional MMWD information, please call (415) 945-1195. Marin County Parks and Open Space All Marin County Parks events on open space land are canceled for the duration of a Red Flag Warning. National Park Service managed lands: Activities such as using barbecue grills or fire rings are restricted depending on fire risk or Spare the Air Days. Please see the appropriate park’s fire webpage prior to your visit: Fire Danger Ratings Fire danger ratings are measurements of weather and fuel conditions that help fire agencies predict how likely a fire may ignite, and how intensely and quickly it may burn. These ratings are determined daily during fire season by local fire agencies based on the National Fire Danger Rating System (NFDRS). These ratings are based on the probability of ignition; the effects of wind, slope, and fuel; and the potential energy released by a fire in the given weather and fuels. A daily rating ranging from Low to Extreme level Fire Danger is determined based on the worst-case fire weather scenario during the hottest, driest part of the day on an open, south-facing slope. Fire danger ratings may vary throughout the county and are used to determine whether land use restrictions will go into effect as well as how many firefighters should be available in case a wildfire does occur. Fire Danger Ratings describe the potential for fire to ignite and spread rapidly in a local area. Red Flag Warnings are a weather forecast used to predict a weather event in which fire will be difficult to control. Prepare Your House During a Red Flag Warning Event FAQSHas anyone told Fire Safe Marin that it rained this week? Why are you issuing a Red Flag Warning?! A Red Flag Warning is issued by the United States National Weather Service, not Fire Safe Marin. All Red Flag Warnings are related to predicted weather and fuel moistures, and weather and fuel conditions must meet specific criteria. A small amount of rainfall during the summer and fall months usually does not significantly increase live or dead fuel moistures. Current knowledge of fuels and fire behavior tells us that live fuel moistures can still reach a critical level, and dead fuels will dry to their pre-rainfall level within ten hours during a low humidity wind event. Any Red Flag Warning wind event issued for Marin has the potential to cause rapid growth and extreme fire behavior if any wildfires start. My neighbor is using a charcoal barbecue (or, is it safe to use a charcoal barbecue during fire season)? A charcoal barbecue can be safe when used properly. Marin residents should never use the charcoal barbecue when it’s windy, or when fire weather is extreme. Always place the barbecue as far away as possible from any building and/or dry vegetation. Barbecuing on a stone patio is safest. Never attempt to move the barbecue when it’s hot (or even warm). Always keep a charged garden hose nearby (with a “squeeze grip” nozzle) when barbecuing, and make sure it’s long enough to reach around all corners of the building. If you need to move the hose, be careful not to knock the barbecue over! Keep the hose in place for at least twelve hours AFTER cooking to allow the coals to cool. Only empty the ashes into a metal container. Resources Red Flag Warning Door Hanger
+"""
+
+[R3] Red flag warnings & Fire weather watches — Truckee Fire Protection District
+(https://www.truckeefire.org/red-flag-warnings-fire-weather-watches)
+"""
+Red Flag warnings & fire weather watches Quick Links The National Weather Service issues Red Flag Warnings & Fire Weather Watches to alert fire departments of the onset, or possible onset, of critical weather and dry conditions that could lead to rapid or dramatic increases in wildfire activity. A Red Flag Warning is issued for weather events which may result in extreme fire behavior that will occur within 24 hours. A Fire Weather Watch is issued when weather conditions could exist in the next 12-72 hours. A Red Flag Warning is the highest alert. During these times extreme caution is urged by all residents, because a simple spark can cause a major wildfire. A Fire Weather Watch is one level below a warning, but fire danger is still high. The type of weather patterns that can cause a watch or warning include low relative humidity, strong winds, dry fuels, the possibility of dry lightning strikes, or any combination of the above. During heightened fire danger, Truckee Fire Protection District will place additional firefighters on duty, staff more fire engines and keep more equipment on 24 hours a day to be able to respond to any new fires. We encourage all residents to be extremely cautious, especially during periods of high fire danger. It's important all residents and vistors take steps to prevent wildfires. One less spark could mean one less wildfire. During a Red Flag Warning:All open flames are prohibited within the boundaries of the Truckee Fire Protection District (this includes gas flame and other outdoor cooking devices normally exempted under the District’s Seasonal Burn Ban Ordinance).The use of power tools for home and yard maintenance is strongly discouraged. However, it is not illegal under current ordinance (please contact your neighborhood’s Home Owner’s Association, as regional regulations do sometimes apply).To receive a Red Flag Alert, and all other emergency alerts from Truckee Fire Protection District, please visit CodeRED, and sign up for alerts.As always, please exercise extreme caution during this dangerous time! If you see any violation of these guidelines during an active Red Flag Warning, do not hesitate to call 911. These warnings are issued to prevent a major incident, and community vigilance is always appreciated. <br/>
+"""
+
+[R4] Red flag fire warning, burn ban issued for Tallahassee area
+(https://www.tallahassee.com/story/weather/2026/03/27/red-flag-fire-warning-burn-ban-issued-for-tallahassee-area/89351635007/)
+"""
+Updated March 27, 2026, 6:04 p.m. ETThe National Weather Service issued a red flag warning for several Florida counties due to critical fire weather conditions.A temporary burn ban is in effect for Leon County to protect lives and property.Forecasters predict strong winds, low humidity, and warm temperatures, which can contribute to extreme fire behavior.A red flag warning was issued by the National Weather Service in Tallahassee at 2:05 p.m. on Friday, March 27. This warning applies to Inland Gulf, Leon, Inland Jefferson, Inland Wakulla and Southern Liberty counties.A burn ban is also being issued for the capital county, according to Leon County officials. It will be effective throughout the duration of the warning and beyond through 5 p.m. on Friday, April 3, 2026, unless extended or rescinded by subsequent action.“In an abundance of caution, this temporary burn ban is an important step to protect lives, homes, and property across Leon County,” said Leon County Commission Chairman Christian Caban. “Our fire experts are asking all residents to do their part — avoid any outdoor burning, report any signs of fire immediately, and help us look out for the safety of our first responders who are on the front lines. We will continue to monitor conditions closely and take actions to keep our community safe.”NWS forecasters warn that "A Red Flag Warning means that critical fire weather conditions are either occurring now, or will shortly. A combination of strong winds, low relative humidity, and warm temperatures can contribute to extreme fire behavior."Amid one of the worst droughts in decades, the forecast calls for wind gusts ranging from 15 to 30 mph with humidity as low as 25%."We have already seen impactful wildfires in the last week, and tomorrow`s weather will further aggravate the fire environment and significant wildfire potential," forecasters wrote in their afternoon discussion. "Please spread the message to avoid outdoor burning, especially on Saturday!"Track wildfires and smoke in your areaWhat are NWS meteorologists saying?At 2:05 p.m., the NWS issued a statement including the following information:"FIRE WEATHER WATCH ISSUED FOR SOUTHEAST ALABAMA, SOUTHWEST GEORGIA, AND MOST OF THE FLORIDA PANHANDLE ON SATURDAY THANKS TO LOW HUMIDITY AND BREEZY WINDS FOLLOWING A DRY FRONTAL PASSAGE. The National Weather Service in Tallahassee has issued a Red Flag Warning, which is in effect from 11 a.m. EDT /10 a.m. CDT/ to 8 p.m. EDT /7 p.m. CDT/ Saturday. AFFECTED AREA, Fire weather zones 014, 017, 018, 027, and 426. WIND, Northeast winds near 15 mph, with gusts around 25 to 30 mph. HUMIDITY, As low as 25 percent in the afternoon.IMPACTS: Any fires that develop will likely spread rapidly. Outdoor burning is strongly discouraged!"What is a red flag warning?A Fire Weather Watch or Red Flag Warning is issued when the combination of dry fuels and weather conditions supports extreme fire danger, according to the National Weather Service. Each NWS office creates local criteria for fire weather watches and red flag warnings.What is prohibitedDuring the burn ban, all open burning in Leon County that is not specifically authorized by the Florida Forest Service is prohibited, including but not limited to:Burning of yard debris such as leaves, branches and other vegetative wasteLand-clearing fires, brush piles and similar site-preparation burnsCampfires, bonfires, fire pits and similar recreational or ceremonial fires on public or private propertyBurning of household trash, construction debris or other solid wasteUse of burn barrels or similar devices for outdoor burningWhat is still allowedThe burn ban does not prohibit:Use of gas, propane, charcoal or electric grills and smokers for cooking, as long as they are attended and fully extinguished after useIndoor fireplaces, wood stoves or similar appliances used inside a structure in accordance with applicable codesBurns conducted or expressly authorized by the Florida Forest Service, including permitted agricultural or land-clearing burns that follow all state laws and permit conditionsFirefighting, emergency or training activities conducted by or under the direction of Leon County, the City of Tallahassee Fire Department or the Florida Forest ServiceEnforcement and ongoing reviewViolations of the temporary burn ban may be subject to enforcement under applicable County ordinances and state law, including fines and other penalties as provided by law.Florida weather watches and warningsWhat should you do during a red flag warning and wildfire prevention tipsForecasters advise residents under a red flag warning to take extra precautions to prevent wildfires. Follow these steps to reduce the risk of fire on your property and in your community:Monitor local alertsStay updated with your local wildfire offices, fire departments and emergency management.Check air quality forecasts: smoke from nearby wildfires can reduce visibility and cause health issues.Prepare your home and propertyWater lawns, shrubs and trees if possible.Check air quality forecasts: smoke from nearby wildfires can reduce visibility and cause health issues.Clear dry brush, leaves and other flammable material from around your home.Move flammable items (firewood, propane tanks, grills) away from buildings. Have an emergency kit readyInclude water, non-perishable food, medications, masks (for smoke), flashlights, batteries, important documents and a first-aid kit. Keep vehicles fueled and ready in case of evacuation. Avoid activities that could start a fireDo not burn trash, brush, or use open flames. Use grills or smokers only on gravel or paved surfaces.Avoid driving over dry grass or brush. Ensure chains or metal parts on vehicles aren't dragging to prevent sparks. Be cautious with cigarettes, matches and glass bottles outdoors. Electrical safetyReport downed utility poles immediately to local officials or your electricity provider. Do not approach any potentially energized lines. Health precautionsIf air quality drops, stay indoors as much as possible. Use masks or respirators if you need to go outside.Stay informed. Get weather alerts via text.This weather report includes automatically generated information from the National Weather Service. It was reviewed by an editor.
+"""
+
+[R5] Yorba Linda, CA
+(https://www.yorbalindaca.gov/922/Red-Flag-Warnings)
+"""
+What is a Red Flag Warning?A Red Flag Warning signifies the highest level of fire danger, requiring heightened awareness and caution from all residents. During these periods, even a small spark can lead to a major wildfire. In Southern California, fire season generally begins in late spring, around May or June, and intensifies with rising summer temperatures. The Santa Ana winds, which typically start in October or November, may persist through March. Extreme caution is strongly advised during these high-risk times.Fire Weather Notices Issued by the NWS During Wildfire SeasonFire weather advisories are issued by the National Weather Service (NWS), and mean warm temperatures, very low humidity, and stronger winds are expected to combine to produce an increased risk of fire danger. This also alerts fire officials to the increased risk of fire due to the weather conditions.Red Flag Warning Fire Weather WatchRed Flag Warnings are issued for ongoing or imminent weather events that may result in extreme fire behavior that will occur within 24 hours.A Red Flag Warning is the highest alert. During these times, extreme caution is urged by all residents because a simple spark can cause a major wildfire.A Fire Weather Watch is issued when weather conditions could exist in the next 12-72 hours. A Fire Weather Watch is one level below a red flag warning, but fire danger is still high. A watch means critical fire weather conditions are possible but not imminent or occurring. City and County Preparations for Emergency Response During Fire SeasonDuring fire season, we want residents to be aware of the ways that Orange County public safety officials will be monitoring and responding to conditions in the field to help protect our community during Red Flag Warnings and through the use of public alert and warning tools. Fire Preparation Tips for Around the HomeOutsideClear leaves, pine needles, and other debris from roofs, gutters, eaves, porches, and patios.Remove and dispose of dead vegetation like branches, weeds, leaves, pine needles, and grass clippings to reduce fuel for fire.Prune tree limbs so the lowest branches are 6 to 10 feet above the ground to help reduce the chance of fire spreading to treetops.Remove construction material, trash, and woodpiles at least 30 feet away from the home and other outbuildings.Avoid driving on dry grass or brush, as hot exhaust pipes and mufflers can ignite fires.Do not use lawnmowers in dry vegetation, especially on windy days. Metal blades hitting rocks can create sparks and start fires.During red flag warnings, refrain from using open flames.InsideInstall smoke alarms throughout your home and replace the batteries once per year. Test your smoke alarms monthly.Keep fire extinguishers nearby in high-risk fire areas like the kitchen and garage.ResourcesReady, Set, Go!Ready, Set, Go! Gives you the tools to protect you, your family, property and community from wildfires. Visit the Orange County Fire Authority webpage to learn more.Know Your Way and AlertOCVisit the City's Know Your Way webpage to find your evacuation zone and learn about your neighborhood exits. Additionally, sign up for AlertOC alerts to stay informed during emergencies.Potential Power OutagesSouthern California Edison (SCE) may implement a Public Safety Power Shutoff (PSPS) during a Red Flag Warning, which may impact Yorba Linda. SCE will notify impacted customers, including those with Critical Care and Medical Baseline needs. For more information, visit Southern California Edison's Outage Center webpage or the City's Power Outage webpage.Large Animal OwnersFire Weather Watches, and Red Flag Warnings are especially critical for large animal owners, as they signal the need to take preparedness actions and ensure readiness for potential evacuations. For information, visit OC Animal Care's website.
+"""
+
+[R6] Red flag warning
+(https://en.wikipedia.org/wiki/Red_flag_warning)
+"""
+From Wikipedia, the free encyclopedia A banner indicating a red flag warning, flown at a CAL Fire station in 2022 Road sign displaying red flag warning along U.S. Highway 160 in Walsenburg, Colorado. A red flag warning is a forecast warning issued by the National Weather Service (NWS) in the United States to inform the public, firefighters, and land management agencies that conditions are ideal for wildfire combustion, and rapid spread.[1][2] It is a form of emergency alert. Red flag warnings are associated with drought conditions, very low humidity, high or erratic winds, and the possibility of lightning. The weather criteria for fire weather watches and red flag warnings vary with each Weather Service office’s warning area based on the local vegetation type, topography, and distance from major water sources. They usually include the daily vegetation moisture content calculations, expected afternoon high temperature, afternoon minimum relative humidity, and daytime wind speed. Firefighting agencies often respond to such a warning by altering their staffing and equipment resources dramatically. To the public, the warning means high fire danger with increased probability of a quickly spreading vegetation fire in the area within 24 hours. Outdoor burning bans may also be proclaimed by local law and fire agencies based on red flag warnings, for both the general public and land management officials. A fire weather warning gives extra guidance to land management officials to refrain from controlled burns. In October 2019, the National Weather Service introduced a variant to denote even more dangerous conditions: extreme red flag warning. Analogous to the particularly dangerous situation (PDS) wording on a high-end severe weather warning or watch, this means that conditions for fire growth and behavior are extremely dangerous due to a combination of strong winds, very low humidity, long duration, and very dry fuels. It was used for the first time on October 29, 2019.[3] A related but less imminent forecast may include a fire weather watch, which is issued to alert fire and land management agencies to the possibility that Red Flag conditions may exist beyond the first forecast period (12 hours). The watch is issued generally 12 to 48 hours in advance of the expected conditions, but can be issued up to 72 hours in advance if the NWS agency is reasonably confident. The term “Fire Weather Watch” is headlined in the routine forecast and issued as a product, similar to the other primary fire warning terms.[4] That watch then remains in effect until it expires, is canceled, or upgraded to a red flag warning. Australian Fire Danger Rating System (Australia) Severe weather terminology (Canada) ^ "Red Flag Warning". National Weather Service. 2015-03-05. Retrieved 2018-05-02. ^ Services, Florida Department of Agriculture and Consumer. "Florida Department of Agriculture & Consumer Services". www.fdacs.gov. Retrieved 2025-04-22. ^ "'Extreme' warning issued ahead of hurricane-force Santa Ana winds, the strongest since 2007". Los Angeles Times. 2019-10-29. ^ "Three Wildfire Terms You Should Know". www.cleanairresources.com. 2019-02-24. Retrieved 2019-03-07. Fire weather forecasts (Storm Prediction Center)
+"""
+
+[R7] Red Flag Warning What You Need to Know
+(https://riversideca.gov/press/red-flag-warning-what-you-need-know)
+"""
+Published: 01/10/2025 Red Flag Warning: What You Need to Know Fire season is year-round in Southern California, so taking precautions to protect yourself and loved ones is always important. Red Flag Warning winds are especially dangerous, as they can spread sparks rapidly and ignite wildfires with little warning. These dry, gusty winds combined with low humidity create ideal conditions for flames to start and spread uncontrollably. Follow these home safety tips to protect your home and help prevent the spread of wildfire. Wildfire Safety Tips Red Flag Warnings & Santa Ana Winds Extreme caution should be taken by all during a Red Flag Warning because a simple spark can cause a major fire. Skip the use of outdoor equipment requiring open flames such as fire pits, barbeques, heaters, candles, etc. Discard cigarettes or matches appropriately and NEVER on the ground. Avoid using lawnmowers or other landscaping tools that may emit sparks on dry vegetation. Never pull over in dry grass. Ensure trailer chains don't drag on the ground. Make sure your vehicle is properly maintained. Have proper tire pressure to avoid driving on wheel rim. Never let your brake pads wear too thin. If you encounter a downed power line, stay clear and immediately call 911. Southern California Edison’s (SCE) Public Safety Power Shutoff (PSPS) events Learn how weather conditions of relatively low humidity, strong winds, and hot temperatures in combination with dry fuels can also threaten power supply to our community. Public Safety Power Shutoff (PSPS) Weather & Fire Risks Weather patterns like low relative humidity, strong winds, dry fuels, dry lightning strikes, or any combination of the above could lead to rapid or dramatic increases in wildfire activity. The National Weather Service issues Red Flag Warnings & Fire Weather Watches to alert fire departments of the onset, or possible onset, of critical weather conditions. Red Flag Warning: The highest alert when fire conditions are ongoing or expected to occur. When there is critical weather and dry conditions such as low humidity, strong winds, and dry fuels there is increased risks for potential fires. Fire Weather Watch: One level before a warning, where fire danger is high and fire weather conditions are possible but not imminent or occurring. Fire Preparation Tips for Around the Home Outside Clear leaves, pine needles and other debris from roofs, gutters, eaves, porches, and patios. Remove and dispose of dead vegetation like branches, weeds, leaves, pine needles, and grass clippings to reduce fuel for fire. Prune tree limbs so the lowest branches are 6 to 10 feet above the ground to help reduce the chance of fire spreading to treetops. Remove construction material, trash, and woodpiles at least 30 feet away from the home and other outbuildings. Inside Install smoke alarms throughout your home and replace the batteries once per year. Test your smoke alarms monthly. Keep fire extinguishers nearby in high-risk fire areas like the kitchen and garage. Helpful Resources For an Emergency: Dial 911 Stay Safe. Stay Ready. : Take steps to become ready for any emergency For Non-emergency City Services: 311 App 311 Website (951) 826-5311 Riverside Fire Department Stay up to date about emergencies near you with Ready Riverside our mass communication service. You will receive voice or text communication when there is a potential safety hazard or concern. Sign Up for Alerts
+"""
+
+[R8] What Is a Red Flag Warning?
+(https://www.weather.gov/media/lmk/pdf/what_is_a_red_flag_warning.pdf)
+"""
+What Is a Red Flag Warning?
+Red Flag Warnings alert fire managers on federal lands to conditions that are highly
+unfavorable for prescribed burns and that may lead to especially dangerous wildfire growth.
+To issue a Red Flag Warning, we need the following:
+
+Ten-hour fuels of 8% or less. This Relative humidity (RH) less than Winds 20 feet off the ground of
+parameter describes how much water 25% for several hours. RH at least 15 mph for several
+is held by small vegetation such as depicts how much water is in hours.
+grass, leaves, and mulch that take only the air, relative to the
+about ten hours to respond to changes temperature of the air.
+in dry/wet conditions.
+
+ Red Flag Warnings are usually only issued during the spring and fall fire weather seasons,
+ February 15 – April 30 and October 1 - December 15. When warnings are issued, officials
+ know to curtail planned burns and to be on the lookout for wildfires.
+"""
+
+[R9] Red Flag Warnings - Santa Barbara County Fire Department
+(https://sbcfire.com/red-flag-warnings/)
+"""
+Fire Weather Zones The National Weather Service has created five Fire Weather Zones within Santa Barbara County. They are as follows:Santa Barbara County Central Coast – CAZ235 Defined on the north by the county line; on the west by the coast; on the south by a line from Point Conception to the 1,000 foot contour to the Gaviota Pass; on the east by a north-south line from the county line through the town of Garey to Highway 101. Santa Ynez Valley – CAZ236 Defined on the north by the county line; on the west by a north-south line from the county line through Garey to Highway 101; on the south and east by the 1,500 foot contour of the Sierra Madre Mountains. Cuyama Valley – CAZ238 Defined on the north and east by the county line; on the west and south by the 3,000 foot contour of the Sierra Madre Mountains. Santa Barbara County South Coast – CAZ239 Defined on the west by a line from Point Conception north to the 1,000 foot contour; on the east by the 1,000 foot contour to Gaviota Pass by the 1,500 foot contour from the Gaviota Pass to the county line; on the east by the county line; on the south by the coast. This zone contains the Gaviota Pass. In addition, “No Parking” Red Flag Warning flip down signs located in the Mission Canyon area of Station 15’s District will be deployed during a Red Flag Warning. Parking enforcement will begin 12 hours after the flip down signs are deployed. Santa Barbara County Mountains – CAZ252 Defined on the north and east by the county line; on the south and west by the 1,500 foot contour of the Sierra Madre Mountains; on the northeast by the 3,000 foot contour of the Sierra Madre Mountains.Definitions High Risk Day Notice issued by the Predictive Services Units in Riverside and Redding indicating that there is a 20% chance of either a new large fire occurring or a significant growth of an existing fire. Fire Weather Watch Notice issued to alert fire agencies to the high potential for development of a Red Flag event in the 18-96 hour time frame. The Watch may be issued for all or selected portions of a fire weather zone or zones. Red Flag Warning Notice issued to inform agencies of the impending or occurring Red Flag conditions. A Red Flag Warning is issued when there is high confidence that Red Flag criteria will be met within the next 48 hours or less or criteria are already being met. Longer lead times are allowed when confidence is very high or the fire danger situation is critical. The Warning may be issued for all or selected portions of a fire weather zone or zones.Red Flag Warning Criteria Relative humidity is 15% or less with either sustained winds of 25 mph or greater or frequent gusts of 35 mph or greater for a duration of 6 hours or more. Relative humidity is 10% or less with either sustained winds of 15 mph or greater or frequent gusts of 25 mph or greater for a duration of 6 hours or more. Widespread and/or significant dry lightning where there is little or no rainfall associated with the lightning activity The discretion of the Fire Chief. As a result of the issuance of the Red Flag Warning, citizens should take appropriate precautions. These precautions include, but are not limited to the following: Report any sign of smoke immediately to your local fire department by calling 911 (if your call 911 from your cell phone, you must know your location). Use extreme caution when operating spark of flame producing machinery in hazardous grass or brush areas. Have an evacuation plan in place and identify two exit routes from your neighborhood. If you are asked to evacuate by fire or law enforcement officials, do so immediately. Report any suspicious persons or vehicles to law enforcement. Fire Weather Watch Criteria A separate but less imminent forecast may include a Fire Weather Watch: Alerts fire and land management agencies of weather and critically dry fuels that could lead to dngerous wildfires and extreme fire behavior. Enables fire fighting agencies to manage critical resources and prepare appropriate suppression responses for protecting life and property. Watches are typically issued generally 12 to 72 hours in advance of potential critical fire weather conditions.
+"""
+
+[R10] Powered by the
+(https://www.iafc.org/docs/default-source/pdf/red-flag-resource-short.pdf)
+"""
+Powered by the
+ IAFC
+
+ GET SET: Red Flag Warning
+
+ A Red Flag Warning is a weather warning issued only by the National Weather
+ Service for a select area.
+ This warning forecasts warm temperatures, low humidity in dried fuel moistures, and
+ strong winds expected within 24 hours. The combination of these increased risks
+ results in an increased risk for a wildland fire or rapid-fire growth if an incident were
+ to occur.
+ During a Red Flag Warning, ALWAYS follow the instructions provided by your local
+ fire department and maintain a heightened awareness of anything that can generate
+ a spark or flame. ALWAYS be prepared to take action if a wildland fire develops in
+ your area.
+
+ Red Flag Warning Safety Tips
+Equipment Vehicles
+• Avoid using lawn mowers on dry vegetation. • NEVER throw cigarettes or matches out of a vehi-
+ Follow all local fire restrictions on the use of cle. They can ignite grass on the side of the road
+•
+ and start a wildfire.
+ chainsaws, mowers and other equipment during
+ high risk times. • Do not drive your vehicle in dry tall grass. The
+ underside of your vehicle is hot and can easily
+Outdoor Fires ignite grasses from your exhaust muffler.
+
+ Be mindful of any burn bans in your area and • Ensure that trailer chains do not drag on the
+•
+ obtain a permit if needed. ground.
+
+• Extinguish outdoor fires properly, never leave
+ them unattended. Always drown them with plen- Always Maintain Situational Awareness
+ ty of water.
+• Soak ashes and charcoal in water and dispose Watch weather reports and make sure you are signed up
+ of them in a metal can. These materials can re- for state and local emergency alerts. Follow and monitor
+ ignite days after a fire or BBQ is extinguished. warnings by your local fire department.
+• Report unattended outdoor fires immediately to
+ Warnings can include:
+ 911.
+ • Alerts on social media
+• Make sure access roads to your property are • The enacting of Burn Restrictions or Burn Bans
+ cleared and properly labeled.
+ • Prohibiting open burning or prescribed fire
+
+ For more information, contact your local fire department.
+
+ The Ready, Set, Go! Program seeks to share information with residents on what they can do to
+ successfully prepare for a wildland fire. Residents are encouraged to be “Ready” by taking
+ personal responsibility for their themselves, their family and their property, to be “Set” with
+ situational awareness and to “Go” and act early. Speak with your local fire department about your
+ area’s threat for wildland fire and learn more about the wildland urban interface (WUI).
+ Wildland Fire
+ Action Plan
+ (Before a Red Flag Warning has been issued)
+ • Create at least 100 feet of defensible space around your home.
+  Clear overgrown combustible vegetation.
+  Keep grasses short and watered.
+  Remove needles and leaves from roofs, eaves, and gutters.
+ • Complete and practice your Personal Wildland Fire Action Plan including all exit routes from
+ your immediate area.
+ • Sign up with local agencies to receive emergency notifications.
+
+ (During the warning)
+ • Maintain good situational awareness by following weather reports and local news.
+ • Do not perform any actions that may cause a spark or produce a flame.
+ • Monitor your local fire department for valuable information.
+ • Be prepared by having your “Go” kit packed and near your door in case you need to evacuate
+ quickly. Include the following:
+  Your Personal Wildland Fire Action Plan.
+  Prescription medications and any medical devices you may need.
+  Emergency first-aid supplies.
+  Important documents including your passport, birth certificate, driver’s license, marriage
+ license, insurance policy and any other legal documents.
+  Pet medications.
+  Personal electronics including cell phone, laptops and any charging cables you may
+ need.
+
+ (Act early when a wildfire threatens)
+ • Remain calm and collected.
+ • Follow directives and information provided by your local authorities and fire department.
+ • Use your Personal Action Plan for guidance.
+ • Cooperate with local authorities during evacuation & re-entry.
+
+ www.wildlandfirersg.org
+IAFC’s Wildland Fire Programs are funded in cooperation with the USDA Forest Service. In accordance with Federal law and U.S. Department of Agriculture
+policy, this institution is prohibited from discriminating on the basis of race, color, national origin, sex, age, or disability. (Not all prohibited bases apply to all
+programs). To file a complaint alleging discrimination, write USDA, Director, Office of Civil Rights, 1400 Independence Avenue, SW, Washington DC 20250-
+9410 or call toll free voice (866) 632-9992, TDD (800) 877-8339, or voice relay (866) 377-8642. USDA is an equal opportunity provider and employer.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

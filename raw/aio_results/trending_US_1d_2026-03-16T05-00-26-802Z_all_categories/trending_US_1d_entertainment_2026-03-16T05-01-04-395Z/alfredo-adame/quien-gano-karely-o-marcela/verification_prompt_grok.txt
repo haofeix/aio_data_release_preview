@@ -1,0 +1,79 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "quien gano karely o marcela"
+
+Claims:
+[1] "La pelea se celebró el 15 de marzo de 2026 en el evento Ring Royale en Monterrey."
+[2] "Karely Ruiz resultó ganadora en su combate contra Marcela Mistral, según informes del sector."
+[3] "El enfrentamiento fue uno de los eventos principales de la noche en la Arena Monterrey."
+[4] "Ring Royale 2026."
+[5] "Marcela Mistral hizo declaraciones previas."
+[6] "Karely Ruiz se llevó una bolsa significativa del evento"
+
+Cited text snippets from the AI Overview (for additional context):
+- Cuánto dinero ganó Karely Ruiz por su pelea vs Marcela Mistral en Ring Royale 2026: "La bolsa que se llevó Karely Ruiz&text=Esto obedece a que el,un gancho para los patrocinadores.&text=Además, con el número de,los 6 mil pesos mexicanos."
+- Marcela Mistral le pide a Karely que no se adjudique sus lágrimas y que ...: "Por su parte, Marcela Mistral,marzo en la Arena Monterrey."
+- Mis picks para Ring Royale son… @ronaldobxm ...: "Y por último, Karely Ruiz contra Marcela,mientras que Marcela estará apenas debutando, sin"
+Reference Sources:
+
+[R1] Karely Ruiz: Esta es la cifra que ganará por pelear vs Marcela Mistral en Ring Royale 2026
+(https://juanfutbol.com/boxeo/cuanto-dinero-gano-karely-ruiz-por-su-pelea-vs-marcela-mistral-en-ring-royale-2026)
+"""
+La primera edición de Ring Royale 2026 tuvo como una de sus estrellas principales a Karely Ruiz. La modelo mexicana aceptó pelear vs Marcela Mistral, esposa de Poncho de Nigris, en una de las contiendas coestelares. Y sólo por su participación obtuvo buenos dividendos económicos. Te contamos cuánto dinero ganó por su pelea en este evento. Ver También La bolsa que se llevó Karely Ruiz En 2025, la influencer debutó en el ring en Stream Fighters 4, donde se llevó una bolsa aproximada de 240 mil pesos mexicanos. Pero esta cifra podría doblarse en Ring Royale 2026 por varios factores. Aunque la cifra oficial se mantiene privada por contrato, de acuerdo con Telediario, Karely Ruiz ganaría cerca de medio millón de pesos sólo por pararse en el cuadrilátero. Esto obedece a que el evento se realiza en Monterrey, su tierra natal, y su figura representa un gancho para los patrocinadores. Ver También Además, con el número de seguidores que tiene la creadora de contenido en redes sociales, la taquilla de Ring Royale 2026 fue un éxito. Los costos de las entradas en VIP alcanzaron precios superiores a los 6 mil pesos mexicanos. ¿Qué regalará si gana? Días previos a la pelea, Karely Ruiz reveló lo que haría si ganaba la pelea vs Marcela Mistral. A diferencia de la anterior ocasión, ahora, la modelo adelantó que si salía con el puño en alto regalaría su clóset. Así lo reveló en sus historias de Instagram después de uno de sus entrenamientos. La influencer aclaró que la mayoría de las cosas que tiene ahí son nuevas y tienen gran valor. Además de que para sus seguidores serían piezas de colección. La pelea contra la esposa de Poncho de Nigris generó expectativa debido a los roces que han tenido con anterioridad. Además de que durante los últimos meses se lanzaron indirectas y en el pesaje se encararon. Ver También Datos clave Karely Ruiz se llevaría una bolsa cercana al medio millón de pesos por pelear en Ring Royale. La cifra se alcanzaría gracias a lo que su marca representa para patrocinadores y taquilla. La influencer regiomontana prometió regalar su clóset si ganaba.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

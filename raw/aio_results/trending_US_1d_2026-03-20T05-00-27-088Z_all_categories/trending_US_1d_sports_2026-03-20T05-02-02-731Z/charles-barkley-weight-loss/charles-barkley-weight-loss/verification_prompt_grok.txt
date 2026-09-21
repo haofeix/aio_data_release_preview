@@ -1,0 +1,112 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "charles barkley weight loss"
+
+Claims:
+[1] "Charles Barkley has lost over 85 pounds."
+[2] "Charles Barkley's post-retirement peak weight was 352 pounds."
+[3] "Charles Barkley's weight was roughly 267 pounds as of early 2026."
+[4] "Charles Barkley used the medication Mounjaro (tirzepatide) to manage appetite."
+[5] "Charles Barkley increased exercise."
+[6] "Charles Barkley improved eating habits."
+[7] "Charles Barkley was motivated by a doctor’s health warning."
+[8] "Barkley confirmed he used Mounjaro."
+[9] "Mounjaro is a weekly injection used to treat type 2 diabetes."
+[10] "Mounjaro helps control appetite."
+[11] "Mounjaro helps regulate metabolism."
+[12] "Charles Barkley started his weight loss journey around 352–355 pounds."
+[13] "Charles Barkley aims for a target weight of 270 pounds or lower."
+[14] "Charles Barkley's doctor gave a blunt warning regarding the risks of diabetes, stroke, and hypertension."
+[15] "Charles Barkley wants to be healthier for his family."
+[16] "Charles Barkley has mentioned consistent exercise."
+[17] "Charles Barkley has mentioned playing more golf."
+[18] "Charles Barkley has mentioned working out to maintain muscle."
+[19] "Charles Barkley has noted he cannot stay on the medication forever."
+[20] "Charles Barkley aims to maintain his weight through healthier lifestyle choices."
+[21] "Charles Barkley gained weight previously following knee/hip replacement surgeries."
+
+Cited text snippets from the AI Overview (for additional context):
+- Charles Barkley weight loss, explained - Yahoo Sports: "How much weight did Charles,his official NBA playing weight."
+- Why Charles Barkley Looks Different: Weight Loss, Health Journey and March Madness Buzz: "Charles Barkley is an NBA,has not been perfectly linear."
+- Charles Barkley weight loss, explained: Inside basketball legend's ...: "Barkley's weight loss has been,toward his NBA playing weight.&text=Barkley has been very candid,muscle mass while dropping fat."
+Reference Sources:
+
+[R1] Charles Barkley Has Lost 62 Lbs. with the Help of Mounjaro
+(https://people.com/charles-barkley-has-lost-62-lbs-im-taking-my-shot-7505355)
+"""
+Charles Barkley Has Lost 62 Lbs.: 'I'm Working Out, I'm Taking My Shot Once a Week' The NBA star said he's "starting to feel like a human being," thanks to his healthy lifestyle changes and Mounjaro Updated on May 30, 2023 03:40PM EDT Credit : LISA O'CONNOR/AFP Charles Barkley is sharing his weight loss secrets. The NBA star, 60, appeared on the Pat McAfee show where he talked about his routine. "I'm working out, I'm taking my shot once a week," he says, referring to Mounjaro, which is used along with diet and exercise to improve blood sugar in adults with type 2 diabetes. He first disclosed that he was taking Mounjaro on a May 26 episode of the Dan Patrick Show. Barkley, who's among the top 20 NBA rebounders of all time, told McAfee he's lost 62 lbs. "I started at 352 [lbs.], he said. "And I'm down to 290. I'm starting to feel like a human being, not a fat ass anymore." He then said his goal weight was 270 lbs. "My doctor told me, she says, there's a lot of fat young people. Ain't a lot of fat old people, they're all dead." RELATED: Remi Bader Says She 'Gained Double the Weight Back' After Stopping Weight-Loss Drug Ozempic After revealing that he takes a shot for weight loss, McAfee asked, "Do you know what it's doing to you exactly?" Barkley admitted to not knowing. RELATED: Are Ozempic and Wegovy Safe? All About the Diabetes and Obesity Drugs "I have zero idea what it does!" Barkley said, laughing. Mounjaro is the brand name for tirzepatide and is similar to drugs Ozempic and Wegovy — brand names for semaglutide, which works in the brain to impact satiety.
+"""
+
+[R2] Why Charles Barkley Looks Different: Weight Loss, Health Journey and March Madness Buzz | Sportsnet Pittsburgh
+(https://sportsnetpittsburgh.com/college-sports/news/charles-barkley-weight-loss-explained-health-transformation/483c82fec4c46c0d50ffb37f)
+"""
+Charles Barkley is an NBA legend, but every March he becomes something else for college basketball fans: one of the defining personalities of the NCAA Tournament. Between the jokes, the bracket chaos and the unfiltered reactions on set, Barkley has become a huge part of the March Madness experience. This year, though, plenty of viewers have noticed something else — Barkley looks slimmer than he did just a few years ago.How did Charles Barkley lose weight?Barkley has been open about his weight-loss journey. In 2023, he said he had dropped 62 pounds after starting at 352 pounds, crediting a weekly shot of Mounjaro along with exercise. He said the medication helped him control his appetite and improve habits that had been tough to manage for years.He has also explained the motivation behind the change in very Barkley fashion. Barkley said a blunt warning from his doctor pushed him to take his health more seriously, and he has repeatedly framed the goal as living longer and feeling better.Where Barkley’s health journey stands nowBarkley’s progress has not been perfectly linear. In 2025, Ro announced a partnership with Barkley and said he had previously lost nearly 50 pounds on a GLP-1 medication before running into supply and access issues, stopping treatment and regaining much of the weight. Barkley said that was part of why he restarted his journey with Ro.That matters because it gives fans a more realistic picture of weight loss. Barkley’s story has not been a simple before-and-after transformation. It has included progress, setbacks and a restart — which is a big reason it has connected with so many people.What is Mounjaro and how do GLP-1 drugs work?Mounjaro is the brand name for tirzepatide, a medication that mimics GLP-1 and GIP hormones involved in appetite and blood sugar regulation. According to Harvard Health, drugs in this family help people feel fuller, slow digestion and reduce hunger signals, which can make weight loss easier when paired with diet and exercise.For Barkley, the result has been one of the most visible health transformations in sports media. He is still the same loud, funny and unpredictable presence college basketball fans expect every March — just with a very different look than the one viewers got used to over the years.
+"""
+
+[R3] Charles Barkley weight loss, explained: Inside basketball legend's stunning body transformation
+(https://sports.yahoo.com/articles/charles-barkley-weight-loss-explained-214029869.html)
+"""
+Charles Barkley denounces Minnesota ICE shootings: 'Somebody's gotta step up'Charles Barkley weight loss, explained: Inside basketball legend's stunning body transformation originally appeared on The Sporting News. Add The Sporting News as a Preferred Source by clicking here.AdvertisementCharles Barkley is an NBA legend, but for college basketball fans he has a special role in their hearts.Barkley is the unfiltered, boisterous voice of the NCAA Tournament. Whether he is playfully mispronouncing mid-major school names, struggling to navigate a touchscreen bracket, or offering surprisingly poignant insights into the pressure on these young athletes, he provides the perfect comedic counterpoint to the high-stakes intensity of the Big Dance. For three weeks every spring, Barkley is at the center of the college basketball world.But fans might notice that he looks a little different this time around. Known for his big-time frame, the NBA Hall of Famer has lost a significant amount of weight over the past few years.Here's how Barkley achieved his transformation and where his health stands today.AdvertisementSN's MARCH MADNESS HQ:Live NCAA bracket | TV schedule | Printable PDFBarkley’s weight loss has been one of the most visible physical transformations in sports media over the last few years. At his heaviest post-retirement, Barkley weighed approximately 352 pounds. As of the 2026 NCAA Tournament, he has lost more than 100 pounds, bringing him back toward his NBA playing weight.Barkley has been very candid about his journey, attributing his success to a combination of medical assistance and a lifestyle wake-up call.Barkley began using Mounjaro (tirzepatide), a GLP-1 and GIP receptor agonist. He publicly credited the medication for helping him "reset" his relationship with food, noting that it significantly curbed his appetite and allowed him to manage his portions for the first time in decades.AdvertisementBarkley often jokes that his doctor gave him a blunt reality check, previously saying, "I’ve seen a lot of fat young people, but I don’t see many fat old people." This served as the primary motivation to get healthy for his daughter and grandchildren.While the medication was the catalyst, Barkley incorporated more consistent movement — primarily through golf and light gym work — to ensure he maintained muscle mass while dropping fat.SN AWARDS: All-America team | Player of the Year | Coach of the YearHow much weight did Charles Barkley lose?Barkley has lost a total of 85 pounds over the last few years, a transformation that has taken him from a peak post-retirement weight of 352 pounds down to approximately 267 pounds as of early 2026.AdvertisementWhile he initially made headlines in 2023 for losing the first 62 pounds in just six months, he has continued to work toward his goal of reaching 250 pounds — his official NBA playing weight.SN EXPERT BRACKETS:DeCourcy (Arizona) | Bender (Michigan) | Iyer (Arizona) | Gay (UCLA women)Charles Barkley before and afterIn the early 2020s, Barkley was near the highest weight he's ever been.Fast forward to 2026, and Barkley looks in much better shape and is actively endorsing his GLP-1s.MORE: Ranking 10 best NBA Draft prospects in 2026 March MadnessWhat is GLP-1?GLP-1 stands for glucagon-like peptide-1, a hormone naturally produced in your small intestine. These medications — including well-known brands like Ozempic, Wegovy, and Zepbound — work by mimicking this hormone to help regulate the body's metabolic "thermostat."AdvertisementAccording to researchers at Harvard Health, GLP-1 medications function by targeting three primary systems: the pancreas, the brain, and the digestive tract. When you eat, these drugs trigger the pancreas to release insulin, which acts as a vital key to move glucose out of the bloodstream and into your cells for energy. Simultaneously, they interact with the brain's reward centers to mimic natural hormones that signal fullness. This process helps quiet "food noise" — the persistent and often intrusive thoughts about eating — making it easier to manage appetite without relying solely on willpower.The medications also physically slow down the rate at which food leaves your stomach, a process known as gastric emptying. By keeping food in the digestive system for a longer period, they create a sustained sensation of physical fullness. This multi-layered approach allows individuals to naturally reduce their calorie intake while avoiding the constant feeling of deprivation that typically accompanies traditional dieting.MORE: The ultimate guide to March Madness
+"""
+
+[R4] Charles Barkley Explains His 62 Lbs Weight Loss.: 'I'm Working Out, I'm Taking My Shot Once a Week'
+(https://www.bet.com/article/x575dg/charles-barkley-explains-weight-loss-secret)
+"""
+Charles Barkley is taking control of his health the way he once took control on the basketball court. The retired NBA legend and sports commentator shared that he has lost 62 pounds as a result of changing his eating habits, exercising, and with the help of a medication called Mounjaro.The 60-year-old shared the good news with fellow sports commentator Pat McAfee, according to PEOPLE."I'm working out, I'm taking my shot once a week," he says, referring to Mounjaro, which is used along with diet and exercise to improve blood sugar in adults with type 2 diabetes."I started at 352 [lbs.], he said. "And I'm down to 290. I'm starting to feel like a human being, not a fat ass anymore."He then said his goal weight was 270 lbs.https://www.instagram.com/reel/Cs4CIcXANre/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA=="My doctor told me, she says, there's a lot of fat young people. Ain't a lot of fat old people, they're all dead."Barkley is one of the top rebounders of all time and said that while he doesn't know exactly how the medicine works—he does take the shot faithfully every week.Mounjaro is in the same family of drugs as Ozempic and Wegovy which are injectables that have been approved for weight loss by tricking your mind into thinking that you are full.Called the “worst kept secret in Hollywood,” Barkley is one of the few celebrities to admit to using the drug for weight loss.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

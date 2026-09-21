@@ -1,0 +1,85 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch phoenix suns vs portland trail blazers"
+
+Claims:
+[1] "The Phoenix Suns vs. Portland Trail Blazers 2026 NBA Play-In Tournament game is on Tuesday, April 14, 2026."
+[2] "The Phoenix Suns vs. Portland Trail Blazers 2026 NBA Play-In Tournament game is at 7:00 PM MST."
+[3] "The Phoenix Suns vs. Portland Trail Blazers 2026 NBA Play-In Tournament game is at 9:00 PM ET."
+[4] "The Phoenix Suns vs. Portland Trail Blazers 2026 NBA Play-In Tournament game is at Mortgage Matchup Center, Phoenix."
+[5] "The Phoenix Suns vs. Portland Trail Blazers 2026 NBA Play-In Tournament game is streamed exclusively on Prime Video."
+[6] "Radio coverage for the Phoenix Suns vs. Portland Trail Blazers 2026 NBA Play-In Tournament game is available on the Arizona Sports app."
+[7] "Radio coverage for the Phoenix Suns vs. Portland Trail Blazers 2026 NBA Play-In Tournament game is available on 98.7 FM Arizona Sports"
+
+Cited text snippets from the AI Overview (for additional context):
+- How to watch Suns-Trail Blazers play-in game - Arizona Sports: "More episodes from Empire of,Radio: Arizona Sports app, 98.7"
+- Portland Trail Blazers Play Phoenix Suns On April 14 In The 2026 ...: "The 21+ event starts at,matchup on Friday, April 17."
+Reference Sources:
+
+[R1] How to watch Suns-Trail Blazers play-in game - Arizona Sports
+(https://arizonasports.com/nba/phoenix-suns/how-to-watch-play-in/3617821/)
+"""
+The Phoenix Suns’ NBA Play-In Tournament game against the Portland Trail Blazers on Tuesday will be streamed exclusively on Prime Video. Fans can catch the game live on the Arizona Sports app, 98.7 and ArizonaSports.com. The action tips off at 7 p.m. MST following the conclusion of the Miami Heat-Charlotte Hornets play-in game. Here Come the Suns gets underway at 6 p.m., followed by pre-game coverage at 6:30 p.m. on 98.7 and YouTube. On the call for the games will be play-by-play voices Ian Eagle, Kevin Harlan and Michael Grady. They’ll be joined by analysts Brent Barry, Jim Jackson and Stan Van Gundy. Time: 7 p.m. MST Location: Mortgage Matchup Center (Phoenix) TV: Prime Video Radio: Arizona Sports app, 98.7 Suns enter Play-In Tournament vs. Trail Blazers This marks the first time Phoenix has qualified for the play-in. The Suns are 3.5-point favorites, according to FanDuel Sportsbook. Phoenix could be at full strength for the tilt, with guard Grayson Allen the only Suns player on the injury report. He’s listed as questionable with left hamstring soreness. The winner of Suns-Trail Blazers will advance to the NBA playoffs as the No. 7 in the Western Conference and face the No. 2 seed San Antonio Spurs in a seven-game series. A seven-game series against the No. 2 seed San Antonio Spurs awaits the winner. The loser will go on to face the winner of the Golden State Warriors-Los Angeles Clippers matchup. The winner from that game claims the No. 8 seed in the Western Conference, while the loser is eliminated from playoff contention. Whoever comes out of that game will then take on the No. 1 seed Oklahoma City Thunder.
+"""
+
+[R2] Portland Trail Blazers Play Phoenix Suns On April 14 In The 2026 SoFi Play-In Tournament | Portland Trail Blazers
+(https://www.nba.com/blazers/news/portland-trail-blazers-play-phoenix-suns-on-april-14-in-the-2026-sofi-play-in-tournament)
+"""
+Tuesday, April 14 • 7 p.m. PTMortgage Matchup Center • Phoenix, Ariz.TV: Prime Video • Radio: Rip City Radio 620 AMNBA Play-In TournamentThe 2026 Playoffs have not yet begun, but the 2026 Postseason is here. Thanks to a post All-Star break rally, the Portland Trail Blazers (42-40) managed to finish the season eighth in the Western Conference standings, and thus, will face the Phoenix Suns (45-37) at Mortgage Matchup Center Tuesday night in the seven/eight matchup of the 2026 SoFi Play-In Tournament. Tipoff is scheduled for 7 p.m. The winner of Tuesday's game will get the seven-seed and a matchup versus the two-seed San Antonio Spurs in the first round of the Western Conference Playoffs. The loser will host a game Friday versus the winner of the nine/ten matchup, with the winner of that game earning the eight-seed and a first-round matchup versus the one-seed Oklahoma City Thunder. SERIES NOTESOverall: 115-136Home: 77-48 | Away: 38-88Streak: Won 1Last Portland win: 2/22/2026INJURY REPORT• Jerami Grant (right calf strain) is questionable and Damian Lillard (left Achilles tendon injury management) is out for Tuesday's Play-In Tournament game.• As for the Suns, Grayson Allen (left hamstring soreness) is questionable for Tuesday's game.TRAIL BLAZERS NOTESBLAZERS BOAST NBA’S THIRD BEST DEFENSE POST ALL-STARIn 26 games after All-Star break, Portland’s 109.3 defensive rating was third best in the NBA during that span:RankTeamDefensive Rating1Oklahoma City106.92Atlanta108.63Portland109.34San Antonio109.35Boston Celtics110.0CAMARA SETS NBA RECORD FOR OFFENSIVE FOULS DRAWN• Toumani Camara has drawn 106 offensive fouls this season most by any NBA player in a single season since the stat began to be tracked in 2005-06 (last 21 seasons). Camara led the league in offensive fouls drawn for the second-straight season, while Sidy Cissoko finished fifth. • Camara also finished the regular season leading the league in total forced turnovers (offensive fouls drawn + steals) with 200.CAMARA PLAYS AND STARTS ALL 82• Toumani Camara was one of just four players in the NBA to start all 82 regular season games during the 2025-26 season.• Camara became the first Trail Blazer to start all 82 regular season games since 2015-16 (Al-Farouq Aminu and Mason Plumlee).CAMARA COVERS RECORD-BREAKING GROUND ON DEFENSE• Toumani Camara covered an NBA-leading 105.6 total miles on defense during the regular season—the most ever in the NBA’s tracking database (since 2013-14)CLINGAN DOMINATING BOARDS, PROTECTING RIM• Competing in his second NBA season, Donovan Clingan finished ranked third in the NBA in total rebounds per game.RankPlayerTeamREB Per Game1Nikola JokicDenver12.92Karl-Anthony TownsNew York11.93Donovan ClinganPortland11.64Victor WembanyamaSan Antonio11.55Rudy GobertMinnesota11.5• Clingan also led the NBA in offensive rebounds per game (4.5), total offensive rebounds (347) and total rebounds (892), was second in second-chance points per game (4.4) and fifth in blocks per game (1.7)CLINGAN SETS BLAZERS OFFENSIVE REBOUNDING RECORD• Donovan Clingan claimed the Trail Blazers’ franchise record for offensive rebounds in a season on April 2 against New Orleans and finished the season with 347 total offensive boards:RankPlayerSeasonOff. Rebounds1Donovan Clingan2025-263472Robin Lopez2013-14326T-3Chris Dudley1994-95325T-3Kermit Washington1979-80325AVDIJA ONE OF THREE IN NBA AMONG ELITE GROUP• Deni Avdija was one of just three players in the NBA to finish the season averaging 24+ ppg, 6+ rpg and 6+ apg:PlayerTeamPPGRPGAPGLuka DoncicLos Angeles33.57.78.3Nikola JokicDenver27.712.910.7Deni AvdijaPortland24.26.96.7CAMARA SHOWS EXPANDED SHOOTING RANGE IN 2025-26• Toumani Camara’s career-high 219 made 3-pointers in 2025-26 finished the season as the 14th highest total in the NBA and seventh most in a single season in Trail Blazers history.• Camara had 62 games in 2025-26 with multiple made 3-pointers—tied for fifth most in the NBA.WILLIAMS PROVIDES IMPACTFUL RESERVE MINUTESAmong players who played at least 1000 minutes during the regular season, Robert Williams III finished top five in the NBA in blocks per 36 minutes, rebounds per 36 minutes and field goal percentage (min. 250 FGA):CategoryValueNBA RankBlocks Per 36 3.13rdRebounds Per 3614.84thField Goal Percentage.7083rdTotal Blocks Off Bench821stOff. Rebounding Percentage13.36thTHYBULLE RECORDS STEALS AT A HIGH RATE OFF THE BENCH• Despite having played only 30 games this season, Matisse Thybulle has continued to have an impact on the defensive end this season—recording steals at a high rate in a smaller sample size. Thybulle recorded at least one steal in 26 of 30 games he played during the regular season and had 11 games of 3+ steals.BLAZERS EARN AND CAPITALIZE ON SECOND CHANCES• Portland finished the season ranked first on second chance points per game at 18.4 and second in offensive rebounds per game at 14.1.AVDIJA ACTIVE FOR PORTLAND IN CLUTCH TIME• Having competed in clutch time in 36 games during the 2025-26 season, Deni Avdija ranked among the best in the NBA in several clutch statistics. “Clutch time” is defined as when the score of the game is within five points with under five minutes remaining in the fourth quarter:Clutch Time StatValueNBA RankTotal Assists23 assists7thTotal Points107 points10thTotal Field Goals31 FGMT-11thYOU KNOW IT'S JRUE• Jrue Holiday scored 30 points in last week's win versus the Clippers, helping Portland move to 5-1 this season when he scores at least 25. Since the start of the 2021-22 season, his teams have won three out of every four games when he hits that mark.CAMARA SHOWING EXPANDED RANGE• With a career-high 219 made threes this season, Camara is one of just four players in Trail Blazers history to make 200+ 3-pointers in a season, joining Damian Lillard (8x), Anfernee Simons (2x) and Wesley MatthewsBLAZERS ADD SHARP SHOOTING KREJCI TO LINEUP• On Feb. 1, Portland acquired forward Vit Krejci from Atlanta via trade. Including this season, Krejci has shot better than 40 percent from 3-point range in each of the last three seasons and currently ranks among the league’s best 3-point shooters for the 2025-26 season.AVDIJA NAMED ALL-STAR; CLINGAN, YANG NAMED RISING STARS• Three Trail Blazers— Deni Avdija, Donovan Clingan and Yang Hansen —participated at the 2026 All-Star Weekend in Los Angeles.• Avdija earned his first NBA All-Star selection, being named a Western Conference reserve, while Clingan and Yang will compete in the Rising Stars Challenge.• Yang was one of seven players selected through playing in G League games this season. In eight total games with the G League Rip City Remix this season, Yang has averaged 17.0 points, 9.2 rebounds, 3.1 assists and 1.4 blocks in 30.8 minutes per game.DAME TIME AGAIN• Despite sitting out this season while rehabbing a torn Achilles, Damian Lillard will also took part in All-Star Weekend— competing in and winnning the 3-Point Contest on All-Star Saturday night having previously competed in 2014, 2019, 2023, 2024 and 2025 and winning the event in both 2023 (Salt Lake City) and 2024 (Indianapolis). Lillard joins Larry Bird and Craig Hodges as the only players to with the event three times.SHARPE BECOMES YOUNGEST BLAZER TO REACH 1,000 FGM• Aged 22 years, 150 days old, Shaedon Sharpe connected on his 1,000th career made field goal on Monday in Los Angeles—making him the youngest player in Trail Blazers history to reach that mark.LILLARD RETURNS TO RIP CITY• Nine-time NBA All-Star and seven-time All-NBA selection Damian Lillard announced his return to the Trail Blazers in July.• Originally selected No. 6 overall by the Trail Blazers in the 2012 NBA Draft, Lillard spent the first 11 seasons of his storied NBA career in Portland.• Across 769 regular season games, Lillard posted averages of 25.2 points (43.9% FG, 37.2% 3-PT, 89.5% FT), 6.7 assists, 4.2 rebounds and 1.0 steals in 36.3 minutes per game.PHOENIX SUNS NOTES• The Suns finished the 2025-26 regular season 45-37 following a 135-103 win over the Thunder Sunday night in Oklahoma City. Phoenix's 135 points in the regular season finale at OKC marked a team season high.• Seven Suns players (not including rookies) averaged career highs in scoring this season in Brooks, O'Neale, Allen, Goodwin, Ighodaro, Gillespie and Bouyea.• Phoenix ranked 6th in the NBA this season in opponent points per game at 111.1, the fewest points a Suns team has allowed in a season since 2021-22 (107.3 ppg).• Four Suns players have made a game-winning basket in the final 7 seconds of regulation or OT this season (Royce O'Neale, Devin Booker, Collin Gillespie, Jalen Green).• Making his 1,500th-career three-point field goal on 3/3 at Sacramento, Devin Booker joined Stephen Curry and Damian Lillard as the only players in NBA history to 17,000 career PTS & 1,500 3FG in 720 career games or less.• The Suns finished the regular season 18-0 when leading by 10+ points at halftime.• Oso Ighodaro played in all 82 regular season games in 2025-26, the first Suns player to do so since 2021-22 (Mikal Bridges).• Collin Gillespie and Royce O'Neale became the first Suns duo to each make 200+ three-pointers in a single season in 2025-26.BROADCAST NOTESTuesday's game can be seen nationally on Amazon Prime. Travis Demers will have the play-by-play on Rip City Radio 620 AM.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

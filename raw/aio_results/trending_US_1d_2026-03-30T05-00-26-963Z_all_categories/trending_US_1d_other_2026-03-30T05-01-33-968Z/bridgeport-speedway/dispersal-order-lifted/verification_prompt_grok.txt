@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "dispersal order lifted"
+
+Claims:
+[1] "An "extreme" immediate dispersal order in South Jersey was lifted on the evening of March 29, 2026."
+[2] "The dispersal order followed a rowdy, large car/music event at Bridgeport Speedway in Swedesboro."
+[3] "Police dispersed the crowd."
+[4] "Residents across a wide area of South Jersey received a "confusing" mobile phone alert regarding the lifting of the dispersal order."
+[5] "Police reported that the crowd was dispersed."
+[6] "Police reported that the dispersal order was lifted."
+[7] "Bridgeport Speedway is in Swedesboro, Gloucester County, NJ."
+[8] "Police issued dispersal orders at a "No Kings" rally in downtown Los Angeles."
+[9] "Police made arrests at a "No Kings" rally in downtown Los Angeles."
+[10] "Governor Abigail Spanberger signed an order ending ICE agreements with state law enforcement in Virginia."
+[11] "An appeals court lifted restrictions on ICE in Minnesota, allowing them to use certain tactics."
+
+Cited text snippets from the AI Overview (for additional context):
+- Dispersal order emergency alert sent to people Philadelphia ...: "The dispersal order has since been lifted.,Mullica Hill wrote: "We are aware that"
+- South Jersey Residents Get Creepy, Confusing Cell Phone Alert Sunday: "Chris Coleman,Prostock-Studio"
+- Dispersal order emergency alert sent out for incident at Bridgeport Speedway: "NBC10 has reached out to,order has since been lifted."
+- #BREAKINGNEWS Police said dispersal orders were issued ...: "BREAKINGNEWS Police said dispersal orders were issued,Kings" rally in downtown Los Angeles on"
+- Did anyone else get a loud emergency text saying immediate ...: "Did anyone else get a loud emergency text saying immediate dispersal lifted?,-󰍸&text=It was for the race,that got out of hand."
+- Dozens arrested for failing to disperse after 'No Kings' rally in ...: "He said after authorities gave the dispersal,deployed tear-gas canisters when protesters didn't comply."
+Reference Sources:
+
+[R1] Dispersal order emergency alerts sent in Philadelphia region after unpermitted event at Bridgeport Speedway
+(https://www.cbsnews.com/philadelphia/news/dispersal-order-philadelphia-bridgeport-speedway/)
+"""
+By Nikki DeMentri is a general assignment reporter with CBS Philadelphia. The Central New Jersey native is thrilled she is sharing the stories of where she grew up. Read Full Bio Stephanie Ballesteros Digital Managing Editor, CBS Philadelphia Stephanie Ballesteros is a digital managing editor at CBS Philadelphia. Before Stephanie joined the CBS Philadelphia team in February 2017, she wrote for WSVN in Miami, WAVY in Norfolk and FOX 29 in Philadelphia. Stephanie covers breaking news, crime and lifestyle content. She also produces content for the CBS Philadelphia social media pages and streaming platform. Read Full Bio Updated on: March 30, 2026 / 9:20 PM EDT / CBS Philadelphia Add CBS News on Google Many people in the Philadelphia region received an emergency alert Sunday night for a dispersal order stemming from a gathering at Bridgeport Speedway in South Jersey. The Bridgeport Speedway is located in Logan Township, Gloucester County, which is a little more than 20 miles from Philadelphia. On Facebook, the Harrison Township Police Department in Mullica Hill wrote: "We are aware that many residents just received the alert regarding a dispersal notice on their phones. This is related to an incident that was at the Bridgeport Speedway earlier this afternoon and has no bearing on anything in Harrison Township at this time."But it wasn't just people in South Jersey who received the alert on their phones. Across the Delaware River, the Middletown Township Department of Public Safety in Delaware County said in a Facebook post that several residents received the alert. According to the Logan Township Police Department, at around 10:55 a.m. Sunday, officers responded to reports of several complaints of vehicles speeding, passing unsafely, racing, and passengers riding on vehicles in the area of the Bridgeport Motorsports Park.Police said they later learned an unpermitted event named "Import Expo" was taking place at the motorsports park. According to police, there was no prior notice nor approval of the event. Police said the area became inundated with motorists from as far away as Massachusetts and Virginia, and the park quickly exceded its capacity. That's when police say about 25,000 people parked wherever they could and began walking to the venue. Police said there were also reports of public intoxication, public urination, lewdness, disorderly conduct, littering and numerous fights. Logan Township police requested mutual aid and an emergency alert message was sent out with the assistance of the Gloucester County Office of Emergency Management advising individuals in the area to disperse. The dispersal order was lifted around 6:44 p.m. A man was taken into custody and charged with disorderly conduct. Police said several municipal ordinance violations will also be filed. On Monday, the Bridgeport Speedway posted an apology for the disruption the event caused. "I do not like to make excuses, and I do not want this to sound like an excuse. I would like to express to our Neighbors once we realized this was not what we expected as a facility, we, along with authorities diligently began to dissolve the event without causing things to escalate," the Facebook post read. "This post is to APOLOGIZE and promise we will be better at what we do because of this. I want to thank everyone at Logan Township for their help with this matter. They were great to work with as they always are and very helpful in helping us resolve the already bad situation without making it any worse." In: New Jersey Gloucester County Philadelphia
+"""
+
+[R2] South Jersey Residents Get Creepy, Confusing Cell Phone Alert Sunday
+(https://wpgtalkradio.com/south-jersey-cell-phone-alert-confusing/)
+"""
+South Jersey Residents Get Creepy, Confusing Cell Phone AlertConfusing cell phone emergency alert in SouthGood news: the "extreme" immediate dispersal order in South Jersey was lifted earlier this evening.Bad news: practically no one had any idea why they received that message as an emergency alert on their cell phones.So what caused all of this cellular confusion?From what we have been able to piece together, there was a large car show or car music show at Bridgeport Speedway in Swedesboro, Gloucester County, on Sunday that, apparently, quickly got out of hand.Police were called to deal with what was described on social media as a very rowdy crowd and they issued an official order for the group to immediately disperse.When that order was officially lifted a couple of hours later, cell phones from one side of South Jersey to the other received a loud, wireless emergency alert message that simply read:Emergency alert: Extreme** UPDATE IMMEDIATE DISPERSAL ORDER LIFTED ** Unfortunately, there was absolutely no context to what that message was in reference to and when people as far away as Atlantic City and Cape May County received it, they were left confused.Even worse, many people living in Gloucester County, where the incident took place, were also left bewildered.We expect more information about both the incident at the speedway and what triggered an alert being issued across such a wide area to be released on Monday. This story will be updated when that happens.New Jersey's Most Dangerous Gangs and MobstersNew Jersey has a reputation for its famous and infamous gangs and mobsters. Some are still striking fear into communities throughout the state.Gallery Credit: Rick RickmanSex Money Murder GangBloods: Other sets New York Divorce Coercion Gang: Rabbi Mendel Epstein New York Divorce Coercion Gang: Rabbi Binyamin StimlerCripsPaterson Gangs: 230 BoysPaterson Gangs: Brick Squad/So Icey Boys18th Street GangMS-13/Mara SalvatruchaHells Angels Motorcycle ClubSimone Sam the Plumber DeCavalcanteCharles StangoCharles Lucky LucianoEnoch L. Nucky JohnsonGerardo Jerry CatenaAnthony Tony Pro ProvenzanoSilvio P. DeVitaThese Are The 10 Most Dangerous Cities In New JerseyThere are a lot of great places to check out in Jersey, and there are also some not-so-great places, especially after dark. According to Only In Your State these are Jersey's most dangerous city's after the sun goes down. Gallery Credit: BuehlerChris Coleman is a South Jersey native and has been a cornerstone of the Atlantic City radio market since 1998. He serves as Brand Manager for WPG Talk Radio 95.5 and afternoon on-air personality for Cat Country 107.3. A five-time President's Circle award winner and Townsquare Media's 2024 Content Creator of the Year, Chris covers news, events, and stories of interest across Southern New Jersey. Story tips: chris.coleman@townsquaremedia.comAround The WebMore From WPG Talk Radio 95.5 FMNJ Man Steals Tow Truck, Slams into Vehicles Head-on: Washington Twp., NJ, PoliceMissing Monroe Township, NJ, Teen May Be Headed to VirginiaA NY Armed Robbery Fugitive Was in Washington Twp., NJ, Until a Cop Spotted Him on Route 42Gloucester County, NJ, Police Search For Missing 14-year-old Autistic boyGlassboro Teen Escapes Attempted Armed E-bike Robbery; Suspect ArrestedRowan University Unveils Massive $690M Expansion in GlassboroTeen Thought He Was Meeting Girl for a Date, Got Robbed Instead in Washington Twp., NJPedestrian Killed on Black Horse Pike in Gloucester County, NJCar Dealership Chase Caps Busy Police Weekend in Washington Twp., NJ
+"""
+
+[R3] Dozens arrested for failing to disperse after 'No Kings' rally in Los Angeles - MyNorthwest.com
+(https://mynorthwest.com/national/dozens-arrested-for-failing-to-disperse-after-no-kings-rally-in-los-angeles/4222594)
+"""
+Authorities in Los Angeles deployed tear gas near a federal detention center and made dozens of arrests following one of thousands of “No Kings” rallies held this weekend across the United States and in Europe to protest President Donald Trump’s actions and the war in Iran. Los Angeles police said Sunday that 74 people were arrested for failing to heed a dispersal order that was given after Saturday’s rally ended. One other person was taken into custody on suspicion of possessing a weapon that police described as a dagger. The arrests stood out from what otherwise were mostly peaceful protests. Organizers said there were more than 3,100 events registered in all 50 U.S. states. As hundreds of protesters surrounded a federal complex in downtown Los Angeles, some threw rocks, bottles and broken concrete blocks at officers, the U.S. Department of Homeland Security said in a statement late Saturday night. Two officers who were struck by concrete blocks sustained undetermined injuries and received medical attention, DHS said. Andre Andrews Jr., a Navy veteran and independent journalist, had walked the entire route of the Los Angeles rally and captured video of the event. He said after authorities gave the dispersal order, they deployed tear-gas canisters when protesters didn’t comply. Some protesters wearing shields and gas masks on the other side of a fence at the federal complex picked up the canisters and tossed them back at police. Andrews said some people also smashed concrete barriers into smaller pieces and threw them at authorities. G&U FBKing County Councilmember Rod Dembowski stopped by the Gee & Ursula Show to discuss the mismanagement of King County taxpayer funds. Listen to the Gee and Ursula Show every weekday at 9am on KIRO Newsradio 97.3 FM. Listen to KIRO Newsradio 97.3 FM or go to MyNorthwest.com to learn more!0 seconds of 18 minutes, 44 secondsVolume 0% “Does it make L.A. look bad? No. They’re bad actors causing problems, for sure,” Andrews said. “The peaceful protest was good for the cause. You have the right to do that. But the other people, they were definitely causing problems.” Police said those arrested included eight juveniles. Also detained was a woman dressed as the Statue of Liberty, smiling as she chatted with an officer who led her away. In Denver, the police department said on the social platform X that it declared an unlawful assembly and deployed smoke canisters after a small group of protesters blocked a road and did not leave as asked. At least eight people were arrested, as was a ninth person later who police said was throwing objects. Nationwide, people rallied from New York City, with almost 8.5 million residents in a solidly blue state, to Driggs, a town of fewer than 2,000 people in eastern Idaho, a state Trump carried with 66% of the vote in 2024. In Minnesota, a flagship event on the Capitol lawn in St. Paul drew Bruce Springsteen as its headliner to celebrate resistance to Trump’s aggressive immigration enforcement. Demonstrations also were held in more than a dozen other countries, according to co-executive director Ezra Levin of Indivisible, which spearheaded the events. U.S. organizers have estimated that the first two rounds of No Kings rallies drew more than 5 million people in June and 7 million in October. Levin estimated at least 8 million participants showed up Saturday. “It was powerful. It was historic. It was joyful. It was boisterous,” Levin said Sunday. “I’d say it went pretty well.”
+"""
+
+[R4] Large and chaotic crowd at Bridgeport Speedway causes emergency alerts on Sunday
+(https://www.nbcphiladelphia.com/news/local/dispersal-order-emergency-alert-sent-out-for-incident-at-bridgeport-speedway/4376439/)
+"""
+Some residents in the Philadelphia region received an Emergency Alert on their phones that announced a dispersal order for Bridgeport Speedway in Logan Township on Sunday evening. Some residents also reported only receiving an Emergency Alert saying that the dispersal order had been lifted. The alerts were a result of a large and chaotic crowd that gathered an "Import Expo" Car and Music Fest at the South Jersey venue. Joel Veliz, a festival attendee, shared a video of a large crowd at the speedway. Veliz said that so many people went to the event that he had to park a 40-minute walk away. "It was just lines and lines of people walking, bringing coolers, everything," he said. "Once we got into the gate, there was people breaking fences down to get in, climbing over them." Local Breaking news and the stories that matter to your neighborhood. Kathy Thorne, a neighbor, said that it would have been nice if they got a heads up before the major event. "Just next time, I think it would be nice if they touch base," she said. "If they made a post and say, 'Hey guys, we’re gonna have this here and we would like the parking to be here. Do the neighbors mind?' I didn’t mind, she didn’t mind, but just on a good note.” The owner of the Bridgeport Speedway took to Facebook to apologize for the incident and said the first step the business took was to work with police to shut down Floodgate Road and turn people away. The owner said that strategy seemed to work until people began parking farther away and walking to the event. That is when they began the process of shutting down the event. NBC10 went to the scene at around 7 p.m. on Sunday to find that there was no longer a crowd present. No injuries or arrests have been reported by police.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

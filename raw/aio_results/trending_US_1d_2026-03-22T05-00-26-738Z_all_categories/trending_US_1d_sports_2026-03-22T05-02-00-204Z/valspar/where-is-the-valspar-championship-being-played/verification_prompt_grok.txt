@@ -1,0 +1,106 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is the valspar championship being played"
+
+Claims:
+[1] "The 2026 Valspar Championship is being played at the Innisbrook Resort and Golf Club (Copperhead Course) in Palm Harbor, Florida, near Tampa."
+[2] "The 2026 Valspar Championship runs from March 17–22, 2026."
+[3] "The 2026 Valspar Championship features a $9.1 million purse."
+[4] "The Copperhead Course has "Snake Pit" closing holes."
+[5] "The Copperhead Course is Par 71."
+[6] "The Copperhead Course is 7,340 yards."
+[7] "The 2026 Valspar Championship is part of the PGA Tour's Florida swing"
+
+Cited text snippets from the AI Overview (for additional context):
+- The Valspar Championship in Palm Harbor is known as one of ...: "Difficulty: Considered one of the,Bermuda greens, and water hazards."
+- Tournament - Valspar Championship: "The Valspar Championship brings some,Copperhead Course at Innisbrook Resort.&text=Find the tee times of your favorite golfer!"
+- How to watch 2026 PGA Valspar Championship on ESPN: "Mar 17, 2026, 05:,shot victory over Justin Thomas."
+- 2026 Valspar Championship Final Payouts, Prize Money, Winnings: "Here's the full breakdown of payouts.&text=The PGA Tour wraps its,$1.638 million to the winner."
+- Valspar Championship: How to watch, live scores, tee times, TV ...: "This video is either unavailable or not supported in this browser&text=The Valspar Championship takes place,know to follow the event."
+Reference Sources:
+
+[R1] PGA TOUR's Valspar Championship
+(https://www.visitstpeteclearwater.com/event/pga-valspar-championship/2166)
+"""
+Known as “The Most Colorful PGA TOUR® Tournament in the World,” the Valspar Championship returns to Tampa Bay, March 17–22, 2026, for its 25th anniversary. Come experience this exciting tournament, as 2025 Champion Viktor Hovland and the world’s top-ranked golfers take on the infamous Snake Pit. And don't miss the tournament's unforgettable experiences for fans. The PGA TOUR event takes place on the Copperhead Course at Innisbrook Golf Resort, a Salamander Golf and Spa Resort, with four championship rounds of golf. Attendees of all ages can experience many of the exciting activities on-site. Innisbrook is located in beautiful Palm Harbor, Florida. Buy tickets now Top Things to Know About the PGA TOUR's Valspar Championship The PGA TOUR's Valspar Championship offers more than an opportunity to watch top golf pros battle at one of only five Florida stops on the PGA TOUR. The March 17-22 event is held at the Innisbrook Resort in St. Pete-Clearwater, home of America’s Favorite Beaches and many opportunities for great dining and outdoor adventure. There are several days of golf events and tournaments preceding the Valspar Championship, but most are private events. The official tournament begins on Thursday, March 19 and runs through Sunday, March 22. Innisbrook’s 900 wooded acres include the grand stage for the tournament, the Copperhead course, which will be lined with an incredible variety of food and beverage options each day, and will host the Valspar LIVE concert presented by Chick-fil-A on Saturday evening, March 21, starring country music stars Tyler Hubbard and Lee Brice. The competition offers drama that even casual golf fans can enjoy. The Copperhead course (named for the venomous snake) is ranked No. 7 for difficulty on the PGA TOUR. It’s long, at more than 7,200 yards, and features undulations and tight fairways lined with pine trees. The course’s challenging final three holes can make for last-minute changes in the leaderboard. New for 2026: the Valspar Championship will celebrate everyday heroes (healthcare workers and first responders with ID) by offering free "Heroes Appreciation Tickets" to the first 500 heroes each day, Thursday, March 19 - Sunday, March 22. (If you miss the first 500, "heroes" can still get $20 off per ticket.) There will also be Heroes Appreciation Suite on the 8th green, with free beverages and food.
+"""
+
+[R2] How to watch 2026 PGA Valspar Championship on ESPN - ESPN
+(https://www.espn.com/golf/story/_/id/48233607/how-watch-2026-pga-valspar-championship-espn)
+"""
+Viktor Hovland won the 2025 Valspar Championship. AP Photo/Chris O'MearaKeith JenkinsMar 17, 2026, 05:06 PM ETThe PGA Tour moves to Palm Harbor, Florida, this week for the Valspar Championship. The tournament on the Copperhead Course at Innisbrook Resort and Golf Club is the first of three events leading up to the first major of the season, the Masters.Defending Valspar champion Viktor Hovland headlines a field this week that will be looking to snag a share of a $9.1 million purse. The winner will take home more than $1.6 million. Hovland shot a 4-under 67 on the final day of the 2025 Valspar Championship and rallied to a one-shot victory over Justin Thomas.Here are key facts about the 2026 event:When is the Valspar Championship?It runs Thursday to Sunday.How can fans watch?Fans can catch all of the action in the ESPN App and in the ESPN streaming hub.What is the schedule?*All times Eastern and subject to changeMarch 197:30 a.m.: First-round coverage begins.March 207:30 a.m.: Second-round coverage begins.March 217:30 a.m.: Third-round coverage begins.March 227:30 a.m.: Final-round coverage begins.Coverage includes main feed, featured holes and featured groups.Which top players will be playing in the event?▪︎ Xander Schauffele▪︎ J.J. Spaun▪︎ Justin Thomas▪︎ Matt Fitzpatrick▪︎ Ben GriffinHow can fans access more golf content from ESPN?Check out the ESPN golf hub page for the latest news, analysis, stats, scores, schedules, rankings and more. LIV Golf sued by vodka distillery for trademark infringementMark SchlabachMar 25, 2026, 08:02 AM ETCloseSenior college football writer Author of seven books on college football Graduate of the University of GeorgiaReactionsA Long Island-based distillery sued LIV Golf in federal court Monday, alleging the golf league's use of "LIV" branding for alcoholic beverages and apparel infringes on its registered trademark.Long Island Spirits Inc. sued LIV Golf in the U.S. District Court for the Eastern District of New York, accusing the league of violating federal and New York trademark laws.The craft distillery is asking the court to enjoin LIV Golf from using "LIV" in connection with the sales of alcohol or apparel and to pay punitive damages for the league's "willful and intentional unfair competition and misuse of the LIV Marks.""The LIV brand is beloved by consumers but is now threatened by Defendant LIV Golf's infringement, and LIV brings this action to protect its brand, preserve its reputation, and recover for the damages it suffers each day that LIV Golf persists in its infringement," the lawsuit said.The lawsuit alleges that the golf league's use of the LIV brand has caused "widespread confusion amongst customers, distributors, and depressing sales" of its craft alcohol products.The lawsuit notes that LIV Golf is now offering alcoholic beverages such as the LIV Clubhouse Cooler, a vodka-based cocktail with lemon, basil and mint, and the Have a Beautiful Day cocktail, a "bright, refreshing and slightly sweet vodka based cocktail that echoes the LIV colors of blue and green."Long Island Spirits has owned multiple registered and common-law variations of the "LIV" mark since 2007, according to the lawsuit."Since it launched in 2021, LIV Golf has deployed billions of dollars in marketing efforts aimed at buying prominence, including by expanding into 'LIV' branded alcohol and apparel-that is, precisely the areas in which LIV owns long-standing marks and where it has built its reputation for authenticity," the lawsuit said. "This escalating campaign of infringement benefits LIV Golf while squandering LIV's goodwill and leading to substantial consumer confusion."It's not the first time the LIV Golf League and its teams have been accused of trademark infringement. In June 2025, an Ohio-based company called Stinger Tees, Inc., filed a federal lawsuit, accusing the Stinger GC team of violating its trademark.Stinger Tees is seeking $100 million in damages; the case is headed to mediation on April 15.The team of all South African golfers, which includes former major championship winners Charl Schwartzel and Louis Oosthuizen, rebranded to Southern Guards GC prior to this season.In June 2023, an Argentine corporation, Cool Brands Supply, filed a federal trademark infringement lawsuit against the LIV Golf League and its HyFlyers GC team captained by Phil Mickelson, accusing them of copying its 20-year-old logo for popular skateboarding and lifestyle apparel brand Fallen.Cool Brands Supply dropped its lawsuit in January 2024.
+"""
+
+[R3] Tournament - Valspar Championship
+(https://valsparchampionship.com/tournament/)
+"""
+2027 | -11 days: 10 hrs: 25 min: -9 sec Charitable Overview Click Here for 5050 Raffle Tournament Tournament The Valspar Championship brings some of the finest golfers in the world to the Tampa Bay area to compete on the Copperhead Course at Innisbrook Resort. Tee Times Find the tee times of your favorite golfer! Tee Times Scores & Earnings View past results from previous of the Valspar Championship, including scores, earnings and FedExCup points awarded. Scores & Earnings History The Copperheads have sponsored professional golf events in the Tampa Bay area since 1977, generating tens of millions of dollars in charitable donations. History Tournament Tee Times Scores & Earnings History CHARITABLE SOLICITATION DISCLOSURE A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE, 1-800-HELP-FLA (435-7352) WITHIN THE STATE, OR BY VISITING www.FloridaConsumerHelp.com. REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE. FLORIDA REGISTRATION CH2410 The Most Colorful PGA TOUR® Tournament in the World™
+"""
+
+[R4] Valspar Championship: How to watch, live scores, tee times, TV times for Round 4 - PGA TOUR
+(https://www.pgatour.com/article/news/latest/2026/03/21/valspar-championship-how-to-watch-live-scores-tee-times-tv-times-for-round-4-copperhead-course)
+"""
+5D AGOVideo Player is loading.Current Time 0:00Duration 10:03Remaining Time 10:03captions settings, opens captions settings dialogcaptions off, selectedEnglishHighlights | Round 3 | Valspar Championship | 2026The Valspar Championship takes place at Innisbrook Resort and Golf Club - Copperhead Course in Palm Harbor, Florida, featuring a $9.1 million purse. The 7,352-yard, par-71 course will host this week's competition.Sungjae Im holds a two-shot lead into the final round, looking to hold off a talented field of chasers, including Matt Fitzpatrick, Brandt Snedeker, David Lipsky and Marco Penge.Here's everything you need to know to follow the event.How to follow (all times ET)Sunday: 1-3 p.m. (Golf Channel/NBC Sports App), 3-6 p.m. (NBC/Peacock)Sunday: 7:45 a.m.-6 p.m.PGA TOUR LIVE is available exclusively on ESPN+ and consists of four streams:Main feed (Stream 1): Primary tournament coverage featuring the best action from across the courseMarquee group (Stream 2): New "Marquee group" showcasing every shot from each player in the groupFeatured groups (Stream 3): Traditional PGA TOUR LIVE coverage of two concurrent featured groupsFeatured holes (Stream 4): Combination of par 3s and iconic or pivotal holes.Sunday: 1-6 p.m.Featured groups8:20 a.m. (Marquee group): Justin Thomas, Kevin Roy12:45 p.m. (Marquee group): Brooks Koepka, Tony Finau8:30 a.m. (Featured group): Keegan Bradley, Alex Norlander(Featured group): Jordan Spieth, Danny Walker (in progress)10:50 a.m. (Featured group): Xander Schauffele, Patrick FishburnNos. 4 (par 3), 8 (par 3), 15 (par 3), 17 (par 3)
+"""
+
+[R5] 2026 Valspar Championship Final Payouts, Prize Money, Winnings: Matt Fitzpatrick Wins
+(https://www.si.com/golf/2026-valspar-championship-final-payouts-prize-money-winnings)
+"""
+The PGA Tour wrapped its Florida Swing with the Valspar Championship near Tampa, offering a $9.1 million purse with $1.638 million to the winner.Matt Fitzpatrick got the big check and the satisfaction of going one better than a week ago, when he finished second to Cam Young at the Players Championship. He only made four bogeys all week at the tough Copperhead course and was the only player in the field to shoot four rounds in the 60s.Here are the final payouts for the 2026 Valspar Championship. 2026 Valspar Championship final payoutsWIN: Matt Fitzpatrick, 11 under: $1.638 million2. David Lipsky, 10 under: $991,9003. Jordan Smith, 9 under: $627,900T4. Xander Schauffele, Marco Penge, Sungjae Im; 8 under: $382,958.34T7. Emiliano Grillo, Stephan Jaeger, Patrick Cantlay, S.H, Kim; 7 under: $276,412.50T11. A.J. Ewart, Jordan Spieth, Matthieu Pavon; 6 under: $211,575T14. Hank Lebioda, Jacob Bridgeman, Gary Woodland, Corey Conners; 5 under: $161,525T18. Webb Simpson, Lee Hodges, Danny Walker, Brooks Koepka, Tony Finau, Chandler Blanchet, Tom Kim, Brandt Snedeker; 4 under: $108,290T26. Denny McCarthy, Dylan Wu, Rico Hoey, Adrien Dumont de Chassart; 3 under: $69,160T30. Justin Thomas, Alejandro Tosti, Michael Kim, Christiaan Bezuidenhout, Andrew Putnam, Jimmy Stanger, Ryo Hisatsune, David Skinns, Seamus Power, Kevin Yu; 2 under: $51,142T40. Matti Schmid, Blades Brown, Matt Wallace, Davis Chatfield, Patrick Rodgers, Doug Ghim; 1 under: $35,035T46. David Ford, Davis Thompson, Kensei Hirata, Ricky Castillo, John VanDerLaan, Takumi Kanaya, Alex Smalley, Patrick Fishburne, Isaiah Salinda; Even: $24,115T55. Pierceson Coody, Keegan Bradley, Nicolai Hojgaard, Andrew Novak, Mackenzie Hughes, Chandler Phillips, Justin Lower, John Parry, Rasmus Neergaard-Petersen; 1 over: $20,657T64. Sam Ryder, Chad Ramey, Karl Vilips, Joel Dahmen; 2 over: $19,474T68. Vince Whaley, Rasmus Hojgaard, Kevin Streelman, Billy Horschel, Henrik Norlander; 3 over: $18,65573. Kevin Roy, 4 over: $18,10974. Bud Cauley, 7 over: $17,927More Golf from Sports Illustrated
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

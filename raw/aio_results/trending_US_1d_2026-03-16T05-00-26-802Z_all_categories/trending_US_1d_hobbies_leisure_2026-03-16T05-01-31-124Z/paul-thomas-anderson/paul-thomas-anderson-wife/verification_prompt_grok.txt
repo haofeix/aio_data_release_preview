@@ -1,0 +1,80 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "paul thomas anderson wife"
+
+Claims:
+[1] "Maya Rudolph is Paul Thomas Anderson's partner."
+[2] "Maya Rudolph is an actress and comedian."
+[3] "Paul Thomas Anderson and Maya Rudolph have been in a long-term relationship since 2001."
+[4] "Paul Thomas Anderson and Maya Rudolph have four children together."
+[5] "Paul Thomas Anderson and Maya Rudolph have not officially married."
+[6] "Maya Rudolph has referred to Paul Thomas Anderson as her husband."
+[7] "Paul Thomas Anderson and Maya Rudolph have four children named Pearl, Lucille, Jackson, and Minnie."
+[8] "Maya Rudolph appeared in Paul Thomas Anderson's 2014 film Inherent Vice."
+
+Cited text snippets from the AI Overview (for additional context):
+- Did YOU know that Maya Rudolph has a long-term courtship ...: "Did YOU know that Maya Rudolph has,husband. Enjoy her sweet discussion with me"
+- Paul Thomas Anderson wins first ever Oscar as One Battle ...: "Anderson has been nominated 14,, Uncle Paul, Jojo”."
+Reference Sources:
+
+[R1] Paul Thomas Anderson wins first ever Oscar as One Battle After Another takes best adapted screenplay
+(https://www.theguardian.com/film/2026/mar/16/paul-thomas-anderson-wins-first-ever-oscar-as-one-battle-after-another-takes-best-adapted-screenplay)
+"""
+Paul Thomas Anderson has won his first Oscar, for best adapted screenplay for One Battle After Another.Also directed by Anderson, One Battle After Another is a loose adaptation of Thomas Pynchon’s 1990 novel Vineland; it stars Leonardo DiCaprio as a former revolutionary living under a new name with his teenage daughter, played by Chase Infiniti.Anderson, 55, had to overcome a strong field, including Guillermo del Toro for Frankenstein, Chloé Zhao and Maggie O’Farrell for Hamnet, and Will Tracy for Bugonia.Anderson has been nominated 14 times previously, including five times for screenplays and three times for best director.“I’m incredibly honoured to be part of this history,” said Anderson, adding that he owed a “huge debt of of admiration and love” to Pynchon, but that his special thanks went to his family, “the people that you share a roof with, who put up with what it means to live with a writer”.He then shouted out his wife, Maya Rudolph, as well as “Rain, Sylvia, Goo, Uncle Paul, Jojo”.He added: “I wrote this movie for my kids, to say sorry for the housekeeping mess that we left in this world we’re handing off to them. But also with the encouragement that they will be the generation that hopefully brings us some common sense and decency.“My Pearl, Lucy, Jack, and Ida. I love you. Thank you very much.”The film-maker dominated the awards season in this category, winning best adapted screenplay at the Baftas, Critics Choice and Writers Guild awards, and best screenplay at the Golden Globes.At the Oscars, Anderson also won the award for best directing for One Battle After Another. The film garnered six prizes in total, including the inaugural casting award and best film.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

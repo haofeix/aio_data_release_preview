@@ -1,0 +1,91 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "real madrid - andorra"
+
+Claims:
+[1] "Real Madrid defeated MoraBanc Andorra 97-90."
+[2] "Real Madrid defeated MoraBanc Andorra on April 5, 2026."
+[3] "The game was a Liga ACB basketball game."
+[4] "The game was held at the Movistar Arena."
+[5] "Real Madrid overcame an 18-point halftime deficit."
+[6] "The victory secured Real Madrid's 11th consecutive league victory."
+[7] "Alex Len scored 17 points."
+[8] "Andrés Feliz scored 13 points."
+[9] "Walter Tavares scored 12 points."
+[10] "The game was part of the 25th round of the Liga Endesa."
+[11] "Real Madrid maintained their lead in the Liga ACB standings."
+[12] "Real Madrid holds a 23-win record in the domestic competition."
+[13] "This win marked the 11th straight league win for Real Madrid against Andorra"
+
+Cited text snippets from the AI Overview (for additional context):
+- The leader secures their 11th consecutive league victory: "97,Andorra started with more rhythm."
+- Real Madrid doesn't slip up against Morabanc Andorra: "By Eurohoops team / info@eurohoops,San Pablo Burgos 95 – 109"
+Reference Sources:
+
+[R1] The leader secures their 11th consecutive league victory
+(https://www.realmadrid.com/en-US/news/basket/first-team/reports/cronica-real-madrid-morabanc-andorra-05-04-2026)
+"""
+Real Madrid achieved their 11th consecutive victory in the league. Despite being in the midst of the EuroLeague playoff battle, where they will face a decisive double-header next week against Olympiacos and Fenerbahce, our team shifted focus to defeat MoraBanc Andorra at the Movistar Arena and remain firmly atop the league standings. A game where they improved as it progressed, overcoming an 18-point deficit by halftime and taking control in the third quarter with a 63-to-30 run over 21 minutes. Len (17 points and 25 efficiency rating), Feliz (13 points and 21 efficiency rating), and Tavares (12 points and 18 efficiency rating) were the standout performers for Scariolo's squad, who rested Maledon, Abalde, and Lyles. MoraBanc Andorra started with more rhythm. Their accuracy from beyond the arc, especially from Pons (3/3 and 13 points), and a faster pace allowed them to dominate the first quarter against a Real Madrid side struggling with low shooting percentages. They also failed to capitalize on their six offensive rebounds. Deck was the most effective player for our team in this opening stretch (5 points), where the visitors led by as much as 18 points before the deficit started narrowing at the end of the quarter (18-30, min. 10). Madridista Response The second unit today, led by Feliz, Llull, and Len, which had already improved Madrid's performance in the final stretch of the first quarter, gave the team a fresh dynamic in the second. They brought much more aggression in defense, closing the paint and slowing down Andorra's pace. The push from the Dominican point guard (7 points and 4 assists), the captain's three-pointers, and the Ukrainian center's dominance spearheaded a 22-6 run in five minutes, turning a 12-30 deficit in the 9th minute into a 34-36 in the 14th. Tabak's side held on with isolated plays from Castañeda and Rice, but Madrid was already closing in. Krämer (8 points) and a 2+1 from Hezonja brought the game to halftime tied at 47 after a great quarter from Scariolo's squad (29-17). Madrid completed the comeback at the start of the second half with dunks from Tavares and a three-pointer from Okeke after good ball movement. MoraBanc Andorra initially resisted, finding points through Kuric and Pustovyi to go two points ahead (54-56, min. 25). That was the turning point of the game. The leader stepped up and accelerated their gameplay. They suffocated their opponent defensively and transitioned to fast breaks. With contributions from everyone on offense (Feliz, Procida, Len, Tavares…), Madrid created a significant gap with another major run: a 21-4 that gave them a 15-point cushion by the end of the third quarter (75-60). Madrid Maintains Control Until the End The leader had recorded a 63-to-30 run in 21 minutes to enter the final stretch with a comfortable lead. The visitors still put Madrid to work, but the team showed their most solid version in the final quarter, never allowing them to close in dangerously. Len, who delivered an excellent performance, and Procida countered MoraBanc Andorra's improved scoring in this quarter (97-90, min. 40). statistics Disclaimer: Translation generated by artificial intelligence. It may contain inaccuracies.
+"""
+
+[R2] Real Madrid, Valencia Basket and Barça don’t miss in Liga Endesa
+(https://www.eurohoops.net/en/acb/1952667/real-madrid-doesnt-slip-up-against-morabanc-andorra/)
+"""
+By Eurohoops team / info@eurohoops.net After the painful EuroLeague defeat to Kosner Baskonia, Real Madrid faced Morabanc Andorra this afternoon in a game that could help them regain confidence and return to winning ways. And most likely, Scariolo’s side only achieved one of those two goals: the win was unquestionable, but far from spectacular. Real Madrid claimed a 97–90 victory, marking their 23rd win in the domestic competition. Alex Len was the top scorer of the game for the home team with 17 points, once again making the most of his minutes on the court. The overall top scorer of the game was Yves Pons, who could not prevent his team’s nineteenth loss. The game began with a 12–30 run in the first quarter that excited the visitors and unsettled more than a few at the Movistar Arena. However, before halftime, Real Madrid had already tied the game at 47 and finished the third quarter with a 15-point lead (75–60). With the win essentially secured, Los Blancos only had to manage the visitors’ comeback attempts. Valencia Basket had it even easier. Strong perfomance by Pedro Martínez’s team, that easily overpowered 105-88 Río Breogán for another solid victory. And to finish the round, Barça achieved their main objective in their visit to the Príncipe Felipe arena: defeating Casademont Zaragoza despite all the challenges. Xavi Pascual’s team secured an 86–92 victory over the Aragonese side, a win that allows them to remain among Real Madrid’s closest challengers in the Liga Endesa standings, now with a 17–8 record. Joan Plaza’s team drops to 7–19, just one win above the relegation zone. Santi Yusta, with 32 points, was the standout performer of the game. Bojan Dubljević provided the perfect support, finishing with 18 points and 7 rebounds. However, as has often been the case, Zaragoza’s two main pillars were left too isolated, with no other player reaching double figures in scoring. Kevin Punter (22 points) and Toko Shengelia (13) led Barça’s scoring, while Juani Marcos (9 points and 4 assists) played a key role in orchestrating the team, stepping up in the absence of Satoransky, who remains doubtful for the crucial game against Panathinaikos. Despite leading 39–50 at the start of the second half, Barça could not enjoy a comfortable finish. Gradually, the home team closed the gap, and a three-pointer by Santi Yusta completed the comeback in the final quarter (73–72). However, despite the setback and their very short rotation, Barça managed to regroup and ultimately secure the win in Zaragoza. Liga Endesa Round 25 BAXI Manresa – Kosner Baskonia 83 – 88 Hiopos Lleida – La Laguna Tenerife 103 – 101 Real Madrid – MoraBanc Andorra 97 – 90 Asisa Joventut – UCAM Murcia 67 – 89 Dreamland Gran Canaria – San Pablo Burgos 95 – 109 Coviran Granada – Basquet Girona 84 – 91 Surne Bilbao – Unicaja de Málaga 90 – 74 Valencia Basket – Río Breogán 105-88 Casademont Zaragoza – Barça 86-92 STANDINGS: Real Madrid 23-2, Valencia Basket 19-6, UCAM Murcia 18-7, Kosner Baskonia 18-7…
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

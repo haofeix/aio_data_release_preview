@@ -1,0 +1,100 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "morgan metzer story"
+
+Claims:
+[1] "The Morgan Metzer Story is a Lifetime movie depicting Morgan Metzer’s story"
+[2] "Morgan Metzer divorced Rodney Metzer in 2020"
+[3] "Morgan Metzer was attacked in 2021 by a masked prowler"
+[4] "The masked prowler was Rodney Metzer"
+[5] "Rodney Metzer staged the attack to appear as a hero"
+[6] "Morgan Metzer and Rodney Metzer were high school sweethearts from Georgia"
+[7] "Morgan Metzer and Rodney Metzer married in 2009"
+[8] "Morgan Metzer and Rodney Metzer had twins"
+[9] "Rodney Metzer lost his job in 2012"
+[10] "Rodney Metzer became abusive, manipulative, and financially irresponsible after losing his job in 2012"
+[11] "The attack on Morgan Metzer occurred on New Year's Eve 2020/2021"
+[12] "The attack occurred shortly after Morgan Metzer and Rodney Metzer's divorce was finalized"
+[13] "A masked assailant broke into Morgan Metzer's home"
+[14] "The masked assailant tied Morgan Metzer up"
+[15] "The masked assailant assaulted Morgan Metzer"
+[16] "Rodney Metzer arrived fast to rescue Morgan Metzer"
+[17] "Police discovered zip ties and internet searches proving Rodney Metzer staged the attack"
+[18] "Rodney Metzer was arrested for crimes against his ex-wife"
+[19] "Rodney Metzer convinced Morgan Metzer that her injuries and the abuse were her own fault"
+[20] "Morgan Metzer’s story was adapted into a 2024 film starring Jana Kramer and Austin Nichols"
+
+Cited text snippets from the AI Overview (for additional context):
+- Jana Kramer | Gaslit by My Husband is officially out on Netflix ...: "Has anyone else watched “Gaslit,pretending to be her savior."
+- Who is Morgan Metzer? The True Story Behind Gaslit by My Husband: "Their idyllic romance blossomed over,him look like the hero."
+- #1 movie in the U.S. on Netflix today… and I’m honestly speechless. ...: "The film masterfully portrays the,#gaslitbymyhusband #psychologicalthriller"
+- Gaslit By My Husband: The Morgan Metzer Story - ‎Apple TV: "Season 1&text=Based on a true story,and Austin Nichols (2024)."
+Reference Sources:
+
+[R1] Who Is Morgan Metzer? Where Is Rodney Metzer? The True Story Behind Gaslit by My Husband
+(https://www.netflix.com/tudum/articles/gaslit-by-my-husband-the-morgan-metzer-story-release-date-news)
+"""
+What To WatchWhere Is Rodney Metzer Now? The True Story Behind Gaslit by My HusbandOne woman’s uphill battle to leave her narcissistic ex ends with an unbelievable lie. By Krutika MallikarjunaMarch 25, 2026Trapped in an abusive relationship with her childhood sweetheart, a young mom finds the strength to file for divorce and begin her life again. But her newfound security is shattered when a masked intruder breaks into her home and assaults her. When her ex-husband suspiciously shows up minutes after the attack to save her, he becomes the police’s prime suspect. Based on real events, Gaslit by My Husband: The Morgan Metzer Story stars Jana Kramer (A Cowboy Christmas Romance) as Morgan and Austin Nichols (The Walking Dead) as her ex, Rodney Metzer. Directed by Lee Gabiana (Kidnapped by a Killer: The Heather Robinson Story), the dark thriller also stars Abigail Esmena (Hazard), Jolie Rae Caussin, Maximo Sebastian, Stephanie Cotton (A Girl Like Her), Pete Burris (Stranger Things), Denise Dal Vera (Dark Waters), J. Barrett Cooper (I Am Your Biggest Fan), and Lee Avant (The Blacklist). Read on to find out more.Popular NowWhat happened to Morgan and Rodney in real life? The pair met as teenagers when Morgan was only 14 and Rodney, 17. Their idyllic romance blossomed over the years, and the couple married in 2009 when Morgan turned 21. But a series of family tragedies — including the loss of his brother to leukemia and the loss of their first child to a heart defect — changed Rodney for the worse. Soon after Morgan birthed their twins, in 2012, Rodney lost his job and became steadily more abusive, both emotionally and physically. After years of Rodney telling Morgan she was to blame for the violence inflicted upon her, Morgan filed for divorce in 2020. What To WatchFrom the disappearance of Gabby Petito to the Gilgo Beach serial murders.News“Every so often when making a documentary you become inspired beyond words."Deep DiveThe documentary offers new perspectives on the chilling case.By Krutika MallikarjunaFeb. 10But what should have been a fresh start turned into a nightmare on New Year’s Eve, just a month after the divorce was finalized. A masked prowler broke into Morgan’s home with a gun and threatened her in a voice reminiscent of a Batman villain. The assailant then proceeded to zip-tie, beat, and sexually assault her before grabbing jewelry and cash, and then fleeing the scene. Forty minutes later, Rodney arrived to cut her free of her restraints. When he told the police that he rushed over to Morgan’s house because a stranger had knocked on his apartment window calling out for her, they realized the details of Rodney’s story were designed to make him look like the hero. Instead, his attempt to become Morgan’s savior and win her back landed him a 70-year sentence — with the first 25 years to be served in prison, and the remaining 45 on probation. Rodney is no longer allowed contact with Morgan or their children.Where can I watch Gaslit by My Husband: The Morgan Metzer Story?Stream it on Netflix now. Gripping True Crime Documentaries to Stream NowFrom ‘Murdaugh Murders’ to ‘The Tinder Swindler,’ dive into these true stories.True CrimeDramaArticleShop Gaslit By My Husband: The Morgan Metzer StoryDiscover More What To WatchWhat To WatchThese people are having a way worse day/week/life than you.What To WatchSpend some time laughing at (and with) these funny shows.By Jessie Mooney and Erin CorbettYesterday 6:00 pmWhat To WatchSwing for the fences with these home-run movies and shows.By Ashley Lee and Caitlin BuschYesterday 1:00 pmWhat To WatchThe two actors play besties who take a ’90s-inspired journey to the Amazon.By Krutika MallikarjunaYesterday 7:00 amWhat To WatchPut on your best Hannah Montana wig and never let go of your nostalgia, Jack.By Ashley Lee and Caitlin BuschMarch 24What To WatchLady Whistledown would certainly approve of adding these to your queue.What To WatchThe scenes that live rent-free in your mind and in your My Netflix tab.What To WatchSurgeons, scammers, and scandals abound.Discover More True CrimeWhat To WatchWatch this past week’s first looks at Love on the Spectrum Season 4 and more.NewsTrust Me: The False Prophet exposes the crimes of Warren Jeffs’s self-proclaimed heir.By Troy PozirekidesMarch 18What To WatchGrab some kimbap and stream these K-dramas, Korean competitions, and more.What To WatchThis nuclear disaster starts with a stolen medical device.By Krutika MallikarjunaMarch 18NewsA horrible crash left behind two lost lives, one survivor, and many questions.NewsPlus: The Dinosaurs debuts with a roar, and Vladimir ignites a new obsession.By Ananda Dillon and Ashley LeeMarch 10What To WatchEsther Estepa had a chance meeting with an influencer. Then, she disappeared.By Krutika MallikarjunaMarch 9New on NetflixPlus Harry Styles. One Night in Manchester, The Dinosaurs, and more.Latest NewsPopular NowNewsPrepare for “big-time yearning” as Francesca and Michaela take center stage.Deep DiveFeeling the PCD? BTS: The Return is coming to Netflix on March 27. Deep DiveThe artists behind the Oscar-winning film on the details you might have missed.Who’s WhoSome are chasing a “rom-com moment,” and others just want a “guy who has hair.”Popular Releases
+"""
+
+[R2] ‎Gaslit By My Husband: The Morgan Metzer Story - Apple TV
+(https://tv.apple.com/us/show/gaslit-by-my-husband-the-morgan-metzer-story/umc.cmc.2j8z6uri356zqxsg3dbwj904a)
+"""
+Open TV Search Sign In Childhood sweethearts Morgan and Rodney married young but faced tragedy and accusations about Morgan's drinking. Their separation takes a darker turn when Morgan is assaulted at home, casting doubt on Rodney's cancer diagnosis and his treatment of her over the years. MORE Childhood sweethearts Morgan and Rodney married young but faced tragedy and accusations about Morgan's drinking. Their separation takes a darker turn when Morgan is assaulted at home, casting doubt on Rodney's cancer diagnosis and his treatment of her over the years. 2024 · 1h 27m Season 1 EPISODE 1 Gaslit By My Husband: The Morgan Metzer Story Based on a true story. Morgan and Rodney were childhood sweethearts and married when Morgan was just 21 years old. The couple loses their first child shortly after birth but are overjoyed when they have twins a year later. Tensions began to rise when Rodney loses his job and goes into debt. Rodney blames their fights on Morgan's drinking--even if she'd only had one--and convinces Morgan that she pushed him down the stairs in a blackout rage. The couple finally separates, and Morgan's life begins to turn around, until Rodney gets diagnosed with cancer. Not long after, a masked intruder breaks into Morgan's home and assaults her. Rodney shows up only minutes after the intruder is gone; when authorities question him, Rodney's story doesn't seem to be adding up. Does Rodney really have cancer and is he the hero that he claims to be, or has he been gaslighting Morgan for decades? Stars Jana Kramer and Austin Nichols (2024). 1h 28m Related The Last Thing He Told Me Surface Hoax: The Kidnapping of Sherri Papini Disclaimer Mormon Mom Gone Wrong: The Ruby Franke Story Dirty Little Secret Don't Scream, It's Me Close To Me A House On Fire The Paramedic Who Stalked Me About Gaslit By My Husband: The Morgan Metzer Story Drama Childhood sweethearts Morgan and Rodney married young but faced tragedy and accusations about Morgan's drinking. Their separation takes a darker turn when Morgan is assaulted at home, casting doubt on Rodney's cancer diagnosis and his treatment of her over the years. MORE Gaslit By My Husband: The Morgan Metzer Story Drama Childhood sweethearts Morgan and Rodney married young but faced tragedy and accusations about Morgan's drinking. Their separation takes a darker turn when Morgan is assaulted at home, casting doubt on Rodney's cancer diagnosis and his treatment of her over the years. Information Released2024RatedTV-14Content AdvisoriesLanguage© 2024 A+E Networks. All Rights Reserved.Languages Original AudioEnglish (United States)AudioEnglish (United States) (AAC) SubtitlesEnglish (United States) (CC) Accessibility Closed captions (CC) refer to subtitles in the available language with the addition of relevant non-dialogue information. Select a country or region Africa, Middle East, and India See All Armenia Azerbaijan Bahrain Botswana Brunei Darussalam Cape Verde Egypt Eswatini Gambia Ghana Guinea-Bissau India Israel Jordan Lebanon Mauritius Mozambique Namibia Niger (English) Oman Qatar Saudi Arabia South Africa Sri Lanka Tajikistan Turkmenistan Uganda United Arab Emirates Zimbabwe Asia Pacific See All Australia Cambodia Fiji 香港 Indonesia (English) 日本 Lao People's Democratic Republic 澳門 Malaysia (English) Micronesia, Federated States of Mongolia New Zealand Philippines Singapore 대한민국 台灣 Thailand Turkmenistan Vietnam Europe See All Armenia Österreich Belarus Belgium Bulgaria Cyprus Czechia Denmark Estonia Finland France (Français) Deutschland Greece Hungary Ireland Italia Latvia Lithuania Luxembourg (English) Malta Moldova, Republic Of Nederland Norway Poland Portugal (Português) Россия Slovakia Slovenia España Sverige Schweiz Türkiye (English) Ukraine United Kingdom Latin America and the Caribbean See All Anguilla Antigua and Barbuda Argentina (Español) Bahamas Belize Bermuda Bolivia (Español) Brasil Virgin Islands, British Cayman Islands Chile (Español) Colombia (Español) Costa Rica (Español) Dominica República Dominicana Ecuador (Español) El Salvador (Español) Grenada Guatemala (Español) Honduras (Español) México Nicaragua (Español) Panamá Paraguay (Español) Perú St. Kitts and Nevis Trinidad and Tobago Venezuela (Español) The United States and Canada See All Canada (English) Canada (Français) United States Estados Unidos (Español México)
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,98 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "chainsmokers final four"
+
+Claims:
+[1] "The Chainsmokers performed a halftime concert between the 2026 NCAA Men’s Final Four games at Lucas Oil Stadium in Indianapolis on April 4, 2026."
+[2] "The performance was part of the "Madness After Dark" event."
+[3] "The performance caused the second semifinal game to be delayed."
+[4] "The performance drew criticism from fans and media members."
+[5] "Critics, including Dave Portnoy and Scott Van Pelt, questioned the decision to host a full concert in the middle of basketball games."
+[6] "The second game started around 9:30 p.m. ET."
+[7] "The act took place between the first game (UConn vs. Illinois) and the second game (Michigan vs. Arizona)."
+
+Cited text snippets from the AI Overview (for additional context):
+- March Madness fans fume after The Chainsmokers' controversial concert at Final Four: 'Who asked for this?': "College basketball fans were up,Four in Indianapolis on Saturday"
+- Final Four: Social media reacts to Chainsmokers, Lucas Oil Stadium: "The Chainsmokers performed between Final,is that a good idea?&text=INDIANAPOLIS -- The NCAA Tournament,national championship received mixed reviews."
+- The Chainsmokers performed between Final Four games: "Social media was opposed to a Final,a football stadium; what do you think?"
+Reference Sources:
+
+[R1] The Chainsmokers performed between Final Four games; is that a good idea?
+(https://sports.yahoo.com/articles/chainsmokers-performed-between-final-four-014812014.html)
+"""
+The Chainsmokers performed between Final Four games; is that a good idea?INDIANAPOLIS -- The NCAA Tournament featured a musical act between the Final Four games at Lucas Oil Stadium and social media was not in favor.The concert was broadcast and is an effort to appeal to more casual fans.Advertisement"It's an event our clients are asking us for now," Dave Aussenberg, a music sponsorship agent at CAA, said of the musical roster with March Madness in Hollywood Reporter. "When the festival was first conceptualized, it was a nice-to-have complement to a weekend of basketball, but it's growing so much. ... People want entertainment, they want to make a weekend out of an event like this."The reviews of playing the college basketball semifinals and national championship received mixed reviews.1 / 11The Chainsmokers perform between Final Four games in IndianapolisThe Chainsmokers perform Saturday, April 4, 2026, between Final Four games at Lucas Oil Stadium in Indianapolis.2 / 11See our favorite photos of NCAA Final Four weekend in IndianapolisThe Chainsmokers perform Saturday, April 4, 2026, between Final Four games at Lucas Oil Stadium in Indianapolis.11 / 11The Chainsmokers perform between Final Four games in IndianapolisThe Chainsmokers perform Saturday, April 4, 2026, between Final Four games at Lucas Oil Stadium in Indianapolis.I still like the Final Four in football stadiums because it gets a lot more real fans in the door. Smaller setups mean a greater percentage of celebrities and neutrals who don't really care, pricing out fans. https://t.co/c2iJifZBMA— Chris Vannini (@ChrisVannini) April 4, 2026Maybe a hot take but I kinda like it?Lucas Oil is packed to the brim and very loud (shoutout Illinois fans). If they can sell it out, I don’t see the issue.Imagine the tickets prices for tonight if it was in an NBA arena. https://t.co/akJduZamDO— Adam Hammer (@adamhhammer) April 4, 2026Nothing against the people performing, and it’s just my opinion, but….Dear NCAA,We don’t need or want a concert between the two semifinal games. Put the appropriate time on the clock, let the teams warm up and play ball! Thank you!— Robert Brost (@brookhoops) April 5, 2026This article originally appeared on Indianapolis Star: Final Four: Social media, fans react to Chainsmokers, Lucas Oil Stadium
+"""
+
+[R2] March Madness fans fume after The Chainsmokers' controversial concert at Final Four: 'Who asked for this?'
+(https://www.dailymail.co.uk/sport/college-basketball/article-15707167/chainsmokers-concert-march-madness-indianapolis.html)
+"""
+MORE: Braylon Mullins leads UConn back to national championship game Published: 22:03 EDT, 4 April 2026 | Updated: 22:03 EDT, 4 April 2026 College basketball fans were up in arms on Saturday night after The Chainsmokers performed between games at the men's Final Four of March Madness. Dave Portnoy and ESPN star Scott Van Pelt were among those to slam the decision to allow the electronic duo perform at Lucas Oil Stadium in Indianapolis.The Chainsmokers took to the stage in the gap between UConn's victory over Illinois and Michigan's clash with Arizona. It meant the second game of the night did not start until nearly 9.30pm ET and the show did not go down with fans, including some in the arena.'This Chainsmokers concert in between games is playing off like somebody lost a bet,' said Barstool Sports boss Portnoy, who was in Indianapolis to see his beloved Michigan. 'I like the Chainsmokers but nothing has ever made less sense than this.' SportsCenter anchor Van Pelt echoed those sentiments by writing on social media: 'Who asked for this?' The Chainsmokers performed between games at the Final Four in Indianapolis on Saturday In the first game of the night, UConn beat Illinois to reach the national championship game Arizona took on Michigan in a clash of No 1 seeds in the second game on Saturday night'Whoever thought having a Chainsmokers concert in between Final Four games was a good idea needs to be fired,' another fan added.'Big miss on the NCAA's part,' one said. 'If you wanna do a concert, do it pregame or perhaps between games outside, but don’t interrupt the natural flow from one game to the next.'In the first game of the night, Dan Hurley's Huskies muscled their way back to the national title game with a 71-62 win over Illinois. UConn is looking for a third championship in four seasons.Tarris Reed Jr. had 17 points and 11 rebounds, while freshman Braylon Mullins scored 15 for the Huskies (34-5). It was UConn's' 19th straight victory in the Sweet 16 or later rounds of the NCAA Tournament.'I've got the best staff in the country. I've got an incredible group of players. And there's nothing like the bus ride to the stadium on Monday night when you're one of the last two teams standing,' Hurley said.'We're so ready for the national championship game,' Mullins added. 'This is what I came here for. Let's get it on Monday.'
+"""
+
+[R3] Final Four: Social media, fans react to Chainsmokers, Lucas Oil Stadium
+(https://www.indystar.com/story/sports/college/2026/04/04/final-four-social-media-reacts-to-chainsmokers-lucas-oil-stadium/89472529007/)
+"""
+COLLEGEThe Chainsmokers performed between Final Four games; is that a good idea? Nat NewellIndianapolis StarUpdated April 4, 2026, 10:38 p.m. ETINDIANAPOLIS -- The NCAA Tournament featured a musical act between the Final Four games at Lucas Oil Stadium and social media was not in favor.The concert was broadcast and is an effort to appeal to more casual fans."It's an event our clients are asking us for now," Dave Aussenberg, a music sponsorship agent at CAA, said of the musical roster with March Madness in Hollywood Reporter. "When the festival was first conceptualized, it was a nice-to-have complement to a weekend of basketball, but it's growing so much. ... People want entertainment, they want to make a weekend out of an event like this."The reviews of playing the college basketball semifinals and national championship received mixed reviews.Need a news break? Check out the all new PLAY hub with puzzles, games and more!NFL Stars Who Should Lose Their Hall Of Fame SpotExplored Planet | AdAdUndoWho Pays the Least for Car Insurance in These Missouri ZIP Codes?Check how your ZIP code’s rates compare before renewing your policy.OTTO Insurance | AdAdUndo12 Things To Cut When Living On RetirementGreensprout | AdAdUndoCan't Reach Overhead? Try This 12-Minute Way To Relieve ItShoulder Relief News | AdAdUndoMissouri: Say Hello To Cheap Car Insurance If You Live In These Zip CodesCheck how your ZIP code’s rates compare before renewing your policy.OTTO Insurance | AdAdUndoMeet Divorced Women In ST LOUISInstantalks | AdAdUndo17 Of The Most Historically Accurate Movies Ever Made, Ranked In OrderOutdoor Revival | AdAdUndoKirkland Products That Are Big Brands In DisguiseOutdoor Revival | AdAdUndoThe Link Between Sleep Apnea and Blood SugarLearn about the symptoms of sleep apnea, the impact on your glucose levels, and treatment options.Stelo | AdAdUndoInvestors Scrambling Before Starlink Goes PublicLearn About The Clever Way Everyday Folks Are Getting Exposure To Starlink Before It Goes PublicProfitable News | AdAdLearn MoreUndoby Taboolaby TaboolaWant to know more? click here- | AdAdUndoWho Charges The Least For Car Insurance In Missouri? (Check Zip Codes)Comparisons | Auto Insurance | SponsoredSponsoredLearn moreUndoFeatured Weekly AdMore StoriesIndiana Fever re-sign backup center who had season-ending injury. What we knowsportsUndoRecord-setting Indiana women's basketball guard signs as undrafted WNBA free agentsportsUndo25 Best Hitters In Baseball History, Ranked From First To LastGameday News | Sponsored LinksSponsored LinksUndo Keep on readingIndiana Fever re-sign backup center who had season-ending injury. What we knowWNBA free agency is in full swing as the Indiana Fever have addressed a need in the frontcourt by bringing a familiar face back.The Indianapolis StarUndoNFL Stars Who Should Lose Their Hall Of Fame SpotExplored Planet | SponsoredSponsoredUndoWho Pays the Least for Car Insurance in These Missouri ZIP Codes?Check how your ZIP code’s rates compare before renewing your policy.OTTO Insurance | SponsoredSponsoredClick HereUndoRecord-setting Indiana women's basketball guard signs as undrafted WNBA free agentShay Ciezki spent two seasons with the Hoosiers and, coming off a record season, parlayed that into a WNBA opportunity.The Indianapolis StarUndoIndiana Fever select Justine Pissott in second round of WNBA draftIndiana Fever select Justine Pissott in second round of WNBA draftThe Indianapolis StarUndoFever sign Megan McConnell, sister of Pacers guard, to training camp contractMegan McConnell can get the lay of the land from her brother, Pacers guard T.J. McConnell, before training camp begins.The Indianapolis StarUndoIndiana Fever finalizing terms with Noblesville native. What it means for rosterThe Indiana Fever are working toward filling a seventh roster spot as a native of the Hoosier State has agreed to return home. Here's the latest.The Indianapolis StarUndoIndiana Fever have filled 9 spots on 2026 roster. What's next?Through two days of free agency signings, the Indiana Fever have nine players on their roster. Here's what's next.The Indianapolis StarUndo12 Things To Cut When Living On RetirementGreensprout | SponsoredSponsoredUndoCan't Reach Overhead? Try This 12-Minute Way To Relieve ItShoulder Relief News | SponsoredSponsoredUndoNoblesville star, former Purdue basketball player commits to transfer in stateFormer Boilermakers guard Aaron Fine was an Indiana All-Star at Noblesville. He now returns to another area of the state where his family has great history.The Indianapolis StarUndoAfter Final Four wave off, Aliyah Boston thinks Raven Johnson, Caitlin Clark are 'going to be fine'Three years after an infamous incident, and days after the draft united Caitlin Clark and Raven Johnson, Aliyah Boston said, "the fans always have more beef."The Indianapolis StarUndo
+"""
+
+[R4] The Chainsmokers performed between Final Four games; is that a good idea?
+(https://sports.yahoo.com/articles/chainsmokers-performed-between-final-four-014812949.html)
+"""
+The Chainsmokers performed between Final Four games; is that a good idea?INDIANAPOLIS -- The NCAA Tournament featured a musical act between the Final Four games at Lucas Oil Stadium and social media was not in favor.The concert was broadcast and is an effort to appeal to more casual fans.Advertisement"It's an event our clients are asking us for now," Dave Aussenberg, a music sponsorship agent at CAA, said of the musical roster with March Madness in Hollywood Reporter. "When the festival was first conceptualized, it was a nice-to-have complement to a weekend of basketball, but it's growing so much. ... People want entertainment, they want to make a weekend out of an event like this."The reviews of playing the college basketball semifinals and national championship received mixed reviews.1 / 11The Chainsmokers perform between Final Four games in IndianapolisThe Chainsmokers perform Saturday, April 4, 2026, between Final Four games at Lucas Oil Stadium in Indianapolis.2 / 11See our favorite photos of NCAA Final Four weekend in IndianapolisThe Chainsmokers perform Saturday, April 4, 2026, between Final Four games at Lucas Oil Stadium in Indianapolis.11 / 11The Chainsmokers perform between Final Four games in IndianapolisThe Chainsmokers perform Saturday, April 4, 2026, between Final Four games at Lucas Oil Stadium in Indianapolis.This article originally appeared on Indianapolis Star: Final Four: Social media, fans react to Chainsmokers, Lucas Oil Stadium
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

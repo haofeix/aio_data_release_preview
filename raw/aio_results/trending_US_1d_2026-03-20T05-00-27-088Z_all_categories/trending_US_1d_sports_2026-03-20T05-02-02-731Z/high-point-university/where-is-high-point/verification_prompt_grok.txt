@@ -1,0 +1,107 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is high point"
+
+Claims:
+[1] "High Point is a city located in the Piedmont Triad region of central North Carolina."
+[2] "High Point is primarily in Guilford County."
+[3] "High Point has parts in Davidson County."
+[4] "High Point has parts in Forsyth County."
+[5] "High Point has parts in Randolph County."
+[6] "High Point is situated between Greensboro and Winston-Salem."
+[7] "High Point is known as the "Home Furnishings Capital of the World.""
+[8] "High Point is near Greensboro (northeast)."
+[9] "High Point is near Winston-Salem (northwest)."
+[10] "High Point is known for the High Point Market."
+[11] "High Point Market is the world's largest furniture trade show."
+[12] "High Point University is located in High Point."
+[13] "High Point's nickname is North Carolina's International City™."
+[14] "High Point's nickname is Home Furnishings Capital of the World™."
+[15] "High Point was chartered in 1859."
+[16] "High Point was the highest point on the North Carolina Railroad between Goldsboro and Charlotte."
+
+Cited text snippets from the AI Overview (for additional context):
+- Geography | High Point, NC: "The City of High Point,, Forsyth, and Randolph counties."
+- Why High Point | High Point, NC: "A globally-connected community, High,largest home furnishings trade show."
+- City of High Point - About High Point, North Carolina: "Here are some facts about High Point,,learning institution with landscaped gardens and statues"
+Reference Sources:
+
+[R1] Explore High Point: Home Furnishings Capital of the World
+(https://visithighpoint.com/about-high-point-nc/)
+"""
+Skip to contentAbout High Point About High PointFounded in 1859 and named for its location at the highest point along the North Carolina Railroad between Goldsboro and Charlotte, High Point has always been a place where connections matter. What began as a strategic crossroads has grown into a dynamic city known for creativity, innovation, and momentum where history and progress move forward together.Today, High Point welcomes visitors with an energized downtown, nationally recognized events, family friendly attractions, and a spirit rooted in hospitality and design.A Global Destination with Local HeartHigh Point is home to world class events that draw visitors from across the globe, most notably High Point Market, the largest wholesale home furnishings trade show in the world. Each April and October, more than 75,000 designers, buyers, architects, and creatives from over 110 countries gather in downtown High Point to discover the latest trends in furnishings and design.Beyond Market, visitors come to experience High Point University, attend signature events like the John Coltrane International Jazz & Blues Festival; and enjoy a city that offers connectivity, thoughtful service, and room to explore at an easy pace.A Downtown on the RiseHigh Point’s revitalized Downtown District has become a walkable hub for sports, dining, arts, and nightlife.Truist Point Stadium, anchors downtown as the home of the High Point Rockers baseball team and Carolina Core FC, creating year-round energy and community pride. Nearby, Stock + Grain Assembly, Food Hall offers a curated mix of local flavors, while Congdon Yards blends historic architecture with modern workspaces, dining, and culture. Visitors can also explore The Art Gallery at Congdon Yards, featuring rotating exhibitions.As the day winds down, downtown comes alive with restaurants, live music, and the city’s social district, inviting visitors to gather, linger, and connect. Just blocks away, Uptowne High Point adds even more nightlife and dining options, including rooftop experiences.Designed for Discovery at Every AgeHigh Point offers engaging experiences for visitors of all ages. Families can explore The Nido and Mariana Qubein Children’s Museum, an interactive space that inspires curiosity and learning through play.At City Lake Park, new amenities elevate outdoor fun with a swimming pool, water slides, and a lazy river, alongside old time favorites like the train ride, mini golf, playgrounds, and scenic lake views. A new pedestrian crosswalk now connects the park directly to the High Point Greenway, creating easy access to even more outdoor exploration.Visitors can discover even more green spaces through the Piedmont Discovery App, which highlights 40 nearby parks and trails. High Point University’s beautifully landscaped campus also offers gardens, sculptures, cultural performances, and athletic events open to the public throughout the year.Where History Inspires the PresentHigh Point’s story is rooted in innovation, entrepreneurship, and social progress. At the High Point Museum, visitors can explore the city’s legacy in home furnishings, business leadership, and civil rights history. A visit to Mendenhall Homeplace offers a powerful glimpse into the past, including one of only two remaining false bottom wagons used on the Underground Railroad.Home Furnishings Capital of the WorldTMKnown worldwide as the Home Furnishings Capital of the WorldTM, High Point offers access to more than 1,000 home furnishings brands, making it a premier destination for design inspiration. Visitors can explore 80 furniture stores and outlets across the region, along with year-round showrooms that showcase the depth, diversity, and innovation of the furnishings industry.High Point is also home to Furnitureland South, the largest furniture store in the nation, further reinforcing the city’s unmatched scale and influence in home design.A Place to Visit and BelongWith its central Piedmont location just an hour from the mountains and three hours from the coast, High Point is as easy to visit as it is to love. Positioned between Greensboro and Winston Salem, the city blends small city warmth with big picture opportunity.High Point is proud to be both a Retire NC Certified Community and a Certified Autism Destination, reflecting a citywide commitment to accessibility, inclusion, and welcoming experiences for all visitors.Share Your High Point ExperienceWe have shared what we love about High Point. Now it is your turn. On your next trip, show us how you VisitHP by tagging VisitHighPoint and sharing your experience.
+"""
+
+[R2] History of High Point | High Point, NC
+(https://www.highpointnc.gov/840/History-of-High-Point)
+"""
+History of High Point | High Point, NC Loading Skip to Main Content HomeGovernmentDepartmentsMuseumOnline ResourcesHistory of High Point History of High Point The town of High Point was chartered on May 26, 1859. It was located at the crossroads of the North Carolina Railroad and the Fayetteville and Western Plank Road (now Main Street). This intersection was the highest point on the railroad which stretched between Goldsboro and Charlotte, thus inspiring the name of the new town. View City Directories and Yearbooks on DigitalNC If you have any specific genealogical or local High Point History questions contact the Heritage Research Center. Enjoy this video of images of High Point set to original music by High Pointer David Williams. See What We've Pinned On HistoryPin The High Point Museum uses HistoryPin to address the question, “Why does High Point look the way it does?” On HistoryPin, you can compare past and present High Point by viewing historic images alongside current street views. As more images in the Museum’s collections are digitized, they will be added to our HistoryPin profile. Check back often to see what’s new. Government Websites by CivicPlus® Loading Loading Do Not Show Again Close Select LanguageAbkhazAcehneseAcholiAfarAfrikaansAlbanianAlurAmharicArabicArmenianAssameseAvarAwadhiAymaraAzerbaijaniBalineseBaluchiBambaraBaouléBashkirBasqueBatak KaroBatak SimalungunBatak TobaBelarusianBembaBengaliBetawiBhojpuriBikolBosnianBretonBulgarianBuryatCantoneseCatalanCebuanoChamorroChechenChichewaChinese (Simplified)Chinese (Traditional)ChuukeseChuvashCorsicanCrimean Tatar (Cyrillic)Crimean Tatar (Latin)CroatianCzechDanishDariDhivehiDinkaDogriDombeDutchDyulaDzongkhaEsperantoEstonianEweFaroeseFijianFilipinoFinnishFonFrenchFrench (Canada)FrisianFriulianFulaniGaGalicianGeorgianGermanGreekGuaraniGujaratiHaitian CreoleHakha ChinHausaHawaiianHebrewHiligaynonHindiHmongHungarianHunsrikIbanIcelandicIgboIlocanoIndonesianInuktut (Latin)Inuktut (Syllabics)IrishItalianJamaican PatoisJapaneseJavaneseJingpoKalaallisutKannadaKanuriKapampanganKazakhKhasiKhmerKigaKikongoKinyarwandaKitubaKokborokKomiKonkaniKoreanKrioKurdish (Kurmanji)Kurdish (Sorani)KyrgyzLaoLatgalianLatinLatvianLigurianLimburgishLingalaLithuanianLombardLugandaLuoLuxembourgishMacedonianMadureseMaithiliMakassarMalagasyMalayMalay (Jawi)MalayalamMalteseMamManxMaoriMarathiMarshalleseMarwadiMauritian CreoleMeadow MariMeiteilon (Manipuri)MinangMizoMongolianMyanmar (Burmese)Nahuatl (Eastern Huasteca)NdauNdebele (South)Nepalbhasa (Newari)NepaliNKoNorwegianNuerOccitanOdia (Oriya)OromoOssetianPangasinanPapiamentoPashtoPersianPolishPortuguese (Brazil)Portuguese (Portugal)Punjabi (Gurmukhi)Punjabi (Shahmukhi)QuechuaQʼeqchiʼRomaniRomanianRundiRussianSami (North)SamoanSangoSanskritSantali (Latin)Santali (Ol Chiki)Scots GaelicSepediSerbianSesothoSeychellois CreoleShanShonaSicilianSilesianSindhiSinhalaSlovakSlovenianSomaliSpanishSundaneseSusuSwahiliSwatiSwedishTahitianTajikTamazightTamazight (Tifinagh)TamilTatarTeluguTetumThaiTibetanTigrinyaTivTok PisinTonganTshilubaTsongaTswanaTuluTumbukaTurkishTurkmenTuvanTwiUdmurtUkrainianUrduUyghurUzbekVendaVenetianVietnameseWarayWelshWolofXhosaYakutYiddishYorubaYucatec MayaZapotecZuluPowered by Translate Arrow Left Arrow Right Slideshow Left Arrow Slideshow Right Arrow Original textRate this translationYour feedback will be used to help improve Google TranslateClose ×
+"""
+
+[R3] Why High Point | High Point, NC
+(https://www.highpointnc.gov/321/Why-High-Point)
+"""
+Why High Point | High Point, NC Loading Skip to Main Content HomeGovernmentDepartmentsEconomic DevelopmentWhy High Point Why High Point HIGH POINT: North Carolina's International City™A globally-connected community, High Point USA earns its nicknames as North Carolina's International City™ and Home Furnishings Capital of the World™. Twice each year, the City hosts the High Point Market, the world's largest home furnishings trade show. High Point is located alongside Greensboro and Winston-Salem in the Piedmont Triad region of North Carolina, the nation’s 33rd largest metro area with a population exceeding 1.7 million. High Point’s population (as of April 1, 2019) is estimated to be 114,183 residents; Greensboro, 294,722; and Winston-Salem, 246,328.The region has a workforce of over 835,000 and boasts 16 colleges and universities with more than 115,000 students.The High Point Economic Development and the Greensboro Chamber of Commerce work closely together as members of the Guilford County Economic Development Alliance – a collaborative effort along with Guilford County, the City of High Point, and the City of Greensboro. Please contact the High Point Economic Development staff for assistance on relocating to or expanding your business in the City of High Point and Guilford County. Government Websites by CivicPlus® Loading Loading Do Not Show Again Close Select LanguageAbkhazAcehneseAcholiAfarAfrikaansAlbanianAlurAmharicArabicArmenianAssameseAvarAwadhiAymaraAzerbaijaniBalineseBaluchiBambaraBaouléBashkirBasqueBatak KaroBatak SimalungunBatak TobaBelarusianBembaBengaliBetawiBhojpuriBikolBosnianBretonBulgarianBuryatCantoneseCatalanCebuanoChamorroChechenChichewaChinese (Simplified)Chinese (Traditional)ChuukeseChuvashCorsicanCrimean Tatar (Cyrillic)Crimean Tatar (Latin)CroatianCzechDanishDariDhivehiDinkaDogriDombeDutchDyulaDzongkhaEsperantoEstonianEweFaroeseFijianFilipinoFinnishFonFrenchFrench (Canada)FrisianFriulianFulaniGaGalicianGeorgianGermanGreekGuaraniGujaratiHaitian CreoleHakha ChinHausaHawaiianHebrewHiligaynonHindiHmongHungarianHunsrikIbanIcelandicIgboIlocanoIndonesianInuktut (Latin)Inuktut (Syllabics)IrishItalianJamaican PatoisJapaneseJavaneseJingpoKalaallisutKannadaKanuriKapampanganKazakhKhasiKhmerKigaKikongoKinyarwandaKitubaKokborokKomiKonkaniKoreanKrioKurdish (Kurmanji)Kurdish (Sorani)KyrgyzLaoLatgalianLatinLatvianLigurianLimburgishLingalaLithuanianLombardLugandaLuoLuxembourgishMacedonianMadureseMaithiliMakassarMalagasyMalayMalay (Jawi)MalayalamMalteseMamManxMaoriMarathiMarshalleseMarwadiMauritian CreoleMeadow MariMeiteilon (Manipuri)MinangMizoMongolianMyanmar (Burmese)Nahuatl (Eastern Huasteca)NdauNdebele (South)Nepalbhasa (Newari)NepaliNKoNorwegianNuerOccitanOdia (Oriya)OromoOssetianPangasinanPapiamentoPashtoPersianPolishPortuguese (Brazil)Portuguese (Portugal)Punjabi (Gurmukhi)Punjabi (Shahmukhi)QuechuaQʼeqchiʼRomaniRomanianRundiRussianSami (North)SamoanSangoSanskritSantali (Latin)Santali (Ol Chiki)Scots GaelicSepediSerbianSesothoSeychellois CreoleShanShonaSicilianSilesianSindhiSinhalaSlovakSlovenianSomaliSpanishSundaneseSusuSwahiliSwatiSwedishTahitianTajikTamazightTamazight (Tifinagh)TamilTatarTeluguTetumThaiTibetanTigrinyaTivTok PisinTonganTshilubaTsongaTswanaTuluTumbukaTurkishTurkmenTuvanTwiUdmurtUkrainianUrduUyghurUzbekVendaVenetianVietnameseWarayWelshWolofXhosaYakutYiddishYorubaYucatec MayaZapotecZuluPowered by Translate Arrow Left Arrow Right Slideshow Left Arrow Slideshow Right Arrow Original textRate this translationYour feedback will be used to help improve Google TranslateClose ×
+"""
+
+[R4] Geography | High Point, NC
+(https://www.highpointnc.gov/2007/Geography-History-Climate)
+"""
+Geography | High Point, NC The City of High Point is located in the Piedmont Triad region of central North Carolina and is located near the cities of Winston-Salem to the northwest and Greensboro to the northeast. Most of the city is in Guilford County with portions in Davidson, Forsyth, and Randolph counties. It is the only city in North Carolina that extends into four counties. The City of High Point was officially established on May 26, 1859, with an area of four square miles. As of January 2025, the city measured 58.9 square miles, and the Extra Territorial Jurisdiction (ETJ), an area beyond the city limits in which the City legally exercises its authority, was equal to 3.3 square miles. The planning area, which includes the city limits, and some (but not all) of the ETJ, as well as the area covered by the City’s Comprehensive Plan, but not governed by the City, extends to a total of 94 square miles. The number of annexations into High Point and their acreage over the last ten years and the resulting incorporated area and growth rates are listed below: History High Point got its name from being the highest point along the North Carolina railroad constructed in the mid-1800’s. It was officially incorporated as a town in 1859 and at that time was centered where the railroad tracks crossed the Great Plank Road, a major transportation route that stretched across most of North Carolina. Historically, High Point has been known for textile and furniture manufacturing. By the end of the 19th Century, High Point was a leading furniture manufacturing center in the south. To help retailers select which furniture products they wanted to sell, the first NC furniture exposition was held in High Point in 1905. Over the years this grew to become the High Point Market, the world’s largest home furnishings trade show, held twice a year in the spring and fall. Famous jazz saxophonist John Coltrane also grew up in High Point from shortly after his birth through high school. Climate High Point has a Humid Subtropical climate and experiences all four seasons. The average high temperature is approximately 72°F, and the average low temperature is around 49°F. The highest recorded temperature was 106° in 1952, while the lowest temperature was -7° in 1985. Average precipitation is around 46 inches per year with approximately two inches of snowfall in an average year. The record one-day snowfall was 18 inches in 1930. High Point occasionally deals with major weather events, primarily hurricanes, tornadoes, and ice storms.Source: http://www.usclimatedata.com/climate/high-point/north-carolina/united-states/usnc0314 Additional Resources:High Point Public Library: provides a variety of resources beyond the traditional role of lending books, including a Heritage Research Center with genealogy/local history informationHigh Point Museum: cares for over 37,000 objects, photographs, and archive material and hosts a variety of events throughout the year to share greater High Point’s historyHistoric Resources Web Portal: a compilation of online information about High Point’s history, historic districts, and its people & families with answers to FAQ’s Original textRate this translationYour feedback will be used to help improve Google Translate
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

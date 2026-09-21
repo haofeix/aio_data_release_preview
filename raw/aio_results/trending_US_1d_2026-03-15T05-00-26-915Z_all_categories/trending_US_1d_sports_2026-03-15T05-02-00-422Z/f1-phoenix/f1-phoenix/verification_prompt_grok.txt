@@ -1,0 +1,109 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "f1 phoenix"
+
+Claims:
+[1] "The Red Bull Showrun Phoenix brought Formula 1 to downtown Phoenix on March 14, 2026."
+[2] "The Red Bull Showrun Phoenix featured high-speed runs, donuts, and drifting on Jefferson Street."
+[3] "The Red Bull Showrun Phoenix was free."
+[4] "The Red Bull Showrun Phoenix was family-friendly."
+[5] "Phoenix hosted the Phoenix Grand Prix from 1989 to 1991."
+[6] "The Red Bull Showrun Phoenix location was Downtown Phoenix, specifically East Jefferson Street from South Central Avenue to South 5th Street."
+[7] "The Red Bull Showrun Phoenix featured an Oracle Red Bull Racing F1 car."
+[8] "The Red Bull Showrun Phoenix featured a Visa Cash App Racing Bulls car."
+[9] "The Red Bull Showrun Phoenix featured a Ford F-150 Lightning SuperTruck."
+[10] "The Red Bull Showrun Phoenix featured a Ford Mustang GT4."
+[11] "Patrick Friesacher performed at the Red Bull Showrun Phoenix."
+[12] "The Red Bull Showrun Phoenix included high-speed, burnouts, and smoke-filled 360-degree turns performed by the cars, according to 12News."
+[13] "The Red Bull Showrun Phoenix involved significant road closures on Jefferson Street and surrounding areas starting early on March 14, reported by azcentral.com."
+
+Cited text snippets from the AI Overview (for additional context):
+- Red Bull showrun is tomorrow in downtown Phoenix! 🏎️💨 You can ...: "Big news for motorsport fans,moments right here in Phoenix."
+- Red Bull brings Formula 1 car to downtown Phoenix: "Red Bull's F1 car will be doing,Street from Central Avenue to Fifth Street."
+- Red Bull Showrun Phoenix Presented by Ford Racing: "01-,What is Red Bull Showrun Phoenix Presented by Ford Racing,as the vehicles on display."
+- Phoenix street circuit - Wikipedia: "The Formula One United States,Arizona, from 1989 to 1991."
+- Free Red Bull F1 Showrun brings race cars to Downtown ...: "Witness a free Red Bull F1 showrun,supercars tomorrow at 1 PM in Phoenix."
+- Red Bull Showrun is heading to Phoenix. Here are the road closures: "Jefferson Street, from Third Street,delays and extended travel times."
+- Red Bull Showrun turns downtown Phoenix into high-octane spectacle: ""Just seeing something like that,track with internationally recognized talent."
+- FREE FORMULA 1 EVENT THIS SAT IN DTPHX 🏎️ ...: "6204 likes, 56 comments - wildjoyexperiences on,of the event, we'll get to see"
+Reference Sources:
+
+[R1] FAQs
+(https://www.redbull.com/us-en/events/red-bull-showrun-phoenix/red-bull-showrun-phoenix-faqs)
+"""
+Summary1What is Red Bull Showrun Phoenix Presented by Ford Racing?2Where and When will the Red Bull Showrun Phoenix take place?3Do I need to purchase tickets?4How loud will this event be?5Is the event family friendly? 6Are there partnership opportunities?7What is the camera policy?8Will merch be available on site?01What is Red Bull Showrun Phoenix Presented by Ford Racing?Red Bull Showrun Phoenix presented by Ford Racing is a Formula One demonstration where an Oracle Red Bull Racing F1 car, Visa Cash App Rasing Bulls F1 car, as well as other Red Bull motorsports vehicles, will drive up and down E Jefferson street between S Central Ave & S 5th St, in a showcase of high-end performance and the drivers’ technical skills. While this is not a race, it promises to be an unforgettable experience that will make spectators’ hears race nearly as fast as the vehicles on display.02Where and When will the Red Bull Showrun Phoenix take place?Red Bull Showrun Phoenix will take place on E Jefferson Street in Downtown Phoenix, AZ, Saturday March 14th, between 1:00PM and 4:00 PM PST.03Do I need to purchase tickets?No, the event is free and open to all ages.04How loud will this event be?Oracle Red Bull Racing and Visa Cash App Racing Bulls will bring their Formula 1 Showcars with V8 engines. The show will be loud and fun. If possible, please bring and wear ear protection.05Is the event family friendly? Yes - Red Bull Showrun Phoenix is family friendly and no tickets are required. Just make sure you arrive early in order to secure a spot along our track!06Are there partnership opportunities?There are no additional partnership opportunities on site.07What is the camera policy?Personal cameras are allowed on site. Use of drones is prohibited.08Will merch be available on site?Yes, merchandize for purchase will be available on site in the Fan Zones located on site. Please visit www.redbullshopus.com for more merchandise options.
+"""
+
+[R2] Red Bull Showrun is heading to Phoenix. Here are the road closures
+(https://www.azcentral.com/story/news/local/phoenix-traffic/2026/03/13/red-bull-showrun-phoenix-traffic-and-parking-guide/89145475007/)
+"""
+March 13, 2026, 6:23 p.m. MTThe Red Bull Showrun will be heading to Phoenix for a special one-off event March 14.In downtown from 1 to 4 p.m. Saturday, Red Bull and Racing Bulls will showcase the Formula One Red Bull racing car as well as other Red Bull motorsport vehicles.Here are some things you will need to know before heading down to the showcase.Street closuresJefferson Street, from Third Street to Fifth Street, as well as the surrounding blocks, will be closed starting in the early morning of March 14 and continuing well into the evening, according to the city.With freeway closures across the Valley and street closures in downtown Phoenix, attendees were encouraged to prepare for traffic delays and extended travel times.ParkingPhoenix recommends that those attending the event plan ahead and reserve parking via the ParkPHX website.Light rail serviceThe Valley Metro light rail service will also be affected, as the station at Jefferson Street and Third Street will be closed March 14, according to the city.Riders were advised to use the Downtown Phoenix Hub, as well as the Washington Street stations at Third Street, for both east- and westbound travel.Helpful tipsArizona was expected to experience a “historic” heat wave this month. Attendees were encouraged to stay hydrated, with free water refill stations available throughout the event.Amid the roaring engines and screeching tires, attendees were advised to protect their hearing and consider bringing ear protection.
+"""
+
+[R3] Red Bull Showrun turns downtown Phoenix into high-octane spectacle
+(https://www.12news.com/article/news/local/valley/red-bull-showrun-turns-downtown-phoenix-high-octane-spectacle/75-6802ee39-cd78-4f88-b36a-e5b76e4abb3a)
+"""
+The Red Bull Showrun transformed city streets into a high-octane arena. PHOENIX — A stretch of downtown Phoenix turned into a temporary motorsports arena Saturday as the Red Bull Showrun Phoenix brought Formula 1 engines, stunt motorcycles and off-road trucks to East Jefferson Street. Thousands of spectators lined the street as drivers and riders performed high-speed demonstrations, burnouts and drifting runs during the event presented by Red Bull and Ford Motor Company. "Just seeing something like that going up and down Phoenix streets is kind of crazy, let alone an F1 car in general," one spectator said. Former Formula 1 driver Patrick Friesacher piloted the Red Bull RB7 along the usually busy downtown corridor, spinning 360-degree turns and producing clouds of tire smoke as the crowd cheered. Off-road racer Chris Polvoorde drove a Ford F‑150 Raptor Baja Pre‑Runner during demonstration runs, while freestyle motorcyclist Aaron Colton performed stunt riding along the course. Demonstrations also featured the Ford Mustang GT4 and the all-electric Ford F‑150 Lightning SuperTruck. Arizona off-road racer Mia Chapman made her debut at the event in front of a hometown crowd, driving a side-by-side vehicle through drifting runs on the street course. "I think this is extra special for me because it's my hometown, so a lot of my people are out here, family, friends, locals, I mean, it's just, it's absolutely insane," Chapman said. Chapman's run drew among the loudest reactions of the afternoon, with fans recognizing the significance of a local competitor sharing the track with internationally recognized talent. Watch 12News for free You can now watch 12News content anytime, anywhere thanks to the 12+ app! The free 12+ app from 12News lets users stream live events — including daily newscasts like "Today in AZ" and "12 News" and our daily lifestyle program, "Arizona Midday"—on Roku, Apple TV and Amazon Fire TV. 12+ showcases live video throughout the day for breaking news, local news, weather and even an occasional moment of Zen showcasing breathtaking sights from across Arizona. Users can also watch on-demand videos of top stories, local politics, I-Team investigations, Arizona-specific features and vintage videos from the 12News archives. Roku: Add the channel from the Roku store or by searching for "12 News KPNX." Amazon Fire TV: Search for "12 News KPNX" to find the free 12+ app to add to your account, or have the 12+ app delivered directly to your Amazon Fire TV through Amazon.com or the Amazon app.
+"""
+
+[R4] Phoenix street circuit
+(https://en.wikipedia.org/wiki/Phoenix_street_circuit)
+"""
+Phoenix Grand Prix CircuitThe track in 1989 and 1990The track in 1991LocationPhoenix, Arizona, United StatesCoordinates33°26′52.5″N 112°4′28.5″W / 33.447917°N 112.074583°WCapacity40,000Broke groundFebruary 1989; 37 years agoOpenedJune 2, 1989; 36 years agoClosedMarch 10, 1991; 35 years agoMajor eventsFormula OneUnited States Grand Prix(1989–1991)Mexican Formula Three Championship (1991)Trans-Am Series (1990)Grand Prix Circuit (1991)Length2.312 mi (3.721 km)Turns15Race lap record1:21.434 ( Ayrton Senna, McLaren MP4/6, 1991)Grand Prix Circuit (1989–1990)Length2.361 mi (3.800 km)Turns15Race lap record1:31.050 ( Gerhard Berger, McLaren MP4/5B, 1990) The Formula One United States Grand Prix was held on the Phoenix street circuit in Phoenix, Arizona, from 1989 to 1991. It was held in downtown by the Phoenix Civic Plaza and the America West Arena, prior to the introduction of the state's baseball stadium, Bank One Ballpark. The United States Grand Prix lasted in Phoenix for three years, but was dropped without explanation by Formula One management. There were no further Formula One races in the US until the Indianapolis Motor Speedway first held a Grand Prix in 2000. In 1985, several members of the Phoenix City Council approached Phoenix businessman and real estate developer Howard Pynn about his thoughts on how to bring more focus to the redevelopment of the Phoenix downtown area. The Council Members informed Pynn that this request also came from Mayor Terry Goddard. One of Pynn's initial ideas was to explore the feasibility of a downtown street race, and Pynn was encouraged to explore that possibility by the Council members. Over the next 2 1/2 years Pynn met with John Bishop of IMSA, and representatives of INDY CAR and finally Formula One. Pynn also met several times with Chris Pook who was the organizer of the Long Beach Grand Prix who had dealt with both Formula One and INDY CAR representatives past and present. Pynn encouraged the City of Phoenix to retain the services of Mr. Pook in order to produce a Feasibility Study, the positive results of which Mr. Pook presented in a public forum at a City Council meeting in 1988. Pynn was then asked to move forward with the exploration of the possibility of an FIA sanctioned Grand Prix. The Phoenix City Mayor Terry Godard authorized a City Ad Hoc Committee be formed to further explore the possibilities of a FIA Grand Prix. Pynn was tasked with leading that exploration, and arranged a meeting with Detroit City Officials in Detroit, and along with a representative of the local Phoenix Thunderbird's (organizers of the Phoenix PGA Tour Golf Tournament), and a City Councilman, to establish the various parameters of organizing a Grand Prix from Detroit's perspective. Mr. Pook also suggested to Mr. Pynn that he seek out the Promoter of the Montreal Grand Prix, Mr. Jack Long, for Mr. Long's guidance with the possible of an FIA Grand Prix in Phoenix. On July 19th, 1988 Mr. Long, and Mr. Pynn (with Mr. Pynn's son) met with Bernie Eccelstone (VP of the FIA and head of Formula One) at the Detroit Grand Prix. It was at that lunch meeting the Mr. Eccelstone tasked Mr. Long (who was to be the Phoenix Promoter) to pursue with the City of Phoenix and to come to a contractual agreement for Phoenix to hold a June 1989 Formula One Grand Prix, with subsequent years (5 total) to be held in March as the first Formula One race of each year. On January 13, 1989, the Phoenix City Council headed by mayor [Terry Goddard] agreed to stage an annual Formula 1 race on a five-year contract. Phoenix City Council also voted to spend $9 million of taxpayers' money on race circuit infrastructure over the 5 years. It was well known to organizers that Phoenix can be very hot during summer, but nonetheless, Phoenix inherited the Detroit race's scheduled slot of June 4, 1989.[1] The city had only 4 months to finish the 2.361 mi (3.800 km) long circuit. This required fencing off and repaving the road surface, as well as building grandstands, garages for the pit crew, and other infrastructure. The project was so massive that local media joked that the city looked as if it were preparing for a Soviet invasion.[2] In the inaugural race in 1989, Ayrton Senna took the pole in his McLaren-Honda but suffered an electronic failure a little over halfway through the race. The heat of the Phoenix desert was hard on teams and drivers, and only 6 of 26 cars finished. Alain Prost, Senna's teammate, won the race[3] ahead of Riccardo Patrese and Phoenix native Eddie Cheever. In an attempt to beat the scorching heat, the event date was changed to become the season opener the next year. It was held on March 11, 1990. Senna won. Jean Alesi finished 2nd. The last United States Grand Prix held in Phoenix was on March 10, 1991, with Senna again claiming victory in a modified layout reducing the length to 2.312 mi (3.721 km). Again reliability was a factor, with only nine cars still running at the end of the race. For a second straight season both Tyrrells finished in the points; Stefano Modena, who had replaced the Ferrari-bound Alesi, in fourth heading Nakajima in fifth. On August 22, 1991, Bernie Ecclestone faxed a message to the City of Phoenix indicating that the Formula 1 race would be held there on March 15, 1992.[4] On September 21, 1991, the City of Phoenix hired Buddy Jobe, the owner of Phoenix International Raceway to be consultant for the city for the next event.[5] On October 7, 1991, however, Ecclestone called the City of Phoenix from his London office to say that Formula 1 would not be returning to Phoenix, giving no explanation as to why. Phoenix City Manager David Garcia said that Ecclestone agreed to pay the city $1.2 million for cancellation of the contract, and that the reason for cancellation may have been a desire to add a South African Grand Prix since apartheid had ended.[6] During the 1992 South African Grand Prix, Ecclestone was asked whether poor attendance was to blame for the cancellation of the Phoenix race; Ecclestone replied that the issue was not the lack of spectators, but "the inability to put more than 20,000 seats in a position where people could see [more than] a small part of the race".[7] On August 12, 2017, new Formula 1 boss Chase Carey criticized Ecclestone for going for too many short term deals in the USA, stating "You have to capture people's imagination. You don't do that with Phoenix, but in New York or Miami."[8] In May 2019, Scottsdale, Arizona resident Eric Schultz commissioned a mural of Ayrton Senna to be painted by artist Mallory Dawn on Central Avenue, 1 km south of the former circuit, to honor his two wins there. The mural depicts Senna looking north towards the track's former location.[9] On March 14, 2026 turn one of the former street circuit at Jefferson St and Central was reconstructed to host the Red Bull Showdown event featuring a 2011 Red Bull RB7 Formula One car driven by Patrick Friesacher who was happy to say that the show gave opportunity to people to see an F1 car in Phoenix for the first time since 1991.[10] The fastest official race lap records at the Phoenix Street Circuit are listed as: Category Time Driver Vehicle Event Grand Prix Circuit: 3.721 km (1991) Formula One 1:21.434 Ayrton Senna McLaren MP4/6 1991 United States Grand Prix Grand Prix Circuit: 3.800 km (1989–1990) Formula One 1:31.050 Gerhard Berger McLaren MP4/5B 1990 United States Grand Prix Trans-Am 1:48.785[11] Robert Lappalainen Ford Mustang Trans-Am 1990 Phoenix Trans-Am round Grand Prix Arizona – a planned Champ Car race to be held on a different street circuit in Phoenix ^ New site for Grand Prix race, Observer Reporter Washington, associated press June 4, 1989 ^ The Phoenix New Times, The Less Than Grand Prix by Tom Fitzpatrick Wednesday, May 10, 1989 ^ "Prost Gains 1st Victory of Year; Wins Phoenix Grand Prix", The Washington Post, June 5, 1989 ^ Formula one official insists firmly race will return, Mark Armijo, The Arizona Republic, August 24, 1991 page E6 ^ Drivers catch pennant fever, Mark Armijo The Arizona republic, September 21, 1991 page E7 ^ "Phoenix may lose Formula One auto race". Kingman Daily Miner. October 7, 1991. ^ "Forlorn In The USA?". Motor Sport Magazine. December 26, 1996. Retrieved April 14, 2018. ^ "Carey on F1's US future: Capture the imagination". www.planetf1.com. Archived from the original on August 13, 2017. Retrieved August 13, 2017. ^ "Ayrton Senna Mural | Downtown Phoenix". Archived from the original on June 7, 2025. Retrieved August 25, 2025. ^ https://www.12news.com/article/news/local/valley/red-bull-showrun-turns-downtown-phoenix-high-octane-spectacle/75-6802ee39-cd78-4f88-b36a-e5b76e4abb3a ^ "1990 SCCA Trans-Am Race #1 Results" (PDF). March 10, 1990. Retrieved December 31, 2024.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

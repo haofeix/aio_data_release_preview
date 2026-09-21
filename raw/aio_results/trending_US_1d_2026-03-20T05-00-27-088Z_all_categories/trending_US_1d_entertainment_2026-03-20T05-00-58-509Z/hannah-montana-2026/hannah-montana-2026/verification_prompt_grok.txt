@@ -1,0 +1,122 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "hannah montana 2026"
+
+Claims:
+[1] "The Hannah Montana 20th Anniversary Special premieres on Disney+ and Hulu on March 24, 2026."
+[2] "Hannah Montana debuted in 2006."
+[3] "The special features never-before-seen footage."
+[4] "The special features set recreations."
+[5] "The special features performances."
+[6] "The special marks Miley Cyrus's first time as the character in 15 years."
+[7] "The special is titled "Hannah-versary"."
+[8] "The special includes a "Call Her Daddy" host-led interview with Miley Cyrus."
+[9] "The special includes set recreations like the Stewart living room."
+[10] "The special includes a retrospective on the show's impact."
+[11] "Miley Cyrus is part of the retrospective celebration."
+[12] "Emily Osment (Lilly) is part of the retrospective celebration."
+[13] "Jason Earles (Jackson) is part of the retrospective celebration."
+[14] "Billy Ray Cyrus is part of the retrospective celebration."
+[15] "The trailer shows Cyrus revisiting her Hannah persona."
+[16] "The trailer shows Cyrus including the iconic bangs."
+[17] "The trailer shows Cyrus performing as the character."
+[18] "Disney+ has launched an official Hannah Montana collection."
+[19] "The official Hannah Montana collection features all four seasons."
+[20] "The official Hannah Montana collection features the movie."
+
+Cited text snippets from the AI Overview (for additional context):
+- Miley Cyrus Returns Home For The “Hannah Montana 20th ...: "Miley Cyrus Returns Home For,memories that defined an era."
+- Disney+ on Instagram: "Going back to where it all began. The ...: "4M likes, 89K comments - disneyplus on,Special premieres March 24 on Disney+. #MileysMemories"."
+- Miley Cyrus 𝘢𝘴 Hannah Montana in 2026?! 🤯⁠ ⁠ We knew ...: "80K likes, 357 comments - entertainmenttonight on,performing as Hannah — bangs and all!"
+- What to Know About the Hannah Montana 20th Anniversary Special ...: "To celebrate the 20th anniversary,Best of Both Worlds Concert."
+- Miley Cyrus Performs as Hannah Montana for First Time in 15 Years in Trailer for 20th Anniversary Disney+ Special: "1 day ago-,Disney+,nominations for outstanding children's program."
+- SWEET NIBLETS! OFFICIAL TRAILER DROPS FOR ‘HANNAH ...: "“Hannah Montana 20th Anniversary Special” will be released on Disney+,series debuted on Disney Channel."
+- THIS IS UNREAL. THANK YOU SO MUCH @disneyplus, @hulu, ...: "IT'S HAPPENING!,hannahmontana #hannahmontana20 #mileycyrus #thebestofbothworlds"
+- Official Trailer: Miley Cyrus transforms back into Hannah Montana ... - 6ABC: "The "Hannah Montana 20th Anniversary Special" premieres March 24 on,Hulu and this ABC station."
+Reference Sources:
+
+[R1] Hannah Montana 20th Anniversary Trailer: Miley Cyrus Back for Special
+(https://variety.com/2026/tv/news/hannah-montana-20th-anniversary-trailer-miley-cyrus-1236666977/)
+"""
+It’s time to get the best of both worlds, because Disney has released the trailer for its “Hannah Montana 20th Anniversary Special,” featuring star Miley Cyrus. The special will debut on March 24, exactly 20 years after the original show premiered on Disney Channel. In the special, fans will see never-before-seen footage, recreations of the show’s set, iconic moments revisited and even some “familiar notes that find their way back into the spotlight,” said Disney. It will be filmed in front of a live studio audience, featuring an interview with Cyrus hosted by “Call Her Daddy” star Alex Cooper. “Hannah Montana” first premiered in 2006, running for four seasons until 2011 and earning four Emmy nominations for outstanding children’s program. The show, which followed Miley Stewart, a teenager living in Malibu, Calif., who doubles as the famous pop singer Hannah Montana, was a major hit with kids and tweens. It even spawning a film, “Hannah Montana: The Movie,” which was released in theaters in April 2009 during the show’s third season. Popular on Variety Visit Advertiser websiteGO TO PAGE In addition to Cyrus, Emily Osment played Lilly Truscott, Hannah’s best friend. Mitchel Musso played Oliver Oken, another one of her close friends. Cyrus’ real-life father Billy Ray Cyrus played Hannah’s dad, Robby, and Jason Earles played her brother, Jackson. Moisés Arias played Rico Suave, the manager of the local Rico’s Surf Shop. A number of high-profile guest stars also made appearances during the show’s run, including Dolly Parton, Selena Gomez, the Jonas Brothers, Dwayne “The Rock” Johnson, Larry David, Ashley Tisdale, Corbin Bleu, Kelly Ripa and Lisa Rinna.
+"""
+
+[R2] Miley Cyrus Returns Home For The “Hannah Montana 20th Anniversary Special,” Streaming March 24 On Disney+
+(https://press.disneyplus.com/news/disney-plus-hannah-montana-20th-anniversary-special-announcement)
+"""
+Special to be Hosted by Alex Cooper and Produced by HopeTown Entertainment and Unwell Productions Social Video Asset: HERE(BURBANK, Calif. – Feb. 17, 2026) Today, it was announced that the “Hannah Montana 20th Anniversary Special” is coming to Disney+ on March 24. The special will celebrate the iconic series that defined a generation — exactly two decades after its Disney Channel debut. The special will be filmed in front of a live studio audience and will feature an exclusive, in-depth interview with Miley Cyrus, hosted by Alex Cooper. The conversation will offer an intimate look at the creation of one of pop culture’s most iconic characters and the lasting impact the show and character have had on fans around the world. With heartfelt nostalgia and fresh perspective, Cyrus will revisit the moments, music and memories that defined an era. Viewers will be treated to never-before-seen archival footage, while some of the most memorable sets from “Hannah Montana” are brought back to life — including the Stewart family living room and the legendary Hannah Montana closet. There will also be some familiar *notes* that find their way back into the spotlight…With one of Disney’s most passionate fandoms, “Hannah Montana” became a global phenomenon, reshaping kids’ television, influencing music and fashion, and launching a generation-defining pop star. The EmmyⓇ-nominated series spawned 14 platinum and 18 gold albums worldwide, as well as two feature films. ‘“Hannah Montana’ will always be a part of who I am. What started as a TV show became a shared experience that shaped my life and the lives of so many fans, and I’ll always be thankful for that connection,” said Miley Cyrus. “The fact that it still means so much to people all these years later is something I’m very proud of. This ‘Hannahversary’ is my way of celebrating and thanking the fans who’ve stood by me for 20 years.”“‘Hannah Montana’ opened the door for so many fans to dream big, sing loud, and embrace every side of themselves, which is why its legacy continues to shine across generations,” said Ayo Davis, president, Disney Branded Television. “Partnering with Miley on this special is a dream, and we want it to be a love letter to the fans, who remain as passionate today as they were when the series debuted almost 20 years ago.”The special is produced by HopeTown Entertainment and Unwell Productions. Ashley Edens serves as showrunner, with Miley Cyrus, Tish Cyrus-Purcell, Alex Cooper and Matt Kaplan as executive producers. Cooper will also host the special, guiding “Hannah Montana” fans through the nostalgic and highly-anticipated anniversary celebration.Fans can relive their favorite Miley moments ahead of the anniversary special with the "Hannah Montana" Collection on Disney+. And starting Feb. 19, they can dive even deeper with a dedicated non-stop Stream featuring all four seasons of "Hannah Montana," "Hannah Montana: The Movie," and "Hannah Montana and Miley Cyrus: The Best of Both Worlds Concert." Demonstrating the franchise’s enduring popularity, the "Hannah Montana" catalog has amassed more than half a billion hours streamed globally on Disney+ to date.ABOUT DISNEY+Disney+ is the dedicated streaming home for movies and shows from Disney, Pixar, Marvel, Star Wars, and National Geographic, along with The Simpsons and outside the U.S., general entertainment brand Hulu. As the flagship direct-to-consumer streaming service from The Walt Disney Company, Disney+ serves as a connection point for audiences around the world with an unmatched collection of award-winning general entertainment, gold-standard family programming, the most trusted news, and global sports programming from ESPN. With unprecedented access to Disney’s long history of incredible film and television entertainment, it is also the exclusive streaming home for the newest releases from The Walt Disney Studios. Disney+ is available as a standalone streaming service or as part of bundle offerings in the U.S. whereby bundle subscribers can now stream Hulu and ESPN content directly in the Disney+ app. Subscriptions also include access to the Disney+ Perks loyalty program including special discounts, everyday savings, and early access to exclusive experiences that only Disney can offer. For more, visit disneyplus.com, or find the Disney+ app on most mobile and connected TV devices.SOCIAL MEDIAInstagram: @DisneyPlusFacebook: @DisneyPlusTikTok: @DisneyPlus Threads: @DisneyPlusX: @DisneyPlusYouTube: @disneyplusHashtag: #HannahMontana20 #MileysMemoriesDisney Branded Television Media Relations:Amanda KellAmanda.Kell@disney.comLeah PalaciosLeah.Palacios@disney.com###
+"""
+
+[R3] SWEET NIBLETS!&nbsp;OFFICIAL TRAILER DROPS FOR‘HANNAH MONTANA 20TH ANNIVERSARY SPECIAL’
+(https://press.disneyplus.com/news/disney-plus-hannah-montana-20th-anniversary-special-trailer-announcement)
+"""
+Cancel News Disney+ Assets Available HEREToday, Disney+ and Hulu dropped the official trailer for the highly anticipated “Hannah Montana 20th Anniversary Special.”“Hannah Montana 20th Anniversary Special” will be released on Disney+ and Hulu on Tuesday, March 24 — 20 years to the day that the original series debuted on Disney Channel. “Hannah Montana 20th Anniversary Special” is a love letter to fans, filled with heartfelt nostalgia. Miley Cyrus revisits her most memorable moments in an exclusive, in-depth interview hosted by Alex Cooper. Viewers will also enjoy a behind-the-scenes look at Miley’s archival collection, familiar faces and surprise guests, and a special musical performance by Miley Cyrus.The special is produced by HopeTown Entertainment and Unwell Productions. Ashley Edens serves as showrunner, with Miley Cyrus, Tish Cyrus-Purcell, Alex Cooper and Matt Kaplan as executive producers. Cooper will also host the special, guiding “Hannah Montana” fans through the nostalgic and highly anticipated anniversary celebration. Fans can relive their favorite Miley moments ahead of the anniversary special with the “Hannah Montana” Collection on Disney+. They can dive even deeper with a dedicated non-stop Stream featuring all four seasons of “Hannah Montana,” “Hannah Montana: The Movie,” and “Hannah Montana and Miley Cyrus: The Best of Both Worlds Concert,” available now. Demonstrating the franchise’s enduring popularity, the “Hannah Montana” catalog has amassed more than half a billion hours streamed globally on Disney+ to date. SOCIAL MEDIAInstagram: @DisneyPlusFacebook: @DisneyPlusTikTok: @DisneyPlusThreads: @DisneyPlusX: @DisneyPlusYouTube: @disneyplusHashtag: #HannahMontana20 #MileysMemoriesDisney Branded Television Media Relations:Amanda KellAmanda.Kell@disney.comLeah PalaciosLeah.Palacios@disney.com###
+"""
+
+[R4] Official Trailer: Miley Cyrus transforms back into Hannah Montana for the '20th Anniversary Special'
+(https://6abc.com/post/official-trailer-miley-cyrus-transforms-back-hannah-montana-20th-anniversary-special/18725362/)
+"""
+On The Red CarpetWatch the official trailer for the "Hannah Montana 20th Anniversary Special," premiering March 24 on Disney+ and Hulu.ByAmy Becker Take a trip down memory lane as Miley Cyrus dons the Hannah wig in the "Hannah Montana 20th Anniversary Special," premiering March 24 on Disney+ and Hulu.Sweet niblets! The official trailer for the "Hannah Montana 20th Anniversary Special" has arrived!It was a TV show that defined a generation. On March 24, "Hannah Montana" celebrates the 20th anniversary of its debut on Disney Channel.In celebration, Disney released the official trailer for the special, featuring a musical performance by Miley Cyrus, an in-depth interview hosted by Alex Cooper and a special behind-the-scenes look at the archives.It's a trailer filled with nostalgia as Miley (as Hannah) pulls up to set in her Ford Mustang. "Good to be home," she says, as "Best of Both Worlds" begins to play."I loved being Hannah. I love being Miley Cyrus. You really taught me to be who I am," says Miley during a heartfelt conversation with her mom, Tish Cyrus-Purcell.In addition to her mom, Miley's dad Billy Ray Cyrus (who played her on-screen dad, Robby Ray) also makes an appearance, where the two share a sentimental moment on the "Hannah Montana" set."I loved being Hannah then. I'm so living for it now. Thank you so much for being here and celebrating this with us," Miley says on stage.The "Hannah Montana 20th Anniversary Special" premieres March 24 on Disney+ and Hulu.The Walt Disney Company is the parent company of Disney+, Hulu and this ABC station.Copyright © 2026 OnTheRedCarpet.com. All Rights Reserved.
+"""
+
+[R5] What to Know About the Hannah Montana 20th Anniversary Special Before It Releases
+(https://www.teenvogue.com/story/hannah-montana-20th-anniversary-special-everything-you-need-to-know)
+"""
+You'd better get the limo out front, because we are going back in time to the Hannah Montana era! To celebrate the 20th anniversary of one of its most iconic shows, Disney is pulling back the curtain with Miley Cyrus, bringing us the Hannah Montana 20th Anniversary Special, which explores the show's impact and offers viewers never-before-seen content from the original series."Hannah Montana will always be a part of who I am. What started as a TV show became a shared experience that shaped my life and the lives of so many fans, and I’ll always be thankful for that connection,” Cyrus said in a press release about the project. “The fact that it still means so much to people all these years later is something I’m very proud of. This ‘Hannahversary’ is my way of celebrating and thanking the fans who’ve stood by me for 20 years.”Produced by HopeTown Entertainment and Unwell Productions, the Hannah Montana 20th Anniversary Special is more than just an anniversary celebration for longtime fans of the show; to get fans into the spirit, Disney+ has released an official Hannah Montana Collection—not to mention a nonstop stream featuring all four seasons of Hannah Montana, as well as Hannah Montana: The Movie, and Hannah Montana and Miley Cyrus: The Best of Both Worlds Concert.To help make sure you don't miss an update about this Hannah Montana takeover, we've gathered everything you need to know about the special below.When does the Hannah Montana 20th Anniversary Special come out?The Hannah Montana 20th Anniversary Special premieres on Disney+ and Hulu on March 24, 2026. Does that date sound familiar? Well, it's exactly 20 years to the day that the original series debuted on Disney Channel! If you are wondering what specific time the special will come out, Disney+ typically releases new show episodes at 12 a.m. PT / 3 a.m. ETCourtesy of DisneyWhat will the Hannah Montana 20th Anniversary Special be about?©Disney Channel/Courtesy Everett CollectionThe project has been described as a celebration of “the iconic series that defined a generation" and “a love letter to fans filled with heartfelt nostalgia.” Disney has confirmed that the special was filmed in front of a live studio audience, much like the original show.The special features an exclusive, in-depth interview with Miley Cyrus, hosted by Alex Cooper. Per Disney, “the conversation will offer an intimate look at the creation of one of pop culture’s most iconic characters and the lasting impact the show and character have had on fans around the world.”We also know that Cyrus will revisit key moments, music, and memories from her time as Hannah Montana, and we will be privy to “never-before-seen archival footage” from the set. And you can expect some of the show's most memorable sets to return. Among the already confirmed sets are the family living room in the Stewarts' house and Hannah's closet. Disney has also confirmed the special will also feature an exclusive musical performance by Miley Cyrus.Who will appear in the Hannah Montana 20th Anniversary Special?©Disney Channel/Courtesy Everett CollectionAs confirmed by the teasers and announcements we've gotten so far, Miley Cyrus will be the center star of the Hannah Montana 20th Anniversary Special. We also know the special will be hosted by Call Her Daddy co-creator and interviewer Alex Cooper. However, Disney has also said to expect “familiar faces and surprise guests,” which makes sense given this is a retrospective after all.Hannah Montana, as a franchise, featured an ensemble cast that included Emily Osment, Mitchel Musso, Jason Earles, Billy Ray Cyrus, and Moisés Arias. The show also featured a handful of guest stars, including Dolly Parton, the Jonas Brothers, Taylor Swift, Jesse McCartney, and seemingly countless others.As confirmed by the trailer, which you can watch below, some of the guest stars confirmed ahead of the premiere are Miley Cyrus's father, Billy Ray Cyrus, who also played her father on Hannah Montana, as well as her mother, Tish Cyrus-Purcell, who also serves as an executive producer for the project.Is there a trailer for the Hannah Montana 20th Anniversary Special?Yes! Disney unveiled the trailer for the Hannah Montana 20th Anniversary Special on March 17, just a week before the special's premiere.The trailer, which you can watch above, opens with Miley Cyrus riding a black Ford Mustang convertible with the license plate “HM 20” pulling up to the Stage 9 at a studio lot as radio snippets and “The Best of Both Worlds,” Hannah Montana's opening theme song, play faintly in the background. “Good to be home,” Cyrus shares. (Fun fact: The original show was filmed at the Sunset Bronson Studios in Los Angeles!)The trailer gives us a peek at Cyrus revisiting the sets and her interview with Cooper—spoiler alert: we will talk about childhood crushes. We also see Miley interacting with the crowd and singing “The Climb” and “The Best of Both Worlds.”Are there any first-look photos for the Hannah Montana 20th Anniversary Special?So far, Disney has only released the trailer and official poster for the Hannah Montana 20th Anniversary Special; however, on February 22, Miley Cyrus was spotted in Malibu wearing her full Hannah Montana gear and surrounded by a camera crew while filming content for the upcoming special. (You can see the photos here.) Fans immediately noticed Cyrus was clad in not only the character's blonde wig, but also, apparently, archival pieces from the show, specifically Hannah Montana's thin scarf from her "This Is the Life" performance and her large shield-style sunglasses.Courtesy of DisneyThis post will be updated as news about the Hannah Montana 20th Anniversary Special breaks.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

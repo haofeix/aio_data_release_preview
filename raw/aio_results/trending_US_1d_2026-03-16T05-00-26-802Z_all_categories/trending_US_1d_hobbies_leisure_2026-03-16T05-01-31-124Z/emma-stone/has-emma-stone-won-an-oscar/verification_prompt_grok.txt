@@ -1,0 +1,94 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "has emma stone won an oscar"
+
+Claims:
+[1] "Emma Stone has won the Academy Award for Best Actress twice."
+[2] "Emma Stone's first Oscar win was for her role in La La Land (2017)."
+[3] "Emma Stone's second Oscar win was for Poor Things (2024)."
+[4] "Emma Stone has been nominated for supporting roles in Birdman."
+[5] "Emma Stone has been nominated for supporting roles in The Favourite."
+
+Cited text snippets from the AI Overview (for additional context):
+- How many Oscars does Emma Stone have? | Britannica: "Emma Stone has won two Academy Awards,,La Land (2016) and Poor Things (2023)."
+Reference Sources:
+
+[R1] All the ways that ‘Sinners,’ Emma Stone could make Oscar history
+(https://www.usatoday.com/story/entertainment/movies/2026/03/13/oscar-winners-2026-history-making-moments/89021348007/)
+"""
+March 13, 2026Updated March 14, 2026, 11:15 a.m. ETIt’s shaping up to be an Oscars for the history books. Going into the ceremony on March 15 (ABC and Hulu, 7 p.m. ET/4 PT), “Sinners” is the most-nominated movie ever with a whopping 16 nominations − besting “All About Eve,” “Titanic” and “La La Land," all of which had 14. “The Secret Agent” star Wagner Moura is the first Brazilian man to be nominated for best actor, while Steven Spielberg extends his record as the most-nominated producer ever with 14, thanks to the best picture nod for Shakespeare family drama “Hamnet.” Here’s how other actors and filmmakers could make history at this year’s Academy Awards, which will once again be hosted by Conan O’Brien. Michael B. JordanIf Jordan wins best actor for his dual roles in "Sinners," he'll become just the sixth Black man to win the Oscars' best actor trophy. He would join Will Smith ("King Richard"), Forest Whitaker ("The Last King of Scotland"), Jamie Foxx ("Ray"), Denzel Washington ("Training Day"), and Sidney Poitier ("Lilies of the Field"), who became the first Black man to win a competitive Oscar in 1964.Emma StoneStone, 37, continues to blaze a historic trail. With best picture nominee “Bugonia,” Stone now bests Meryl Streep as the youngest woman to earn seven Oscar nominations. She has received five total acting nominations for “Bugonia,” “The Favourite,” “Birdman,” “La La Land” and “Poor Things,” winning best actress for the latter two. She also received best picture nods as a producer on “Bugonia” and “Poor Things.” Streep, for the record, was 38 when she achieved the milestone. The three-time Oscar winner has garnered the most nominations of any actor in history with 21, most recently for “The Post” in 2018. Sean PennPenn, like Stone, is a two-time Oscar winner for “Milk” and “Mystic River,” and he is heavily predicted to take a third for best supporting actor for “One Battle After Another.” If he or Stone win, they would join an elite crew of just seven actors who have won numerous acting Oscars: Katharine Hepburn, who has four; and Daniel Day-Lewis, Meryl Streep, Frances McDormand, Jack Nicholson, Ingrid Bergman and Walter Brennan, all of whom have three. Amy MadiganShould Madigan, 75, win best supporting actress for playing witch-next-door Aunt Gladys, she'll set a new record for the longest amount of time between an actress' first Oscar nomination and first win (40 years), a milestone previously marked by Geraldine Page (32 years). Madigan received her first Oscar nomination in 1986 for "Twice in a Lifetime."The "Weapons" star would also become the second-oldest recipient of the supporting actress award. She would best Josephine Hull, who was 74 when she won for 1950's "Harvey," but still trail Peggy Ashcroft, who was 77 when she took home the gold for 1984's "A Passage to India."Stellan SkarsgårdNext to Madigan, Skarsgård is the oldest of this year's acting nominees at 74. But should the "Sentimental Value" patriarch win best supporting actor, he would still only be the sixth oldest man to triumph in the category. Christopher Plummer was 82 when he won for "Beginners," followed by other victors George Burns (80), Melvyn Douglas (79), John Gielgud and Don Ameche (both 77).Timothée ChalametChalamet, 30, could become the second-youngest person to win best actor if he clinches the prize for "Marty Supreme." Adrien Brody still holds the record for 2003's "The Pianist," which he won when he was 29. The oldest best actor winner, meanwhile, is Anthony Hopkins, who was 83 when he prevailed for "The Father" in 2021.Ryan Coogler for “Sinners”Including Coogler, only seven Black men have ever been nominated for best director, although none have ever won: Jordan Peele (“Get Out”), Spike Lee (“BlacKkKlansman”), Barry Jenkins (“Moonlight”), Steve McQueen (“12 Years a Slave”), Lee Daniels (“Precious”), and John Singleton (“Boyz N the Hood”). Two of those movies, “Moonlight” and “12 Years a Slave,” won best picture, although Damien Chazelle (“La La Land”) and Alfonso Cuarón (“Gravity”) took home best director in their respective years. If Coogler wins the category, he’ll be the first Black director to ever do so. 'The Secret Agent' and 'Sentimental Value'The Oscar best picture nominees are also neck and neck for best international feature film, with both movies picking up multiple precursor prizes this season. If "The Secret Agent" wins, it'll become Brazil's second movie to take best international feature after last year's "I'm Still Here." And if "Sentimental Value" triumphs, it will be the first movie from Norway to claim the category.Autumn Durald Arkapaw and Ruth E. Carter from 'Sinners'Only four women have ever been nominated for best cinematography in the Oscars' 98-year history, and none have ever won. That could change this weekend if Arkapaw pulls out a victory for her work on Southern vampire thriller “Sinners.”Carter, meanwhile, is the most winning Black woman in Oscar history with two trophies for best costume design for “Black Panther” and “Black Panther: Wakanda Forever.” She would extend her record if she wins a third this Sunday for “Sinners.”
+"""
+
+[R2] Emma Stone's Oscars Style Evolution, Explained by a Fashion Editor
+(https://www.whowhatwear.com/fashion/red-carpet/emma-stone-oscars-red-carpet-fashion-retrospective)
+"""
+Watch out, Freddie Freeman. Emma Stone has a world-class batting average at the Academy Awards. Of her four acting nominations, she's won twice: once for La La Land in 2017 and a second time for Poor Things in 2024. For comparison, Leonardo DiCaprio has been nominated eight times but has only won once.I'm no movie critic, so I won't comment on whether I think she'll win Best Actress for Bugonia at the 2026 ceremony on Sunday, March 15, but I am definitely qualified to discuss her Oscars red carpet looks. In my mind, her Academy Awards style evolution can be divided into two parts: BLV and ALV (before Louis Vuitton and after Louis Vuitton). She signed a contract with the famed French house in October 2017, so 2018 was her first Oscars appearance as brand ambassador. Not coincidentally, that was the first year she threw us a fashion curveball—do you like all my baseball metaphors?—with cigarette pants and a belted blazer in lieu of a traditional red carpet gown.She followed that up with a pair of unexpectedly sculptural LV dresses in 2019 and 2024, which were stark departures from the more conventional looks she wore earlier in her Oscars oeuvre. That said, she brought it full circle in 2025 with a sleek and sparkly nude LV gown reminiscent of her 2015 Elie Saab number and 2017 Givenchy frock.What will she wear on the 2026 Oscars red carpet? Only time will tell! In the meantime, scroll down to revisit every single outfit she's worn to the Oscars since her first time attending in 2012.2012 (Image credit: Getty Images)In 2012, Stone arrived at her first-ever Academy Awards wearing a red Giambattista Valli gown. The Help, in which Stone starred alongside Viola Davis and Octavia Spencer, received four Oscar nominations that year. Perhaps she was inspired by Nicole Kidman's red bow from the 2007 Oscars?2015 (Image credit: Getty Images)Stone scored her first Oscar nomination in 2015 for her supporting role in Birdman. For the occasion, she wore a lime-green beaded dress by Elie Saab featuring a thigh-high slit and an open back.2017 (Image credit: Getty Images)Third time's the charm. In 2017, Stone took home the Best Actress trophy for La La Land wearing a golden fringed Givenchy dress designed by Riccardo Tisci.2018 (Image credit: Getty Images)After wearing traditional gowns to her first three Oscars appearances, she threw us for a loop in 2018 with this Louis Vuitton look, complete with skinny pants and a belted blazer. This was her first Academy Awards under her Louis Vuitton contract.2019 (Image credit: Getty Images)By 2019, Stone's Oscars fashion message was clear: expect the unexpected. Nominated for Best Supporting Actress for The Favourite, Stone wore a sculptural, avant-garde Louis Vuitton dress with bold shoulders.2024 (Image credit: Getty Images)Stone won Best Actress for Poor Things in 2024. Accepting her trophy, Stone infamously declared that the zipper on her peplum Louis Vuitton dress had broken.2025 (Image credit: Getty Images)In 2025, Stone's Louis Vuitton red carpet dress harkened back to her earlier Oscars days in 2015 and 2017. Eschewing the architectural silhouettes of the previous few years, Stone opted for a sleek, simple, sparkly, champagne-colored gown with minimal jewelry.
+"""
+
+[R3] 'Poor Things' Emma Stone wins Oscar for best actress in a leading role
+(https://6abc.com/post/emma-stone-oscars-win-poor-things-actress-in-a-leading-role/14491216/)
+"""
+LOS ANGELES -- Emma Stone has won the best actress Oscar for "Poor Things," her second career victory in the category.She triumphed over Lily Gladstone of "Killers of the Flower Moon" on Sunday night in a race most pundits said was too close to call. Gladstone would have been the first Native American to win a competitive Oscar.Stone appeared shocked when last year's winner, Michelle Yeoh, announced her name. She hugged and kissed her husband, Dave McCary, before moving into the aisle to hug co-star Mark Ruffalo and director Yorgos Lanthimos.LIST | See the full list of Oscars winners hereEmma Stone arrives at the Oscars on Sunday, March 10, 2024, at the Dolby Theatre in Los Angeles.Photo by Jordan Strauss/Invision/APStone hugged each of the five previous best actress winners who joined in the presentation of nominees."Oh boy, my dress is broken. I think it happened during 'I'm Just Ken,'" she said. "Oh boy, this is really overwhelming."A.M.P.A.S.Stone was honored for her tour-de-force performance as Bella Baxter, a childlike woman in Victorian London who comes to life through a brain transplant and begins a journey of self-discovery. The film is chock full of black humor set against steampunk visual design."It's not about me. It's about a team that came together to make something greater than the sum of its parts and that is the great thing about making movies," Stone said. "I am so deeply honored to share this with every cast member and every crew member. Yorgos, thank you for the gift of a lifetime in Bella Baxter."Stone is the 13th woman to win two best actress trophies. Her first came in 2017 for the romantic musical "La La Land." She was nominated for supporting actress in 2015 and 2019.Emma Stone, nominated for best actress for her role in 'Poor Things,' speaks to George Pennacchio on the Oscars red carpet.She also was nominated this year in the best picture category for producing "Poor Things," which lost to "Oppenheimer." She was the second woman to be nominated for acting and best picture for the same film after Frances McDormand, who earned both trophies for "Nomadland" in 2021.Stone and Gladstone traded wins on the way to an Oscar showdown. Stone won at the BAFTA Film Awards and the Golden Globes, while Gladstone scored at the Screen Actors Guild Awards and in a different category at the Globes.This image released by Searchlight Pictures shows Emma Stone in a scene from "Poor Things."(Searchlight Pictures via AP)Stone broke through in 2016 with a starring role in the teen comedy "Easy A." The 35-year-old actor from Scottsdale, Arizona, went on to major roles in "The Help," multiple "Spider-Man" movies, "Birdland," "The Battle of the Sexes" and "The Favourite."The other leading actress nominees were Annette Bening for "Nyad," Sandra Hüller for "Anatomy of a Fall" and Carey Mulligan for "Maestro."The Associated Press contributed to this post.Now that all the Academy Awards have been handed out, it's time to party!Watch "Live With Kelly and Mark: After the Oscars," live from the Oscars stage at the Dolby Theatre in Hollywood on Monday at 9 a.m.The Walt Disney Co. is the parent company of Searchlight Pictures and this station.Copyright © 2026 OnTheRedCarpet.com. All Rights Reserved.
+"""
+
+[R4]  How many Oscars does Emma Stone have?  | Britannica
+(https://www.britannica.com/question/How-many-Oscars-does-Emma-Stone-have)
+"""
+Emma Stone has won two Academy Awards , both for best actress: La La Land (2016) and Poor Things (2023). In addition, she has three other Oscar nominations for acting: Birdman or (The Unexpected Virtue of Ignorance) (2014), The Favourite (2018), and Bugonia (2025). As a producer, Stone also received Academy Award nods when Poor Things and Bugonia were nominated for best picture. With her Bugonia nods, Stone, who was 37 years old at the time, became the youngest woman to have seven Oscar nominations; the record was previously held by Meryl Streep .
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

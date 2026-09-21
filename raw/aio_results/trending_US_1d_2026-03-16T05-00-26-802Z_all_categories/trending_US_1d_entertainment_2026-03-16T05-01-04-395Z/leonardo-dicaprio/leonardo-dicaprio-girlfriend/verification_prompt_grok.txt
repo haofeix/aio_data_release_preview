@@ -1,0 +1,103 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "leonardo dicaprio girlfriend"
+
+Claims:
+[1] "As of March 2026, Leonardo DiCaprio is in a relationship with Italian model Vittoria Ceretti."
+[2] "Leonardo DiCaprio and Vittoria Ceretti have been linked since September 2023."
+[3] "Leonardo DiCaprio and Vittoria Ceretti made a public appearance together at the 2026 Oscars."
+[4] "Vittoria Ceretti was born on June 7, 1998, in Brescia, Italy."
+[5] "Vittoria Ceretti debuted at age 14."
+[6] "Vittoria Ceretti has worked with Chanel, Versace, and Prada."
+[7] "Vittoria Ceretti has walked for Alexander McQueen, Fendi, and Versace."
+[8] "Leonardo DiCaprio and Vittoria Ceretti were first spotted together in Ibiza in 2023."
+[9] "Leonardo DiCaprio and Vittoria Ceretti have been seen together at the 2025 Met Gala"
+
+Cited text snippets from the AI Overview (for additional context):
+- Leonardo DiCaprio makes rare move with Oscars 2026 date: "Thanks for signing up!,WireImage"
+- Leonardo DiCaprio brought a date to the Oscars for the first time in ...: "hellocanadamag-,Leonardo DiCaprio brought a date to the Oscars for the,#Oscars&text=Yes, please keep her, we like her."
+- Leonardo DiCaprio’s Girlfriend, Vittoria Ceretti, Secretly Joined Him ...: "She's a famous (read: very,Whoah."
+- Leonardo DiCaprio Brings Girlfriend Vittoria Ceretti to 2026 Oscars in Rare Public Date Night: "Leonardo DiCaprio Brings Girlfriend Vittoria,in Rare Public Date Night"
+- Leonardo DiCaprio attends first Met Gala with Vittoria Ceretti: "``Though the famously secretive couple has been,most high-profile--and glamorous--appearances yet,'' Vogue magazine wrote."
+- New York Post on Instagram: "Leonardo DiCaprio brought his ...: "Hollywood heartthrob Leonardo DiCaprio and,to get enough of them."
+Reference Sources:
+
+[R1] Leonardo DiCaprio Brings Girlfriend Vittoria Ceretti to 2026 Oscars in Rare Public Date Night
+(https://people.com/oscars-2026-leonardo-dicaprio-brings-girlfriend-vittoria-ceretti-rare-public-date-night-11926687)
+"""
+Vittoria Ceretti, Leonardo DiCaprio and Teyana Taylor at 2026 Oscars. Credit : Roger Kisby/The Academy via Getty NEED TO KNOW Leonardo DiCaprio and Vittoria Ceretti made their awards show debut as a couple at the 2026 Oscars on Sunday, March 15The One Battle After Another star and his model girlfriend didn't walk the red carpet together but sat beside each other inside the ceremonyDiCaprio is nominated for his role in One Battle After Another in the Best Actor category Leonardo DiCaprio cozied up to Vittoria Ceretti at the 2026 Oscars. The One Battle After Another star, 51, had a rare public date night with his longtime girlfriend, 27, when they attended the prestigious awards show celebrating the best in film at the Dolby Theater in Los Angeles on Sunday, March 15. DiCaprio, who's nominated for Best Actor at this year's ceremony, suited up in a Dior tux opposite his model partner, who made her Academy Awards debut. In fact, the outing marked the first time the couple attended the Oscars together since they began dating around three years ago. Leonardo DiCaprio at the 2026 Oscars. ANGELA WEISS / AFP via Getty Their appearance at the awards show isn't the only thing that debuted by the couple. For DiCaprio's part, he debuted a mustache upon his arrival on the red carpet, marking a comeback of the actor's facial hair with a bold, stylish statement. He wore a black tuxedo and a matching black bowtie. For added charm, he pinned a vintage golden bee brooch onto the left lapel of his jacket (a nod to Bee:wild, under the Re:wild umbrella, which was co-founded by DiCaprio), and further accessorized with a Rolex watch on his left wrist. The model wore a maroon Alaïa dress, which was on display when the broadcast flashed to the couple sitting alongside each other inside the ceremony. She kept the custom piece on for her appearance at Vanity Fair's afterparty. Leonardo DiCaprio and Vittoria Ceretti. Jon Kopaloff/WireImage; Jon Kopaloff/Getty Images for Vanity Fair DiCaprio and Ceretti have never attended a U.S. awards show together before the 2026 Oscars. The Best Actor nominee has been intentional about keeping his relationships private. The actor brought his mother, Irmelin Indenbirken, 82, as his date to the 2026 Golden Globe Awards and the BAFTAs. The mother-son duo shares a close connection and has attended major award shows alongside each other in the past. One Battle After Another earned 13 nominations, including DiCaprio's Best Actor nod. While the show is still ongoing, the film has already won for Best Adapted Screenplay (Paul Thomas Anderson), Best Supporting Actor (Sean Penn) and Best Casting. Benicio del Toro and Leonardo DiCaprio attend the 2026 Oscars. Kevin Winter/Getty Never miss a story — sign up for PEOPLE's free daily newsletter to stay up-to-date on the best of what PEOPLE has to offer, from celebrity news to compelling human interest stories. DiCaprio and Ceretti have been dating for nearly three years, dating back to around August 2023. In photos obtained by Page Six, the duo were pictured strolling around Santa Barbara, Calif., while enjoying iced coffees and ice cream cones. "She is very cute, sweet and charming. Leo seems to really like her," a source told PEOPLE in April 2024 of DiCaprio and Ceretti's then-budding romance at the time. In April 2025, the model posed for the cover of Vogue France. In it, she told the magazine that dating someone as famous as DiCaprio is "something you learn." "If what you're experiencing is real, if you know you love each other, then there's no reason to be alarmed," she said. "Because love protects and gives confidence."
+"""
+
+[R2] Leonardo DiCaprio’s Girlfriend, Vittoria Ceretti, Secretly Joined Him at the 2026 Oscars
+(https://www.aol.com/articles/leonardo-dicaprio-girlfriend-vittoria-ceretti-003400112.html)
+"""
+All About Leo’s Girlfriend, Vittoria CerettiGilbert Flores - Getty ImagesWe’re gonna keep this short and sweet since we know you’re here for all the tea on Leonardo DiCaprio’s latest girlfriend of nearly three years (!!!!), supermodel Vittoria Ceretti, who secretly joined Leo in the crowd at the 2026 Oscars. She skipped out on the red carpet, but was spotted sitting next to the actor—who was nominated for his role in Paul Thomas Anderson’s One Battle After Another—when he was turned into yet another meme by host, Conan O’Brien.ABCWhile the two have kept things relatively low-key (save for their buzzy mega yacht getaway with Jeff Bezos and Lauren Sánchez over the summer...), we’re here with absolutely everything you need to know about their relationship status, how they met, and whether marriage is in the cards.She’s a famous (read: very famous) supermodelBut first! Let’s start with a bit of background. Vittoria was born on June 7, 1998, in a small town outside of Milan called Brescia. At 14, she made her modeling debut at Elite Model Look, aka one of the most distinguished international competitions in the world. And ever since then, she’s been seriously booked and busy.Among one of the many highlights of her career, however, was her first beauty contract with Chanel. “My first contract with Chanel, my beauty contract, that’s when I was like, ‘What happened, how did I get here?’” she gushed during a candid interview with Vogue.Since then, the supermodel has graced the runways and campaigns of countless top designers, including *takes deep breath* Alexander McQueen, Ralph Lauren, Chanel, Givenchy, Fendi, Prada, Miu Miu, Versace, Valentino Proenza Schouler, Bulgari, Tiffany & Co., and Gucci. Whoah.She was close with designer Karl LagerfeldYep, as a hugely successful figure in her field, Vittoria cultivated relationships with a buncha famous designers, including Karl Lagerfeld, who passed away in February 2019. Fast-forward to the 2023 Met Gala, which paid tribute to the late celeb via its “Karl Lagerfeld: A Line of Beauty” theme, and the model made sure to be in attendance. Prior to walking the legendary red carpet at the Metropolitan Museum of Art, Vittoria took to social media and shared a touching tribute to him in the form of a letter on Instagram.Mike Coppola - Getty ImagesVittoria and Leo first met circa May 2023The year? 2023. The event? Leo’s Killers of the Flower Moon premiere at the 2023 Cannes Film Festival. Despite meeting at the ultra-exclusive event, however, it wasn’t until August of that year that the two were romantically linked thanks to some👀 pics of the couple on an ice cream date in Los Angeles that dropped.According to an eyewitness who spoke toPage Six, there was most certainly a “vibe” between the duo just by the “way they were talking to each other, you could feel the energy.” Well! Then!!!!Oh, and just a few days after, in early September, Leo and Vittoria upped the ante by being spotted dancing in Ibiza, Spain, where the actor reportedly called the supermodel his “girlfriend.”“Vittoria is a beautiful girl, but Leonardo is of course surrounded by many beautiful girls most of the time,” an insider told the Daily Mailat the time. “But he adores her and she him, they have been spending a lot of time together this summer, traveling around on romantic trips.”P.S. When it came to Leo’s, erm, track record, the source dished, “It has obviously led to much chatter within his circle that Leo is ready to hang up his lothario ways. There have been many women pictured with him, partying with him, but what he has with Vittoria is much more serious.”The couple is meet-each-other’s-parents kinda seriousYou read that right! In photos shared by Page Six in September 2023, Leo and Vittoria were seen in Milan leaving the Pinacoteca Ambrosiana Museum the day prior alongside the actor’s mom, Irmelin Indenbirken.And clearly, the family reunions haven’t stopped, because in October 2024, the couple and Leo’s parents (aka mom Irmelin and stepfather David Ward) were snapped in Italy enjoying dinner, according to TMZ.No, they’re not engagedBut people def thought they were after Vittoria was spotted wearing a silver ring on *that* finger back in March 2024. Despite the 👀 placement, however, multiple sources told TMZ that Leo hadn’t proposed.And later, in January 2025, aPage Six insider claimed “doesn’t see himself ever getting married” to Vittoria, though he “is happy with where things are at between them.” Per the source: “Leo doesn’t feel the need to tie the knot to make things official in his eyes.”Plus, Vittoria has reportedly had the ring since at least September 2022—aka before the two even began dating—so ¯\_(ツ)_/¯. That said...Vittoria was previously marriedBack in January 2020, the celeb said “I do” to Italian DJ Matteo Milleri, though it’s believed the two are currently separated.Per Grazia magazine, the two tied the knot in a stunning ceremony in Ibiza, where Vittoria donned a flowy, A-line gown by Jacquemus.“01.06.2020 🤍 from this day forward,” Vittoria penned in the caption of a sweet Instagram carousel of wedding photos.Side note: The supermodel stopped sharing images of Matteo on social media around 2022, which is well before she and Leo met, so do with that what you will!Aaaaaanyway! That’s pretty much all we know about Vittoria and her ‘ship with Leo, but fear not! This story will be updated with any and all news about the couple.You Might Also Like
+"""
+
+[R3] Leonardo DiCaprio, 50, attends Met Gala with girlfriend Vittoria Ceretti, 26: See photo
+(https://www.usatoday.com/story/entertainment/celebrities/2025/05/08/leonardo-dicaprio-attends-first-met-gala-vittoria-ceretti/83510512007/)
+"""
+May 8, 2025, 11:06 a.m. ETLeonardo DiCaprio attended his first Met Gala with a special guest: his 26-year-old girlfriend Vittoria Ceretti.In photos for Vogue magazine, the Academy Award winner was captured with his left hand covering his face in a candid shot while his supermodel girlfriend walked next to him with her hand on her chest. Also in the shot was former British Vogue editor-in-chief Edward Enninful.This year's Met Gala on May 5 raised funds for the museum's Costume Institute and its spring exhibit, Superfine: Tailoring Black Style, honoring the fashion of Black dandyism.The couple didn't walk the steps of The Met before the event, much like former vice president Kamala Harris, who attended the event but didn't walk the carpet."Though the famously secretive couple has been together since 2023 and was also spotted at Teyana Taylor’s post-Met Gala Cabaret on Sunday night, the 2025 Met Gala is certainly one of their most high-profile—and glamorous—appearances yet," Vogue magazine wrote.In an April cover story for Vogue France, Ceretti revealed that the couple met in Milan, but said in French that she preferred "not to go into details.""As soon as you're in a relationship with someone who has a larger following than you, you become 'girlfriend of'—or 'boyfriend of,' for that matter. And that can be extremely annoying," Ceretti told the outlet in French. "Suddenly, people are talking about you as so-and-so's girlfriend who was so-and-so's ex."She added that "it's not nice to think that you can't love whoever you want, because of the labels people need to stick on you."Ceretti continued, explaining her approach to dating one of the world's most famous people: "It's something you learn. If what you're experiencing is real, if you know you love each other, then there's no reason to be alarmed. Because love protects and gives confidence." After the interviewer said that there were no more boyfriend questions, Ceretti smiled (according to an editor's note) and said, "thank you."
+"""
+
+[R4] Leonardo DiCaprio makes rare move with Oscars 2026 date
+(https://pagesix.com/2026/03/15/entertainment/leonardo-dicaprio-makes-rare-move-with-oscars-2026-date/)
+"""
+Leonardo DiCaprio brought his girlfriend, Vittoria Ceretti, as his date to the 2026 Oscars. Though the two did not pose on the red carpet together, they were seated together during the ceremony. The camera panned to the actor, 51, and the model, 27, during host Conan O’Brien’s opening monologue, when O’Brien joked about DiCaprio being “the king of memes.” Leonardo DiCaprio brought his girlfriend, Vittoria Ceretti, to the 2026 Oscars. Kevin Mazur/Getty Images Though they didn’t walk the red carpet together, she was seen sitting beside him during the ceremony, as seen above. ABC When O’Brien asked him to do a meme on the spot of “that feeling when you didn’t agree to this,” DiCaprio was a good sport and made a funny face as Ceretti laughed beside him. DiCaprio is nominated in the Best Actor category for his role in “One Battle After Another.” While rare, this isn’t the first time DiCaprio has brought a girlfriend as his date to the Oscars. He brought supermodel Gisele Bündchen in 2005 and he took Camila Morrone in 2020. Host Conan O’Brien joked that DiCaprio was “the king of memes” during his opening monologue and asked him to do one on the spot of “that feeling when you didn’t agree to this.” ABC DiCaprio, seen walking the red carpet before the show, happily played along as Ceretti laughed beside him. REUTERS DiCaprio is nominated in the Best Actor category for his role in “One Battle After Another.” REUTERS Want more celebrity and pop culture news? Start your day with Page Six Daily. Thanks for signing up! Page Six revealed back in September 2023 that DiCaprio and Ceretti were an item after the duo was caught in a steamy make-out session in an Ibiza nightclub. DiCaprio is famously private about his relationships, though he and Ceretti have been spotted multiple times together. In January, they were photographed on a yacht together partying with Tom Brady. DiCaprio previously brought his then-girlfriend, Gisele Bündchen, to the Oscars in 2005. WireImage He brought Camila Morrone as his date to the Oscars in 2020. ABC via Getty Images He also brought her as his date to Jeff Bezos and Lauren Sanchez’s wedding in June 2025. Meanwhile, in December, they were caught kissing in rare PDA moments while together in Los Angeles. DiCaprio revealed why he prefers to keep a low profile in public earlier that month, “It’s been a balance I’ve been managing my whole adult life and still I’m not an expert,” the actor told Time magazine for a cover interview. “I think my simple philosophy is only get out there and do something when you have something to say, or you have something to show for it,” he continued. “Otherwise, just disappear as much as you possibly can.”
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

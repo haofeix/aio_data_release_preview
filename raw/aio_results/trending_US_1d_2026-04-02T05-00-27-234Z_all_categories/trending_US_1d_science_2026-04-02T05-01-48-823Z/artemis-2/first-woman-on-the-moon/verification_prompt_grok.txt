@@ -1,0 +1,95 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "first woman on the moon"
+
+Claims:
+[1] "Christina Koch is a NASA astronaut."
+[2] "As of April 2026, Christina Koch is set to become the first woman to travel around the moon on the Artemis II mission."
+[3] "Christina Koch is a mission specialist on the Artemis II mission."
+[4] "Christina Koch is a veteran astronaut."
+[5] "Christina Koch has previously spent the longest time in space by a woman."
+[6] "The Artemis II mission is around the moon, not landing."
+[7] "The Apollo era had all-male crews."
+[8] "Previous reports discussed plans to walk on the moon."
+[9] "The initial 2026 Artemis II mission aims to orbit the moon."
+[10] "The Artemis II mission makes Christina Koch the first woman to reach the moon."
+[11] "The Artemis II mission is a crewed flight"
+
+Cited text snippets from the AI Overview (for additional context):
+- Artemis II astronaut, Christina Koch, to make history as first woman to ...: "Christina Koch will be the first woman,2 mission, which will circumnavigate the moon."
+- Pioneering woman astronaut reflects on Christina Koch, first woman set ...: "Going to the moon isn't new for,the Apollo missions, all astronauts were men."
+Reference Sources:
+
+[R1] Who is Christina Koch, the NC State grad headed to space?
+(https://www.wral.com/lifestyles/christina-koch-astronaut-nc-state-artemis-april-2026/)
+"""
+When NASA launches its first crewed moon mission into space in more than 50 years on Wednesday afternoon, a North Carolina State University graduate will make history. Posted 4/1/2026, 4:40:21 PM Updated 4/1/2026, 4:57:35 PM Video Player is loading.Current Time Duration Remaining Time NC State grad makes history as first woman on moon mission When NASA launches its first crewed moon mission into space in more than 50 years on Wednesday afternoon, a North Carolina State University graduate will make history. Christina Koch will be the first woman on a moon mission. Koch will be among four astronauts aboard NASA’s Artemis II mission, which will travel around the moon and back. The mission is expected to last less than 10 days, but will mark a key step toward a long-term return to the Moon and future missions to Mars. "I am so grateful to those that paved the way for me to be here and for all of us to be here and it's an honor to potentially inspire the explorers of the future," Koch said Monday when speaking to the media. Who is Christina Koch? The three-time N.C. State graduate grew up in Jacksonville and attended North Carolina School of Science and Math in Durham. At N.C. State, she earned Bachelor of Science degrees in electrical engineering and physics and a Master of Science degree in electrical engineering. An Honorary PhD from N.C. State came later. "Growing up in North Carolina, the night sky is one of the things that used to inspire me. It is one of the things that made me want to be an astronaut," Koch told WRAL News in 2020. "Looking up and seeing the stars in my backyard was a great source of inspiration. It reminded me how big the universe is and everywhere." Astronaut Christina Koch In an interview with WRAL in 2024, Koch said she was inspired as a child by learning about the civil rights movement and students who "really stood up for what they knew was right and what they believe in." Koch received the state's highest civilian award, the North Carolina Award, in 2024. The prestigious honor recognizes individuals who have made significant contributions to the state and nation. Koch was honored for her work as a flight engineer on the International Space Station (ISS) for Expedition 59, 60 and 61. Koch is making history as the first woman on a moon mission on Wednesday aboard NASA’s Artemis II mission. But she also set another record earlier in her career. Koch spent 328 days in space from 2019 to 2020, setting the record for the longest continuous spaceflight by a woman and participating in the first all-woman spacewalk. Koch worked for years training for the Artemis mission. She spoke to WRAL in 2020 when she was identified as one of 18 astronauts being considered for the historic flight. "I think my message is to always do the things that might even scare you, the things that intimidate you, the things you think that maybe are beyond your reach," Koch said in 2024. "But actually, when you achieve them, you learn the most about yourself and you bring the most back to the world." Wolfpack pride A watch party at NC State's Talley Student Union is set to celebrate the alumna's flight to the moon this afternoon. Among those attending is her former academic advisor. Dr. Stephen Reynolds is a professor emeritus of Physics who oversaw Christina Koch when she was an undergraduate from 1999-2002. "It's just absolutely spectacular," Reynolds said. "It was clear she was heading for great things and it's just been one great thing after another." Reynolds was first introduced to Koch--then Christina Hammock--by another instructor who told him about the incredibly enthusiastic young woman they had in their class. "Not long after that, I became Christina's advisor and she was just the most energetic, cheerful and motivated young woman. She had enormous self-confidence but not in any kind of offensive way. She was really good. She was friends with other students, just amazingly energetic and involved in many things," Reynolds said. He wrote a letter of recommendation for her around 1999. It was around that same time he learned about her ambitions for a career in space. "I thought, yeah well that's nice. I mean, every parent's child wants to be an astronaut. So you know, you pat them on the head and say, yeah go. You go, girl. Well, she went. So it's been a trip ever since," Reynolds said. The odds are low for anyone to become a NASA astronaut. When NASA selected applications in 2024, more than 8,000 people applied. Ten were selected as candidates. Just 370 people have been selected for the job since 1959. Reynolds kept up with Koch's career after she graduated from NC State. First, she worked as an electrical engineer at Goddard Space Flight Center. Later, she did research in Antarctica, Greenland and the South Pacific. "I thought well, this is all working out very, very nicely. Then, bam. She was an astronaut," Reynolds said. He last spoke to Koch via video message the last time she was in orbit. During her 328-day voyage aboard the International Space Station in 2019, her sister included a message from Reynolds in a clip to celebrate Koch passing the 100-day milestone. Reynolds said while the odds remain long for aspiring space travelers, Koch has become an example he and his colleagues can point to when encouraging NC State physics majors. "She worked amazingly hard. She was a simultaneous major in electrical engineering, so she got two electrical engineering degrees at the same time she was getting one in physics. It's just staggering what she was able to accomplish and that she had absolute faith in herself that she could get it done," Reynolds said. © 2026 Copyright Capitol Broadcasting Company
+"""
+
+[R2] Pioneering woman astronaut reflects on Christina Koch, first woman set to go to the moon
+(https://abc13.com/post/first-woman-moon-mission-nasas-return-christina-koch-takes-new-meaning-female-astronaut/18681393/)
+"""
+HOUSTON, Texas (KTRK) -- The mission takes place in April, but NASA astronaut Christina Koch's colleagues believe Women's History Month is a perfect time to highlight what she's about to accomplish.In April, NASA plans to return to the moon with astronauts on the Artemis II mission. One of those crew members is Christina Koch, who will be a mission specialist.A role retired NASA astronaut Peggy Whitson hopes will inspire a new generation."For young girls, I think it's important to see someone like them doing and achieving these things that haven't been done before," Whitson said.Going to the moon isn't new for NASA astronauts. 24 of them flew to the moon during the Apollo missions.While the assignments were different, one thing stayed the same: all of the astronauts were men. More than 50 years later, that's set to change.Koch will become the first female to travel to the moon. A feat Whitson has longed to see."I am thrilled that we are returning to the moon, and I am expecting there to be women as a part of all of these missions because we have a lot of competent female astronauts out there," Whitson explained.None better than Whitson, said Koch. She knows this firsthand.Whitson, who's currently the vice president of human spaceflight at Axiom Space, has spent more time in space than any other female. She held the longest continuous female spaceflight record. That changed when Koch broke it.A pioneer for NASA astronauts, Peggy Whitson served for more than 25 years at the organization. She spent a total of 695 days in space, more than any other American or woman.KTRK"She and I have a similar mindset that it's really important; we're not progressing if we're not breaking those records," Whitson said. "I know she's looking forward to the next record."NASA flight director Paul Konyha has a front-row seat to witness the next record."While she might be the first woman to do this, she's just an incredible astronaut, period," Konyha explained. "That should not be lost on this. The fact that she's selected because she's really, really good."Konyha will work in mission control at the Johnson Space Center in Houston while Koch travels to the moon. Konyha said right now Koch's focused on the mission, but he believes she also understands the gravity of the situation."I think she will reflect on it afterwards and be able to put that into perspective when she gets back and probably not thinking about it too much until that time," Konyha said.We asked NASA if we could talk to Koch. However, with the Artemis mission being so close, we were told she was unavailable.After she returned to Earth from her record-breaking spaceflight mission six years ago, we did talk to her about the historic milestone."My main message to anyone who has a dream is to follow your passions, be true to yourself, do what you love and live the life that you've imagined for yourself," Koch said in 2020.Mission specialist, Christina Koch, crew member of NASA's new moon rocket, Artemis II, answers questions during a news conference at the Kennedy Space Center on Jan. 17, 2026.AP Photo/John RaouxKoch spent more than 300 days in space to set her previous record. This time, NASA said the Artemis II mission may not last more than ten days.While the length is shorter, the magnitude of what she's about to do, Whitson said, is bigger than anything before."It's so important to prove to young people that they too can break records and with enough effort and determination can achieve amazing things that they wouldn't have necessarily dreamed of," Whitson said.Which is why Witson said the Artemis II mission is much bigger than just going back to the moon; it's also about who's going there.Copyright © 2026 KTRK-TV. All Rights Reserved.
+"""
+
+[R3] West Michigan native is first woman on moon mission
+(https://www.woodtv.com/news/grand-rapids/west-michigan-native-looking-to-be-the-first-woman-on-moon-mission/)
+"""
+GRAND RAPIDS, Mich. (WOOD) — As the clock ticked toward liftoff of a historic space mission, one West Michigan aunt still could not believe what her niece was about to embark upon. Christina Koch is among four astronauts that are a part of NASA’s Artemis II mission that took off Wednesday. She is a West Michigan native, born in Sparta. Koch’s aunt, Loretta Homrich, spoke to News 8 over the phone the morning of the scheduled launch, filled with emotions. “When she takes off, it’s going to be heart-stopping,” she said. “This one feels very different because they’re going on the other side of the moon where nobody’s been, so it’s a little scary.” Video Player is loading.Christina Koch's family excited for Artemis II launch Christina Koch's family excited for Artemis II launch NOW PLAYINGChristina Koch's family excited for Artemis II launch Not only is the mission making history, but Koch is as well — she is the first woman to travel to the moon. Hearing that statement is still something Homrich cannot wrap her head around. “She’s always wanted to go out to space and she’s the (woman who has spent the longest time in space) and now she’s going to be the first woman around the moon,” she said. “I’m, like, trembling inside, because just to think about it, it just makes you in awe of everything.” Homrich has been in Florida since the first scheduled launch was delayed, so the anticipation has been building for months. “We were very proud of her,” she said. “She’s just always loved being an astronaut. She always wanted to be an astronaut since she was little. She went to space camp and she just had a wonderful journey.” Hoping for a smooth mission and a safe return home, Homrich cannot wait to talk to and see her niece when she returns. “I’m hoping everything goes well. There’s no hiccups and it’s just a smooth ride and they make it around the moon how they’re supposed to and just come back safely.” *Correction: A previous version of this article misspelled Homrich’s name. We regret the error, which has been fixed.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

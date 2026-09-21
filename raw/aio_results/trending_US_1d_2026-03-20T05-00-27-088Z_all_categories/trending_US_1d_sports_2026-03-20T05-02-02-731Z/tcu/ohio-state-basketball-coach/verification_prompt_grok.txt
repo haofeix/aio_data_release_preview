@@ -1,0 +1,92 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "ohio state basketball coach"
+
+Claims:
+[1] "Jake Diebler is the head coach of the Ohio State men's basketball team."
+[2] "Jake Diebler officially took the position in March 2024."
+[3] "Jake Diebler served as interim head coach of the Ohio State men's basketball team."
+[4] "Jake Diebler is a native Ohioan."
+[5] "Diebler previously worked as an assistant coach for the Buckeyes."
+[6] "Diebler previously worked as an assistant coach at Valparaiso."
+[7] "Kevin McGuff is the head coach for the Ohio State women's basketball team."
+[8] "This video shows coach Jake Diebler discussing his team's preparation for the NCAA Tournament."
+
+Cited text snippets from the AI Overview (for additional context):
+- Jake Diebler | Head Coach | Ohio State Men's Basketball: "Diebler's coaching history includes: * **2011-2013** Assistant,Ohio State's head coach in 35 years."
+- 2025-26 Women's Basketball Coaches - Ohio State: "Kevin McGuff, Head Coach, mcguff.2@osu.edu, 292-9270. Carla,Assistant Coach & Director of Recruiting Operations"
+Reference Sources:
+
+[R1] Jake Diebler | Head Coach | Ohio State Men's Basketball
+(https://ohiostatebuckeyes.com/sports/mens-basketball/roster/coaches/jake-diebler/2108)
+"""
+Jake Diebler | Head Coach | Ohio State Men's Basketball Ohio State Buckeyes | Ohio State University Athletics Men's BasketballTitle: Head CoachEmail: diebler.11@osu.edu Jake Diebler was named the program's 15th head coach on March 17, 2024. The 2025-26 season will be Diebler's 10th season at Ohio State. He was a video coordinator with the program from 2014-16 and then returned as an assistant coach prior to the 2019-20 season. He was promoted to associated head coach before the 2021-22 season, was named interim head coach on Feb. 14, 2024 and then head coach on March 17, 2024. The first Ohioan to be named Ohio State’s head coach in 35 years, Diebler guided the Buckeyes to a 17-15 overall record and the edge of the NCAA Tournament in his first full season as head coach. Bruce Thornton earned second team All-Big Ten honors while averaging a career-best 17.7 points per game. He had three 30-point games, including one in the win over No. 4 Kentucky at Madison Square Garden. Diebler also helped mold freshman John Mobley Jr., who was second in the Big Ten in 2024-25 with 77 three-pointers. As interim head coach at the end of the 2023-24 season, Diebler led the Buckeyes to a 6-2 record. The first of those six wins came in his first game as the interim coach and in stunning fashion, over No. 2 Purdue on Feb. 19. Ohio State lost at Minnesota in its next game, but then won five consecutive games: at Michigan State, vs. Nebraska, vs. Michigan, at Rutgers and over Iowa in the second round of the Big Ten Tournament. Following the Big Ten Tournament, Diebler was named the full time head coach and led the Buckeyes to the quarterfinals of the NIT, recording wins over Cornell and Virginia Tech. The record during the 2022-23 season wasn't what Diebler, then an assistant coach, and the Buckeyes had hoped, but they were able to see growth from one of the youngest rosters in the country. Freshmen Bruce Thornton, Roddy Gayle Jr., and Felix Okpara all played valuable minutes throughout the season and were primary contributors in the team’s run at the Big Ten Tournament. Fellow freshman Brice Sensabaugh became the first freshman to lead the team in scoring in eight years and was the program's second-consecutive one-and-done. Sensabaugh earned Big Ten All-Freshman Team honors and was drafted in the first round of the NBA Draft by the Utah Jazz. The 2021-22 season saw the Buckeyes win 20 games and advance to the second round of the NCAA Tournament following a win over Loyola Chicago. The year also featured a consensus All-American season from junior E.J. Liddell and the rise of eventual NBA first round pick Malaki Branham. Liddell, who earned first team All-Big Ten honors, was the only player in the country to average 19.4 points, 7.9 rebounds, 2.5 assists and 2.5 blocks per game. Branham had a tremendous second half of the year and became the eighth Buckeye to be named Big Ten Freshman of the Year. In his first year as assistant coach at Ohio State in 2019-20, Diebler and the Buckeyes built an overall record of 21-10 with a league mark of 11-9, good enough for a tie for the No 5 spot in the league standings. The Big Ten was considered the best league nationally and the toughest top-to-bottom in perhaps the history of the league in 2020. The 2020 Big Ten Tournament, which, along with the 2020 NCAA Tournament was canceled following the completion of the Big Ten regular season. The Buckeyes again finished with a 21-10 record in 2020-21 season, which also was shortened by COVID-19. The Buckeyes advanced to the title game of the 2021 Big Ten Tournament in Indianapolis after a fifth-place finished in league play (12-8). Prior to his first stint with the Buckeyes, Jake coached at Valparaiso with Bryce Drew, where he was part of a staff which helped lead Valparaiso to 22 wins and the regular-season championship in 2012, the first by Valpo since joining the Horizon League. Diebler, who also worked for Drew at Vanderbilt, helped the Crusaders to a berth in the 2012 Postseason National Invitation Tournament. In the 2012-13 season, the Crusaders posted a 26-8 overall record, won the Horizon League regular-season championship for consecutive years, and a berth in the 2013 NCAA Tournament. Diebler served as director of basketball operations during the 2010-11 season, helping the Crusaders to a 23-win season. Familiar with the Ohio State program after spending three years as the Buckeyes’ video coordinator (2014-16) and watching his brother Jon become the all-time 3-point record holder at both Ohio State and in Big Ten history (2008-11), Diebler returned to Ohio where he starred as a high school player in Upper Sandusky. Jon is the second leading scorer in Ohio High School basketball history (3,208). Jake holds the all-time Ohio high school career records in both assists (835) and steals (578). While at Ohio State in the role of video coordinator, Diebler helped the Buckeyes advance to two NCAA Tournaments and also helped mentor Aaron Craft, the 2014 National Defensive Player of the Year, and D’Angelo Russell, the No. 2 overall pick in 2015 NBA Draft and 2015 First-Team All-American. As a player at Valparaiso, Diebler ranked among the Horizon League Top 10 in a trio of categories as a senior, finishing fourth in minutes played (33.8/game), sixth in 3-pointers made (1.8/game) and eighth in steals (1.3/game). He finished his Crusader career 10th with 130 career steals and 16th all-time at Valpo with 229 career assists. Also a standout in the classroom, Diebler earned Academic All-League honors and Horizon League Academic Honor Roll mention during his career, as well as being named to the NABC Honors Court. Diebler graduated with a bachelor’s degree in marketing from Valparaiso in May 2009 and with an MBA in 2011. Coaching runs in the family for Diebler. His father Keith, coached high school basketball in the state of Ohio for almost 40 years, while his older brother Jeremiah coached high school basketball as well. His younger brother, Jon, is currently the director of recruiting at Butler University. Jake and his wife, the former Jordyn Ellwood, from Columbus and an Ohio State graduate, have two young daughters, Jaymes and Jessa as well as two young sons, Jackson and Julien. 2024-Present -- Ohio State Head Coach 2024 – (11 games) Ohio State Interim Head Coach 2022-2024 – (2 years) Ohio State Associate Head Coach 2019-2022 – (3 years) Ohio State Assistant Coach 2016-2019 – (3 years) Vanderbilt Assistant Coach 2013-2016 – (3 years) Ohio State Video Coordinator 2011-2013 – (2 years) Valparaiso Assistant Coach 2010-2011 – (1 year) Valparaiso Director of Operations 2009-2010 – (1 year) Valparaiso Graduate Assistant The Ohio State Buckeyes footer Newsletter Sign Up Form
+"""
+
+[R2] 2025-26 Women's Basketball Coaches | Ohio State
+(https://ohiostatebuckeyes.com/sports/womens-basketball/coaches)
+"""
+2025-26 Women's Basketball Coaches | Ohio State Ohio State Buckeyes | Ohio State University Athletics BaseballBasketballCross CountryFencingFootballGolfGymnasticsIce HockeyLacrossePistolRifleSoccerSpirit ProgramSwim & DiveTennisTrack & FieldVolleyballWrestlingArtistic SwimmingBasketballCross CountryFencingField HockeyGolfGymnasticsIce HockeyLacrossePistolRifleRowingSoccerSoftballSpirit ProgramSwim & DiveDanceTennisTrack & FieldVolleyballDepartmentsAthletic TrainingAthletics CommunicationsBuckeye ClubBuckeyes CareBuckeye Sports Camps & ClinicsComplianceThe Eugene D. Smith Leadership InstituteSASSOSponsorship OpportunitiesName, Image, and LikenessPerformance NutritionSports PsychologyBlock OBrick ProgramMediaB1G NetworkOfficial AppThe Ohio State Sports NetworkVideosDigital Ticketing GuideMoreCertificationsEmployment InformationBest FansGeneral Athletics NewsHall of FameGo Bucks Weekly NewsletterPoints of PrideStaff DirectoryUniversityAlumni AssociationAnonymous ReportingOSU Rec SportsSportsmanship CouncilOSU.eduBuckeye License PlatesInformationADA Feedback FormCapital ProjectsParking InformationScarlet and Gray Venues (Rental Info)Seating ChartsStadium ToursAthletic FacilitiesAll Facilities360º Facility ToursBill Davis StadiumBuckeye Field (SB)Buckeye Varsity Field (FH)Covelli CenterJane and Walt Dennis Golf Perfomance CenterFrench Field HouseGolf CoursesGriggs Reservoir BoathouseJack Nicklaus MuseumJennings Family Wrestling Practice FacilityJesse Owens Memorial StadiumMcCorkle Aquatic PavilionOhio StadiumOhio State Ice RinkOhio State Lacrosse StadiumStrength & ConditioningOutdoor Tennis CourtsSchottenstein CenterSchumaker ComplexSt. John ArenaSteelwood Training FacilityTy Tucker Tennis CenterWoody Hayes Athletic CenterSustainabilityAthleticsRecruiting HomeNIL: THE PlatformDistinguished AlumniTraditionsWhat Is A Buckeye?ACTAdmissionsCampus VideosFAFSA FormFirst Year ExperienceOffice of Financial AidProspective StudentsSATTOEFLVisiting Ohio StateAbout the NCAANCAA Student-Athlete InfoNCAA ResourcesNCAA Eligibility CenterNCAA Transfer GuideCity of ColumbusTravelVisitors BureauThe Team ShopOfficial Online ShopAdultWomen’sKid'sJerseysGet In The GameBrick ProgramScoreboard MessagingPurchase TicketsPremium SeatingGroup TicketsBaseball TicketsMen’s Basketball TicketsWomen’s Basketball TicketsFootball TicketsWomen’s Gymnastics TicketsMen’s Ice Hockey TicketsMen’s Lacrosse TicketsWomen’s Volleyball TicketsWrestling TicketsPurchase Tickets Single Season Group BaseballMen's BasketballWomen's BasketballFootballWomen's GymnasticsMen's HockeyWomen's HockeyMen's LacrosseSoftballWomen's VolleyballWrestlingTicket OfficeHomeContact UsBuckeye BundleDigital Ticketing GuideManage Your AccountManage Your Student AccountPremium SeatingRequest Ticket InformationStudent Ticket CentralResourcesADA Needs FormBuckeye ClubPriority Points SystemPromotionsSeat Selection ProcessTicketing FAQName, Image and LikenessBuckeye ClubSports Specific GivingWomen's BasketballRosterFeb. 4 Event ParkingWomen's Basketball Parking (Maps Below)Parking at the Covelli CenterScheduleSchottenstein CenterPromotionsTicket OptionsSeason TicketsMini-PlansGroup TicketsSingle-Game TicketsSuite RentalsNewsStats (PDF)Stats (XML)Record BookArchivesTeam Information2020-21 Digital YearbookExcellence FundNILGameday2025-26 PromotionsGameday 20232025-26 Women's Basketball Coaching Staff2025-262024-252023-242022-232021-222020-212019-202018-192017-182016-172015-162014-152013-142012-13 Coaching Staff The Ohio State Buckeyes footer Newsletter Sign Up Form SiteTicketingHelp Follow Us © 2026 Ohio State UniversityAll rights reserved.
+"""
+
+[R3] Thad Matta retirement: Ohio State coach Jake Diebler reaction to news
+(https://www.indystar.com/story/sports/college/butler/2026/03/16/thad-matta-retirement-ohio-state-coach-jake-diebler-reaction-butler-basketball-news/89186508007/)
+"""
+BUTLERWhy Thad Matta's retirement from coaching at Butler is 'not great for college basketball' Adam JardyColumbus DispatchMarch 16, 2026, 4:45 p.m. ETOhio State men’s basketball coach Jake Diebler was about three minutes into a discussion about his team’s first-round NCAA Tournament opponent when the news broke.Thad Matta, the all-time winningest coach in Buckeyes history, was retiring from the profession after spending the last four years leading Butler. During his 21-year career as a head coach, Matta made the most noise at Ohio State, where he went 337-123 in 13 seasons from 2004-2017.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

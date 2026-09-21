@@ -1,0 +1,130 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "karol g setlist coachella"
+
+Claims:
+[1] "Karol G headlined Coachella 2026."
+[2] "Karol G is the first Latina to headline Coachella 2026."
+[3] "Karol G performed LATINA FOREVA at Coachella 2026 Weekend 2."
+[4] "Karol G performed Un Gatito Me Llamó at Coachella 2026 Weekend 2."
+[5] "Karol G performed OKI DOKI at Coachella 2026 Weekend 2."
+[6] "Karol G performed Tá OK (Remix) at Coachella 2026 Weekend 2."
+[7] "Karol G and Peso Pluma performed QLONA at Coachella 2026 Weekend 2."
+[8] "Karol G performed S91 at Coachella 2026 Weekend 2."
+[9] "Karol G performed Tropicoqueta at Coachella 2026 Weekend 2."
+[10] "Karol G performed Papasito at Coachella 2026 Weekend 2."
+[11] "Karol G performed Ese Hombre Es Malo at Coachella 2026 Weekend 2."
+[12] "Karol G and Becky G performed MAMIII at Coachella 2026 Weekend 2."
+[13] "Karol G performed A Su Boca La Amo (Interlude) at Coachella 2026 Weekend 2."
+[14] "Karol G performed GATÚBELA at Coachella 2026 Weekend 2."
+[15] "Karol G performed EL BARCO at Coachella 2026 Weekend 2."
+[16] "Karol G performed Bandida Entrenada at Coachella 2026 Weekend 2."
+[17] "Karol G performed OJOS FERRARI at Coachella 2026 Weekend 2."
+[18] "Karol G, J Balvin, and Ryan Castro performed a medley at Coachella 2026 Weekend 2."
+[19] "Karol G performed Ivonny Bonita at Coachella 2026 Weekend 2."
+[20] "Karol G performed TQG at Coachella 2026 Weekend 2."
+[21] "Karol G performed AMARGURA at Coachella 2026 Weekend 2."
+[22] "Karol G performed Tusa at Coachella 2026 Weekend 2."
+[23] "Karol G performed BICHOTA at Coachella 2026 Weekend 2."
+[24] "Karol G performed Mi Tierra (Gloria Estefan cover) at Coachella 2026 Weekend 2."
+[25] "Karol G performed Si Antes Te Hubiera Conocido at Coachella 2026 Weekend 2."
+[26] "Karol G performed PROVENZA at Coachella 2026 Weekend 2."
+[27] "The medley in Karol G's Coachella 2026 set included La Canción."
+[28] "The medley in Karol G's Coachella 2026 set included Mi Gente."
+[29] "Karol G's Coachella 2026 performance featured an all-female mariachi band."
+[30] "Karol G's Coachella 2026 performance incorporated funk brasileiro elements."
+[31] "Karol G's Coachella 2026 performance incorporated EDM elements."
+
+Cited text snippets from the AI Overview (for additional context):
+- See Karol G full Coachella 2026 setlist - The Desert Sun: "Everything Coachella 2026 headliner Karol G sang during her historic set&text=It was a historic night,"Provenza""
+- KAROL G Concert Setlist at Coachella Festival 2026 on April ...: "LATINA FOREVA,Si antes te hubiera conocido"
+- See what Karol G sang with Coachella 2026 guests Becky G, Peso Pluma: ""Latina Foreva",Si Antes Te Hubiera Conocido""
+- Karol G makes major announcement during Coachella set - what did fans think about it?: "Karol G's Coachella Weekend Two,PROVENZA"
+- Here’s Every Song Karol G Performed at Coachella 2026 - Remezcla: "She then invited an all,“MAMIIII” with Becky G.&text=The Colombian singer kept the,EDM remix of “PROVENZA.”"
+Reference Sources:
+
+[R1] See Karol G full Coachella 2026 setlist
+(https://www.desertsun.com/story/entertainment/coachella/2026/04/13/see-karol-g-full-coachella-2026-setlist/89541327007/)
+"""
+COACHELLAEverything Coachella 2026 headliner Karol G sang during her historic set Ema SasicPalm Springs Desert SunApril 13, 2026Updated April 14, 2026, 9:43 a.m. PTIt was a historic night for Colombian singer Karol G, who became the first Latina to headline the Coachella Valley Music and Arts Festival on Sunday, April 12.Latinx pride was front and center on the Coachella Stage, along with plenty of surprises throughout the night.Here's everything Karol G sang during her Weekend 1 performance:"Latina Foreva"“Un Gatita Me Llamo”“Oki Doki”“Tá OK”"El Makinon" (with special guest Mariah Angeliq)“S91”"Que rico mambo" (band only)“Tropicoqueta”“Papasito”“Son de la Negra” (performed by an all-female mariachi group)“Ese Hombre Es Malo”“Mamiii” (with special guest Becky G)“A Su Boca La Amo (Interlude)”“Gatúbela”"Bandida Entrenada""Ojos Ferrari""Pam Pam" (cover of Wisin & Yandel featuring special guest Wisin)"Saoco" (cover of Wisin & Yandel featuring special guest Wisin)"Mayor Que Oh" (cover of Baby Ranks, Daddy Yankee, Tonny Tún Tún, Wisin, Yandel & Héctor featuring special guest Wisin)"Rakata" (cover of Wisin & Yandel featuring special guest Wisin)"Ivonny Bonita""TQG""Amargura""Tusa""Si Antes Te Hubiera Conocido""Provenza"Ema Sasic covers entertainment and health in the Coachella Valley. Reach her at ema.sasic@desertsun.com or on Twitter @ema_sasic.
+"""
+
+[R2] Here’s Every Song Karol G Performed at Coachella 2026
+(https://remezcla.com/music/heres-every-song-karol-g-performed-at-coachella-2026/)
+"""
+The “Despacito” phenomenon is unparalleled. It took the music industry by surprise – who would’ve thought a Luis Fonsi song would become such a mainstream, crossover, global hit? The song was released on January 12, 2017, and the Latine music industry has never been the same since. If you Google search Luis Fonsi, one of the first results has to do with the iconic song, although the singer has been on the radar since the late 1990s. The song was so influential that you can find multiple feature pieces from respected media outlets investigating exactly how the song became so popular. Even Billboard’s VP of Latine Music, Leila Cobo, titled her history book of Latine Music: Decoding “Despacito,” recording the song’s legacy on print. “I think ‘Despacito’ played a crucial role in Latin music’s worldwide explosion. There’s a before and after especially in the way the world looks at Latin music and culture,” Fonsi said through a statement. “The song was released at a time that people needed that perfect mix of pop and reggaeton, melody, and Latin rhythms. Having Daddy Yankee and later Justin Bieber on the remix version didn’t hurt either!” The remix became such a hit that it reigned No.1 on Billboard charts for 16 weeks, making history at the time by tying the all-time record with Mariah Carey and Boyz II Men’s song “One Sweet Day.” Additionally, in 2020, the remix video surpassed Youtube records at the time with more than 7 billion views. Plus, when the “Despacito” remix with Justin Bieber was released three months later, the conversation grew on Twitter by about 61% compared to the original version. Fonsi, an avid Twitter user, said he likes interacting with fans and getting feedback on his projects on the social media platform. “Having that immediate reaction or response has been a great tool.” During the last five years, the top countries besides the U.S. that tweeted about “Despacito” include Brazil, Argentina, Mexico, Venezuela, Colombia, but also transcended to Spain, Indonesia, the U.K., and India. The global impact doesn’t stop there though, to put the universal hit in perspective, there’s still international covers being released — as recently as last month by South Korean boy band JUST B. “Besides the records that were broken, the awards that were given, what I’m most proud of is that the entire world sang in Spanish. That one of the most viewed videos in the history of music was filmed a few miles from where I grew up. And that now, it’s completely normal to see Latin artists collaborate with mainstream artists without having to do it in English,” Fonsi said. So whether you love it or hate it, we’re still witnessing the impact of “Despacito.” Even five years later, fans are still tweeting about the song, five years later. “Despacito by Luis Fonsi was a cultural reset in Latin America,” one Twitter user recently commented. And while the phrase is liberally overused, they kind of snapped with that one. Another fan commented, “Despacito is the best pop song of all times and I like the Justin Bieber version fight me I don’t care.” The tweets are endless when it comes to remembering how impacting the song was and still is. “I remember when the remix of Despacito with Justin Bieber came out, it was so good.” Another Twitter user commented. Long live “Despacito.”
+"""
+
+[R3] Karol G makes major announcement during Coachella set - what did fans think about it?
+(https://www.indy100.com/news/karol-g-coachella-weekend-2-set-list-tour)
+"""
+Karol G just closed Coachella 2026 with a second headline show that brought Latin fever to Indio, California.She was the first Latina headliner that the festival has had, and her Weekend One slot felt no shortage of praise, thanks to its huge production value; including a mariachi band and incredible costumes.She was joined across the weekend by Justin Bieber and Sabrina Carpenter.Following her first headliner slot, her Spotify streams increased 15 per cent within one day, and her U.S. streams reportedly jumped over 35 per cent, per Rolling Stone.This weekend, she was joined by a number of special guests, including J Balvin, Peso Pluma, and Becky G, before blowing fans' minds further when she announced a tour at the end of the show. "You are mother Becky G", one fan reacted to the special guest appearance, which saw the 'Shower' singer celebrate immigration. "Karol G the woman that you are", another wrote. Another praised the Colombian for "devouring" the performance, while a fourth penned that she's the "best to do it".How much was Karol G paid for Coachella?The exact figure isn't known, but headliner fees are usually around mid-seven figures. That money will also need to go towards production costs and other fees.JBeau Lewis, a partner agent at UTA who has Karol as a client, told The Hollywood Reporter that Coachella's first Latina headliner spent three times the fee she was paid on bringing the show to life, as part of a "bigger plan" for long-term exposure. Karol G's Coachella Weekend Two set list: 1. LATINA FOREVA2. Un Gatito Me Llamó3. OKI DOKI4. Tá OK (Remix) 5. QLONA (with special guest Peso Pluma)6. S917. Tropicoqueta8. Papasito9. Ese Hombre Es Malo10. Mamiii (with special guest Becky G)11. A Su Boca La Amo (Interlude)12. GATÚBELA13. EL BARCO14. Bandida Entrenada15. OJOS FERRARI16. Medley performed by special guests J Balvin & Ryan Castro17. Ivonny Bonita18. TQG19. AMARGURA20. Tusa21. BICHOTA22. Mi Tierra23. Si Antes Te Hubiera Conocido24. PROVENZAIs Karol G going on tour? Karol G announced at the end of her Coachella Weekend Two performance that a tour was coming.As she rounded off the show, a screen behind her flashed up with the words 'Nos Vamos de Tour' - which translates to 'We're going on tour'. No further details or dates have been announced.Why not read...Why does Coachella happen twice? This is what's different about Weekend 2Bieberchella: What are people saying about Justin Bieber's Coachella 2026 set?Sign up to our free indy100 weekly newsletter
+"""
+
+[R4] No Karol G tour dates yet, but here's her Coachella closing setlist
+(https://www.desertsun.com/story/entertainment/coachella/2026/04/20/no-karol-g-tour-dates-yet-but-heres-her-coachella-closing-setlist/89647606007/)
+"""
+COACHELLASee what Karol G sang with Coachella 2026 guests Becky G, Peso Pluma Tom CoulterPalm Springs Desert SunApril 20, 2026, 3:15 a.m. PTAfter her groundbreaking performance during Weekend 1, Karol G continued her rise as a global superstar with another kinetic performance to close out Weekend 2 of the Coachella Valley Music and Arts Festival on Sunday, April 19.Karol G, who became the first Latina headliner in the festival’s history last week, led a joyful celebration of Colombian and Latin American identity, to roars from attendees who waved flags from several countries in the region. Peso Pluma, Becky G, J Balvin and Ryan Castro also appeared as surprise guests.
+"""
+
+[R5] KAROL G Concert Setlist at Coachella Festival 2026 on April 19, 2026 | setlist.fm
+(https://www.setlist.fm/setlist/karol-g/2026/empire-polo-club-coachella-stage-indio-ca-6b404696.html)
+"""
+setlist.fm Change theme Add Setlist Search Clear search text Change theme Setlists Artists Festivals Venues Statistics Stats News Forum Show Menu Hide Menu Add Setlist Sign in You are here: setlist.fm > Artists > K > KAROL G > April 19, 2026 Setlist Apr 19 2026 Edit setlist Show all edit options Edit setlist songs Edit venue & date Edit set times Edit tour Add to festival Report setlist KAROL G Setlist Coachella Stage at Empire Polo Club, Indio, CA, USA Edit setlist Show all edit options Edit setlist songs Edit venue & date Edit set times Edit tour Add to festival Report setlist Set Times Start time: 10:15 PM Tour average: Not enough data Average show length: Not enough data Doors: 1:00 PM Scheduled: 10:10 PM Start time: 10:15 PM9h 15m after doors End: Add end Edit set times All KAROL G set times Show Details Hide Details Setlist share setlist LATINA FOREVA Play Video Un gatito me llamó Play Video OKI DOKI Play Video Tá OK (Remix) Play Video QLONA (with Peso Pluma) Play Video S91 Play Video Tropicoqueta Play Video Papasito Play Video Ese hombre es malo Play Video MAMIII (Becky G x KAROL G song) (with Becky G) Play Video Song played from tape A Su Boca La Amo Play Video GATÚBELA (With extended outro od "Rompe" by Daddy Yankee) Play Video EL BARCO Play Video Bandida entrenada Play Video OJOS FERRARI Play Video Ay Vamos / Ginza / LA CANCIÓN (J Balvin cover) (with J Balvin) Play Video Mi gente / In da Getto (J Balvin cover) (with Ryan Castro) Play Video Ba Ba Bad Remix / SANKA / Tonto (Ryan Castro cover) Play Video Ivonny bonita Play Video TQG (KAROL G & Shakira song) Play Video AMARGURA Play Video Tusa Play Video BICHOTA Play Video Mi tierra (Gloria Estefan cover) Play Video Si antes te hubiera conocido Play Video PROVENZA Play Video Note: At the end of the show, Karol G announced that she was going on a concert tour. I was there 17 setlist.fm users were there Edit setlist Show all edit options Edit setlist songs Edit venue & date Edit set times Edit tour Add to festival Report setlist Report a problem: Report setlist – FAQ: Report an error Edits and Comments 25 activities (last edit by Khaleb16RBLX, a day ago) Show edits and comments Songs on Albums AlbumSongsTropicoqueta8Covers6MAÑANA SERÁ BONITO4KG05163MAÑANA SERÁ BONITO (BICHOTA SEASON)3Others1 Tropicoqueta 8 Bandida entrenada Ese hombre es malo Ivonny bonita LATINA FOREVA Papasito Si antes te hubiera conocido Tropicoqueta Un gatito me llamó Covers 6 Ay Vamos / Ginza / LA CANCIÓN by J Balvin Ba Ba Bad Remix / SANKA / Tonto by Ryan Castro MAMIII by Becky G x KAROL G Mi gente / In da Getto by J Balvin Mi tierra by Gloria Estefan TQG by KAROL G & Shakira MAÑANA SERÁ BONITO 4 AMARGURA GATÚBELA OJOS FERRARI PROVENZA KG0516 3 BICHOTA EL BARCO Tusa MAÑANA SERÁ BONITO (BICHOTA SEASON) 3 OKI DOKI QLONA S91 Others 1 Tá OK (Remix) 2026 stats Complete Album stats Last updated: 39 minutes ago KAROL G More from this Artist More Setlists Artist Statistics Add setlist Find tickets 465 attendances by 407 users. Festival Time! Hey, this setlist was played at a festival: Coachella Festival 2026 setlists Related News Coachella 2026 Live Debut Tally: 70 Apr 22, 2026 Coachella Cameo Count, Weekend 2: 22+ Apr 21, 2026 Karol G Brings Out Peso Pluma Apr 21, 2026 Olivia Rodrigo Joined Addison Rae at Coachella For Live Debut Apr 20, 2026 KAROL G Gig Timeline Feb 15 2026 Unknown Venue Miami, FL, USA Add time Add time Apr 12 2026 Coachella Festival 2026 Indio, CA, USA Add time Add time Apr 19 2026 Coachella Festival 2026 This Setlist Indio, CA, USA Start time: 10:15 PM 10:15 PM Jul 24 2026 Soldier Field Chicago, IL, USA – Find tickets Add timeTickets Add time Jul 29 2026 Rogers Stadium Toronto, ON, Canada – Find tickets Add timeTickets Add time Last updated: 39 minutes ago Share or embed this setlist Use this setlist for your event review and get all updates automatically! HTML Code <div style="text-align: center;" class="setlistImage"><a href="https://www.setlist.fm/setlist/karol-g/2026/empire-polo-club-coachella-stage-indio-ca-6b404696.html" title="KAROL G Setlist Coachella Festival 2026" target="_blank"><img src="https://www.setlist.fm/widgets/setlist-image-v1?id=6b404696" alt="KAROL G Setlist Coachella Festival 2026" style="border: 0;" /></a> <div><a href="https://www.setlist.fm/edit?setlist=6b404696&amp;step=song">Edit this setlist</a> | <a href="https://www.setlist.fm/setlists/karol-g-4bcfd3de.html">More KAROL G setlists</a></div></div> Last.fm Event Review [url=https://www.setlist.fm/setlist/karol-g/2026/empire-polo-club-coachella-stage-indio-ca-6b404696.html][img]https://www.setlist.fm/widgets/setlist-image-v1?id=6b404696[/img][/url] [url=https://www.setlist.fm/edit?setlist=6b404696&amp;step=song]Edit this setlist[/url] | [url=https://www.setlist.fm/setlists/karol-g-4bcfd3de.html]More KAROL G setlists[/url] Customize your setlist.fm widget Set Times Start time: 10:15 PM Tour average: Not enough data Average show length: Not enough data Doors: 1:00 PM Scheduled: 10:10 PM Start time: 10:15 PM9h 15m after doors End: Add end Edit set times All KAROL G set times Show Details Hide Details KAROL G More from this Artist More Setlists Artist Statistics Add setlist Find tickets 465 attendances by 407 users. Festival Time! Hey, this setlist was played at a festival: Coachella Festival 2026 setlists Related News Coachella 2026 Live Debut Tally: 70 Apr 22, 2026 Coachella Cameo Count, Weekend 2: 22+ Apr 21, 2026 Karol G Brings Out Peso Pluma Apr 21, 2026 Olivia Rodrigo Joined Addison Rae at Coachella For Live Debut Apr 20, 2026 Tour Update Close Video Marquee Memories: Story Of the Year0 seconds of 1 minute, 20 secondsVolume 0%Press shift question mark to access a list of keyboard shortcutsKeyboard ShortcutsEnabledDisabledShortcuts Open/Close/ or ?Play/PauseSPACEIncrease Volume↑Decrease Volume↓Seek Forward→Seek Backward←Captions On/OffcFullscreen/Exit FullscreenfMute/UnmutemDecrease Caption Size-Increase Caption Size+ or =Seek %0-9 Auto270p1080p720p406p270p180p Live00:0901:1001:20 Marquee Memories: Story Of The Year Tagged: Story of the Year Browse artists A B C D E F G H I J K L M N O P Q R S T U V W X Y Z # Browse venues A B C D E F G H I J K L M N O P Q R S T U V W X Y Z # Recent Events TodayYesterdayApr 21, 2026Apr 20, 2026Apr 19, 2026Apr 18, 2026Apr 17, 2026Apr 16, 2026 Theme Auto Auto Dark Dark Light Light © setlist.fm Guidelines FAQ | Help | About Contact us Terms of Service Ad Choices | Privacy Policy Privacy Settings Social Like us Follow us Follow us API Links Songtexte.com Molindo.at Friends & Partners
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,85 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "who is sitting next to teyana taylor at the oscars"
+
+Claims:
+[1] "Teyana Taylor was accompanied by her daughters Iman “Junie” Tayla Shumpert Jr. and Rue Rose Shumpert at the 2026 Oscars."
+[2] "Iman “Junie” Tayla Shumpert Jr. is 10 years old."
+[3] "Rue Rose Shumpert is 5 years old."
+[4] "Iman “Junie” Tayla Shumpert Jr. and Rue Rose Shumpert are Teyana Taylor's daughters."
+[5] "Iman “Junie” Tayla Shumpert Jr. and Rue Rose Shumpert joined Teyana Taylor at the 2026 Oscars ceremony."
+[6] "Teyana Taylor was nominated for Best Supporting Actress at the 2026 Oscars."
+[7] "Teyana Taylor wore a Chanel gown at the 2026 Oscars."
+[8] "Teyana Taylor attended events with Ted Sarandos, Nicole Avant, and Jeff Bezos during the weekend"
+
+Cited text snippets from the AI Overview (for additional context):
+- Teyana Taylor’s Chanel Oscars Gown Has to Be Seen From Every Angle: "Advertisement - Continue Reading Below,Advertisement - Continue Reading Below"
+Reference Sources:
+
+[R1] Teyana Taylor’s Chanel Oscars Gown Has to Be Seen From Every Angle
+(https://www.elle.com/culture/celebrities/a70656162/teyana-taylor-red-carpet-photos-oscars-2026/)
+"""
+Teyana Taylor Prank Calls Keke Palmer, Victoria Monét & Lori Harvey | Phoning It In | ELLEELLE USLIVECurrent Time 0:00Total Duration 10:572 min readTHE RUNDOWNTeyana Taylor is making her Oscar debut tonight in a dramatic black-and-white Chanel gown.The star is nominated for Best Supporting Actress.She recently spoke to ELLE about this new era of her career five years after she stepped away from music.One Battle After Another star Teyana Taylor has turned looks throughout awards season, opting for dramatic cut-out gowns and sculptural silhouettes. For the Oscars, she chose another daring ensemble. The star wore a black-and-white Chanel dress with a sheer bodice and an extravagant sweeping train. She accessorized with Tiffany & Co. jewelry.Taylor posed on her own but teased in an interview with Entertainment Tonight earlier this week that her daughters, 10-year-old Iman “Junie” Tayla Shumpert Jr. and 5-year-old Rue Rose Shumpert, would be joining her at the ceremony.ANGELA WEISS//Getty ImagesAdvertisement - Continue Reading BelowGilbert Flores//Getty ImagesJulian Hamilton//Getty ImagesAdvertisement - Continue Reading BelowTaylor is up for Best Supporting Actress this evening, and One Battle After Another is nominated for Best Picture, among other awards. This is the star’s first-ever Oscar nomination and her first time attending the Academy Awards.Taylor was one of ELLE’s 2025 Women in Hollywood honorees. She spoke in her interview about entering a new era of her career after she stepped back from music in 2020. (She released her Grammy-nominated comeback album, Escape Room, last year.)“I have a lot of gratitude for how I am able to see all of my prayers answered, all of the tears wiped,” she said. “It was tough because I said I retired, and I didn’t know what was next. I was afraid, but I wasn’t afraid to take the leap. I’ve always had a strong relationship with God and felt him saying, ‘Okay, do you trust me? I know you’ve been trusting, but do you really, really trust me? You ready to let me take that teddy bear from you so I can give you something bigger and better?’ I told y’all that one day I’m going to be a big director, and [the fact that] that is coming to fruition shows his power.”She also discussed the challenges that still exist in Hollywood, admitting, “Well, the hardest part is being a woman in Hollywood. The even harder part is being a Black woman in Hollywood, because I do feel like this is a man’s world. And we have to show who we are as women to be respected in that space.”The star added more optimistically, “I do see change happening. I do see more light being shed on women, and I think it’s because we’re busting through the doors, unapologetically us. We’re not giving anybody a choice: you will see us and you will hear us. And if you don’t, we’re going to make you. Seeing women step into our glory and standing 10 toes down in some red bottoms has been amazing. We’re really stomping through, and that’s what I love about being a woman in Hollywood. We’re going to make you hear us.”
+"""
+
+[R2] Oscars Eve in Beverly Hills With Teyana Taylor, Jeff Bezos and Nicole Kidman
+(https://www.nytimes.com/2026/03/15/style/oscars-chanel-armani-party.html)
+"""
+Film’s top stars buzzed over lychee martinis at Chanel’s annual Polo Lounge bash, and a Netflix chief mused about Hollywood’s biggest drama of the year.Oscars Eve in Beverly Hills With Teyana Taylor, Jeff Bezos and Nicole KidmanFilm’s top stars buzzed over lychee martinis at Chanel’s annual Polo Lounge bash, and a Netflix chief mused about Hollywood’s biggest drama of the year.Credit...Listen · 5:17 min Published March 15, 2026Updated March 16, 2026“Don’t you love the ladybugs?” said Nicole Kidman, showing off a few decorative beetles that appeared to be crawling up her white Chanel skirt suit. “They’re sort of a little good-luck charm.”It was the night before the Academy Awards, and Ms. Kidman did not need much luck: She already had a best actress statuette from 2003, for her portrayal of Virginia Woolf in “The Hours.” The achievement did not set in that day, or even that week. “You’re in shock, and then about a year later, you realize, ‘Oh, I have an Oscar,’” she said.Ms. Kidman and her ladybugs made their way to the patio of the Polo Lounge at the Beverly Hills Hotel, where Chanel and Charles Finch, the British film producer and publisher, were hosting their 17th annual pre-Oscars dinner. Nominees thrummed with nerves and excitement on the eve of an event that could etch their names into filmmaking history — or relegate them to a long list of also-rans.VideoCreditCredit...The celebration capped off a tumultuous stretch for the industry. The box office endured a dry spell in the fall, with several starry films failing to materialize into hits. The more compelling drama appeared to be taking place offscreen, in a boardroom battle between Paramount Skydance and Netflix to buy Warner Bros. Discovery, which produced two of the top best picture contenders, “One Battle After Another” and “Sinners.” The studio is now set to be acquired by Paramount for $111 billion.Ted Sarandos, the co-chief executive of Netflix, said the decision to step away had been the right one.AdvertisementSKIP ADVERTISEMENT
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

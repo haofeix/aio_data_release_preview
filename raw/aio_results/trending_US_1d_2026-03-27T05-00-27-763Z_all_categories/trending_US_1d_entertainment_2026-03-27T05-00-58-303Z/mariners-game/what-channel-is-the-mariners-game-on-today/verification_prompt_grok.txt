@@ -1,0 +1,118 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "what channel is the mariners game on today"
+
+Claims:
+[1] "The Mariners season opener against the Guardians is on Thursday, March 26, 2026."
+[2] "The Mariners game on Thursday, March 26, 2026 is available on Mariners TV."
+[3] "Mariners TV is carried on Xfinity channel 1261."
+[4] "Mariners TV is carried on Spectrum channel 414."
+[5] "Mariners TV is carried on DirecTV channel 687."
+[6] "In the Seattle/Tacoma Area, Astound Broadband/Wave carries Mariners TV on channels 37 and 737."
+[7] "TDS carries Mariners TV on various channels in Eastern WA/OR."
+[8] "The Mariners game on Thursday, March 26, 2026 can be streamed via Mariners.TV service in the regional market."
+[9] "Mariners.TV offers local market streaming for $19.99/mo."
+[10] "MLB.TV offers out-of-market streaming."
+[11] "The Mariners game on March 27, 2026 is on Apple TV+."
+[12] "The Mariners game on March 29, 2026 is on Peacock."
+
+Cited text snippets from the AI Overview (for additional context):
+- Everywhere to find Mariners TV and radio broadcasts this season: "Cable/satellite providers,zip code at this link."
+- How to watch Mariners games: TV, streaming and channel info: "Games will also broadcast on,: ajude@seattletimes.com."
+- Cable TV channels for Seattle Mariners games are set: "Seattle Mariners unveil opening day,starting Thursday at this link."
+- Frustrated Mariners fans left scrambling to find out how to watch the game: "It doesn't necessarily get,reporter at The Seattle Times."
+- How to watch Mariners games: Updated TV, streaming and ...: "Viewers with a Comcast/Xfinity,Cleveland Guardians on Thursday night."
+- Cable and satellite channels announced for Mariners.TV - MLB.com: "TDS * 27 and 627 (Bend and,and 276 (Coeur d'Alene) * 243 (TDSTV+)"
+Reference Sources:
+
+[R1] How to watch Mariners games: TV, streaming and channel info | The Seattle Times
+(https://www.seattletimes.com/sports/mariners/how-to-watch-mariners-games-tv-streaming-and-channel-info/)
+"""
+Skip Ad Skip to content Skip Ad Seattle Mariner fans celebrate during a watch party at T-Mobile Park after Cal Raleigh hits a home run in the 5th inning against the the Toronto Blue Jays in game 7 of the ALCS, Oct. 20, 2025, in Seattle. (Karen Ducey / The Seattle Times)Seattle Mariner fans celebrate during a watch party at T-Mobile Park after Cal Raleigh hits a home run in the 5th inning against the the Toronto Blue Jays in game 7 of the ALCS, Oct. 20, 2025, in Seattle. (Karen Ducey / The Seattle Times) Skip Ad By Adam Jude Seattle Times staff reporter Finally, an answer for local fans to the only real question surrounding the Seattle Mariners entering the 2026 season: Yes, you can watch them on TV.The Mariners on Wednesday afternoon announced programming updates on how to watch their games through traditional cable and satellite providers. Your browser is set to private mode. To continue reading, log in or subscribe. Subscribe Already a subscriber? Log in now. Most Read Sports Stories Colt Emerson, Mariners' top prospect, lands long-term deal with Seattle NFL commissioner says plenty of interest, no news on Seahawks sale FIFA president says Iran will play in men's World Cup and in Seattle Seahawks up next on HBO's 'Hard Knocks' Cal Raleigh hits walkoff single to lift Seattle Mariners over Yankees View 280 Comments / 280 New Posting comments is now limited to subscribers only. View subscription offers here. For more information, visit our FAQ's. The opinions expressed in reader comments are those of the author only and do not reflect the opinions of The Seattle Times. Recommended in Advertising Skip Ad Skip Ad Skip Ad Around the Web Skip Ad Skip Ad
+"""
+
+[R2] Frustrated Mariners fans left scrambling to find out how to watch the game | The Seattle Times
+(https://www.seattletimes.com/sports/mariners/frustrated-mariners-fans-left-scrambling-to-find-out-how-to-watch-the-game/)
+"""
+Skip Ad Skip to content Skip Ad Seattle Mariners shortstop Leo Rivas throws to first as he warms-up before opening night Thursday, March 23, 2026 in Seattle. (Jennifer Buchanan / The Seattle Times)Seattle Mariners shortstop Leo Rivas throws to first as he warms-up before opening night Thursday, March 23, 2026 in Seattle. (Jennifer Buchanan / The Seattle Times) Skip Ad By Ryan Divish Seattle Times staff reporter Opening day for perhaps the most anticipated season in Mariners history should’ve been a celebration for fans anxious to watch a team with World Series aspirations start a 162-game journey.Instead, for many fans, it was a day of frustration, spent checking the channel guides on their televisions and constantly updating a website that was supposed to provide clarity to a simple question — what channel is the Mariners’ game on? Your browser is set to private mode. To continue reading, log in or subscribe. Subscribe Already a subscriber? Log in now. Most Read Sports Stories Colt Emerson, Mariners' top prospect, lands long-term deal with Seattle NFL commissioner says plenty of interest, no news on Seahawks sale FIFA president says Iran will play in men's World Cup and in Seattle Seahawks up next on HBO's 'Hard Knocks' Cal Raleigh hits walkoff single to lift Seattle Mariners over Yankees View 144 Comments / 144 New Posting comments is now limited to subscribers only. View subscription offers here. For more information, visit our FAQ's. The opinions expressed in reader comments are those of the author only and do not reflect the opinions of The Seattle Times. Recommended in Loading... Advertising Skip Ad Skip Ad Skip Ad Around the Web Skip Ad Skip Ad
+"""
+
+[R3] Cable and satellite channels announced for Mariners.TV
+(https://www.mlb.com/news/mariners-announce-cable-satellite-channels-for-2026-tv-broadcasts)
+"""
+SEATTLE -- The Mariners on Wednesday unveiled how traditional cable and satellite or internet television subscribers can access their games in 2026, specifically via what channels they’ll be on, beginning with Opening Day. Ichiro Replica Statue Giveaway is April 10! In the club’s home territory footprint -- Washington, Oregon, Idaho, Montana and Alaska -- regular-season games that haven’t been picked up as a national broadcast will be on the following channels: 1261 687 130 (Billings, Butte-Bozeman, Great Falls, Helena, Missoula) 318 or 414 (Spokane) 414 (Seattle-Tacoma, Medford-Klamath Falls, Portland, Yakima-Kennewick) 37/737 (Seattle) 46/126 (Bellingham) 46/246 (Camano Island) 31/131 (Chelan) 31/737 (Depoe Bay) 37/737 (Duvall) 31/737 (Echo Lake) 31/737 (Entiat) 41/541 (Lewis County) 25/125 (Port Angeles) 30/130 (Port Orchard) 33/733 (Port Townsend) 38/738 (Salem) 43/738 (Sandy) 38/738 (Silverton) 57/157 (Stevenson) 31/737 (Whidbey Island) 27 and 627 (Bend and Lapine) 32 and 132 (Madras and Prineville) 1276 and 276 (Coeur d'Alene) 243 (TDSTV+) Other distributors will be announced soon.Essentially, the club expects, fans who have the same cable and satellite packages that included Mariners games last year will be included this year. A full channel finder (by ZIP code + provider) will be available on Thursday morning at Mariners.com/Watch.New for 2026, Major League Baseball is producing and distributing most local games for the Mariners. Within those plans, the club created a new broadcasting wing (Mariners TV) and a new streaming service (Mariners.TV).Fans within the club’s home television territory can stream games with no local blackouts via Mariners.TV, and there are a variety of plans to choose from: Mariners.TV Seasonal Package: $99.99 Mariners.TV & MLB.TV Package: $199.99 Mariners.TV Monthly Package: $19.99 Mariners.TV & MLB.TV Monthly Package: $39.99 Each package comes with a 7-day free trial, which you cancel at any time. All you have to do is log into your account at MLB.com or on the MLB app via your favorite supported devices. Don’t have an account? It’s free to create a username and password, and no credit card is required.For viewers outside the Pacific Northwest footprint, access will remain unchanged. Out-of-market fans can continue to watch Mariners games through MLB.TV, which offers live and on-demand coverage of regular-season games across devices.To learn more about how to watch in-market, click here.Skenes back to Cy Young form in win after tough Opening Day start7:33 PM UTCCINCINNATI -- Pirates ace Paul Skenes rebounded from the shortest outing of his career to post five strong innings Wednesday and earn his first win of the season, 8-3, against Cincinnati at Great American Ball Park.After allowing five runs on four hits, walking two and hitting a batter while retiring just two batters last Thursday, Skenes (1-1) allowed just one run on three hits, striking out five and walking two. He tossed 77 pitches (51 strikes) and lowered his season ERA from 67.50 to 9.53. Skenes left with a 4-1 lead thanks to an Oneil Cruz three-run homer off Cincinnati starter Andrew Abbott (0-1) in the first. Pirates Home Opener is Friday vs. the Orioles -- Get your tickets now! Mason Montgomery relieved Skenes to start the sixth, and allowed a pinch-hit two-run homer to Eugenio Suárez as the Reds cut the Pirates’ lead to one run. But Isaac Mattson, Justin Lawrence and Gregory Soto finished off the final 3 1/3 innings for Pittsburgh’s first series victory of the season.The Pirates have Thursday off before their home opener Friday afternoon against Baltimore.Bryan Reynolds blasted a two-run homer deep to the seats in right in a four-run ninth for his 140th as a Pirate, moving him into sole possession of ninth place all-time in Pirates history.Skenes didn’t give up a hit until Elly De La Cruz swatted a 90.1 mph changeup to right field for a single to open the bottom of the fourth. After Sal Stewart’s grounder moved De La Cruz to second, Nathaniel Lowe doubled him home, snapping Skenes’ scoreless streak against Cincinnati at 31 innings, dating to his first career start against the Reds on June 17, 2024.Coming into Wednesday’s game, the opponent figured to be the perfect elixir for the flame-throwing Pittsburgh ace after his shortest career outing six days earlier against the Mets in Queens.In five previous starts against the Reds, Skenes was 4-0 with a 0.31 ERA, covering 29 innings. He struck out 40 and walked just two batters. Skenes had not allowed a run against Cincinnati since the first inning of his first start against the Reds.Like his Opening Day start last Thursday, Skenes had an early lead to work with, this time thanks to Cruz belting his third homer of the series and season, and his second in as many at-bats.With two outs, Reynolds singled and Marcell Ozuna walked. Cruz then hopped all over a hanging curve from Abbott and unloaded it a Statcast-projected 407 feet to right for a 3-0 Pirates lead in the first.Skenes needed a batter to find his rhythm, walking leadoff man TJ Friedl on five pitches. But unlike his outing against the Mets, he quickly found a groove, striking out Matt McLain and De La Cruz before retiring the red-hot Stewart on a force out at second.
+"""
+
+[R4] Where to find Seattle Mariners TV and radio broadcasts - Seattle Sports
+(https://sports.mynorthwest.com/mlb/seattle-mariners/full-tv-radio-seattle-mariners-broadcasts-2026-season/1843635)
+"""
+Opening day for the Seattle Mariners is here, and the details are now fully set for their new TV broadcast situation, which gives fans a host of ways to watch their games this season. Seattle Mariners unveil opening day roster and who’s on IL Here’s a full breakdown of every way to watch M’s games in 2026, as well as how to tune in the Mariners Radio Network broadcasts – always for free – from Seattle Sports. Mariners.TV subscription The Seattle Mariners now offer a standalone streaming subscription that allows fans to watch their games on the MLB.TV or ESPN apps. A monthly subscription is $19.99, and a full-season subscription is $99.99. The subscription service is limited to in-market viewers, which covers Washington, Idaho, Oregon, Alaska, Montana, Hawaii, British Columbia and Alberta. You can sign up for a subscription at this link. Viewers who are out of the market can subscribe to MLB.TV to watch M’s games. Cable/satellite providers *In the Seattle/Tacoma area • Xfinity: Channel 1261 • Spectrum: Channel 414 • DirecTV: Channel 687 • Astound Broadband/Wave: Channels 37 and 737 For more cable providers throughout the Pacific Northwest carrying Mariners broadcasts and their corresponding channels, click here. You can also use a channel finder for Mariners TV broadcast providers in your zip code at this link. Multi-channel streaming providers • Fubo Seattle Sports, the flagship station of the Mariners Radio Network, streams every game for free on the Seattle Sports app to listeners in Washington, Oregon, Idaho, Montana, British Columbia and Alaska. For more details on how to stream M’s games on the app, click here. Nearly every Mariners game airs on the Seattle Sports 710 AM terrestrial radio station. The only exceptions are games late in the season that overlap with Seattle Seahawks game broadcasts, in which case the game instead will air on Seattle Red 770 AM. Still, all games will be available on the Seattle Sports app regardless of their location on terrestrial radio. Additionally, KIRO Radio 97.3 FM carries Mariners games on Sundays, unless they overlap with Seahawks games. For a list of all Mariners Radio Network affiliates, click here. Seattle Mariners news and analysis • Drayer: This season, the Mariners replace hope with expectations • Morosi: Mariners made the right decision on Mitch Garver • How prospect expert views Mariners OF Lazaro Montes • M’s dust off a classic in latest commercial featuring Cal Raleigh • Drayer: The state of the Mariners as camp breaks for opening day
+"""
+
+[R5] How to watch Mariners games: Updated TV, streaming and channel info
+(https://www.spokesman.com/stories/2026/mar/25/how-to-watch-mariners-games-tv-streaming-and-chann/)
+"""
+Finally, an answer for local fans to the only real question surrounding the Seattle Mariners entering the 2026 season: Yes, you can watch them on TV. The Mariners on Wednesday afternoon announced programming updates on how to watch their games through traditional cable and satellite providers. Viewers with a Comcast/Xfinity subscription can watch M’s games on Channel 1261. Those who have a Charter/Spectrum subscription in the Seattle-Tacoma market can watch games on Channel 414. On Wednesday evening, the Mariners announced more broadcasting details. Notably, Mariners games will air on DirecTV on Channel 687. Viewers with a Charter/Spectrum subscription in Seattle-Tacoma, Yakima and parts of Oregon can watch games on Channel 414; Spokane viewers can watch on Channel 318 or 414; and in Montana on Channel 130. Games will also broadcast on Astound Broadband/Wave for viewers throughout western Washington, and on TDS in eastern Oregon and parts of Idaho. “These channels will appear soon if your package includes Mariners TV. We expect your package to include Mariners TV if it included Mariners Baseball last season,” the club said in a statement. The club says a full channel finder will be available Thursday morning at www.mariners.com/watch, ahead of the Mariners’ first game against the Cleveland Guardians on Thursday night. Last September, the Mariners announced they were shuttering ROOT Sports Northwest — their regional sports network responsible for airing the bulk of their 162-game schedule — and handing over their production and distribution rights to MLB. As part of that plan, the team created a new broadcasting wing, Mariners TV, and a new streaming service, Mariners.TV. People in Washington, Idaho, Oregon, Alaska, Montana or Hawaiʻi (plus British Columbia and Alberta, Canada) can stream Mariners games with no local blackouts on Mariners.TV. Plans are on sale for $99.99 for a full season or $19.99 per month. Those outside the Mariners’ territory can continue to stream games on MLB.TV.
+"""
+
+[R6] Cable TV channels for Seattle Mariners games are set - Seattle Sports
+(https://sports.mynorthwest.com/mlb/seattle-mariners/cable-tv-channels-seattle-mariners-2026-season/1843612)
+"""
+Update: Click here for a full breakdown of everywhere you can find Seattle Mariners TV and radio broadcasts this season. The Seattle Mariners TV situation may be full of changes for the 2026 season, but there is one thing staying the same: their games will still be available on local cable. Seattle Mariners unveil opening day roster and who’s on IL Mariners insider Shannon Drayer of Seattle Sports reported Wednesday that Mariners games will have a home on both Xfinity and Spectrum cable in the Seattle/Tacoma area. On Xfinity, M’s games will air on channel 1261, while on Spectrum, they will air on channel 414. Drayer added that other distributors of Mariners TV broadcasts will announced soon, and a channel finder will be available starting Thursday at this link. As always, radio broadcasts of Mariners games air for free from Mariners Radio Network flagship station Seattle Sports, with games on the Seattle Sports app always available for those in Washington, Oregon, Idaho, Montana, British Columbia and Alaska. For details on how to stream Mariners radio broadcasts from Seattle Sports, click here. The Mariners’ former TV home, ROOT Sports, shuttered following the 2025 season. Last year was Seattle’s first under the MLB broadcasting arm, with ROOT made available for the first time as a streaming-only option. The streaming option continues this year under the new “Mariners TV” branding, with the cost of subscription either $99.99 for the entire season or $19.99 monthly. You can subscribe at this link. More details on the Mariners’ TV situation this year can be found here. The Mariners, who are coming off their first division title and American League Championship Series appearance in 24 years, begin the 2026 season at 7:10 p.m. Thursday night at Seattle’s T-Mobile Park against the Cleveland Guardians. Mariners Radio Network coverage will begin at 6 p.m. with the pregame show, preceded by a full day of Mariners coverage on Seattle Sports’ Brock and Salk (6-10 a.m.), Bump and Stacy (live from T-Mobile Park from 10 a.m. to 2 p.m.), and Wyman and Bob (live from 2-6 p.m. from Hatback across the street from the park). More on the Seattle Mariners • Drayer: This season, the Mariners replace hope with expectations • Morosi: Mariners made the right decision on Mitch Garver • How prospect expert views Mariners OF Lazaro Montes • M’s dust off a classic in latest commercial featuring Cal Raleigh • Drayer: The state of the Mariners as camp breaks for opening day Follow @BrentStecker
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

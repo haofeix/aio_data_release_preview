@@ -1,0 +1,113 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "nuggets game tonight"
+
+Claims:
+[1] "The Denver Nuggets play the Minnesota Timberwolves in Game 2 of the NBA Playoffs"
+[2] "Game 2 is on Monday, April 20, 2026"
+[3] "Game 2 is at 8:30 p.m. MST"
+[4] "Game 2 is at 10:30 p.m. ET"
+[5] "Game 2 is at Ball Arena in Denver, CO"
+[6] "Game 2 is televised on NBC"
+[7] "Game 2 is available to stream on Peacock"
+[8] "The Denver Nuggets lead the series 1-0"
+[9] "The Denver Nuggets won Game 1 116-105"
+[10] "The Denver Nuggets are a -7.5 point favorite"
+[11] "The series moves to Minnesota for Game 3 following Game 2"
+[12] "Game 3 is on Thursday, April 23"
+[13] "Game 3 is at 7:30 p.m. PDT"
+[14] "Game 3 is at Target Center"
+
+Cited text snippets from the AI Overview (for additional context):
+- Schedule | Denver Nuggets - NBA: "Check the Denver Nuggets schedule for game,to watch or radio broadcast the games."
+- How to Watch Minnesota Timberwolves vs. Denver Nuggets Game 2: "Anthony Edwards, #5, of,2026 in San Francisco, California.&text=The Timberwolves and the Nuggets,report on the action courtside."
+- Timberwolves-Nuggets Game 2: Referees, Announcers, Keys to an Upset: "Wolves-Nuggets is set for,on staying up to watch."
+- Live: Timberwolves play Nuggets in Game 2 - Star Tribune: "Live from Denver: Timberwolves, Nuggets,toe in tense Game 2&text=The Wolves lost Game 1,Western Conference playoff series tonight.&text=DENVER − The Timberwolves are trying,four seasons in the postseason."
+- Jamal Murray's 30 Points Give Nuggets Win in Game 1 ...: "Welcome to the playoffs. The Denver Nuggets,the Anthony Edwards and the Minnesota Timberwolves."
+Reference Sources:
+
+[R1] Schedule | Denver Nuggets
+(https://www.nba.com/nuggets/schedule)
+"""
+Denver NuggetsSchedule for 2025-26 seasonDateTime (PDT)H / AOpponentArenaTVThu, Apr 237:30 PMAwayTimberwolvesTarget CenterPrime VideoSat, Apr 256:30 PMAwayTimberwolvesTarget CenterABCMon, Apr 278:30 PMHomeTimberwolvesBall ArenaNBCThu, Apr 30TBDAwayTimberwolvesTarget CenterTBDSat, May 2TBDHomeTimberwolvesBall ArenaTBDSchedule 2025-262025-262024-252023-242022-232021-22Switch ViewAdd To CalendarPrint ScheduleFilters Event ScheduleUpcomingPastPlayoffsawayPlayoffsWest First Round ThursdayApr 237:30 PM MDTTarget CenterMinneapolis, MNMinnesotaTimberwolvesTV: Prime VideoPlayoffsWest First Round MinnesotaTimberwolvesPowered By:LockerVisionWatchawayPlayoffsWest First Round SaturdayApr 256:30 PM MDTTarget CenterMinneapolis, MNMinnesotaTimberwolvesTV: ABCPlayoffsWest First Round MinnesotaTimberwolvesPowered By:LockerVisionWatchhomePlayoffsWest First Round MondayApr 278:30 PM MDTBall ArenaDenver, COMinnesotaTimberwolvesTV: NBC, PeacockFind TicketsPlayoffsWest First Round MinnesotaTimberwolvesPowered By:LockerVisionFind TicketsWatchawayPlayoffsWest First Round ThursdayApr 30TBDTarget CenterMinneapolis, MNMinnesotaTimberwolvesTV: TBDPlayoffsWest First Round MinnesotaTimberwolvesPowered By:LockerVisionhomePlayoffsWest First Round SaturdayMay 2TBDBall ArenaDenver, COMinnesotaTimberwolvesTV: TBDFind TicketsPlayoffsWest First Round MinnesotaTimberwolvesPowered By:LockerVisionFind Tickets Your Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I Understand
+"""
+
+[R2] Watch Denver vs Minnesota NBA Playoffs Game 2 streaming for free tonight; TV channel, time, odds
+(https://www.oregonlive.com/tv/2026/04/watch-denver-vs-minnesota-nba-playoffs-game-2-streaming-for-free-tonight-tv-channel-time-odds.html)
+"""
+Denver Nuggets center Nikola Jokić (15) and Minnesota Timberwolves center Naz Reid (11) in the second half of an NBA basketball game Sunday, March 1, 2026, in Denver. (AP Photo/David Zalubowski)APIf you purchase a product through a link on our site, we may receive compensation.By John Holland | The Oregonian/OregonLiveNikola Jokic leads the Denver Nuggets as they face off against Anthony Edwards and the Minnesota Timberwolves in this electrifying matchup. Denver leads the series 1-0. The tip is scheduled for 7:30 p.m. PT/10:30 p.m. ET (8:30 p.m. MST) on Monday, April 20, and you can watch live on NBC and stream it on Peacock.What TV channel is the Nuggets vs Timberwolves NBA Playoff game on tonight, or is it streaming only?Tonight’s game is available on regular broadcast TV via NBC, and is also available to live stream on Peacock, NBC’s flagship streaming service. When: 7:30 p.m. PT/10:30 p.m. ET (8:30 p.m. MST) on Monday, April 20Where: Ball Arena in Denver, COTV channel: NBC, and streaming on PeacockHow to watch the game streaming live: You can watch this game today live for FREE with DIRECTV (free trial).Another great option might be to check out the multitude of subscription options at Sling and buy an HDTV antenna. You can also sign up for Peacock Premium ($10.99/month) to watch this game live on your TV, computer, phone, or tablet with the Peacock app. To sign up, follow the sign-up instructions on the Peacock home page, and it will walk you through how to sign up quickly. What are the Wolves vs. Nuggets spread and latest betting odds?Moneyline: DEN: -298 | MIN: +240Spread: DEN: -7.5Over/Under: 231.5Suns vs Thunder goes live tonight: Everything you need to know about how to watch Game 2Watch the Penguins vs Flyers streaming for free tonight; TV channel, time, betting oddsHow to watch Magic vs Pistons in Game 2 for free today; NBA Playoffs start time, channel, oddsJohn's focus is on helping readers find ways to watch live sports and experience them in person. John is a passionate sports fan and a native Oregonian who has past experience working in sports, retail and the...
+"""
+
+[R3] Game 2: Wolves-Nuggets in Denver
+(https://www.startribune.com/live-blog-minnesota-timberwolves-denver-nuggets-game2-nba-playoffs/601770583)
+"""
+DENVER – The Timberwolves have had more than a few playoff games over the last five years that have swung wildly.They have played a lot of games (regular season and playoffs) against Denver that fit that description. Only a few of those games featured greater swings on the scoreboard and in emotion than Game 2 of their first-round series tonight.After a horrendous start, the Wolves fought back from a 19-point deficit to take a lead — all before halftime. The second half was much tighter on the scoreboard, and the Wolves came away with a 119-114 victory over the Nuggets.The Wolves had trouble containing Jamal Murray early in the game as he had 23 of his 30 points in the first half. Nikola Jokic picked up the scoring slack for Denver in the second half with 24 points, 15 rebounds and eight assists for the game.Anthony Edwards looked like himself after a choppy Game 1 with 30 points for the Wolves while Julius Randle was stellar with 24. Rudy Gobert, who was fourth in the Defensive Player of the Year voting, had some key possessions against Jokic late.The Wolves took a 115-111 lead on a Donte DiVincenzo's three with 1:05 to play. After Gobert played great individual defense on him down the stretch, Jokic got a dunk to pull within two with 49.6 seconds left. Edwards was called for a walk with 30.6 seconds to play setting a Denver chance to tie or take the lead. After the Wolves almost came up with a steal, Julius Randle fouled Christian Braun with 19.1 seconds left. He hit one free throw and the Wolves led 115-114.The Wolves missed free throws all night and were 17-for-28 as they inbounded the ball on the next possession. Randle went to the line for two and drained them both. Murray missed at the other end, and the Wolves clinched the victory. Denver had won 13 games in a row, counting a 12-game winning streak to close the regular season.Game 3 is Thursday at Target Center.
+"""
+
+[R4] Timberwolves-Nuggets Game 2: Referees, Announcers, Keys to an Upset
+(https://www.si.com/nba/timberwolves/onsi/timberwolves-nuggets-game-2-referees-announcers-keys-to-an-upset)
+"""
+The Timberwolves are looking to avoid falling into an 0-2 hole on Monday night in Denver. The old adage is that a series doesn't truly start until someone loses at home, but needing to win four of the final five games against the Nuggets would be a tricky proposition for Minnesota.Here's everything you need to know about Game 2 of this first-round series.Start time, TV channel, and announcersWolves-Nuggets is set for a 9:30 p.m. central time start on Monday. It'll be televised on NBC and Peacock as the second half of a doubleheader after Knicks-Hawks, which begins at 7. Realistically, that means the game won't start until at least 9:40, if not later. It's going to be a late night for folks in the central and (especially) eastern time zones planning on staying up to watch.A treat for Wolves fans staying up late is that Michael Grady will be on the call for this one. Grady is the former Timberwolves play-by-play announcer on FanDuel Sports Network who still mixes in some Minnesota games when his busy national schedule (NBC/Peacock, Prime Video) allows. Calling the action alongside Grady will be a couple retired NBA veterans: Former Timberwolves guard Austin Rivers (2022-23) and the White Mamba, Brian Scalabrine.RefereesOfficiating was a topic of conversation, to say the least, during and after Game 1 on Saturday. An early "landing space" flagrant foul on Jaden McDaniels was a controversial one, and Chris Finch generally wasn't pleased with Jamal Murray shooting three fewer free throws than the Wolves did as a team. That crew was led by referee Zach Zarba.The Game 2 crew will be fronted by veteran official Tony Brothers, whose crew called 51 fouls and two technicals in Game 1 of Cavaliers-Raptors on Saturday (Wolves-Nuggets had 42 fouls and four techs). That was on the high side for Brothers, whose crews averaged 39.3 foul calls during the regular season. Brothers will be joined by Mitchell Ervin and Gediminas Petraitis on Monday.Tony Brothers | David Richard-Imagn ImagesInjuriesFor the second straight game, Anthony Edwards was listed as questionable due to his right knee injury maintenance. There's essentially a zero percent chance Edwards doesn't play, but it's clear that he's not quite at 100 percent right now. How effective he's able to be despite that limitation will go a long way in determining if the Wolves have a chance to win this series.It'll also be interesting to see how much Naz Reid plays tonight. Reid, who has been playing through a minor shoulder injury for a while, only saw 17 minutes in Game 1 after averaging 26 in the regular season.The Nuggets will be without 3-and-D wing Peyton Watson for the second straight game.Keys to a Wolves upsetThe glass-half-full way to view Game 1 from a Timberwolves perspective is that none of their top three offensive players (Edwards, Julius Randle, Jaden McDaniels) shot the ball very well, they got almost nothing from Reid, and they still found themselves down just five points in the final minutes.The glass-half-empty way to view it is that the Wolves defended Nikola Jokic reasonably well, Murray was 0 for 8 from three, the Nuggets collectively went 1 for 17 from three in the second half, and Denver still managed to win the game.Several things will have to happen for Minnesota to win Game 2 as 7.5-point underdogs. Rudy Gobert has to play another strong two-way game and continue to make life somewhat difficult on Jokic. The Wolves have to defend with more urgency off of the ball and give up fewer open looks from three. And offensively, they simply need their star players to hit shots at a higher clip. Edwards, Randle, and McDaniels will have to be more efficient in their scoring for the Wolves to keep pace.Taking care of the ball and limiting self-inflicted wounds will also be critical for the Timberwolves. The same can be said for keeping Denver off of the offensive glass.It'll be interesting to see how Finch manages his bench rotations after barely playing Bones Hyland at all in Game 1 and using Mike Conley for 11 minutes.The Wolves have to come out with plenty of desperation and urgency in this one as they try to avoid dropping both games in Denver to begin the series.Add us as a preferred source on GoogleFollow
+"""
+
+[R5] How to Watch Minnesota Timberwolves vs. Denver Nuggets Game 2 - NBA Playoffs on NBC & Peacock
+(https://www.nbc.com/nbc-insider/how-to-watch-minnesota-timberwolves-vs-denver-nuggets-game-2)
+"""
+The first week of the NBA Playoffs is jam-packed, and the NBA on NBC is along for the entire ride. After a doubleheader on Sunday night, NBC Sports returns Monday night with a tripleheader of First Round Playoffs action, and it all culminates with a major Western Conference battle.How to WatchTo close out the trio of Monday night games, we're heading to Denver for a major Western Conference battle between playoff regular, as the Minnesota Timberwolves take on the Nuggets in Game 2 of their First Round series. The Nuggets lead the series 1-0 heading into Game 2. Let's take a closer look at what's ahead.RELATED: Full 2026 NBA Playoffs Round 1 Schedule: Teams, Dates & MoreThe Timberwolves and the Nuggets are set to tip off at 10:30 p.m. Eastern on Monday, April 20, live from Ball Arena in Denver. You can catch the game live on NBC or stream it simultaneously on Peacock. NBC Sports' Michael Grady will be on the play-by-play call for this matchup, with analysis from Brian Scalabrine and Austin Rivers, who played for both the Timberwolves and the Nuggets during his NBA career. Grant Liffmann will report on the action courtside.RELATED: Players to Watch in the 2026 NBA PlayoffsWhat to expect from Timberwolves vs. NuggetsA Best-of-7 series can change hands multiple times, depending on how far it goes, but as this one gets underway, the Nuggets are likely in a strong position, especially while they're at home. They've got three-time MVP Nikola Jokic playing some of the best ball of his career, to the point that he's the only player in NBA history to lead the league in both rebounds and assists in a single season, and that's far from the end of their talents. They've got the highest-performing offense in the entire league, and they're among the most efficient shooters out there. Throw in Jokic's prowess in the paint, and it's easy to see why they ended up with a 3-1 record against the Timberwolves in the regular season.But that doesn't mean you should count Minnesota out. Anthony Edwards finished third in the race for the scoring title this season, Rudy Gobert is still a ferocious rebounder, and they've got lots of talent on the squad. All they need is a couple of key breaks in Denver, solid performances when the series returns to Minneapolis, and a little bit of luck, and they could be among the Cinderella stories of this Playoffs season. Neither team has the dominance of the Thunder or the Spurs in the West, but this is one of the First Round series to watch as we head into the thick of the Playoffs.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

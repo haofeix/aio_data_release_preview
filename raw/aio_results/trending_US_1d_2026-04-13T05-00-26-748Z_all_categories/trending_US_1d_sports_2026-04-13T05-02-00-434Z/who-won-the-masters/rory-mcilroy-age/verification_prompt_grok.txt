@@ -1,0 +1,93 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "rory mcilroy age"
+
+Claims:
+[1] "Rory McIlroy is a Northern Irish professional golfer."
+[2] "Rory McIlroy was born on May 4, 1989."
+[3] "As of June 20, 2024, Rory McIlroy was 35 years old."
+[4] "Rory McIlroy is a 4-time major winning golfer."
+[5] "Ray McElroy is a former NFL player."
+[6] "Ray McElroy was born in 1972."
+[7] "Roy McElroy is a New Zealand politician."
+[8] "Roy McElroy was born in 1907."
+[9] "Roy McElroy died in 1994."
+[10] "Ray McElroy and Roy McElroy are distinct people from Rory McIlroy"
+
+Cited text snippets from the AI Overview (for additional context):
+- Ray McElroy - Wikipedia: "Raymond Edward McElroy (born July 31, 1972),Eastern Illinois Panthers and was selected in"
+Reference Sources:
+
+[R1] Ray McElroy
+(https://en.wikipedia.org/wiki/Ray_McElroy)
+"""
+From Wikipedia, the free encyclopedia Ray McElroyNo. 40, 47PositionCornerbackPersonal informationBornJuly 31, 1972 (age 53)Bellwood, Illinois, U.S.Listed height5 ft 11 in (1.80 m)Listed weight196 lb (89 kg)Career informationHigh schoolHillside (IL) Proviso WestCollegeEastern IllinoisNFL draft1995: 4th round, 114th overall pickCareer history Indianapolis Colts (1995–1998) Chicago Bears (2000) Detroit Lions (2001) Career NFL statisticsGames played - started81 - 9Tackles65Touchdowns1Stats at Pro Football Reference Raymond Edward McElroy (born July 31, 1972) is an American former professional football player who was a cornerback for six seasons with the Indianapolis Colts, Chicago Bears, and Detroit Lions of the National Football League (NFL). He played college football for the Eastern Illinois Panthers and was selected in the fourth round of the 1995 NFL draft with the 114th overall pick.[1] He attended Proviso West High School from 1987 to 1990. McElroy appeared on the MTV show "Made" as a personal football coach for a choirboy hoping to improve his relationship with his football-obsessed father. "Original Air Date: 01-26-11" Pre-draft measurables Height Weight Arm length Hand span 40-yard dash 10-yard split 20-yard split 20-yard shuttle Vertical jump Broad jump Bench press 5 ft 11+3⁄4 in(1.82 m) 196 lb(89 kg) 32 in(0.81 m) 8+7⁄8 in(0.23 m) 4.64 s 1.66 s 2.73 s 4.23 s 33.5 in(0.85 m) 9 ft 10 in(3.00 m) 16 reps All values from NFL Combine[2] ^ "1995 NFL Draft Listing". Pro-Football-Reference.com. Retrieved March 31, 2023. ^ "Ray McElroy, Combine Results, SS - Eastern Illinois". nflcombineresults.com. Retrieved September 29, 2022.
+"""
+
+[R2] Rory McIlroy calls off divorce to Erica Stoll, has epic US Open collapse
+(https://www.palmbeachpost.com/story/news/2024/06/20/rory-mcilroy-divorce-wife-erica-stoll-golf-open-dechambeau-twitter/74130135007/)
+"""
+NEWSBizarre, emotion-filled week of Rory McIlroy (divorce, US Open loss) ends with turtles at Florida beachPro golfer Rory McIlroy of Jupiter, Florida, is taking time off the PGA Tour to get his head straight after losing the US Open.John Bisognano Samantha NeelyPalm Beach PostJune 20, 2024, 9:18 a.m. ETPro golfer Rory McIlroy had one heck of a bizarre, emotion-filled week.Maybe looking at some sea turtles in Juno Beach eased his mind.The week began when, on the eve of the U.S. Open — one of golf's four major tournaments — the Jupiter resident, who last month had filed for divorce with his wife of seven years, Erica Stoll, announced that the couple had "resolved our differences."
+"""
+
+[R3] Roy McElroy
+(https://en.wikipedia.org/wiki/Roy_McElroy)
+"""
+From Wikipedia, the free encyclopedia Roy McElroyCMG33rd Mayor of Auckland CityIn office28 October 1965 – 23 October 1968DeputyFred GlassePreceded byDove-Myer RobinsonSucceeded byDove-Myer RobinsonPersonal detailsBornRoy Granville McElroy2 April 1907Auckland, New ZealandDied16 May 1994 (aged 87)Auckland, New ZealandPartyNationalSpouse(s) Margaret Lillian Pountney ​ ​(m. 1936; div. 1943)​Joan Holm Biss (d. 1983)Betty Joan Boyd MacGregor Roy Granville McElroy CMG (2 April 1907 – 16 May 1994) was a New Zealand lawyer and politician, who served as mayor of Auckland City from 1965 to 1968. Early life and career[edit] Born in Auckland on 2 April 1907, McElroy was the son of Herbert Thomas Granville McElroy and Frances Catherine McElroy (née Hampton).[1][2] He was educated at Thames High School and Auckland Grammar School, and went on to study at Auckland University College from 1924.[3][4] He gained a Bachelor of Laws in 1928, and a Master of Laws with second-class honours in 1929.[3] He worked as a law clerk in Auckland, and in 1932 was awarded a postgraduate scholarship in law by the University of New Zealand.[3] He travelled to Britain and completed a PhD in law at the University of Cambridge in 1934.[5] He was conferred the degree of Doctor of Laws by the University of New Zealand in 1935.[6] On 3 December 1936, McElroy married Margaret Lillian Pountney,[7] but they divorced in December 1943.[8] He later married Joan Holm Blackie (née Biss), and, following the latter's death, Betty Joan Boyd MacGregor.[9] McElroy later became a partner in the Auckland law firm of McElroy, Duncan and Preddle. During World War II, he served with the 2nd New Zealand Expeditionary Force from 1940 to 1944, rising to become a captain in 14 Light Anti-Aircraft Regiment. McElroy was an Auckland City Councillor for 15 years from 1938 to 1953, when he was deselected by the Citizens and Ratepayers association (C&R). Later, in 1965, he was chosen as the C&R candidate to run against the popular incumbent Mayor Dove-Myer Robinson. He won in 1965 by 1134 votes, but in the next election in 1968, Robinson defeated him by 6000 votes. As both councillor and mayor, he supported housing and urban renewal. McElroy was the National Party candidate for the Roskill electorate in 1943 and 1946.[10][11] He was to stand in Roskill in the cancelled 1941 election. He later served as the Honorary Consular Agent of France from 1948 to 1972 and was awarded the Chevalier of the Légion d’honneur by the French president, Georges Pompidou, in 1970. In the 1972 New Year Honours, McElroy was appointed a Companion of the Order of St Michael and St George, for services to the community.[12] McElroy died in Auckland on 16 May 1994,[1] and his ashes were buried at Purewa Cemetery.[13] ^ Jump up to: a b McElroy, Roy Granville, Who Was Who, A & C Black, 1920–2015; online edn, Oxford University Press, 2014 ^ "Birth search: registration number 1907/10230". Births, deaths & marriages online. Department of Internal Affairs. Retrieved 23 July 2017. ^ Jump up to: a b c "Law scholarship". The New Zealand Herald. 2 May 1932. p. 10. Retrieved 23 July 2017. ^ "Grammar year". Auckland Star. 17 December 1929. p. 11. Retrieved 23 July 2017. ^ "Scholastic honour". The New Zealand Herald. 9 June 1934. p. 12. Retrieved 23 July 2017. ^ "Doctorate of laws". The New Zealand Herald. 1 October 1935. p. 10. Retrieved 23 July 2017. ^ "Marriage search: registration number 1936/10602". Births, deaths and marriages online. Department of Internal Affairs. Retrieved 23 July 2017. ^ "Divorce cases". The New Zealand Herald. 16 December 1943. p. 2. Retrieved 23 July 2017. ^ "Roy Granville McElroy papers" (PDF). Auckland Council. Retrieved 23 July 2017. ^ "Electoral". The New Zealand Herald. Vol. 80, no. 24713. 13 October 1943. p. 5. Retrieved 15 May 2017. ^ "The General Election, 1946". National Library. 1947. pp. 1–11, 14. Retrieved 1 January 2014. ^ "No. 45556". The London Gazette (3rd supplement). 1 January 1972. p. 41. ^ "Burial & cremation details". Purewa Cemetery and Crematorium. Retrieved 23 July 2017. Obituary in The New Zealand Herald of 17 May 1994 (section 1 page 9)
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

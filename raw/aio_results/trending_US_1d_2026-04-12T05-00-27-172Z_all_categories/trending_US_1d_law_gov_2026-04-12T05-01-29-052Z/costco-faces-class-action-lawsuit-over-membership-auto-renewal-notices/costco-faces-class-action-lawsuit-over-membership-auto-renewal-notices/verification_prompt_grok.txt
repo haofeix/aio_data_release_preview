@@ -1,0 +1,116 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "costco faces class action lawsuit over membership auto renewal notices"
+
+Claims:
+[1] "Costco is facing a class-action lawsuit."
+[2] "The class-action lawsuit against Costco alleges violation of California’s Automatic Renewal Law."
+[3] "The class-action lawsuit against Costco alleges Costco failed to provide proper, timely notice before auto-renewing memberships."
+[4] "The class-action lawsuit against Costco claims Costco sent renewal notices 60 days prior."
+[5] "The class-action lawsuit against Costco claims Costco failed to include required cancellation details."
+[6] "The class-action lawsuit against Costco was filed in March 2026."
+[7] "The class-action lawsuit against Costco was filed by California resident Russel George II."
+[8] "Russel George II represents a class of members."
+[9] "California’s Automatic Renewal Law mandates companies provide clear, conspicuous notice 15–45 days before a subscription renews."
+[10] "The class-action lawsuit against Costco alleges Costco sent notice 60 days ahead."
+[11] "The complaint argues that timely notice was not provided."
+[12] "The complaint argues that lack of timely notice prevented members from canceling."
+[13] "The complaint states the notice lacked crucial information regarding the renewal price."
+[14] "The complaint states the notice lacked information regarding how to cancel."
+[15] "California requires that cancellation must be as easy as enrollment."
+[16] "The lawsuit demands a jury trial."
+[17] "The lawsuit demands declaratory relief."
+[18] "The lawsuit demands injunctive relief."
+
+Cited text snippets from the AI Overview (for additional context):
+- Costco slapped with fresh 'automatic renewal' lawsuit after 60-day ...: "He has demanded a jury trial and,damages for himself and all class members."
+- A California man is suing Costco, alleging the retailer violated state ...: "A California man is suing Costco, alleging,recover the same costs from the government."
+- Another class-action lawsuit has come for Costco — this time ...: "Another class-action lawsuit has come for Costco,adequate notice before automatically renewing their memberships."
+- Costco sued over membership auto-renewal, reports say | Consumer: "BEND, Ore. — After two lawsuits targeting,California law regarding over its auto-renewal notices."
+Reference Sources:
+
+[R1] Costco faces new lawsuit over membership auto-renewal notices, reports say
+(https://www.centraloregondaily.com/news/consumer/costco-lawsuit-membership-auto-renewal-notice/article_c926d3d8-7b34-4041-9433-f7c43a90634f.html)
+"""
+BEND, Ore. — After two lawsuits targeting its $4.99 rotisserie chicken and another over alleged price increases from tariffs, warehouse giant Costco is now facing a lawsuit over its annual membership. The new complaint in federal court argues that Costco violated California law regarding over its auto-renewal notices.The suit, filed in the U.S. District Court for the Northern District of California on behalf of plaintiff Russell George, alleges that Costco sent George a renewal notice 60 days before his membership expired, according to the website Top Class Actions.According to California’s Automatic Renewal Law, “notice shall be provided at least 15 days and not more than 45 days before the automatic renewal offer or continuous service offer renews.”The lawsuit also reportedly alleges that Costco failed to provide details such as length, price and terms of renewal and methods on how to cancel it.“Due to Costco’s untimely and deficient auto-renewal notice, the plaintiff was deprived of information he was statutorily entitled to that would have notified him of the upcoming auto-renewal and provided him with methods of cancellation,” the lawsuit reads, according to Top Class Actions.The Oregonian reports that Oregon law does not have a similar time frame standard.The lawsuit also reportedly claims George was considering considering canceling his $65 per year Gold Star membership due to lack of use.“Had the plaintiff been provided this notice in a timely manner, he would have cancelled his membership and not gone forward with the auto-renewal,” the lawsuit says, according to Top Class Actions.Central Oregon Daily News has reached out to Costco for a response. As of 4:00 p.m. Thursday, we had not heard back.This is the latest class-action lawsuit Costco is facing. The Issaquah, Wash., company was sued in January, accused of falsely advertising that its popular rotisserie chicken contains “no preservatives.” Three weeks later, a proposed class-action lawsuit was filed by an animal rights nonprofit, claiming that a Costco chicken processing plant in Nebraska suffers from salmonella contamination.Another lawsuit reportedly claims that Costco wrongfully passed the cost of President Donald Trump’s tariff duties onto customers. The lawsuit came after the U.S. Supreme Court struck down the tariffs.
+"""
+
+[R2] Costco Automatic Renewal Lawsuit: What to Know
+(https://marketrealist.com/news/costco-automatic-renewal-lawsuit/)
+"""
+Costco Hit With Lawsuit Over Automatic Membership RenewalsCostco is being sued as part of a class action lawsuit over claims that it violated California law by sending untimely and deficient renewal notices.By April 9 2026, Updated 10:48 a.m. ETSource: Wikimedia CommonsLiving in the 21st century means setting up at least one subscription that you inevitably forget about. California has enacted an Automatic Renewal Law designed to ensure that users don't end up paying over and over for subscriptions they've forgotten about. Article continues below advertisementIn a new class-action lawsuit, customers are suing Costco, claiming that it violated this law. Here's what we know about the lawsuit, and what the plaintiffs are claiming. Source: Wikimedia CommonsArticle continues below advertisementCostco is being sued over its automatic renewal procedures. Plaintiff Russel George is arguing that Costco sends a notice to customers 60 days before their cards will be automatically charged for renewal, which is outside of the 45-day window around renewal that the Automatic Renewal Law allows for. “Due to Costco’s untimely and deficient auto-renewal notice, the plaintiff was deprived of information he was statutorily entitled to that would have notified him of the upcoming auto-renewal and provided him with methods of cancellation,” the lawsuit says.The lawsuit also claims that Costco's reminder notification does not include key information that is required by the law, including the length and terms of the renewal, the amount that will be charged, or any way to actually cancel the renewal. George claims that he was surprised to learn that his Gold Star membership to Costco had been renewed in January of 2026. Article continues below advertisementHis card was charged $65, even as he was considering whether he should retain the membership because of how infrequently he shopped there. “Had the plaintiff been provided this notice in a timely manner, he would have canceled his membership and not gone forward with the auto-renewal,” the lawsuit argues. In addition to violating the ARL, the lawsuit also claims that Costco has violated California's False Advertising Law, the Consumers' Legal Remedies Act, and the Unfair Competition Law.Article continues below advertisementAutomatic renewals are almost universally despised. Because so many things operate on subscriptions now, keeping track of everything you're paying for over the course of a given year can feel almost impossible. Automatic Renewal Laws like California's are designed to help, and they also give individuals a way to sue corporations that are not in compliance. Ultimately, though, these laws can only do so much as long as users sign up for subscriptions. Source: Unsplash+Article continues below advertisementCostco is one of the biggest retailers in the United States, and faces lawsuits regularly from customers over everything from the quality of its food to its compliance with laws like these. George is demanding a jury trial to determine whether the company is in violation of the law. Until that trial is held, we won't know for sure whether the company is guilty or innocent, or what reparative fees they might be forced to pay if it is found to have violated the law. Ultimately, though, this case is designed to enforce a law that already exists. If Costco is found to be at fault, it seems likely they will have to change how they notify their subscribers about upcoming renewals going forward.
+"""
+
+[R3] Costco members are suing over a membership charge; can Mass. join?
+(https://finance.yahoo.com/sectors/healthcare/articles/costco-members-suing-over-membership-192321715.html)
+"""
+Costco, known for its cult-like following and hard-to-beat bulk deals, is facing a class-action lawsuit from members who say the warehouse giant quietly charged their cards for membership renewals without giving them enough warning to cancel. The lawsuit was filed in March by California shopper Russel George II, who says he signed up for a $65 Gold Star membership online in 2023 — and had started reconsidering whether to keep it by late 2025. Before he could cancel, his card was charged on Jan. 2, 2026. George says Costco did send him an email heads-up — but 60 days before the charge, which is actually too early under California law. Read more: Costco recalls products nationwide after 5 people sustain injuries in collapses The state’s Automatic Renewal Law requires companies to notify customers between 15 and 45 days before charging — not two months out. The lawsuit also claims the notice left out key details California requires, including how much he’d be charged, the terms of the renewal and how to cancel. “Had Plaintiff been provided this notice in a timely manner, he would have cancelled his membership and not gone forward with the autorenewal,” the complaint states. George sent Costco a formal demand letter in January. Costco responded in February but refused to fix it, according to the filing. Read more: 740K pans sold at Costco, Walmart, Amazon being recalled over burn risk: Return ASAP The lawsuit followed weeks later, seeking damages and an injunction that would force Costco to overhaul how it notifies all members before renewals. The complaint argues George isn’t alone — pointing to Reddit threads and Better Business Bureau complaints from other members with similar gripes. Costco operates at least 133 stores in California alone, and the proposed class could number in the thousands. The suit is filed under California law, so Massachusetts shoppers can’t join the class — but if you’ve ever been surprised by a Costco renewal charge, you probably understand the frustration. There are more than a dozen Costco locations across the state. Members can check their renewal date or manage auto-renewal at Costco.com or by calling 1-800-774-2678. This is the latest lawsuit to hit Costco in recent months, following suits over its rotisserie chicken, a salmonella contamination claim at a Nebraska processing plant and allegations it passed illegal tariff costs onto shoppers. Costco has not publicly responded to the membership lawsuit. New non-alcoholic bar takes over space of former longtime Boston bistro Is your car safe? GM is recalling 33,000 vehicles over silent safety defect State fines $43k after untrained, unlicensed asbestos removal in historic downtown Amherst Developer buys Easthampton lot from Springfield Catholic diocese, plans duplex After April 1 deadline, Holyoke sober home residents say move-out plans still unclear Read the original article on MassLive. Add MassLive as a Preferred Source by clicking here.
+"""
+
+[R4] Costco slapped with fresh ‘automatic renewal’ lawsuit after 60-day notice ‘fail’
+(https://www.the-sun.com/money/16194323/costco-automatic-membership-renewal-class-action-lawsuit-california/)
+"""
+WAREHOUSE giant Costco is facing a new class action lawsuit from a customer angry about the retailer’s automatic membership renewal practices. The shopper alleged that the grocery company broke the law with its untimely and deficient membership renewal notices Sign up for the Money newsletter Thank you! Costco Wholesale operates an international chain of membership warehouses, carrying brand name merchandise at substantially lower prices Credit: Getty Costco has been sued by an unhappy customer regarding its membership renewal practices Credit: Getty Member Russel George sued Costco, claiming that the chain sends its shoppers an email notice 60 days before automatically charging them for membership renewals. In his class action lawsuit, George argued that Costco’s notices were untimely and fall outside the 45-day period outlined in California’s Automatic Renewal Law. “Due to Costco’s untimely and deficient auto-renewal notice, the plaintiff was deprived of information he was statutorily entitled to that would have notified him of the upcoming auto-renewal and provided him with methods of cancellation,” stated the lawsuit. The Costco shopper also alleged that the warehouse club’s membership renewal notices did not include certain mandated information, including the renewal length and terms, how much would be charged, and ways to cancel the automatic renewal. George argued in the lawsuit that he was surprised to find out the retailer had automatically renewed his Gold Star annual membership in January, charging $65 to his credit card. The charge came after the customer had been debating canceling his membership because he did not shop at Costco all too often. “Had the plaintiff been provided this notice in a timely manner, he would have canceled his membership and not gone forward with the auto-renewal,” stated the class action lawsuit. George claimed that the retailer had breached several laws, including California’s Automatic Renewal Law, False Advertising Law, Consumers Legal Remedies Act, and Unfair Competition Law. Most read in Money He has demanded a jury trial and requested declaratory and injunctive relief. George is also seeking an award of damages for himself and all class members. Costco membership sharing guidelines Costco has strict rules for membership use that shoppers must follow and they've been cracking down on offenders in recent years. Primary Member Use: Only the primary cardholder can use this Costco membership card. Sharing it for purchases is not allowed as the photo on the card must match the person using it. Household Card: Each primary member can add one free household cardholder who lives at the same address. This person will receive their own membership card and can shop at Costco independently. Guest Policy: Members can bring up to two guests per visit to Costco. However, only the member can make purchases. Guests must be accompanied by the member. Authorized Cardholder: For an additional fee, you can add an authorized cardholder, such as a family member or friend, who doesn’t reside at your address. They will receive their own card and can shop independently. Credit: Costco The U.S. Sun reached out to Costco for comment but did not hear back immediately. The retail giant has faced other legal trouble recently, hit with a class action lawsuit in February claiming that Costco sold rotisserie chickens contaminated with Salmonella. Another proposed class action lawsuit alleged that Costco wrongfully charged shoppers higher prices tied to federal tariffs before the Supreme Court ruled the duties imposed by the Trump administration as unlawful. Costco has confirmed it will refund customers if the government is forced to repay the costs incurred from tariffs. Story idea? If you have an exclusive idea or story tip for The U.S. Sun, feel free to reach out to me at maya.lanzone@the-sun.com! Comments
+"""
+
+[R5] Costco is facing a new class-action lawsuit that takes aim at memberships
+(https://www.pennlive.com/life/2026/04/costco-is-facing-a-new-class-action-lawsuit-that-takes-aim-at-memberships.html)
+"""
+Life & CultureCoscto has been slapped with a class-action lawsuit (Gabe Ginsberg/SOPA Images/LightRocket via Getty Images)Gabe GinsbergBy EmilyAnn Jackman | ejackman@pennlive.comCostco is getting hit with a class action lawsuit and it’s all because of a California man who’s accusing the company of violating the state’s law on auto-renewals for memberships. So, there’s a law requiring companies to give customers a renewal notice at least 15 days — and no more than 45 days — before an annual membership expires. Russel George, the California resident, says Costco didn’t comply with that law. Costco currently offers two membership tiers: a $65 annual membership and an “executive” membership costing $130 a year. George has a membership, but he doesn’t use it enough to have a reason to keep it.“Had the plaintiff been provided this notice in a timely manner, he would have canceled his membership and not gone forward with the auto-renewal,” the complaint said, according to AOL. Costco’s policy allows members to cancel memberships by contacting a toll-free number or stopping by a store location. The California law also requires that “consumers must be able to cancel using the same method of communication as used to enroll in the plan or the method that the consumer generally interacts with the business.”The businesses must also offer “a toll-free phone number, email address, or other easy-to-use cancellation method,” according to the California Attorney General’s Office.For those who can recall, the Federal Trade Commission tried to put in place similar nationwide auto-renewal rules in 2024 under the Biden Administration, where businesses would have been required to make a cancellation as easy as enrollment. For example, if it takes one click to enroll, it should be just as easy to cancel. It would also require annual reminders and confirmations for renewals of non-physical goods.But a federal appeals court struck that rule down in July 2025. The case against Costco is scheduled for a preliminary hearing in June. Nearly 100-year-old convenience-store chain to close 645 stores FBI releases photos of suspects in Offset shooting as rapper takes stage in wheelchairA classic beer is slowly phasing out after decades of popularityEmilyAnn Jackman is a trending reporter for Penn Live. She handles the top trending topics on social media, as well as breaking stories in pop culture and entertainment news that goes viral on a national...
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

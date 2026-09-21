@@ -1,0 +1,100 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "fc barcelona vs rayo vallecano standings"
+
+Claims:
+[1] "FC Barcelona defeated Rayo Vallecano 1-0 on March 22, 2026."
+[2] "FC Barcelona vs Rayo Vallecano match on March 22, 2026 was at Camp Nou."
+[3] "Ronald Araújo scored a first-half goal in FC Barcelona vs Rayo Vallecano match on March 22, 2026."
+[4] "Ronald Araújo’s first-half goal decided the FC Barcelona vs Rayo Vallecano match on March 22, 2026."
+[5] "As of March 22, 2026 Matchday 29, FC Barcelona is 1st in La Liga with 73 points from 29 games."
+[6] "As of March 22, 2026 Matchday 29, Rayo Vallecano is 14th in La Liga with 32 points from 29 games."
+[7] "Rayo Vallecano 1-1 FC Barcelona on August 31, 2025 in the 2025-26 season."
+
+Cited text snippets from the AI Overview (for additional context):
+- HIGHLIGHTS | FC BARCELONA 1 vs 0 RAYO VALLECANO ...: "A hard-fought victory for,.link/kXum..."
+- Barcelona Overcomes Rayo Vallecano and Strengthens Its ...: "قائمة المفضلة فقط-,Barcelona Overcomes Rayo Vallecano and Strengthens Its Lead in La,points in the fourteenth position."
+- FC Barcelona 1-0 Rayo Vallecano: One goal wins it: "Barça were far from thie,table even stronger than ever."
+- FC Barcelona 1 - 0 Rayo Vallecano (03/22) - Game Report: "Predictions,3-0"
+- #LaLiga| FT Barcelona 1-0 Rayo Vallecano. R. Araújo 24 ...: "#LaLiga,45m󰞋󱟠"
+Reference Sources:
+
+[R1] FC Barcelona 1-0 Rayo Vallecano: One goal wins it
+(https://www.fcbarcelona.com/en/football/first-team/news/4474323/fc-barcelona-1-0-rayo-vallecano-one-goal-wins-it)
+"""
+Araujo heads in from a corner to claim the only goal of a worryingly tight encounter, with Joan García supporting the cause with top class goalkeeping First Team label.aria.clock 22 Mar 26 FC Barcelona go into the final international break of the season with another three points in their collection, but they were made to suffer in a fiercely intense contest with Rayo Vallecano this Sunday. A solitary first half goal from Ronald Araujo split the teams in a game where Hansi Flick’s side never quite found top gear. Barça struggled to create chances, and even more so convert them, and as the minutes ticked by, the possibility of the visitors sneaking an equaliser was a little to close for comfort. Register for free to watch this video And also get: Win great prizes Take part into the Culers Community And much more! Already registered? Login Barça were far from thie best today, but they still did enough to get the win, making their position at the top of the table even stronger than ever. Araujo heads home Rayo forced a great save out of Joan García in the very first move of the match, but from then on for most of the game Barça were comfortably dominant without ever truly dazzling. Raphinha was the liveliest man on the pitch, with three particularly good chances in the first half. He will feel he could have done better with the first two, while the third was brilliantly parried onto the crossbar by Rayo keeper Augusto Batalla. What would turn out to be the only goal of the game arrived on 24 minutes. Araujo stood out among the crowd lingering at the far post following a corner, and his header bounded unstoppably off the woodwork and into the net to get Barça deservedly off the mark. That’s eleven league goals that Barça have scored from corners this season, four more than any other team in the competition. Worrying moments Unconverted half-chances meant that Barça were unable to extend their lead, and had it not been for some splendid interventions from Joan García, as well as an awful miss by Pacha Espino, things could have been even more worrying. The Catalans were living dangerously. Their own chances had dried up and for the final half hour, Rayo Vallecano were doing most of the talking. The Barça defence were expertly coping with the pressure and real moments of fear were few and far between, but the uncertainty remained all the way through to the final whistle. That’s fourteen wins from fourteen home games in La Liga this season, but most of those have been far more convincing than this one. But three points are three points, and FC Barcelona momentarily go seven points clear of Real Madrid, pending the outcome of the Madrid derby this evening. Força Barça label.aria.forcabarca label.aria.forcabarca
+"""
+
+[R2] Barcelona Overcomes Rayo Vallecano and Strengthens Its Lead in La Liga
+(https://www.ysscores.com/en/news/13931976/Barcelona-Overcomes-Rayo-Vallecano-and-Strengthens-Its-Lead-in-La-Liga)
+"""
+Discover moreLive Video StreamingSport Scores & StatisticsSports Barcelona Overcomes Rayo Vallecano and Strengthens Its Lead in La Liga Sunday 22-03-2026 2 0 Share As part of the 29th round of the Spanish League, FC Barcelona hosted Rayo Vallecano at Spotify Camp Nou and managed to secure a 1-0 victory, further strengthening their position at the top of the standings.The Uruguayan defender Ronald Araújo scored the only goal of the match with a brilliant header following a perfectly executed corner by João Cancelo, granting the Catalan team three valuable points in their battle for the La Liga title.Rayo Vallecano failed to threaten Barcelona's goal throughout the match, leaving empty-handed despite their limited attempts.With this victory, Barcelona increased its tally to 73 points at the top of the Spanish league standings, while Rayo Vallecano remained at 32 points in the fourteenth position. More News Related Calhanoglu: I Rejected Barcelona and Chose Inter Calhanoglu moved to Inter because he did not receive an offer from Milan. A Firm Stance from Al-Hilal Regarding Barcelona's Request Al-Hilal rejects Barcelona's demands to make Cancelo's deal a permanent transfer. Bernardo Silva Returns to Barcelona's List of Interests Barcelona shows interest in Bernardo Silva, despite focusing on other positions. Secret Clause in Romero's Contract Attracts La Liga Giants Cristian Romero, Tottenham defender, has become one of the standout names in the market. Barcelona Players Surpass One Billion Euros in Market Value Barcelona's market value exceeds one billion euros thanks to young talents. Aslani Hints Again at Barcelona and Sparks Speculations About His Future The Spanish newspaper 'Mundo Deportivo' reported that the young striker Visnic Aslani, Inter Milan Sets Bastoni's Price... Barcelona Awaits Deal Developments The Spanish newspaper 'Mundo Deportivo' revealed a new development regarding the future Decisive Summit in Barcelona to Decide Flick's Future The Spanish newspaper 'Mundo Deportivo' revealed that the future of German coach Hans Strong English Interest in Balde... and Barcelona Insists on His Continuation The Spanish newspaper 'Mundo Deportivo' revealed the interest of several clubs from Bardji: I Deserve to Play More, Happy to Play with Barcelona Bardji's dissatisfaction with his limited appearances for Barcelona. More Hidden Championships Hidden List At Home Matches Videos News Standings Transfer settings settings Appearance Dark-Mode language language English Time My TimeZone America/New_York Time Format 12 hours Hidden Championships Time Format 24 hours Timings within 24 hours 12 hours Timing AM / PM My TimeZone My TimeZone Saudi Arabia GMT +3 Universal Time UTC language العربية English Français Español Discover moreSoccerLive Sporting EventsSport Scores & Statistics Do Not Sell or Share My Personal InformationOpt out of the sale or sharing of personal informationWe won't sell or share your personal information to inform the ads you see. You may still see interest-based ads if your information is sold or shared by other companies or was sold or shared previously. Dismiss Opt out
+"""
+
+[R3] FC Barcelona 1 - 0 Rayo Vallecano (03/22) - Game Report
+(https://www.365scores.com/en-us/football/match/laliga-11/fc-barcelona-rayo-vallecano-132-174-11)
+"""
+SoccerLaLigaFC Barcelona Vs Rayo VallecanoLaLiga: LivescoreFollow99.07MDetailsGamesStandingsNewsHighlightsStatsPicksTransfersHistoryAdScores RecapResultsScheduleScheduleRound 304/3/2026Rayo7:00 PMElcheRound 304/4/2026Real Sociedad12:00 PMLevanteMallorca2:15 PMReal MadridBetis4:30 PMEspanyolAtl. Madrid7:00 PMBarcelonaRound 304/5/2026Getafe12:00 PMAth. BilbaoValencia2:15 PMRC CeltaReal Oviedo4:30 PMSevillaAlaves7:00 PMOsasunaRound 304/6/2026Girona7:00 PMVillarrealRound 314/10/2026Real Madrid7:00 PMGironaRound 314/11/2026Real Sociedad12:00 PMAlavesElche2:15 PMValenciaBarcelona4:30 PMEspanyolSevilla7:00 PMAtl. MadridRound 314/12/2026Osasuna12:00 PMBetisMallorca2:15 PMRayoRC Celta4:30 PMReal OviedoAth. Bilbao7:00 PMVillarrealRound 314/13/2026Levante7:00 PMGetafe LaLiga Schedule Latest ResultsRound 293/22/2026BarcelonaFinal1-0RayoRC CeltaFinal3-4AlavesAth. BilbaoFinal2-1BetisReal MadridFinal3-2Madrid derbyAtl. Madrid LaLiga Results Add the LaLiga scores widget to your websiteSee more options by customize your widgetGenerate HTML TagAdYou May Be Interested InKylian MbappeReal MadridAntoine GriezmannAtletico MadridRobert LewandowskiFC BarcelonaVinicius JúniorReal MadridAlexis SanchezSevillaCopa del ReySpainSuper CupSpainLaLiga 2SpainLiga FSpainCopa De La ReinaSpainReal MadridLaLigaFC BarcelonaLaLigaAtletico MadridLaLigaSevillaLaLigaValenciaLaLigaFC Barcelona Vs Rayo VallecanoSpain, LaLiga, Round 29FC BarcelonaFinal1-03/22Rayo VallecanoGameLineupsStatsTrendsNewsHead to HeadOfficial HighlightsGame EventsAllTopCommentaryEnd of 90 Minutes1 - 0No Top EventsHalftime1 - 0Ronald Araújo(João Cancelo)24'Commentary+6'90FULL-TIME: BARCELONA 1-0 RAYO VALLECANO+4'90Barcelona's decision-making has been so poor in the final third. Olmo dribbles forward, and instead of passing to Rashford, he runs into trouble and loses possession.+1'90Amid the action and substitutions, there will be six minutes of added time. Can Rayo find a late, dramatic equaliser to dent Barcelona's title charge? See All Stats61%Possession39%1.39Expected Goals1.5615Total Shots84Shots On Target4 See All Actual Play TimeActual 51:50Total 99:04 See All AdRecent SearchesNo recent searches were foundLeaguesTeamsPlayers
+"""
+
+[R4] Barcelona vs Rayo Vallecano, La Liga: Team News, Match Preview
+(https://www.barcablaugranes.com/barcelona-la-liga/115784/barcelona-rayo-vallecano-la-liga-team-news-match-preview-lineups-score-prediction)
+"""
+FC Barcelona (1st, 70pts) vs Rayo Vallecano (13th, 32pts)**Standings at the time of writingCompetition/Round: 2025-26 La Liga, Matchday 29Barcelona Outs & Doubts: Alejandro Balde, Andreas Christensen, Frenkie de Jong, Jules Kounde (out)Rayo Vallecano Outs & Doubts: Nobel Mendy (out)Barcelona Form Guide: WWDWWRayo Vallecano Form Guide: WDWDLDate/Time: Sunday, March 22, 2026, 2pm CET/WAT (Barcelona & Nigeria), 1pm GMT (UK), 9am ET, 6am PT (USA), 6.30pm IST (India)Venue: Camp Nou, Barcelona, Catalonia, SpainReferee: Adrián Cordero VegaVAR: Raúl Martín González FrancésHow to watch on TV: ESPN Deportes (USA), Premier Sports 1 (UK), SuperSport (Nigeria), othersHow to watch online: ESPN+ (USA), Premier Sports Player (UK), FanCode (India), DAZN (Spain), othersFollowing a sensational win over Newcastle to book a spot in the Champions League quarter-finals, Barcelona return to action for a pivotal La Liga match as the Catalans face Rayo Vallecano at the Greatest Stadium on Earth on Sunday’s early kickoff.Barça come into this one to begin what could be a crucial day in the title race, as the Blaugrana have a chance to open up a seven-point gap at the top of the standings just hours before Real Madrid welcome city rivals Atlético Madrid for a monster derby at the Bernabéu. If Atlético can avoid defeat or even beat Los Blancos, Barça could head into the last international break of the season with a huge advantage ahead of the final nine league games of 2025-26.So all the Blaugrana need to do is win and put all the pressure on their biggest rivals, and then it’ll be hatewatch time. Barça have a tough remaining schedule that includes a trip to the Metropolitano to face Atlético and the second league Clásico which will very likely decide the title, so this Sunday’s slate of games could prove either hugely helpful or hugely costly in Barça’s chase for back-to-back La Liga titles.Three points are truly all that matter on Sunday, but given the impressive nature of the wins over Sevilla and Newcastle, there will be an expectation of another spectacle at Camp Nou. That expectation is fair given how well Barça have played as of late, but Rayo Vallecano have been a true thorn in Barça’s side and their current position in the table is completely irrelevant when it comes to them facing the Catalans.Iñigo Pérez’s side have a knack for frustrating Barça with their high-pressing, high-intensity style, and perhaps no other team in all of La Liga is as adept at exploiting Barça’s high line as Rayo. Case in point, their first meeting of the season all the way back in August, when Rayo (thanks in large part to the horrendous conditions of the pitch in their home stadium) were by far the better team and created over a dozen chances with one perfectly-timed run in behind Barça’s offside trap after another.Barça somehow managed to escape Vallecas with a draw thanks to a Lamine Yamal penalty, but the Blaugrana did not deserve anything that night and were extremely lucky to even rescue a point. Rayo will be confident they can execute the same strategy again, and are also aware of the fact that they’ve lost just three of the last nine meetings with Barça in the league and have absolutely become a bogey team for the Catalans.Casual fans who don’t watch every single match for a variety of reasons will look at the last two results against Sevilla and Newcastle and expect Barça to destroy a team that sits near the relegation zone, but Rayo are truly a different beast. They just know how to play Barça, how to exploit their weaknesses, and how to be annoying and frustrating to play against.This won’t be easy, but Barça should still win this. If they do, then we could be set up for a hugely consequential day that tilts the title race entirely in Barça’s favor.Let’s dance.POSSIBLE LINEUPSBarcelona (4-2-3-1): Joan; Espart, Cubarsí, Martín, Cancelo; Bernal, Pedri; Yamal, Fermín, Raphinha; LewandowskiRayo (4-3-3): Batalla; Ratiu, Lejeune, Felipe, Chavarría; Isi, Ciss, López; De Frutos, Alemão, GarciaPREDICTIONI don’t expect this to be easy, at all, because Rayo have a formula that just works against us. But I’m still expecting us to find a way to win this one: 3-1 Barça.11 Comments
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

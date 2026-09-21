@@ -1,0 +1,92 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "houston vs texas a&m"
+
+Claims:
+[1] "Houston was the No. 2 seed"
+[2] "Texas A&M was the No. 10 seed"
+[3] "Houston defeated Texas A&M 88-57"
+[4] "The game was on March 21, 2026"
+[5] "The game was in the 2026 NCAA Tournament second round"
+[6] "Houston advanced to the Sweet 16"
+[7] "Houston used a 21-4 first-half run"
+[8] "Emanuel Sharp scored 18 points for Houston"
+[9] "Milos Uzan scored 16 points for Houston"
+[10] "The game was at Paycom Center, Oklahoma City"
+[11] "The tournament stage was NCAA Tournament Round of 32"
+[12] "Houston led 46-28 at halftime"
+[13] "Houston had an 18-0 run"
+[14] "Texas A&M ended the season with a 22-12 record"
+
+Cited text snippets from the AI Overview (for additional context):
+- Aggies' Season Ends in Second Round of NCAA Tournament: "F-,Texas A&M,extend their lead to 26."
+- Houston Rolls Into Sweet 16 With Blowout Win vs. Texas A&M: "The game started with flashes,sides of the ball tonight."
+Reference Sources:
+
+[R1] Aggies' Season Ends in Second Round of NCAA Tournament - Texas A&M Athletics - 12thMan.com
+(https://12thman.com/news/2026/3/21/mens-basketball-aggies-season-ends-in-second-round-of-ncaa-tournament)
+"""
+Aggies' Season Ends in Second Round of NCAA Tournament - Texas A&M Athletics - 12thMan.comSkip to main contentAll Rotators PlayingTexas A&MPhoto by: Ethan Mito/Texas A&M AthleticsAggies' Season Ends in Second Round of NCAA Tournament Mar 21, 2026 | Men's BasketballOKLAHOMA CITY – The No. 10 seed Texas A&M men's basketball team closed out its season in the second round of the NCAA Tournament, falling to No. 2 seed Houston, 88-57, Saturday evening at the Paycom Center. The loss caps a 22-win season in year one for Bucky McMillian, who became just the second coach in school history to win an NCAA Tournament game in his first year in Aggieland. Houston (30-6) struck first in the game, but the Aggies responded with eight straight points, including 3-pointers from Pop Isaacs and Rubén Dominguez. Things remained close for much of the half as neither team led by more than seven points. A&M (22-12) cut the difference to one when Zach Clemence connected on a shot from beyond the arc, 25-24, with 7:43 on the clock. The Cougars responded, closing out the opening period on a 21-4 run to take a 46-28 lead into the break. Houston had 12 offensive rebounds in the first half and outscored the Aggies 16-8 in the paint. The Cougars scored the first eight points of the new period to extend their lead to 26. The Maroon & White continued to attack but were unable to get closer than 22 the rest of the way. Josh Holloway paced the Aggies' offense with 12 points, while Jamie Vinson led the way on the boards with six and Clemence added five.POSTGAME NOTESTEAM NOTES Texas A&M closed out the year scoring 2,927 points, setting a new program single-season record and topping the previous mark of 2,908 from the 2021-22 season. The Maroon & White saw 31 points come from their bench, marking the 19th time this year 30-or-more points have been scored by non-starters. Texas A&M used the starting lineup of Marcus Hill, Pop Isaacs, Rylan Griffen, Rashaun Agee and Rubén Dominguez for the second time this season (1-1). INDIVIDUAL NOTES#1 Josh Holloway Earned his sixth double-digit scoring game of the season with 12 points. Led the team in scoring for the first time this year. #4 Jamie Vinson Led the team in rebounding for the second time this season with six. #9 Rubén Dominguez Hit one 3-pointer tonight to increase his season total to 86, tying him at second on A&M's single-season list with Josh Carter (06-07).
+"""
+
+[R2] Houston Rolls Into Sweet 16 With Blowout Win vs. Texas A&M
+(https://sports.yahoo.com/articles/houston-rolls-sweet-16-blowout-005157064.html)
+"""
+Mar 21, 2026; Oklahoma City, OK, USA; Houston Cougars guard Milos Uzan (7) and center Chris Cenac Jr. (5) react during the first half against the Texas A&M Aggies of a second round game of the men's 2026 NCAA Tournament at Paycom Center. Mandatory Credit: Alonzo Adams-Imagn Images | Alonzo Adams-Imagn ImagesHouston basketball picked up a huge 88-57 win in the second round over the Texas A&M Aggies on Saturday evening in Oklahoma City.Texas A&M's press wasn't enough to faze Houston, and the Cougars asserted themselves on the boards, finishing with 15 more rebounds than the Aggies.AdvertisementWith the win, the Cougars earned a spot in the Sweet 16 next week in Houston, inside the Toyota Center, and they will face the winner of Illinois and VCU, who play later tonight.Houston vs A&M Game RecapMar 21, 2026; Oklahoma City, OK, USA; Houston Cougars guard Emanuel Sharp (21) reacts after a made basket during the first half against the Texas A&M Aggies in a second round game of the men's 2026 NCAA Tournament at Paycom Center. Mandatory Credit: Alonzo Adams-Imagn Images | Alonzo Adams-Imagn ImagesThe game started with flashes of the 2024 match in the round of 32, as the Aggies held an early 11-9 lead and the two squads were trading blows early.That was until Houston went on an 18-0 run to completely pull away from Texas A&M, and the Cougars held a comfortable 46-28 lead at halftime.The second half was the same story as Houston coasted to a 31-point victory to claim a spot in the next round.AdvertisementHouston's senior guards Emanuel Sharp and Milos Uzan showed their leadership tonight as they led the Cougars to victory.Sharp led all scorers with 18 points, despite going 2-for-8 from behind the arc. Uzan also helped lead the charge as he finished with 16 points.Uzan has been much more aggressive in the past two games than he did throughout conference play, and he took 17 shots tonight, which is the most on the team.The veteran guard's floater has been working, but he also keeps defenses honest with his three-point shot, and he made three against the Aggies.Freshman forward Chris Cenac Jr. continued his dominant tournament run with another standout performance against Texas A&M.AdvertisementAfter grabbing a career-high 18 rebounds against Idaho, he impacted the game on both sides of the ball tonight.He scored 17 points, and he also hauled in nine rebounds, finishing one shy from a double-double.Houston's bench also played valuable minutes in the game, and sophomore guard Mercy Miller erupted for 12 points on several tough shots.Freshman forward Chase McCarty played his role as he hit two three-pointers in the game.He also made several effort plays, diving on the floor for loose balls, and that is a big reason why he has earned his spot in the rotation.Overall, the Cougars had total control of the 31-point win over the Aggies, and now the team will return home to play the winner of VCU and Illinois next Thursday, inside the Toyota Center in Houston, Texas.AdvertisementThis article was originally published on www.si.com/college/houston as Houston Rolls Into Sweet 16 With Blowout Win vs. Texas A&M.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

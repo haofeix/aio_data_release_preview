@@ -1,0 +1,106 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "apollo 2"
+
+Claims:
+[1] ""Apollo 2" was not an officially designated mission."
+[2] ""Apollo 2" is the informal name for the uncrewed AS-202 suborbital flight."
+[3] "The AS-202 suborbital flight was launched on August 25, 1966."
+[4] "AS-202 was part of the Saturn IB test program."
+[5] "AS-202 successfully tested the Apollo command module’s heat shield."
+[6] "AS-202 successfully tested the Apollo command module’s systems before human flight."
+[7] "No mission was officially designated Apollo 2."
+[8] "AS-202's mission goal was suborbital test of the Block I command/service module."
+[9] "AS-202 focused on heat shield endurance, guidance, and fuel cells."
+[10] "AS-202 used Spacecraft 011."
+[11] "AS-202 used a Saturn IB launch vehicle."
+[12] "The AS-202 spacecraft was recovered in the Pacific Ocean."
+[13] "AS-202 reached an altitude of roughly 660 nautical miles."
+[14] "After the 1967 Apollo 1 tragedy, NASA reordered the program's schedule."
+[15] "NASA considered renumbering early missions."
+[16] "NASA decided to start with Apollo 4 for the first Saturn V flight."
+[17] "The officially recognized Apollo sequence jumped from Apollo 1 to 4."
+[18] "AS-202 and AS-203 were never officially re-christened as "Apollo 2" or "Apollo 3" in the final record."
+[19] "AS-203 was another test flight."
+
+Cited text snippets from the AI Overview (for additional context):
+- What happened to Apollo 2 and Apollo 3? : r/nasa - Reddit: "Informal Apollo Designations: The unmanned AS-201 and,to as Apollo 2 and Apollo 3."
+- AS-202 - Wikipedia: "AS-202 (also referred to,next mission, AS-204."
+- Apollo 4 | National Air and Space Museum: "Mueller, announced that the mission,designated Apollo 2 and 3."
+- Timeline of the Apollo Space Missions - Britannica: "On September 11, 1967, numbering,no Apollo 2 or 3."
+- What happened to Apollo 2 and Apollo 3? : r/nasa - Reddit: "Apollo 2 and 3 Naming: There were,changes made after the Apollo 1 accident."
+Reference Sources:
+
+[R1] Timeline of the Apollo Space Missions | NASA, Space Program, Neil Armstrong, Buzz Aldrin, Jim Lovell, & Moon
+(https://www.britannica.com/story/timeline-of-the-apollo-space-missions)
+"""
+On May 25, 1961, U.S. President John F. Kennedy commits the United States to landing astronauts on the Moon by 1970. On September 12, 1962, President Kennedy utters perhaps his most famous words about space exploration in a speech delivered at Rice University in Houston: “We choose to go to the Moon…and do the other things, not because they are easy, but because they are hard.” On January 27, 1967, Astronauts Virgil Grissom, Edward White, and Roger Chaffee were killed in a test for the first Apollo mission. This mission was originally called Apollo Saturn-204 (AS-204) but was redesignated Apollo 1 as a tribute. On September 11, 1967, numbering of the Apollo missions began with the fourth subsequent uncrewed test flight, Apollo 4. Apollo 5 and 6 were also uncrewed flights. There was no Apollo 2 or 3. Apollo 7—October 11–22, 1968 The first crewed Apollo space mission was Apollo 7. The three astronauts on Apollo 7 were Walter Schirra, Jr., Donn Eisele, and Walter Cunningham. They spent 10 days, 20 hours, 9 minutes, and 3 seconds in space. Apollo 7 completed 163 orbits around Earth, traveling 4,546,918.3 miles. Apollo 8—December 21–27, 1968 Apollo 8 was the first to fly around the Moon. The three astronauts on Apollo 8 were William Anders, Frank Borman, and James Lovell, Jr. They spent 6 days, 3 hours, and 42 seconds in space. Apollo 8 completed 10 orbits around Earth, traveling 579,606.9 miles. Apollo 9—March 3–13, 1969 Apollo 9 tested the Lunar Module in Earth orbit. The three astronauts on Apollo 9 were James McDivitt, David Scott, and Russell Schweickart. They spent 10 days, 1 hour, and 54 seconds in space. Apollo 9 completed 151 orbits around Earth, traveling 4,214,543 miles. Apollo 10—May 18–26, 1969 Apollo 10 was the rehearsal for the first Moon landing. The three astronauts on Apollo 10 were Thomas Stafford, John Young, and Eugene Cernan. They spent 8 days, 23 minutes, and 23 seconds in space. Apollo 10 completed 31 orbits around Earth, traveling 829,437.5 miles. Apollo 11—July 16–24, 1969 Apollo 11 was the first mission to land and walk on the Moon. The three astronauts on Apollo 11 were Neil Armstrong, Edwin “Buzz” Aldrin, and Michael Collins. Armstrong and Aldrin each spent a total of 2 hours and 32 minutes on the surface of the Moon. All three astronauts spent 8 days, 3 hours, 18 minutes, and 35 seconds in space and traveled a total of 953,054 miles. “The Eagle has landed…”— Astronaut Neil Armstrong as the Apollo 11 Lunar Module landed on the Moon. “…one small step for [a] man, one giant leap for mankind”— Astronaut Neil Armstrong as he stepped onto the Moon for the first time. Apollo 12—November 14–24, 1969 Apollo 12 was the first precision landing on the Moon. The three astronauts on Apollo 12 were Charles Conrad, Alan Bean, and Richard Gordon. Conrad and Bean each spent a total of 7 hours and 27 minutes on the surface of the Moon. All three astronauts spent 10 days, 4 hours, 36 minutes, and 25 seconds in space and traveled 952,354 miles. Apollo 13—April 11–17, 1970 Apollo 13 survived an oxygen tank explosion. The three astronauts on Apollo 13 were James Lovell, Jr., Fred Haise, Jr., and Jack Swigert. They spent 5 days, 22 hours, 54 minutes, and 41 seconds in space. Apollo 13 completed 1.5 orbits around Earth, traveling 622,268 miles. “Houston, we’ve had a problem…”—Astronaut Jack Swigert Apollo 14—January 31–February 9, 1971 Apollo 14 was the first Moon landing in the lunar highlands. The three astronauts on Apollo 14 were Alan B. Shepard, Jr., Edgar D. Mitchell, and Stuart A. Roosa. Shepard and Mitchell each spent a total of 9 hours and 35 minutes on the surface of the Moon. All three astronauts spent 9 days and 2 seconds in space and traveled 1,150,321 miles. Apollo 15—July 26–August 7, 1971 Apollo 15 was the first mission to use the lunar rover. The three astronauts on Apollo 15 were David Scott, James Irwin, and Alfred Worden. Scott and Irwin each spent 18 hours and 40 minutes on the surface of the Moon. All three astronauts spent 12 days, 17 hours, and 12 minutes in space and traveled 1,274,137 miles. Apollo 16—April 16–27, 1972 Apollo 16 spent their mission exploring the lunar highlands. The three astronauts on Apollo 16 were John Young, Charles Duke, and Thomas Mattingly. Young and Duke each spent a total of 20 hours and 15 minutes on the surface of the Moon. All three astronauts spent 11 days, 1 hour, and 51 minutes in space and traveled 1,391,550 miles. Apollo 17—December 7–19, 1972 Apollo 17 was the last mission to walk on the Moon. The three astronauts were Eugene Cernan, Harrison Schmitt, and Ron Evans. Cernan and Schmitt each spent a total of 22 hours and 5 minutes on the surface of the Moon. All three astronauts spent 12 days, 13 hours, and 52 minutes in space and traveled 1,484,933.8 miles. Facts About the Moon and Space Travel A total of 12 astronauts walked on the Moon. The Moon has had a total of 24 human visitors. The Moon’s average distance to Earth is 238,855 miles. [Read Britannica’s interview with the astronaut who might be the first woman to walk on the Moon.]
+"""
+
+[R2] Apollo 4
+(https://airandspace.si.edu/explore/stories/apollo-missions/apollo-4)
+"""
+On November 9th, 1967 the Apollo 4 mission lifted off, marking the first flight of the Saturn V launch vehicle. The Apollo 4 space mission was launched from Kennedy Space Center, Florida in 1967. The uncrewed flight reached an altitude of 11, 234 miles. The mission tested the Apollo Saturn V launch vehicle as well as the Command and Service Module CM 017. During the test, the spacecraft made two orbits, was placed on a trajectory that mimicked the approach that an Apollo spacecraft would make returning from the Moon, and then was recovered in the Pacific Ocean. Apollo 4 lasted 8 1/2 hours, reentering the atmosphere at 24,917 miles per hour. The flight qualified the heat shield for lunar flight, and demonstrated the successful design of the Saturn V, the world's biggest rocket. What Happened to Apollo 2 and 3?Apollo 4 took place just nine months after the Apollo 1 tragedy. After astronauts Gus Grissom, Ed White, and Roger Chaffee lost their lives during a preflight test originally known as the Apollo-Saturn 204 (AS-204) mission, NASA's Associate Administrator for Manned Space Flight, Dr. George E. Mueller, announced that the mission would be known as Apollo 1, and that the first Saturn V launch, scheduled for November 1967, would be known as Apollo 4. The eventual launch of AS-204 became known as the Apollo 5 mission, and no missions or flights were ever designated Apollo 2 and 3. Learn more about the Apollo 1 tragedy Apollo 4 in the Collection
+"""
+
+[R3] AS-202
+(https://en.wikipedia.org/wiki/AS-202)
+"""
+From Wikipedia, the free encyclopedia This article is about the Apollo mission. For the aircraft, see FFA AS-202 Bravo. AS-202Launch of AS-202Mission typeSuborbital test flightOperatorNASAMission duration1 hour, 33 minutes, 2 secondsRange25,700 kilometers (13,900 nautical miles)Apogee1,142.9 kilometers (617.1 nautical miles)Spacecraft propertiesSpacecraftApollo CSM-011ManufacturerNorth American AviationLaunch mass20,091 kilograms (44,294 lb)Start of missionLaunch dateAugust 25, 1966, 17:15:32 UTCRocketSaturn IBLaunch siteCape Kennedy LC-34End of missionRecovered byUSS HornetLanding dateAugust 25, 1966, 18:48:34 UTCLanding siteNorth Pacific Ocean16°07′N 168°54′E / 16.117°N 168.900°EApollo program← AS-201AS-203 → AS-202 (also referred to as SA-202 or Apollo 2) was the second uncrewed, suborbital test flight of a production Block I Apollo command and service module launched with the Saturn IB launch vehicle. It was launched on August 25, 1966, and was the first flight which included the spacecraft guidance, navigation control system and fuel cells. The success of this flight enabled the Apollo program to judge the Block I spacecraft and Saturn IB ready to carry men into orbit on the next mission, AS-204. AS-202 was the third test flight of the Saturn IB, because a delay in the readiness of the Apollo spacecraft 011 pushed its launch past the July 1966 launch of AS-203. It was designed to test the rocket more than had been done on AS-201 by launching the rocket higher and having the flight lasting twice as long. It would also test the command and service module (CSM-011) by having the engine fire four times during the flight. The flight was also designed to test the heat shield by subjecting it to 260 megajoules per square meter. Over the course of the reentry it generated equivalent energy needed to power Los Angeles for over one minute in 1966.[citation needed] CSM-011 was basically a production model capable of carrying a crew. However it lacked the crew couches and some displays that would be included on later missions for the astronauts. This was the first flight of the guidance and navigation system as well as the fuel cell electrical system. Stage-separation of S-IVB, ground-camera view. AS-202 was launched 25 August 1966 from Pad 34. The launch phase was perfectly nominal with the first stage burning for just under two and a half minutes, lifting the rocket to an altitude of 31.4 nautical miles (58.2 km), 30.4 nautical miles (56.3 km) downrange from the launch pad. The second stage then burned for a further seven and a half minutes, putting the spacecraft into a ballistic trajectory. The CSM was separated from the rocket stage at an altitude of 419.8 nautical miles (777.5 km). The CSM was preprogrammed to make four burns of its service propulsion system (SPS). The first occurred a couple of seconds after separation from the S-IVB second stage. It burned for 3 minutes, 35 seconds, lifting the spacecraft apogee to 617.1 nautical miles (1,142.9 km), 874.8 nautical miles (1,620.1 km) downrange. The second burn was 25 minutes later, lasting one minute 28 seconds. Ten seconds later, two more burns of three seconds each were done to test the rapid restart capabilities of the engine. The command module entered the atmosphere at a speed of 28,512 feet per second (8,690 m/s). The spacecraft performed a skip reentry, first descending to 36 nautical miles (67 km), then lifting back up to 44 nautical miles (81 km). By this time it had shed 4,300 feet per second (1,300 m/s) of speed. It then continued to descend.[1] The main parachutes deployed at 23,790 feet (7,250 m). It splashed down at 16°07′N 168°54′E / 16.12°N 168.9°E, 205 nautical miles (380 km) from the target landing site, and the aircraft carrier USS Hornet took 8 hours and 30 minutes to reach the capsule (approximately 230 nautical miles [430 km] southeast of Wake Island).[2] Footage showing the separation of two stages of the Saturn IB rocket. The S-IVB pulls away from the spent S-IB, and the latter falls to Earth. AS-202 was one of three uncrewed Apollo missions which obtained notable close-up footage of a Saturn rocket during staging, the others being Apollo 4 and Apollo 6. Ejectable cameras were mounted to each launch vehicle, technology first developed for the Saturn I.[3] On AS-202, a camera was mounted to the Saturn IB vehicle's first stage, the S-IB, looking forward. It captured footage of the vehicle's second stage, the S-IVB (200 series) pulling away and firing its single J-2 engine.[4] The upper stage is identifiable by its firing of three ullage motors; a later iteration of the S-IVB, the 500 series, had only two ullage motors, and was that used on Saturn V launches.[5][6] Although the footage was captured during an uncrewed flight, it is frequently used as stock footage in documentaries of crewed flights, to illustrate staging.[5] The footage was used in the documentary film Apollo 11, and is sometimes erroneously attributed to Apollo 11, or other crewed missions. The capsule was displayed in the US Pavilion at Expo 67 in Montreal. The capsule is currently on display aboard USS Hornet.[7] The ship is open to the public as the USS Hornet Museum in Alameda, California. AS-202 CM-011 exhibited on USS Hornet AS-202 CM-011 interior ^ Postlaunch report for mission AS-202 (Apollo spacecraft 011) (Report). NASA. October 12, 1966. pp. 1–2. Retrieved May 26, 2025 – via scribd.com. ^ "NSSDCA - AS202". NASA. Retrieved May 26, 2025. ^ Oleszewski, Wes (2019). "Ejectable camera pods". Apollo Flight Journal. ^ Saunders, Andy (October 25, 2022). Apollo Remastered: The Ultimate Photographic Record. Black Dog and Leventhal. p. 30. ISBN 9780762480241. ^ a b Woods, David; O'Brien, Frank. "Apollo 8, Day 1: Launch and Ascent to Earth Orbit". Apollo Flight Journal. ^ LePage, Andrew (August 25, 2016). "AS-202: The Last Test Flight Before Apollo 1". Drew Ex Machina. ^ "Permanent Exhibits". USS Hornet museum. December 8, 2015. Archived from the original on October 22, 2016. Retrieved October 22, 2016. the Apollo Command Module – CM-011. It was used for the uncrewed mission AS-202 on August 26, 1966 Wikimedia Commons has media related to AS-202. Moonport: A History of Apollo Launch Facilities and Operations http://www.hq.nasa.gov/office/pao/History/SP-4204/cover.html Archived March 18, 2011, at the Wayback Machine Chariots for Apollo: A History of Manned Lunar Spacecraft http://www.hq.nasa.gov/office/pao/History/SP-4205/cover.html Archived October 20, 2015, at the Wayback Machine "AS-202 Press Kit". apollosaturn.com. Archived from the original on December 5, 2003. Retrieved May 26, 2025. This article incorporates public domain material from websites or documents of the National Aeronautics and Space Administration.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is uconn"
+
+Claims:
+[1] "The University of Connecticut main campus is located in Storrs, Connecticut."
+[2] "Storrs, Connecticut is a town in the northeastern part of Connecticut."
+[3] "The University of Connecticut main campus is about 25 miles east of Hartford."
+[4] "The University of Connecticut main campus is roughly 1.5 to 2 hours from Boston."
+[5] "The University of Connecticut main campus is 2.5 hours from New York City."
+[6] "UConn has regional campuses in Hartford, Stamford, Avery Point, and Waterbury."
+[7] "The University of Connecticut main campus address is 116 N Eagleville Rd, Storrs, CT 06269."
+[8] "The University of Connecticut main campus is in a suburban/rural setting in Eastern Connecticut."
+[9] "The University of Connecticut operates four other campuses."
+[10] "The University of Connecticut has a downtown campus in Stamford."
+[11] "The University of Connecticut has a marine-focused campus at Avery Point."
+[12] "The University of Connecticut main campus is located roughly 50 miles west of Providence."
+[13] "The University of Connecticut main campus is 150 miles northeast of New York City"
+
+Cited text snippets from the AI Overview (for additional context):
+- Directions and Parking – Undergraduate Admissions: "Located in northeastern Connecticut, UConn's main campus,150 miles northeast of New York City."
+- Storrs – Main Campus – Undergraduate Admissions: "The University of Connecticut's (UConn) main campus,including internships, field work, and research programs"
+- On, Together | University of Connecticut: "The University of Connecticut (UConn) has five,that grows food for locals in need"
+- It's Fall Campus Visit Day! From all of us in Storrs, Hartford, Stamford ...: "From all of us in Storrs, Hartford,,https: //bit.ly/49gEGk1. It's Fall Campus Visit Day"
+Reference Sources:
+
+[R1] Directions and Parking – Undergraduate Admissions
+(https://admissions.uconn.edu/visit/directions/)
+"""
+Directions to Storrs Main Campus Located in northeastern Connecticut, UConn’s main campus in Storrs is conveniently accessible from various interstates, and is approximately 25 miles east of Hartford, 50 miles west of Providence, 100 miles southwest of Boston, and 150 miles northeast of New York City. Unless otherwise directed by special event signage, we encourage our visitors and guests to follow these driving directions: From Points North (I-84) I-84 to Exit 68 Follow signs on Route 195 South Turn Right onto Route 44 West Turn Left onto Discovery Drive Follow Signs to parking garages From Points South (I-95, I-395, US-6, SR-32) Follow Signs on Route 195 North Turn Left onto Bolton Road, or Next Left onto Mansfield Road Follow Signs to parking garages From Points East (I-95, I-395) Follow signs on Route 44 West Turn left onto Discovery Drive Follow signs to parking garages From Points West (I-91, I-384, SR-32) Follow signs on Route 44 East Turn right onto Discovery Drive Follow signs to parking garages Parking Visitors may park in the North Parking Garage or South Parking Garage for a nominal fee. Garage parking is strictly enforced 24 hours per day and parking lots on weekdays between the hours of 7:00 a.m. and 5:00 p.m. If you are scheduled to take a general campus tour, we recommend pre-paying for 3 hours of parking to allow time to check-in at the tour and return to your vehicle afterwards. Parking should be paid for at the beginning of your visit. To pay for parking, visitors may use the PayByPhone app, visit the PayByPhone website, or pay at the kiosk on the 1st floor of our garages. When prompted, please enter one of the following location codes: North Parking Garage location code: 5167 South Parking Garage location code: 5177 After 5:00 p.m. on weekdays, and on weekends, visitors may park in any on-campus space not designated as reserved, restricted, or limited. Various weekend events may pre-empt availability in certain facilities; parking garage rates may vary per event. Parking garages are marked with the blue circle P on the map below. For additional parking information, please visit the Storrs Visitor Parking page.
+"""
+
+[R2] Storrs – Main Campus – Undergraduate Admissions
+(https://admissions.uconn.edu/campuses/storrs/)
+"""
+Located in the heart of the northeast halfway between New York City and Boston, UConn’s main campus in Storrs makes for an energizing and inspiring environment. Here, our students learn alongside esteemed professors, student-scholars, and talented peers. With over 700 clubs and organizations to choose from, 21 NCAA Division I athletic teams to cheer on, and one of the highest percentages of students living on campus of any public university, there’s plenty to do with friends on a night off from hitting the books. The six cultural centers and programs on campus serve as resources for our richly diverse and inclusive campus community comprised of more than 80 different countries. And if exploration is what interests you, choose from over 200 experiential global learning and study abroad opportunities including internships, field work, and research programs. Explore more: Class of 2029 at Storrs Main Campus 62,000+ first-year applicants across all campuses ≈550 Huskies enrolled in the highly selective Honors Program 70+ countries and 41 U.S. states are represented by our students. 4,750 enrolled first-year Huskies 47% of entering first-year Huskies are in the top 10% of their senior classes 28% of first-year Huskies are first-generation students Institutional Codes SAT – 3915ACT – 0604 Combined SAT*1320 – 1460Combined ACT*30 – 34 *Middle 50% of Admitted Students Standardized test ranges represent the middle 50% of fall 2025 admitted students who elected to submit test scores as part of their application materials. UConn is a test-optional institution through fall 2026. United by pride, excellence flourishes across our five campuses throughout Connecticut.
+"""
+
+[R3] On, Together | University of Connecticut
+(https://ontogether.uconn.edu/)
+"""
+ON TO BIGGER THINGS, TOGETHER. Meet Jonathan. When was the last time you felt the spirit of a Husky? Our mascot, Jonathan, is our good luck charm. He’s the inspiration behind our curious nature, and the star of our most memorable traditions. Five Campuses, One UConn Find the starting point for your future and drive toward what’s next. Our Storrs campus truly has something for everyone, hosting students from nearly 90 different countries, and enough activities to keep you energized and inspired. At UConn Stamford, you’re only a 50-minute train ride from New York City, and within walking distance of everything else. Dive deep into marine science at UConn Avery Point. At UConn Hartford, pave a new path in urban studies and advocacy. Or feel the community vibe at UConn Waterbury, where a campus garden grows food for locals in need. Together, Unstoppable. From campus to campus and around the world, Huskies are future-focused, always pushing what’s possible. One Husky. Unlimited possibilities. From your faculty to your friends, our community is made up of exceptional individuals always driving what’s next. Belong here. Become anything. Felipe Sanches, a first-generation student from Greenwich, Connecticut, chose to become a Husky after finding a sense of home at UConn’s Puerto Rican/Latin American Cultural Center. Now he’s a double major in political science and Latino studies, and he serves as floor mentor within his Learning Community, where he encourages other students to speak up for what they need. “My advice for an incoming student is to not be afraid to ask for help.” — Felipe Sanches Felipe Sanches Political Science and Latino Studies Research. Reimagine. Through a UConn SURF grant, Hanna Englander, a physiology and neurobiology major, is working alongside Wendy Mok, assistant professor of molecular biology and biophysics, to investigate how antibiotic-resistant bacteria contribute to infection relapses. Activist. Researcher. Rhodes Scholar. Wanjiku (Wawa) Gatheru, an environmental studies major with minors in global studies and urban and community studies, is UConn’s first Rhodes Scholar. As the daughter of Kenyan immigrants, Wawa comes from a long line of farmers and has a deep understanding of the impacts of climate change. Drawing on her passion, and bolstered by support from UConn’s undergraduate research department, Wawa became the first person in Connecticut to apply for a grant to research food insecurity — a grant that she was awarded. Now, she’s heading to the University of Oxford, where she’ll play a pivotal role in defining what our world will look like 100 years from now. Huskies stay hungry. We’ve got spirit for good reason. With our 21 NCAA Division I athletic programs and UConn’s championship legacy, you’ll have no problem finding a reason to cheer. We don’t have to apologize for wanting to be great. Geno Auriemma, UConn women’s basketball coach Top ranked public university 115+ majors and 120+ minors 700+ clubs and organizations On, with inspired energy. Dr. Radenka Maric is inspiring excellence both inside and outside the classroom. Having been a leading faculty member and researcher at UConn since 2010, she had served as the Vice President for Research, Innovation, and Entrepreneurship since 2017. In 2022 Dr. Maric was named the 17th President of the University, she remains dedicated to prioritizing student success and inclusion through life-transformative educational experiences that provide personal and professional fulfillment. You will be pushed to question and analyze the ideas you bring to UConn, to be curious, to be courageous, and to always seek ways to apply your learning and talents to better the lives of others. Dr. Radenka Maric University President Come here to ask the big questions. Major support, even if you haven’t decided. UConn’s Academic Center for Exploratory Students, called ACES, offers academic guidance and support for those who are still deciding on a path, those who apply to certain majors with specific requirements, and those who declare a pre-professional major. Learn More Highly motivated leaders and creators. In UConn’s Honors Program, your endless potential meets endless opportunities. As part of this vibrant community of scholars, you’ll benefit from an enriched undergraduate experience with three focus areas: exploration, creativity, and leadership. Learn More Onward to a greater global understanding. If you could study anywhere in the world, where would you go? This question isn’t hypothetical when you choose UConn, because we offer more than 200 experiential global learning and study abroad opportunities including internships, field work, and research programs. Don’t limit curiosity by geography. Learn More Student activities, reimagined. With 700-plus campus organizations, it’s easy to find your place in the pack. Join a group that aligns with your interests, or see where something new takes you. There are countless paths to discover at UConn. Learn More Everyone, together. At the University of Connecticut, we seek to create a campus culture where everyone can thrive. So we embrace diversity, cultivate leadership and integrity, and encourage engaged citizenship among our students, faculty, and staff. Learn More #UConnNation Explore #UConnNation This error message is only visible to WordPress adminsThere has been a problem with your Instagram Feed.
+"""
+
+[R4] University Of Connecticut - BigFuture College Search
+(https://bigfuture.collegeboard.org/colleges/university-of-connecticut)
+"""
+OverviewCampus Life Very Large • SuburbanAverage Per Year After Aid$24KUniversity Of Connecticut is a very large, 4-year, public university. This coed college is located in a suburban community in a suburban setting. It offers associate, bachelor's, certificate, master's, and doctoral degrees. This college has an acceptance rate of 54.51% and a graduation rate of 83%.From the InstitutionFounded in 1881, the University of Connecticut is ranked among the top public research universities in the United States. With 10 schools and colleges offering undergraduate degrees, students learn and work alongside dedicated faculty in their fields; bettering the world through research, advising, and mentorship. And with over 700 clubs and organization...Interested in applying?Application Types AcceptedCoalition ApplicationCommon ApplicationFee Waiver InfoAvailable to all qualified students. Visit the college website for details.Contact InformationImportant DatesJanuary 15Regular Application DueFebruary 15Financial Aid Application DueNext StepsYou might also be interested in…Cairn UniversityLanghorne, PA4-yearPrivateSmallSuburban$3K average per year after aid970–1190Montclair State UniversityMontclair, NJ4-yearPublicVery LargeSuburban$12K average per year after aid930–1200Saint Peter's UniversityJersey City, NJ4-yearPrivateSmallUrban$14K average per year after aid885–1178Worcester State UniversityWorcester, MA4-yearPublicMediumUrban$14K average per year after aid1060–1210Long Island UniversityGreenvale, NY4-yearPrivateMediumSuburban$23K average per year after aid550–670Keene State CollegeKeene, NH4-yearPublicSmallSuburban$20K average per year after aid930–1140Kean UniversityUnion, NJ4-yearPublicLargeUrban$11K average per year after aid935–1120Bridgewater State UniversityBridgewater, MA4-yearPublicMediumSuburban$16K average per year after aid1090–1260City University of New York: Borough of Manhattan Community CollegeNew York, NY2-yearPublicVery LargeUrbanGraduation rate not available$7K average per year after aid800–1070Fitchburg State UniversityFitchburg, MA4-yearPublicSmallSuburban$16K average per year after aid1063–1230Talmudical Seminary Of BobovBrooklyn, NY4-yearPrivateSmallUrban$2K average per year after aidSAT score range not availableHoly Family UniversityPhiladelphia, PA4-yearPrivateSmallSuburban$13K average per year after aid880–1170SUNY Westchester Community CollegeValhalla, NY2-yearPublicMediumSuburbanGraduation rate not available$11K average per year after aid1070–1270Mercy UniversityDobbs Ferry, NY4-yearPrivateMediumSuburban$17K average per year after aid1020–1230Plymouth State UniversityPlymouth, NH4-yearPublicMediumRural$20K average per year after aid950–1030Note: College profiles are based primarily on information supplied by the colleges themselves through participation in College Board's BigFuture Profile Management higher education data collection portal, with some data provided via federal and state agencies. Costs, dates, policies, and programs are subject to change, so please confirm important facts with college admission personnel.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

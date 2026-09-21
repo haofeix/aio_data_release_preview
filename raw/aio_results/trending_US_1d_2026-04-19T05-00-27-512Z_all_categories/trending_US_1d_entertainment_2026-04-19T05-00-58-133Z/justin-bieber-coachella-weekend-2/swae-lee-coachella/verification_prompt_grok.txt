@@ -1,0 +1,89 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "swae lee coachella"
+
+Claims:
+[1] "Swae Lee performed at Coachella 2026."
+[2] "Swae Lee's Weekend 1 set at Coachella 2026 was on April 10, 2026."
+[3] "Swae Lee's Weekend 1 set at Coachella 2026 was cut short due to time restrictions before playing "Black Beatles"."
+[4] "Swae Lee's set at Coachella 2026 was abruptly stopped on April 10, 2026."
+[5] "Swae Lee's week one performance at Coachella 2026 had technical issues."
+[6] "Swae Lee returned for Weekend 2 at Coachella 2026."
+[7] "Swae Lee's Weekend 2 performance at Coachella 2026 featured "No Type"."
+[8] "Swae Lee's Weekend 2 performance at Coachella 2026 featured "Sunflower"."
+[9] "Swae Lee performed "Sunflower" at Coachella 2026."
+[10] "Swae Lee performed "No Type" at Coachella 2026."
+[11] "Swae Lee performed "Swang" at Coachella 2026."
+[12] "Swae Lee promised a "big performance" following the interrupted first weekend at Coachella 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- Real crowd pleasers @swaelee @slimjxmmi Watch the ...: "Slide 1 : No Type Slide 2-3,Plug Walk #swaelee #richthekid #music #rap #coachella."
+- The Source | Swae Lee’s Coachella performance came to an abrupt ...: "Swae Lee performed at Coachella,￼"
+- #SwaeLee brought out his brother #SlimJxmmi for his #Coachella ...: "There is a specific kind,(via @coachella @swaelee)&text=3, 2, 1, what,, what, what, what!"
+- Swae Lee Turned Sunflower Into a Coachella Moment 🌻 ... - YouTube: "Swae Lee Turned Sunflower Into a Coachella Moment 🌻🔥,-26"
+- Aww!😍 #SwaeLee and his son are adorable spending time at ...: "Coachella sparked major reactions online,#OrbitHipHop #Swaelee #coachella"
+- Swae Lee's Coachella Performance Cut Short - TikTok: "They Were PISSED !!,at: Feedback and help - TikTok"
+- Sabrina Carpenter's New Cameos, French Montana Performs at Coachella's 2nd Weekend: "Remember, Swae promised a big,canceled due to inclement weather."
+Reference Sources:
+
+[R1] Sabrina Carpenter's New Cameos, French Montana Performs at Coachella's 2nd Weekend
+(https://www.tmz.com/2026/04/18/coachella-second-weekend-first-night-performances/)
+"""
+Coachella Weekend 2 Sabrina Carpenter Busts Out Celeb Rolodex ... French Montana Joins Swae Lee In The Desert Coachella Weekend 2 gets a bad rap ... with some thinking it's not as exciting as the first entry -- but, Sabrina Carpenter and French Montana certainly did their best to change that narrative on the first night of the final weekend. Tons of fans flocked to Coachella Valley for the second weekend of SoCal's biggest music festival ... and they got a slightly different -- but still lit -- experience than the previous group got. First off, Carpenter -- who, as we told you, rocked the stage with Madonna -- brought even more star power with her for her headlining show ... swapping out cameos of Susan Sarandon and Will Ferrell for Geena Davis and Terry Crews. Davis filled in perfectly for Sarandon ... playing an older version of Carpenter during the set. Crews, on the other hand, took over as the electrician who needed to turn the venue's lights back on -- stripping off his top to flex his famous pecs. He also added a little reference to the fan-favorite film "White Chicks" ... check out the clip for a little dose of early 2000s nostalgia. Rapper Swae Lee brought out his own special guest star ... rapper French Montana -- and the two performed their song "Unforgettable" together, and the show certainly was that. Remember, Swae promised a big performance after last weekend's show got cut off early ... so it looks like he delivered big time! All the usual suspects from Weekend 1 -- Katseye, Sexyy Red, Teddy Swims, Dijon and more -- showed up for this weekend as well ... and, EDM artist Anyma finally got to hit the Coachella stage after her performance last week was canceled due to inclement weather. It may not be this group's first time around the block ... but, looks like the Coachella lineup is still full of surprises!
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

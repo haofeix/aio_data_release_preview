@@ -1,0 +1,98 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "tyrese vs tank versus"
+
+Claims:
+[1] "The Verzuz battle between Tank and Tyrese was held on March 26, 2026."
+[2] "The Verzuz battle between Tank and Tyrese was a "For The Ladies" showdown."
+[3] "The Verzuz battle between Tank and Tyrese featured hits from their respective catalogs."
+[4] "The Verzuz battle between Tank and Tyrese streamed live on Apple Music."
+[5] "The Verzuz battle between Tank and Tyrese streamed live on @VERZUZTV."
+[6] "The Verzuz battle between Tank and Tyrese originated from Los Angeles."
+[7] "The Verzuz battle between Tank and Tyrese was billed as a gift to the ladies."
+[8] "Tank has hits like "Maybe I Deserve" and "Please Don't Go"."
+[9] "Tyrese has hits like "Sweet Lady" and "Signs of Love Makin'"."
+[10] "Tank, Tyrese, and Ginuwine previously formed the group TGT."
+
+Cited text snippets from the AI Overview (for additional context):
+- VERZUZ on Instagram: "There’s going to be a whole lot of LOVE in ...: "blackaudacitymagazine-,There's going to be a whole lot of LOVE in,@sp_projectllc"
+- Tank vs. Tyrese: Breaking Down the Verzuz Battle Between R&B Kings: "In 2007, Tank and Tyrese,has always been about closeness."
+- Tank vs. Tyrese Tonight! Who you got? Episode 913 | “Not My ...: "The debate is getting heated,these R&B icons is undeniable."
+- A quick pregame check-in with @therealtank just moments away ...: "Tank #VERZUZ Tyrese 🔥 For,@TheRealTank @Tyrese"
+- Who Won The #verzuz ? #tank or #tyrese 🎤 - Facebook: "Both of them won.&text=Love them both but Tyrese,Although I loved everyone.&text=Kizzy Simpson I said the something !!"
+- REUNION RADIO EXCLUSIVE!!!! TANK VERSUS TYRESE!!! WHO YOU GOT?: "Tyrese's voice is rooted in,runs or extreme high notes."
+Reference Sources:
+
+[R1] Tank vs. Tyrese: Breaking Down the Verzuz Battle Between R&B Kings
+(https://www.essence.com/news/tank-vs-tyrese-verzuz-apple-music/)
+"""
+As fans debate every round, a look at the songs, history, and brotherhood that make this matchup a celebration of modern R&B. There’s a particular kind of memory that R&B holds — one that doesn’t just live in the mind, but in the body. It’s in the way a song lingers long after it fades out, how a chorus can pull you back into a moment you thought you’d outgrown. Verzuz, at its best, thrives in that space. What began as an intimate, almost scrappy celebration of catalog and community evolved into something far more expansive in July 2020, when Verzuz partnered with Apple Music — a move that brought the series into sharper focus, with high-quality livestreams, curated playlists, and a deeper archive of the very songs that built its foundation. It’s not just about who has the bigger record, but who can summon that feeling on command. And when Tank and Tyrese step into that arena on March 26, they are bringing lives lived in music. Tank’s story begins, as many of the great ones do, in the church. Born Durrell Babbs, his voice was first shaped in choirs where discipline anchored devotion, and where feeling wasn’t optional, it was the whole point. By the time he transitioned into secular R&B, he carried that same emotional weight with him, first as a background singer for Ginuwine and then as a songwriter moving quietly behind the scenes. Before his own name carried recognition, his pen and background vocals had already touched records for artists like Aaliyah and Janet Jackson, sharpening a sensibility rooted in feeling. His work alongside Jamie Foxx further extended that reach, placing him in rooms where musicality had to match personality, where precision was just as important as feeling. When Maybe I Deserve debuted in 2001, it didn’t feel like an introduction as much as a statement. Tank was carving out space for a kind of honesty that R&B has always needed but doesn’t always prioritize. His records told stories of love, but they also detailed its complications, its regrets, and its quiet confessions. Years later, that same sensibility carries into R&B Money, his podcast, where conversations about the genre unfold with the kind of clarity that only comes from having lived every corner of it. In many ways, Tank has become both participant and historian, documenting the very culture he helped shape. Tyrese’s entry into music moved along a different rhythm. Raised in Watts, Los Angeles, his introduction to the public came not through a stage but through a screen — a Coca-Cola commercial that turned a young singer into a recognizable face almost overnight. But it was Sweet Lady that anchored him, a record that felt both polished and sincere, capturing the emotional directness that defined late-’90s R&B. There was something immediate about Tyrese’s voice a yearning that felt like something you could hold. Where Tank’s career often unfolded in layers, Tyrese’s played out in wide frames. His music ran parallel to a film career that would eventually make him a global figure, but even as his visibility expanded, the core of his artistry remained rooted in R&B. That duality was on full display recently at the ESSENCE Black Women in Hollywood event, where his performance served as a reminder that the voice, first and foremost, is still the anchor. If their paths feel intertwined, it’s because they are. In 2007, Tank and Tyrese joined forces with Ginuwine to form TGT, a group that felt less like a collaboration and more like a convergence. Three distinct voices, each with their own histories, coming together to reaffirm what R&B could sound like when it leaned fully into itself. By the time Three Kings arrived in 2013, the group had already cemented its place as something more than a moment. For fans, TGT was a supergroup reflecting brotherhood. That history lingers here. This Verzuz isn’t built on rivalry as much as it is on recognition. Tank and Tyrese aren’t strangers circling each other — they’re artists who have stood side by side, whose voices have blended, whose careers have, at times, mirrored one another. The tension, if there is any, comes from the catalog. Because Verzuz ultimately returns to the songs. The ones that stay. The ones that refuse to age. Tank’s Maybe I Deserve still lands with the same weight it carried on first listen, while Tyrese’s Sweet Lady remains a kind of emotional shorthand for an entire era. Then there are the quieter moments — Please Don’t Go, I Like Them Girls — records that don’t demand attention so much as they draw you in, reminding you that R&B has always been about closeness. For those already mapping out the night in group chats and timelines, the battle almost begins before it starts. Imagined in rounds, it looks something like this: But even that framing feels incomplete. Because what Tank represents — the craftsman, the songwriter, the quiet architect of feeling — doesn’t always translate in numbers. And what Tyrese represents — the bridge between R&B and culture — can’t be reduced to a single record. They exist in conversation with each other, two interpretations of what it means to carry the genre forward. In the end, Verzuz offers something rare: a chance to sit with music in real time, to remember not just how it sounded, but how it felt when you first heard it. Tank and Tyrese bring decades of that feeling with them — not as competitors, but as custodians. Brothers in music, shaped by the same traditions, speaking in voices that still resonate. And maybe that’s the real takeaway. Not who wins, but what remains. Tyrese and Tank face off in the latest installment of Verzuz, streaming Thursday, March 26 at 5:30 p.m. PT on Apple Music.
+"""
+
+[R2] REUNION RADIO EXCLUSIVE!!!! TANK VERSUS TYRESE!!! WHO YOU GOT?
+(https://thebeatdfw.com/4523927/reunion-radio-exclusive-tank-versus-tyrese-who-you-got/)
+"""
+Source: 97.9 The Beat / 97.9 The Beat Everyone is talking about the VERSUS tonight between TANK and TYRESE! Both have a Long list of Hits and collaborations and acting credits but let me compare the two – When comparing the vocal styles of Tyrese and Tank, you’re really looking at two different approaches to modern R&B excellence. Related Stories Tyrese’s voice is rooted in classic, church-influenced soul. His tone is warm, rich, and emotive, often carrying a slightly raspy texture that adds vulnerability. He leans heavily into storytelling—songs like “Sweet Lady” showcase his ability to connect emotionally rather than overwhelm with vocal gymnastics. His strength lies in phrasing and sincerity; he knows how to sit in a melody and make it feel personal. However, he typically stays within a more controlled vocal range and doesn’t frequently push into highly technical runs or extreme high notes. Love 97.9 The Beat Featured Artists? Get more! Join the 97.9 The Beat Newsletter We care about your data. See our privacy policy. Tank, on the other hand, is a technician. His vocal style is more athletic and contemporary, blending traditional R&B with gospel-trained agility. He has a wider range than Tyrese and is known for smooth transitions into falsetto, intricate runs, and sustained high notes with clarity and control. Songs like “Maybe I Deserve” highlight not just emotion, but precision and vocal flexibility. Tank is the kind of singer who can adapt in real time, riff effortlessly, and elevate a live performance with sheer vocal skill. In a singing battle, the outcome would likely depend on the criteria. If the focus is emotional delivery and connection, Tyrese could absolutely hold his own and even win over an audience with authenticity. But if the battle leans toward vocal range, control, and technical execution, Tank would have the advantage. Overall, Tank would probably win a traditional “vocal battle” due to his versatility and technical mastery—but Tyrese might win hearts, which in R&B, can matter just as much. MAKE SURE YOU CHECK OUT REUNION RADIO EVERY SUNDAY AT 5PM ON 979 THE BEAT!!!!! BIG BINK SHANI SCLOTT DJ TEAZE DJ TDK JACK FRAUST YOUNG MACK
+"""
+
+[R3] Tank vs Tyrese: VERZUZ — VERZUZ: For The Ladies | Complex
+(https://www.complex.com/verzuz/tank-vs-tyrese)
+"""
+Opens in a new window Opens an external website Opens an external website in a new window This website utilizes technologies such as cookies to enable essential site functionality, as well as for analytics, personalization, and targeted advertising. Privacy Policy Accept Deny Non-Essential Close Cookie Preferences Tank vs Tyrese: VERZUZTwo of R&B's smoothest voices, one night — clear your schedule, light your candles, and let Tank and Tyrese remind you exactly what it feels like to be loved on.Featuring Tank and Tyrese2026-03-27T00:00:00.000ZEXPLORESHOPEXPLOREEVENTSSTYLESNEAKERSMUSICSPORTSPOP CULTURELIFECOVER STORIESWATCHSTYLEEmerging CreativesWomen To Know2026 World CupTop 10 JerseysStyle Moments of the YearThe Definitive GuideAmerican StreetwearEverything To KnowSHOPEXPLOREEVENTSTankVote TankVotedTyreseVote TyreseVoted63%37%MARCH 27, 2026VERZUZ: For The LadiesTank vs. TyreseTwo of R&B's smoothest leading men are going head-to-head in the ultimate ladies' night VERZUZ, as Grammy winner Tank squares off against actor-turned-platinum crooner Tyrese. Baltimore's own Tank built his reputation on raw vocal runs and slow-burn anthems like "Maybe I Deserve" and "Please Don't Go," while L.A.'s Tyrese had fans melting with silky cuts like "Sweet Lady" and "How You Gonna Act Like That." This is less about who wins and more about which one has you in your feelings first.Verzuz: Tank vs. TyreseEXCLUSIVETyreseGAS Trading CardsLimited Edition Tyrese x Verzuz x GAS Cracked Ice Foil Card$49.99EXCLUSIVETankGAS Trading CardsLimited Edition Tank x Verzuz x GAS Cracked Ice Foil Card$49.99EXCLUSIVETyreseGAS Trading CardsTyrese x Verzuz x GAS Trading Card$19.99EXCLUSIVETankGAS Trading CardsTank x Verzuz x GAS Trading Card$19.99HighlightsMusicThe 10 Best Tank Songs of All Time, Ranked MusicTank and Tyrese's 'VERZUZ' Event: Everything You Need to KnowMusicThe 10 Best Tyrese Songs, Ranked Stay ahead on ExclusivesDownload the Complex App SHOPEXPLOREEVENTSVerify your voteTo ensure fair voting - please log in or create an account to cast your predictionlogin OR CREATE ACCOUNTDISMISS
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

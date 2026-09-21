@@ -1,0 +1,142 @@
+{
+  "keyword": "f1 sprint race time",
+  "model": "grok-4-1-fast-reasoning",
+  "n_claims": 10,
+  "n_verified": 10,
+  "label_counts": {
+    "CLEAR": 6,
+    "VAGUE": 0,
+    "AMBIGUOUS": 0,
+    "INCORRECT": 4,
+    "OMITTED": 0
+  },
+  "consistent": 6,
+  "inconsistent": 4,
+  "fidelity_rate": 0.6,
+  "verifications": [
+    {
+      "claim_id": 1,
+      "claim": "The 2026 Chinese Grand Prix Sprint race is scheduled for Saturday, March 14, at 11:00 AM local time (CST) in Shanghai.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1",
+        "R4"
+      ],
+      "evidence": "R4: 'The sprint race at the F1 2026 Chinese GP takes place today (Saturday, March 14) at 11:00 local time (CST)'; R1: 'Fri, Mar 13 11:00 PM ET Heineken Chinese Grand Prix Sprint Race' (converts to 11:00 AM CST Sat Mar 14 with EDT UTC-4)",
+      "reasoning": "R4 directly states the exact date, time, and timezone; R1 ET time converts precisely to the claimed local time."
+    },
+    {
+      "claim_id": 2,
+      "claim": "11:00 AM CST on Saturday, March 14, in Shanghai is 3:00 AM GMT.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R4"
+      ],
+      "evidence": "R4: 'sprint race ... at 11:00 local time (CST), which is 03:00 GMT'",
+      "reasoning": "R4 explicitly confirms the timezone conversion."
+    },
+    {
+      "claim_id": 3,
+      "claim": "11:00 AM CST on Saturday, March 14, in Shanghai is 10:00 PM ET on Friday, March 13, in the US.",
+      "label": "INCORRECT",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1",
+        "R4"
+      ],
+      "evidence": "R4: 'United States (ET) 23:00 Friday'; R1: 'Fri, Mar 13 11:00 PM ET Heineken Chinese Grand Prix Sprint Race'",
+      "reasoning": "Sources state 11:00 PM / 23:00 ET Friday, directly contradicting 10:00 PM ET."
+    },
+    {
+      "claim_id": 4,
+      "claim": "The 2026 Chinese Grand Prix Sprint covers 100km.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R3",
+        "R5"
+      ],
+      "evidence": "R3: 'A Sprint race is run over 100km'; R5: 'The Sprint ... covers 100km'",
+      "reasoning": "Multiple sources directly state Sprint races are 100km."
+    },
+    {
+      "claim_id": 5,
+      "claim": "The 2026 Chinese Grand Prix Sprint determines points and the starting grid for the weekend.",
+      "label": "INCORRECT",
+      "confidence": 1.0,
+      "matched_references": [
+        "R3",
+        "R5"
+      ],
+      "evidence": "R3: 'Drivers can score points in an F1 Sprint'; R5: 'the result of the Sprint has no bearing on the Grand Prix\u2026 except in some very specific circumstances'; 'Sprint Qualifying ... set the grid for the Sprint'",
+      "reasoning": "Sources confirm points but explicitly state Sprint result does not determine Grand Prix grid."
+    },
+    {
+      "claim_id": 6,
+      "claim": "2026 Chinese Grand Prix Sprint Qualifying is Friday, March 13, 7:30 PM - 8:14 PM CST.",
+      "label": "INCORRECT",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1"
+      ],
+      "evidence": "R1: 'Fri, Mar 13 3:30 AM ET Heineken Chinese Grand Prix Sprint Shootout' (converts to ~3:30 PM CST Fri Mar 13 with EDT)",
+      "reasoning": "R1 provides different start time (~3:30 PM CST) and Sprint Qualifying is ~30 min total, not 44 min."
+    },
+    {
+      "claim_id": 7,
+      "claim": "2026 Chinese Grand Prix Sprint Race is Saturday, March 14, 11:00 AM - 12:00 PM CST.",
+      "label": "INCORRECT",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1",
+        "R3",
+        "R4",
+        "R5"
+      ],
+      "evidence": "R1/R4: Start 11:00 AM CST Sat; R3/R5: 'lasts around 30 minutes'",
+      "reasoning": "Start time matches but duration ~30 min per sources, contradicting 60 min session."
+    },
+    {
+      "claim_id": 8,
+      "claim": "2026 Chinese Grand Prix Qualifying is Saturday, March 14, 3:00 PM - 4:00 PM CST.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1"
+      ],
+      "evidence": "R1: 'Sat, Mar 14 3:00 AM ET Heineken Chinese Grand Prix Qualifying' (converts to 3:00 PM CST Sat Mar 14 with EDT; standard 1-hour session)",
+      "reasoning": "R1 ET time converts precisely to claimed CST session window."
+    },
+    {
+      "claim_id": 9,
+      "claim": "The 2026 Chinese Grand Prix Sprint format consists of a 100km race with no mandatory pit stops.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R3",
+        "R5"
+      ],
+      "evidence": "R3: 'A Sprint race is run over 100km ... no mandatory pit stops'; R5: 'covers 100km ... no mandatory pit stops'",
+      "reasoning": "Sources directly describe Sprint format matching the claim."
+    },
+    {
+      "claim_id": 10,
+      "claim": "The 2026 Chinese Grand Prix Sprint provides points to the top eight finishers.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R3",
+        "R5"
+      ],
+      "evidence": "R3: 'The top eight finishers in an F1 Sprint score points'; R5: 'Points ... awarded for the first eight cars'",
+      "reasoning": "Sources explicitly state points for top eight in Sprint."
+    }
+  ],
+  "elapsed_s": 61.6,
+  "prompt_tokens": 14874,
+  "cached_tokens": 582,
+  "completion_tokens": 1374,
+  "error": null
+}

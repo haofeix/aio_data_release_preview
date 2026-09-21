@@ -1,0 +1,109 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch timberwolves vs celtics"
+
+Claims:
+[1] "The Minnesota Timberwolves vs. Boston Celtics game on Sunday, March 22, 2026, airs at 8:00 PM ET (7:00 PM CT)."
+[2] "The Minnesota Timberwolves vs. Boston Celtics game on Sunday, March 22, 2026, airs on NBC."
+[3] "The Minnesota Timberwolves vs. Boston Celtics game on Sunday, March 22, 2026, streams on Peacock."
+[4] "The Minnesota Timberwolves vs. Boston Celtics game on Sunday, March 22, 2026, is part of NBA on NBC's Sunday Night Basketball."
+[5] "The Minnesota Timberwolves vs. Boston Celtics game on Sunday, March 22, 2026, is at TD Garden."
+[6] "Live stream of the Minnesota Timberwolves vs. Boston Celtics game on Sunday, March 22, 2026, is on Fubo."
+[7] "Radio coverage of the Minnesota Timberwolves vs. Boston Celtics game on Sunday, March 22, 2026, is 98.5 The Sports Hub."
+[8] "NBC Sports is providing coverage of the Minnesota Timberwolves vs. Boston Celtics game on Sunday, March 22, 2026."
+[9] "NBC Sports pregame shows for the Minnesota Timberwolves vs. Boston Celtics game on Sunday, March 22, 2026, start earlier in the evening."
+
+Cited text snippets from the AI Overview (for additional context):
+- How to watch Timberwolves vs. Celtics: TV channel and streaming options for March 22: "Streaming by Fubo,Sitemap"
+- Timberwolves vs. Celtics: Prediction, How to Watch for Free (3/22): "How to Watch Timberwolves vs,TV: NBC"
+- Celtics vs. Timberwolves coverage is happening now on NBC Sports ...: "TONIGHT ☘️ Celtics at Minnesota,98.5 The Sports Hub #DifferentHere"
+- How to Watch Timberwolves vs. Celtics: NBA on NBC's ...: "be postseason opponents.-,How to Watch,berth territory in the West."
+- How to Watch Timberwolves vs. Celtics: NBA on NBC's Sunday ...: "How to watch the Minnesota,America, at 7 p.m. ET."
+- Celtics vs. Timberwolves coverage is happening now on NBC Sports ...: "Celtics vs. Timberwolves coverage is,Presented by @FordNewEngland"
+Reference Sources:
+
+[R1] How to Watch Timberwolves vs. Celtics: NBA on NBC's Sunday Night Basketball (March 22)
+(https://www.aol.com/articles/watch-timberwolves-vs-celtics-nba-142023286.html)
+"""
+How to Watch Timberwolves vs. Celtics: NBA on NBC's Sunday Night Basketball (March 22)The 2026 Playoffs are looming, which means every NBA team has just a handful of games left to decide their fates and send a message to would-be postseason opponents.There's still a lot of uncertainty in the playoff field, so very few teams are a postseason lock right now, but some of the teams that likely are postseason bound still have some big hurdles to get over on the road to the bracket. This week on the NBA on NBC's Sunday Night Basketball, two of those teams face off in an interconference matchup you won't want to miss.RELATED: The Full 2025-2026 NBA Schedule of Games on NBA on NBC and PeacockWho's playing on Sunday Night Basketball on NBC and Peacock this week (March 22)?This week's installment of Sunday Night Basketball on NBC and Peacock takes us to Boston, where the Celtics are riding high as one of the best teams in the East, back at full strength now that Jayson Tatum is back from injury. They'll face the visiting Minnesota Timberwolves squad, who are playing without their most famous face even as they're locked in a battle to stay in automatic playoff berth territory in the West.RELATED: Watch NBA Games Live on Peacock Right HereHow to watch the Minnesota Timberwolves vs. Boston Celtics on Sunday Night BasketballJayson Tatum of the Boston Celtics brings the ball up court during the first quarter against the Cleveland Cavaliers.The Timberwolves and the Celtics' Sunday Night Basketball game will tip off at 8 p.m. ET on Sunday, March 22, from TD Garden in Boston. The game will air live on NBC and stream simultaneously on Peacock, with NBC Sports' Mike Tirico, Reggie Miller, Jamal Crawford, and Zora Stephenson on the call.And be sure to tune in early to catch the pregame show, Basketball Night in America, at 7 p.m. ET.NBA on NBCThe NBA is officially back on NBC and Peacock, with exclusive games every week across broadcast and streaming featuring some of the biggest stars in the game.The action kicks off every week with Peacock NBA Monday, featuring exclusive games streaming only on Peacock. Then on Tuesday nights, check out NBC's Coast 2 Coast Tuesday, which features two marquee games in primetime. With Sunday Night Football wrapped up, the NBA has also taken over NBC's weekends with Sunday Night Basketball, with a primetime showcase game every week to wrap up the weekend.Check out the full schedule for every NBA game on NBC and Peacock this season right here.From real-time stats and predictive fun to highlight clips and immersive angles, Peacock’s suite of NBA features puts you in control of how you watch the game:Courtside Live: An interactive, mobile-first viewing experience with new camera feeds and immersive perspectives that bring you to center court. Available weekly for select games throughout the 2025-2026 season. Peacock Performance View: Unlock a next-level broadcast with dynamic overlays showing playing insights, heat maps, scoring probabilities, and more.Can’t Miss Highlights: Swipeable vertical highlights on the Peacock mobile app for quick recaps of clutch moments, momentum shifts, and standout plays, wherever you are.Peacock ScoreCard: Turn every game into an interactive experience. Pick from a range of cards and watch as your predictions come true.Catch Up With Key Plays: Instantly revisit the most pivotal game moments with a curated playlist you can access anytime below your player controls.Sign up for Peacock now to make sure you're not missing a second of the NBA action. You can also gift the experience!What to expect from Timberwolves vs. Celtics on Sunday Night BasketballDonte DiVincenzo of the Minnesota Timberwolves dribbles the ball against the Golden State Warriors.The Celtics are in a very solid spot in the final month of the regular season. Though they trail the Pistons for the lead in the East, they are dueling with the Knicks for second place at the moment, which would go a long way toward favorable playoff seeding if they're able to secure their spot in the coming weeks. Their defense remains arguably the best in the league, All-Star Jaylen Brown is playing well, and team leader Jayson Tatum's back in the Celtics fold, just in time for a postseason push that could send them back to the NBA Finals.They're the clear favorites at home in Boston on Sunday, but not just because of their own skills. The Timberwolves will be playing without their biggest star and leading scorer, Anthony Edwards, who's out with a knee injury until at least the middle of the week. Fortunately, the T-Wolves are a deep squad, and that leaves them in the capable hands of Julius Randle, Donte DiVincenzo, Rudy Gobert, and Jaden McDaniels, who'll try to keep things firing for the team as they fight for playoff position. Along with the Lakers, the Rockets, and the Nuggets, they're battling it out for the final four automatic playoff spots in the West, and if they slip too much they could slide down into Play-In territory. It's up to the rest of the squad to keep that from happening while Ant-Man recovers, so expect the T-Wolves to bring the fight.Did You Know MLB Is Back on NBC and Peacock?The MLB is back on NBC and Peacock this season with the addition of Sunday Night Baseball in primetime and plenty of Peacock-exclusive games on the slate this season. Find the full schedule right here.The line-up features plenty of storied rivalries from across the league. Sunday Night Baseball will be home to division rivalry games including Diamondbacks-Dodgers (March 26); Braves-Phillies (April 19); Tigers-Royals (May 10); Rangers-Angels (May 24); Cubs-Cardinals (May 31); Mets-Phillies (June 21); Yankees-Red Sox (June 28); Padres-Dodgers (July 5); Mariners-Astros (August 16); and Padres-Giants (Sept. 13). Catch it all on Peacock right here.
+"""
+
+[R2] How to watch Timberwolves vs. Celtics: TV channel and streaming options for March 22
+(https://www.nytimes.com/athletic/7138505/2026/03/22/how-to-watch-timberwolves-vs-celtics-tv-channel-and-streaming-options-for-march-22/)
+"""
+The Boston Celtics (47-23) will host the Minnesota Timberwolves (43-28) after winning four straight home games.How to watch Minnesota Timberwolves vs. Boston Celtics Venue: TD Garden Time: 8 p.m. ET Streaming: Fubo (Stream now) TV: NBC/Peacock Watching in person? Get tickets on StubHub. Minnesota vs. Boston odds Spread: Boston -10.5 (-105), Minnesota +10.5 (-115) Favorite Moneyline: Boston -426 Underdog Moneyline: Minnesota +320 Total: 221.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsCelticsJaylen Brown: Probable (Quadricep), Nikola Vucevic: Out (Finger)TimberwolvesAnthony Edwards: Out (Knee), Naz Reid: Questionable (Ankle)Stats to know The Celtics record just 0.4 fewer points per contest (114.4) than the Timberwolves surrender (114.8). The Timberwolves’ 118.6 points-per-game average is 11.6 more points than the 107.0 the Celtics allow. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Mar 26, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R3] How to Watch Timberwolves vs. Celtics: NBA on NBC's Sunday Night Basketball (March 22)
+(https://www.nbc.com/nbc-insider/how-to-watch-timberwolves-vs-celtics-sunday-night-basketball)
+"""
+The 2026 Playoffs are looming, which means every NBA team has just a handful of games left to decide their fates and send a message to would-be postseason opponents. How to WatchThere's still a lot of uncertainty in the playoff field, so very few teams are a postseason lock right now, but some of the teams that likely are postseason bound still have some big hurdles to get over on the road to the bracket. This week on the NBA on NBC's Sunday Night Basketball, two of those teams face off in an interconference matchup you won't want to miss.RELATED: The Full 2025-2026 NBA Schedule of Games on NBA on NBC and PeacockWho's playing on Sunday Night Basketball on NBC and Peacock this week (March 22)?This week's installment of Sunday Night Basketball on NBC and Peacock takes us to Boston, where the Celtics are riding high as one of the best teams in the East, back at full strength now that Jayson Tatum is back from injury. They'll face the visiting Minnesota Timberwolves squad, who are playing without their most famous face even as they're locked in a battle to stay in automatic playoff berth territory in the West. RELATED: Watch NBA Games Live on Peacock Right HereThe Timberwolves and the Celtics' Sunday Night Basketball game will tip off at 8 p.m. ET on Sunday, March 22, from TD Garden in Boston. The game will air live on NBC and stream simultaneously on Peacock, with NBC Sports' Mike Tirico, Reggie Miller, Jamal Crawford, and Zora Stephenson on the call. And be sure to tune in early to catch the pregame show, Basketball Night in America, at 7 p.m. ET.What to expect from Timberwolves vs. Celtics on Sunday Night BasketballThe Celtics are in a very solid spot in the final month of the regular season. Though they trail the Pistons for the lead in the East, they are dueling with the Knicks for second place at the moment, which would go a long way toward favorable playoff seeding if they're able to secure their spot in the coming weeks. Their defense remains arguably the best in the league, All-Star Jaylen Brown is playing well, and team leader Jayson Tatum's back in the Celtics fold, just in time for a postseason push that could send them back to the NBA Finals. They're the clear favorites at home in Boston on Sunday, but not just because of their own skills. The Timberwolves will be playing without their biggest star and leading scorer, Anthony Edwards, who's out with a knee injury until at least the middle of the week. Fortunately, the T-Wolves are a deep squad, and that leaves them in the capable hands of Julius Randle, Donte DiVincenzo, Rudy Gobert, and Jaden McDaniels, who'll try to keep things firing for the team as they fight for playoff position. Along with the Lakers, the Rockets, and the Nuggets, they're battling it out for the final four automatic playoff spots in the West, and if they slip too much they could slide down into Play-In territory. It's up to the rest of the squad to keep that from happening while Ant-Man recovers, so expect the T-Wolves to bring the fight.
+"""
+
+[R4] Timberwolves vs. Celtics: Prediction, How to Watch for Free (3/22)
+(https://globelynews.com/sports/timberwolves-vs-celtics-prediction-how-to-watch-for-free-3-22/)
+"""
+The Minnesota Timberwolves (43–28) face the Boston Celtics (47–23) tonight at TD Garden. Minnesota faces its toughest matchup entering its fourth game without Anthony Edwards, who’s been sidelined with knee inflammation. They’ve gone 2-1 without him, with wins against the formidable Phoenix Suns and the struggling Utah Jazz, followed by a 108-104 loss to the Portland Trail Blazers on Friday. The Timberwolves trailed most of the way against the Blazers, and by as much as 18, but climbed back late in the first half with an 11–2 run, powered by three shots from deep. The fourth quarter was a back-and-forth affair, with multiple lead changes. Donte DiVincenzo missed a layup with 11.3 seconds left that would have tied the game. Julius Randle led Minnesota with just 19 points on 6-of-16 shooting. Six Timberwolves players scored in double digits, but Edwards’ high-volume scoring and late-game clutch shooting were clearly missed. Minnesota sits in sixth place in the Western Conference, positioned for the final automatic playoff spot. They’re just a half-game behind the fourth-place Houston Rockets, with a four-game lead over the Phoenix Suns. There’s opportunity to secure a better seed — and a significant cushion to avoid falling into play-in tournament territory. The Celtics, meanwhile, enter on a four-game winning streak and four games behind the first-place Detroit Pistons. They edged out the shorthanded Memphis Grizzlies on Friday night, 117–112, powered by Jaylen Brown’s 30 points. Jayson Tatum struggled, making just 3-of-15 attempts from the field, finishing with 13 points. Luka Garza and Payton Pritchard combined for 41 points off the bench. With the Celtics entering at near full-strength, expect them to separate late and secure a comfortable win approaching double digits. Prediction: Boston Celtics 121, Minnesota Timberwolves 113 Injury Report Minnesota Timberwolves Anthony Edwards — Out (Knee) Naz Reid — GTD (Ankle) Boston Celtics Nikola Vučević — Out (Finger) How to Watch Timberwolves vs. Celtics Tip-off for tonight’s Timberwolves-Celtics game is set for 8:00 PM Eastern / 7:00 PM Central at the TD Garden in Boston. The game airs live nationally on NBC. So you can tune in for free on your local NBC affiliate via antenna. NBC is also available at no additional cost through most cable, satellite, and live streaming packages. You can also stream the game on the NBC, NBC Sports, and Peacock apps and websites. If you’re a cord-cutter without an active livestreaming plan, you can watch the game for free by signing up for a 7-day free trial of Peacock Premium Plus on Amazon Prime Video here. Looking for longer access? Sign up for a Walmart+ 30-day free trial, during which you can add Peacock Premium at no extra cost here. Peacock Premium subscriptions are available for direct purchase from Peacock here, starting at $10.99 month. You can also purchase an Apple TV + Peacock Premium bundle for $14.99 month from Apple here. Minnesota Timberwolves vs. Boston Celtics Date: Sunday, March 22, 2026 Time: 8:00 PM Eastern / 7:00 PM Central Venue: TD Garden, Boston, MA TV: NBC Streaming: NBC, NBC Sports, and Peacock apps and websites
+"""
+
+[R5] How to watch Timberwolves vs. Celtics: TV channel and streaming options for March 22
+(https://www.nytimes.com/athletic/7138505/2026/03/22/timberwolves-vs-celtics-stream-how-to-watch-march-22/)
+"""
+The Boston Celtics (47-23) will host the Minnesota Timberwolves (43-28) after winning four straight home games.How to watch Minnesota Timberwolves vs. Boston Celtics Venue: TD Garden Time: 8 p.m. ET Streaming: Fubo (Stream now) TV: NBC/Peacock Watching in person? Get tickets on StubHub. Minnesota vs. Boston odds Spread: Boston -10.5 (-105), Minnesota +10.5 (-115) Favorite Moneyline: Boston -426 Underdog Moneyline: Minnesota +320 Total: 221.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsCelticsJaylen Brown: Probable (Quadricep), Nikola Vucevic: Out (Finger)TimberwolvesAnthony Edwards: Out (Knee), Naz Reid: Questionable (Ankle)Stats to know The Celtics record just 0.4 fewer points per contest (114.4) than the Timberwolves surrender (114.8). The Timberwolves’ 118.6 points-per-game average is 11.6 more points than the 107.0 the Celtics allow. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Mar 26, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

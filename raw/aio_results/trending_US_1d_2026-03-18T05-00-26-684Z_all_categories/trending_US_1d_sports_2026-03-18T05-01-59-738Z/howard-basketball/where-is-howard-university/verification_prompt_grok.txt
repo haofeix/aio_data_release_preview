@@ -1,0 +1,90 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is howard university"
+
+Claims:
+[1] "Howard University is a private, historically Black research university (HBCU)"
+[2] "Howard University is located in Northwest Washington, D.C."
+[3] "Howard University was founded in 1867"
+[4] "Howard University's main campus is situated in Washington, D.C."
+[5] "Howard University has additional research facilities located in Beltsville, Maryland"
+
+Cited text snippets from the AI Overview (for additional context):
+- History | Howard University: "Howard University is the only predominantly Black,and culture of people of African descent."
+- Howard University: "Howard University is a private, co-educational university,a tradition of quality education since 1867."
+- Harvard Club NYC! LIT IT UP! I'll tell you the 'backstory' on the jacket ...: "Before it was called the “Black Harvard,”,Howard became a training ground for power."
+Reference Sources:
+
+[R1] History | Howard University
+(https://howard.edu/about/history)
+"""
+Since 1867, Howard has awarded more than 100,000 degrees in the professions, arts, sciences and humanities. Howard ranks among the highest producers of the nation's Black professionals in medicine, dentistry, pharmacy, engineering, nursing, architecture, religion, law, music, social work and education. The University has long held a commitment to the study of disadvantaged persons in American society and throughout the world. The goal is the elimination of inequities related to race, color, social, economic and political circumstances. As the only truly comprehensive predominantly Black university, Howard is one of the major engineers of change in our society. Through its traditional and cutting-edge academic programs, the University seeks to improve the circumstances of all people in the search for peace and justice on earth. Howard has grown from a single-frame building in 1867 and evolved to more than 89 acres, including the six-story, 400-bed Howard University Hospital. Since 1974, it has expanded to include a 22-acre School of Law West Campus, a 22-acre School of Divinity East Campus and another three-fifths of an acre facility in northeast Washington and a 108-acre tract of land in Beltsville, Maryland. Howard prepares men and women to advance social justice and the preservation of human liberty. In each of its 13 schools and colleges, Howard University seeks to develop technically competent and morally committed individuals. The University's library system contains more than 1.8 million volumes, including the Channing Pollock Collection. The Moorland-Spingarn Research Center (MSRC) is recognized as one of the world's largest and most comprehensive repositories for the documentation of the history and culture of people of African descent in Africa, the Americas and other parts of the world. The University competes in 19 varsity sports including basketball, football, bowling, lacrosse, soccer, softball, swimming, tennis, both indoor and outdoor track and volleyball. Regarded as one of the most prestigious institutions of higher learning in the world, current enrollment approximates 11,000 students from virtually every state, the District of Columbia, and more than 70 countries. The University traditionally has had the largest gathering of Black scholars in the world.
+"""
+
+[R2] Howard University – ISEP Study Abroad
+(https://search.isepstudyabroad.org/University/Detail/90f4f176-5e75-4e3b-9163-c3a09b388aa2)
+"""
+Howard is a private, co-educational university enrolling over 10,000 students. As the largest comprehensive predominantly African-American university in the United States, Howard produces a high percentage of the nation’s black professionals in many fields. About 84 percent of students are black Americans and 12 percent are foreign students from more than 67 countries. About 39 percent of the students live on campus. To study at Howard University is choosing an institution that is experienced, dynamic, and diverse – with a tradition of quality education since 1867 provided by the constant engagement of its faculty toward the students and their needs, and by its rich campus social and cultural life. With such a diverse student body, it comes as little surprise that life thrives on the Howard University Campus. Whatever your particular interest – culture, religion, sports, art, music, theater, politics – you will be assured of linking up with others who share it. See All 0 Photos The main campus of Howard covers more than 89 acres on a hilltop in northwest Washington overlooking the city's center. Bus and metrorail services connect Howard with cultural resources, shopping areas and the superlative research facilities of Capitol Hill and downtown Washington. The Moorland-Spingarn Research Center has the largest collection of research materials in African and Afro-American studies in the United States. In addition to its extensive classroom facilities, Howard has a university center for student activities, as well as a gymnasium and sports stadium. The university also has three art galleries, a radio and TV station, and a teaching hospital.
+"""
+
+[R3] At Risk on Both Sides of the Atlantic: Black Maternal Health in the U.S. and Ghana
+(https://admission.howard.edu/)
+"""
+Howard University — Built for Impact in the World's Most Powerful CitySince 1867, Howard University, a Research One (R1) Carnegie research institution, has shaped leaders across 14 schools and colleges and over 120+ programs. With over 130,000+ degrees granted, our impact reaches far beyond The Yard. From our hilltop in Northwest D.C., your classroom becomes a living lab for research, policy, culture, and legacy. At Howard, Bison turn curiosity into action, internships into influence, and ambition into legacy. Learn More About the Application Process:Undergraduate AdmissionsGraduate AdmissionsTransfer Admissions Tour and Visit Howard University Experience The Mecca for yourself. The best way to understand Howard University is to see it in a city where history and culture meet opportunity. From walking across The Yard to exploring our 14 schools and colleges, every visit shows why Howard is more than a university — it’s a launchpad for leaders. We offer multiple ways to connect: On-Campus Tours: Step onto The Yard, tour our facilities, and feel the energy of Howard in Washington, D.C. Virtual Visits: Can’t make it to D.C.? Explore Howard from anywhere in the world through interactive virtual tours and live information sessions. Special Events: Join us for Bison Preview and other signature visit days designed to give prospective students and families a deeper look at Howard life. Schedule your visit today and see why Howard is ranked one of the nation’s top universities. Frequently Asked Questions How do I apply to Howard University? You can apply online through our Undergraduate, Graduate, or Transfer Admissions portals. Start your application here. What is Howard University ranked among HBCUs? Howard University is consistently ranked the No. 1 HBCU by Forbes and is among the Top 100 national universities. LinkedIn also named Howard a Top College for long-term career success. What makes Howard University unique? Howard, located in Washington D.C., is the only HBCU designated as an R1 Carnegie research institution located in Washington, D.C. — the most powerful city in the world. Here, Bison turn curiosity into action, internships into influence, and ambition into legacy. What programs does Howard University offer? Howard offers over 120 programs across 14 schools and colleges, including business, engineering, fine arts, law, medicine, nursing, and the sciences. What are Howard’s admission requirements? Requirements vary by program. Generally, applicants should submit transcripts, test scores (if required), recommendation letters, and a completed application. See detailed requirements. Where is Howard University located? Howard is located in Northwest Washington, D.C., just two miles from the U.S. Capitol, in a city that serves as a living laboratory for research, culture, policy, and leadership. Yes. Howard awards a range of merit-based scholarships, need-based aid, and specialized funding opportunities for high-achieving students. Explore options at Financial Aid. Tuition and fees vary by program. Undergraduate tuition can be calculated on the Cost of Attendance page. Howard is proud to be a top performer in social mobility, ensuring access and affordability for students from diverse backgrounds. Howard offers on-campus housing, apartment-style living, and nearby housing partnerships. First-year students are typically guaranteed housing. Learn more. Located in the nation’s capital, Howard students have unmatched access to internships and career pipelines in government, nonprofits, tech, finance, healthcare, media, and more. Our alumni network of over 130,000 leaders worldwide opens doors across industries. Howard is vibrant, bold, and unapologetically unique. From our legendary Homecoming celebrations to over 200 student organizations, Division I athletics, and the iconic Showtime Marching Band, you’ll find a community that reflects culture, ambition, and excellence. Howard graduates include Vice President Kamala Harris, Thurgood Marshall, Toni Morrison, Chadwick Boseman, Taraji P. Henson, Zora Neale Hurston, and countless CEOs, scientists, and public servants. Bison are leaders in every field. D'Zyre Jones Student, Class of 2021, Computer information systems, minor in graphic design Omari Allen Tom S. Williamson Jr. Scholarship Recipient, J.D. Candidate, Class of 2021, Juris Doctor Nira Headen Student, Class of 2021, Afro-American studies and Sports administration, Spanish minor Undergraduate admissions are the first step for students to pursue studies in more than 120 areas leading to undergraduate, graduate and professional degrees. To date, Howard has awarded more than 130,000 degrees in the arts, the sciences, and the humanities. The historic main campus sits on a hilltop in Northwest Washington blocks from the storied U Street and Howard Theatre. We are two miles from the U.S. Capitol where many students intern, and scores of alumni shape national and foreign policy. Chadwick A. Boseman Award-winning actor and producer, Class of 2000, Bachelor of Fine Arts Toni Morrison Nobel & Pulitzer Prize-Winning Novelist, Essayist & Professor, Class of 1953, Bachelor of Fine Arts Ta-Nehisi Coates National Book Award-Winning Novelist, Essayist, & Journalist Zora Neale Hurston Author, Anthropologist, Class of 1920 Thurgood Marshall Former U.S. Supreme Court Justice, Class of 1933, Juris Doctorate Mamie Phipps Clark Social Psychologist, Class of 1938, Psychology
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

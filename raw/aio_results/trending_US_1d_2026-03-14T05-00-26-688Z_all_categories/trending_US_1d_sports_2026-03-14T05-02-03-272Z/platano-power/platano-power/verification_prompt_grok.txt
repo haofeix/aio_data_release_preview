@@ -1,0 +1,96 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "platano power"
+
+Claims:
+[1] ""Plátano Power" was popularized by the Dominican Republic team during the 2013 World Baseball Classic."
+[2] ""Plátano Power" was frequently used in 2026 as the Dominican Republic team dominates the competition."
+[3] "Pitcher Fernando Rodney introduced "Plátano Power" during the 2013 World Baseball Classic to represent the Dominican Republic team."
+[4] "The plantain is a staple food for the working class in the Dominican Republic."
+[5] ""Plátano Power" has been adopted for clothing such as T-shirts highlighting Dominican pride and DNA."
+[6] ""Plátano Power" clothing is worn at baseball games and cultural events."
+[7] ""Plátano Power" merchandise is available on Amazon.com."
+[8] "The term "Plátano Power" is distinct from the Platanares geothermal power plant in Honduras."
+[9] "The Platanares geothermal power plant is in Honduras"
+
+Cited text snippets from the AI Overview (for additional context):
+- Plátano power! Team DR 🇩🇴 remains UNDEFEATED after ...: "Plátano power! Team DR remains UNDEFEATED after,win 7–5 in the World Baseball Classic!"
+- 10 Dominican Slang Terms to Help You Speak Like a Local: "Plátano Power—This is a,way to celebrate Dominican identity."
+- The history of the plátano (plantain) in the Caribbean ... - Instagram: "become Dominican staples.-,A Staple of the People Easy to grow, reliable, filling,dishes like tostones and mangú."
+- Platano Power product Dominican Flag Baseball RD Its my DNA T- ...: "Description,domingo, santiago or punta cana."
+- Success in Honduras: Platanares Geothermal Power Plant – USTDA: "The Platanares geothermal power plant is the,to include clean and renewable energy sources"
+Reference Sources:
+
+[R1] 10 Dominican Slang Terms to Help You Speak Like a Local
+(https://stowawaymag.byu.edu/blog/dominican-slang)
+"""
+Photo by Falco from Pixabay The Dominican Republic is a country with a vibrant, rich, and unique culture. Dominican slang, like any other country's slang and colloquialisms, is an important part of local culture and language. It's a way for Dominicans to express themselves in a more informal and playful way, often with words that have a unique meaning and are not used in standard Spanish.In this article, we'll introduce you to 10 of the most common Dominican slang terms so you can learn to speak like a local. These 10 terms can be used in everyday conversation and will be useful on your next visit to this Caribbean Island:Chévere—This is a word you'll hear all the time in the Dominican Republic. It's an adjective that means "cool" or "great." For example, "Esa película estuvo chévere" means "That movie was cool."Guagua—This word means "bus" and is used to refer to public transportation. "Voy a tomar la guagua al trabajo" means "I'm going to take the bus to work."Jevi—This is a slang term that means "good" or "awesome." You might hear someone say "¡Eso está jevi!" to mean "That's awesome!"Pilas—This term means "be careful" or "watch out." It's often used as a warning or to remind someone to be cautious. For example, "Pilas con esa esquina" means "Watch out for that corner."Fula—This word is used to describe something that is ugly or unattractive. For example, "Ese carro es bien fula" means "That car is really ugly."Bregar—This verb means "to work hard" or "to struggle." For example, "Estoy bregando mucho en mi trabajo" means "I'm working hard at my job."Tiguere—This is a term used to describe someone who is street-smart or cunning. It can also refer to someone who is a little bit of a troublemaker. For example, "Ese tipo es un tiguere" means "That guy is a street-smart troublemaker."Plátano Power—This is a term that refers to the pride that Dominicans have in their culture and heritage. It's often used in a positive way to celebrate Dominican identity. For example, "¡Plátano Power, mi gente!" means "Power to the people of the Dominican Republic!"Morro—This is a slang term used to refer to a young kid, and can be used for a boy or a girl depending on the vowel ending (morra refers to girls). For example, "Ese morro es muy travieso" means "That young boy is very mischievous."Vaina—This is a versatile word that can mean anything from "thing" to "problem" to "situation." It's often used as a filler word, similar to "stuff" in English. For example, "No sé qué es esa vaina" means "I don't know what that thing is."Learning these Dominican slang terms is a great way to connect with locals and gain a deeper understanding of Dominican culture, making your interactions more enjoyable and meaningful. The next time you're in the Dominican Republic, try using some of these words and see how much more easily you can connect with the people around you.
+"""
+
+[R2] Platanares Geothermal Power Plant – USTDA
+(https://www.ustda.gov/success_story/success-in-honduras-platanares-geothermal-power-plant/)
+"""
+Skip to content Less than 20 years ago, more than half of Honduras’ electricity was produced by hydroelectric facilities exceedingly vulnerable to irregular rainfall. The country also relied on environmentally unsound diesel-run power plants that are expensive to operate and insufficient to meet the country’s growing electricity demand. In collaboration with the Inter-American Development Bank (IDB), USTDA partnered with the Government of Honduras and funded a study to develop the geothermal potential at the Platanares field in western Honduras. Through detailed market, technology and economic analyses, the USTDA/IDB study concluded that the Platanares site could support a 35-megawatt geothermal power generation facility. As a result, the Government of Honduras awarded concession rights to Electricidad de Cortes S.A., a local power generation company that signed a contract with Nevada-based Ormat Technologies, Inc. to build and operate the facility. During the plant’s development phase, Ormat leveraged the expertise of the U.S. geothermal sector by sourcing goods and services from more than 70 U.S. suppliers across 17 states. In 2018, the plant received $135 million in financing from the U.S. Overseas Private Investment Corporation (now the U.S. International Development Finance Corporation) and was inaugurated as the first utility-scale geothermal power facility in Honduras. Now in operation and supplying power to an estimated 100,000 homes every day, the Platanares geothermal plant represents a major success in Honduras’ goals to expand energy access and diversify its energy mix to include clean and renewable energy sources.
+"""
+
+[R3] Amazon.com: Platano Power product Dominican Flag Baseball RD Its my DNA T-Shirt : Clothing, Shoes & Jewelry
+(https://www.amazon.com/Platano-product-Dominican-Baseball-T-Shirt/dp/B07XBHHLF7)
+"""
+Skip to Main content About this item Buying options Videos Reviews Keyboard shortcuts To move between items, use your keyboard's up or down arrows. Your AccountAccountOrdersKeep Shopping ForRecommendationsBrowsing HistoryYour Shopping preferencesAmazon Credit CardsWatchlistVideo Purchases & RentalsKindle UnlimitedContent & DevicesSubscribe & Save ItemsMemberships & SubscriptionsPrime MembershipMusic LibraryStart a Selling AccountCreate Your Free Business AccountCustomer Service Clothing, Shoes & JewelryNovelty & MoreClothingNoveltyWomenTops & TeesT-Shirts Image Unavailable Image not available forColor: FREE Returns Return this item for free We offer easy, convenient returns with at least one free return option: no shipping charges. All returns must comply with our returns policy. Read the full returns policy Brief content visible, double tap to read full content.Full content visible, double tap to read brief content. Product details Top highlights Fabric type Solid colors: 100% Cotton; Heather Grey: 90% Cotton, 10% Polyester; Dark Heather and Heather Blue: 50% Cotton, 50% Polyester; OR Dark Heather, Heather Blue and All Other Heathers: 65% Polyester, 35% Cotton; Girls' Heathers: 60% Cotton, 40% Polyester Care instructions Machine Wash About this item Platano Power product Dominican is great gift for all the dominicans who feel proud to be from la tierra del merengue, bachata y el dembow. Wear this design to a baseball game, go to DR, or hookah night. Awesome gift for someone from the dominican republic Camiseta con la bandera de la republica dominicana para todo el que siente orgulloso de ser domincano y que le gusta el baseball. Ponte esta camiseta para ir a santo domingo, santiago or punta cana. Lightweight, Classic fit, Double-needle sleeve and bottom hem Enjoy fast, free delivery, exclusive deals, and award-winning movies & TV shows. Feedback Please sign in to provide feedback. More products with this design Brief content visible, double tap to read full content.Full content visible, double tap to read brief content.VideosHelp others learn more about this product by uploading a video!Upload your video Product details Package Dimensions ‏ : ‎ 10 x 8 x 1 inches; 4.8 ounces Department ‏ : ‎ mens Date First Available ‏ : ‎ September 1, 2019 Manufacturer ‏ : ‎ Dominican Pride Gift print ASIN ‏ : ‎ B07XBHHLF7 Customer Reviews: From the manufacturer The video showcases the product in use.The video guides you through product setup.The video compares multiple products.The video shows the product being unpacked.Video Player is loading.Current Time 0:00Duration 0:00Remaining Time 0:00Chaptersdescriptions off, selectedCaptions off, selected Product Description Platano Power graphic Dominican Flag Baseball RD Its my DNA is great gift for all the dominicans who feel proud to be from la tierra del merengue, bachata y el dembow. Wear this print to a baseball game, go to DR, or hookah night. Awesome gift for someone from the dominican republic. Camiseta con la bandera de la republica dominicana para todo el que siente orgulloso de ser domincano y que le gusta el baseball. Ponte esta camiseta para ir a santo domingo, santiago or punta cana. Customer reviews1 global rating Images in this review No customer reviewsThere are 0 customer reviews and 1 customer rating. Customers also viewed these productsSustainability featuresThis product has sustainability features recognized by trusted certifications. Made with chemicals safer for human health and the environment.As certified byOEKO-TEX STANDARD 100OEKO-TEX® STANDARD 100 certified products require every component of a textiles production including all thread, buttons, and trims to be tested against a list of more than 1,000 regulated and unregulated chemicals which may be harmful to human health. The assessment process is globally standardised, independently conducted, and updated at least once per year based on new scientific information or regulatory requirements.Certification Number23.HUS.33631Sustainability featuresThis product has sustainability features recognized by trusted certifications. Made with chemicals safer for human health and the environment.As certified byOEKO-TEX STANDARD 100OEKO-TEX® STANDARD 100 certified products require every component of a textiles production including all thread, buttons, and trims to be tested against a list of more than 1,000 regulated and unregulated chemicals which may be harmful to human health. The assessment process is globally standardised, independently conducted, and updated at least once per year based on new scientific information or regulatory requirements.Certification Number23.HUS.33631 Make Money with Us Sell on Amazon Sell apps on Amazon Supply to Amazon Protect & Build Your Brand Become an Affiliate Become a Delivery Driver Start a Package Delivery Business Advertise Your Products Self-Publish with Us Become an Amazon Hub Partner See More Ways to Make Money Let Us Help You Your Account Your Orders Shipping Rates & Policies Amazon Prime Returns & Replacements Manage Your Content and Devices Recalls and Product Safety Alerts Registry & Gift List Help Amazon MusicStream millionsof songs Amazon AdsReach customerswherever theyspend their time 6pmScore dealson fashion brands AbeBooksBooks, art& collectibles ACX Audiobook PublishingMade Easy Sell on AmazonStart a Selling Account VeeqoShipping SoftwareInventory Management Amazon BusinessEverything ForYour Business Amazon FreshGroceries & MoreRight To Your Door AmazonGlobalShip OrdersInternationally Home ServicesExperienced ProsHappiness Guarantee Amazon Web ServicesScalable CloudComputing Services AudibleListen to Books & OriginalAudio Performances Box Office MojoFind MovieBox Office Data GoodreadsBook reviews& recommendations IMDbMovies, TV& Celebrities IMDbProGet Info EntertainmentProfessionals Need Kindle Direct PublishingIndie Digital & Print PublishingMade Easy Amazon PhotosUnlimited Photo StorageFree With Prime Prime Video DirectVideo DistributionMade Easy ShopbopDesignerFashion Brands Amazon ResaleGreat Deals onQuality Used Products Whole Foods MarketAmerica’s HealthiestGrocery Store Woot!Deals and Shenanigans ZapposShoes &Clothing RingSmart HomeSecurity Systems eero WiFiStream 4K Videoin Every Room BlinkSmart Securityfor Every Home Neighbors App Real-Time Crime& Safety Alerts Amazon Subscription BoxesTop subscription boxes – right to your door PillPackPharmacy Simplified Amazon RenewedRefurbished techyou can trust
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,98 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "california meteors"
+
+Claims:
+[1] "A bright green fireball meteor streaked across Northern California skies around 8 p.m. on Sunday, March 22, 2026."
+[2] "The meteor created over 300 reports from California, Nevada, and Arizona."
+[3] "The meteor was visible for about five seconds."
+[4] "The meteor was moving south at 35,000 mph before disintegrating."
+[5] "The meteor marks the third major meteor event in the US in a week"
+
+Cited text snippets from the AI Overview (for additional context):
+- Another meteor is spotted in the US. It's the third sighting in a week.: "A fireball was spotted by,shower is set to begin."
+- Sacramento watched as fireball streaked across California night sky. Did you see it?: "Residents from around the Sacramento area spotted a fireball Sunday,meteor's trajectory, said NASA officials."
+- Videos show bright fireball over Northern California sky Sunday: "By,others in Arizona and Nevada."
+- California meteor sighting becomes third in one week across US - AOL: "The meteor was first spotted,missile shooting through the atmosphere.&text=The fireball was initially observed,Houston areas produced loud booms.&text=Neither of the prior meteor,ground is called a meteorite."
+- Meteor seen across California: "People reported seeing a meteor in California,as far south as San Diego County."
+Reference Sources:
+
+[R1] Another meteor is spotted in the US. It's the third sighting in a week.
+(https://www.usatoday.com/story/news/nation/2026/03/24/meteor-sighting-california-video/89298610007/)
+"""
+March 24, 2026, 1:39 p.m. ETMake a wish, stargazers – yet another unexpected "shooting star" show dazzled onlookers this week.A fireball was spotted by hundreds of people and captured on camera around 8 p.m. PT on Sunday, March 22, according to the American Meteor Society. The society said it received over 300 reports on Sunday night, mostly from observers in California, Nevada and Arizona. The vast majority of reports came out of California.Videos captured by awestruck residents show a bright, glowing orb zip through the night sky, trailed closely by a signature fiery "tail." Some reported a greenish-yellow glow as the space rock lit up the sky for little more than five or so seconds.Meteors have also been recently seen in Ohio, TexasThe fireball was at least the third to capture attention across the United States in a week. On March 17, a "loud boom" was heard over northeast Ohio after a different fireball was spotted in the Northeast US and in Canada, according to USA TODAY's previous reporting.Another meteor, weighing about a ton, left behind a souvenir after traveling across Texas skies on March 21, dropping debris through a local resident's roof and ceiling.The next major meteor event isn't expected until April, when the annual Lyrid meteor shower is set to begin. Even so, the phenomena of meteors making their way through Earth's atmosphere between periods of peak activity isn't unusual, Ralph Harvey, a geological sciences professor at Case Western Reserve University, told the Akron Beacon Journal, part of the USA TODAY Network. In fact, such phenomena probably occur several times a day worldwide but are rarely viewed in populated areas.What is a meteor?A meteor, like a comet or asteroid, is a space rock that orbits the sun. The difference between the three lies both in how close it comes to earth and what it's primarily made of, according to NASA.While an asteroid is a small, rocky object often found in orbit of Mars and Jupiter and a comet is a space object made of ice and dust, meteors are a result of a space rock entering Earth's atmosphere. Often called "shooting stars," meteors come from meteoroids – small, often pebble-sizes pieces that break off of asteroids or comets. When a meteoroid enters Earth's atmosphere, it becomes a meteor. Because they enter the atmosphere at such a high speed, meteors burn up as they fall from our sky, creating the streak of light we commonly call a shooting star or fireball.If a meteor survives the entry and ends up on the ground (or lodged in someone's roof), it is then called a meteorite.
+"""
+
+[R2] California meteor sighting becomes third in one week across US
+(https://www.aol.com/california-meteor-sighting-becomes-third-212313287.html)
+"""
+CHOWCHILLA, Calif. – Skywatchers across the U.s. witnessed a third meteor streaking across the sky within a week's span.According to the American Meteor Society, well over 200 eyewitnesses across California, Nevada and Arizona reported seeing a fireball hurl through the night sky on Sunday.See It: Meteor Caught On Camera Streaking Over Pittsburgh, Reports Of Loud Boom Across Ohio ValleyThe meteor was first spotted 49 miles above Chowchilla, California, moving south at 35,000 mph, and traveling 58 miles before disintegrating above Colfax at about 29 miles in the sky.This comes after eyewitnesses in both Houston and Pittsburgh also observed a fiery space rock hurling through the sky this week.According to Nasa, data indicates one of the objects became visible about 49 miles above Stagecoach, Texas, on Saturday, northwest of Houston, traveling at around the same speed as the meteor observed in the west on Sunday.The meteor spotted streaking across the Pittsburgh morning sky early on Tuesday looked almost like a missile shooting through the atmosphere.Watch: Nasa's Hubble Space Telescope Captures Rare Proof Of Comet Breaking ApartThe fireball was initially observed over Lake Erie, moving at about 40,000 mph before traveling over 34 miles and breaking apart, according to Nasa.Both meteors spotted in the Pittsburgh and Houston areas produced loud booms.Meteor Lights Up Texas Sky In Broad Daylight And Produces Loud Boom Heard By ManyNeither of the prior meteor events is related to the latest fireball streaking across California this weekend. NASA notes that the meteor that the most recent meteor had a different radiant and speed.According to NASA, meteors are bits of rocks and ice ejected from comets as they move in their orbits around the sun. A meteor that reaches the ground is called a meteorite.Original article source: California meteor sighting becomes third in one week across USCaught on camera: Bright fireball reported shooting across the sky in Washington and OregonTue, March 31, 2026 at 12:49 PM UTCResidents in the northwestern U.s.and Canada observed a fireball shooting across the sky on Saturday night.'Fireball Season' Explained: Why Meteors Are Lighting Up Skies Across The CountryThe fireball was first reported about 50 miles above Wilkeson, Washington, where it traveled northwest at approximately 39,000 mph before disintegrating 30 miles above Wauna, Washington, on the north shore of Carr Inlet.More than 100 eyewitnesses in Oregon and Washington, as well as the Canadian province of British Columbia, filed reports with the American Meteor Society describing the bright fireball.A fireball is seen streaking across the Texas sky on Sunday night. (FOX Weather)The organization noted that the fireball was not associated with any active meteor showers.According to Nasa, February through April is considered "fireball season," when activity increases by roughly 10 to 30 percent, particularly around the March equinox.See It: Fireball Caught Streaking Across Night Sky In Multiple Midwest States On TuesdayScientists aren’t entirely sure why this happens. Some astronomers believe the Earth passes through more space debris during this time of year, while others suggest the apparent increase may be tied to the widespread use of smartphones and home security cameras, which capture these brief events more frequently.NWS employee captures video of meteor over Pittsburgh.In recent months, fireball sightings have been reported across the country, from Michigan and Ohio to Pennsylvania, California and Texas.Just days ago, residents across East Texas reported a meteor streaking across the sky, with some also hearing a loud boom.One woman, Sherrie James, even shared photos of what she believes may be a meteorite. She said it was small enough to fit in the palm of her hand.A possible meteorite crashed into a woman's home in Houston, Texas, on March 21, 2026.As sightings continue to spark curiosity and excitement, experts encourage the public to document these rare moments.How To Watch Fox WeatherIf you capture one of these fleeting moments, be sure to share your best photos and videos at FOXWeather.com/connect.Original article source: Caught on camera: Bright fireball reported shooting across the sky in Washington and Oregon
+"""
+
+[R3] Sacramento watched as fireball streaked across California night sky. Did you see it?
+(https://www.sacbee.com/news/local/article315157685.html)
+"""
+Residents from around the Sacramento area see a fireball March 23, 2026 as it streaks across the skies over Northern California. Residents from around the Sacramento area spotted a fireball Sunday night as it streaked across the skies over Northern California.Nearly 240 sightings of the meteor were reported just after 8 p.m. Sunday over California, Arizona and Nevada by the American Meteor Society, its officials said. The celestial event was captured around the capital region and elsewhere on home security and doorbell cameras.In California, people reported a bright flash visible from Sacramento to the Bay Area and Central Coast, as well as the southern San Joaquin Valley and eastern Sierra, according to the society, which shared videos of the event on its website.Web cameras at University of California’s Lick Observatory on Mount Hamilton also captured the speeding meteor just before 8:20 p.m., UC officials said in a social media post. A meteor is seen streaking across the sky from a dashcam in a vehicle driving on the Bayshore Freeway section of Highway 101 near Palo Alto on Sunday, March 22, 2026. Tobi Beetz via the American Meteor Society Witnesses and cameras allowed NASA and other skywatchers to compute the meteor’s trajectory, said NASA officials.But officials at the space agency dismissed connections between Sunday night’s sighting and other recent and widely reported bright meteor events, including sightings in Ohio and Texas.“This fireball does not appear to be related to recent bright meteors that have attracted widespread public attention, having a different radiant and speed,” William Cooke, Lead at NASA’s Meteoroid Environments Office, said in a statement.The meteor was first located at an altitude of about 49 miles above the city of Chowchilla, Madera County, Cooke said. The meteor streaked across the sky at an estimated 35,000 mph in the southern sky.The meteor traveled about 58 miles through the upper atmosphere before disintegrating 29 miles above tiny Calflax in unincorporated Fresno County, Cooke said. A meteor that streaked across the skies of Northern California on Sunday, March 22, 2026, is seen in the bottom left corner of a image taken from the Lick Observatory's SkyCam web camera on Mount Hamilton. The meteor was seen as a greenish streak across the Sacramento region. Lick Observatory The observatory later shared images from its SkyCam and HamCam2 cameras, showing the meteor as a greenish streak moving from north to south.This story was originally published March 23, 2026 at 12:05 PM. Darrell Smith is a local reporter for The Sacramento Bee. He joined The Bee in 2006 and previously worked at newspapers in Palm Springs, Colorado Springs and Marysville. Smith was born and raised at Beale Air Force Base and lives in Elk Grove.
+"""
+
+[R4] Videos show bright fireball over Northern California sky Sunday
+(https://www.cbsnews.com/sacramento/news/northern-california-meteor-sunday-march-22/)
+"""
+Updated on: March 23, 2026 / 6:35 PM PDT / CBS Sacramento Add CBS News on Google An apparent meteor lit up the skies over Northern California over the weekend, drawing hundreds of reports from viewers across the region.The fireball streaked across the sky a little after 8 p.m. Sunday. As captured by several videos and described in numerous reports, the fireball streaked for around five seconds and burned bright green. The sighting comes as part of a recent surge in meteor activity nationwide. Over the past week, three meteorites have been spotted across the country — including one in Ohio, another in Houston and now the latest over California's Central Valley. The March 22 meteor as captured by Vacaville resident Christopher Vigil's camera. Christopher Vigil More than 200 people reported seeing a fireball around that time, according to the American Meteor Society, with most sightings in California and others in Arizona and Nevada.The American Meteor Society said reports placed sightings as far north as Willits, east toward Carson City and as far south as San Diego County. Several videos of the apparent meteor were shared with the organization and posted on social media.Experts say the object was likely a meteor."It can be anywhere from 35,000 miles an hour to 50,000 miles an hour," said Douglas Christensen with the Stockton Astronomical Society. "It's just fast." Christensen noted that small pieces of space debris regularly enter Earth's atmosphere, with an estimated 400 tons of material falling to Earth every day — most of it burning up before reaching the ground.No known meteor showers – periods where meteor activity spikes – were going on at the time of Sunday's event, with the Lyrids being the next expected active meteor shower starting on April 17.While March is not typically known for major meteor showers, experts say this event could be tied to a period sometimes referred to as "February fireballs," when brighter-than-average meteors can still appear into early spring.Experts say the best way to catch a similar sight is to find a dark area away from city lights and keep an eye on the night sky. In: Vacaville Meteor
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

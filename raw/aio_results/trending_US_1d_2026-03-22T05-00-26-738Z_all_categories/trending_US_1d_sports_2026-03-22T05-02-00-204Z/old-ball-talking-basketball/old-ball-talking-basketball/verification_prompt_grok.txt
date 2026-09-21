@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "old ball talking basketball"
+
+Claims:
+[1] ""Old Ball" is also known as "O.B.""
+[2] "Old Ball is an animatronic basketball puppet"
+[3] "Old Ball gained attention during the 2026 NCAA March Madness tournament"
+[4] "Old Ball featured on CBS Sports"
+[5] "Old Ball interacted with Charles Barkley"
+[6] "Old Ball was created as a "benched" basketball show character"
+[7] "Old Ball is a wrinkled silicone puppet"
+[8] "Old Ball is made of silicone"
+[9] "Old Ball features a wrinkled leathery orange surface"
+[10] "Old Ball has a realistic nose"
+[11] "Old Ball has moving eyes"
+[12] "Old Ball is remote-controlled"
+[13] "Old Ball is handmade"
+[14] "Old Ball features a mechanical underskull"
+[15] "Old Ball's mechanical underskull allows for realistic lip movement and communication"
+[16] "Old Ball is not AI"
+[17] "Old Ball is featured on the TikTok channel "@oldballshow""
+[18] "The TikTok channel "@oldballshow" specializes in "hot takes" and celebrity interviews"
+[19] "Old Ball made an appearance on the 2026 CBS Sports March Madness set"
+[20] "Old Ball joked with Charles Barkley"
+[21] "Old Ball joked with Renee Montgomery"
+[22] "Old Ball kissed Charles Barkley on the cheek"
+[23] "Old Ball was created by a team"
+[24] "Old Ball's creation involved a detailed molding process"
+[25] "Old Ball's molding process involved molding a real basketball in clay"
+[26] "Old Ball's molding process involved adding realistic features"
+
+Cited text snippets from the AI Overview (for additional context):
+- Watch Charles Barkley Speak to a Talking Basketball in Horrifying March Madness Segment: "“Old Ball is a remote,a half from Roger Ebert."
+- The talking basketball on CBS Sports is a Lovecraftian monstrosity: "Cory Woodroof, For The Win,(@CBSSports) March 21, 2026"
+- The NCAA Tournament never fails to provide entertainment, both on ...: "to the rack.-,Go ahead and grab a ball and help us understand,a smooch on Barkley's cheek.&text=Turrrruhble jus' turrrruhble.&text=Not that funny, but infinitely,anything on The NFL Today.&text=Wrinkled and orange.,thought it was someone else.&text=I think they owe some,of the Killer Tomatoes guys.&text=Almost as bad as having,Is there a reason?"
+Reference Sources:
+
+[R1] The talking basketball on CBS Sports is a Lovecraftian monstrosity
+(https://sports.yahoo.com/articles/talking-basketball-cbs-sports-lovecraftian-201424987.html)
+"""
+If you watched Saturday's CBS Sports March Madness coverage, you might have witnessed a horrid creation from the place where time and space collide in agony.A talking basketball with a man's face, including a realistic nose for some reason, named "OB" stopped by the CBS Sports dais to entertain the folks at home. Have you seen this monstrosity? Is it a man who has been doomed to a future as a basketball, or a basketball whose Pinocchio wish to become a real man backfired spectacularly?Advertisement"OB" stands for "Old Ball," so it's very likely this wretched creature has been stuck like this for quite some time. Why do we demand "Old Ball" to make basketball jokes for our twisted joy? Why don't we put this poor thing out of its show business misery and let it live in peace?"Old Ball" deserves to be free of this pain and suffering; float "OB" out to sea like Wilson in Cast Away and let him find a new horizon, somewhere beyond our laughter and scorn.We should be ashamed of ourselves for putting "OB" through this. Free this talking basketball of his shame.AdvertisementThis article originally appeared on For The Win: The talking basketball on CBS Sports is a Lovecraftian monstrosity
+"""
+
+[R2] Watch Charles Barkley Speak to a Talking Basketball in Horrifying March Madness Segment
+(https://www.si.com/media/watch-charles-barkley-old-ball-talking-basketball-horrifying-march-madness-segment)
+"""
+Here at Sports Illustrated we, by trade, watch a lot of basketball. We never watch more basketball than this time of year, and sometimes we watch so much basketball that by the end of the day we think we’re hallucinating.On Saturday afternoon, we were terrified to learn that none of our hallucinations could match the horrors of the reality that was presented by CBS Sports.If you tuned in to watch Saint Louis and Michigan Saturday afternoon and left the station on CBS in between that game and Louisville’s clash with Michigan State, you were treated to a wildly offputting segment in which Hall of Fame forward Charles Barkley and his fellow analysts spoke to a talking basketball.That’s right. O.B. (Old Ball), the animatronic basketball star of eponymous Instagram and TikTok accounts, made his television debut.— CBS Sports (@CBSSports) March 21, 2026“Is that you?” Ex-UConn star Renee Montgomery asked Barkley.“I’m better looking that that,” Barkley quipped. “That looks like [fellow analyst] Clark [Kellogg].”The ball then proceeded to run through a standup (can a sphere stand up?) routine in his trademark thick New York drawl, before kissing Barkley goodbye.Questions abound after watching this. Who is O.B.? What’s his deal? Has God abandoned us? Could we realistically pop him?Well, who is O.B., anyway?O.B. is the brainchild of Funny or Die alumni Adam Aseraf, Ben Bayouth and Christian Heuer, who spoke about their invention to Thomas Golianopoulos of Complex on Sunday.“Old Ball is a remote control talking robot with the skin of a basketball wrapped around it. If that sounds grotesque, it’s because he kinda is,” Golianopoulos wrote. “Old Ball is hideous, yet mesmerizing. He’s made of silicone and unsettling to the touch, rubbery and soft, and once you see him—the worn, leathery dermis, deeply wrinkled brow, and creepy roving eyes—you can’t unsee it.”As Aseraf noted to Golianopoulos, he has a certain timeless quality that puts him in conversation with E.T. and similar animatronic forebears. His comedic appeal, in many respects, is easy to see.However, he is the kind of object you can’t just spring on us. You have to warn us before showing us that on national television. The existential horror of the first two days of the tournament—will a No. 13, 14, 15 or 16 seed ever win again?—has now been supplemented by the Lovecraftian horror of this strange creature.What does this monstrosity mean for society?If O.B. were alive in the 1950s, he’d be relegated to a B-movie on a college campus. If he were alive in the 1970s, you’d see him on one of those late-night horror presentations on local television. In the 1990s, he’d be getting a star and a half from Roger Ebert.However, a person—and a basketball—can only exist in their own time. O.B. comes to us during an age where he can spread further and faster than ever before. He can haunt our waking hours and pervade our sleep.Aseraf, Bayouth and Heuer should take a bow. They have our attention, and O.B.’s cantankerous nature carries an undeniable charm (“Triumph, the Insult Comic Dog was an inspiration,” Golianopoulos writes). However, in the dark night of the chatbot, we should consider whether we want to live in a world where balls—the round, formerly nonjudgmental objects of children and adults’ play from Anchorage to Auckland—talk back to us.One can only imagine Old Human joining the basketballs covering the NCAA human tournament in a not-so-distant future.More College Basketball on Sports Illustrated
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

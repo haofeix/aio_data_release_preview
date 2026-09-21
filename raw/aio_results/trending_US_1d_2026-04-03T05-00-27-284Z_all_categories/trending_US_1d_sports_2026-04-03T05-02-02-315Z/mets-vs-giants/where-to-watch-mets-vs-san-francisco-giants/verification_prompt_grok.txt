@@ -1,0 +1,122 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch mets vs san francisco giants"
+
+Claims:
+[1] "The New York Mets vs. San Francisco Giants game is on Thursday, April 2, 2026."
+[2] "The New York Mets vs. San Francisco Giants game is at 9:45 p.m. ET (6:45 p.m. PT)."
+[3] "The New York Mets vs. San Francisco Giants game is at Oracle Park."
+[4] "Regional TV coverage is on SNY (Mets)."
+[5] "Regional TV coverage is on NBC Sports Bay Area (Giants)."
+[6] "National coverage is on MLB Network."
+[7] "Streaming options include FuboTV."
+[8] "Streaming options include DIRECTV Stream."
+[9] "MLB.TV is for out-of-market viewers."
+[10] "Radio coverage is on KNBR 680 AM/104.5 FM."
+[11] "Radio coverage is on KSFN 1510 AM."
+[12] "SNY is regional TV in the NY area."
+[13] "NBC Sports Bay Area is regional TV in the SF area."
+[14] "Fubo has a free trial."
+[15] "DIRECTV Stream has a free trial."
+[16] "The game can be streamed on GIANTS.TV in the Giants' territory using a valid TV provider."
+[17] "The game can be streamed on the NBC Sports app in the Giants' territory using a valid TV provider."
+[18] "The game is available via subscription on MLB.TV."
+
+Cited text snippets from the AI Overview (for additional context):
+- NY Mets vs San Francisco Giants live updates, score and analysis: "TV channel: SNY, MLB Network,for out of market viewers"
+- How to watch the Mets game tonight: MLB free live stream: "Mets vs. Giants airs in,2-4, 5th NL West"
+- How to Watch the Giants | San Francisco Giants - MLB.com: "This season, Giants fans can,For more information, click here."
+- Watch San Francisco Giants vs New York Mets (Free Trial) - Fubo: "Starting in-,Watch San Francisco Giants vs New York,with Fubo for $0 Today"
+Reference Sources:
+
+[R1] Watch San Francisco Giants vs New York Mets (Free Trial)
+(https://www.fubo.tv/welcome/matches/38f6c8ef-2407-4e78-9dcb-f3b9a9169e99)
+"""
+Live and upcoming for New York MetsUpcomingToday, 2:00am • 3h • ESPNNew York Mets at Los Angeles DodgersMLBThe Dodgers and the Mets battle at the Dodgers Stadium. L.A. closer Edwin Díaz faces his old team, while a New York squad that has dropped six straight games tries to overcome a punchless offense and secure a much-needed victory in this series.Read More +UpcomingToday, 2:00am • 3h • ESPN DeportesNew York Mets at Los Angeles DodgersMLBTercer juego de la serie regular de la MLB 2026. New York Mets visita a Los Angeles Dodgers. Desde el Dodger Stadium, en Los Ángeles, California.Read More +UpcomingTomorrow, 6:00pm • 3h 30m • MLB NetworkNew York Mets at Chicago CubsMLBChicago host New York for the start of a three-game series. Chicago aims to capitalize on home-field advantage, while a New York squad missing key players looks to find offensive rhythm and improve their position in the NL East standings.Read More +UpcomingSat Apr 18, 2:00am UTC • 3h • Marquee Sports NetworkNew York Mets at Chicago CubsMLBThe Mets and Cubs start a three-game set in the Friendly Confines. The sides have split 30 meetings this decade after New York took two of three meetings in the Big Apple in May. Mets shortstop Francisco LIndor went deep twice in that series.Read More +UpcomingSat Apr 18, 6:00pm UTC • 3h 30m • MLB NetworkNew York Mets at Chicago CubsMLBChicago and New York square off for game two of a three-game series at the Wrigley Field. Chicago seeks a vital home victory, while a New York side continue playing without injured star Juan Soto as they look to secure a crucial win on the road.Read More +
+"""
+
+[R2] How to Watch the Giants | San Francisco Giants
+(https://www.mlb.com/giants/schedule/tv)
+"""
+Giants fans can continue to watch games on NBC Sports Bay Area via a TV provider and in-market streaming options, while continuing to listen on KNBR and Radio Lazer. NEW IN-MARKET STREAMING OPTIONSIf you live in San Francisco Giants team territory and have a provider that includes NBC Sports Bay Area, you can stream the Giants on the NBC Sports app. Providers include YouTube TV, Hulu, Xfinity, FuboTV and DirectTV Stream.Watch in-market Giants games on Peacock. Add NBC Sports Bay Area to your Peacock subscription. Stream LIVE games, pre and postgame shows, exclusive interviews and more. In partnership with NBC Sports Bay Area, stream Giants games, along with pre and postgame shows, in the Giants home television territory without blackouts on GIANTS.TV. If you’re outside of the San Francisco Giants team territory you can stream Giants games on MLB.TV.TICKET MEMBER OFFERGiants Full and Half Season Ticket Members receive a complimentary subscription to MLB.TV® for the 2026 season.*Blackout and other restrictions apply. Blackout restrictions subject to change. High speed internet access is required. For more information, click here. For a full list of supported devices, visit mlb.tv/devices.NATIONAL BROADCASTSFans will also have the opportunity to tune into nationally broadcasted games on FOX, Roku, ESPN and Apple TV. OUT-OF-MARKETIf you’re outside of the San Francisco Giants team territory you can stream Giants games on MLB.TV.RADIOListen to Giants action on KNBR and Radio Lazer English-language radio broadcasts: KNBR 680 AM & 104.5 FM Spanish-language radio broadcasts: KSFN 1510 AM in San Francisco & KXZM 93.7 FM Giants Radio Network Stream in-market and out-of-market radio broadcasts on the MLB.com app
+"""
+
+[R3] How to watch the Mets game tonight: MLB free live stream
+(https://www.syracuse.com/tv/2026/04/how-to-watch-the-mets-game-tonight-mlb-free-live-stream.html)
+"""
+New York Mets' right fielder Carson Benge dives but can't make the catch on a fly ball which allowed the St. Louis Cardinals to score the winning run in the 11th inning of a baseball game, Wednesday, April 1, 2026, in St. Louis. (AP Photo/LG Patterson)APIf you purchase a product through a link on our site, we may receive compensation.By Ben Axelson | baxelson@syracuse.comThe New York Mets venture further west when they visit the San Francisco Giants for their their third series of the season, on Thursday, April 2 (4/2/2026) at 9:45 p.m. ET. Here’s how to watch the game for free.Mets vs. Giants airs in-market on SNY and NBC Sports Bay Area, and out-of-market nationwide on MLB Network. Stream the game on DIRECTV (free trial).Here’s what you need to know:What: MLB regular seasonWho: New York Mets vs. San Francisco GiantsWhen: Thursday, April. 2, 2026Time: 9:45 p.m. ET/6:45 p.m. PTWhere: Oracle Park, San Francisco, CaliforniaTV: SNY, NBC Sports Bay Area, MLB NetworkLive stream: DIRECTV (free trial), out-of-market on fuboTV (free trial), SlingRecord: Mets 3-3, 3rd NL East; Giants 2-4, 5th NL WestDIRECTVStream your favorite sports, and enjoy your first five days completely free. Plus, take $35 off your first month when you sign up today.Start for $0DIRECTV is a subscription streaming service that lets you watch live TV from major broadcast and popular cable networks. Enjoy local and national live sports, breaking news, and must-see shows the moment they air. Included: unlimited cloud DVR storage space so you can record as many shows as you want and stream them from wherever you go. DTV starts at $89.99 per month after a 5-day free trial.Mets vs. Giants scheduleThursday, Apr. 2: NYM @ SF, 9:45 p.m. on MLB Network (STREAM)Friday, Apr. 3: NYM @ SF, 10:15 p.m. on WPIX (STREAM)Saturday, Apr. 4: NYM @ SF, 9:05 p.m. on SNY (STREAM)Sunday, Apr. 5: NYM @ SF, 4:05 p.m. on SNY (STREAM)Here’s a recent NY Mets story via The Associated Press:ST. LOUIS (AP) — Francisco Lindor made a couple of uncharacteristic mental mistakes Wednesday, and the second one certainly cost the New York Mets.The star shortstop lost track of the outs on defense in the opening inning and got picked off first base in the sixth — right before teammate Juan Soto homered. The slumping Mets stranded 11 runners and lost 2-1 to the St. Louis Cardinals in 11 innings.Lindor reached base in the sixth on a one-out error by third baseman Nolan Gorman, but the leadoff hitter wandered too far off the bag and was fiddling with his gloves when he was easily picked off by St. Louis starter Matthew Liberatore.“I should have been better,” Lindor said.Mets manager Carlos Mendoza credited the Cardinals with making a good move to nab Lindor.“They got us there,” Mendoza said. “He was going to go. They got us with a quick step-off there. I wouldn’t consider that one there a mental mistake. He was trying to get some momentum there and being aggressive.”Three pitches later, Soto hit a soaring fly that landed just over the right-field fence inside the foul pole for a solo home run.In the first inning, Lindor failed to execute a potential double play when he forgot how many outs there were.With one out and Iván Herrera on first, left-handed-hitting Alec Burleson hit a grounder to Lindor at shortstop. Positioned near second base, Lindor touched the bag but then headed toward the dugout instead of throwing to first to retire Burleson as well.By the time Lindor realized his mistake, it was too late. New York starter Freddy Peralta struck out the next batter to end the inning.“I forgot the outs,” Lindor said. “I made a mistake that probably cost Peralta an extra inning because he had to throw more pitches after that. It’s inexcusable. He probably could have gone six, seven innings. I just forgot the outs. I realized there was just one out. Honest mistake.”Mendoza didn’t cover for Lindor.“There’s no excuses,” Mendoza said. “He’ll be the first one that tells you that. That can’t happen. He knows. He was pretty (ticked) when he came in. Peralta did a good job picking him up and finishing that inning.”New York (3-3) went 1 for 29 with runners in scoring position during the three-game series, including 0 for 11 in the finale.“Hats off to them,” Lindor said. “They executed their pitches. They played better. I’ve got to be better, and go out there and win the next series.”The Mets have totaled 12 runs in their last five games after scoring 11 on opening day against Pittsburgh.“Good hitters right now for a couple of games, they’re not getting it done,” Mendoza said.Lindor remains optimistic the Mets will put everything together.“I still believe in what we have,” he said. “We have a good team. We are a couple of pitches away from continuing to get the ball rolling on our side.”Where to watch Mets vs. Dodgers today: MLB free live streamWhere to watch Warriors vs. Clippers today: NBA Play-In free live streamWhere to watch LA Galaxy vs. Toluca today: Concacaf soccer free live streamWhere to watch Stars vs. Sabres today: NHL free live streamWhere to watch Naples vs. Orlando City SC: US Open Cup free streamBen Axelson is the eCommerce Content Supervisor for syracuse.com | The Post-Standard, covering sports, TV, streaming and tickets for teams including the Buffalo Bills, New York Jets, New York Giants, New York...
+"""
+
+[R4] How to watch San Francisco Giants vs. New York Mets
+(https://sports.yahoo.com/articles/watch-san-francisco-giants-vs-011500252.html)
+"""
+Giants' bats go silent behind Robbie Ray in series-opening loss to Reds originally appeared on NBC Sports Bay AreaWilly Adames was the Giants’ lone offense in a 2-1 loss to the Cincinnati Reds on Tuesday at Great American Ball Park.AdvertisementLeft-hander Robbie Ray made his fourth start of the 2026 MLB season and received little run support across his five-inning outing, striking out six, walking four and allowing two earned runs off home runs by Spencer Steer and Sal Stewart in the third and fourth innings, respectively.The Giants didn’t get on board against Cincinnati starter Brady Singer until the fifth, when their sole run in the series opener came on Adames’ solo shot to cut the Reds’ 2-0 lead in half. Singer finished the game with six innings pitched, six strikeouts, one strikeout, no walks and the one earned run.Right-handed reliever Caleb Kilian took over for Ray in the top of the sixth and overcame a leadoff walk to Matt McLain followed by an Elly De La Cruz single, striking out Stewart before forcing an inning-ending double play.AdvertisementAfter Keaton Winn retired the Reds in order to conclude the seventh inning, San Francisco got the tying run aboard in the top of the eighth when Luis Arraez singled on a line drive to center field. But the momentum faltered after Matt Chapman grounded into a double play.Ryan Walker kept the Reds’ bats silent in the bottom of the inning, giving the Giants a chance in their last at-bats of the game. But Jung Hoo Lee flew out to right field and Heliot Ramos struck out swinging, before Daniel Susac pinch-hit for Patrick Bailey and hit a deep fly ball to the warning track in left-center field for the game’s final out.Adames finished the game 2-for-4 with the home run and now is hitting .350 with seven hits, two homers, three RBI and four runs scored in his last 5 games. Arraez kept up his hot start to the season with a 3-for-4 day at the plate, and Lee was 2-for-4 with a two-out double in the fourth inning.With the loss, San Francisco fell to 6-11 on the season, while Cincinnati improved to 10-7.AdvertisementDownload and follow the Giants Talk Podcast
+"""
+
+[R5] How to watch Mets vs. Giants: TV channel and streaming options for April 2
+(https://www.nytimes.com/athletic/7167421/2026/04/02/mets-vs-giants-stream-how-to-watch-april-2/)
+"""
+The New York Mets visit the San Francisco Giants to start a four-game series at Oracle Park, with first pitch at 9:45 p.m. ET on Thursday. David Peterson (0-0, 0.00 ERA) will start for the Mets, who are 3-3 this season and third in the NL East. Robbie Ray (0-1, 3.38 ERA) is starting for the Giants, who are 2-4 and fifth in the NL West.How to watch New York Mets vs. San Francisco Giants Venue: Oracle Park Time: 9:45 p.m. ET Streaming: Fubo (Stream now) TV: MLB Network, NBCS-BA, and SNY Watching in person? Get tickets on StubHub. Mets vs. Giants odds Favorite Moneyline: Mets -120 Underdog Moneyline: Giants +100 Total: 8 Total Over Odds: -115 Total Under Odds: -105 Odds provided by BetMGM.Injury reportsMetsA.J. Minter: 15 Day IL (Lat), Dedniel Nunez: 60 Day IL (Elbow), Tylor Megill: 60 Day IL (Elbow), Justin Hagenman: 60 Day IL (Rib fracture), Reed Garrett: 60 Day IL (Elbow) GiantsSam Hentges: 15 Day IL (Shoulder), Joel Peguero: 15 Day IL (Hamstring), Rowan Wick: 60 Day IL (Elbow), Jason Foley: 60 Day IL (Shoulder), Randy Rodriguez: 60 Day IL (Elbow), Hayden Birdsong: 60 Day IL (Forearm), Reiver Sanmartin: 60 Day IL (Hip)Stats to know Juan Soto is hitting for a .346 BA, .414 OBP and .538 SLG with a 17.2% strikeout rate and a 10.3% walk rate. His OPS is .952 and he has scored two runs. In 29 plate appearances, he has hit one home run and driven in five runs (20th in MLB). In 24 plate appearances, Luis Robert has hit one long ball, tallied five RBIs (20th in MLB) and scored three runs. He is batting .316/.458/.474 and has posted a 12.5% strikeout rate and a 20.8% walk rate. Luis Arraez is hitting for a .304 BA, .320 OBP and .348 SLG with an 8% strikeout rate and a 4% walk rate. His OPS is .668 and he has scored one run. In 25 plate appearances, he has hit no home runs and driven in one runs. Arraez has recorded two steals on two attempts. In 24 plate appearances, Jung Hoo Lee has posted a 16.7% strikeout rate and a 12.5% walk rate while slashing .190/.292/.333 with no home runs, three RBIs and two runs scored. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Jamie Squire, Ishika Samant, Scott Taetsch, Alika Jenner / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R6] NY Mets vs Giants highlights: David Peterson dinged in loss
+(https://www.northjersey.com/story/sports/mlb/mets/2026/04/02/ny-mets-san-francisco-giants-live-score-highlights-today/89432543007/)
+"""
+April 2, 2026Updated April 3, 2026, 2:19 a.m. ETSAN FRANCISCO – After a week full of empty offense, the Mets’ pitching joined in on the struggles in their series finale on Thursday night.David Peterson gave up five earned runs on nine hits and two walks and the Mets offense cooled off after a strong start in a 7-2 loss to the Giants at Oracle Park in San Francisco.After the Mets showed signs of life with a Bo Bichette RBI double in the opening inning, the Giants hit Peterson hard in the bottom of the frame. Luis Arraez ripped an RBI triple off the right-field wall and Matt Chapman gave the Giants the lead on an RBI double into the corner.Mark Vientos made a diving stop on Jung Hoo Lee but Peterson dropped the flip and another run scored.Vientos cut the Giants’ advantage to 3-2 with a solo home run off Robbie Ray, but the Giants piled on with two runs on four hits in the third inning.Sean Manaea made his first bulk bullpen appearance with mixed results. He gave up an RBI single to Casey Schmitt which was charged to Peterson and a solo home run to Rafael Devers in the sixth inning.Follow along for updates and analysis as the Mets and Giants open their series on Thursday night:Blade Tidwell shutting down former teamIn a bit of Mets nostalgia, the Giants recalled Blade Tidwell from Triple A and placed Jose Butto on the injured list with arm fatigue before Thursday's game.Tidwell came on in the seventh and worked around an infield single with two ground balls, including a double play. He also got Bo Bichette to line into an inning-ending double play in the eighth.Tidwell struck out a pair in the ninth inning to nail down his first career save.Rafael Devers tags home run off Sean ManaeaWhen Sean Manaea came into the game in the fifth inning, Harrison Bader narrowly missed a home run by a few feet.One inning later, Rafael Devers hit a center-cut fastball over the outstretched glove of Luis Robert Jr. into the first row of bleachers in left-center field. The Giants grew their lead to 7-2.Sean Manaea comes on in fifth inningDavid Peterson had appeared to settle in, working a 1-2-3 fourth inning with two strikeouts, but Carlos Mendoza came and got him at the first sign of trouble. That came after he issued a one-out walk to Jung Hoo Lee in the fifth inning.Sean Manaea came on for his first extended action, issued a one-out walk and a bloop single to Casey Schmitt that was charged to Peterson and gave the Giants a 6-2 lead.Peterson's second outing was a rough one. He gave up five earned runs on nine hits and two walks with five strikeouts in 4⅓ innings.David Peterson continues to be hit hard in third inningThe third inning spelled disaster for David Peterson.The Mets left-hander gave up three straight hits, including a swinging bunt by Matt Chapman to load the bases. Then, Jung Hoo Lee and Harrison Bader both hit sharp fly balls to center field for sacrifice flies that grew the Giants' edge to 5-2.The Giants loaded the bases again on a single and a walk but Peterson was able to strike out Willy Adames for the second time to stop the damage there.Mark Vientos belts first home run of 2026In a loaded infield, it has been hard for Mark Vientos to get everyday at-bats but he will certainly continue to get at-bats against left-handers.Vientos proved why on Thursday night as he belted a solo home run off Giants southpaw Robbie Ray on a 3-2 slider to lead off the second inning. It was Vientos' first of the 2026 season and got the Mets back within 3-2.David Peterson punished, loses lead in first inningIt only took one inning for the Giants to mount a response.The Giants jumped David Peterson in the bottom of the first inning. Luis Arraez tagged an RBI triple over the right-field wall and Matt Chapman followed it up with an RBI double into the right-field corner.Then, Peterson extended his rough opening frame with a catching error on a flip from Mark Vientos. It allowed Chapman to score from second base to move the Giants ahead 3-1.Bo Bichette breaks through for MetsThe offense has been hard to come by for the Mets over the last few games, but Bo Bichette helped matters in the top of the first inning.After Francisco Lindor was walked and then erased on a Juan Soto fielder's choice, Bichette laced an RBI double into left field to put the Mets ahead 1-0.It was Bichette's fourth RBI of the young season.What time is NY Mets vs SF Giants game today?Time: 9:45 p.m.How to watch NY Mets vs SF Giants game todayTV channel: SNY, MLB NetworkStreaming: MLB.TV for out of market viewersNY Mets, SF Giants starting pitchers todayMets: David Peterson (0-0, 0.00 ERA)Giants: Robbie Ray (0-1, 3.38 ERA)
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

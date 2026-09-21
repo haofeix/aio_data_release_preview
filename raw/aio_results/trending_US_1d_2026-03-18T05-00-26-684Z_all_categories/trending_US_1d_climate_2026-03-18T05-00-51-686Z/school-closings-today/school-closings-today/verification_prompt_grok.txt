@@ -1,0 +1,94 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "school closings today"
+
+Claims:
+[1] "There are very few, if any, widespread school closings on Wednesday, March 18, 2026."
+[2] "Highland County Schools in Virginia are reporting a 2-hour delay on Wednesday, March 18, 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- School Closings | News 5 Cleveland: "There are currently no active closings or delays."
+- School Status Alerts - Arlington Public Schools: "There are no alerts at,excess of the allotted days.&text=Your browser can't play this video.&text=An error occurred.,is disabled in your browser."
+- Closings - KFVS12: "No closings are listed at this time."
+- Closings - Harrisonburg: "Table_title: Closings Table_content: header: | Organization |,Wednesday 2 Hours | Type: School |"
+Reference Sources:
+
+[R1] School Closings
+(https://www.news5cleveland.com/weather/school-closings-delays)
+"""
+School Closings | News 5 Cleveland Watch Now Menu Local National Weather Sports Traffic Watch Now Watch Now Close × Live Watch Alerts Search site Go Stream News 5 Where You Can Watch Streaming Today As It Happened News 5 Livestream Videos Today As It Happened News 5 livestream event Weather Dog Walking Forecast Hourly Forecast Daily Forecast Live Radar Winter Weather Awareness School Closings Severe Weather Alerts Weather News Live Cameras Power Outages Tornado Safety Academic Challenge News Local Cleveland Metro Akron Canton Ohio National World News Schools Two Americas Missing Persons Made Us Smile Your Service NASA Glenn News by County Cuyahoga County Stark County News Summit County Lake County Lorain County Medina County News Geauga County News Portage County News Ashtabula County News Wayne County News Ashland County News Erie County News Richland County News Holmes County News Huron County News Tuscarawas County News Carroll County News Sports Browns Cavaliers Guardians Ohio State Next Man Up Browns Player of the Game Student Athlete of the Week Investigations All Investigations Downtown Safety Patrol Dangerously Understaffed County Jail Cleveland Water Don't Waste Your Money Team We Follow Through Let's Go NEO Politics 2025 General Election Results Abortion in Ohio Marijuana in Ohio Local Politics Elections Local Ohio Politics National Politics Elections National Entertainment TV Listings Concerts Rock Hall Cedar Point 100 Hidden Gems 50 Best Patios Traffic Traffic Map Traffic News Gas Prices Cleveland and Akron Best of Class 2025 Spotlight 5 Cleveland Home Experts Watch Cash Explosion Ohio Lottery Results News 5 User Guide About Us Staff Sales Staff Contact Us News 5 Apps News Literacy Contests Moving Forward Licensing archived video from News 5 Advertise WEWS: The first 70 years Support TV Listings Advertise with News 5 Manage Emails Apps Careers Search News5Cleveland WEWS UCAAmkc2sRESFoEtiKRTaTRA @news5cleveland 4 WX Alerts School Closings & Delays Weather Alerts Daily Forecast Detailed Forecast Dog Walking Forecast Hourly Forecast Weather News Radar Winter Weather Awareness Weather Cams More + Quick Links + School Closings & Delays Weather Alerts Daily Forecast Detailed Forecast Dog Walking Forecast Hourly Forecast Weather News Radar Winter Weather Awareness Weather Cams School Closings School closings in the Cleveland area and throughout Northeast Ohio There are currently no active closings or delays. School Closing Organization Registration Form Northeast Ohio Traffic News Don't Waste Your Money Team Sports Entertainment Life Video Marketplace Don't Waste Your Money Support Sitemap Do Not Sell My Info Privacy Policy Privacy Center Journalism Ethics Guidelines Terms of Use EEO Careers FCC Public Files FCC Application Public File Contact Accessibility Statement Scripps Media Trust Center Closed Captioning Contact News5Cleveland WEWS UCAAmkc2sRESFoEtiKRTaTRA @news5cleveland © 2026 Scripps Media, Inc Give Light and the People Will Find Their Own Way
+"""
+
+[R2] Closings
+(https://www.whsv.com/weather/closings/)
+"""
+Customize OptionsYour PrivacyStrictly Necessary CookiesMarketing CookiesYour PrivacyWhen you visit our website, we store cookies on your browser to collect information. The information collected might relate to you, your preferences or your device, and is mostly used to make the site work as you expect it to and to provide a more personalized web experience. However, you can choose not to allow certain types of cookies, which may impact your experience of the site and the services we are able to offer. Click on the different category headings to find out more and change our default settings according to your preference. You cannot opt-out of our First Party Strictly Necessary Cookies as they are deployed in order to ensure the proper functioning of our website (such as prompting the cookie banner and remembering your settings, to log into your account, to redirect you when you log out, etc.). For more information about the First and Third Party Cookies used please follow this link. More informationStrictly Necessary CookiesThese cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work. These cookies do not store any personally identifiable information.Marketing Cookies Marketing Cookies Third party trackers collect information used for analytics and to personalize your experience with targeted ads. Under the Virginia Consumer Data Protection Act, you have the right to opt-out of the sale of your personal data to third parties. You also have the right to opt out of targeted advertising related processing. You may exercise your right to opt out of the sale of personal data and targeted advertising by using this toggle. If you opt out, we will not be able to offer you personalized ads and we will stop sharing your personal information with third parties. Additionally, you may contact our legal department for further clarification about your rights as a Virginia consumer by using this Exercise My Rights link.Targeting CookiesThese cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. They do not store directly personal information, but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising.Cookie ListConsent Leg.Interest checkbox label label checkbox label label checkbox label label
+"""
+
+[R3] Closings
+(https://www.kfvs12.com/weather/closings/)
+"""
+Skip to contentHeartland VotesFirst Alert InvestigationFull Throttle ThursdayHeartland HoopsMatrix Midwest80°Cape Girardeau, MOWatch LiveLatest VideoFirst Alert WeatherNewsHeartland SportsProgrammingContestsAbout UsHeartland's CWFirst Alert Weather at 6:40 a.m. 3/26First Alert Weather at 6:40 a.m. 3/26AdminAdmin LoginTypesStatesNo closings are listed at this time.Dermatologist Says Stop Washing Your Sheets Once A Week, Here's WhyAfter testing dozens of bedsheets, these are the #1 pick of 2025.Miracle Brand | SponsoredSponsoredUndoU.S. Neurologists Call This Drink "Bottled Cognitive Decline" — Do You Drink It ?Memory News | SponsoredSponsoredUndoBrain Doctors Connect Cognitive Decline to This Daily Food - Is It on Your Plate?Memory News | SponsoredSponsoredUndoDeclining Memory Has Been Linked to a Common Drink. Do You Drink ItHealthFrontLine | SponsoredSponsoredUndoMemory Loss Begins When You Can't Say This WordHealthFrontLine | SponsoredSponsoredUndoShe Mixed Gelatin With This - Now She Can't Stop Losing WeightUSA Wellness Times | SponsoredSponsoredUndoHoney: The Greatest Enemy of Memory Loss (See How to Use It)Insight Journal Daily | SponsoredSponsoredUndoSharp Memory After 60 Has Been Linked to This Common Breakfast Food - Do You Eat It?U.S Cognitive Research | SponsoredSponsoredUndoCognitive Decline Has Been Tied to This Common Breakfast Item - Do You Have It Daily?U.S Cognitive Research | SponsoredSponsoredUndoMature Women in Ashburn Want to DateMaria Dates | SponsoredSponsoredUndoA hand-stitched laundry basket full of warmth.lininco | SponsoredSponsoredUndoU.S.Neurologists Call This Drink “Bottled Memory Loss” — Do You Drink ItMedical News | SponsoredSponsoredUndoCPAP Recall Has Thousands of Sleep Apnea Sufferers Rethinking Their RoutineSleep Digest Publication | SponsoredSponsoredUndoJapan Found The Answer To Cognitive Decline Years Ago and It Wasn't CrosswordsThis doctor found what Japanese have always knownBesyner | SponsoredSponsoredUndoHuman remains found in Cape Girardeau county identifiedKFVS12UndoCape Public Library's spring book sale continuesKFVS12Undo9 in 10 Declining Memory Cases Linked To A Common Habit. Do You Do It?Global Update Journal | SponsoredSponsoredUndoTravis Kelce Steps Out With New Girl & You Will Easily Recognize Her.The Finance Star | SponsoredSponsoredUndoCostco Shoppers Say This $35 Find Is the "Facelift" in a BottleOlavita | SponsoredSponsoredUndoShirts for all body types by a designer who gets itlininco | SponsoredSponsoredUndo55-Year-Old Replaced $22,000 Facelift With This Drugstore FindOlavita | SponsoredSponsoredUndoMOST POPULARSecurity truck on I-55 crashes at Center Junction in Cape GirardeauKFVS12UndoMOST POPULARPre-Civil War burial site in Cape Girardeau at center of investigationKFVS12Undo12 Things To Cut When Living On RetirementGreensprout | SponsoredSponsoredUndoCostco Shoppers Say This Fat-Burning Patch Triggers Weight Loss "Unlike Any Other"consumersfind | SponsoredSponsoredUndoSide Sleepers Get Achy Shoulders, Few Know This "Side Sleeper" TrickSleep Digest Publication | SponsoredSponsoredUndo
+"""
+
+[R4] School Status Alerts - Arlington Public Schools
+(https://www.apsva.us/health-safety/emergency-alerts/)
+"""
+There are no alerts at this time. All schools and programs are at their normal operational status. For updates about Pool Operations, go to www.apsva.us/aquatics. For information about Arlington County programs and operations go to www.arlingtonva.us. In general, APS will only post/send messages if there is a change in normal operating status. For situations where everything is open/operating on a normal schedule, we usually will not send or post notifications. The first 12 inclement weather days at the elementary level and the first 15 inclement weather days at the secondary level will be treated as traditional “snow days.” These days may occur consecutively as part of a single major event or at different times during isolated weather events. APS will revert to distance learning for days in excess of the allotted days. Ver en español View plain text version Español | Монгол | አማርኛ | العربية View plain text version Español | Монгол | አማርኛ | العربية Find out more in the Frequently Asked Questions RESOURCES Plan for Make-Up Days – outlined in the Arlington Public Schools Handbook, available on our Handbook page Arlington County Government Winter Weather Closings/Delays Arlington County Department of Parks and Recreation (DPR) Closing Policy — specifies when DPR programs and activities will be canceled, delayed or postponed depending on the actions of the County Government and Arlington County Public Schools Arlington County Government Snow Removal Information Arlington County Government Alert System (Arlington Alert does not provide notification of school closing or delays and is maintained by Arlington County Government as an emergency notification system for residents of Arlington County.)
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

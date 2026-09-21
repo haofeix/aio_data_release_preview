@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "how old is amy madigan"
+
+Claims:
+[1] "As of March 16, 2026, American actress Amy Madigan is 75 years old."
+[2] "Amy Madigan was born on September 11, 1950."
+[3] "Amy Madigan was born in Chicago, Illinois."
+[4] "Amy Madigan won the Best Supporting Actress Oscar for her role in the 2025 film Weapons."
+[5] "Amy Madigan won the Best Supporting Actress Oscar 40 years after her first nomination."
+[6] "Amy Madigan has been married to actor Ed Harris since 1983."
+
+Cited text snippets from the AI Overview (for additional context):
+- How Amy Madigan won Best Supporting Actress Oscar for ‘Weapons’: "A brief but unforgettable performance,four decades in the making."
+- Actors Amy Madigan and Ed Harris Have Been Married for Over Four Decades: "Madigan, 75, and Harris,,a four-time Oscar nominee:"
+- Amy Madigan Makes Oscars History With Weapons Nomination, ...: "…..September 11, 1950,Gone Baby Gone”, 2007."
+- Amy Madigan, the 75-year-old veteran actress, just clinched ...: "Awesome - Amy Madigan, the 75,race into Madigan's legendary moment."
+- Amy Madigan - Simple English Wikipedia, the free encyclopedia: "Amy Marie Madigan (born September,Grey's Anatomy, Carnivàle and Fringe.&text=In 2025, Madigan became well,Lily Dolores, born in 1993."
+Reference Sources:
+
+[R1] Amy Madigan Wins Oscars For Best Supporting Actress
+(https://www.goldderby.com/film/2026/amy-madigan-wins-2026-oscar-best-supporting-actress-weapons/)
+"""
+Amy Madigan is officially an Oscar winner. The veteran actress claimed Best Supporting Actress at the 98th Academy Awards for her haunting performance as Aunt Gladys in Warner Bros.’ horror hit Weapons. The win caps one of the tightest races of the night — a nail-biter that saw the major precursors split three ways between Madigan (Critics Choice and Actor Awards), Golden Globe winner Teyana Taylor (One Battle After Another), and BAFTA champ Wunmi Mosaku (Sinners). The lineup was rounded out by Sentimental Value costars Inga Ibsdotter Lilleaas and Elle Fanning. A horror performance that broke through Madigan’s portrayal of Aunt Gladys — a parasitic witch who survives by feeding off others — became a pop-culture phenomenon, inspiring Halloween costumes, viral memes, and merchandise centered on the film’s unforgettable antagonist. Madigan picked up crucial awards-season wins at the Critics Choice and SAG Actor Awards, giving her strong support from both the media and the acting branch. But those victories didn’t guarantee an Oscar win. Just last year, another horror performance appeared poised for Oscar glory. Demi Moore swept Critics Choice and the SAG Actor Award for The Substance, only to lose BAFTA and ultimately the Best Actress Oscar to Mikey Madison for Anora. A 40-year Oscar journey Madigan was first nominated for an Academy Award in 1986 for Twice in a Lifetime. Her victory tonight comes 40 years later, marking the longest gap between a first nomination and a first Oscar win for an actress. She lost that year to Anjelica Huston for Prizzi’s Honor. Amy Madigan and Ed Harris at 1986 OscarsAMPAS That surpasses the previous record held by Geraldine Page, who waited 32 years between her first nomination for Hondo (1953) and her eventual win for The Trip to Bountiful (1985). Winning without a Best Picture boost Madigan’s triumph is also unusual because Weapons was the film’s only Oscar nomination. Historically, acting winners often benefit from appearing in films with broad Academy support. But only eight women in Oscar history have won Supporting Actress as the sole nominee from their film: Mary Astor — The Great Lie (1941) Claire Trevor — Key Largo (1948) Margaret Rutherford — The V.I.P.s (1963) Goldie Hawn — Cactus Flower (1969) Linda Hunt — The Year of Living Dangerously (1983) Marisa Tomei — My Cousin Vinny (1992) Angelina Jolie — Girl, Interrupted (1999) Penélope Cruz — Vicky Cristina Barcelona (2008) By comparison, her competitors came from films with much broader Academy backing: Sinners led the nominations tally with 16, while One Battle After Another had 13 and Sentimental Value earned nine. A brief but unforgettable performance Madigan’s turn in Weapons lasts only about 14 minutes, placing it among the shortest winning performances in the category’s history. The record remains held by Beatrice Straight (Network) and Judi Dench (Shakespeare in Love), who each won for performances under six minutes. At 75 years old, Madigan also joins the ranks of the Academy’s oldest acting winners, though she falls just short of the Supporting Actress record held by Peggy Ashcroft, who was 77 when she won for A Passage to India. In the end, the Academy embraced Madigan’s unforgettable villain — and delivered a long-awaited Oscar coronation four decades in the making.
+"""
+
+[R2] Actors Amy Madigan and Ed Harris Have Been Married for Over Four Decades
+(https://www.townandcountrymag.com/leisure/arts-and-culture/a70736874/who-is-ed-harris-amy-madigan-husband/)
+"""
+2 min readAt the Oscars this evening, Best Supporting Actress nominee Amy Madigan will be supported by her husband of over four decades, fellow actor Ed Harris.“He loved it,” Madigan said of Harris’s reaction to watching her in Weapons, the film for which she’s nominated. “He’s known me a long time and he saw all the parts of myself melded into Aunt Gladys. So, I have a very supportive family, my daughter also, so I’m very lucky.”Monica Schipper//Getty ImagesAmy Madigan and Ed Harris at the 83rd Annual Golden Globe Awards.Madigan, 75, and Harris, also 75, have been married since 1983. They have one daughter, Lily, who followed her parents into acting. “We just love each other and we work really hard at that and in our work,” Madigan said about their relationship at the New York Film Critics Circle Awards in January.Advertisement - Continue Reading BelowHere, what to know about Madigan’s husband Ed Harris, a four-time Oscar nominee:He’s from New Jersey.Bob Riha Jr//Getty ImagesHarris in 1997.Harris, born in 1950, grew up in New Jersey and went on to study at Columbia University, where he was on the football team. After his family moved to New Mexico, he transferred to the University of Oklahoma, and then to the California Institute of Arts, where he graduated with a Bachelor of Fine Arts in 1975.He made his acting debut in the 70s.Harris has had a long and fruitful career in movies and television, and was nominated for Oscars for his performances in Apollo 13 (1995), The Truman Show (1998), Pollock (2000), and The Hours (2002). As the Man in Black in Westworld, which aired from 2018 to 2022, he earned an Emmy nomination. He most recently appeared in How to Make a Killing and will next feature in The Dink, a sports comedy film premiering this summer.Harris and Madigan married in 1983.Pool DENIZE/PELLETIER//Getty ImagesThe couple in 1985.The couple began dating in 1981, after she saw him in the 1980 play Cowboy. “It was like something you see in a movie or hear in a song. I just thought, ‘Well, there he is.’ It was obvious to me that I'd see him again,” she told Life in 1985.They co-starred in the 1984 film Places in the Heart, and married in 1983 while in production for the movie. “The acting thing is so intimate and personal,” Harris told the Chicago Tribune in 1985 of working with Madigan. “If we’re not working together... you can’t really talk about your day very well. When you’re working together, though, there’s so much that is shared, so much unspoken thought and emotion that goes into the work, that it really draws you closer.”Emily Burack (she/her) is the Deputy Digital Editor for Town & Country, where she covers entertainment, celebrities, the royals, and a wide range of other topics. Before joining T&C, she was the deputy managing editor at Hey Alma, a Jewish culture site. Follow her @emburack on Instagram, Twitter, and other social media platforms.
+"""
+
+[R3] Amy Madigan
+(https://www.themoviedb.org/person/23882-amy-madigan)
+"""
+Personal Info Known For Acting Known Credits 101 Gender Female Birthday September 11, 1950 (75 years old) Place of Birth Chicago, Illinois, USA Also Known As Amy Marie Madigan Content Score Yes! Looking good! Looks like we're missing the following data in en-US or en-US... Login to report an issue Biography Amy Marie Madigan (born September 11, 1950) is an American actress. She has acted on stage and screen, and has received a Golden Globe Award, an Academy Award, as well as nominations for an Emmy Award. She has been married to actor Ed Harris since 1983. Madigan made her film debut in the drama Love Child (1982), for which she was nominated for the Golden Globe Award for New Star of the Year – Actress. For playing a woman in a difficult marriage in the drama film Twice in a Lifetime (1985), she earned a nomination for the Academy Award and Golden Globe Award for Best Supporting Actress. She has also acted in Love Letters (1984), Alamo Bay (1985), Nowhere to Hide (1987), Uncle Buck (1989), Field of Dreams (1989), Female Perversions (1996), Pollock (2000), and Gone Baby Gone (2007). After a lack of "meaningful roles", she gained newfound attention for her performance in the horror film Weapons (2025).On television, Madigan portrayed Sarah Weddington in the television film Roe vs. Wade (1989), for which she won the Golden Globe Award and was nominated for a Primetime Emmy Award. She also took roles in the HBO series Carnivàle (2003–2005), Grey's Anatomy (2008–2009), and Fringe (2009). On stage, she has acted in the Off-Broadway production of The Lucky Spot (1987), for which she was nominated for the Drama Desk Award for Outstanding Actress in a Play, and a 1992 Broadway production of A Streetcar Named Desire in the role of Stella Kowalski.Description above from the Wikipedia article Amy Madigan, licensed under CC-BY-SA, full list of contributors on Wikipedia. Amy Marie Madigan (born September 11, 1950) is an American actress. She has acted on stage and screen, and has received a Golden Globe Award, an Academy Award, as well as nominations for an Emmy Award. She has been married to actor Ed Harris since 1983. Madigan made her film debut in the drama Love Child (1982), for which she was nominated for the Golden Globe Award for New Star of the Year – Actress. For playing a woman in a difficult marriage in the drama film Twice in a Lifetime (1985), she earned a nomination for the Academy Award and Golden Globe Award for Best Supporting Actress. She has also acted in Love Letters (1984), Alamo Bay (1985), Nowhere to Hide (1987), Uncle Buck (1989), Field of Dreams (1989), Female Perversions (1996), Pollock (2000), and Gone Baby Gone (2007). After a lack of "meaningful roles", she gained newfound attention for her performance in the horror film Weapons (2025).On television, Madigan portrayed Sarah Weddington in the television film Roe vs. Wade (1989), for which she won the Golden Globe Award and was nominated for a Primetime Emmy Award. She also took roles in the HBO series Carnivàle (2003–2005), Grey's Anatomy (2008–2009), and Fringe (2009). On stage, she has acted in the Off-Broadway production of The Lucky Spot (1987), for which she was nominated for the Drama Desk Award for Outstanding Actress in a Play, and a 1992 Broadway production of A Streetcar Named Desire in the role of Stella Kowalski.Description above from the Wikipedia article Amy Madigan, licensed under CC-BY-SA, full list of contributors on Wikipedia. Known For Field of Dreams Gone Baby Gone Weapons The Hunt Uncle Buck The Dark Half Antlers Streets of Fire Clear All Department Acting Production
+"""
+
+[R4] Amy Madigan
+(https://simple.wikipedia.org/wiki/Amy_Madigan)
+"""
+From Simple English Wikipedia, the free encyclopedia Madigan at the 41st Emmy Awards in 1989 Amy Marie Madigan (born September 11, 1950)[1] is an American television and movie actress. She has acted in many notable movies and TV series. These include the 1989 movie Field of Dreams and Uncle Buck and the series Grey's Anatomy, Carnivàle and Fringe. In 2025, Madigan became well known again for her role as Aunt Gladys in Zach Cregger's horror movie Weapons. For this role, she won the Academy Award for Best Supporting Actress and was nominated for a Golden Globe Award. In 1984, Madigan played McCoy in the movie Streets of Fire, and had a supporting role as Viola Kelsey in Places in the Heart. In 1985, she starred in the television movie The Laundromat. In 1985, she played Sunny Mackenzie-Sobel, a woman in a difficult marriage, in Twice in a Lifetime. She was nominated for a Golden Globe Award and an Academy Award. In 2025, she played the villain role of Aunt Gladys in Zach Cregger's horror mystery movie Weapons.[2] Madigan's role in Weapons received strong positive reviews. For this role, she won the Screen Actors Guild Award, Critics' Choice Movie Award and was nominated for a Golden Globe Award. On March 15, 2026, she won the Academy Award for Best Supporting Actress. The 40-year space between this nomination and her last nomination for Twice in a Lifetime is the longest gap between Oscar nominations for an actress.[3][4] Madigan was born in Chicago, Illinois.[1] She studied at Marquette University in Milwaukee, Wisconsin, where she earned a B.A. degree in philosophy in 1972.[5][6] She moved to Los Angeles in 1974.[7] Madigan married the actor Ed Harris in 1983. They have one daughter, Lily Dolores, born in 1993. Jump up to: 1 2 "Amy Madigan Biography". TV Guide. Retrieved 5 April 2013. ↑ Nicholson, Amy (August 7, 2025). "In the spellbinding mystery 'Weapons', six characters reveal bloody slices of the truth". Los Angeles Times.{{cite news}}: CS1 maint: url-status (link) ↑ Davis, Clayton (2026-02-20). "Amy Madigan on Falling in Love With Aunt Gladys in 'Weapons,' Becoming Wagner Moura's Smoking Buddy and Cranking Bad Bunny's Halftime Show to 11". Variety. Retrieved 2026-03-08. Amy Madigan didn't expect to be here. Not in the thick of awards season, not making history with a 40-year gap between Oscar nominations, and certainly not doing it as the ferociously unforgettable Aunt Gladys in Zach Cregger's horror-thriller "Weapons." ↑ Loving, Casey; McGovern, Joe (January 22, 2026). "Oscars 2026 Milestones: Amy Madigan, Wagner Moura and More Make History". TheWrap. Archived from the original on January 24, 2026. Retrieved January 24, 2026. ↑ Pelletier, Katie (December 2016). "Reed Welcomes Two New Trustees". Reed Magazine. Portland, Oregon: Reed College.{{cite web}}: CS1 maint: url-status (link) ↑ "Alumni Prizes, Awards, Distinctions, Offices in Professional Societies and Other Forms of Recognition" (PDF). Marquette University. p. 242. Archived (PDF) from the original on September 7, 2019. ↑ Rosenfeld, Megan (April 28, 1985). "Amy Madigan Gets The Right Parts But Glamor Isn't In Her Script". Orlando Sentinel. Archived from the original on October 17, 2015. Retrieved October 17, 2015. Amy Madigan on IMDb
+"""
+
+[R5] Amy Madigan
+(https://www.imdb.com/name/nm0001496/bio/)
+"""
+Jump toOverviewBornBirth nameHeightBiographyIn the 1960s, Amy attended St. Philip Neri grammar school and Aquinas High School, both in Chicago, where she performed in school plays and was known as the school tomboy. In the early 1970s, Amy was featured in Playboy Magazine wearing only jelly, to promote her music band, Jelly. Amy is the daughter of John Madigan, a media personality in Chicago, Illinois.- IMDb mini biography by: PJ Moriarty, former classmate of Amy MadiganFamilySpouseEd Harris(November 21, 1983 - present) (1 child)ChildrenParentsDolores Helen HanlonRelativesJim Madigan(Sibling)Jack Madigan(Sibling)TrademarksKnown for playing tough, no-nonsense female charactersTriviaAs of 2022, she has appeared with husband Ed Harris in 11 movies: Alamo Bay (1985), Gone Baby Gone (2007), Places in the Heart (1984), Pollock (2000), Winter Passing (2005), Just a Dream (2002), Riders of the Purple Sage (1996), Frontera (2014), Rules Don't Apply (2016), A Crooked Somebody (2017) and The Last Full Measure (2019).Sang and played piano in a rock band before she started acting. She was, for a time, the lead singer of the group, Big Daddy.Graduated from Marquette University with a degree in philosophy.QuotesI wanted to be a boy when I was young because boys got to do all the good stuff. So I became very aggressive and very competitive at a young age.The music business is rougher than the movie business. In film you get noticed in a small role, even in a movie that bombs. But in records you better have that hit or else it's 'See you later.'Learn more about contributingEdit pageMore from this personView agent, publicist, legal and company contact details on IMDbPro
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

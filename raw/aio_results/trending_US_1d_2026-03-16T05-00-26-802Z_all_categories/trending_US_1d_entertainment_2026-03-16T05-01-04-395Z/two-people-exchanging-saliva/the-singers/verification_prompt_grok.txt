@@ -1,0 +1,111 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "the singers"
+
+Claims:
+[1] "The Singers (2025) is a short film."
+[2] "The Singers (2025) is 17 minutes long."
+[3] "The Singers (2025) is a 4x3 film."
+[4] "The Singers (2025) is a docu-musical hybrid."
+[5] "The Singers (2025) is based on a 19th-century story by Ivan Turgenev."
+[6] "The Singers (2025) stars first-time actors."
+[7] "The Singers (2025) stars viral singing talents."
+[8] "The cast of The Singers (2025) includes internet singing sensations and subway buskers."
+[9] "Sam Davis directed The Singers (2025)."
+[10] "Sam Davis shot The Singers (2025)."
+[11] "Sam Davis edited The Singers (2025)."
+[12] "Jack Piatt produced The Singers (2025)."
+[13] "The Singers (2025) was shot on celluloid."
+[14] "The Singers (2025) was nominated for an Academy Award in the Live Action Short Film category."
+[15] "The Singers (2025) was released on Netflix."
+[16] "The Singers (2025) features a spontaneous singing competition among lonely men in a bar."
+[17] "The film focuses on a group of down-on-their-luck men who find connection and catharsis through an impromptu sing-off in a local pub."
+[18] "The Singers (2025) has been described as a "love letter to underdogs"."
+[19] ""The Singers" (thesingersmca.org) is a professional choir organization."
+[20] "There is an official 53-second trailer for The Singers (2025) on Netflix YouTube published on Feb 12, 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- The Singers - Netflix Media Center: "Synopsis. From two-time Academy Award® Nominated filmmaker,to the power of vulnerability through art."
+- THE SINGERS - Palm Springs International Film Festival: "A lowly pub full of downtrodden patrons,hybrid is crafted like an improvisational play."
+- News - The Singers MCA: "The Singers' core values include: * Excellence,Singers and the E.C. Schirmer Publishing Group"
+Reference Sources:
+
+[R1] The Singers | Filmfest
+(https://filmfest.scad.edu/schedule/singers)
+"""
+Skip to main content Tickets PURCHASE TICKETS Saturday, Nov. 1 at 10 a.m. SCAD Museum of Art Professional Shorts The Singers USA | 17 min. The Singers, a genre-bending film adaptation of a 19th-century short story written by Ivan Turgenev, follows a lowly pub full of downtrodden men who connect unexpectedly during an impromptu sing-off.Followed by the fiction feature Charliebird. A Q&A with director Sam Davis immediately follows the screening.Georgia premiere DIRECTOR Sam Davis PRODUCERS Jack Piatt David Breschel Charlie Cohen CAST Mike Young Chris Smither Will Harrington Judah Kelly DIRECTOR Sam Davis PRODUCERS Jack Piatt David Breschel Charlie Cohen CAST Mike Young Chris Smither Will Harrington Judah Kelly ABOUT THE DIRECTOR Sam Davis is an Academy Award-nominated multihyphenate filmmaker with a foundation in cinematography. He produced, shot, and edited the 2019 Academy Award-winning Netflix short Period. End of Sentence. and produced and shot the Oscar-nominated Disney+ short Nǎi Nai & Wài Pó. Davis has also directed six short films.
+"""
+
+[R2] THE SINGERS | Palm Springs International Film Festival
+(https://www.psfilmfest.org/shortfest-2025/film-finder/the-singers)
+"""
+Become a member today!Click here for more information Palm Springs International Film Society THE SINGERS Directed by Sam Davis USA | 18 minutes | California Premiere | FACE THE MUSIC ShortFest 2025 Archive About ShortFest Shorts Programs Film Finder How to Attend Passes & Tickets Sponsors ShortFest Awards & Jury ShortFest Awards A lowly pub full of downtrodden patrons unexpectedly connects through an impromptu sing-off. Featuring viral video singing talents and unique personalities from the internet’s unlikeliest corners, this experimental docu-musical hybrid is crafted like an improvisational play. film details Director: Sam Davis Producers: Jack Piatt, David Breschel, Charlie Cohen, Sam Davis Cinematographers: Sam Davis Editor: Sam Davis Music: Mike Young, Will Harrington, Chris Smither, Judah Kelly, Matthew Corcoran Cast: Mike Young, Will Harrington, Chris Smither, Judah Kelly, Matthew Corcoran Country: USA Language: English Year: 2025 Running Time: 18 minutes Premiere Status: California Premiere Primary Company: Highway West Contact Email: David@highwaywestent.com Website: highwaywestent.com Screening in: FACE THE MUSIC Be it through instruments, dance, or playlists, these shorts explore the role music plays in our lives, our memories, and our imaginations. Other Films Included: MEAL TICKET PLAY HARD SYNTHESIZE ME NOW, HEAR ME GOOD THE SINGERS VOICELESS ShortFest 2025 Archive About ShortFest Shorts Programs Film Finder How to Attend Passes & Tickets Sponsors ShortFest Awards & Jury ShortFest Awards X
+"""
+
+[R3] The Singers | Netflix Media Center
+(https://media.netflix.com/en/only-on-netflix/82699221)
+"""
+Log in for full access The SingersFilm releasing in the United States on February 13th, 2026LoglineInspired by the 19th-century short story, THE SINGERS follows a group of down-on-their-luck bar patrons as they find unexpected connection through an impromptu sing-off.SynopsisFrom two-time Academy Award® Nominated filmmaker Sam Davis, The Singers is a genre-bending film adaptation of a 19th-century short story written by Ivan Turgenev, in which a lowly pub full of downtrodden men connect unexpectedly through an impromptu sing-off. With a cast comprised of first-time actors from the unlikeliest corners of TikTok and YouTube, the film is a celebration of diamonds in the rough and a testament to the power of vulnerability through art.FilmDramasRelated ArticlesAWARDSFrankenstein and KPop Demon Hunters are Officially Oscar Winning FilmsBy Madeleine Saaf-Welsh • March 16, 2026Read MoreINTERVIEWHow a Late-Night Scroll Turned The Singers into a Love Letter to UnderdogsBy Jenny Changnon • February 19, 2026Read MoreNEW ON NETFLIXFrom The Night Agent to Joe’s College Road Trip: What to Watch on NetflixBy Ashley Lee • February 13, 2026Read MoreNEWSInside the Unlikely Barroom Chorus of The SingersBy Troy Pozirekides • February 11, 2026Read MoreWhat language do you speak?اللغة العربية简体中文繁體中文EnglishFrançaisDeutschΕλληνικάBahasa IndonesiaItaliano日本語한국어polskiPortuguês (Brasil)Português (Portugal)românăEspañol (LatAm)Español (España)ไทยTürkçeWhat country do you cover?Select a country to see information specific to your coverage region.Privacy Preference CenterPrivacy Preference CenterGeneral DescriptionEssential CookiesPerformance and Functionality CookiesGeneral DescriptionWe use two types of cookies: essential cookies and performance and functionality cookies. Click on the different cookie categories to find out more about each category. Essential CookiesAlways ActiveThese cookies are strictly necessary to provide our website. For example, we and our Service Providers may use these cookies to authenticate and identify visitors when they use our websites and applications so we can provide our service to them. They also help us to enforce our Terms of Use, prevent fraud and maintain the security of our services. Lifespan: Most cookies are session cookies (which are only active until you close your browser) or are cookies which are only active for one day. Some cookies are active for a longer time, ranging from 3 to 12 months. The cookies used to prevent fraud and maintain the security or our services are active for a maximum period of 24 months.Cookies DetailsPerformance and Functionality Cookies Performance and Functionality Cookies ActiveThese cookies help us to support the performance of our website. For example, they prevent you from needing to re-enter information you previously provided (for example, during registration for access to certain sites, such as the Netflix Media Center). We also use these cookies to collect information (such as popular pages, click-through and other information) about our visitors' use of the website so that we can analyze, enhance and customize our website. Deletion of these types of cookies may result in limited functionality of our tools.Cookies DetailsBack ButtonCookie List Filter ButtonConsent Leg.Interest checkbox label label checkbox label label checkbox label labelClear checkbox label labelApply CancelSave settings
+"""
+
+[R4] News - The Singers MCA
+(https://www.singersmca.org/news)
+"""
+Audition and Join Us! Learn about auditioning for our 2024-2025 season here! Final Two Winning Composers Announced January 29, 2024 (St. Paul, MN) – The Singers is pleased to announce that the final two winners of the 20th Anniversary composition contest are Remel Derrick and Roger Zare. The winning works were selected by blind review of judges Dr. Katherine Chan, Dr. Merrin Guice Gill, Jake Runestad, and Dr. Jonathan Talberg. Over 110 composers from around the world submitted scores for consideration in this program. Isaac Lovdahl, the other winner of this call-for-scores, had his work The Lamb premiered by The Singers in December 2023. Remel Derrick‘s The Windowsill of Heaven sets a text attributed to Thomas Blake (1597-1657) and will be premiered on March 23 and 24 as part of The Singers’ My Soul’s Repose concerts (Minneapolis and St. Paul). Remel currently resides in Abilene, Texas, where he is Associate Director of Choirs at Abilene High School. See Remel’s bio and additional works here. Roger Zare‘s winning score, Invocation, sets an evocative text by Margaret Galvan and will be premiered on Sunday, May 5 in Mahtomedi, MN as part of Windows and Mirrors: 20th Anniversary Finale. Roger is an Associate Professor of Music Composition and Theory at Appalachian State University in Boone, NC. See Roger’s bio here. To purchase tickets to these upcoming concerts, click here. Community Sing 1/28/24: Justice Choir Songbook Join us for our FREE Community Sing on Sunday 1/28! This 60-minute event features songs from the Justice Choir Songbook, as well as a short performance from The Singers. The House of Hope Presbyterian Church plays host as part of their Sunday Series. We hope to raise our voices with yours! Sunday, 1/28/24, 2:00 pm – The House of Hope, 797 Summit Avenue, St. Paul MN 55105 Presented with the support of The House of Hope and the Archie D. and Bertha H. Walker Foundation. Dale Warland named Honorary Director The Singers are delighted to announce that legendary conductor Dale Warland has graciously accepted the title of Honorary Director for The Singers. “It means a great deal to me to have Dale’s ongoing support of my work, and the work of the entire Singers’ organization,” says Artistic & Executive Director Matthew Culloton. “The board was thrilled when Dale said yes, and his backing of our music making and mission is invaluable.” Dale Warland joins American composer Morten Lauridsen as The Singers’ Honorary Directors. Check out our new Resources page! Enjoy access to our complete concert repertoire lists, premieres list, video library, and every concert program book we’ve printed, organized by season. First Call-for-Scores Winner: Isaac Lovdahl The Singers is pleased to announce that the first winner of the 20th Anniversary composition contest is Isaac Lovdahl. His setting of The Lamb (poem by William Blake) was selected by blind review of judges Dr. Katherine Chan, Dr. Merrin Guice Gill, Jake Runestad, and Dr. Jonathan Talberg. The Singers are especially excited to premiere this work as Isaac is a former member of the choir! To learn more about Isaac Lovdahl, visit www.isaaclovdahl.com. To purchase tickets to the What Sweeter Music concert, click here. Audition for The Singers’ 20th Anniversary Season! 2023-2024 Audition Materials and Info is now posted. Deadline: MAY 12, 2023. NEW RECORDING: “COME TO THE WOODS” THE SINGERS AND CONDUCTOR MATTHEW CULLOTON RELEASE COME TO THE WOODS, A NEW RECORDING OF AMERICAN CHORAL WORKS ON ARSIS AUDIO LABEL Media Contact: Janette Davis, Executive Director (jdavis@singersmca.org / 651.917.1948) SAINT PAUL, May 21, 2022 – The Singers – Minnesota Choral Artists (“The Singers”) announces the release of Come to the Woods, a new recording of music by Dominick Argento, Jake Runestad, Moira Smiley, John Corigliano, and Samuel Barber. Artistic Director Matthew Culloton conducts The Singers alongside pianist Stephen Swanson and guest soloist Alma Neuhaus. This is the ensemble’s first record release on the Arsis Audio label, long connected to the recordings of American music through the E.C. Schirmer Publishing Group. “Recording some of the great American choral works by Barber and Argento and pairing them with stunning new works by Jake Runestad and Moira Smiley has been a dream of mine for some time,” says Culloton. “This whole album shows the lyrical and sonorous breadth and wide accessibility of American choral music – and listeners will deeply connect with the marriage of music and these inspiring texts.” Mezzo soprano Alma Neuhaus is featured as a guest artist on John Corigliano’s Fern Hill. “Alma sang the most beautiful rendition of this solo,” offers Culloton, “it is the most gorgeous rendition I’ve ever heard. She brings a spirit of fresh humanity to Dylan Thomas’ poetry, drawing the listener in immediately.” About Come to the Woods, composer Joshua Shank says: “This is impeccably programmed, performed, and recorded. It’s made me fall in love with Dominick Argento’s choral writing all over again (which is no small task) and contains what I think is hands down the best interpretation of Barber’s Reincarnations (Matt’s tempo on The Coolin is maybe the most perfect I’ve ever heard; it fixes some of the problems young Sam baked into his score). And the Moira Smiley work the album goes out on is nothing short of miraculous; the choral version of a broad, grateful smile.” The Singers’ organization, founded in 2004, has established itself as one of the leading choirs in the United States, having premiered nearly 90 new works as part of its annual concert series. This CD is the choir’s 10th release, and their first since “Tonight, Eternity Alone: Choral Music of René Clausen.” Culloton and The Singers have appeared by invitation at The Ravinia Festival in Chicago four times, and have performed for regional and national conferences of the American Choral Directors Association and Chorus America. Come to the Woods is available on Naxos Music, Apple Music, Spotify, and through The Singers and the E.C. Schirmer Publishing Group. Come to the Woods works list: Jake Runestad: Come to the Woods Dominick Argento: Dover Beach Revisited Samuel Barber: Reincarnations John Corigliano: Fern Hill Dominick Argento: Seasons Moira Smiley: Stand in that River The Singers – Minnesota Choral ArtistsStephen Swanson, pianoAlma Neuhaus, mezzo sopranoMatthew Culloton, Artistic Director Audition for 2022-2023 – Deadline extended to July 15 THE SINGERS NOW ACCEPTING AUDITION MATERIALS FOR 2022-2023 April 20, 2022 The Singers – Minnesota Choral Artists, led by Artistic Director Matthew Culloton, announces auditions for the 2022-2023 concert season. The Singers share inspiring, innovative choral artistry that evolves with the changing world. The 2022-2023 season includes the following subscription series events: OCTOBER 2022: Dominick Argento’s Walden Pond, Adolphus Hailstork’s Nocturne, and other works reminding us of the inspiring beauty of nature – and why we must work harder to save it! DECEMBER 2022: What Sweeter Music: Christmas with The Singers is one of the Twin Cities’ beloved holiday traditions. Familiar carols and hot-off-the-press works make for a melodic and celebratory concert experience. MARCH 2023: My Soul’s Repose: Music of Bach & Pärt features a collaboration with organist Aaron David Miller. Enjoy the musical and spiritual contrast of these two composers, one of whom employs a lot more notes than the other! MAY 2023: Mars & Venus II: Music for Men’s Chorus and Women’s Chorus brings back a concert concept that audiences loved wildly a number of years ago. In addition to hearing our choir split in two, enjoy a few out-of-this-world moments from Timothy Takach’s HELIOS. The Singers organization strongly encourages audition submissions from minority group members, persons with disabilities, members of the LGBTQ+ community, and anyone who can add to the artistic merit and vision of The Singers! The Singers’ Mission The Singers deliver compelling and thought-provoking performances and educational opportunities that can bridge cultural differences and invite appreciation of the choral art. Our Core Values These values will guide The Singers’ organization as it brings its mission and vision to life: ExcellenceRespect & OpennessCollaborationCouragePassion Learn how to complete this spring’s online audition application at: www.singersmca.org/about-us/auditions Application deadline is July 15, 2022 at 5 PM.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

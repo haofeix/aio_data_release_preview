@@ -1,0 +1,98 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "rangers opening day"
+
+Claims:
+[1] "The Texas Rangers 2026 home opener is on Friday, April 3, 2026."
+[2] "The Texas Rangers 2026 home opener is at 3:05 p.m. CST."
+[3] "The Texas Rangers 2026 home opener is against the Cincinnati Reds."
+[4] "The Texas Rangers 2026 home opener is at Globe Life Field in Arlington, Texas."
+[5] "Globe Life Field's roof will be closed due to forecasted storms."
+[6] "The Texas Rangers had a 4-2 road trip prior to the 2026 home opener."
+[7] "MacKenzie Gore is the starting pitcher for the Texas Rangers 2026 home opener."
+[8] "MacKenzie Gore is making his home debut in the Texas Rangers 2026 home opener."
+[9] "The ceremonial first pitch for the Texas Rangers 2026 home opener is by Dallas Stars goalie Jake Oettinger."
+[10] "The Texas Rangers 2026 home opener is broadcast on MLB Network, MLB.TV, Fubo, and Victory+."
+[11] "The Texas Rangers 2026 season features a record 38 promotional items."
+[12] "The Texas Rangers 2026 promotional items kick off on Opening Day."
+[13] "Tailgating festivities for the Texas Rangers 2026 home opener are located in spots like Lot E."
+[14] "Tailgating festivities for the Texas Rangers 2026 home opener feature El Chingon and other vendors."
+[15] "The Texas Rangers entered the 2026 home opener in second place in the AL West."
+[16] "The Texas Rangers won two out of three games in Philadelphia during their initial road trip."
+[17] "The Texas Rangers won two out of three games in Baltimore during their initial road trip."
+
+Cited text snippets from the AI Overview (for additional context):
+- Texas Rangers 2026 Home Opener: How to watch and what to look for: "The Brief,Fort Worth on Friday afternoon."
+- How to Watch Rangers Home Opener vs. Reds: TV Channel ...: "SI Network-,How to Watch Rangers Home Opener vs. Reds: TV Channel,the trip to the Orioles."
+- Opening Day kicks off the Rangers' most ambitious ...: "68 likes, 2 comments - alannaquillen on,are available on a first-come, first-served basis."
+- It's the Texas Rangers home Opening Day! Texas will play the Reds at 3 ...: "----- Official Text,the Southeast Box Office at"
+- El Chingon Fort Worth on Instagram: "Rangers home opener ...: "40 likes, 0 comments - elchingonfw on,9x9 Rangers Special: $3 draft beers $3"
+Reference Sources:
+
+[R1] Texas Rangers 2026 Home Opener: How to watch and what to look for
+(https://www.fox4news.com/sports/texas-rangers-2026-home-opener-how-to-watch)
+"""
+Published April 3, 2026 11:55am CDT ARLINGTON, Texas - Baseball returns to Arlington in just a matter of hours. It’s opening day for the Texas Rangers! Rangers Home Opener The Rangers will face the Cincinnati Reds in their first game of the 2026 season at home. Texas had a strong start on the road with a 4-2 record on the season so far. Their six-game road trip was to Philadelphia and Baltimore. Friday’s home opener starts at 3:05 p.m. How to watch the Texas Rangers game WHAT: Texas Rangers (4-2) vs Cincinnati Reds (3-3) WHEN: Friday, April 3, 2026 | 3:05 PM CST WHERE: Globe Life Field | Arlington, Texas HOW TO WATCH: MLB Network, MLB Extra Innings, Fubo, MLB.TV, Victory+ Globe Life Field Roof Officials at Globe Life Field confirmed on social media that the roof will remain closed for the 3 p.m. game. That’s because scattered showers and thunderstorms are in the forecast for Dallas-Fort Worth on Friday afternoon. According to the FOX 4 Weather team, storm coverage will increase Friday evening with some storms becoming strong to severe. Starting Lineup PHILADELPHIA, PENNSYLVANIA - MARCH 29: MacKenzie Gore #1 of the Texas Rangers throws a pitch in the first inning during a game against the Philadelphia Phillies at Citizens Bank Park on March 29, 2026 in Philadelphia, Pennsylvania. (Photo by Hunter M Mackenzie Gore will take the mound for Texas. Gore, who was traded to the Rangers in January, made a strong debut against the Phillies, earning a win with 7 strikeouts and a 3.38 earned run average over 5 innings. Other players in the starting lineup include Brandon Nimmo, Wyatt Langford, Corey Seager, Jake Burger, Joc Pederson, Josh Smith, Josh Jung, Evan Carter, and Danny Jansen. First Pitch and National Anthem Stars goalie and Olympic gold medalist Jake Oettinger will throw out the ceremonial first pitch. Neal McCoy will be signing the national anthem. Globe Life Field Menu Highlights Rangers Home Opener | The Ten The Ten takes Steve Noviello and Paige Ellenberger out to the old ballgame. They try out some ballpark foods and talk a bit of baseball. The Rangers will have a bevy of new food and drink items for fans to enjoy this season at Globe Life Field. Highlights include the 9th Inning Rally Sombrero, a giant nine-layer dip served in a fried tortilla shell, and the Pig Kahuna, a pork sandwich topped with pineapple and peanut butter sauce. The Texas Ribeye Sandwich features grilled Nolan Ryan Beef ribeye steak topped with chimichurri, sliced tomato, and fresh arugula on a soft roll, served with French fries. And the Texas Tenderloin Sandwich is Nolan Ryan Beef tenderloin served on a brioche bun with gouda cheese, dijonnaise and balsamic dressed arugula, served with French fries. Send in your photos/videos here! The Source: The information in this story comes from MLB.com, news releases, and FOX 4 reporters who are covering the home opener. Texas RangersSports
+"""
+
+[R2] How to Watch Rangers Home Opener vs. Reds: TV Channel, Live Stream and Radio
+(https://www.si.com/mlb/rangers/onsi/news/how-to-watch-rangers-home-opener-vs-reds-tv-channel-live-stream-radio)
+"""
+The Texas Rangers return to Globe Life Field to open the home portion of their 2026 schedule with the Cincinnati Reds on Friday. First pitch is set for 3:05 p.m. The Rangers (4-2) wont both series on their first road trip of the season, taking two out of three from both the Philadelphia Phillies and the Baltimore Orioles. Texas got some energy from 39-year-old outfielder Andrew McCutchen and young starter Jack Leiter, who gave the Rangers their best start on the road trip. After a week the Rangers are in second place in the American League West, with the Houston Astros (5-2) up by a half-game going into the weekend. Houston started the season with a two-game losing streak and followed it up with a five-game winning streak. Texas won four straight games between their opening-day loss and their final loss on the trip to the Orioles. The Reds (3-3) are treading water in the National League Central, with the Milwaukee Brewers two games up on Cincinnati after a week. Here is a breakdown of the game, including how to watch, the starting pitchers, injuries and other notes. How to Watch Texas Rangers Home OpenerTexas Rangers left fielder Brandon Nimmo. | Eric Hartline-Imagn ImagesCincinnati Reds at Texas RangersTime: 3:05 p.m. CTWhere: Globe Life Field, ArlingtonTV: Rangers Sports Network. Game can be streamed on Victory+Radio: KRLD 1080, KFLC 1270Pitching MatchupTexas: LHP MacKenzie Gore (1-0, 3.38) vs. Cincinnati: RHP Brady Singer (0-0, 6.75)Gore’s first start with the Rangers was sharp. He gave up two hits and two earned runs in 5.1 innings against the Phillies on Sunday. He struck out seven and walked three and positioned the Rangers for their second win of the season. Texas will be looking for more length from the left-hander, who won just five games last season. Singer’s first start of the season was a no-decision in which he went four innings and gave up five hits and three earned runs. He struck out five and walked two. He’s coming off a strong season with the Reds in 2025, as he went 14-12 with a 4.03 ERA, with 163 strikeouts and 60 walks in 169.2 innings. Rangers Injuries10-Day Injured List: INF Cody Freeman (lumbar stress reaction); LHP Cody Bradford (left UCL surgery); 60-Day Injured List: LHP Jordan Montgomery (Tommy John surgery).Bradford began a rehab assignment at Triple-A Round Rock on Thursday.Add us as a preferred source on GoogleFollow
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

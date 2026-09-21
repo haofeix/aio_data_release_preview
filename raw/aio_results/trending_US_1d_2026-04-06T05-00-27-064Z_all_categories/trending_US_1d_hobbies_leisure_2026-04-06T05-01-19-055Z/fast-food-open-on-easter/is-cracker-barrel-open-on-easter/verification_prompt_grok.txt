@@ -1,0 +1,98 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is cracker barrel open on easter"
+
+Claims:
+[1] "Easter Sunday is April 5, 2026."
+[2] "Cracker Barrel is open on Easter Sunday, April 5, 2026, during regular operating hours."
+[3] "Cracker Barrel offers hot-and-ready family meals."
+[4] "Cracker Barrel offers Heat n' Serve feasts."
+[5] "Cracker Barrel's regular menu is available."
+[6] "Cracker Barrel's regular menu features traditional ham and turkey meals starting at 11 a.m."
+[7] "Heat & Serve Meals are pre-orderable meals."
+[8] "Heat & Serve Meals serve 4-6 or 8-10 people."
+[9] "Heat & Serve Meals are available for pickup 4/2-4/5."
+[10] "Cracker Barrel features an online waitlist."
+[11] "Cracker Barrel features Cracker Barrel Rewards."
+[12] "Cracker Barrel features mobile pay."
+
+Cited text snippets from the AI Overview (for additional context):
+- Easter Dinner Made Easy with Heat & Serve Meals: "Celebrate Easter at Cracker Barrel,ALL KINDS OF DELIGHTFUL"
+- 24 Restaurant Chains Open on Easter Sunday - AOL.com: "Another chain recommended by the,for up to 8 people.”"
+- Cracker Barrel is offering a $16 Easter feast that feeds 10: "Cracker Barrel has confirmed it will be,dozen confirmed major retailers and chains. Advertisement."
+- Which restaurants are open on Easter? Details on Chipotle ...: "Chick-fil-A,Raising Cane's"
+Reference Sources:
+
+[R1] Which restaurants are open on Easter? Details on Chipotle, IHOP, more
+(https://www.usatoday.com/story/money/food/2026/04/03/restaurants-open-closed-easter-2026/89437133007/)
+"""
+April 3, 2026Updated April 5, 2026, 12:12 p.m. ETEaster, an important day for members of the Christian faith, falls on Sunday, April 5.The date of the holiday, which celebrates the resurrection of Jesus Christ after a 40-day period known as Lent, changes from year to year because it is one of several "movable feasts" in the liturgical year, according to the History Channel. Some restaurants and fast-food joints will be closed in observance of the holiday.It is always a good idea to check online for your nearest location's hours, as hours can vary by location. Here's what you need to know about which restaurants will be open and closed on Easter in 2026.McDonald'sHours vary by location, but most McDonald's locations in the United States are open on holidays, the company told USA TODAY.StarbucksStarbucks store hours vary by location. You can find hours for a specific store using the Starbucks app.Dunkin'Dunkin' store hours vary by location, so customers can check their local shop using the Dunkin' app or their online store locator.Chick-fil-AEaster is celebrated on a Sunday, meaning Chick-fil-A will be closed.ChipotleChipotle restaurants will be closed on Easter, a company spokesperson confirmed to USA TODAY.Wendy'sMost Wendy's locations will be open on Easter, but hours vary by location. It's best to check with your local restaurant for their specific holiday hours.Burger KingBurger King hours vary by location, so customers are encouraged to confirm through the Burger King app.Cracker BarrelYes, Cracker Barrel restaurants will be open regular hours on Easter, a company spokesperson told USA TODAY.Raising Cane'sNo, Raising Cane's locations will be closed on Sunday, April 5, a company spokesperson confirmed to USA TODAY.Freddy's Frozen Custard & SteakburgersFreddy's locations will be open on Easter Sunday, a company spokesperson told USA TODAY.Shake ShackShake Shack holiday hours vary by location, according to the company's website, and some locations may close early on Easter.Taco BellHours of operation may vary by location, so Taco Bell customers are encouraged to check with their local restaurant regarding their holiday hours.SubwaySubway restaurants are independently owned and operated, so customers should check with their local restaurant regarding specific holiday hours.Firehouse SubsGuests are encouraged to call their local Firehouse Subs restaurant before visiting on Easter. Most locations are expected to remain open on Easter.IHOPIHOP restaurants will be open on April 5. Hours vary by location, so check with your local restaurant for their specific hours.Waffle HouseYes, Waffle House locations will be open on Easter.Krispy KremeKrispy Kreme shops will be open their regular hours on Sunday, April 5, a company spokesperson confirmed to USA TODAY.WhataburgerYes, Whataburger restaurants will be open regular hours on Easter Sunday.First WatchYes, First Watch restaurants will be open their regular hours on Easter, a company spokesperson told USA TODAY.Gabe Hauari is a national trending news reporter at USA TODAY. You can follow him on X @GabeHauari or email him at Gdhauari@gannett.com.
+"""
+
+[R2] 24 Restaurant Chains Open on Easter Sunday
+(https://www.aol.com/24-restaurant-chains-open-easter-120000527.html)
+"""
+Easter Sunday might be a time for church, egg hunts, and awkward family photos, but it doesn’t mean the whole country shuts down. While some restaurant chains close up to give their staff a well-earned break, plenty of spots will stay open. So in case you’re skipping the ham this year, here are the restaurant chains that are open on Easter Sunday, April 5, 2026, plus the ones that are closed. Applebee’sBrett_Hondow/istockphotoMost Applebee’s locations will be open on Easter Sunday. Hours can vary, though, since the chain is franchise-operated, so it’s best to check with your local restaurant.Buffalo Wild WingsSweetBabeeJay/istockphotoThose craving wings after the egg hunt are in luck, as the chain plans to stay open on Easter, with most locations following regular Sunday hours. Still, a quick call ahead is recommended.Benihana©TripAdvisorBenihana is typically open on Easter Sunday if you’re planning a hibachi-style meal, but hours can vary by location, so it’s best to check with your local restaurant before making plans.Burger KingJonathan Weiss / shutterstockYou can have it your way on Easter Sunday. Most Burger King locations are open, though some may shorten hours, so it’s smart to check locally.Cheesecake FactoryChristian Petersen/Getty ImagesYes, they’re open — and yes, you can still end your Easter with a slab of Oreo Dream Extreme. Just keep in mind that some locations might tweak hours or limit reservations.Chili’ssanfel/istockphotoChili’s Grill & Bar is expected to be open on Easter Sunday if you’re craving a sit-down meal, but hours can vary by location, so it’s best to check with your nearest restaurant before heading out.Denny’ssanfel/istockphotoDenny’s will remain open 24/7 as usual, with no changes for the holiday.Domino’s PizzaRiverNorthPhotography/istockphotoMost locations will be open for delivery and carryout on Easter, but hours can vary — check your local store before placing that order.Cracker Barrelsanfel/istockphotoCracker Barrel will be open from 7 a.m. to 9 p.m. on Easter Sunday, serving the usual comfort food for dine-in, takeout, or delivery.Dunkin’Tim Gray/istockphotoMany Dunkin’ locations will be open, though some may reduce hours for the holiday. It’s a good idea to confirm with your local shop.Golden Corraljetcityimage/istockphotoGolden Corral will be open on Easter Sunday, following their standard hours at most locations.IHOPWolterk/istockphotoIHOP will stay open nationwide, operating with either 24/7 or regular Sunday hours, depending on the branch.Jimmy John’sMay A. / YelpJimmy John’s will be open on Easter Sunday, so you can still grab a sandwich — but it’s a good idea to check with your local store to confirm hours.KFCtupungato/istockphotoKFC will likely be open on Easter Sunday for your fried chicken fix, but since hours can vary, it’s best to check with your local restaurant before you go.McDonald’sjetcityimage/istockphotoMost McDonald’s restaurants will be open on Easter, but hours vary widely depending on the location.Olive GardenBrett_Hondow/istockphotoOlive Garden will be open on Easter Sunday, following their usual Sunday hours. The chain typically only closes on Thanksgiving and Christmas.Red Lobsterjetcityimage/istockphotoRed Lobster plans to open most locations for Easter, though some may limit service to takeout and delivery only.Sonic Drive-InWolterk/istockphotoSonic will be open and operating under normal Sunday hours, with drive-in and carhop service as usual.Starbucksjetcityimage/istockphotoStarbucks locations will be open, but many will have reduced or adjusted hours. Checking the store locator is recommended.SubwayTennesseePhotographer / istockphotoMost Subway restaurants will be open on Easter, though hours depend on the individual franchise. Calling ahead is best.Taco BellJonathan Weiss / shutterstockTaco Bell is expected to open most locations with regular Sunday hours, but there may be some local variations.Texas Roadhousejetcityimage/istockphotoTexas Roadhouse will be open on Easter Sunday, though hours can vary depending on the location.Waffle Housejetcityimage/istockphotoWaffle House remains open 24/7 every day of the year, including Easter Sunday.Wendy’sjetcityimage/istockphotoMost Wendy’s locations will be open on Easter, but store hours can differ. A quick local check is a good idea.Closed on Easter Sunday 2026CBS Mornings / YelpCava — Cava will be closed at all locations for Easter, treating it as a major holiday.Chick-fil-A — Chick-fil-A is always closed on Sundays, and Easter is no exception.Chipotle — All Chipotle locations will be closed on Easter Sunday as part of their standard holiday schedule.Firehouse Subs — Firehouse Subs will be closed for Easter to give employees the day off.Panera Bread — Most, if not all, Panera Bread cafés will be closed on Easter Sunday. A few franchise locations might open, but it’s not common.Raising Cane’s — Raising Cane’s will be closed at all locations in observance of the holiday.More From CheapismErin Kuschner / Cheapism
+"""
+
+[R3] Cracker Barrel is offering a $16 Easter feast that feeds 10 – it’s ready to serve and comes with two pies
+(https://www.the-sun.com/money/16161958/cracker-barrel-heat-serve-easter-meals-order-online/)
+"""
+CRACKER Barrel is bringing back an Easter feast that can feed up to 10 people around the table. The restaurant chain’s Heat n’ Serve Easter meals are designed to be prepared with little fuss in the kitchen, as the chain continues its attempts to rehabilitate its damaged image following its rebrand controversy. Sign up for the Money newsletter Thank you! Cracker Barrel is now taking orders for its Easter Sunday pre-prepared mealsCredit: Cracker Barrel Orders must be placed 24 hours in advance before pickup and can be placed using Cracker Barrel’s online catering serviceCredit: Cracker Barrel Easter diners can get multiple versions of the meals, as well as desserts. The meals are available to pre-order now and can be picked up between Thursday and Sunday. All of the meals are pre-prepared and just need to be heated up before tucking in. Orders must be placed 24 hours in advance before pickup and can be placed using Cracker Barrel‘s online catering service. read more on cracker barrel There are four main Heat n’ Serve meals available, according to USA Today: Easter Ham Heat n’ Serve Feast: spiral-sliced sugar-cured ham, macaroni n’ cheese, carrots, mashed potatoes with gravy, green beans, rolls, apple streusel pie and pecan pie (serves eight to 10). Cost: $169.99 Easter Ham Heat n’ Serve Family Dinner: spiral-sliced sugar-cured ham, macaroni n’ cheese, mashed potatoes with gravy, green beans, sweet yeast rolls (serves four to six). Cost: $114.99 Prime Rib Heat n’ Serve Family Dinner: prime rib, au jus and horseradish, macaroni n’ cheese, mashed potatoes with gravy, green beans, sweet yeast rolls (serves four to six). Cost: $139.99 Easter Ham and Turkey Hot & Ready Family Dinner: Comes ready to serve. Includes turkey with turkey gravy, slices of sugar-cured ham, green beans, macaroni & cheese, mashed potatoes, dinner rolls and pecan pie. (Serves four to six). Cost: $104.99 Cracker Barrel is serving three pies this Easter, including its Apple Streusel Pie for $14.99 and Pecan Pie for $7.99. Diners can also choose a Chocolate Pecan Pie for $7.99. Most read in Money Cracker Barrel has confirmed it will be open for Easter Sunday, going against over a dozen confirmed major retailers and chains. These include Goodwill, Marshalls, Target, Costco, Hobby Lobby, Kohl’s, Aldi and Lowe’s. Retailers closed for Easter Sunday 2026 1. Costco 2. The Container Store 3. Burlington 4. Bob’s Discount Furniture 5. Bloomingdale’s 6. Best Buy 7. Banana Republic 8. Apple 9. True Value 10. T.J. Maxx 11. Staples 12. Sam’s Club 13. Publix 14. Nordstrom 15. Michaels 16. Marshalls 17. Macy’s 18. JCPenney 19. HomeGoods 20. Hobby Lobby 21. Crate & Barrel 22. Ace Hardware 23. Supercuts 24. Target 25. Goodwill 26. Dick’s Sporting Goods 27. Lowe’s Fast food chains including In-N-Out Burger will also close all of their locations for Easter Sunday on April 5. Diners looking to eat at Cracker Barrel should use the online store locator tool to find out the exact hours of their local spot. More information can also be found on the Cracker Barrel website. Cracker Barrel has confirmed it will be open for Easter Sunday, going against over a dozen confirmed major retailers and chainsCredit: SOPA Images/LightRocket via Getty Images Comments
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,112 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "reale actives alix earle"
+
+Claims:
+[1] "Alix Earle has officially launched her debut skincare brand Reale Actives."
+[2] "Reale Actives is focused on acne-prone skin."
+[3] "Reale Actives features four non-stripping dermatologist-backed products."
+[4] "Reale Actives products are launching March 31, 2026."
+[5] "Alix Earle is the founder of Reale Actives."
+[6] "Alix Earle serves as Chief Brand Officer of Reale Actives."
+[7] "Reale Actives will be available to shop on March 31, 2026 at realeactives.com."
+[8] "Reale Actives initial launch includes four products."
+[9] "Reale Actives initial launch includes Mandelic Acid Serum."
+[10] "Mandelic Acid Serum is a breakout-reducing serum."
+[11] "Mandelic Acid Serum costs $39."
+[12] "Reale Actives Moisturizer contains ceramides and hyaluronic acid."
+[13] "Reale Actives Moisturizer costs $36."
+[14] "Reale Actives Cleansing Balm is for removing makeup."
+[15] "Reale Actives Cleansing Balm costs $29."
+[16] "Reale Actives Gel Cleanser is an exfoliating non-stripping cleanser."
+[17] "Reale Actives Gel Cleanser costs $28."
+[18] "Reale Actives was developed after a cryptic "wtfisalixdoing" teaser campaign."
+[19] "Reale Actives was developed with dermatologist Dr. Kiran Mian."
+
+Cited text snippets from the AI Overview (for additional context):
+- Alix Earle Wants to Make Acne "Sexy and Hot": "Caption Options,XL The Original Freckle Pen."
+- EXCLUSIVE: Alix Earle Talks Acne Journey and Creating Reale Actives, Her New Skin Care Brand: "“It's about finding the right,products can be used universally."
+- Alix Earle Talks Acne Journey and Creating Reale Actives, Her New ...: "More from WWD&text=“I actually started with thinking,, Glossier, Kosas and more."
+- Alix Earle Secret 'wtfisalixdoing' Project Revealed: "Published March 24, 2026 8,Alix Earle Hot Shots"
+- We cannot wait to try Alix Earle’s new skincare brand Reale Actives 👏: "The next viral influencer beauty,#alixearle #skincare #influencer"
+Reference Sources:
+
+[R1] EXCLUSIVE: Alix Earle Talks Acne Journey and Creating Reale Actives, Her New Skin Care Brand
+(https://www.yahoo.com/entertainment/celebrity/articles/exclusive-alix-earle-talks-acne-183000940.html)
+"""
+Roughly 400,000 internet denizens were curious enough about Alix Earle‘s newest venture that they followed Earle’s new account, @wtfisalixdoing, over the span of a week.Now, they’re getting an answer.More from WWDEarle is debuting Reale Actives, a skin care brand targeting acne, which debuts directly on its website March 31 with four products: a makeup cleansing balm, an exfoliating gel cleanser, a mandelic acid serum and a barrier boosting moisturizer. They range in price from $28 to $39.Earle found internet fame while she was in school in Miami, and told WWD in an exclusive interview that she always knew entrepreneurship was in the cards for her.“I actually started with thinking I wanted to do makeup,” Earle said. “I was just so invested in making something that would be good for acne-prone skin care. And as we were talking about different things, I only really cared about something that was going to be good for acne-prone skin.”And thus, the megacreator changed course. “It never felt like I could have fun with any products in the acne space. It all felt very clinical, and I just didn’t feel proud to have the products on my counter,” she said. “I also found that the products were very harsh and very stripping.”On the product front, the mandelic serum includes Synactin AC, a proprietary ingredient. “When you have acne, sometimes you just think about the stripping and not so much about the supporting of your skin barrier,” Earle said. “That’s how we got to the first four products that we’re releasing with. I wanted it to be the bare bones of the routine.”Reale Actives is also backed by Imaginary Ventures, which similarly invested early on in Mikayla Nogueira’s POV Beauty. Other investments include Skims, Westman Atelier, Glossier, Kosas and more.“At a high level, we invest in generation-defining brands,” said partner Kelly Dill. “This is about the founder, the opportunity and the founder-market fit. [Earle] has built a true community and authentic relationships with her audience through sharing her own skin journey, and that guided us in this opportunity.”Dill continued that Earle and chief executive officer Andrea Blieden are in the process of building out the team and product road map.“When I started, Alix had already picked the VC, they had already established the relationship with Dr. Kiran Mian, who is our consulting dermatologist on the brand,” Blieden said. “We built the team, and it’s a lean team, but we quickly established a team of experts to bring this brand to launch.”Blieden acknowledged that acne is a crowded category, and counterintuitively, that’s where she sees opportunity. “No one is doing acne skin care the way that Reale Actives does, which is about simplification,” Blieden said. “It’s about finding the right ingredients, and having a founder like Alix whose experience includes hundreds of products over the years, she already knew what was clearing up, what wasn’t, and had road-tested so many. We knew we needed to bring in different ingredient mixes, but also really think about acne in a different way.”From a design perspective, the packaging is “meant to be out in your bathroom,” said Blieden. “They’re designed to be out in life and creating a brand that was confident and sexy through our launch imagery — that’s where you’ll see the brand take shape in a totally different way.”Earle will be featured in the main launch campaign, and also serves as the chief brand officer. “This is her brain child and it’s something she’s always wanted to do. In the coming years, you could see us leveraging other faces, whether it’s people in Alix’s world, whether it’s people that just are culturally relevant, but I would say we will always try to remain true to the brand,” Blieden said.The plan is to stick with acne-related needs, although the idea is that the products can be used universally. “These are still ingredients that are so important for everyone’s skin and the health of everyone’s skin, and if we take the stance of acne first, I think that naturally you’re hitting a much broader demographic,” said Blieden. “Alix’s skin is an evolving journey, there’s not a one-size-fits-all approach to overcoming acne, and so it’s making sure that we have those ingredients that are going to be great for when you’re not breaking out.”Earle has products planned through 2028 at launch, she said. “There will be new things that stem from either things I really love or things I’m interested in, but also frustrations I could never find solutions for,” Earle said. “Finding those gaps is important for creating products and will be one of those things we’re launching in the fall. It’s just a concern I could never find a product for. I want to push this brand to think outside of the box, and find fun, different ways to bring these products to consumers.”Best of WWDSign up for WWD's Newsletter. For the latest news, follow us on Facebook, Twitter, and Instagram.
+"""
+
+[R2] EXCLUSIVE: Alix Earle Talks Acne Journey and Creating Reale Actives, Her New Skin Care Brand
+(https://wwd.com/beauty-industry-news/skin-care/alix-earle-acne-reale-actives-skin-care-1238687290/)
+"""
+Roughly 400,000 internet denizens were curious enough about Alix Earle‘s newest venture that they followed Earle’s new account, @wtfisalixdoing, over the span of a week. Now, they’re getting an answer. Earle is debuting Reale Actives, a skin care brand targeting acne, which debuts directly on its website March 31 with four products: a makeup cleansing balm, an exfoliating gel cleanser, a mandelic acid serum and a barrier boosting moisturizer. They range in price from $28 to $39. Related Articles Earle found internet fame while she was in school in Miami, and told WWD in an exclusive interview that she always knew entrepreneurship was in the cards for her. “I actually started with thinking I wanted to do makeup,” Earle said. “I was just so invested in making something that would be good for acne-prone skin care. And as we were talking about different things, I only really cared about something that was going to be good for acne-prone skin.” And thus, the megacreator changed course. “It never felt like I could have fun with any products in the acne space. It all felt very clinical, and I just didn’t feel proud to have the products on my counter,” she said. “I also found that the products were very harsh and very stripping.” On the product front, the mandelic serum includes Synactin AC, a proprietary ingredient. “When you have acne, sometimes you just think about the stripping and not so much about the supporting of your skin barrier,” Earle said. “That’s how we got to the first four products that we’re releasing with. I wanted it to be the bare bones of the routine.” Reale Actives is also backed by Imaginary Ventures, which similarly invested early on in Mikayla Nogueira’s POV Beauty. Other investments include Skims, Westman Atelier, Glossier, Kosas and more. “At a high level, we invest in generation-defining brands,” said partner Kelly Dill. “This is about the founder, the opportunity and the founder-market fit. [Earle] has built a true community and authentic relationships with her audience through sharing her own skin journey, and that guided us in this opportunity.” Dill continued that Earle and chief executive officer Andrea Blieden are in the process of building out the team and product road map. “When I started, Alix had already picked the VC, they had already established the relationship with Dr. Kiran Mian, who is our consulting dermatologist on the brand,” Blieden said. “We built the team, and it’s a lean team, but we quickly established a team of experts to bring this brand to launch.” Blieden acknowledged that acne is a crowded category, and counterintuitively, that’s where she sees opportunity. “No one is doing acne skin care the way that Reale Actives does, which is about simplification,” Blieden said. “It’s about finding the right ingredients, and having a founder like Alix whose experience includes hundreds of products over the years, she already knew what was clearing up, what wasn’t, and had road-tested so many. We knew we needed to bring in different ingredient mixes, but also really think about acne in a different way.” From a design perspective, the packaging is “meant to be out in your bathroom,” said Blieden. “They’re designed to be out in life and creating a brand that was confident and sexy through our launch imagery — that’s where you’ll see the brand take shape in a totally different way.” Earle will be featured in the main launch campaign, and also serves as the chief brand officer. “This is her brain child and it’s something she’s always wanted to do. In the coming years, you could see us leveraging other faces, whether it’s people in Alix’s world, whether it’s people that just are culturally relevant, but I would say we will always try to remain true to the brand,” Blieden said. The plan is to stick with acne-related needs, although the idea is that the products can be used universally. “These are still ingredients that are so important for everyone’s skin and the health of everyone’s skin, and if we take the stance of acne first, I think that naturally you’re hitting a much broader demographic,” said Blieden. “Alix’s skin is an evolving journey, there’s not a one-size-fits-all approach to overcoming acne, and so it’s making sure that we have those ingredients that are going to be great for when you’re not breaking out.” Earle has products planned through 2028 at launch, she said. “There will be new things that stem from either things I really love or things I’m interested in, but also frustrations I could never find solutions for,” Earle said. “Finding those gaps is important for creating products and will be one of those things we’re launching in the fall. It’s just a concern I could never find a product for. I want to push this brand to think outside of the box, and find fun, different ways to bring these products to consumers.”
+"""
+
+[R3] Alix Earle Secret 'wtfisalixdoing' Project Revealed
+(https://www.tmz.com/2026/03/24/alix-earles-new-brand-is-skincare-line-reale-actives/)
+"""
+Alix Earle Now We Know 'WTF' She's Launching!!! Published March 24, 2026 8:54 AM PDT | Updated March 24, 2026 1:41 PM PDT 1:37 PM PT -- Alix Earle has officially announced her new skincare line. Alix Earle has been laying out puzzle pieces -- literally -- as to what her new brand is going to be after launching a mysterious account called "wtfisalixdoing" on social media ... and what she's doing is releasing a skincare line called Reale Actives, TMZ has learned. According to trademark filings obtained by TMZ, the TikTok star is locking in the name for a beauty brand centered on skincare -- personalized by scrambling her last name -- signaling a major move into the cosmetics space. The trademark points to a range of skincare products, suggesting this isn’t just a one-off drop, but a full-on brand play ... including "non-medicated and medicated skin care preparations." Alix had fans scratching their heads for days with the cryptic account -- posting random content that didn’t seem to add up quite just yet -- but it now looks like it was all part of a calculated tease leading up to the reveal. The move tracks for Alix, as she first blew up online by being brutally honest about her skin journey, showing fans it’s okay to go bare-faced through breakouts, and even documenting her experience with Accutane, an acne-fighting medication. Bottom line ... the mystery has been unveiled!
+"""
+
+[R4] Alix Earle Wants to Make Acne "Sexy and Hot" | Reale Actives Skin-Care Launch Details
+(https://www.allure.com/story/alix-earle-reale-actives-acne-skin-care-launch-interview)
+"""
+All products featured on Allure are independently selected by our editors. However, we may receive compensation from retailers and/or from purchases of products through these links.If you spend time on a certain Get Ready With Me video-filled corner of the Internet, you already know Alix Earle is up to something: She's been posting cryptic content on an account called @wtfisalixdoing and sending mysterious mailers to fellow content creators. Earlier this week, online sleuths discovered Earle had trademarked “Reale Actives,” and now, the cat is officially out of the bag: Reale Actives is, in fact, an acne-first skin-care line being launched by the mega-influencer.Not to brag, but we're really good at keeping secrets: Earle sat down with Allure at the end of last year to discuss the launch, which she told us she's been working on for about two years. "When I graduated college I knew I wanted to start a company... I played around with a few other ideas, but at the end of the day, all I kept coming back to was acne," says Earle.Get the Skin Check NewsletterAn insider's guide to all things skin care. We got you covered.Longtime followers know why: For the five or so years she's been in the spotlight, Earle has always been open about what she calls her “struggles” with cystic acne. “I felt like I was always using the same type of ingredients or super, super harsh products because all I wanted to do was exfoliate,” says Earle. “I thought that would help my [acne].”Those products weren't easy on the eyes, either: They were, says Earle, more suited for the back corner of a bathroom cabinet than a shelfie. “They were all white bottles with black fonts,” says Earle. “I always felt a little bored… I'm really excited to make acne sexy and hot."The four products in the Reale Actives debut lineup—available to shop on March 31—are packaged in sleek silver and mint. And what's inside them is the brainchild of Earle and her dermatologist of several years, Dr. Kiran Mian. A mandelic acid serum priced at $39 is the breakout-reducing workhorse of the line; a ceramide- and hyaluronic acid-packed moisturizer ($36), makeup-removing cleansing balm ($29), and exfoliating gel cleanser ($28) round out the collection.The debut Reale Actives lineup (available March 31) includes, from left, a cleansing balm, gel cleanser, mandelic acid serum, and moisturizer. The products will join Earle's regular beauty rotation, which she tells us also currently includes Charlotte Tilbury Airbrush Flawless Setting Powder, Westman Atelier Sun Tone Bronzing Drops, and FRECK XL The Original Freckle Pen. Keep a close eye on Allure's Instagram for the rest of her favorites in a video dropping tomorrow where you'll also get a first look at Raele Actives in action, as demonstrated by Earle.Read more about acne:3 Types of Acne Scars and How To Treat ThemI Thought It Was Acne. Turns Out, It Was Lupus.The Pimple-Popping Triangle of Death Sounds Made Up. It Isn’t.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

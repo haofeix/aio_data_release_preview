@@ -1,0 +1,94 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "school closings and delays today"
+
+Claims:
+[1] "The latest reports are for Wednesday, March 18, 2026."
+[2] "Highland County Schools in Virginia are operating on a 2-hour delay."
+
+Cited text snippets from the AI Overview (for additional context):
+- School Status Alerts - Arlington Public Schools: "All schools will dismiss two,excess of the allotted days.&text=Your browser can't play this video.&text=An error occurred.,is disabled in your browser."
+- Closings - Harrisonburg: "Table_title: Closings Table_content: header: | Organization |,Wednesday 2 Hours | Type: School |"
+- School Closures and Delays - King George County Schools: "Two-Hour Delay * Students should be at,and the building may still be closed."
+- Weather Delays & Closings - Frederick County Public Schools: "Early Dismissal When schools close,about our Emergency Lunches Protocol."
+Reference Sources:
+
+[R1] Closings
+(https://www.whsv.com/weather/closings/)
+"""
+Customize OptionsYour PrivacyStrictly Necessary CookiesMarketing CookiesYour PrivacyWhen you visit our website, we store cookies on your browser to collect information. The information collected might relate to you, your preferences or your device, and is mostly used to make the site work as you expect it to and to provide a more personalized web experience. However, you can choose not to allow certain types of cookies, which may impact your experience of the site and the services we are able to offer. Click on the different category headings to find out more and change our default settings according to your preference. You cannot opt-out of our First Party Strictly Necessary Cookies as they are deployed in order to ensure the proper functioning of our website (such as prompting the cookie banner and remembering your settings, to log into your account, to redirect you when you log out, etc.). For more information about the First and Third Party Cookies used please follow this link. More informationStrictly Necessary CookiesThese cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work. These cookies do not store any personally identifiable information.Marketing Cookies Marketing Cookies Third party trackers collect information used for analytics and to personalize your experience with targeted ads. Under the Virginia Consumer Data Protection Act, you have the right to opt-out of the sale of your personal data to third parties. You also have the right to opt out of targeted advertising related processing. You may exercise your right to opt out of the sale of personal data and targeted advertising by using this toggle. If you opt out, we will not be able to offer you personalized ads and we will stop sharing your personal information with third parties. Additionally, you may contact our legal department for further clarification about your rights as a Virginia consumer by using this Exercise My Rights link.Targeting CookiesThese cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. They do not store directly personal information, but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising.Cookie ListConsent Leg.Interest checkbox label label checkbox label label checkbox label label
+"""
+
+[R2] School Closures and Delays - King George County Schools
+(https://www.kgcs.k12.va.us/families/school-closures-and-delays)
+"""
+When bad weather is expected, KGCS works closely with local emergency services and police. We evaluate road conditions, check school campuses, and review weather reports. A decision to delay or close schools is made as early as possible. When making these decisions, student and staff safety is our top priority. We carefully review road conditions reported by our Transportation team, monitor forecasts, consult with the Sheriff’s Office and VDOT, and consider the safety of student drivers. Our goal is to make the best possible decision for everyone in the county. Whenever possible, we make these decisions early to give families time to plan. Please note that no announcements will be made when schools are operating on a normal schedule. Once a decision is made, we notify: Local radio and TV stations The school division’s website and social media pages The mass communication system (School Messenger) – phone, email, and text message Safety Comes First Our goal is to keep students and staff safe. Thank you for working with us to make sure everyone stays safe during severe weather! Two-Hour Delay Students should be at the bus stop two hours later than usual. Students dropped off by family should arrive two hours later than normal. Early arrivals may be unsafe since staff may not be available to provide supervision, and the building may still be closed. Early Dismissals If schools close early due to an emergency, families should have a plan in place. Weather Codes Closed Code 1- All schools and facilities are closed. No employees are to report. Closed Code 2- All schools are closed for students. 12 month employees are to report 2 hours after normal start time or as directed by their supervisor. Employees may use leave as an alternative to reporting. Closed Code 3- All schools are closed for students. Essential employees report as directed by supervisors.
+"""
+
+[R3] Weather Delays & Closings
+(https://www.fcps.org/families_students/weather_delays_closings)
+"""
+Occasionally, inclement weather and other safety or health conditions require FCPS to close, delay opening or dismiss early. Closing and delay decisions involve careful evaluation of a variety of ­factors in a short time ­period. Whenever possible, decisions are made by 5 a.m. for morning closings and delays (with communications by 5:30 a.m. posted on the web, FCPS TV channel 18, and SchoolMessenger) and by 10 a.m. for early closings, announced soon after. Notification on other media's stations may be later; always check to see that the reference on other media is to FCPS MARYLAND, as there is also a Frederick County Public Schools district in Virginia! Because weather can change quickly and forecasts aren't always certain, it's rarely possible to determine delays or closings the night before. But we always make the decision as soon as we can be sure of the weather and travel conditions, and we begin communicating the decision right away. FCPS doesn't usually announce that schools are open or operating on schedule, only that they are closed, delayed or dismissing early. If we haven't announced otherwise, schools are open on time. Regardless of what FCPS decides, if you believe weather conditions are hazardous or unsafe, you have the right to keep your child home from school. Student absences because of hazardous weather conditions are lawful and excused. How to Find Out FCPS notifies about 30 local and regional TV and radio stations plus our own media outlets about systemwide school delays and closings. It is not possible to guarantee that the news media will announce this information promptly or accurately. For the fastest, most reliable information, check the ­following: www.fcps.org Social Media: FCPS on X, FCPS on Facebook, and FCPS Informando on Facebook School Messenger Email/Text Messages. Interested in receiving messages? You can sign up here. FCPS TV: Comcast Channel 18 (Frederick area) and via FCPS-TV online Note: FCPS social media and fcps.org are usually the fastest ways to get emergency notices. Email and text notices can take longer because of the volume of messages that require acceptance from a wide variety of Internet Service Providers. All emergency notices come from FCPS Public Affairs Department. Emergencies include schools closing due to weather, power outages or the like. SMS text messages are sent only when schools are unexpectedly closing. [Public Affairs does not typically send immediate email about lockdowns, most of which are precautionary and brief.] Plan Back-up Care For safety reasons, pre-arrange emergency back-up care for your child in the event that schools close unexpectedly. Teach your child what to do in case you are not at home when school closes, and provide the school with the name and number of someone nearby who is usually available when you are not at home. On Non-School Days When the Snow Emergency Plan is in effect in Frederick County on non-school days, all FCPS programs and activities are canceled. Monitor local radio stations for Snow Emergency Plan status or visit the Maryland Department of Transportation website. Half-Day PreKindergarten Schedule* On days when school opens 2 hours late, morning and afternoon half-day pre-k* students attend 1½-hour sessions. Breakfast is served in morning classes, which start 2 hours late and dismiss 1 hour later than usual. Afternoon classes start 1 hour late and dismiss at the regular time. Career & Technology Center When schools countywide open 2 hours late for inclement weather, morning CTC classes start 2 hours late and dismiss about 1 hour later than usual. Afternoon sessions start 40 minutes later than usual and dismiss at the regular time. Early Dismissal When schools close 2 hours early due to inclement weather, morning half-day pre-k* students remain at school for dismissal with full-day students. Lunches are served. Afternoon half-day pre-k* and CTC programs are canceled; CTC students remain at their home schools. Flexible Evening HS and Heather Ridge Twilight programs are canceled. When schools close 3 to 3.5 hours early due to inclement weather, morning half-day pre-k* students remain at school for dismissal with full-day students, morning CTC students follow normal schedules, afternoon pre-k*, CTC, Flexible Evening HS and Heather Ridge Twilight programs are canceled. After-School and Weekend Activities Generally, when schools are closed due to inclement weather, school-sponsored after-school and evening activities are canceled or postponed. On non-school days when the Snow Emergency Plan is in effect in Frederick County, all FCPS programs and activities are canceled or postponed. To find out if the plan is in effect, please monitor local radio stations or visit the Maryland Department of Transportation website. Lunches When Schools Are Closed 3 Days in a Row During inclement weather events some of our students lack access to meals. Read more about our Emergency Lunches Protocol. Resources How FCPS Decides to Cancel, Delay or Dismiss School Early Snow Emergency Information Flier: In the event of bad weather or emergency situation Regulation 401-02, Emergency Closures * PreK references do not apply to charter schools.
+"""
+
+[R4] School Status Alerts - Arlington Public Schools
+(https://www.apsva.us/health-safety/emergency-alerts/)
+"""
+There are no alerts at this time. All schools and programs are at their normal operational status. For updates about Pool Operations, go to www.apsva.us/aquatics. For information about Arlington County programs and operations go to www.arlingtonva.us. In general, APS will only post/send messages if there is a change in normal operating status. For situations where everything is open/operating on a normal schedule, we usually will not send or post notifications. The first 12 inclement weather days at the elementary level and the first 15 inclement weather days at the secondary level will be treated as traditional “snow days.” These days may occur consecutively as part of a single major event or at different times during isolated weather events. APS will revert to distance learning for days in excess of the allotted days. Ver en español View plain text version Español | Монгол | አማርኛ | العربية View plain text version Español | Монгол | አማርኛ | العربية Find out more in the Frequently Asked Questions RESOURCES Plan for Make-Up Days – outlined in the Arlington Public Schools Handbook, available on our Handbook page Arlington County Government Winter Weather Closings/Delays Arlington County Department of Parks and Recreation (DPR) Closing Policy — specifies when DPR programs and activities will be canceled, delayed or postponed depending on the actions of the County Government and Arlington County Public Schools Arlington County Government Snow Removal Information Arlington County Government Alert System (Arlington Alert does not provide notification of school closing or delays and is maintained by Arlington County Government as an emergency notification system for residents of Arlington County.)
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

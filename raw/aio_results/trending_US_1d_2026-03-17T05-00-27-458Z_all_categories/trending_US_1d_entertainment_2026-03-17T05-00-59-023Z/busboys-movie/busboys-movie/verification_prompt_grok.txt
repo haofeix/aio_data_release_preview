@@ -1,0 +1,99 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "busboys movie"
+
+Claims:
+[1] "Busboys is a comedy film."
+[2] "Busboys was written by David Spade and Theo Von."
+[3] "Busboys was directed by Jonah Feingold."
+[4] "Busboys is scheduled for release on April 17, 2026."
+[5] "Busboys follows two friends in a border town who wrongly believe that becoming waiters will solve all their life problems."
+[6] "Busboys features Chris Elliott."
+[7] "Busboys features Charlotte McKinney."
+[8] "This video shows David Spade discussing the making of Busboys."
+
+Cited text snippets from the AI Overview (for additional context):
+- Busboys Movie Tickets and Showtimes Near Me - Regal: "Watch-,Busboys,they aren't entirely right."
+- Busboys Showtimes & Tickets Near You ​ - Cinemark Theatres: "A couple of border town,Comedy"
+- Busboys - Full cast & crew - IMDb: "Other cast members include: * **Charlotte McKinney**,written by David Spade and Theo Von."
+Reference Sources:
+
+[R1] Film Preview: The Bus Boy — WINERY REFLECTIONS
+(https://wineryreflections.com/featureoftheweek/thebusboy)
+"""
+No results found. Menu View fullsize Attitude is everything - just ask Bobby Stuckey. Over the course of his distinguished career in hospitality Bobby has accomplished nearly anything a service professional could dream of, from passing the Master Sommelier exam to winning multiple James Beard awards and even opening his very own restaurants, and he has done it all with a smile on his face despite oft-arduous circumstances. The Bus Boy, a short film directed by Andrew Ackerman, examines the life and career of Bobby Stuckey from his time as a punk rock teenage bus boy to his ascent in becoming an accomplished restaurateur and one of the world's most influential sommeliers. This positive, engaging, feel-good picture is an anthem for underdogs everywhere, cheerfully proving through Bobby's incredible life story that unrelenting drive and a can-do attitude are keys to success for even the most unlikely of heroes. Whether it is gourmet dining, fine wine, or simply a fascinating narrative that tickles your fancy, be sure to catch this charming and thoroughly captivating short film on Somm TV. View fullsize View fullsize Comments (0) Newest First Oldest First Newest First Most Liked Least Liked Preview Post Comment… Looking for something?
+"""
+
+[R2] Busboys Showtimes & Tickets Near You ​
+(https://www.cinemark.com/movies/busboys)
+"""
+Skip to Main Content Scan at the box office and concession stand to earn points and unlock rewards and use your Movie Club credits. 0 Trailer dialog Play Trailer Advance Tickets Busboys Add to Watch List Rating R Runtime 1 hr 33 min Add to Watch List Release Date April 17, 2026 Genre Comedy A couple of border town friends think waiting tables will fix everything, but they're mistaken. ERROR Read More Show Less A couple of border town friends think waiting tables will fix everything, but they're mistaken. More Info Hide Info Release Date April 17, 2026 Genre Comedy Showtimes Near Location pin icon Location pin icon Set Location Search by ZIP Code Cancel Search Showtimes Today Previous Next Find Showtimes Near You Find showtimes near your location. Your web browser is blocking location sharing. Please enable location sharing or search by ZIP code. Find showtimes near a ZIP Code. Clear form field Get email updates about movies, rewards and more! Subscribe to our emails Subscribe to our emails Get email updates about movies, rewards and more! Email Address Warning icon I have read and agree to the Terms & Conditions and Privacy Policy. Your Browser Location May Be Disabled Allow Cinemark to get your location by enabling location services in your browser settings. Terms & Conditions Privacy Policy Frequently Asked Questions Cinemark uses cookies on this website. Some cookies share information with third parties and may be a "sale" under California law. You can learn more about cookies in our Privacy Policy, or Opt-Out of them×
+"""
+
+[R3] Busboys (2026) - Full cast & crew - IMDb
+(https://www.imdb.com/title/tt34705112/fullcredits/)
+"""
+Jump toEditSee agents for this cast & crew on IMDbProDirectorEditJonah FeingoldJonah FeingoldWritersEdit(in alphabetical order)David SpadeDavid Spadeco-writerTheo VonTheo Vonco-writerCastEditDavid SpadeDavid SpadeMarkie MontgomeryTheo VonTheo VonSteefen 'Steef' BarnJimmy GonzalesJimmy GonzalesMurderballLeah McKendrickLeah McKendrickRominaArturo Del PuertoArturo Del PuertoGregorMichelle OrtizMichelle OrtizAprilTim DillonTim DillonManager TimVanessa GonzalesVanessa GonzalesGingerTiago MartinezTiago MartinezOscarLindsey NormingtonLindsey NormingtonJuneJavier B. SuarezJavier B. SuarezSenor SenorChristian Gnecco QuinteroChristian Gnecco QuinteroRickBardia SalimiBardia SalimiTallyCarlo RotaCarlo RotaBoydNate DiazNate DiazHector PeligrosoChris AvilaChris AvilaSlimJay PharoahJay PharoahCrackhead DEA AgentBlythe HowardBlythe HowardDEA TwoSky BriSky BriDTF Agent OneAmanda TrivizasAmanda TrivizasDTF Agent TwoBrent MorinBrent MorinDOT AgentWoody FuWoody FuAssistant AgentBreckin MeyerBreckin MeyerDHS AgentJessica Michelle SingletonJessica Michelle SingletonTrashy MotherTim BaderTim BaderTrashy FatherKam PattersonKam PattersonRayVan EppersonVan EppersonPriestKirk FoxKirk FoxRockyFrankie RayFrankie RayAsshole PassengerTom Farley Jr.Tom Farley Jr.P.E. TeacherSusan BergerSusan BergerMrs. HonzalezMark RoweMark RoweMr. GodneyCaleb QuintoCaleb QuintoRandom KidAlexandra RozdilskyAlexandra RozdilskyRandom Kid 2Matthew SigginsMatthew SigginsRandom Kid 3Laura LouiseLaura LouiseRefills WaiterMac JarmanMac JarmanGinger StudentJade KaiserJade KaiserEmployeeSteve LittleSteve LittleWhitey(as Stephen James Little)Gavin WarrenGavin WarrenYoung SteefRobert AmicoRobert AmicoHot Plate WaiterInessa FrantowskiInessa FrantowskiWaitressLibbie HigginsLibbie HigginsBrendaNico BucherNico BucherRondaBobby LeeBobby LeeSamuelDebra DiGiovanniDebra DiGiovanniFrumpy TeacherCharlotte McKinneyCharlotte McKinneyPamTrevor WallaceTrevor WallaceTerryPatrick SandersonPatrick SandersonAttractive WaiterCasey RocketCasey RocketWaiter TwoWilliam MontgomeryWilliam MontgomeryAlbieMyles PerezMyles PerezVictorChris ElliottChris ElliottTroyMark Boone JuniorMark Boone JuniorPadre NocheMobin KhanMobin KhanIndian DoctorAudrey LindenAudrey LindenHall Pass TeacherJoey RomaineJoey RomaineBolo Tie GuyJean EvansJean EvansBlonde Bus GirlOxana PefanisOxana PefanisCocaine GirlOther castKyle BurnettKyle BurnettWaiter(uncredited)Koa CohenKoa CohenClassmate(uncredited)Adrian DevAdrian DevCowboy bistro patron(uncredited)Emeterio JR LozoyaEmeterio JR LozoyaMexican Guy Dishwasher with Sombrero(uncredited)Laura MarieLaura MarieBottle Girl(uncredited)Lauren NorchLauren NorchWaiter(uncredited)Thomas SpaeterThomas SpaeterDiner patron(uncredited)Tayla StevensonTayla StevensonWaiter(uncredited)Jennifer WoodsJennifer WoodsDiner(uncredited)Michael Eshaun YorkMichael Eshaun YorkSchool Kid(uncredited)ProducersEditRobert Ogden BarnumRobert Ogden Barnumproduced byCharles Arthur BergCharles Arthur Bergline producerEzra CoopersteinEzra Coopersteinproduced bySam FriedmanSam Friedmanassociate producerLucas JarachLucas Jarachexecutive producerDavid SpadeDavid Spadeproduced byTheo VonTheo Vonproduced byComposersEditChad CourneyaChad Courneyamusic byHari DafusiaHari Dafusiamusic byCinematographerEditJeff Leeds CohnJeff Leeds Cohndirector of photographyEditorEditNathan FloodyNathan FloodyCasting DirectorEditNeely EisensteinNeely EisensteinProduction DesignerEditJenn McLarenJenn McLarenArt DirectorEditAnya SanerAnya Sanerart directorSet DecoratorEditJanna LingJanna LingCostume DesignerEditMolly MitchellMolly MitchellMakeup DepartmentEditCarmela ArguetaCarmela Arguetamake-up artistGladys AyvarGladys AyvarhairDenise CejudoDenise CejudoHair Department HeadStefania KosztiStefania Kosztimakeup department headProduction ManagementEditCindy TruongCindy TruongProduction CoordinatorSecond Unit Directors or Assistant DirectorsEditDavid BuchwaldDavid Buchwaldsecond assistant directorJeremy GilbreathJeremy Gilbreathsplinter unit assistant directorJavier MontoyaJavier Montoyasecond second assistant directorPaul SilverPaul Silverfirst assistant directorArt DepartmentEditWill CragoeWill Cragoeswing gangSandy FlorianSandy FlorianbuyerMaximo HueteMaximo Hueteswing gangEvelyn JimenezEvelyn Jimenezswing gangKevin LopezKevin Lopezswing gangDaniel OregelDaniel Oregelswing gangJacob PillotJacob Pillotswing gangMarko PrelicMarko Prelicswing gangAnastasia ServgeevaAnastasia ServgeevapainterJeremy SteckerJeremy Steckerconstruction coordinatorSound DepartmentEditFrank FussaFrank Fussasound editorOliver PerkovOliver Perkovsound mixerSpeed RatliffSpeed Ratliffboom operatorVisual EffectsEditMatthew GardockiMatthew Gardockivisual effects supervisorStuntsEditKristian LambertKristian Lambertstunt performerJames LewJames Lewstunt performerFrankie RayFrankie Raystunt performerBrandon ReissBrandon Reissstunt performerKara Amanda SmithKara Amanda SmithstuntsBooboo StewartBooboo StewartstuntsNils Allen StewartNils Allen StewartstuntsChris TorresChris Torresstunt driverCamera and Electrical DepartmentEditKyle AllinsonKyle Allinsonset lighting technicianSophie BruzaSophie Bruzab camera operatorJo ChoiJo Choicamera operator: "b" cameraJake CondonJake Condonbest boy gripRamone DeShawnRamone DeShawna camera 2nd assistant cameraHope FeltHope Feltset lighting technicianMac FiskenMac Fiskensplinter unit: director of photographyVahagan GukasyanVahagan Gukasyanset lighting technicianIsaac HanIsaac Hanset lighting technicianConnor LambertConnor Lambertfirst assistant b cameraCasting DepartmentEditTerence HarrisTerence Harrisbackground castingDarren ShepherdDarren Shepherdcasting associate: Talent Coordinator (as Darren Benjamin Shepherd)Costume and Wardrobe DepartmentEditUrsula BergUrsula BergcostumerRebecca CarrRebecca CarrcostumerLisa CatalinaLisa Catalinacostume supervisorRachel GradyRachel Gradyset costumerSarah SmurthwaiteSarah SmurthwaitecostumerRamsay WilliamsRamsay WilliamscostumerLocation ManagementEditLuke LakinLuke Lakinlocation managerMusic DepartmentEditChad CourneyaChad Courneyamusic editor / music supervisorHari DafusiaHari Dafusiamusic producerScotty TaylorScotty Taylormusic supervisorScript and Continuity DepartmentEditIlise McGrawIlise McGrawscript supervisorTransportation DepartmentEditJulius M. FletcherJulius M. Fletchertransportation captainCraft ServicesEditCatherine OlazabalCatherine Olazabalcraft serviceIntimacy CoordinationEditOlivia KuOlivia Kuintimacy coordinatorLegalEditCathleen GirdnerCathleen GirdnerclearancesCarissa KnolCarissa Knolproduction attorneyDurrana SubatDurrana Subatproduction attorneyProduction DepartmentEditMartin CarbonellaMartin Carbonellaproduction assistantEric FoberEric Foberproduction assistantDeedee KennerDeedee Kennerproduction assistantJared LandisJared Landiskey production assistantChelsea MoserChelsea Moserkey set production assistantJaryn PierceJaryn Pierceproduction assistantKevin PrescottKevin Prescottproduction assistantWalter SpohnWalter Spohnproduction assistantKelly ThompsonKelly Thompsonproduction assistantAlexander TruongAlexander Truongproduction assistantProperty DepartmentEditShannon KempShannon KemparmorerAdditional CrewEditAdam EgatAdam Egatcreative consultantSam KlineSam Klinestudio teacherHeather SantoroHeather Santoroassistant to david spadeContribute to this pageSuggest an edit or add missing contentLearn more about contributingEdit pageMore from this title
+"""
+
+[R4] Busboys Movie Tickets and Showtimes Near Me | Regal
+(https://www.regmovies.com/movies/busboys-ho00021178)
+"""
+Skip to content1HR 33MINSBusboysWatchShowtimesDetailsNearby Theatres...All Formats...BusboysToday22Thu23Fri24Sat25Sun26Mon27Tue28Wed29Thu30May1Sat2Select DayRELEASE DATEApril 17, 2026Running time1HR 33MINSSynopsisA pair of idiot friends believe that if they become waiters, all of their problems will be solved. They aren't entirely wrong, but they aren't entirely right.DirectorJonah FeingoldCastDavid Spade, Bobby Lee, Theo Von, Tim DillonGenreComedyage restrictionsNot rated.showing in2DChoose your locationCity Name, State, ZipcodeBackUse Current Location This website uses cookies and similar technologies that track where users come from and go over time and across websites to enhance user experience and to analyze performance and traffic on our website. We also share information about use of our site and the video or other content you view with social media, advertising and analytics partners. By clicking accept cookies below, you agree to this. You can change your preferences by clicking “Do not sell or share my personal information or by clicking Reject All.Do Not Sell or Share My Personal InformationReject All Accept Cookies
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

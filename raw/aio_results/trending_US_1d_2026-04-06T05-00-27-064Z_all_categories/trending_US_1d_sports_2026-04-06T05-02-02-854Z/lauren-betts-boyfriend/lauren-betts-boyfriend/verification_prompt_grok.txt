@@ -1,0 +1,84 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "lauren betts boyfriend"
+
+Claims:
+[1] "As of April 2026, Lauren Betts is single."
+[2] "As of April 2026, Lauren Betts is not publicly dating anyone."
+[3] "Lauren Betts is a UCLA basketball standout."
+[4] "Lauren Betts's social media avoids personal or romantic content."
+[5] "There are no public records or confirmations of a partner for Lauren Betts."
+[6] "Lauren Betts has a sister named Sienna."
+[7] "Kiki Rice is a teammate of Lauren Betts."
+[8] "There was a search result mentioning Kiki Rice with a partner."
+[9] "The search result did not mention Lauren Betts."
+
+Cited text snippets from the AI Overview (for additional context):
+- Lauren Betts Boyfriend: Does the UCLA standout have a partner?: "The latest information about her personal status&text=For those curious googling for,championship in nearly 50 years."
+- Lauren Betts in awe as Kiki Rice shares moments from ESPY ...: "Lauren Betts in awe as,and NBA Champ Cason Wallace"
+- The Betts sisters are National Champions! @laurenmariebetts ...: "Big sis loves it 😆,championship win last night 🙌"
+- Lauren Betts Dating Life: Does the UCLA Star Have ... - Threads: "USA TODAY Studio IX (@,2026 at 11:12 AM"
+- Lauren Betts on UCLA's growth & spreading mental health ...: "UCLA's Lauren Betts joins Michael Eaves and,Bruins' growth since last year's Final Four,"
+Reference Sources:
+
+[R1] Lauren Betts Boyfriend: Does the UCLA standout have a partner?
+(https://www.marca.com/en/ncaa/2026/03/31/69cbc240268e3ee9358b45dc.html)
+"""
+One of the most impressive people that compose the 2026 NCAA Tournament is without a doubt Lauren Betts, the 6-foot-7 UCLA senior center that has become the focal point of the Bruins' offense. After recently dominating the Sacramento 2 Regional with a 23-point, 10-rebound performance to lead her team back to a second consecutive Final Four, she is considered one of the most interesting individuals in the league.To watch this video, agree to share video information with third partiesAgree|More infoBut as the "best collegiate post player in America" continues to rewrite the record books, fans have naturally become curious about the person behind the stats and the people surrounding her. Specifically, many are wondering how she is doing romantically.The latest information about her personal statusFor those curious googling for "Lauren Betts' boyfriend," the results remain as quiet as the away crowd in Pauley Pavilion. The truth is, Lauren Betts is currently single and has chosen to keep her personal life entirely private.Despite her important status and a combined social media following that reaches thousands of fans, the two-time All-American has never publicly confirmed a romantic partner. Her digital presence is a masterclass in professional branding, avoiding any content that could give any clue about her personal and romantic life.The lack of a public special someone is not an accident. It is a reflection of her current priorities. Sources close to the program note that Betts is fully focused on her ultimate goal: delivering UCLA its first national championship in nearly 50 years.A triumphant personal journeyTo understand why Lauren Betts keeps her private life guarded, one only needs to look at her recent Players' Tribune piece, "I want to be here." In it, she candidly discussed the pressures of elite athletics and her previous struggles with depression.By being an active and loyal promoter of the mental health and self-growth care over the past two years, Betts has reached a level of maturity that many of her peers admire. "I've healed so much since my sophomore year," she told reporters recently. This inner peace has allowed her to focus on being a leader for a veteran roster that is now just two wins away from history. So no, looking for a partner is not even her plan D.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

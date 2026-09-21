@@ -1,0 +1,82 @@
+{
+  "keyword": "nasdaq today",
+  "model": "grok-4-1-fast-reasoning",
+  "n_claims": 5,
+  "n_verified": 5,
+  "label_counts": {
+    "CLEAR": 4,
+    "VAGUE": 0,
+    "AMBIGUOUS": 0,
+    "INCORRECT": 0,
+    "OMITTED": 1
+  },
+  "consistent": 4,
+  "inconsistent": 1,
+  "fidelity_rate": 0.8,
+  "verifications": [
+    {
+      "claim_id": 1,
+      "claim": "The Nasdaq Composite closed at 20,794.64 on Monday, March 30, 2026.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R6",
+        "R8"
+      ],
+      "evidence": "R8: 'The Nasdaq Composite dropped 0.73% to 20,794.64.'; R6: 'the Nasdaq Composite (^IXIC +1.16%) lost 0.73% to finish at 20,795.'",
+      "reasoning": "Exact closing price stated in R8; R6 has minor rounding difference but confirms the close on that date."
+    },
+    {
+      "claim_id": 2,
+      "claim": "The Nasdaq Composite fell by 0.73% on Monday, March 30, 2026.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R6",
+        "R8"
+      ],
+      "evidence": "R8: 'The Nasdaq Composite dropped 0.73%'; R6: 'the Nasdaq Composite ... lost 0.73%'; R3/R5: 'Nasdaq Composite ... slipped 0.7%' or '0.9%' (approximate).",
+      "reasoning": "Exact percentage decline directly stated in R6 and R8 for March 30, 2026."
+    },
+    {
+      "claim_id": 3,
+      "claim": "The Nasdaq Composite had a day's range of 20,690.25 - 21,139.72 on Monday, March 30, 2026.",
+      "label": "OMITTED",
+      "confidence": 1.0,
+      "matched_references": [],
+      "evidence": "No relevant content found",
+      "reasoning": "No reference mentions the specific day's range of 20,690.25 - 21,139.72; R4 shows a different range for another day."
+    },
+    {
+      "claim_id": 4,
+      "claim": "Oil prices surged past $100 per barrel.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R3",
+        "R5",
+        "R8"
+      ],
+      "evidence": "R3/R5: 'US crude futures settled above $100 ... West Texas Intermediate settled at $102.88 per barrel'; R8: 'West Texas Intermediate futures settling up 3.25% at $102.88 per barrel'.",
+      "reasoning": "Multiple sources confirm oil (WTI) closed above $100, specifically at $102.88 on March 30, 2026."
+    },
+    {
+      "claim_id": 5,
+      "claim": "The market will be closed this Friday for the Good Friday holiday.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R3",
+        "R5",
+        "R8"
+      ],
+      "evidence": "R3/R5: 'markets will be closed Friday for the Good Friday holiday'; R8: 'The market will be closed on Friday in observance of Good Friday'.",
+      "reasoning": "Direct statements in multiple sources confirm market closure on Friday (April 3, 2026) for Good Friday."
+    }
+  ],
+  "elapsed_s": 10.3,
+  "prompt_tokens": 24858,
+  "cached_tokens": 582,
+  "completion_tokens": 715,
+  "error": null
+}

@@ -1,0 +1,111 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "weather 10 day"
+
+Claims:
+[1] "Showers in the Ballston/Arlington Area on March 11."
+[2] "70% chance of rain in the Ballston/Arlington Area on March 11."
+[3] "Low near 50°F in the Ballston/Arlington Area on March 11."
+[4] "Rain/snow in the Ballston/Arlington Area on March 12."
+[5] "Windy conditions in the Ballston/Arlington Area on March 12."
+[6] "High of 55°F in the Ballston/Arlington Area on March 12."
+[7] "Low of 29°F in the Ballston/Arlington Area on March 12."
+[8] "Partly cloudy in the Ballston/Arlington Area on March 13."
+[9] "Windy conditions in the Ballston/Arlington Area on March 13."
+[10] "High of 56°F in the Ballston/Arlington Area on March 13."
+[11] "Low of 42°F in the Ballston/Arlington Area on March 13."
+[12] "Wind gusts up to 35 mph in the Ballston/Arlington Area on March 13."
+[13] "Partly cloudy in the Ballston/Arlington Area on March 14."
+[14] "High of 58°F in the Ballston/Arlington Area on March 14."
+[15] "Low of 42°F in the Ballston/Arlington Area on March 14."
+[16] "Mostly cloudy in the Ballston/Arlington Area on March 15."
+[17] "High of 59°F in the Ballston/Arlington Area on March 15."
+[18] "Low of 54°F in the Ballston/Arlington Area on March 15."
+[19] "Thunderstorms in the Ballston/Arlington Area on March 16."
+[20] "High of 64°F in the Ballston/Arlington Area on March 16."
+[21] "Low of 27°F in the Ballston/Arlington Area on March 16."
+[22] "Partly cloudy in the Ballston/Arlington Area on March 17."
+[23] "High of 37°F in the Ballston/Arlington Area on March 17."
+[24] "Low of 22°F in the Ballston/Arlington Area on March 17."
+[25] "Mostly sunny in the Ballston/Arlington Area on March 18."
+[26] "High of 40°F in the Ballston/Arlington Area on March 18."
+[27] "Low of 30°F in the Ballston/Arlington Area on March 18."
+[28] "Partly cloudy in the Ballston/Arlington Area on March 19."
+[29] "High of 56°F in the Ballston/Arlington Area on March 19."
+[30] "Low of 37°F in the Ballston/Arlington Area on March 19."
+[31] "Mostly cloudy in the Ballston/Arlington Area on March 20."
+[32] "High of 62°F in the Ballston/Arlington Area on March 20."
+[33] "Low of 43°F in the Ballston/Arlington Area on March 20."
+
+Cited text snippets from the AI Overview (for additional context):
+- Weather Tenday: "Health & Wellness-,Lifestyle,pollen detected in your area"
+- Arlington Weather | News, Weather, Sports, Breaking News: "READ MORE ON TODAY'S WEATHER,evening into the overnight hours."
+Reference Sources:
+
+[R1] 10-Day Weather Forecast for Ballston, Arlington, Virginia - The Weather Channel | weather.com
+(https://weather.com/weather/tenday/l/76ff45f9490a6f22e7ab45d574fe679e41075ad3c8031eb0e55385c32b5c11fb)
+"""
+Search for a locationSearchAdvertisementDaily ForecastLocationBallston, Arlington, Virginia· as of 5:15 PM UTCWatch AlertSmall Craft AdvisoryFrom Thu 12:00 pm until Fri 4:00 pm EDTToday80° / 63°Partly CloudyRain Drop0%Arrow Down16 mphPlusMinusThu 26 | Day80°Rain Drop0%WindSSW 16 mphPartly cloudy. High around 80F. Winds SSW at 10 to 20 mph.PlayHeads-upGusty Winds, Large Hail And Tornadoes Possible ThursdayhumidityHumidity34%Uv IndexUV Index6 of 11SunriseSunrise7:02 amSunsetSunset7:26 pmThu 26 | Night63°Rain Drop24%WindSW 15 mphPartly cloudy skies this evening will become overcast overnight. Low 63F. Winds SW at 10 to 20 mph.humidityHumidity52%Uv IndexUV Index0 of 11moonriseMoonrise12:36 pmmoonriseMoonset3:25 amWaxing GibbousWaxing GibbousFri 2766° / 33°RainRain Drop74%Arrow Down12 mphPlusMinusSat 2846° / 31°SunnyRain Drop1%Arrow Down15 mphPlusMinusSun 2959° / 48°Partly CloudyRain Drop1%Arrow Down14 mphPlusMinusMon 3073° / 56°Partly CloudyRain Drop7%Arrow Down12 mphPlusMinusTue 3179° / 63°Partly CloudyRain Drop18%Arrow Down11 mphPlusMinusWed 0186° / 56°Isolated ThunderstormsRain Drop32%Arrow Down13 mphPlusMinusThu 0274° / 54°Partly CloudyRain Drop24%Arrow Down13 mphPlusMinusFri 0367° / 53°ShowersRain Drop47%Arrow Down11 mphPlusMinusSat 0465° / 56°Mostly CloudyRain Drop23%Arrow Down10 mphPlusMinusSun 0571° / 51°ShowersRain Drop58%Arrow Down11 mphPlusMinusMon 0661° / 44°ShowersRain Drop42%Arrow Down11 mphPlusMinusTue 0754° / 44°Partly CloudyRain Drop24%Arrow Down10 mphPlusMinusWed 0864° / 47°Partly CloudyRain Drop24%Arrow Down10 mphPlusMinusThu 0969° / 50°ShowersRain Drop44%Arrow Down10 mphPlusMinusTrending NowSevere Thunderstorms, Including Hail And Tornadoes, Possible In Midwest AgainJoin Us Live Now: Ask Our Meteorologist About Weather MythsMuch Needed Pattern Change Brings Relief To WestVideo Player1:29Little Legs, Big Snow, Tons Of HeartVideo Player0:18Severe Thunderstorms, Including Hail And Tornadoes, Possible In Midwest AgainJoin Us Live Now: Ask Our Meteorologist About Weather MythsMuch Needed Pattern Change Brings Relief To WestVideo Player1:29Little Legs, Big Snow, Tons Of HeartVideo Player0:18NowMapbox Logo© 2026 Mapbox© OpenStreetMap|Improve this mapAdvertisementAdvertisementHome & GardenDon’t Make These Mistakes When Planting Your Spring GardenVideo Player0:35When To Worry About Mold Growing In Your HomeVideo Player0:38Get Ahead For Spring With Essential Winter Garden TipsVideo Player0:30Why Your Home's Air Might Be More Polluted Than OutdoorsVideo Player1:04Don’t Make These Mistakes When Planting Your Spring GardenVideo Player0:35When To Worry About Mold Growing In Your HomeVideo Player0:38Get Ahead For Spring With Essential Winter Garden TipsVideo Player0:30Why Your Home's Air Might Be More Polluted Than OutdoorsVideo Player1:04On The MoveAnd The Best State For An Adventure Vacation Is ...Video Player0:42California Wildflower Superblooms Are Back In 2026Video Player0:433 Big Changes Coming To National Parks In 2026Video Player0:42‘Rare And Remarkable’: Lake Superior Ice Caves ReopenVideo Player0:30And The Best State For An Adventure Vacation Is ...Video Player0:42California Wildflower Superblooms Are Back In 2026Video Player0:433 Big Changes Coming To National Parks In 2026Video Player0:42‘Rare And Remarkable’: Lake Superior Ice Caves ReopenVideo Player0:30Spring Is HereStudy: Winters Less Snowy, Shortening Across N. HemisphereVideo Player0:47Leaves Increasing On Trees In The South, Pollen On The RiseVideo Player0:58When Are The Average Last Freezes In The US?Video Player0:50Allergy Season Grows Longer – Especially In These PlacesVideo Player0:36Study: Winters Less Snowy, Shortening Across N. HemisphereVideo Player0:47Leaves Increasing On Trees In The South, Pollen On The RiseVideo Player0:58When Are The Average Last Freezes In The US?Video Player0:50Allergy Season Grows Longer – Especially In These PlacesVideo Player0:36Sponsored ContentHow Much Does A New Roof Cost For A 1500 Sq. Ft. House?HomeBuddy | SponsoredSponsoredUndoLess Fear, More Facts in Gas Stove ConversationPropane Edu & Research CouncilUndoFamous Economist: “AI Meltdown Could be 10 Times Bigger than Lehman”Daily Stock TradersUndoResearchers: The Missing Link For Senior Fatigue FoundMen's Health DiscoveryUndoWhy a Dubai Millionaire’s Wife Swears by This “Wealth” RingPixiu RingUndoHow Much Does A Home Warranty Cost?First American PartnerUndoYour Neighbors Will Wonder How You Got This WindmillEsslynUndoHere’s The Average Price of a 6-Hour Gutter UpgradeHomeBuddyUndoJim Rickards Warns: “Prepare for $1.4 Trillion AI Meltdown”Daily Stock TradersUndoAdvertisementAdvertisementAdvertisementAir Quality Index69Moderate Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.See detailsAir Quality IndexHealth & ActivitiesgrassSeasonal Allergies and Pollen Count ForecastTree pollen is moderate in your areaChevron RightAdvertisementEditor's PickWhy Your Pet Is Eating GrassBelieve it or not, your pet doesn’t eat grass as an appetizer salad course before their morning kibble. There are actually multiple potential reasons your dog or cat might be eating grass, including just plain, old animal instinct. They also could be trying to supplement their diet with missing nutrients. While it might seem harmless, eating grass can expose your pet to dangerous chemicals and bacteria.Video Player0:35AdvertisementSun & MoonMarch Meteor Mania: We’re Tracking Sightings Of Fireballs Across The USStay SafeKnow The Difference Between Tornado Watches And WarningsVideo Player0:37Product Reviews & DealsBest Pollen Air Purifiers: Help Control Your Allergies
+"""
+
+[R2] Arlington Weather | News, Weather, Sports, Breaking News
+(https://wjla.com/weather)
+"""
+THURSDAY, MARCH 26, 2026TODAY:Partly Sunny, BreezyHighs: 75-80Winds: Southwest 5-15, Gusts to 25 mphPeak bloom has arrived! Plan for high temperatures to soar to around 80 degrees; which is 20-degrees above normal for late March. Breezy southwest winds will increase later today ahead of a strong cold front that will bring changes tomorrow. Until then, plan for a mix of sun and clouds throughout the day with a stray shower or sprinkle not out of the question. Very warm weather is expected this evening with temperatures in the 70s.TONIGHT:Mostly CloudyShowers by DawnTemperatures: 60sWinds: Southwest 10-15+ mphIt will stay very warm overnight, with temperatures holding 60s as the cold front edges closer to the D.C. metro. Plan for breezy conditions ahead of the front, as rain develops from north to south during the overnight. Showers will likely reach the Maryland-Pennsylvania state line between 3 and 4 a.m., with rain moving inside the Beltway by around 5 a.m. A rumble of thunder is possible, and a few storms could still be on the strong side early. For the cherry blossoms around the Tidal Basin, the overnight rain and breeze may start to shake loose some petals by daybreak.FRIDAY:Rain Likely, BreezyFalling TemperaturesTemps: 60s to 50sWinds: North 5-15, Gusts to 25 mphFriday will be a much cooler, rawer day across the DMV as the cold front slowly pushes through. Temperatures will be at their warmest early in the morning, then fall steadily through the day as cooler air filters in behind the front. Expect areas rain and plenty of clouds, with afternoon readings settling into the 50s. The combination of rain, wind, and falling temperatures may start to take more of a toll on the cherry blossoms around the Tidal Basin, with more petals beginning to come down.SATURDAY:Mostly SunnyHighs: 47-52Winds: Northwest 10-15 mphA big change with blustery and noticeably colder highs only in the 40s to lower 50s. Skies trend mostly sunny, but the chill will be hard to ignore. It will be a bright day overall, though definitely jacket weather if you are heading to the Tidal Basin.SUNDAY:Sunny and BeautifulHighs: 59-64Winds: Southwest 5-10 mphSunday looks like a much nicer turnaround after the chilly start to the weekend. High pressure settles in, bringing dry conditions with a mix of sun and passing clouds. Temperatures rebound into the upper 50s to middle 60s, and with lighter winds, it should feel noticeably more comfortable. It’s a solid day to head down to the Tidal Basin before the puffy blossoms begin to fade ahead of next weeks temperatures.LOOKING AHEAD TO NEXT WEEK:The warming trend really ramps up as we head into next week. Highs climb into the 60s Monday, then push into the 70s by Tuesday, with the potential for some spots to reach the upper 70s to even low 80s by midweek. That surge in warmth will speed up the fading process for the cherry blossoms around the Tidal Basin, so the window to catch them, even in their later stages, will close quickly. A few clouds and slight rain chances may pop up at times, but the dominant story will be the return of much warmer, almost early-summer-like temperatures by the middle of the week.Download theFirst Alert Weather appand stay up to date on the latest weather news with our latest First Alert Weather blogs here.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

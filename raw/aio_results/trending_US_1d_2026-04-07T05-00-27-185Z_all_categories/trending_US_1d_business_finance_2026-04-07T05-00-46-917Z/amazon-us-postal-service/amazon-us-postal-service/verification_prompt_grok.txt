@@ -1,0 +1,114 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "amazon us postal service"
+
+Claims:
+[1] "As of April 2026, Amazon has reached a new agreement with the U.S. Postal Service (USPS)."
+[2] "The agreement ensures USPS retains about 80% of its existing Amazon delivery volume."
+[3] "The agreement ensures USPS retains over 1 billion packages annually."
+[4] "Amazon is investing $4 billion to speed up rural deliveries."
+[5] "Amazon frequently utilizes USPS for the final delivery leg to homes."
+[6] "Reports indicate USPS delivered roughly 1.7 billion packages annually for Amazon."
+[7] "The Amazon-USPS partnership began around 2013 with Sunday delivery services."
+
+Cited text snippets from the AI Overview (for additional context):
+- Amazon Reaches US Postal Service Deal for 1 Billion Packages: "The USPS agreement also comes,of delivery to customers' doorsteps."
+- Amazon reaches U.S. Postal Service deal for 1 billion packages: "Amazon has reached a new agreement with,a lifeline to the beleaguered government agency."
+- Amazon strikes deal with USPS that maintains 80% of package volume: "USPS ​has a roughly,volume since the late 1960s."
+- Amazon has reached a new agreement with the US Postal Service, ...: "November 28, 2023 ...,Chaos ensued."
+- Exclusive: Amazon strikes deal with USPS that maintains 80% of package volume: "By David Shepardson and Jacob,Reuters first reported the deal."
+- Amazon Strikes USPS Delivery Deal, Averting Sweeping Cuts From Harlem To Hollywood: "Amazon announced on Monday that,1 billion packages per year."
+- Amazon Reaches US Postal Service Deal for 1 Billion Packages (1): "Amazon.com Inc. has reached,Clark said in a statement."
+Reference Sources:
+
+[R1] Amazon strikes deal with USPS that maintains 80% of package volume
+(https://kfgo.com/2026/04/06/exclusive-amazon-says-it-has-reached-deal-with-us-postal-service-on-package-deliveries/)
+"""
+By David Shepardson and Jacob BogageWASHINGTON, April 6 (Reuters) – Amazon.com on Monday announced it reached a new agreement with the U.S. Postal Service on package deliveries, and sources said the ​cash-strapped mail system would retain about 80% of its existing ‌deliveries from its biggest customer.That 20% cut is a dramatically better outcome for the postal agency than the two-thirds or larger reduction that Reuters reported last month Amazon had threatened.USPS warned last month it could run out of cash as soon ‌as ​October, and the risk that Amazon would replace ⁠the carrier by expanding ⁠its own delivery network or using rivals was an existential peril.Amazon will continue its delivery expansion but short of growth that would rival USPS’s address-by-address reach, the sources said.Reuters first reported the deal.USPS ​has a roughly $80 billion budget, and Amazon represented $6 billion in annual revenue to the agency, according to two people familiar with the ⁠business arrangement.“We’re pleased to have reached a ⁠new agreement with USPS that furthers our longstanding partnership ​and will let us continue supporting our customers and communities together,” Amazon ​said in a statement.USPS did not immediately comment. U.S. Postmaster ‌General David Steiner told Reuters in December that USPS delivered about 1.7 billion packages annually for Amazon.Amazon had criticized USPS plans to auction off access to its last‑mile delivery network. In April 2025, Amazon said it ⁠would spend more than $4 billion to expand its U.S. rural delivery network by the end of 2026.USPS said last month that it was seeking approval ⁠for a temporary ‌8% price hike for priority mail and package deliveries, ⁠effective April 26, to deal with rising transportation ​and fuel ‌costs.Steiner said in March hiking the price of ​a first-class ⁠stamp to 95 cents from the current 78 cents would help USPS cut losses.USPS has reported net losses of $118 billion since 2007 as first-class mail, its most profitable product, has fallen to its lowest volume since the late 1960s.(Reporting by David Shepardson and Jacob Bogage; Editing by Chris Sanders ​and Cynthia Osterman)
+"""
+
+[R2] Amazon reaches U.S. Postal Service deal for 1 billion packages | The Seattle Times
+(https://www.seattletimes.com/business/amazon-reaches-u-s-postal-service-deal-for-1-billion-packages/)
+"""
+Skip Ad Skip to content Skip Ad A U.S. Postal Service employee transports parcels for distribution during the start of the holiday mail rush, following Black Friday and Cyber Monday, inside the Los Angeles Mail Processing& Distribution Center... (Mario Tama / Getty Images North America / TNS) More Skip Ad By Spencer Soper and Cailley LaPara Bloomberg News Amazon has reached a new agreement with the U.S. Postal Service, providing a lifeline to the beleaguered government agency and securing delivery for customers in rural America.Under the deal, Amazon will retain about 80% of ​its existing deliveries ​with USPS, or more than ‌1 ⁠billion packages per year, according to a person familiar with the matter. Your browser is set to private mode. To continue reading, log in or subscribe. Subscribe Already a subscriber? Log in now. Most Read Business Stories Costco disputes claims of salmonella risk in $5 rotisserie chicken WinCo plan for Seattle store hits roadblock Sea-Tac's second terminal still 15 years away, new director says New PCC Community Markets to open in Seattle's Madison Valley Seattle diesel tops $7 per gallon, a record, amid Iran blockade The Seattle Times does not append comment threads to stories from wire services such as the Associated Press, The New York Times, The Washington Post or Bloomberg News. Rather, we focus on discussions related to local stories by our own staff. You can read more about our community policies here. Recommended in Judge extends pause on work to turn Maryland warehouse into immigrant detentionFrom dropping bombs to pressuring banks: U.S. pivots to economic warfare on IranSeattle council approves bills to speed up shelter constructionBig health industry group sues WA over new drug-pricing law Latest in BusinessIs Starbucks breaking up with Seattle?Starbucks' big new office in Nashville, and its...1 hour agoSaudi Arabia said to consider ending funding of LIV GolfLosing funding would likely bring an end to...Northbound I-5 reopens ahead of schedule near BellinghamOne day ahead of schedule, road workers cleared...16 minutes agoFrom dropping bombs to pressuring banks: US pivots to economic warfare on IranThe Trump administration is setting the stage to...That meeting you hate may keep AI from stealing your jobAs artificial intelligence makes many tasks easier, the...Jury finds that Ticketmaster and Live Nation had an anticompetitive monopolyA jury has found that concert giant Live... Advertising Skip Ad Skip Ad Skip Ad Around the Web19 Things to Cut When Money Gets Tight (Most People Ignore #11)FinanceBuzzA Simple Method to Reduce Neuropathy (Watch)Health TodayMix Some Salt and Vaseline, Here's WhyWG Life Hacks 102Neurologists Beg Seniors With Neuropathy: Stop Doing This NowHealth HeadlinesNever Put Mustard in Your Fridge, Here's WhyLifeHack GuruSeniors Born 1939-1969 Receive 11 Benefits This Month If They AskSuper Saving OnlineIf You Get Social Security, Don't Skip This April Benefit CheckHealthyWalletCesar Millan Reveals What Honey Does To Your Aging DogHealthClubJournal Skip Ad Skip Ad Why are you reporting this ad? Please make a selection. Plays sound Contains adult content Covers the page Other Additional Information Please help us by describing the ad. Only 500 characters are allowed. Report ad Thank you for letting us know. This ad has already been reported. Powered by ×
+"""
+
+[R3] Amazon, USPS Extend Partnership to Support Rural Package Deliveries - Bloomberg
+(https://www.bloomberg.com/news/articles/2026-04-06/amazon-reaches-us-postal-service-deal-for-1-billion-packages)
+"""
+IndustriesTransportationFacebookXLinkedInEmailLinkGiftExpandA cart of mail and packages outside a United States Postal Service distribution center.Photographer: Luke Sharrett/BloombergFacebookXLinkedInEmailLinkGiftGift this articleAdd us on GoogleContact us:Provide news feedback or report an errorConfidential tip?Send a tip to our reportersSite feedback:Take our SurveyNew WindowFacebookXLinkedInEmailLinkGiftBy Spencer Soper and Cailley LaParaApril 6, 2026 at 3:13 PM CDTUpdated on April 6, 2026 at 3:57 PM CDTBookmarkSaveTranslateTakeaways by Bloomberg AISubscribeAmazon.com Inc. has reached a new agreement with the US Postal Service, providing a lifeline to the beleaguered government agency and securing delivery for customers in rural America.Under the deal, Amazon will retain about 80% of ​its existing deliveries ​with USPS, or more than ‌1 ⁠billion packages per year, according to a person familiar with the matter.Before it's here, it's on the Bloomberg TerminalBloomberg Terminal LEARN MOREHomeBTV+Market DataOpinionAudioOriginalsMagazineEventsNewsMarketsEconomicsTechnologyPoliticsGreenCryptoAIWork & LifeWealthPursuitsBusinessweekCityLabSportsEqualityManagement & WorkMarket DataStocksCommoditiesRates & BondsCurrenciesFuturesSectorsEconomic CalendarExploreNewslettersExplainersPointed News QuizAlphadots GameThe Big TakeGraphicsSubmit a TipAbout UsTerms of ServiceDo Not Sell or Share My Personal InformationTrademarksPrivacy PolicyCareersAdvertiseAd ChoicesHelp©2026 Bloomberg L.P. All Rights Reserved.Get unlimited access for just $1.99 your first monthUnlock the global benchmark for business news.Get unlimited access for just $1.99 your first monthClaim This Offer
+"""
+
+[R4] Amazon Reaches US Postal Service Deal for 1 Billion Packages (1)
+(https://news.bloomberglaw.com/tech-and-telecom-law/amazon-reaches-us-postal-service-deal-for-1-billion-packages-1)
+"""
+Tech & TelecomPrintEmailShare To:FacebookLinkedInAmazon.com Inc. has reached a new agreement with the US Postal Service, providing a lifeline to the beleaguered government agency and securing delivery for customers in rural America.Under the deal, Amazon will retain about 80% of its existing deliveries with USPS, or more than ‌1 ⁠billion packages per year, according to a person familiar with the matter.“We’re pleased to have reached a new agreement with USPS that ⁠furthers our longstanding partnership and will let us continue supporting ⁠our customers and communities together,” Amazon spokesperson Terrence Clark said in a statement.The USPS did not immediately respond to ... Learn more about Bloomberg Law or Log In to keep reading: See Breaking News in Context Bloomberg Law provides trusted coverage of current events enhanced with legal analysis. Learn more Already a subscriber? Log in to keep reading or access research tools and resources. Log In © 2026 Bloomberg Industry Group, Inc. All Rights Reserved More from Bloomberg Law Most Read Stories in Tech & Telecom Treasury Secretary Scott Bessent and Federal Reserve Chair Jerome Powell summoned Wall Street leaders to an urgent meeting on concerns that the latest artificial intelligence model from Anthropic PBC will usher in an era of greater cyber risk.Former Google DeepMind researcher Andrew Dai believes that the artificial intelligence models at big labs have the intelligence of a 3-year-old kid, at least when it comes to making sense of visual prompts.Starbucks Corp. and the owner of a family of patents it accused the coffee giant of infringing agreed to end Starbucks’ lawsuit brought under Washington’s state Patent Troll Prevention Act. Latest Stories in Tech & Telecom The Maine legislature passed a bill Tuesday imposing a temporary moratorium on new data centers, making it the first US state to do so amid nationwide pushback against the projects.Partners at Cadwalader and Hogan Lovells cemented their merger plans with votes at each law firm that closed this month.Lawyers for Kalshi Inc., Crypto.com, and Robinhood Markets Inc. will duel with their Nevada counterparts Thursday in an appellate battle over who has regulatory control of the growing sports prediction markets: a federal agency or the states. Browse More Stories in Tech & Telecom Sign Up For Newsletters
+"""
+
+[R5] Exclusive: Amazon strikes deal with USPS that maintains 80% of package volume
+(https://www.reuters.com/business/retail-consumer/amazon-says-it-has-reached-deal-with-us-postal-service-package-deliveries-2026-04-06/)
+"""
+WASHINGTON, April 6 (Reuters) - Amazon.com (AMZN.O), opens new tab on Monday announced it reached a new agreement with the U.S. Postal Service on package deliveries, and sources ​said the cash-strapped mail system would retain about 80% of its ‌existing deliveries from its biggest customer.That 20% cut is a dramatically better outcome for the postal agency than the two-thirds or larger reduction that Reuters reported last month Amazon had threatened.The Week in Breakingviews newsletter offers insights and ideas from Reuters' global financial commentary team. Sign up here.USPS ​warned last month it could run out of cash as soon as ​October, and the risk that Amazon would replace the carrier by ⁠expanding its own delivery network or using rivals was an existential peril.Amazon will ​continue its delivery expansion but short of growth that would rival USPS’s address-by-address ​reach, the sources said.Reuters first reported the deal.USPS has a roughly $80 billion budget, and Amazon represented $6 billion in annual revenue to the agency, according to two people familiar with the business arrangement.Workers load vans with packages at an Amazon fulfillment center in Valencia, California, December 4, 2025. REUTERS/Daniel Cole/File Photo Purchase Licensing Rights, opens new tab"We're pleased to have ​reached a new agreement with USPS that furthers our longstanding partnership and will ​let us continue supporting our customers and communities together," Amazon said in a statement.USPS did ‌not immediately ⁠comment. U.S. Postmaster General David Steiner told Reuters in December that USPS delivered about 1.7 billion packages annually for Amazon.Amazon had criticized USPS plans to auction off access to its last‑mile delivery network. In April 2025, Amazon said it would ​spend more than $4 billion ​to expand its ⁠U.S. rural delivery network by the end of 2026.USPS said last month that it was seeking approval for a temporary ​8% price hike for priority mail and package deliveries, effective ​April 26, ⁠to deal with rising transportation and fuel costs.Steiner said in March hiking the price of a first-class stamp to 95 cents from the current 78 cents would help ⁠USPS cut ​losses.USPS has reported net losses of $118 billion since ​2007 as first-class mail, its most profitable product, has fallen to its lowest volume since the late ​1960s.Reporting by David Shepardson and Jacob Bogage; Editing by Chris Sanders and Cynthia OstermanOur Standards: The Thomson Reuters Trust Principles., opens new tab
+"""
+
+[R6] Amazon Strikes USPS Delivery Deal, Averting Sweeping Cuts From Harlem To Hollywood
+(https://www.harlemworldmagazine.com/amazon-strikes-usps-delivery-deal-averting-sweeping-cuts-from-harlem-to-hollywood/)
+"""
+Amazon announced on Monday that it has reached a new agreement with the U.S. Postal Service on package deliveries. Ending months of uncertainty over the future of one of the most consequential commercial relationships in American logistics. The deal averts what had been a threatened two-thirds reduction in shipment volume, with sources telling Reuters that Amazon will instead retain around 80% of its existing delivery volume with USPS, or more than 1 billion packages per year.Never miss new stories in Harlem From Breakdown to Breakthrough The agreement caps a turbulent period in the Amazon-USPS relationship. In March, The Wall Street Journal reported that Amazon planned to slash its USPS shipping volume by at least two-thirds by the fall, when the existing contract expires on September 30, 2026. Amazon had publicly accused USPS of walking away from more than a year of good-faith negotiations “at the eleventh hour” in December 2025, after the agency pivoted to a competitive reverse-auction model for last-mile delivery access under Postmaster General David Steiner. Amazon said at the time that it had submitted a bid in February under the new auction system but received no response, forcing it to prepare contingency plans. Meanwhile, Steiner warned a U.S. House committee in March that USPS could run out of cash within a year without congressional intervention, with the potential loss of Amazon’s business compounding the agency’s financial distress. What the Deal Means The new arrangement results in roughly a 20% decrease in Amazon’s USPS shipments rather than the far steeper cuts that had been anticipated. Amazon, which is USPS’s largest single customer, expressed satisfaction with the outcome, emphasizing the continuation of a partnership that has spanned more than three decades. The deal carries major implications for the Postal Service’s finances. The existing contract has been estimated to generate roughly $6 billion annually for USPS, or about 7 to 8% of its total operating revenue. Even a 20% volume reduction represents a notable hit, but it is far less damaging than the two-thirds cut that had been on the table. A Shifting Landscape The agreement comes as the balance of power in U.S. package delivery continues to shift. Amazon’s logistics arm delivered 6.7 billion packages in 2025, narrowly surpassing USPS’s 6.6 billion to become the top U.S. parcel carrier by volume, according to shipping consultancy ShipMatrix. UPS and FedEx trailed with 4.4 billion and 3.6 billion packages respectively. Even as it secures a continued USPS partnership, Amazon has invested heavily in its own delivery network, including a $4 billion expansion focused on rural and small-town communities. That dual strategy — maintaining carrier partnerships while building proprietary capacity — leaves Amazon positioned to absorb further shifts in the logistics landscape as the new contract takes effect later this year, writes Perplexity. Become a Harlem Insider! From history to today’s headlines—everything Harlem, in your inbox. By signing up, you're agreeing to receive communications from Harlem World Magazine and our Privay Policy.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,100 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "pelea de lester martinez"
+
+Claims:
+[1] "Lester Martínez is a Guatemalan boxer."
+[2] "Lester Martínez became the new interim super middleweight world champion of the Consejo Mundial de Boxeo (CMB) on March 21, 2026."
+[3] "Lester Martínez defeated Immanuwel Aleem by unanimous decision."
+[4] "The fight took place in San Bernardino, California."
+[5] "The scorecards were 120-108, 118-110, and 119-109."
+[6] "Lester Martínez maintained his undefeated record."
+[7] "The victory elevates Lester Martínez's record to 20 wins and 0 losses."
+[8] "Immanuwel Aleem is an American fighter."
+[9] "The fight took place at the National Orange Show Event Center in San Bernardino, California."
+[10] "Lester Martínez is positioned as second in the CMB super middleweight ranking, only behind Saúl "Canelo" Álvarez."
+[11] "Lester Martínez is the first boxing world champion in the history of Guatemala."
+
+Cited text snippets from the AI Overview (for additional context):
+- Quién es el próximo rival de Lester Martínez: "mundial en Boxeo-,¡HISTÓRICO!,une a todo un país."
+- Lester Martínez es el nuevo campeón mundial interino supermediano del CMB: "Resultado de la pelea,hijo es campeón del mundo”."
+- Léster Martínez, a un paso de la historia: así llega a la pelea ante Immanuwel Aleem: "cubano Arlén López.-,El rival,”, dijo el pugilista estadounidense."
+- ¡Esta noche, Lester Martínez pelea por el título interino ... - Instagram: "#LesterMartinez | 🥊 El pugilista guatemalteco,#Boxeo #Guatemala #CMB"
+- Desde el Martes de Café, Lester Martínez habló de su intensa batalla ante Christian Mbilli, reconocida como Pelea del Año, un combate que marcó su carrera. Con la mirada puesta en el futuro, dejó claro su objetivo: seguir creciendo, consolidarse entre la élite y convertirse en campeón mundial del WBC. 🥊🔥: "El guatemalteco 🇬🇹 Lester Martinez se enfrenta,que paralizará a los fanáticos del boxeo."
+- 🇬🇹🥊 ¡Se viene una gran pelea! Este jueves 12 de febrero se anunció que Lester Martínez enfrentará al estadounidense Immanuwel “The Chosen One” Aleem el próximo 21 de marzo en California. El petenero disputará el título interino supermediano del Consejo Mundial de Boxeo (CMB) en el National Orange Show Event Center, en San Bernardino, en una de las oportunidades más importantes de su carrera 💥🔥.: "Photo by Guatemala.com on February 12 (,del CMB O Guatemala.com ProBox TV ν'."
+- El boxeador guatemalteco Lester Martínez enfrentará este ...: "El boxeador guatemalteco Lester Martínez enfrentará este,estadounidense Immanuwel Aleem por el título interino"
+Reference Sources:
+
+[R1] Quién es el próximo rival de Lester Martínez
+(https://agn.gt/quien-es-el-proximo-rival-de-lester-martinez/)
+"""
+Ciudad de Guatemala, 21 mar (AGN).- Lester Martínez escribió una página dorada en la historia del deporte guatemalteco. El pugilista petenero derrotó al estadounidense Immanuwel Aleem y se proclamó campeón interino supermediano del Consejo Mundial de Boxeo (CMB), convirtiéndose en el primer campeón mundial de boxeo de Guatemala. La victoria no solo representa un título, sino un hito que marca un antes y un después para el boxeo nacional, colocando al país en el mapa grande de este deporte. Con garra, disciplina y corazón, el guerrero maya cumplió el sueño que durante años persiguió arriba del ring. Próxima pelea de Lester Martínez Tras este logro histórico, el panorama para Martínez apunta a retos de alto nivel. De acuerdo con el ranking, una de las posibles peleas sería ante Saúl “Canelo” Álvarez, quien actualmente se encuentra en proceso de recuperación tras una operación. Otra opción es el francés Christian Mbilli, rival con el que empató en septiembre de 2025 en un combate que dejó cuentas pendientes. En los próximos meses se definirá el siguiente paso en la carrera del petenero, quien ahora no solo defiende un cinturón, sino el orgullo de todo un país que lo respalda en cada golpe. ¡HISTÓRICO! Lester Martínez se proclama campeón mundial en Boxeo Lester saltó al cuadrilátero del National Orange Show Event Center, en San Bernardino, con el respaldo de más de 18 millones de guatemaltecos. Algunos presentes en el recinto, pero la gran mayoría empujando desde la distancia, unidos por un mismo sueño. Desde la campana inicial, ambos pugilistas salieron con cautela, midiéndose, estudiándose, conscientes de que un solo error podía cambiar el destino de la pelea. Sin embargo, con el paso de los asaltos, el guatemalteco comenzó a imponer condiciones. Con inteligencia, ritmo y precisión, fue sometiendo poco a poco a Immanuwel Aleem. La fuerza del guerrero maya terminó por inclinar la balanza. Lester conectó los golpes más claros, los más certeros, los que marcaron diferencia sobre el ring y lo encaminaron hacia una victoria histórica. Al final, no hubo dudas. Lester Martínez se quedó con el triunfo y escribió su nombre con letras doradas al proclamarse campeón mundial interino supermediano del CMB, convirtiéndose en el primer campeón mundial de boxeo en la historia de Guatemala. Un logro eterno, un orgullo que une a todo un país. Lea también: Ja
+"""
+
+[R2] Lester Martínez es el nuevo campeón mundial interino supermediano del CMB
+(https://www.guatemala.com/deportes/boxeo-guatemala/resultado-lester-martinez-vs-immanuwel-aleem-pelea-marzo-2026.html)
+"""
+Este es el resultado de Lester Martínez vs Immanuwel Aleem, el combate por el título mundial interino del CMB disputado el sábado 21 de marzo en California. Temas de la notaPreviaDesarrollo del combateEl resultadoDos chapines triunfanNoche de boxeadores chapines Resultado de Lester Martínez vs Immanuwel Aleem, pelea por el título mundial interino del CMB Este 21 de marzo, el National Orange Show Event Center, en San Bernardino, California, fue el escenario del esperado combate entre el guatemalteco Lester Martínez y el estadounidense Immanuwel Aleem, quienes se enfrentaron por el título interino supermediano del Consejo Mundial de Boxeo (CMB). Debido a que los combates preliminares finalizaron antes de lo previsto, la expectativa por la pelea estelar aumentó mientras se acercaba el momento del enfrentamiento, que inició alrededor de las 21:00 horas. Previo al enfrentamiento, ambos boxeadores realizaron su ingreso al ring en medio de la expectativa del público y, ya sobre la lona, se llevó a cabo la entonación de los himnos nacionales. Descripción de la foto para personas con discapacidad visual: Lester Martínez con su mano sobre el pecho mientras se entonaba el Himno Nacional de Guatemala. (Crédito: ProBox TV) En ese momento, Carol Posada tuvo el honor de interpretar el himno de Guatemala, luciendo un hermoso güipil, mientras el grupo de connacionales presentes en el público acompañaba con orgullo y brindaba su apoyo al pugilista nacional. Aunque la velada se desarrolló en California, la presencia guatemalteca fue evidente en todo momento. En las gradas destacaban los colores azul y blanco, con aficionados ondeando banderas de Guatemala y vistiendo camisolas de la Selección Nacional, mientras otros portaban peluches del quetzal, el ave nacional, como símbolo del respaldo y orgullo de la afición chapina. La pelea representó una oportunidad clave dentro del boxeo mundial, ya que el cinturón interino define al campeón provisional de la división dentro del CMB y lo proyecta como firme aspirante al título absoluto del peso supermediano. Así fue la pelea En el primer asalto, Aleem tomó la iniciativa con los ataques, mientras Martínez se mantuvo a la defensiva, estudiando a su rival. Ambos controlaron el ritmo del combate. En el segundo asalto, Martínez comenzó a mostrarse más ofensivo. Aunque Aleem mantuvo la presión, ambos conectaron golpes certeros. Para el tercer asalto, Martínez ya tenía la ventaja. Aleem intentó acercarse, pero su intensidad disminuyó ante la efectividad del guatemalteco. En el cuarto round, Martínez consolidó su dominio con varias combinaciones, ampliando su ventaja sobre Aleem. Durante el quinto asalto, Aleem, más desgastado, logró conectar un gancho a la quijada. Sin embargo, Martínez mantuvo la ofensiva y sumó puntos. En el sexto round, Martínez lanzó varios derechazos, mientras Aleem intentó acorralarlo y mostró mejor desempeño, aunque sin revertir la desventaja. En el séptimo asalto, el cansancio fue evidente. Aleem buscó el intercambio, mientras Martínez alternó defensa y ataque para sostener la ventaja. En el octavo round, Aleem salió agresivo pese al desgaste. Martínez respondió con precisión y conectó un uppercut destacado. El noveno asalto fue más parejo, con ambos boxeadores intercambiando golpes de forma constante. En el décimo round, Martínez conectó combinaciones importantes, aunque Aleem respondió con fuerza y lo presionó contra las cuerdas. Durante el onceavo asalto, Aleem continuó atacando, pero Martínez logró desgastarlo y respondió con una ofensiva efectiva. En el duodécimo y último round, Martínez cerró con intensidad, conectando varios golpes ante un Aleem con menor respuesta ofensiva. Resultado de la pelea Tras doce asaltos, las tarjetas de los jueces reflejaron el claro dominio de Lester Martínez en el ring, con puntuaciones de 120-108, 118-110 y 119-109 a su favor frente a Immanuwel Aleem. De esta forma, el resultado de Lester Martínez vs Immanuwel Aleem dejó al guatemalteco con el título interino supermediano del Consejo Mundial de Boxeo (CMB). La victoria deja a Martínez con un récord de 20 triunfos, un empate y ninguna derrota. Actualmente se posiciona en el segundo puesto del ranking del CMB, solo por detrás de Saúl “Canelo” Álvarez. Al finalizar la entrevista oficial de la pelea, el boxeador petenero, con lágrimas en los ojos expresó: “Mamá, papá, tu hijo es campeón del mundo”. ¿Qué sigue para Lester Martínez? Ahora, como nuevo campeón mundial interino supermediano del CMB, Lester Martínez se posiciona como retador oficial al título absoluto de la categoría, lo que abre la posibilidad de un futuro enfrentamiento ante el actual monarca, Christian Mbilli. También se menciona un posible enfrentamiento con “Canelo” Álvarez, quien se perfila como el rival más cercano al ocupar el primer lugar del peso supermediano del CMB. Noche de boxeadores chapines En la cartelera de la pelea de Lester Martínez vs Immanuwel Aleem, otro guatemalteco disputó una pelea. Se trata de Joshua Kevin Anton, un boxeador de California con raíces chapinas, quien se enfrentó al uzbeko Kudratillo Abdukakhorov. El guatemalteco obtuvo la victoria tras el retiro inesperado de su oponente, quien tras el primer round regresó a su banquillo mostrando malestar físico. Debido a que el boxeador no pudo continuar, el árbitro otorgó el título Continental America Super Welter WBC a Joshua Kevin Anton. ¡Felicitamos a Lester Martínez! Con esta victoria ha hecho historia al darle a Guatemala su primer campeón mundial en el boxeo. ¡Todo un orgullo chapín! ¡Forma parte de nuestro canal de WhatsApp! Encuentra noticias positivas de Guatemala, historias inspiradoras, eventos, recomendaciones de turismo, restaurantes, deportes, historia y más. Para no perderte de nada, puedes unirte aquí: canal de WhatsApp de Guatemala.com.
+"""
+
+[R3] Léster Martínez, a un paso de la historia: así llega a la pelea ante Immanuwel Aleem
+(https://www.prensalibre.com/deportes/deporte-nacional/lester-martinez-a-un-paso-de-la-historia-asi-llega-a-la-pelea-ante-immanuwel-aleem-breaking/)
+"""
+INICIO Deportes Deporte Nacional Deporte NacionalEl invicto boxeador petenero enfrenta al estadounidense en busca de hacer historia y convertirse en el primer campeón mundial de boxeo de Guatemala. El boxeador petenero apuesta a su victoria 20 y ganar el título mundial interino supermediano del CMB. (Foto Prensa Libre: ProBox). La noche del 13 de septiembre del 2025, más de 73 mil aficionados abarrotaron el Allegiant Stadium, en Las Vegas, Estados Unidos, con la misión de presenciar la pelea estelar entre Saúl Canelo Álvarez y Terence Crawford, por el título mundial supermediano del Consejo Mundial de Boxeo (CMB). Sin embargo, aunque la caída del mexicano marcó la cartelera, el combate estelar no fue el más memorable.Economía Guatemala El duelo más electrizante fue el empate entre Léster Martínez y Christian Mbilli, que protagonizaron 10 aguerridos rounds, en los que lanzaron más de 600 golpes y desataron una ola de adrenalina que contagió a los asistentes.Clasificados online Desde aquella noche, Léster Martínez salió del estadio de los Raiders de la NFL iluminado por los reflectores, y dejó atrás el anonimato con el que llegó. Su actuación no solo hizo sonar su nombre, sino también el de Guatemala, al protagonizar la pelea que posteriormente fue considerada la mejor pelea del 2025 por el Consejo Mundial de Boxeo. Cita con la historia El empate contra Christian Mbilli le dejó un mal sabor de boca a Léster Martínez, pero también encendió su hambre de triunfo. El sueño de conquistar su primer título mundial de boxeo creció. Esta noche, Léster Martínez afrontará su pelea número 21 como profesional y pasará de un estadio con capacidad para más de 70 mil personas a uno con cinco mil, en San Bernardino, donde se siente como en casa y buscará cumplir el objetivo que se trazó desde el día en que cambió un balón de futbol por unos guantes de box: convertirse en campeón mundial de boxeo. “Me siento como en casa cada vez que vengo aquí. Me he preparado de la mejor manera, con exigencia y trabajo, porque la meta está cerca y me siento listo para darle un título mundial a Guatemala”, destacó el boxeador. El camino para estar hoy a las puertas de hacer historia para el boxeo guatemalteco comenzó el 6 de abril del 2019, cuando debutó como profesional contra el nicaragüense Ricardo Mayorga, un año después de haber conquistado la medalla de oro en Barranquilla, frente al multicampeón cubano Arlén López. El rival Léster Martínez tendrá enfrente a Immanuwel Aleem, un rival con mayor recorrido que promete ser de alta exigencia y pondrá a prueba el nivel del boxeador guatemalteco. El estadounidense reconoció que se enfrentará a un peleador de gran nivel, pero con la firme intención de quedarse con el título interino supermediano del CMB. “Desde que entrenaba en el gimnasio con mi hermano, a los 12 años, soñaba con este momento: pelear por convertirme en campeón mundial de boxeo. Léster es un gran peleador. Tengo la oportunidad de enfrentarme a uno de los mejores”, dijo el pugilista estadounidense.Economía Guatemala Equipo de alto nivel Léster Martínez llega a esta pelea con 20 combates profesionales: 19 victorias, un empate y 16 nocauts, e intentará convertirse en el primer campeón mundial de boxeo de Guatemala. Detrás de él hay un equipo encabezado por Brian McIntyre, junto a los guatemaltecos Esaú Diéguez y Héctor Arriola, quienes han afinado cada detalle para que llegue en óptimas condiciones al combate. “Léster Martínez ha trabajado bien. Es muy disciplinado y todo este tiempo ha estado concentrado en el objetivo que es ganar el título mundial de boxeo. Será un honor acompañarlo a lograr algo histórico para Guatemala”, afirmó Diéguez. Cartelera previa La cartelera incluye otros combates destacados. Joshua Kevin Anton (12-0, 11 KOs) enfrentará a Kudratillo Abdukakhorov (22-5, 14 KOs) en peso superwelter, mientras que el angelino Anthony Cuba (12-1-2, 5 KOs) se medirá al mexicano Jair Valtierra (18-3, 9 KOs) en superligero. Además, Charles Harris Jr. (11-1, 7 KOs) peleará contra Jason Limón (11-2-1, 2 KOs), mientras que Jocelyn Camarillo (5-0) enfrentará a Isis Sio (1-2) en supermosca, y el invicto Sam Contreras (5-0, 2 KOs) buscará extender su racha ante César Cantú (3-5-2, 1 KO).Economía Guatemala ESCRITO POR:
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

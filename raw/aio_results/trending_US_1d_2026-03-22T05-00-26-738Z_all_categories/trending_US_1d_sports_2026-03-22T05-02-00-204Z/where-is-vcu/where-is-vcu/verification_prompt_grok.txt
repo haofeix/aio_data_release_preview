@@ -1,0 +1,111 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is vcu"
+
+Claims:
+[1] "Virginia Commonwealth University (VCU) is located in the heart of Richmond, Virginia."
+[2] "VCU is a public research university."
+[3] "VCU is situated in downtown Richmond."
+[4] "VCU's main Monroe Park campus is near the Carver neighborhood."
+[5] "VCU's health sciences campus is near the city's financial district."
+[6] "Monroe Park Campus is VCU's main campus."
+[7] "Monroe Park Campus features the Compass."
+[8] "Monroe Park Campus features the library."
+[9] "Monroe Park Campus features the student center."
+[10] "MCV Campus is VCU's health sciences campus."
+[11] "VCU's health sciences campus is located downtown."
+[12] "VCU's health sciences campus is near the State Capitol."
+[13] "VCU's health sciences campus is near City Hall."
+[14] "VCU is roughly a two-hour drive from Washington, D.C."
+
+Cited text snippets from the AI Overview (for additional context):
+- Richmond - Dentistry - Virginia Commonwealth University: "The Virginia Commonwealth University School of Dentistry,intersection of medicine, business, politics, and culture"
+- About Richmond - VCU Office of Development and Alumni Relations: "Richmond's location places VCU within a two-hour,multitude of excellent institutions of higher education."
+- About - Virginia Commonwealth University: "VCU is known for: * **Community engagement**,health-related topic to their studies * Volunteer"
+Reference Sources:
+
+[R1] About Richmond
+(https://www.support.vcu.edu/talent/working-at-dar/about-richmond/)
+"""
+About Richmond, Virginia Established as the commonwealth’s capital in 1779, Richmond, Virginia, is a vibrant mix of history, diverse culture and real-world opportunities. Its rich history can be seen in the architecture, the Capitol grounds and the cobblestone streets around the city. Distinct neighborhoods, cozy restaurants and cafes and quaint local markets give the city an intimate feel, but theaters, galleries, music festivals, sports attractions and a steady stream of annual events bring the region to life. With the historic James River and 550 acres of parks bordering it, bike trails, wineries, breweries, affordable suburbs, and a flourishing arts, entertainment and restaurant scene, this small city with a low cost of living punches well above its weight in terms of attractions and buzz.Richmond’s location in the middle of the state allows for day or weekend trips to the beach, the Blue Ridge Mountains or to Virginia’s many wineries (Travel + Leisure magazine named Virginia one of its five wine regions in the world to visit). Richmond’s location places VCU within a two-hour drive of Washington, D.C., and a multitude of excellent institutions of higher education. It lies within a day’s drive of 50% of the nation’s population and is in the path of growth in the mid-Atlantic metropolitan corridor. The Richmond metropolitan area is also home to 10 Fortune 1000 companies, a broad base of financial companies, hospitals and media firms, high-tech manufacturing companies and state and local government agencies. Named in 2017 as Time magazine’s No. 2 city in the U.S. for attracting millennial talent, Richmond is one of the fastest-growing tech hubs in the country.
+"""
+
+[R2] About - Virginia Commonwealth University
+(https://www.vcu.edu/about-vcu/)
+"""
+Home About Unlike any university you’ve ever seen At Virginia Commonwealth University, we’re not interested in outdated traditions. We’re too focused on what’s next. Our community is more than 300,000 strong — each Ram a unique mix of style, story and attitude. Ignited by the energy of the city, we’re ready to lead industries — or disrupt them. Here, artists and engineers, doctors and designers are coming together to reimagine the human experience and tackle the problems of tomorrow. Together, we’re forging a future that is built by us. 8 things that make us #RamProud Richmond A dynamic urban center of culture and creativity — just like us. Research The National Science Foundation ranks us among the top 50 public U.S. schools. Community engagement It’s a major part of the VCU experience. More than 8,500 students participated in community/civically engaged learning courses in 2024-25. 23 in the top 50 U.S. News and World Report ranks 23 of our programs and graduate schools in their top 50. Belonging Everyone is welcome here. We love that our students come from all different backgrounds and show up as they are. Their collective energy powers our progress. Health sciences VCU is the only Virginia school to offer degrees in dentistry, health professions, medicine, nursing, pharmacy and public health. #1 hospital VCU Medical Center is the top hospital in the Richmond region and one of the best in Virginia. Peppas We have one of the most celebrated pep bands in the country. A creative culture fueled by unexpected collaborations We’re a top 50 public research university and we’re home to one of the top-ranked public graduate arts schools. What does that mean for you? Research and innovation are our greatest strengths and they will be part of your VCU education, no matter what field you pursue. So, bring us your curious minds and your boldest ideas — there’s nothing common happening here. Explore VCU Health That’s our medical enterprise, where our experts teach and mentor future doctors and other health professionals, provide great care to patients and conduct trailblazing medical research. As a VCU student, you’ll have the chance to pursue a health career, connect a health-related topic to your studies or even volunteer to make a patient’s day brighter. Learn more about VCU Health. Quick facts Founded: 1838 Location: Richmond, Va. Students: 29,288 Alumni: 235,395 Faculty (full time): 2,464 More facts
+"""
+
+[R3] Richmond - Dentistry - Virginia Commonwealth University
+(https://dentistry.vcu.edu/about/richmond/)
+"""
+Virginia Commonwealth University Give VCU’s home in Richmond Located in Richmond, Virginia, the Virginia Commonwealth University School of Dentistry resides at a bustling intersection of medicine, business, politics and culture. Combining the amenities of a major metropolitan area with the charm and convenience of a moderately sized city, Richmond, the state capital, offers a unique urban backdrop for study, work and play. At the heart of VCU Medical Center, the School of Dentistry is just blocks away from downtown Richmond’s financial and government center and a short drive from several popular retail districts. Many of our students and faculty reside in nearby historical neighborhoods like Church Hill and the Fan, taking advantage of the James River, a thriving arts scene and plentiful dining options — just a few reasons the city consistently ranks among the best places to live and work in America in several national publications. Need to book a dental appointment? BECOME A PATIENT A college experience unlike any other Going to college in the city is completely different from going to a school with a more isolated, traditional campus. In a world of common, Richmond and VCU are uncommon. There’s so. much. to. do. Want to learn more? FIND OUT ALL ABOUT RICHMOND CLOSE We are the UNcommon. Admission requirements Application process Selection process Tuition and fees Financial aid Pay online Frequently asked questions Transfer admissions Advanced standing Supplemental application material Immunizations Admissions team Advising appointments Facts and rankings Mission and goals Admission requirements Application process Selection process Health and immunizations Financial aid Dental Hygiene faculty Curriculum Frequently asked questions Application process Background checks Frequently asked questions Pay online Resources Student testimonials Financial aid Information for students and guests
+"""
+
+[R4] VCU is in the middle of it all
+(https://news.vcu.edu/article/2023/03/be-in-the-middle-of-it-all)
+"""
+Share this story About 5 ways VCU is uncommon: In this series, we explore how VCU students learn, grow and challenge the status quo at one of the nation’s premier urban universities. Virginia Commonwealth University is part of Richmond, and Richmond is part of us. Home to 1.2 million people, Richmond – Virginia’s capital city – has been called: One of the world’s best places to visit and a must-visit destination for 2023. One of the best cities for creatives, art lovers and vegans. A top 10 international destination for foodies. To be a comedian, you need experiences to feed on. Virginia Commonwealth University theatre performance major Makai Walker has had an easy time finding them in Richmond – whether performing on stage at a local venue, out with friends exploring the city or making people laugh as part of an improv group on campus. It’s one of the best places to start a business, and plenty of alumni do: Virginia is home to 320-plus VCU alumni-owned businesses, more than 180 based in Richmond alone. VCU alumni reported owning more than 480 businesses in January 2023. Of those, 38% were owned by Black and Indigenous people of color, and 47% were women-owned. And you don’t have to wait until you graduate to start your business: VCU’s da Vinci Center has supported 116 student startups that have raised $5 million-plus in investment, revenue and acquisitions since 2018. It’s a great place to find a job too: In 2021, LinkedIn ranked Richmond 9th in the nation for cities with the highest hiring rates and number of open jobs. Richmond has the highest concentration of Fortune 500 companies – eight – of any urban location in Virginia, and our health sciences campus is across the street from VA Bio+Tech Park, home to nearly 70 companies. Explore Richmond Richmond, Virginia's state capital, is a vibrant city that sits along the James River and is the center of a metropolitan area that is home to more than 1.2 million people. (Allen Jones, Enterprise Marketing and Communications) VCU is where everything is happening. We’re steps away from theaters, art galleries, music venues and restaurants. We’re within 2 miles of art and history museums and the magnificent James River Parks system with 600-plus acres to explore – our Outdoor Adventure Program can help you make the most of it. We’re also just a few miles from a minor-league baseball stadium and athletics complex, where many VCU athletes compete. On campus, our Siegel Center (one of the loudest!) is the home court for our Division I basketball and volleyball teams – just a few of the 17 teams that compete in the NCAA Division I Atlantic 10 conference – and home to our legendary pep band, The Peppas. And in the middle of it all, we have a campus – multiple campuses, in fact – with state-of-the-art facilities. Our Monroe Park Campus features residence halls and academic buildings interspersed with businesses and apartments, all centered around 7.5-acre Monroe Park, the city’s oldest park. Our health sciences campus, just blocks from the State Capitol and City Hall, serves health sciences students and, through VCU Health and our Level I Trauma Center, patients from the Richmond community and beyond. Check out our campus A VCU student rests a hand on the Ram Horns outside The Commons. During New Student Orientation, students are encouraged to touch the Ram Horns and make a wish for their time at VCU. (Kevin Morley, Enterprise Marketing and Communications) Getting around is easy. Richmond boasts an international airport and two Amtrak stations with service along the East Coast. We’re Virginia’s most bike-friendly university and in the top 40 nationwide. And with the city’s GRTC bus service running right through campus with free access for all students, from here, you can go just about anywhere. Whether you're venturing out or sticking around on campus, VCU takes supporting and caring for students seriously, and you can read how we go about doing that in the next part of our 5 Ways VCU is Uncommon series. Subscribe to VCU News Subscribe to VCU News at newsletter.vcu.edu and receive a selection of stories, videos, photos, news clips and event listings in your inbox.
+"""
+
+[R5] What does VCU stand for? Meaning, history behind name of university that is home to Rams basketball program | Sporting News
+(https://www.sportingnews.com/us/ncaa-basketball/news/what-does-vcu-stand-meaning-history-rams-basketball/5a4a243cf9b0c807eb56944d)
+"""
+Many college basketball fans were introduced to the VCU Rams in 2011, when coach Shaka Smart led the team to its first Final Four appearance. Now, the Rams are a popular underdog pick whenever they are present on a tournament bracket.However, many don't take the time to ask themselves what VCU stands for before picking or choosing against the Rams moving on. Let's take a look at what the letters in VCU mean and the history behind the Virginia school.MARCH MADNESS HQ: Live NCAA bracket | TV schedule | Latest news and moreWhat does VCU stand for?The letters in VCU stand for Virginia Commonwealth University. The term "commonwealth" means an organized political community, according to ThoughtCo, and the VCU name signifies that it is a public institution chartered by Virginia. Commonwealth is a 1700's term signifying that its government was based on the common good of the people.Virginia is officially known as a commonwealth. There are three other states that can also be considered commonwealths: Kentucky, Virginia, and Massachusetts.HISTORY OF UPSETS BY SEED:16 vs. 1 | 15 vs. 2 | 14 vs. 3 | 13 vs. 4 | 12 vs. 5When was VCU founded?VCU was founded in 1968 after merging with Richmond Professional Institute, according to the Virginia Commonwealth University website. However, the school originally started in 1838. The school originally was known as the Medical College of Hampden-Sydney, which later became the Medical College of Virginia.According to VCU's website, the school currently has 29,288 students enrolled and has over 230,000 alumni.SN AWARDS: All-America team | Player of the Year | Coach of the YearWhere is VCU located?VCU is located in the heart of Virginia's capital, Richmond. The school's neighborhood is directly south of the neighborhood of Carver.The city of Richmond has a population of 226,610, per the 2020 census.MORE MARCH MADNESS NEWS:SN's 2026 NBA Mock Draft10 best NBA prospects in March MadnessRanking the college basketball's loaded freshmen classMeet the Cinderella stars who could bust brackets
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

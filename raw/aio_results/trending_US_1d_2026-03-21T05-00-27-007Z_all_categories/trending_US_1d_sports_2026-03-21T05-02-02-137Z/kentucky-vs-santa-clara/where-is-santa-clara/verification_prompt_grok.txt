@@ -1,0 +1,109 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is santa clara"
+
+Claims:
+[1] "Santa Clara is a city in Santa Clara County, California."
+[2] "Santa Clara is located in the heart of Silicon Valley."
+[3] "Santa Clara is situated about 45 miles south of San Francisco."
+[4] "Santa Clara adjoins San Jose."
+[5] "Santa Clara borders Sunnyvale."
+[6] "Santa Clara borders Cupertino."
+[7] "Santa Clara is known as the home of Levi's Stadium."
+[8] "Santa Clara is known as the home of Intel."
+[9] "Santa Clara is known as the home of Nvidia."
+[10] "Santa Clara is known as the home of Santa Clara University."
+[11] "Santa Clara is in the San Francisco Bay Area (South Bay)."
+[12] "Santa Clara is situated in the Santa Clara Valley."
+[13] "Santa Clara is situated along the Guadalupe River."
+[14] "Santa Clara is often called "The Mission City"."
+
+Cited text snippets from the AI Overview (for additional context):
+- Visit Santa Clara: "Santa Clara is located in the heart,Theme Park, Mission College, and Levi's Stadium"
+Reference Sources:
+
+[R1] Our City | City of Santa Clara
+(https://www.santaclaraca.gov/our-city)
+"""
+Skip to Main Content Santa Clara is a family-oriented and business friendly city, led by a city government that has developed an award-winning ethics program and a commitment to fostering the public trust. Located in Santa Clara County at the southern tip of San Francisco Bay, about 45 miles south of San Francisco, Santa Clara is a strategic regional hub, convenient to freeways, airports, railroads, expressways, light rail and other public transportation. About Santa Clara Government Departments A-F Departments G-Z Santa Clara Stadium Authority Sustainability Last Updated: 11-13-2025 Contact Us City of Santa Clara 1500 Warburton Ave. Santa Clara, CA 95050 Telephone - 408-615-2200 Email us: communications View Full Site STAY CONNECTED Close subscription dialog Stay up to date with news and events No Thanks Remind Me Later Thank you for subscribing. You will begin receiving updates shortly.Continue Loading ...Original textRate this translationYour feedback will be used to help improve Google TranslateClose ×
+"""
+
+[R2] About Santa Clara — Santa Clara Fire Department
+(https://www.joinscfd.org/about-santa-clara)
+"""
+Located 45 miles southeast of San Francisco, the city of Santa Clara was founded in 1777. The city currently covers 19.3 square miles and sits in the heart of what is known worldwide as Silicon Valley. The city is the site of the eighth of 21 California missions, Mission Santa Clara, and was named after the mission. The Mission and Mission Gardens are located on the grounds of Santa Clara University, the oldest institution of higher learning in the state of California. The city's population was recorded as 127,151 at the 2021 United States Census, making it the ninth-most populous city in the San Francisco Bay Area. The day time population of Santa Clara is estimated at 175,000 people as it is located in the center of Silicon Valley and is home to several high-tech companies such as Intel, National Semiconductor, Applied Materials, Oracle, and Apple. Santa Clara is also home to Westfield Mall and Great America Theme Park which receives approximately 500,000 visitors annually. Additionally, Mission College and Kaiser Hospital are also located within the city limits. Levi's Stadium, the home of the NFL's San Francisco 49ers, the site of Super Bowl 60 in 2026, is located in the city. Santa Clara is bordered by San Jose and the San Jose International Airport, Sunnyvale, and Cupertino. Santa Clara features thirty-seven parks, three libraries, ten museums, a senior center, community center, a youth activity center, four community pools, and was rated as an ‘All America City’ in 2005.
+"""
+
+[R3] Santa Clara | Visit California
+(https://www.visitcalifornia.com/places-to-visit/santa-clara/)
+"""
+Once the domain of the Ohlone Tribe and later a rich farming area of fruit orchards, Santa Clara has grown into a city of nearly 130,000 residents with a diverse range of attractions in Silicon Valley. Bordering San Jose and less than an hour south of San Francisco, this longtime tech hub has also emerged as a prominent player on the international sports scene and makes an ideal base for visitors looking to explore the Bay Area.Things to Do in Santa ClaraLevi’s StadiumSanta Clara is the home of Levi’s Stadium, home field of the NFL’s San Francisco 49ers and has played host to some of the world’s biggest sporting events and concerts, which to date have included Super Bowl 50, the 2017 Concacaf Gold Cup soccer finals, the 2019 college football national championship game, and 2023 tour performances by Taylor Swift and Beyoncé. 2026 sees the stadium hosting more world-stage events such as Super Bowl LX and 2026 FIFA World Cup. Be sure to visit the 49ers Museum to see the Vince Lombardi Trophies the team has won as five-time Super Bowl champions.Great America Theme ParkLong before Santa Clara became a destination for sports fans, theme-park lovers flocked to California’s Great America for the gravity-defying thrills on the looping, corkscrewing Demon roller coaster and summertime water-park fun. The tradition that began in 1976 continues today on such rides as the revolutionary RailBlazer roller-coaster, which has three inversions and reaches speeds of up to 52 mph, and at Great America’s South Bay Shores water park, where the seven-story Pacific Surge sends you plunging along six waterslides.Mission Santa Clara de AsísThe city is also home to Mission Santa Clara de Asís, the eighth of the 21 California missions founded by the Spanish. Established in 1777, the mission moved five times before reaching its current site in 1822. There are also living reminders of the mission era, including a 140-year-old wisteria arbor and a rose garden.The mission is situated on the Santa Clara University campus, where you can attend theater and dance performances, as well as sporting events featuring teams competing in 20 Division 1 sports (Santa Clara’s women’s soccer team won the 2020 national championship). Or visit the university’s de Saisset Museum for exhibits focused on California art and history.Museums in Santa ClaraThere’s more art in Santa Clara at the free Triton Museum of Art, which specializes in contemporary California works and features a lovely sculpture garden. For a very different kind of museum experience, Santa Clara’s 10,000-square-foot Intel Museum takes you inside the world of the computer-chip industry.Outdoor Fun in Santa ClaraLike much of the Bay Area, Santa Clara has an almost perfect climate. You can get outdoors at the city’s Central Park, a 52-acre recreational gem along Saratoga Creek with a lawn bowling green, an aquatics center, and a lake that draws flocks of ducks and geese. Not far from Levi’s Stadium, explore the Ulistac Natural Area on trails that meander through 41 acres along the Guadalupe River. You’ll see a butterfly and hummingbird garden and seven different California natural habitats, including wetlands and oak woodlands, used seasonally by the region’s Ohlone Indians for 1,500 years.Santa Clara’s Koreatown Since the 1980s, Santa Clara has been home to one of the country’s largest Korean communities, which is centered in an area dubbed “Koreatown Silicon Valley.” Discover authentic Korean cuisine at such popular Santa Clara restaurants as Jang Su Jang, which has earned multiple Michelin Guide recommendations for its smoky barbecue and tofu stews. Other standouts include a location of Paik’s Noodle, a chain known for its speedy service and jajangmyeon (thick, chewy noodles in black bean sauce) and gun mandu (pan-fried dumplings), and BN Chicken, where each bowl of house-specialty samgyetang (chicken-ginseng soup) includes an entire Cornish hen. If you’re looking to pair an afternoon of shopping with a destination-worthy meal, head to Westfield Valley Fair mall, home to not only more than 200 stores and boutiques but also Din Tai Fung, the only Northern California branch of the Taipei dumpling house that has earned a global following for its dim sum delicacies.Another fun way to approach dining here is the Global Games Food Trail, a curated lineup of restaurants and eateries that reflects Santa Clara’s international flavor. Inspired by the global spirit of major sporting events, the trail highlights everything from Korean barbecue and Indian curries to Mexican street food and classic American bites, encouraging visitors to sample their way around the world without leaving the city.
+"""
+
+[R4] Santa Clara, California
+(https://kids.britannica.com/students/article/Santa-Clara-California/335584)
+"""
+© jejim—iStock/Getty Images The city of Santa Clara lies along the Guadalupe River in the Santa Clara Valley of California. Santa Clara is in Santa Clara County adjoining San Jose and about 48 miles (77 kilometers) southeast of San Francisco . The city’s many computer-related businesses make it an important part of the Silicon Valley industrial region. Santa Clara University , the oldest institution of higher learning in California, was founded by Jesuit priests in 1851. On its campus are the reconstructed Mission Santa Clara de Asís and the de Saisset Museum, where Native American and mission-era art is displayed. The Triton Museum of Art also emphasizes historical and contemporary local art. California’s Great America is a large amusement park in Santa Clara that features Peanuts comic strip characters. The Costanoan, or Ohlone, Native Americans were early inhabitants. The original Spanish settlement grew around the Mission Santa Clara de Asís , founded in 1777 as the eighth of California’s 21 Spanish missions . The name honors Saint Clare of Assisi, founder of an order of Roman Catholic nuns. Santa Clara became an incorporated town in 1852, only two years after California became a U.S. state. The city developed as a processing centre for the prunes, apricots, and other fruits and vegetables grown in the rich Santa Clara Valley. Flower seeds became an important crop. By the 1940s, however, manufacturing had surpassed agriculture in importance, and since then Santa Clara’s growth has reflected a mixed economy with a growing service sector. Santa Clara has a council-manager form of government. ( See also California .) Population (2020) 127,647.
+"""
+
+[R5] Visit Santa Clara | City of Santa Clara
+(https://www.santaclaraca.gov/recreation-community/visit-santa-clara)
+"""
+Skip to Main Content Over 130,000 people live in Santa Clara, the center of what’s possible. With over 19 square miles of tree-lined neighborhoods, bustling shopping centers and thriving businesses, Santa Clara is where you can find your mission. Located at the heart of Silicon Valley, about 45 miles south of San Francisco, the City of Santa Clara truly is “The Center of What’s Possible.” Incorporated in 1852, Santa Clara covers an area of 19.3 square miles with a population of 129,488. Santa Clara is home to an extraordinary array of high-tech companies, including Applied Materials, Intel, Nvidia, Oracle, and Ericsson. The City of Santa Clara is also home to Santa Clara University, California’s Great America Theme Park, Mission College and Levi’s® Stadium, home of the San Francisco 49ers and Super Bowl 50. Art in Santa Clara Parks and Pools Mission Santa Clara de Asis Santa Clara Convention Center Silicon Valley Central Chamber of Commerce Levi's Stadium Santa Clara History Last Updated: 09-18-2021 Events MISSION: Baby & Me Storytime (0-2 years) 03/26/2026 9:30 AM - 10:15 AM More Events News Press Release – Santa Clara Police Request Assistance with Death Investigation 3/25/2026 1:30:00 PM More News View Full Site STAY CONNECTED Close subscription dialog Stay up to date with news and events No Thanks Remind Me Later Thank you for subscribing. You will begin receiving updates shortly.Continue Original textRate this translationYour feedback will be used to help improve Google TranslateLoading ...Close ×
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

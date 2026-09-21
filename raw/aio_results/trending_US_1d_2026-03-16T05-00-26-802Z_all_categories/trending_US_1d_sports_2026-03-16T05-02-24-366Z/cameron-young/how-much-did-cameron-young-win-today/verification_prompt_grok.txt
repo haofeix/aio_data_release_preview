@@ -1,0 +1,99 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "how much did cameron young win today"
+
+Claims:
+[1] "Cameron Young won The Players Championship on Sunday, March 15, 2026."
+[2] "Cameron Young won $4.5 million for his victory at The Players Championship."
+[3] "Cameron Young finished at 13-under 275 at The Players Championship."
+[4] "Cameron Young finished one stroke ahead of Matt Fitzpatrick at The Players Championship."
+[5] "The Players Championship had a $25 million purse."
+[6] "The Players Championship was at TPC Sawgrass."
+[7] "Cameron Young earned 750 FedExCup points bonus at The Players Championship"
+
+Cited text snippets from the AI Overview (for additional context):
+- Points and payouts: See what each player earned at THE PLAYERS Championship: "by Rob Bolton-,Cameron Young collects 750 FedExCup points and $4.5 million with,more details of Young's victory."
+- The Players Championship 2026 purse, payouts - Yahoo Sports: "As a result, Young earned a $4.5 million check."
+- The Players Championship 2026 prize money: Full payout for $25 million ...: "Cameron Young won The Players,with a $4.5 million check."
+- Players 2026: Cameron Young rallies late to win at TPC ...: "A winner of his first,He pocketed $4.5 million."
+Reference Sources:
+
+[R1] The Players Championship 2026 prize money: Full payout for $25 million purse - Golf Channel
+(https://www.golfchannel.com/pga-tour/news/the-players-championship-2026-prize-money-full-payout-for-25-million-purse)
+"""
+0 seconds of 1 minute, 50 secondsVolume 0% Young completes comeback to win 2026 Players March 15, 2026 06:52 PM In this edition of the Golf Channel Podcast with Rex &amp; Lav, the guys, live from TPC Sawgrass, discuss all of the storylines heading into the final round of The Players Championship, including Ludvig Åberg's chances of closing out the biggest win of his career. Cameron Young won The Players Championship and with it, a massive pay day.Young finished one shot clear of Matt Fitzpatrick on Sunday at TPC Sawgrass. It was Young’s second career PGA Tour title (2025 Wyndham Championship) and came with a $4.5 million check.Fitzpatrick, who bogeyed the final hole, earned $2,225,000. Ludvig Åberg, who led by three strokes through 54 holes, tied for fifth.Here’s a look at the full distribution of the 2026 Players Championship purse:FINISHPLAYEREARNINGS1Cameron Young$4,500,0002Matt Fitzpatrick$2,225,0003Xander Schauffele$1,725,0004Robert MacIntyre$1,225,000T5Sudarshan Yellamaraju$925,000T5Jacob Bridgeman$925,000T5Ludvig Åberg$925,000T8Tommy Fleetwood$731,250T8Sepp Straka$731,250T8Justin Thomas$731,250T11Patrick Rodgers$581,250T11Brian Harman$581,250T13Sam Burns$409,027T13Akshay Bhatia$409,027T13Brooks Koepka$409,027T13Ryo Hisatsune$409,027T13Justin Rose$409,027T13Russell Henley$409,027T13Austin Smotherman$409,027T13Corey Conners$409,027T13Viktor Hovland$409,027T22Scottie Scheffler$271,250T22Michael Thorbjornsen$271,250T24J.J. Spaun$221,250T24Alex Smalley$221,250T24William Mouw$221,250T27Hideki Matsuyama$178,750T27Nicolai Hojgaard$178,750T27Chris Kirk$178,750T27Ryan Gerard$178,750T27Chad Ramey$178,750T32Eric Cole$128,250T32Jordan Spieth$128,250T32Patrick Cantlay$128,250T32Bud Cauley$128,250T32Andrew Putnam$128,250T32Alex Noren$128,250T32Max Homa$128,250T32Min Woo Lee$128,250T32Maverick McNealy$128,250T32Sahith Theegala$128,250T42Rickie Fowler$91,250T42Nick Taylor$91,250T42Wyndham Clark$91,250T42Joe Highsmith$91,250T46Rory McIlroy$72,125T46Taylor Pendrith$72,125T46Matti Schmid$72,125T46Keith Mitchell$72,125T50J.T. Poston$61,083T50Zach Bauchou$61,083T50Taylor Moore$61,083T50Max McGreevy$61,083T50Si Woo Kim$61,083T50Keegan Bradley$61,083T56Adam Scott$58,000T56Chris Gotterup$58,00058Sam Stevens$57,250T59Kevin Roy$56,250T59Lee Hodges$56,250T59Jason Day$56,250T62Danny Walker$54,500T62Steven Fisk$54,500T62Rico Hoey$54,500T62Stephan Jaeger$54,500T66Kristoffer Reitan$52,750T66Daniel Berger$52,750T66Nico Echavarria$52,75069Michael Brennan$51,750T70Ricky Castillo$50,750T70Séamus Power$50,750T70Tony Finau$50,75073Takumi Kanaya$49,750
+"""
+
+[R2] The Players Championship 2026 purse, payouts: How much did Cameron Young earn for his win at TPC Swagrass?
+(https://ca.sports.yahoo.com/news/the-players-championship-2026-purse-payouts-how-much-did-cameron-young-earn-for-his-win-at-tpc-swagrass-212156364.html)
+"""
+Cameron Young pulled off the comeback win.Young, after it looked like Matt Fitzpatrick was going to get out of TPC Sawgrass with the victory, rallied to top Fitzpatrick and claim The Players Championship on Sunday afternoon. He posted a 4-under 68 to overtake Ludvig Åberg and the rest of the field to get to 13-under for the weekend, which was enough to give him the one-shot win in the PGA Tour’s marquee event of the season.AdvertisementAs a result, Young earned a $4.5 million check.[Enter Yahoo Fantasy Bracket Mayhem now for your shot at $50K]Fitzpatrick looked like he was in control down the stretch, but Young held pace and then played the iconic 17th hole and the island green perfectly. That birdie sent him and Fitzpatrick to the final tee tied for the lead.Young then hit what ended up being the longest drive on the 18th hole in the Shotlink era, 375 yards, while Fitzpatrick sent his to the right and into the trees. Fitzpatrick ended up bogeying, which gave Young the win after his two-putt par.AdvertisementThe win is the second of Young’s Tour career. He picked up his first at the Wyndham Championship last season.The Players Championship had a $25 million purse up for grabs, which tops the other signature events this season by $5 million. Here’s a look at how much Young and the rest of the field took home at TPC Sawgrass.1. Cameron Young — $4.5 million2. Matt Fitzpatrick — $2.725 million3. Xander Schauffele — $1.725 million4. Robert MacIntyre — $1.225 millionT5. Sudarshan Yellamaraju, Jacob Bridgeman, Ludvig Åberg — $925,000T8. Tommy Fleetwood, Sepp Straka, Justin Thomas — $731,250T11. Patrick Rodgers, Brian Harman — $606,250T13. Sam Burns, Akshay Bhatia, Brooks Koepka, Ryo Hisatsune, Russell Henley, Justin Rose, Austin Smotherman, Corey Conners, Viktor Hovland — $409,028T22. Scottie Scheffler, Michael Thorbjornsen — $271,250T24. Alex Smalley, J.J. Spaun, William Mouw — $221,250T27. Hideki Matsuyama, Nicolai Højgaard, Chris Kirk, Ryan Gerard, Chad Ramey — $178,650T32. Jordan Spieth, Eric Cole, Bud Cauley, Patrick Cantlay, Andrew Putnam, Alex Noren, Max Homa, Min Woo Lee, Maverick McNealy, Sahith Theegala — $128,250T42. Rickie Fowler, Wyndham Clark, Nick Taylor, Joe Highsmith — $91,250T46. Rory McIlroy, Taylor Pendrith, Matti Schmid, Keith Mitchell — $72,175T50. Taylor Moore, J.T. Poston, Zach Bauchou, Max McGreevy, Si Woo Kim, Keegan Bradley — $61,083T56. Adam Scott, Chris Gotterup — $58,00058. Sam Stevens — $57,250T59. Kevin Roy, Lee Hodges, Jason Day — $56,250T62. Danny Walker, Steven Fisk, Rico Hoey, Stephan Jaeger — $54,500T66. Kristoffer Reitan, Daniel Berger, Nico Echavarria — $52,75069. Michael Brennan — $51,750T70. Ricky Castillo, Tony Finau, Seamus Power — $50,75073. Takumi Kanaya — $49,750
+"""
+
+[R3] Players 2026: Cameron Young rallies late to win at TPC Sawgrass
+(https://www.golfdigest.com/story/players-2026-cameron-young-rallies-to-win-at-tpc-sawgrass)
+"""
+Cameron Young powered his way to the biggest victory of his career on Sunday, outdueling playing partner Matt Fitzpatrick to win the Players Championship. Young sank a nine-foot birdie putt on the iconic par-3 17th hole at TPC Sawgrass to forge a tie with Fitzpatrick and then made par on the difficult 18th while Fitzpatrick bogeyed to earn a one-stroke victory. A winner of his first PGA Tour title in his 94th start at the Wyndham Championship in August, Young, 28, needed only 10 more to capture the tour’s flagship event near tour headquarters in Ponte Vedra Beach, Fla. Young closed with a four-under 68 to finish at 13-under 275. He pocketed $4.5 million. “I feel like we just kept ourselves in a really good spot all day today, really all week,” Young said with a slight grin. “The nerves kicked in over the 8-inch putt on the last. That hole looked really, really small there from pretty close range. So happy to have finished it off, and just really excited to have played the way I did.” Fitzpatrick, attempting to become the first player from England to win the Players, also had a 68 for solo second at 276. Winner of the 2022 U.S. Open, Fitzpatrick had either held or shared the lead since he birdied the 12th hole to catch 54-hole leader Ludvig Aberg. But he drove into the right trees at the par-4 18th hole and eventually failed to save par from eight feet. Young, meanwhile, two-putted from 15 feet for par after unleashing a drive of 375 yards—reported to be the longest recorded drive on the 18th hole since the ShotLink era began in 2003. When he tapped in for the win, he shared a hug with Fitzpatrick. The two men are teammates on the New York Golf Club squad in TGL, the indoor simulator league. Aberg, who began the day with a three-shot lead over fellow Ponte Vedra Beach resident Michael Thorbjornsen, became the eighth 54-hole leader in the last 11 years to fail to go on to win. The Swede led by two at the turn but put two balls in the water on consecutive holes at 11 and 12 and shot 40 on the inward nine for a closing 76. He ended up T-5 at nine-under 279. Thorbjornsen’s hopes were dashed early with a quadruple bogey at the par-four fourth hole. He shot 77-283 to drift back into a tie for 22nd place. Xander Schauffele birdied three of the last four holes to shoot 69 and finish solo third at 11-under 277. Left-hander Robert MacIntyre, who after 11 holes was tied with Fitzpatrick just two behind Aberg, also had 69 to finish another stroke back. This was Young's fifth start at the Players, after previously finishing no better than T-51 in 2023.
+"""
+
+[R4] Points and payouts: See what each player earned at THE PLAYERS Championship - PGA TOUR
+(https://www.pgatour.com/article/news/betting-dfs/2026/03/15/points-payouts-purse-prize-money-breakdown-fund-cameron-young-the-players-championship-matt-fitzpatrick)
+"""
+11D AGOVideo Player is loading.Current Time 0:00Duration 1:43Remaining Time 1:43captions settings, opens captions settings dialogcaptions off, selectedEnglishGolfbet recap: Top five bets that hit at THE PLAYERSCameron Young collects 750 FedExCup points and $4.5 million with the win.Cameron Young collects 750 FedExCup points and $4.5 million with the win.Forever Young. Forever Cameron Young.With a 4-under 68 in the final round of THE PLAYERS Championship on Sunday, Young posted 13-under 275 and prevailed by one stroke at the PGA TOUR’s flagship event.Scroll below the table for more details of Young's victory.POSITIONGOLFERSCOREFEDEXCUP POINTSEARNINGS1Cameron Young275 / -13750.000$4,500,000.002Matt Fitzpatrick276 / -12500.000$2,725,000.003Xander Schauffele277 / -11350.000$1,725,000.004Robert MacIntyre278 / -10325.000$1,225,000.00T5Sudarshan Yellamaraju279 / -9275.000$925,000.00T5Jacob Bridgeman279 / -9275.000$925,000.00T5Ludvig Åberg279 / -9275.000$925,000.00T8Tommy Fleetwood280 / -8200.000$731,250.00T8Sepp Straka280 / -8200.000$731,250.00T8Justin Thomas280 / -8200.000$731,250.00T11Patrick Rodgers281 / -7145.000$606,250.00T11Brian Harman281 / -7145.000$606,250.00T13Sam Burns282 / -680.556$409,027.78T13Akshay Bhatia282 / -680.556$409,027.78T13Brooks Koepka282 / -680.556$409,027.78T13Ryo Hisatsune282 / -680.556$409,027.78T13Russell Henley282 / -680.556$409,027.78T13Justin Rose282 / -680.556$409,027.78T13Austin Smotherman282 / -680.556$409,027.78T13Corey Conners282 / -680.556$409,027.78T13Viktor Hovland282 / -680.556$409,027.78T22Scottie Scheffler283 / -552.000$271,250.00T22Michael Thorbjornsen283 / -552.000$271,250.00T24Alex Smalley284 / -447.000$221,250.00T24J.J. Spaun284 / -447.000$221,250.00T24William Mouw284 / -447.000$221,250.00T27Hideki Matsuyama285 / -339.000$178,750.00T27Nicolai Højgaard285 / -339.000$178,750.00T27Chris Kirk285 / -339.000$178,750.00T27Ryan Gerard285 / -339.000$178,750.00T27Chad Ramey285 / -339.000$178,750.00T32Jordan Spieth286 / -226.100$128,250.00T32Eric Cole286 / -226.100$128,250.00T32Bud Cauley286 / -226.100$128,250.00T32Patrick Cantlay286 / -226.100$128,250.00T32Andrew Putnam286 / -226.100$128,250.00T32Alex Noren286 / -226.100$128,250.00T32Max Homa286 / -226.100$128,250.00T32Min Woo Lee286 / -226.100$128,250.00T32Maverick McNealy286 / -226.100$128,250.00T32Sahith Theegala286 / -226.100$128,250.00T42Rickie Fowler287 / -119.125$91,250.00T42Wyndham Clark287 / -119.125$91,250.00T42Nick Taylor287 / -119.125$91,250.00T42Joe Highsmith287 / -119.125$91,250.00T45Rory McIlroy288 / E16.125$72,125.00T45Taylor Pendrith288 / E16.125$72,125.00T45Matti Schmid288 / E16.125$72,125.00T45Keith Mitchell288 / E16.125$72,125.00T50J.T. Poston289 / 112.792$61,083.33T50Taylor Moore289 / 112.792$61,083.33T50Zach Bauchou289 / 112.792$61,083.33T50Max McGreevy289 / 112.792$61,083.33T50Si Woo Kim289 / 112.792$61,083.33T50Keegan Bradley289 / 112.792$61,083.33T56Adam Scott290 / 210.750$58,000.00T56Chris Gotterup290 / 210.750$58,000.0058Sam Stevens291 / 310.000$57,250.00T59Kevin Roy292 / 49.000$56,250.00T59Lee Hodges292 / 49.000$56,250.00T59Jason Day292 / 49.000$56,250.00T62Danny Walker293 / 57.875$54,500.00T62Steven Fisk293 / 57.875$54,500.00T62Rico Hoey293 / 57.875$54,500.00T62Stephan Jaeger293 / 57.875$54,500.00T66Kristoffer Reitan294 / 67.000$52,750.00T66Daniel Berger294 / 67.000$52,750.00T66Nico Echavarria294 / 67.000$52,750.0069Michael Brennan295 / 76.500$51,750.00T70Ricky Castillo296 / 86.000$50,750.00T70Tony Finau296 / 86.000$50,750.00T70Seamus Power296 / 86.000$50,750.0073Takumi Kanaya298 / 105.500$49,750.00On the Stadium Course at TPC Sawgrass, where no lead ever is safe, largely due to the iconic par-3 17th hole surrounded by water, Young birdied it in each of his last three rounds. But having stood on its tee one shot back of then-leader Matt Fitzpatrick in the finale, where the hole was cut in its traditional location on the right, Young’s conversion from just inside 10 feet was easily the most impactful.At the par-4 18th and with a strong wind favoring distance, Young piped his drive a field-long 375 yards into the fairway to put himself in position for what is never a stress-free par. After Fitzpatrick’s drive came to rest in the pine straw right of the fairway en route to a bogey-5, Young eventually tapped in for par and his first title at THE PLAYERS and second career PGA TOUR victory.While Young and Fitzpatrick comprised the penultimate pairing in the finale, the champ was down four strokes to 54-hole pacesetter Ludvig Åberg. (The Swede closed with 76 to finish T5.) But it’s hardly news at TPC Sawgrass, where Scottie Scheffler erased a five-shot deficit in the final round in 2024 to win. And before Rory McIlroy captured victory last year in a playoff, he had opened his final round four strokes adrift.Young earns $4.5 million of a $25 million prize fund. He also banks 750 FedExCup points. He’s now exempt as a PGA TOUR member through 2031 via this victory, and he’s exempt into the next three editions of all four majors. As a bonus, he’ll climb into the top five of the Official World Golf Ranking for the first time in his career.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

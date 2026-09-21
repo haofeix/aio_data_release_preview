@@ -1,0 +1,53 @@
+{
+  "url": "https://blogs.cisco.com/ai/personal-ai-agents-like-openclaw-are-a-security-nightmare",
+  "domain": "blogs.cisco.com",
+  "source_type": "aio_reference",
+  "scraped_at": null,
+  "content": {
+    "title": "Personal AI Agents like OpenClaw Are a Security Nightmare",
+    "text": "This blog is written in collaboration by Amy Chang, Vineeth Sai Narajala, and Idan Habler Over the past few weeks, Clawdbot (then renamed Moltbot, later renamed OpenClaw) has achieved virality as an open source, self-hosted personal AI assistant agent that runs locally and executes actions on the user’s behalf. The bot’s explosive rise is driven by several factors; most notably, the assistant can complete useful daily tasks like booking flights or making dinner reservations by interfacing with users through popular messaging applications including WhatsApp and iMessage. OpenClaw also stores persistent memory, meaning it retains long-term context, preferences, and history across user sessions rather than forgetting when the session ends. Beyond chat functionalities, the tool can also automate tasks, run scripts, control browsers, manage calendars and email, and run scheduled automations. The broader community can add “skills” to the molthub registry which augment the assistant with new abilities or connect to different services. From a capability perspective, OpenClaw is groundbreaking. This is everything personal AI assistant developers have always wanted to achieve. From a security perspective, it’s an absolute nightmare. Here are our key takeaways of real security risks: OpenClaw can run shell commands, read and write files, and execute scripts on your machine. Granting an AI agent high-level privileges enables it to do harmful things if misconfigured or if a user downloads a skill that is injected with malicious instructions. OpenClaw has already been reported to have leaked plaintext API keys and credentials, which can be stolen by threat actors via prompt injection or unsecured endpoints. OpenClaw’s integration with messaging applications extends the attack surface to those applications, where threat actors can craft malicious prompts that cause unintended behavior. Security for OpenClaw is an option, but it is not built in. The product documentation itself admits: “There is no ‘perfectly secure’ setup.” Granting an AI agent unlimited access to your data (even locally) is a recipe for disaster if any configurations are misused or compromised. “A very particular set of skills,” now scanned by Cisco In December 2025, Anthropic introduced Claude Skills: organized folders of instructions, scripts, and resources to supplement agentic workflows, and the ability to enhance agentic workflows with task-specific capabilities and resources. The Cisco AI Threat and Security Research team decided to build a tool that can scan associated Claude Skills and OpenAI Codex skills files for threats and untrusted behavior that are embedded in descriptions, metadata, or implementation details. Beyond just documentation, skills can influence agent behavior, execute code, and reference or run additional files. Recent research on skills vulnerabilities (26% of 31,000 agent skills analyzed contained at least one vulnerability) and the rapid rise of the OpenClaw AI agent presented the perfect opportunity to announce our open source Skill Scanner tool. We ran a vulnerable third-party skill, “What Would Elon Do?” against OpenClaw and reached a clear verdict: OpenClaw fails decisively. Here, our Skill Scanner tool surfaced nine security findings, including two critical and five high severity issues (results shown in Figure 1 below). Let’s dig into them: The skill we invoked is functionally malware. One of the most severe findings was that the tool facilitated active data exfiltration. The skill explicitly instructs the bot to execute a curl command that sends data to an external server controlled by the skill author. The network call is silent, meaning that the execution happens without user awareness. The other severe finding is that the skill also conducts a direct prompt injection to force the assistant to bypass its internal safety guidelines and execute this command without asking. The high severity findings also included: Command injection via embedded bash commands that are executed through the skill’s workflow Tool poisoning with a malicious payload embedded and referenced within the skill file Figure 1. Screenshot of Cisco Skill Scanner results It’s a personal AI assistant, why should enterprises care? Examples of intentionally malicious skills being successfully executed by OpenClaw validate several major concerns for organizations that don’t have appropriate security controls in place for AI agents. First, AI agents with system access can become covert data-leak channels that bypass traditional data loss prevention, proxies, and endpoint monitoring. Second, models can also become an execution orchestrator, wherein the prompt itself becomes the instruction and is difficult to catch using traditional security tooling. Third, the vulnerable tool referenced earlier (“What Would Elon Do?”) was inflated to rank as the #1 skill in the skill repository. It is important to understand that actors with malicious intentions are able to manufacture popularity on top of existing hype cycles. When skills are adopted at scale without consistent review, supply chain risk is similarly amplified as a result. Fourth, unlike MCP servers (which are often remote services), skills are local file packages that get installed and loaded directly from disk. Local packages are still untrusted inputs, and some of the most damaging behavior can hide inside the files themselves. Finally, it introduces shadow AI risk, wherein employees unknowingly introduce high-risk agents into workplace environments under the guise of productivity tools. Skill Scanner Our team built the open source Skill Scanner to help developers and security teams determine whether a skill is safe to use. It combines several powerful analytical capabilities to correlate and analyze skills for maliciousness: static and behavioral analysis, LLM-assisted semantic analysis, Cisco AI Defense inspection workflows, and VirusTotal analysis. The results provide clear and actionable findings, including file locations, examples, severity, and guidance, so teams can decide whether to adopt, fix, or reject a skill. Explore Skill Scanner and all its features here: https://github.com/cisco-ai-defense/skill-scanner We welcome community engagement to keep skills secure. Consider adding novel security skills for us to integrate and engage with us on GitHub.",
+    "word_count": 944,
+    "extraction_method": "readability"
+  },
+  "ad_metrics": {
+    "iframe_ad_count": 3,
+    "total_iframes": 7,
+    "flagged_urls": [
+      "https://3569326.fls.doubleclick.net/activityi;src=3569326;type=globa00;cat=gl_in0;u1=MjMuNTcuNjYuMTcyLjI1MjI5MTkxNzc1MTAwMjM5NjM%3D;u4=019d4c3826d5000f528f1bb4c44705075005406d00bd6;u16=https%3A%2F%2Fblogs.cisco.com%2Fai%2Fpersonal-ai-agents-like-openclaw-are-a-security-nightmare;ord=994796791847.0446?",
+      "https://3569326.fls.doubleclick.net/activityi;src=3569326;type=gl_au0;cat=gl_au0;ord=973346990835;npa=0;auiddc=605810185.1775100244;u1=MjMuNTcuNjYuMTcyLjI1MjI5MTkxNzc1MTAwMjM5NjM%3D;u4=019d4c3826d5000f528f1bb4c44705075005406d00bd6;gdid=dYmQxMT;uaa=arm;uab=64;uafvl=Chromium%3B146.0.7680.167%7CNot-A.Brand%3B24.0.0.0%7CGoogle%2520Chrome%3B146.0.7680.167;uamb=0;uam=;uap=macOS;uapv=15.7.3;uaw=0;pscdl=noapi;frm=0;_tu=KFA;gtm=45fe63v0v9179878328za200zb880413333zd880413333xec;gcs=G111;gcd=13t3t3Z3t5l1;dma=0;dc_fmt=2;tag_exp=0~115938466~115938468~116991816;epver=2;match_id=MjMuNTcuNjYuMTcyLjI1MjI5MTkxNzc1MTAwMjM5NjM%3D;dc_random=1775100244_mbDV-F3uEiMlHfTgHVuShm-FowjoRhhCmg;_dc_test=1;~oref=https%3A%2F%2Fblogs.cisco.com%2Fai%2Fpersonal-ai-agents-like-openclaw-are-a-security-nightmare?",
+      "https://3569326.fls.doubleclick.net/activityi;src=3569326;type=visitor;cat=vis;npa=0;auiddc=605810185.1775100244;u1=MjMuNTcuNjYuMTcyLjI1MjI5MTkxNzc1MTAwMjM5NjM%3D;u4=019d4c3826d5000f528f1bb4c44705075005406d00bd6;gdid=dYmQxMT;uaa=arm;uab=64;uafvl=Chromium%3B146.0.7680.167%7CNot-A.Brand%3B24.0.0.0%7CGoogle%2520Chrome%3B146.0.7680.167;uamb=0;uam=;uap=macOS;uapv=15.7.3;uaw=0;pscdl=noapi;frm=0;_tu=KAAB;gtm=45fe63v0v9179878328za200zb880413333zd880413333xec;gcs=G111;gcd=13t3t3Z3t5l1;dma=0;dc_fmt=2;tag_exp=0~115938466~115938468~116991816;epver=2;dc_random=1775100244_aaOxhsMR8Di_KNYih3vvoSADsD4L0nQxwA;_dc_test=1;~oref=https%3A%2F%2Fblogs.cisco.com%2Fai%2Fpersonal-ai-agents-like-openclaw-are-a-security-nightmare?"
+    ]
+  },
+  "prebid": {
+    "pbjs_global_found": false,
+    "prebid_version": null,
+    "bid_adapters": [],
+    "bid_adapter_count": 0,
+    "config_summary": {
+      "bidder_timeout": null,
+      "price_granularity": null,
+      "enable_send_all_bids": null,
+      "currency": null
+    },
+    "bid_responses": [],
+    "winning_bids": [],
+    "ad_unit_summary": {
+      "total_ad_units": 0,
+      "units_with_bids": 0,
+      "total_bids": 0,
+      "avg_winning_cpm": 0,
+      "max_cpm": 0,
+      "estimated_page_rpm": 0
+    },
+    "hb_targeting_keys_found": [],
+    "alternatives": {
+      "amazon_tam": false,
+      "amazon_apstag_found": false,
+      "google_open_bidding": false
+    },
+    "prebid_script_urls": [],
+    "detected": false
+  },
+  "snapshots": {},
+  "error": null
+}

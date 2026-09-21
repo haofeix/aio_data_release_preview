@@ -1,0 +1,113 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "artemis ii astronauts"
+
+Claims:
+[1] "The Artemis II crew successfully completed a 10-day mission around the Moon."
+[2] "The Artemis II crew splashed down on April 10, 2026."
+[3] "The Artemis II crew includes NASA commander Reid Wiseman."
+[4] "The Artemis II crew includes pilot Victor Glover."
+[5] "The Artemis II crew includes mission specialist Christina Koch."
+[6] "The Artemis II crew includes Canadian Space Agency (CSA) mission specialist Jeremy Hansen."
+[7] "The Artemis II crew were the first humans to travel to the Moon in over 50 years."
+[8] "Reid Wiseman is a NASA astronaut."
+[9] "Reid Wiseman is a U.S. Navy veteran."
+[10] "Reid Wiseman previously served as Chief of the Astronaut Office."
+[11] "Victor Glover is a NASA astronaut."
+[12] "Victor Glover piloted the SpaceX Crew-1 mission."
+[13] "Victor Glover is the first person of color to go to the Moon."
+[14] "Christina Koch is a NASA astronaut."
+[15] "Christina Koch holds the record for the longest single spaceflight by a woman."
+[16] "Christina Koch is the first woman to go to the Moon."
+[17] "Jeremy Hansen is a Canadian Space Agency astronaut."
+[18] "Jeremy Hansen is a former fighter pilot."
+[19] "Jeremy Hansen is the first Canadian to go to the Moon."
+[20] "The Artemis II crew successfully tested the Orion spacecraft's systems in deep space."
+[21] "The Artemis II mission verified the capsule's heat shield during a high-speed reentry exceeding 24,000 mph."
+
+Cited text snippets from the AI Overview (for additional context):
+- Our Artemis Crew - NASA: "The Artemis II crew includes four astronauts:,* Inspire the next generation of explorers"
+- Welcome home Reid, Victor, Christina, and Jeremy! The ...: "Welcome home Reid, Victor, Christina,🤍257270"
+- Artemis II updates: Astronauts make 'perfect' splashdown after historic 10-day moon mission: "NASA's four crew members became,more than 5,000°F."
+- Artemis II - Kennedy Space Center Visitor Complex: "The Artemis II mission is scheduled to,exploration and science on the lunar surface"
+Reference Sources:
+
+[R1] Artemis II updates: Crew safely home after historic moon mission, undergoing medical evaluations
+(https://www.yahoo.com/news/science/live/artemis-ii-live-updates-astronauts-prepare-for-splashdown-as-orion-returns-to-earth-today-144657312.html)
+"""
+NASA’s Artemis II — the first crewed lunar mission in more than 50 years — returned to Earth on Friday after completing its historic trip around the moon.The four-member crew — NASA commander Reid Wiseman, pilot Victor Glover, mission specialist Christina Koch and Canadian Space Agency mission specialist Jeremy Hansen — successfully splashed down in the Pacific Ocean at 8:07 p.m. ET in what NASA mission control called "a perfect bull's-eye."“A new chapter of the exploration of our celestial neighbor is complete,” NASA mission control announced on its live broadcast. “Integrity’s astronauts, back on Earth.”To get there, the Artemis II crew had to endure one of the most harrowing parts of their journey: a reentry that heated the outside of their capsule (and its problematic heat shield) to more than 5,000°F.In a “mission accomplished” post on social media, NASA Administrator Jared Isaacman praised the Artemis II crew for doing an outstanding job as “humanity’s ambassadors to the stars.”“This was a test mission, the first crewed flight of SLS and Orion, pushing farther into the unforgiving environment of space than ever before, and it carried real risk,” Isaacman wrote. “They accepted that risk for all we stood to learn and for the exciting missions that follow, as we return to the lunar surface, build a Moon base, and prepare for what comes next.”President Trump also congratulated “the Great and Very Talented Crew of Artemis II” on social media.“The entire trip was spectacular, the landing was perfect and, as President of the United States, I could not be more proud!” Trump wrote. “I look forward to seeing you all at the White House soon. We’ll be doing it again and then, next step, Mars!”During Monday’s seven-hour lunar flyby, the Artemis II astronauts set a new record for the farthest distance from Earth traveled by humans — 252,756 miles, surpassing the previous mark set by Apollo 13 in 1970.After completing medical evaluations, the crew will head to NASA's Johnson Space Center in Houston on Saturday, where they will be reunited with their families.Live coverage is over83 updates
+"""
+
+[R2] Artemis II - Kennedy Space Center Visitor Complex
+(https://www.kennedyspacecenter.com/landing-pages/artemis-ii/)
+"""
+For the first time since 1972, NASA is sending humans back on a path toward the Moon with the Artemis II mission. Launching aboard the Space Launch System (SLS) rocket, NASA astronauts Reid Wiseman, Victor Glover, and Christina Koch, as well as Jeremy Hansen from the Canadian Space Agency, will set off to orbit the Moon on a 10-day mission. This will be the first crewed flight of the SLS rocket and Orion spacecraft around the Moon. Their goal is to verify modern human capabilities in deep space and pave the way for long-term exploration and science on the lunar surface.Artemis II CrewReid Wiseman Mission CommanderVictor Glover Mission PilotChristina Koch Mission SpecialistJeremy Hansen Mission SpecialistThe official Artemis II mission crew insignia is projected on the exterior of the Vehicle Assembly Building at NASA’s Kennedy Space Center in Florida on Friday, April 4, 2025. The patch designates the mission as “AII,” signifying not only the second major flight of the Artemis campaign, but also an endeavor of discovery that seeks to explore for all and by all.NASA astronauts Reid Wiseman, Victor Glover, and Christina Hammock Koch, and CSA astronaut Jeremy Hansen were announced Monday, April 3 as the four astronauts who will venture around the Moon on Artemis II, the first crewed mission on NASA’s path to establishing a long-term presence at the Moon for science and exploration through Artemis. © NASAThrough personal artifacts and inspirational stories told in their own words, get to know the crew of Artemis II. The crew's return around the moon not only marks human's return to the vicinity to the Moon in more than 50 years, but also brings the first woman, person of color and Canadian to its orbit. NASA’s Space Launch System (SLS) rocket and Orion spacecraft, standing atop the mobile launcher, arrive at Launch Pad 39B at the agency’s Kennedy Space Center in Florida on Nov. 4, 2022, ahead of the uncrewed Artemis I launch. © NASAFor the first time, get up close to Axiom Space's Axiom Extravehicular Mobility unit. NASA selected Axiom Space to develop the lunar spacesuit for the Artemis III mission, which will provide increased flexibility, greater protection to withstand the harsh environment, and specialized tools to accomplish exploration needs and expand scientific opportunities.
+"""
+
+[R3] What is Artemis II?
+(https://airandspace.si.edu/stories/editorial/what-artemis-ii)
+"""
+Soon, four astronauts will launch on a mission to the vicinity of the Moon for the first time in over 50 years. The mission, called Artemis II, is the second mission — and first crewed mission — of NASA’s Artemis program. NASA is currently targeting Wednesday, April 1, 2026 for the launch. The April 1 launch window opens at 6:24 pm and lasts 120 minutes. NASA has also identified additional launch windows between April 2 and April 6.Here’s what to expect from the Artemis II mission. This banner hanging on a fence at Launch Complex 39B was signed by NASA employees and contractors involved in the Artemis II mission. The 10-day Artemis II mission will fly around the Moon and is considered a test flight of NASA’s Exploration Ground Systems (the systems involved in launching and recovery rockets and spacecraft), the SLS rocket, and the Orion spacecraft.As a follow-up mission to the uncrewed Artemis I mission in 2022, this crewed mission will allow NASA to flight test Orion’s life-support systems with astronauts on board. This is essential as NASA intends to send astronauts on longer-duration missions as the Artemis program goes on.Who is the Artemis II Crew?Unlike the Apollo program, which launched crews of three, the Artemis program will feature a crew of four astronauts: commander Reid Wiseman, pilot Victor Glover, mission specialist Christina Koch, and mission specialist Jeremy Hansen. This historic crew features many "firsts." Click on their names to learn more about each of their careers.Reid Wiseman, Commander: Wiseman is a Navy veteran and pilot who went to space for the first time in 2014. During that mission, he conducted two spacewalks, totaling 13 hours outside the spacecraft. He recently served as Chief of NASA’s Astronaut Office.Victor Glover, Pilot: Glover is a Navy pilot who took his first trip to space in 2020 as mission pilot of the SpaceX Crew-1 mission to the International Space Station, during which he conducted four spacewalks. Glover will be the first person of color to go to the Moon. Christina Koch, Mission Specialist: Koch worked as an electrical engineer at NASA Goddard and Johns Hopkins Applied Physics Laboratory before becoming a NASA astronaut. She launched on an 11-month mission in 2019, during which she conducted six spacewalks. Koch will be the first woman to go to the Moon.Jeremy Hansen, Mission Specialist: Hansen was a fighter pilot in the Royal Canadian Air Force before becoming a Canadian Space Agency astronaut. Artemis II will be his first spaceflight. Hansen will be the first Canadian to go to the Moon. The Artemis II crew (left to right: Jeremy Hansen, Victor Glover, Christina Koch, Reid Wiseman) pose with Apollo 11 command module Columbia during a visit to the National Air and Space Museum in 2023. Want to learn more about the crew? Check out this blog and keep an eye out for blogs about each of the astronauts in the coming weeks.How Does Artemis II Compare to Apollo? When comparing the Artemis program with NASA’s first Moon landing program, Apollo, the closest analog for Artemis II is Apollo 8. Much like Artemis II, Apollo was the first mission in the Apollo program (and in fact, ever) to send humans to the Moon. One major difference between Apollo 8 and Artemis II, however, is that while Apollo 8 orbited the Moon, Artemis II will fly around the Moon but not enter lunar orbit.Artemis II is anticipated to break Apollo 13’s record (248,655 miles) for the farthest distance humans have traveled from Earth. The Artemis II Orion spacecraft will travel over 4,000 miles beyond the Moon as it flies a loop around the Moon’s far side.What Kind of Spacecraft Carries the Crew of Artemis II? An Orion spacecraft will transport the Artemis II astronauts to the vicinity of the Moon and back. It is capsule-shaped like the Mercury, Gemini, and Apollo spacecrafts and seats four astronauts.Orion has been in development for over 20 years, originally part of an earlier lunar exploration program called Constellation. The crew of Artemis II named their Orion spacecraft Integrity to honor the trust among the people who are bringing this mission to life. The name is also a reference to the massive effort to integrate more than 300,000 individual components into a single spacecraft by teams working across the world.What Kind of Rocket Launches Artemis II?The Artemis II mission will launch using the SLS (Space Launch System) rocket. SLS, which launched for the first time in November 2022 during the Artemis I mission, can launch astronauts aboard the Orion spacecraft and cargo into space. This heavy-lift launch vehicle was developed using a combination of components from the Space Shuttle program (specifically solid rocket boosters and RS-25 engines) and new technology. The Artemis II rocket waits on the launch pad. SLS is one of the most powerful rockets to ever launch, providing 8.8 million pounds of thrust (that’s 15% more thrust than the Saturn V Moon rocket). It is powered by two solid rocket boosters (white) and a core stage (orange) with four RS-25 engines. Two minutes after launch, the solid rocket boosters will separate from the core stage and fall back to Earth, splashing into the ocean. (While the Space Shuttle’s solid rocket boosters were reusable, SLS’s are not, and NASA will not be recovering these solid rocket boosters from the ocean.) The core stage will separate from the Orion spacecraft eight minutes after launch (this happens shortly after “main engine cut off,” or MECO). The core stage will reenter the atmosphere over the Pacific Ocean.What is Artemis II’s Flight Path? The Artemis II mission will fly a figure-eight pattern that will take the crew around the Earth and then around the Moon. Watch an animation of the flight path. Flight Day 1: Artemis II will begin to fly around the Earth, first in low-Earth orbit and then into a high elliptical orbit. While flying around the Earth, the crew will conduct a 23-hour checkout of the Orion spacecraft – this allows them to test the system while they are still close by the Earth in case any unexpected issues arise. This will include an opportunity for the crew to pilot the spacecraft in manual mode.Flight Day 2: Orion’s main engine will conduct a trans-lunar injection burn, which sets Orion on its path toward the Moon. This burn also puts the spacecraft on its figure-eight free-return trajectory, which means that the Moon’s gravity will eventually guide the Orion spacecraft back to the Earth even without onboard propulsion. This provides a safeguard should Orion experience engine failure.Flight Days 3-5: Orion and its crew continue on their journey towards the Moon, entering the "lunar sphere of influence" on Day 5.Flight Day 6: Orion spacecraft Integrity performs a lunar flyby and conducts both its closest approach to the Moon and its furthest distance from Earth. During the lunar flyby, the crew will make observations and take photos of the far side of the Moon.Flight Day 7-9: Orion spacecraft leaves the “lunar sphere of influence” and begins its journey back to Earth, which includes the first two return trajectory correction burns.Flight Day 10: Orion performs its final return trajectory correction burn and the crew prepares for reentry, conducting the reentry checklist. The Orion crew module and service module separate. The Orion spacecraft reenters Earth’s atmosphere and splashes down in the Pacific Ocean with the help of three main parachutes. A U.S. Navy ship will recover Integrity and the crew, welcoming them back to Earth.Does Artemis II Have a Mission Patch? Like the great space missions that came before it, Artemis II has an official mission patch that will be worn by the crew on the sleeves of their Orion Crew Survival System spacesuits. The patch designates the mission AII, using the roman numeral for 2 to also evoke the visual of the word “All.” It’s a common refrain amongst the crew and other mission support staff at NASA that this mission is “an endeavor of discovery that seeks to explore for all and by all." The Artemis II mission patch, held here by the mission's crew, emphasizes that NASA and its partners are "All In" on the mission. The red line that helps form the A and swirls around the Moon and Earth is representative of the mission’s flight path, which includes the spacecraft flying around both our home planet and its only natural satellite. The depiction of the Earth and the Moon on the path can also be seen as an artistic variation on Apollo 8’s famous "Earthrise" photo, linking that historic mission of the 1960s to this modern-day Moon mission of the 2020s.
+"""
+
+[R4] Our Artemis Crew - NASA
+(https://www.nasa.gov/feature/our-artemis-crew/)
+"""
+Featured Video Meet the Astronauts Who Will Fly Around the Moon Four astronauts have been selected for NASA’s Artemis II mission: Commander Reid Wiseman, pilot Victor Glover, and mission specialist Christina Koch from NASA, and mission specialist Jeremy Hansen from the Canadian Space Agency. Artemis II will be NASA’s first crewed flight test of the Space Launch System rocket and Orion spacecraft around the Moon to verify today’s capabilities for humans to explore deep space and pave the way for long-term exploration and science on the lunar surface. More Videos Next Generation of Explorers Artemis II is NASA’s first mission with crew aboard our foundational deep space rocket, the SLS (Space Launch System), and Orion spacecraft and will confirm all the spacecraft’s systems operate as designed with crew aboard in the actual environment of deep space. The mission will pave the way for lunar surface missions, establishing long-term lunar science and exploration capabilities, and inspire the next generation of explorers. A Bold Mission The crew of four astronauts will lift off on the approximately 10-day mission from Launch Complex 39B at NASA’s Kennedy Space Center in Florida, blazing beyond Earth’s grasp atop the agency’s mega Moon rocket. Over the course of about two days, they will check out Orion’s systems and perform a targeting demonstration test relatively close to Earth before then beginning the trek toward the Moon. Orion’s European-built service module will give the spacecraft the big push needed to break free from Earth orbit set course for the Moon. This trans-lunar injection burn will send the astronauts on an outbound trip of about four days, taking them around the far side of the Moon, where they will ultimately create a figure eight extending more than 230,000 miles from Earth. At their max distance, the crew will fly 4,600 miles beyond the Moon. During the approximate four-day return trip, the astronauts will continue to evaluate the spacecraft’s systems. Instead of requiring propulsion on the return, this fuel-efficient trajectory harnesses the Earth-Moon gravity field, ensuring that—after its trip around the far side of the Moon—Orion will be pulled back naturally by Earth’s gravity for the free return portion of the mission. The crew will endure the high-speed, high-temperature reentry through Earth’s atmosphere before splashing down in the Pacific Ocean off the coast of San Diego, where they will be met by a recovery team of NASA and Department of Defense personnel who will bring them back to shore. Posters Stylized posters created for NASA's Artemis II mission Find More
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

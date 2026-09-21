@@ -1,0 +1,96 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "2026 rock and roll hall of fame inductees"
+
+Claims:
+[1] "The Rock & Roll Hall of Fame announced its 2026 inductees."
+[2] "The Rock & Roll Hall of Fame announced Phil Collins in the performer category as part of its 2026 inductees."
+[3] "The Rock & Roll Hall of Fame announced Billy Idol in the performer category as part of its 2026 inductees."
+[4] "The Rock & Roll Hall of Fame announced Iron Maiden in the performer category as part of its 2026 inductees."
+[5] "The Rock & Roll Hall of Fame announced Joy Division/New Order in the performer category as part of its 2026 inductees."
+[6] "The Rock & Roll Hall of Fame announced Oasis in the performer category as part of its 2026 inductees."
+[7] "The Rock & Roll Hall of Fame announced Sade in the performer category as part of its 2026 inductees."
+[8] "The Rock & Roll Hall of Fame announced Luther Vandross in the performer category as part of its 2026 inductees."
+[9] "The Rock & Roll Hall of Fame announced Wu-Tang Clan in the performer category as part of its 2026 inductees."
+[10] "The 2026 Rock & Roll Hall of Fame induction ceremony is scheduled for November 14, 2026, at the Peacock Theater in Los Angeles."
+
+Cited text snippets from the AI Overview (for additional context):
+- 2026 Inductees | Rock & Roll Hall of Fame: "The Rock & Roll Hall of,Reduce Motion"
+- Rock & Roll Hall of Fame 2026 inductees are here. Who made ...: "The annual Ahmet Ertegun Award,the Rock Hall in 2024)."
+- The Rock & Roll Hall of Fame has officially announced its 2026 ...: "58m󰞋󱟠-,The Rock & Roll Hall of Fame has officially announced its,Rick Rubin and Celia Cruz."
+- Rock & Roll Hall of Fame Reveals 2026 Class: Full List of Inductees: "Phil Collins, Iron Maiden, Billy Idol, Queen,along with Wu-Tang Clan and Luther Vandross."
+Reference Sources:
+
+[R1] Rock & Roll Hall of Fame 2026 inductees are here. Who made the cut?
+(https://www.usatoday.com/story/entertainment/music/2026/04/13/rock-and-roll-hall-of-fame-inductees-2026/89558654007/)
+"""
+April 13, 2026, 9:10 p.m. ETRock returns to the spotlight for the 2026 Rock & Roll Hall of Fame induction class, with Iron Maiden,Billy Idol and Oasis among the eight new additions.The lineup also features a lone female inclusion: Sade.The newest entrants, announced during the live broadcast of the “Rock & Roll Hall of Fame Night” episode of “American Idol" on April 13, are:Phil CollinsBilly IdolIron MaidenJoy Division/New OrderOasisSadeLuther VandrossWu-Tang ClanThe chosen group was culled from a crop of 17 hopefuls, 10 of whom appeared on the ballot for the first time and spanned rock, hip-hop, pop, soul and Latin music. Collins, Vandross and Wu-Tang Clan were first-time balloters.Those who didn't make the cut are The Black Crowes, Jeff Buckley, Mariah Carey, Melissa Etheridge, Lauryn Hill, INXS, Pink, Shakira and fan vote winner New Edition.In addition to the performer inductees, Celia Cruz, Fela Kuti, Queen Latifah, MC Lyte and Gram Parsons will be honored with the Early Influence Award. Linda Creed, Arif Mardin, Jimmy Miller and Rick Rubin will receive the Musical Excellence Award. The annual Ahmet Ertegun Award will remember Ed Sullivan.When does the Rock & Roll Hall of Fame Ceremony air?The Rock Hall ceremony has aired live the past couple of years, but the show will return to its taped format for 2026. The ceremony will take place Nov. 14 at the Peacock Theater in Los Angeles and debut on ABC and Disney+ in December, with the date TBD.Ticket on-sale information for the 2026 Induction Ceremony also will be announced at a later date.The 2027 ceremony will return to home base in Cleveland.Who won the Rock & Roll Hall of Fame fan vote?New Edition scored just over 1 million votes in this year's fan vote, followed by Phil Collins with 900,825, Pink with 852,581, Shakira with 738,034 and Luther Vandross with 732,747.New Edition joins Phish in 2025 and the Dave Matthews Band in 2020 as the only artists to get their flowers from fans but not be inducted the same year (DMB joined the Rock Hall in 2024).Almost 9.5 million votes were cast during the fan voting period Feb. 25 to April 3.When voting closed after that window, the top seven earners in the fan vote received one vote each toward their final total.How do artists get into the Rock & Roll Hall of Fame?To be eligible for induction into the Rock Hall, an individual artist or band must have released its first commercial recording at least 25 years before the year of nomination.Melissa Ruggieri is among the more than 1,200 voting members – composed of artists, historians and members of the music industry – of the Rock & Roll Hall of Fame.
+"""
+
+[R2] 2026 Inductees | Rock & Roll Hall of Fame
+(https://rockhall.com/2026-inductees/)
+"""
+DISAGREEWe value your privacy We and our partners store and/or access information on a device, such as cookies and process personal data, such as unique identifiers and standard information sent by a device for personalised advertising and content, advertising and content measurement, audience research and services development. With your permission we and our partners may use precise geolocation data and identification through device scanning. You may click to consent to our and our 1003 partners’ processing as described above. Alternatively you may click to refuse to consent or access more detailed information and change your preferences before consenting. Please note that some processing of your personal data may not require your consent, but you have a right to object to such processing. Your preferences will apply to this website only. You can change your preferences or withdraw your consent at any time by returning to this site and clicking the "Privacy" button at the bottom of the webpage. MORE OPTIONSDISAGREEAGREESkip to contentReduce Motion2026 InducteesThe Rock & Roll Hall of Fame Announces the 2026 InducteesPhil CollinsBilly IdolIron MaidenJoy Division/New OrderOasisSadeLuther VandrossWu-Tang ClanCelia CruzFela KutiQueen LatifahMC LyteGram ParsonsLinda CreedArif MardinJimmy MillerRick RubinEd SullivanExclusive OpportunitiesBecome A MemberInduction Ceremony Ticket Access for Select MembersShop 2026 InducteesFELA KUTI AND AFRIKA 70 - NO AGREEMENT - VINYL LP$26.99 USDGOD SAVE THE QUEENS: THE ESSENTIAL HISTORY OF WOMEN IN HIP-HOP - PAPERBACK - BOOK$16.99 USDFELA KUTI - EXPENSIVE SHIT - VINYL LP$26.99 USDIRON MAIDEN - IRON MAIDEN - VINYL LP$27.99 USDGRAM PARSONS - GP - VINYL LP$25.99 USDFELA KUTI - UNDERGROUND SYSTEM - VINYL LP$26.99 USDTHE MOTHERLODE: 100+ WOMEN WHO MADE HIP-HOP - PAPERBACK - BOOK$24.99 USDJOY DIVISION - CLOSER - VINYL LP$26.99 USDFELA RANSOME-KUTI AND THE AFRICA '70 WITH GINGER BAKER - LIVE! - 2 LP - RED COLOR - VINYL LP$26.99 USDQUEEN LATIFAH - ALL HAIL THE QUEEN - RED COLOR - VINYL LP$32.99 USDShop NowThe 2026 Inductee AnnouncementRead the Release
+"""
+
+[R3] Rock & Roll Hall of Fame Reveals 2026 Class of Inductees. Who Made the List?
+(https://www.today.com/popculture/music/rock-hall-inductees-2026-rcna331688)
+"""
+Phil Collins, Iron Maiden, Billy Idol, Queen Latifah, Oasis, Sade and Joy Division/New Order will be inducted into the Rock & Roll Hall of Fame, along with first-time nominees Wu-Tang Clan and the late Luther Vandross.The list was revealed on Monday night’s airing of “American Idol.” Artists must have released their first commercial recording at least 25 years before they’re eligible for induction. Nominees were voted on by more than 1,200 artists, historians and music industry professionals.Phil Collins, Billy Idol, Queen Latifah, Sade and Luther Vandross.APSoft rocker Collins, who already is in the hall as a member of Genesis, has had such solo hits as “In the Air Tonight” and “One More Night,” and has earned eight Grammys, including album of the year in 1985 for “No Jacket Required.” Collins got in the first time he appeared on the ballot.Soul-jazz vocalist Sade, also nominated in 2024, had such soft rock hits as “Smooth Operator” and “The Sweetest Taboo.” The Wu-Tang Clan have been hailed as rap innovators since their game-changing 1993 debut album “Enter the Wu-Tang.”Iron Maiden, nominated twice before, helped power the new wave of British heavy metal with iconic albums like “The Number of the Beast.” Vandross, who sold more than 25 million albums and had the hits “Here and Now” and “Any Love,” died in 2005 and inspired Kendrick Lamar and SZA’s “Luther.”This year, the hall will open its arms to the sounds of Manchester, England, inducting post-punk pioneers Joy Division and New Order — which shared most of the same members — as well as Britpop’s recently reunited Oasis, made up of Noel and Liam Gallagher. Idol, also English, has brought a punky sneer to pop with songs like “White Wedding” and “Rebel Yell.”The induction will be held Nov. 14 at the Peacock Theater in Los Angeles. A TV presentation will air in December on ABC and Disney+. Next year, the ceremony will return to the hall’s home of Cleveland.Those nominated this year but who came up short for the class of 2026 include Mariah Carey, Lauryn Hill, INXS, Melissa Etheridge, Jeff Buckley, Pink, New Edition and Shakira.In addition to the performer category, inductees entering the hall can arrive under three special committee categories: early influence, musical excellence and the Ahmet Ertegun Non-Performer Award.The early influence award this year will honor Queen Latifah, Cuban singer Celia Cruz, Nigerian musician Fela Kuti, rapper MC Lyte and country rocker Gram Parsons. The musical excellence will honor songwriter Linda Creed and producers Arif Mardin, Jimmy Miller and Rick Rubin.More than 50 years after his death, Ed Sullivan, the legendary host of his self-titled appointment-viewing TV show, will go into the hall with the Ahmet Ertegun Non-Performer Award. It’s a recognition of how important his Sunday night stage became as a launchpad for nearly every musical icon of the 1950s and ‘60s and of how his show helped break racial barriers in American entertainment.Last year, Cyndi Lauper, Outkast, Bad Company, Chubby Checker, Soundgarden, Joe Cocker, Salt-N-Pepa, The White Stripes, Carol Kaye, Nicky Hopkins, Lenny Waronker, Thom Bell and Warren Zevon all were inducted.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

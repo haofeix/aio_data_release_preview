@@ -1,0 +1,114 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is siena university"
+
+Claims:
+[1] "Siena College is often referred to as Siena University."
+[2] "Siena College is located in Loudonville, New York."
+[3] "Loudonville, New York is a suburb 10 minutes north of Albany."
+[4] "Siena College is a private Franciscan liberal arts college."
+[5] "Siena College is situated in the state's Capital Region."
+[6] "Siena College's address is Loudonville, NY."
+[7] "Loudonville, NY is in the Colonie suburb."
+[8] "Siena College is roughly 150 miles north of New York City."
+[9] "Siena College is roughly 170 miles west of Boston."
+[10] "Siena College competes in the Metro Atlantic Athletic Conference (MAAC)."
+[11] "Siena College's basketball games are often played at the MVP Arena in downtown Albany."
+[12] "Siena College is distinct from the University of Siena."
+[13] "The University of Siena is located in Tuscany, Italy."
+
+Cited text snippets from the AI Overview (for additional context):
+- About | Siena University: "Siena University is a private, Franciscan liberal,programs in liberal arts, science, and business"
+Reference Sources:
+
+[R1] About
+(https://www.siena.edu/visit/about/)
+"""
+A Siena education is an education with soul. Located in Loudonville, New York—just 10 minutes from the state capital of Albany—the Siena experience is built for a new generation of leaders eager to create a more just, peaceful and humane world. It empowers them through a transformative journey of intellectual, spiritual and personal discovery. At Siena education isn’t something you get, it’s something you get to do. With 43 majors, 80-plus minors and certificates, and prestigious joint-degree programs in liberal arts, science and business, Saints have over 1,200 unique ways to reach their personal and professional goals. But that’s just the beginning. Our 3,000 Saints engage personally with top scholars in a dynamic, customized learning environment. From internships to research to service, they get real world experience now, not later. The result: sought after graduates prepared to succeed in an ever-changing global society. Hundreds of student life options ranging from Red Cross to rugby join with Siena’s 21-sport Division I athletic program to provide students the opportunity to get in the game, whatever their interests may be. Extensive study abroad programs and immersive service-learning allow for discovery and reflection. Saints are challenged ethically and morally to go beyond asking what and how to better understand why. They push outside their comfort zone to explore different perspectives and new possibilities, and work closely with their professors (12:1 student-faculty ratio), taking advantage of state-of-the-art resources and one-on-one research opportunities in all fields. A Siena education is strengthened through a robust internship program that includes top startup companies, nonprofits and government organizations that drive this region’s growth. Siena’s Franciscan, liberal arts tradition is our soul. Saints embrace the excluded and unite in service to the poor and marginalized. They lead by putting others first, thinking creatively and developing innovative solutions in pursuit of the greater good. Siena’s education for a lifetime opens doors to enduring success and a passion for lifelong learning and doing. And it’s what connects Saints to Siena—and each other—forever. Saints succeed. Siena University ranks #1 in New York State for getting graduates into jobs and in the top 2% of U.S. colleges and universities according to The Wall Street Journal. Are you ready to get off the sidelines? Schedule a visit today. Connect with us!
+"""
+
+[R2] Where is Siena University located?
+(https://ftw.usatoday.com/story/sports/ncaab/2026/03/19/where-is-siena-located-march-madness-2026-duke/89192548007/)
+"""
+March 19, 2026, 2:00 p.m. ETIt's been a long time since we've seen Siena University at the NCAA Men's Basketball Tournament. 2026 will break a 16-year drought since the Saints last tried on a glass slipper, marking the first time they've qualified as a university rather than a college. But from 2008 to 2010 the program was a constant, earning a pair of first-round upsets over Power 4 teams Vanderbilt and Ohio State after claiming MAAC conference tournament crowns.That success wasn't sustainable, but Siena returns as a long shot to upset No. 1 seed Duke in the opening round of this year's tournament. Former Syracuse guard and March Madness veteran Gerry McNamara has coached the Saints to their best record since that 2010 tournament team, winning 23 games in the process.Did any of those wins come over Power 5 opponents? Was the only high major on the resume an underwhelming Indiana, who beat Siena by 21 points? Don't worry about it!Instead, let's worry about where the Saints are making the trip from.Siena University is located in Loudonville, New YorkThat's only about six miles north of Albany, the state capital of New York. It's roughly 150 miles north of New York City. It's about 170 miles west of Boston.
+"""
+
+[R3] 7. Living in Siena – INTERNATIONAL ADMISSIONS @ UNIVERSITY OF SIENA
+(https://admission.unisi.it/?cat=16)
+"""
+Siena is a historic city located in the region of Tuscany in central Italy. It is situated about 70 kilometers (43 miles) south of Florence, the capital of Tuscany, and approximately 230 kilometers (143 miles) north of Rome, Italy’s capital. Siena is nestled among the picturesque rolling hills of the Tuscan countryside, surrounded by olive… Siena can be accessed by car, bus, and train, with connections from the main Italian cities. Locally, Siena is served by a public transportation service that connects the city to the primary towns of the province, by bus and train. The nearest airports are in Pisa, Florence, Bologna, Rome. Below are the links to the… DISCLAIMER: The University of Siena is not responsible for the information provided on this page, which is intended solely to assist students in better understanding the cost of living. Siena is a smaller city compared to some of the other major cities in Italy, like Rome, Milan and living costs tend to be lower. Furthermore,… DISCLAIMER: For detailed and up-to-date information on the Italian healthcare system, students are advised to refer to the designated authorities. The University of Siena does not bear responsibility for the information provided on this page, which is intended merely to give students a preliminary overview of healthcare services. In Italy, both public and private institutions… Students in Siena find accommodation through private rentals or through student housing managed by the Azienda Regionale per il Diritto allo Studio Universitario (DSU Toscana), that is the regional public agency for university students aid in Tuscany. Each student must evaluate various factors independently when deciding on accommodation. These considerations encompass the location of the… For detailed and up-to-date information on national immigration procedures, students are advised to refer to the designated authorities. The University of Siena does not bear responsibility for the information provided on this page, which is intended merely to give students a preliminary overview of entry procedures into Italy. EU Students EU students planning to stay… The Italian Tax Code (Codice Fiscale), is a unique alphanumeric identifier that enables Italian authorities to recognize individuals for different administrative processes. It is a crucial requirement for signing contracts in Italy, opening bank accounts, and accessing numerous public services, including healthcare. During the admission process, an official tax code is not required. For those… Siena is generally considered a safe city for residents and visitors alike. It is a welcoming city, with a lower crime rate compared to larger Italian cities like Rome or Milan. As with any urban area, it is important to take standard safety precautions, such as being aware of your surroundings, avoiding poorly lit or… For international students, Siena offers the opportunity to study in a vibrant academic environment while experiencing the traditions, culture, and lifestyle of one of Italy’s most fascinating cities. A City of History, Art and Architecture Located in the heart of Tuscany, Siena is one of Europe’s best-preserved medieval cities and a UNESCO World Heritage Site…. CUS Siena stands for Centro Universitario Sportivo di Siena (The Siena University Sports Center). It is an amateur sports association adhering to the CUSI national federation (Italian University Sports Center). CUS Siena, together with other local sport associations, organizes several sport activities for students, including Rugby, Soccer, Gym, Volley, Tennis, Basket, Judo, Fencing, Mountain and… End of contentEnd of content
+"""
+
+[R4] Where is Siena University? Location, history, and facts about the March Madness underdog
+(https://www.marca.com/en/ncaa/2026/03/19/69bc57ef46163ff11f8b45c0.html)
+"""
+Where exactly is this "Cinderella" school located?Siena UniversityEvery March, a small school captures the heart of the nation by crashing the Big Dance. In 2026, that team is the Siena Saints. While college basketball fans are familiar with the "Green and Gold" jerseys and their tenacious defense, many are heading to Google to locate the campus. If you are wondering where Siena University is and what makes this institution unique, here is everything you need to know.To watch this video, agree to share video information with third partiesAgree|More infoThe Heart of the Capital RegionSiena College (often referred to as Siena University in casual search) is located in Loudonville, New York. Loudonville is an affluent suburban community in the Town of Colonie, situated just a few miles north of Albany, the state capital.Así juega Robbie Avila, el antihéroe del March Madness que podría jugar con MéxicoIts strategic location in the Hudson Valley puts the campus in a prime geographic spot:Distance to Albany: 10 minutes.Distance to New York City: Approximately 2.5 hours north.Distance to Boston: Approximately 3 hours west.A Franciscan TraditionFounded in 1937, Siena is a private Catholic liberal arts college rooted in the Franciscan tradition. The school was named after Saint Bernardino of Siena, a 15th-century Italian preacher. This heritage is reflected in the campus's "Saints" nickname and its commitment to community service and social justice. Despite its relatively small undergraduate enrollment (roughly 3,000 to 3,500 students), the school punches far above its weight class in both academics and athletics.The MVP Arena: Home of the SaintsWhile the campus is in Loudonville, the basketball team plays its home games at the MVP Arena in downtown Albany. This creates a unique "big-city" atmosphere for a mid-major program, often drawing crowds that rival those of much larger universities. This strong local support is a major reason why Siena has remained a powerhouse in the Metro Atlantic Athletic Conference (MAAC) for decades.March Madness - EnglishNCAAM - English
+"""
+
+[R5] Where is Siena located? Explaining city and more to know about Saints basketball program | Sporting News
+(https://www.sportingnews.com/us/ncaa-basketball/news/siena-university-location-city-saints-basketball/97b4c4b01fce19462c724ef0)
+"""
+After a 23-11 season and a MAAC conference title, the Siena Saints are heading to the Big Dance. They are locked in as a No. 16 seed and will play the top-ranked Duke Blue Devils in the Round of 64.In the MAAC tournament, Siena was ranked no. 3 and defeated top-ranked Merrimack College 64-54 in the final. Former Syracuse basketball star Gerry McNamara has led Siena in the NCAA Tournament for the first time since Fran McCaffery's team in 2010. McNamara has been linked to Syracuse University's head-coaching vacancy following this season, so it will be interesting to see how the Saints hold up against the Blue Devils in the opening round.Here's what to know about Siena as it plays in its first NCAA Tournament in 16 years.MARCH MADNESS HQ: Live NCAA bracket | Full TV schedule | Printable bracketWhere is Siena located?Siena University (formerly known as Siena College) is located in Loudonville, New York. The school sits in the Loudonville suburb (also known as Colonie) just 10 minutes north of Albany.Siena is a private, Franciscan liberal arts university with over 3,000 students, according to the university's website. For fall 2024, the undergraduate enrollment total sat around 3,469, per the U.S. News and World Report.SN EXPERT BRACKETS: DeCourcy (Arizona) | Bender (Michigan) | Iyer (Arizona) | Gay (UCLA women)What conference is Siena in?The Siena Saints, who have 19 varsity sports, compete in the NCAA's Metro Atlantic Athletic Conference. The conference was founded in 1980 and is based in the Northeastern region of the United States.Siena joined the conference in 1989 and has been a member since. The MAAC currently includes 13 teams, which are as follows:Canisius UniversityFairfield UniversityIona UniversityManhattan UniversityMarist UniversityMerrimack CollegeMount St. Mary's UniversityNiagara UniversityQuinnipiac UniversityRider UniversitySacred Heart UniversitySaint Peter's UniversitySiena UniversityMORE UPSET PICKS: 10 seeds | 11 seeds | 12 seeds | 13 seedsSiena name originIt was founded by the Order of Friars Minor in 1937 and is named after the Franciscan friar Bernardino of Siena. Originally, the school was named St. Bernardine of Siena College.In the late 1930s, Thomas Plassmann, president of St. Bonaventure University in Western New York, sent seven Franciscan friars to the surrounding Albany area to found another college. This resulted in the creation of the eventual Siena University.MORE REGION PREVIEWS: East | West | Midwest | SouthSiena NCAA Tournament historyThroughout the school's history, the Saints have played in the NCAA Tournament seven times. The Saints have earned bids in 1989, 1999, 2002, 2008, 2009, 2010, and 2026, holding a 4–6 overall record in the tournament. They also qualified in 2020, before the tournament's cancellation due to the COVID-19 pandemic.Siena's four wins came against no. 3 Stanford in 1989, Alcorn State in 2002, no. 4 Vanderbilt in 2008, and no. 8 Ohio State in 2009. The Saints have yet to advance past the second round.
+"""
+
+[R6] General information for students | Università degli Studi di Siena
+(https://en.unisi.it/international/general-information-students)
+"""
+Tu sei qui General information for students How to reach SienaSienais located in the heart of Tuscanyamid a wide hilly landscape. Sienawelcomes its visitors with a Latin motto at the Porta Camollia "Cor Magis Tibi Saena Pandit" (Sienaopens its heart to you wider than this gate). Entry visa and temporary residency permitStudents outside of the European Union must request an entry visa from the Italian consulate for the purpose of study prior to arrival in Italy. Once in Italythey must apply for a permit to stay. Accommodation Study abroadThe opportunities in an international sphere for students of the University and for students in mobility University canteensThe University Canteens are run by the DSU-Toscana - Azienda regionale per il diritto allo studio universitario, which offers students low cost, full meals, with a varied menu. Medical facilitiesInformation on how to register with the Italian National Health Service (Servizio Sanitario Nazionale). Facilities for special needs studentsThe Office of Disabled Student Services works towards removing the cultural, physical and psychological barriers that can prevent disabled students from participating fully in university life. Insurance for studentsUniSi students, including those in international mobility, are covered by accident insurance and for third party liability during their study period at UniSi. Financial support for studentsOnce admitted to a degree course, students can apply for contributions (free meals, free lodging and scholarships) provided by the Tuscany Agency for University Services. Language coursesThe University Language Centre (Centro Linguistico di Ateneo - CLA) is responsible for the teaching of foreign languages to University students and staff. Italian Language Courses for Exchange StudentsThe University of Siena offers Italian language courses for Exchange students with an insufficient knowledge of Italian. SportThe University promotes sports for students by offering courses for free or at reduced rates in: basketball, football, volleyball, rugby, judo, weight training, fencing and tennis. Free timeThe Tuscany Agency for University Services (DSU-Toscana) promotes cultural and recreational activities for university students. Useful numbersList of phone numbers of main city services that might be useful to a student living in Siena. Emergencies
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

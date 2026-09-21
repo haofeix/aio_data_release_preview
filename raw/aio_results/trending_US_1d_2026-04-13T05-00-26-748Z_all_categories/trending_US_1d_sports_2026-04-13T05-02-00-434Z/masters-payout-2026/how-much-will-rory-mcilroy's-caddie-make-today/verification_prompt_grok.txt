@@ -1,0 +1,95 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "how much will rory mcilroy's caddie make today"
+
+Claims:
+[1] "Rory McIlroy won the 2026 Masters Tournament."
+[2] "Harry Diamond is Rory McIlroy's caddie."
+[3] "Harry Diamond is expected to earn approximately $450,000 for the week."
+[4] "The approximately $450,000 figure is based on a standard 10% cut of the record $4.5 million winner's share."
+[5] "The 2026 Masters Tournament winner's share was a record $4.5 million."
+[6] "Typically, caddies earn a weekly stipend of $1,500-$3,000."
+[7] "Typically, caddies earn 10% of winnings for a victory."
+[8] "Typically, caddies earn 7% of winnings for a top-10 finish."
+[9] "Typically, caddies earn 5% of winnings for making the cut."
+[10] "Harry Diamond has been working with Rory McIlroy for several years."
+
+Cited text snippets from the AI Overview (for additional context):
+- How Much Money Did Rory McIlroy's Caddie Make At The Masters?: "In terms of how much,prize money alone last year."
+- Rory McIlroy prize money update: How much will caddie Harry Diamond make after massive payout? Details out | Hindustan Times: "Rory McIlroy won the 2026,McIlroy wins second straight Masters"
+- The Masters caddies and salary they earn for competing at Augusta National: "How much do caddies make,away with their base stipend."
+Reference Sources:
+
+[R1] How Much Money Did Rory McIlroy's Caddie Make At The Masters?
+(https://www.golfmonthly.com/news/how-much-winning-caddie-earns-the-masters)
+"""
+For the second time in their careers, Rory McIlroy and Harry Diamond were able to stand side by side on the 18th green at Augusta National Golf Club posing with The Masters trophy on Sunday.Although not requiring a playoff this time around, the Northern Irish pair's triumph in 2026 was far from serene. But at least it didn't involve a playoff as McIlroy won by a single stroke despite a bogey on the 72nd hole.Having blown a six-stroke lead earlier in the week and facing a two-stroke deficit during the final round itself, there were moments where it seemed as though the best friends would have to wait at least a month for another crack at sealing their latest Major together.However, McIlroy and his able assistant rallied supremely and fought back to close out the tournament for another incredibly memorable success.(Image credit: Getty Images)In doing so, the newly-crowned six-time Major winner banked a check for $4.5 million after The Masters raised its prize money payout from $21 million to $22.5 million.But McIlroy won't keep all of that money, though. Part of it will be lost due to taxes while another key chunk is likely to be forwarded on to his caddie, Diamond as a bonus for all of his hard work across the week.Subscribe to the Golf Monthly newsletter to stay up to date with all the latest tour news, equipment news, reviews, head-to-heads and buyer’s guides from our team of experienced experts.Every Major champion knows they wouldn't be there without the help of their trusted caddie - the man who not only takes a physical burden off their shoulders but sometimes an emotional one, too.And with so many incredible perks for winning The Masters on the line this week, needing to share the toll of such a draining week is vitally important.In terms of how much Diamond is likely to see, it depends on his agreement with McIlroy.Some players hand out 10% of their prize money to their bagman if they win, with the bonus check reducing depending on how far down the leaderboard they end - providing they make the cut in the first place, of course.Others will agree a flat percentage no matter where they finish - perhaps something like 8% - it depends on the agreement made by player and their assistant beforehand.But, based on the above, we can predict McIlroy's looper Diamond is likely to collect a bonus check of between $360,000 and $450,000. Last year, he may well have seen anything from £336,00 to $420,000.(Image credit: Getty Images)In addition to bonus money, most loopers on show at The Masters will be be paid annually rather than week-to-week, so any extra money they earn at Augusta National is truly a bonus.And it certainly pays well to be McIlroy's bagman with the World No.2 having picked up over $20 million in tournament prize money alone last year.Based on information from other caddies, that suggests Diamond tacked on almost $2 million to his annual salary working for McIlroy in 2025. Not bad work if you can get it.
+"""
+
+[R2] How much are caddies paid at the Masters as Rory McIlroy and Scottie Scheffler go for glory
+(https://www.mirror.co.uk/sport/golf/mcilroy-scheffler-masters-caddy-pay-37000893)
+"""
+SportGolfRory McIlroyNeed to knowRory McIlroy and Scottie Scheffler's bagmen are in for a healthy payday if they win the Masters on SundayRory McIlroy's caddie Harry Diamond will earn a pretty penny if he wins the Masters(Image: Getty)How much do caddies make at the Masters:Weekly Base Salary : Most caddies receive a flat weekly fee between £1,100 and £2,200 ($1,500 and $3,000) just for showing up. This base pay is intended to cover immediate logistics like travel and food during the tournament week.The 10-7-5 Payout Rule : The industry standard for performance bonuses is the "10-7-5" percentage model. This equates to 10% for a win, 7% for a top-10 finish, and 5% for any other placement where the golfer makes the cut.The Winner’s Massive Payday : In 2025, Rory McIlroy’s victory came with a record-setting £3million ($4.1 million) prize. His caddie, Harry Diamond, likely earned roughly £304,000 ($410,000) based on the 10% winning bonus.Top-10 Bonus Structure : A caddie for a player who finishes in the top 10 can expect a significantly higher payout than the bottom of the field. At 7% of a typical top-10 Masters check, a caddie can easily clear £37,000 to £74,321 ($50,000 to $100,000) for the week.Making the Cut vs. Missing It : If a player makes the cut, the caddie is guaranteed 5% of whatever the player earns, regardless of how they play on the weekend. However, if a player misses the cut, the caddie usually only walks away with their base stipend.Out-of-Pocket Expenses : Unlike many professional athletes, caddies are responsible for their own travel, lodging, and meals. These costs can be substantial at a high-demand event like the Masters, where local rental prices skyrocket.Sponsorship and Endorsement Income : Top-tier caddies often earn additional revenue through logos on their hats, sleeves, or towels. While Augusta National has strict branding rules, these season-long deals provide a stable financial floor beyond prize money.Variable Year-End Bonuses : Many players and caddies negotiate discretionary year-end bonuses based on the total season performance. A strong showing at the Masters often serves as the cornerstone for these lucrative "thank you" payments.READ MORE: Scottie Scheffler's 'childish' financial agreement with caddie as PGA Tour star banks £1.2mWatch The Masters with Sky's Ultimate TV bundleThis article contains affiliate links, we will receive a commission on any sales we generate from it. Learn moreCoverage of The Masters gets underway on April 6 and golf fans can watch it live with Sky's Ultimate TV and Sky Sports bundle. This includes 135 channels, nine from Sky Sports, plus HBO Max, Netflix, Disney+, discovery+ and Hayu.Follow mirror:FacebookX (Twitter)TikTokInstagramSnapchat
+"""
+
+[R3] Rory McIlroy prize money update: How much will caddie Harry Diamond make after massive payout? Details out | Hindustan Times
+(https://www.hindustantimes.com/sports/us-sports/rory-mcilroy-prize-money-update-how-much-will-caddie-harry-diamond-make-after-massive-payout-details-out-101776035230028.html)
+"""
+Rory McIlroy won the 2026 Masters Tournament, earning a record $4.5 million winner’s share from the event’s record $22.5 million purse.Golf - The Masters - Augusta National Golf Club, Augusta, Georgia, U.S. - April 12, 2026 Northern Ireland's Rory McIlroy celebrates with his caddie Harry Diamond on the green on the 18th hole after winning The Masters. (REUTERS)His longtime caddie Harry Diamond is expected to receive approximately $450,000 from this payout alone. Caddies typically earn around 10% of the player’s prize money for a major win.McIlroy wins second straight MastersThe world No. 2 from Northern Ireland secured his sixth major title and a second consecutive Green Jacket at Augusta National, becoming just the fourth player to win back-to-back Masters titles.McIlroy overcame an uneven start in the final round, including a double bogey at the fourth and a bogey at the sixth, before steadying himself with four birdies over the next seven holes. Despite wayward tee shots late in the round, he held on to finish at 12-under-par 276, edging world No. 1 Scottie Scheffler by one stroke.With the victory, McIlroy joins Tiger Woods, Jack Nicklaus and Nick Faldo as the only players to win consecutive Masters titles.A tense finish awaited on the 18th hole, where McIlroy’s tee shot sailed right over the trees toward the adjacent 10th fairway. From there, he produced a remarkable recovery, shaping his approach around the pines into a greenside bunker. He then blasted out to 12 feet and two-putted for bogey, enough to seal the win.McIlroy, 36, celebrated emotionally on the 18th green, raising his arms before embracing his wife Erica and daughter Poppy.Leaderboard roundupScheffler, seeking a third Masters title in five years, finished at 11-under after a bogey-free 68.Justin Rose, Tyrrell Hatton, Russell Henley and Cameron Young shared third place at 10-under.Also Read: Rory McIlroy's black flask in focus at Masters 2026: What's in it exactly? Details emerge'Can't believe I waited 17 years'Speaking in Butler Cabin, McIlroy reflected on his achievement.“I can't believe I waited 17 years to get one Green Jacket and I get two in a row. I think all of my perseverance at this golf tournament over the years has really started to pay off,” he said."It was a tough weekend. I did the bulk of my work on Thursday and Friday but just so happy to hang in there and get the job done."It felt pretty similar to last year. I made a double early on the first hole last year and I made a double on four this year and then I played flawless golf after that, I made four birdies and no bogeys going to the last tee knowing that I had a two-shot lead and it's nice to have that two-shot cushion instead of the one like I had last year."I looked at the board after I made the bogey on six and I think I went back to nine under at that point and I said, 'if I can get to 14 under I think I've got a really good chance of winning this tournament.' I didn't quite get there. I got to 13 but that was good enough standing on the 18th tee."Also Read: Rory McIlroy credits Masters success to wife Erica, daughter after divorce talks; explains dog headcoverWho is Harry Diamond?Harry Diamond is a Northern Irish golf caddie and lifelong best friend of Rory McIlroy. Born and raised in Holywood, they met as young boys at the local golf club, where Diamond was a talented amateur player who won the 2012 West of Ireland Championship.He became McIlroy’s full-time caddie in 2017, replacing J.P. Fitzgerald, and has been by his side for major wins, including the 2025 Masters. Known for his loyalty and calm presence, Diamond served as best man at McIlroy’s 2017 wedding. Extremely private, he avoids media and social platforms while running several businesses.(With inputs from AFP)
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

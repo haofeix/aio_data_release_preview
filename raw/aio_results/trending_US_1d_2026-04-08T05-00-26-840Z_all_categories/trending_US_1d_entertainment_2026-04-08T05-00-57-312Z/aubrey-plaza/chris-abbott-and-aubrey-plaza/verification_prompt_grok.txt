@@ -1,0 +1,123 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "chris abbott and aubrey plaza"
+
+Claims:
+[1] "Aubrey Plaza is an actress."
+[2] "Aubrey Plaza is 41."
+[3] "Christopher Abbott is an actor."
+[4] "Christopher Abbott is 40."
+[5] "Aubrey Plaza and Christopher Abbott's first child has a due date in fall 2026."
+[6] "Representatives confirmed on April 7, 2026, that Aubrey Plaza and Christopher Abbott are expecting their first child together with a due date in fall 2026."
+[7] "Aubrey Plaza and Christopher Abbott have kept their relationship private."
+[8] "Aubrey Plaza and Christopher Abbott co-starred in the 2020 film Black Bear."
+[9] "Aubrey Plaza and Christopher Abbott co-starred in the 2023-2024 off-Broadway revival of Danny and the Deep Blue Sea."
+[10] "Aubrey Plaza and Christopher Abbott were spotted together at the Khaite Fall/Winter 2026 fashion show during New York Fashion Week in February."
+[11] "Reports indicated Aubrey Plaza was seen with a baby bump during Paris Fashion Week in March 2026."
+[12] "Jeff Baena is Aubrey Plaza's former husband."
+[13] "Jeff Baena is a director."
+[14] "Jeff Baena died in early 2025."
+[15] "The pregnancy news comes over a year after the death of Jeff Baena in early 2025."
+[16] "Aubrey Plaza previously noted that working with Christopher Abbott is enjoyable because they are both "unafraid to be ugly and weird and strange" in their performances."
+
+Cited text snippets from the AI Overview (for additional context):
+- Aubrey Plaza Expecting Baby No. 1 with Partner Chris Abbott - Parade: "Aubrey Plaza is pregnant!,quietly separated in September 2024."
+- Aubrey Plaza and Christopher Abbott are having a baby: "Plaza and “Girls” star Christopher,York Fashion Week in February."
+- Aubrey Plaza pregnant with her first baby 1 year after husband’s death: report: "What do you think?,comedic thriller “Black Bear.”"
+- Aubrey Plaza is going to be a mom!⁠ ⁠ The actress is expecting her ...: "⁠-,The actress is expecting her first baby with partner Chris,rep confirmed to People.⁠&text=⁠-,Aubrey and Chris previously worked together in the 2023 off,tip sent to DeuxMoi.⁠&text=⁠-,“It was a beautiful surprise after an emotional year,",January of last year.⁠&text=⁠-,Aubrey was most recently photographed at Paris Fashion Week in,🤰⁠&text=(📸: Getty Images),-more"
+- Aubrey Plaza Is Pregnant: "It's unclear if Aubrey and,clothes while attending multiple events."
+- Aubrey Plaza Is Pregnant, Expecting 1st Baby With Chris Abbott: "With Chris Abbott-,Aubrey Plaza Is Pregnant, Expecting 1st Baby With,and 'Girls' Alum Chris Abbott&text=Aubrey Plaza is pregnant and,year,” the insider added."
+- Aubrey Plaza Pregnant With Greenwich Actor Chris Abbott: Report: "Aubrey Plaza is expecting her first baby, PEOPLE reports.&text=04/07/2026 10:,here for more from PEOPLE."
+Reference Sources:
+
+[R1] Aubrey Plaza Is Pregnant, Expecting 1st Baby With Partner and ‘Girls’ Alum Chris Abbott
+(https://www.usmagazine.com/celebrity-moms/news/aubrey-plaza-is-pregnant-expecting-1st-baby-with-chris-abbott/)
+"""
+US Weekly - 52 issues Edition: print $65.00 US Weekly - 26 issues Edition: print $35.10 US Weekly - 52 issues Edition: print $104.00 US Weekly - 26 issues Edition: print $54.60 US Weekly - 52 issues Edition: digital $65.00 US Weekly - 26 issues Edition: digital $35.10 US Weekly - 52 issues Edition: digital $104.00 US Weekly - 26 issues Edition: digital $54.60 In Touch Weekly - 52 issues Edition: print $55.64 In Touch Weekly - 26 issues Edition: print $33.54 In Touch Weekly - 52 issues Edition: print $94.64 In Touch Weekly - 26 issues Edition: print $53.04 In Touch Weekly - 52 issues Edition: digital $55.64 In Touch Weekly - 26 issues Edition: digital $33.54 In Touch Weekly - 52 issues Edition: digital $94.64 In Touch Weekly - 26 issues Edition: digital $53.04 Life & Style - 52 issues Edition: print $55.64 Life & Style - 26 issues Edition: print $33.54 Life & Style - 52 issues Edition: print $94.64 Life & Style - 26 issues Edition: print $53.04 Life & Style - 52 issues Edition: digital $55.64 Life & Style - 26 issues Edition: digital $33.54 Life & Style - 52 issues Edition: digital $94.64 Life & Style - 26 issues Edition: digital $53.04 Closer Weekly - 52 issues Edition: print $55.64 Closer Weekly - 26 issues Edition: print $33.54 Closer Weekly - 52 issues Edition: print $94.64 Closer Weekly - 26 issues Edition: print $53.04 Closer Weekly - 52 issues Edition: digital $55.64 Closer Weekly - 26 issues Edition: digital $33.54 Closer Weekly - 52 issues Edition: digital $94.64 Closer Weekly - 26 issues Edition: digital $53.04 Woman's World - 50 issues Edition: print $59.60 Woman's World - 20 issues Edition: print $24.98 Woman's World - 50 issues Edition: print $109.60 Woman's World - 20 issues Edition: print $44.98 Woman's World - 50 issues Edition: digital $59.60 Woman's World - 20 issues Edition: digital $24.98 Woman's World - 50 issues Edition: digital $109.60 Woman's World - 20 issues Edition: digital $44.98 First For Women - 26 issues Edition: print $34.99 First For Women - 13 issues Edition: print $19.99 First For Women - 26 issues Edition: print $60.99 First For Women - 26 issues Edition: digital $34.99 First For Women - 13 issues Edition: digital $19.99 First For Women - 26 issues Edition: digital $34.99
+"""
+
+[R2] Aubrey Plaza Expecting Baby No. 1 with Partner Chris Abbott
+(https://parade.com/news/aubrey-plaza-expecting-baby-no-1-with-partner-chris-abbott)
+"""
+Key PointsAubrey Plaza is expecting her first child with actor Chris Abbott, due this fall.“It was a beautiful surprise after an emotional year,” a source told People.Plaza’s previous husband, Jeff Baena, died in January 2025 after their quiet separation. Aubrey Plaza is pregnant! A source told People on Tuesday, Apr. 7 that Plaza is expecting her first baby with her partner, actor Chris Abbott, and is due this fall. A representative for Plaza also confirmed the news to the outlet. “It was a beautiful surprise after an emotional year,” the source said, adding that the couple feels “very blessed.” Plaza, 41, and Abbott, 40, first collaborated on the 2020 film Black Bear before playing love interests for the 2023-2024 off-Broadway revival of Danny and the Deep Blue Sea—which was Plaza’s stage debut. “He cares but he also doesn’t care; it’s the best recipe for me for a scene partner,” Plaza told The New York Times of working with Abbott in 2023. “It’s fun and it’s also good and it’s also safe. I like to just throw things out the window also and laugh and mess around and not take it so seriously. It’s a hard combo to come by.” “We’re both unafraid to be ugly and weird and strange,” Abbott added. The Parks and Recreation alum’s pregnancy comes a year after her husband, screenwriter and film director Jeff Baena, died by suicide in January 2025. Plaza and Baena began dating in 2011 and married in 2021. After Baena’s death, it was revealed the pair quietly separated in September 2024. 🎬 SIGN UP for Parade’s Daily newsletter to get the latest pop culture news & celebrity interviews delivered right to your inbox 🎬 About the authorGrace Galante is a freelance journalist from Chicago with a passion for arts, culture, and entertainment stories. Before joining Parade, she produced these stories for digital, radio, and broadcast for NBC News, TMZ, Viewpoints Radio, among other publications.
+"""
+
+[R3] Aubrey Plaza pregnant with her first baby 1 year after husband's death: report
+(https://pagesix.com/2026/04/07/parents/aubrey-plaza-pregnant-with-her-first-baby-1-year-after-husbands-death-report/)
+"""
+Aubrey Plaza is reportedly pregnant with her first child. The actress, 41, is expecting a baby with her partner, actor Christopher Abbott, and is due in the fall, People reported. “It was a beautiful surprise after an emotional year,” a source told the outlet. “They feel very blessed.” Aubrey Plaza is reportedly expecting her first child with her partner, Chris Abbott. They’re pictured here in January 2020. Getty Images for Audible Plaza and Abbott are seen here with their “Black Bear” co-star Sarah Gadon at the Sundance Film Festival in January 2020. Penske Media via Getty Images 1/1 Continue watchingafter the adVisit Advertiser websiteGO TO PAGE Page Six reached out to Plaza’s rep for comment but didn’t receive a response. Plaza tragically mourned the death of her husband, Jeff Baena, in January 2025. The screenwriter died by suicide, according to online records from the County of Los Angeles Medical Examiner’s Office obtained by Page Six. He was 47 years old. The two, who got married in 2021, had separated four months before Baena’s death. She hid her baby bump last month at Paris fashion week in an oversized black leather coat. Getty Images Plaza mourned the death of her husband, Jeff Baena, in January 2025 after he died by suicide. They’re seen here together in July 2014. WireImage Want more celebrity and pop culture news? Start your day with Page Six Daily. Thanks for signing up! Plaza broke her silence on his death last August during her appearance on Amy Poehler’s “Good Hang” podcast. “Right in this very, very present moment, I feel happy to be with you,” she told her former “Parks and Recreation” co-star. “Overall, I’m here and I’m functioning.” Plaza noted she was “very grateful to be moving through the world” and felt “OK.” The two, pictured here in August 2014, were separated months before his death. Mark Davis In August 2025, she said her grief over Baena’s death was “always there.” They’re seen here in May 2016. Patrick McMullan via Getty Images She later candidly described her grief. “At all times, there’s, like, a giant ocean of just awfulness that’s just right there and I can see it.” She continued, “Sometimes I just want to dive into it and be in it. And sometimes I look at it and sometimes I just try to get away from it, but it’s always there.” It’s unclear when Plaza and 40-year-old Abbott’s relationship turned romantic, but they’ve worked together over the years. They co-starred in the 2023-2024 off-Broadway revival of “Danny and the Deep Blue Sea” and were also co-stars in the 2020 comedic thriller “Black Bear.”
+"""
+
+[R4] Aubrey Plaza Is Pregnant
+(https://www.tmz.com/2026/04/07/aubrey-plaza-pregnant/)
+"""
+Former Virginia Lt. Governor Justin Fairfax Dead in Apparent Murder-Suicide Cheek of the Week: Shay Mitchell’s Baywatch Buns Are Making Waves! Prince Harry Says He Never Wanted to Be a Working Royal Talan Torriero On 'Laguna Beach' 'Memba Him?! Dispatch Audio in Former Virginia Lt. Gov. Justin Fairfax's Murder-Suicide, Listen Getty Composite Aubrey Plaza is starting a family ... because she has a little bundle of joy on the way. 1/1 Skip Ad Continue watchingafter the adVisit Advertiser websiteGO TO PAGE The actress is pregnant with her first child ... according to a report Tuesday from PEOPLE. Aubrey's is expecting with her partner, Chris Abbott, and the baby is due later this year ... in the fall. Getty It's unclear if Aubrey and Chris are going to be parents to a baby boy or a baby girl. Aubrey was reportedly showing the first signs of a baby bump last month during Paris Fashion Week ... hiding the bump under an oversized leather jacket and some loose-fitting clothes while attending multiple events. Getty She was previously married to screenwriter and director Jeff Baena, but they did not have children before their separation and his death. Aubrey and Chris have worked together in the past ... on the 2020 flick "Black Bear" and an off-Broadway production of "Danny and the Deep Blue Sea." Congratulations!!! Share on Facebook Share on X Aubrey Plaza Relists Marital Home After Husband Jeff Baena's Death Aubrey Plaza Discusses Daily Struggle After Husband Jeff Baena's Death Aubrey Plaza Glows at Cannes, First Movie Premiere Since Husband's Death Aubrey Plaza Makes First Public Appearance Since Husband's Death Aubrey Plaza Celebrity News Family Relationships Baby Watch Read our community guidelines for comments on TMZ MORE FOR YOUElin Nordegren Embraces Her Shape in Stunning New Photos.Vetob - SponsoredSponsoredUndoNFL Star Rob Gronkowski's Shoe Pick (Get Yours)Wolf & Shepherd - SponsoredSponsoredShop NowUndoThe Hybrid Shoe Professionals Swear ByWolf & Shepherd - SponsoredSponsoredShop NowUndo12 Things To Cut When Living On RetirementGreensprout - SponsoredSponsoredUndoMen Can't Get Enough of These Ultra-Breathable Summer Shorts.Harroom - SponsoredSponsoredShop NowUndoWho Pays the Least for Car Insurance in These Missouri ZIP Codes?OTTO Insurance - SponsoredSponsoredClick HereUndoAffordable LuxuryLa Compagnie - SponsoredSponsoredBuy NowUndoCardiologists: How To Quickly Lose a Hanging Belly (Its Genius!)Diet-masters - SponsoredSponsoredUndo Search
+"""
+
+[R5] Aubrey Plaza Pregnant With Greenwich Actor Chris Abbott: Report | Greenwich Daily Voice
+(https://dailyvoice.com/connecticut/greenwich/aubrey-plaza-pregnant-with-greenwich-actor-chris-abbott-report/)
+"""
+Aubrey Plaza Pregnant With Greenwich Actor Chris Abbott: Report | Greenwich Daily Voice 67° Tuesday, apr 14 SHARE Aubrey Plaza is expecting her first baby, PEOPLE reports. Chris Abbott and Aubrey Plaza Photo Credit: Kevin Payravi/Xfranksun Cecilia Levine Email me Read More Stories 04/07/2026 10:50 p.m. The "Parks and Recreation" star, 41, and her partner Chris Abbott, 40, a Greenwich, CT native, are expecting their first child together this fall, the outlet reports.PEOPLE quoted a source saying that the baby was a "beautiful surprise" after an "emotional year." Plaza lost her husband, Jeff Baena, last year.Abbott rose to fame in his role as Marnie's boyfriend Charlie, on HBO's "Girls."Plaza and Abbott worked together on "Danny and the Deep Blue Sea," an Off-Broadway revival, and the 2020 movie "Black Bear." Abbott currently stars in Arthur Miller's "Death of a Salesman" Broadway revival. Click here for more from PEOPLE. Click here to follow Daily Voice Greenwich and receive free news updates. SCROLL TO NEXT ARTICLE Breaking News These Northeast Locales Will See Hottest Temps During Summer-Like Stretch Coming Up Next Disturbing Details Emerge As Stepbrother Charged With Killing HS Cheerleader On Carnival Cruise A Mom Designed The Shampoo Bottle We've All Needed — And Her Brand Is Going National Trump Targeted In Assassination Threats By PA Man From Same County As 2024 Shooting: DOJ Winners for Fairfield County Thai Basil Best Thai Dave & Buster's Milford Best Indoor Recreation Fin Japanese Restaurant Best Japanese The Maritime Aquarium at Norwalk Best Children's Activity Posh Nails & Spa Westport Best Nail Salon View 2025 Winners Get Daily Voice In Your Inbox Get important news about your town as it happens. Your Daily Voice Site (not your town?) Greenwich×Greenwich Get News In Your Inbox Daily Try again > Sign up for free Get Daily Voice in your inbox as well Something went wrong. Please subscribe again. I'll Do It Later News When You Need It Enable push notifications to get real-time news alerts from Greenwich Daily Voice. Enable push notifications Done Not in Greenwich? Follow "Best Of" Daily Voice Get the top stories from across our network. Get News In Your Inbox Daily Try again > Sign up for free Get Daily Voice in your inbox as well I'll Do It Later Too much of a good thing? You like our local news, but don't need so many emails. How about less frequent summaries instead? Breaking (As news happens) Summary (3 emails / day) Daily Save Email Frequency No thanks, unsubscribe me We're sorry to see you go! Please take a moment to tell us why you are unsubscribing. Your feedback helps us improve. Please tell us why you are unsubscribing Additional Detail Submit Feedback Update Email Frequency Get your news up-to-the-minute, or opt for less frequent summaries that fit your busy schedule. Breaking (As news happens) Summary (3 emails / day) Daily Save Email Frequency Thanks for Signing Up! Get your news up-to-the-minute, or opt for less frequent summaries that fit your busy schedule. Breaking (As news happens) Summary (3 emails / day) Save and Close Are you sure? Are you sure you want to unsubscribe from Daily Voice updates? Unsubscribe from Advertiser Emails Only Unsubscribe from All Daily Voice Emails Never mind Are you sure? Are you sure you want to unsubscribe from daily updates? Yes, unsubscribe Never mind
+"""
+
+[R6] Aubrey Plaza is pregnant with her first baby - Los Angeles Times
+(https://www.latimes.com/entertainment-arts/story/2026-04-07/aubrey-plaza-is-pregnant-with-her-first-baby)
+"""
+Aubrey Plaza is pregnant!Plaza and “Girls” star Christopher Abbott are expecting their first child together. Representatives for Plaza confirmed to People that the pair are set to become parents in the fall. The couple, who have kept their romance under wraps, were spotted together at the Khaite Fall/Winter 2026 fashion show during New York Fashion Week in February.Plaza, who’s become Hollywood’s favorite weirdo since splashing onto the scene as April Ludgate in the mockumentary sitcom “Parks and Recreation,” met Abbott when they worked together in 2020. The two starred in the psychological thriller “Black Bear,” and then joined forces once more in 2023 for the off-Broadway revival of “Danny and the Deep Blue Sea.” Abbott may be best known for stealing the hearts of “Girls” fans when he portrayed Charlie Dattolo on the HBO megahit.In “Danny,” the pair portrayed volatile lovers, and they raved about working with each other while chatting with the New York Times ahead of the production’s premiere. “He cares but he also doesn’t care; it’s the best recipe for me for a scene partner,” Plaza said. “It’s fun and it’s also good and it’s also safe. I like to just throw things out the window also and laugh and mess around and not take it so seriously. It’s a hard combo to come by.”“We’re both unafraid to be ugly and weird and strange,” Abbott added. The two also agreed that although they aim to entertain the audience, they both hoped to entertain each other. Plaza — who is known for her deadpan delivery not only on screen but also while giving interviews on red carpets and the late-night circuit — has become known for dropping lines tailor-made for internet culture. In 2011, she notoriously told Jay Leno that she was too awkward for dating. “I’m kind of like all or nothing,” she said. “Either put a baby inside of me or leave me alone.” The big baby news arrives for the “White Lotus” star a year after the death of husband Jeff Baena, an independent filmmaker who directed Plaza in “The Little Hours.” Baena, who died at 47 in January 2025, had been separated from Plaza for a few months before his death. More to Read
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

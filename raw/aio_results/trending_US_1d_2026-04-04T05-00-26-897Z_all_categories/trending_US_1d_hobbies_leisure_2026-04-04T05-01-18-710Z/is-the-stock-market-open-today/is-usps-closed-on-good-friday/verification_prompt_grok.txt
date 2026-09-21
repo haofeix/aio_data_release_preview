@@ -1,0 +1,116 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is usps closed on good friday"
+
+Claims:
+[1] "The U.S. Postal Service (USPS) is not closed on Good Friday."
+[2] "Good Friday is not a federal holiday."
+[3] "USPS post offices remain open on Good Friday."
+[4] "USPS mail is delivered as normal on Good Friday."
+[5] "USPS regular mail delivery operates normally on Good Friday."
+[6] "USPS package pickup operates normally on Good Friday."
+[7] "USPS retail services operate normally on Good Friday."
+[8] "UPS generally operates normally on Good Friday."
+[9] "FedEx generally operates normally on Good Friday."
+[10] "The federal government does not recognize Good Friday as a holiday."
+
+Cited text snippets from the AI Overview (for additional context):
+- USPS Holidays in 2026: When is the Post Office Closed? - AARP: "Get services online even when,and post offices are closed&text=The U.S. Postal Service observes,Christmas: Friday, Dec. 25"
+- Is Good Friday a federal holiday? Will mail get delivered? What to know before Easter 2026: "Chris Sims Marina Johnson,, according to opm.gov."
+- Good Friday 2026 holiday hours: stocks, banks, stores, Walmart: "Is the post office open,past your house sometime today."
+- Is there mail delivery on Good Friday? What to know about ...: "Though it's widely observed by,are open on Good Friday."
+- Are banks, post offices open on Good Friday? Here's what to know: "Here's what to know about,Will packages be delivered?"
+- Is the stock market open on Good Friday? Is it a federal holiday? ...: "FedEx and FedEx Freight will have modified,options are expected to operate as normal."
+Reference Sources:
+
+[R1] 2025 Good Friday is today, and Sunday is Easter. What's open and closed?
+(https://www.courier-journal.com/story/life/holiday/2025/04/18/2025-good-friday-are-banks-open-today-ups-post-office-stock-market/83154219007/)
+"""
+HOLIDAYIs the stock market open on Good Friday? Is it a federal holiday? About the dayChris Sims Marina JohnsonUSA TODAY NETWORKUpdated April 18, 2025, 8:02 a.m. ETWondering if banks are open or closed Good Friday? Stock markets? Post office?We have those answers and more from if Good Friday is a federal holiday to the meaning of Good Friday.Here's what we know:When is Good Friday 2025? What date is Good Friday this year?Good Friday is on Friday, April 18, 2025.
+"""
+
+[R2] Are banks, post offices open on Good Friday? Here's what to know
+(https://www.usatoday.com/story/money/2026/04/02/banks-post-offices-open-closed-good-friday-2026/89398340007/)
+"""
+April 2, 2026Updated April 3, 2026, 10:33 a.m. ETEaster is this upcoming Sunday, which means Friday, April 3, is Good Friday.Good Friday is the day in which the Christian faith commemorates the crucifixion and death of Jesus Christ. "From the early days of Christianity, Good Friday was observed as a day of sorrow, penance, and fasting," according to Britannica.Easter falls on Sunday, April 5, this year, and it celebrates the resurrection of Jesus Christ and follows a 40-day period known as Lent. The date the holidays are celebrated changes depending on the year because Easter is one of several "moveable feasts" in the liturgical year, according to the History Channel. Other examples of "moveable feasts" include Ash Wednesday and Palm Sunday.Here's what to know about bank, mail and shipping operations on Good Friday in 2026.Is the post office open on Good Friday? Will mail be delivered?U.S. Postal Service facilities will have normal operations on Friday, April 3, meaning USPS facilities will be open for retail transactions and mail will be delivered as usual, according to the USPS website.Are banks open on Good Friday?Bank branches will largely be open on Good Friday since it is not a federal holiday.It is always best to check with your local branch regarding their specific hours.Is UPS open on Good Friday? Will packages be delivered?UPS pickup and delivery services are available and UPS Store locations will be open on Friday, according to the company's website.Is FedEx open on Good Friday? Will packages be delivered?FedEx pickup and delivery services are available and FedEx Office locations will be open on Friday, according to the company's website.Gabe Hauari is a national trending news reporter at USA TODAY. You can follow him on X @GabeHauari or email him at Gdhauari@gannett.com.
+"""
+
+[R3] What's open and closed on Good Friday 2026? Stock markets, banks, post office, Walmart holiday hours
+(https://www.fastcompany.com/91521168/good-friday-2026-open-stock-markets-banks-holiday-hours-post-office-walmart-stores-list)
+"""
+Today, April 3, 2026, is Good Friday. It is an important day to Christians in the United States and around the world. But unlike in many other countries, Good Friday, in many U.S. states, isn’t an official holiday.When it comes to institutions and businesses, some observe the holiday, while others don’t. That can make it confusing for people to know exactly what is open and what is closed on Good Friday. Here’s what you need to know.Is Good Friday a national holiday?No, the federal government does not recognize Good Friday as a national holiday. This means that many federal institutions that are typically closed on public holidays remain open on Good Friday, including agencies such as the Social Security Administration (SSA) and the Department of Veterans Affairs (VA).Subscribe to the Daily newsletter.Fast Company's trending stories delivered to you every dayFor those keeping track, the U.S. Office of Personnel Management notes that there are 11 federal holidays in 2026. The last one was Washington’s Birthday on February 16, and the next one will be Memorial Day on May 25.Is Good Friday a state holiday?While Good Friday isn’t a federal holiday, a number of states recognize the day as a state holiday. According to TimeandDate, 10 states observe Good Friday as a state holiday or partial holiday. Those states include: Connecticut Delaware Hawaii Indiana Louisiana North Carolina North Dakota New Jersey Tennessee Texas In these states, state agencies and institutions, such as DMVs and state licensing boards, are likely to be closed.Explore TopicsbanksholidaysmarketsRetailstocks
+"""
+
+[R4] USPS Holidays in 2026: When is the Post Office Closed?
+(https://www.aarp.org/government-elections/post-office-holidays-closed/)
+"""
+U.S. Postal Service Holidays in 2026: Is the Post Office Open on Memorial Day? Get services online even when there’s no mail delivery and post offices are closed Andy Markowitz and Phil Pruitt, Published December 26, 2024 / Updated April 10, 2026 The U.S. Postal Service observes 11 official holidays annually, including Memorial Day. Post offices will be closed on Monday, May 25, and the Postal Service will not deliver regular mail or packages on that date. Here are the Postal Service holidays for 2026: New Year’s Day: Thursday, Jan. 1Martin Luther King Jr. Day: Monday, Jan. 19Presidents’ Day: Monday, Feb. 16Memorial Day: Monday, May 25Juneteenth National Independence Day: Friday, June 19Independence Day: Saturday, July 4Labor Day: Monday, Sept. 7Columbus Day: Monday, Oct. 12Veterans Day: Wednesday, Nov. 11Thanksgiving: Thursday, Nov. 26Christmas: Friday, Dec. 25 Even when brick-and-mortar facilities are closed, some post office services are available online 24/7, including on holidays. With a USPS.com account, you can order stamps, print shipping labels, order boxes and other mail supplies, and request package pickups. Stamps are also sold at most major supermarkets, pharmacies and office supply stores, which are open on some federal holidays. FedEx and UPS holidays Other major delivery companies set their own schedules and operate partially or in full on some federal holidays. FedEx and UPS do not pick up or deliver on Memorial Day except through their services for urgent and critical deliveries. Their retail locations may be closed or operate on modified schedules; check with your local FedEx Office or UPS Store for details. Video: 3 Surprising Things You Never Knew About the Post Office Andy Markowitz is an AARP senior writer and editor covering Social Security and retirement. He is a former editor of the Prague Post and Baltimore City Paper. Phil Pruitt is an AARP writer and editor focusing on Social Security. He is a former editor at Scripps News and Yahoo News and was on the start-up staff at USA Today, where he held numerous editing positions. Most Popular Most Popular
+"""
+
+[R5] Will your mail arrive today? How USPS, UPS, FedEx handle Good Friday
+(https://www.dispatch.com/story/entertainment/holiday/2026/04/03/is-there-mail-delivery-on-good-friday-what-to-know-about-easter-weekend/89453428007/)
+"""
+April 3, 2026, 2:19 p.m. ETGood Friday is not a federal holiday, so most services operate as usual.The U.S. Postal Service will continue to deliver mail on Good Friday.UPS and FedEx will also maintain their normal pickup and delivery schedules.If you're waiting on a package to land this weekend, you might be wondering whether Good Friday will slow things down.Easter Sunday, one of Christianity's most significant holidays, falls on April 5 this year. The religious tradition takes place over several days a part of Holy Week, which includes Palm Sunday, Maundy Thursday, Good Friday, Holy Saturday and, of course, Easter.Good Friday, which falls on April 3 this year, commemorates the crucifixion and death of Jesus Christ. Countless churches across the state hold afternoon or evening services, prayer vigils and Stations of the Cross observances.With Good Friday observed by millions of Christians, many people wonder whether everyday services like mail delivery are affected. Here's what to know.Is mail delivered on Good Friday?Yes, mail delivery still takes place on Good Friday.Though it's widely observed by Christian churches, Good Friday is not a federal holiday, which means banks, mail delivery and most government offices remain open.U.S. Postal Service facilities maintain normal operations on Good Friday, which means retail transactions and mail delivery will go on as usual, according to the USPS website.UPS and FedEx are no different. The companies' pickup and delivery services are available throughout the day, and both stores' locations will be open, according to the UPS and FedEx company websites.Similarly, while some smaller businesses may tweak their hours for the holiday, most major retailers are open on Good Friday.Reporter Emma Wozniak can be reached at ewozniak@dispatch.com or @emma_wozniak_ on X, formerly known as Twitter.
+"""
+
+[R6] Is Good Friday a federal holiday? Will mail get delivered? What to know before Easter 2026
+(https://www.courier-journal.com/story/news/local/2026/04/03/will-mail-delivery-continue-good-friday-2026-april-3-is-it-a-federal-holiday/89434386007/)
+"""
+April 3, 2026, 5:10 a.m. ETIf you’re planning to send out packages today, you’re in luck.Good Friday, a Christian religious observance, is not recognized as a federal holiday in the United States. That means many essential services, including mail delivery, continue operating as usual.Here’s a look at what’s open and closed on Good Friday from banks and the stock market to USPS mail delivery:Is Good Friday a federal holiday in the U.S.?Good Friday is not specified by law to be one of the 12 federal holidays recognized in 2026, according to opm.gov.Is USPS post office open on Good Friday? Will mail be delivered April 3, 2026?The United States Postal Service will be open, and mail will be delivered on Good Friday, April 3, 2026.Is FedEx open on Good Friday, April 3, 2026?FedEx and FedEx Freight will have modified service on Good Friday, April 3, 2026, but all other delivery options are expected to operate as normal.Is UPS open today on Good Friday, April 3, 2026?UPS Store is open and UPS delivery and pickup services are available on Good Friday, April 3, 2026.Is the stock market open on Good Friday, April 3, 2026? Is the stock market closed today?The stock markets on New York Stock Exchange and the Nasdaq are closed for trading on Good Friday, April 3, 2026. The Securities Industry and Financial Markets Association also recommended an early close at noon EST for the holiday.Will banks be closed on Good Friday, April 3, 2026? Are banks open today?Most banks will be open on Good Friday, April 3, 2026, according to The Federal Reserve.Is Good Friday a state holiday in Kentucky?Good Friday is a state holiday in Kentucky. State government offices will have a half-day.Are Kentucky schools closed today on Good Friday?Some schools may close on Good Friday, but several will remain open in the commonwealth. Be sure to check with your local school for details.Chris Sims is a trending reporter at Midwest Connect Gannett. Follow him on Twitter: @ChrisFSims. Reach Marina Johnson at Marina.Johnson@courier-journal.com.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

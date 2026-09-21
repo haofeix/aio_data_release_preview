@@ -1,0 +1,72 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "clima"
+
+Claims:
+[1] "Currently, the data shown on www.clima.com indicate general conditions in certain zones like Tampa (humid, moderate winds)."
+
+Cited text snippets from the AI Overview (for additional context):
+(No cited text snippets available)
+Reference Sources:
+
+[R1] Clima en Tampa hoy y pronóstico del tiempo a 14 días
+(https://www.clima.com/estados-unidos/florida/tampa)
+"""
+Horas Fin de semana Mañ 2 ABR 30° 19° Vie 3 ABR 31° 21° Sáb 4 ABR 31° 20° Dom 5 ABR 30° 20° Lun 6 ABR 29° 21° Mar 7 ABR 25° 20° Mié 8 ABR 28° 18° Jue 9 ABR 26° 19° Vie 10 ABR 27° 18° Sáb 11 ABR 29° 19° Dom 12 ABR 29° 19° Lun 13 ABR 30° 19° Mar 14 ABR 30° 20° 08:00 21° 23° 22° 21° 21° 20° 19° 19° 19° 14:00 30° 31° 31° 30° 29° 25° 28° 26° 27° 20:00 26° 27° 27° 25° 23° 23° 23° 22° 23° Lluvia 9.4 mm 2.5 mm 0.1 mm 0 mm 1.1 mm 1.5 mm 0 mm 0 mm 0 mm 0 mm 0 mm 0 mm 0 mm Nieve 0 cm 0 cm 0 cm 0 cm 0 cm 0 cm 0 cm 0 cm 0 cm 0 cm 0 cm 0 cm 0 cm Viento 19 km/h 19 km/h 15 km/h 16 km/h 17 km/h 17 km/h 20 km/h 19 km/h 18 km/h 17 km/h 18 km/h 17 km/h 17 km/h 07:17 07:16 07:15 07:14 07:12 07:11 07:10 07:09 07:08 07:07 07:06 07:05 07:04 19:49 19:49 19:50 19:50 19:51 19:51 19:52 19:53 19:53 19:54 19:54 19:55 19:55
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

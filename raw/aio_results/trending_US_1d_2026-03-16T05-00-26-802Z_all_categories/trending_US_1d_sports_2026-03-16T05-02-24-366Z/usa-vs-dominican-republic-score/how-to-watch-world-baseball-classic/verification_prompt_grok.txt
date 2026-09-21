@@ -1,0 +1,118 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "how to watch world baseball classic"
+
+Claims:
+[1] "The 2026 World Baseball Classic is scheduled for March 4–17."
+[2] "The 2026 World Baseball Classic is broadcast exclusively in the U.S. on FOX, FS1, FS2, and FOX Deportes."
+[3] "All games of the 2026 World Baseball Classic can be streamed live on FOX One."
+[4] "All games of the 2026 World Baseball Classic can be streamed live on FOXSports.com."
+[5] "All games of the 2026 World Baseball Classic can be streamed live on the FOX Sports app."
+[6] "All games of the 2026 World Baseball Classic can be streamed live via Tubi."
+[7] "Fubo carries the FOX networks."
+[8] "DirecTV carries the FOX networks."
+[9] "YouTube TV carries the FOX networks."
+[10] "The finals of the 2026 World Baseball Classic are at LoanDepot Park, Miami."
+[11] "The championship game of the 2026 World Baseball Classic is on Tuesday, March 17 at 8 p.m. ET on FOX."
+[12] "The 2026 World Baseball Classic is available on ESPN via Disney+ in LATAM."
+
+Cited text snippets from the AI Overview (for additional context):
+- Watch World Baseball Classic Games & Shows on FOX One: "Where to watch the World,Classic Games and Events Live"
+- 2026 World Baseball Classic Broadcast Schedule - FOX Sports: "How to Stream the 2026,Tubi"
+- How to Watch 2026 World Baseball Classic: Streaming, Teams, Dates: "FOX Deportes will also carry,used to stream the tournament."
+- 2026 World Baseball Classic: How to watch the USA vs ...: "the USA vs.-,Dominican Republic semifinal game tonight, where to stream and more,The USA vs."
+- Venezuela vs. Italy World Baseball Classic: Starters, Lineups, How To Watch: "How to Watch the 2026,FOX One"
+- How to watch USA vs. Dominican Republic at the World Baseball ...: "The 2026 World Baseball Classic,, stats, schedules and standings."
+Reference Sources:
+
+[R1] 2026 World Baseball Classic: How to watch the USA vs. Dominican Republic semifinal game tonight, where to stream and more
+(https://sports.yahoo.com/mlb/article/2026-world-baseball-classic-how-to-watch-the-usa-vs-dominican-republic-semifinal-game-tonight-where-to-stream-and-more-113516854.html)
+"""
+Team USA has advanced past the quarterfinals at the World Baseball Classic and will now face the Dominican Republic in the semifinals this Sunday. The USA vs. Dominican Republic semifinal game will air on Fox and FOX Deportes tonight at 8 p.m. ET. The game will also stream on FOX One. Here's everything you need to know about how to watch the 2026 World Baseball Classic, including the full schedule and where to watch.Date: Sunday, March 15AdvertisementTime: 8 p.m. ETChannels: Fox, Fox DeportesStreaming: FOX One, DirecTV, Fubo & moreUSA vs. Dominican Republic semifinal game time: The Dominican Republic vs. USA game at the World Baseball Classic will take place tonight, March 15, at 8 p.m. ET.USA vs. Dominican Republic semifinal game channel:The USA vs. Dominican Republic game will be broadcast live on Fox and in Spanish on FOX Deportes.Where to watch the World Baseball Classic without cableEvery single World Baseball Classic game will stream on FOX One. You can also catch games that are broadcast on Fox, FS1 and FS2 on platforms like DirecTV and Fubo.FOX One is a new streaming service from FOX that launched in 2025. With a subscription to FOX One, you can tune in to all your favorite FOX channels like FOX News, FOX Sports, FOX Weather, FS1, FS2, FOX Business, FOX Deportes, Big Ten Network (B1G), and local FOX stations all in one place, and this year, they'll be streaming every single game of the 2026 World Baseball Classic. FOX One offers live programming, as well as shows and movies on demand. The base price for FOX One will cost $19.99 a month, or you can save with an annual subscription for $199.99. World Baseball Classic ScheduleSunday, March 15, 2026United States @ Dominican Republic: 8:00 PM ET (FOX, FS1)Monday, March 16, 2026Venezuela @ Italy: 8:00 PM ET (FS1)Tuesday, March 17, 2026TBD @ TBD: 8:00 PM ET (FOX)
+"""
+
+[R2] 2026 World Baseball Classic Broadcast Schedule: How To Watch Every Game on FOX
+(https://www.foxsports.com/stories/world-baseball-classic/2026-world-baseball-classic-broadcast-schedule)
+"""
+All-Stars, MVPs, and Cy Young winners. Plenty of MLB's best players will be taking the diamond and representing their countries at the 2026 World Baseball Classic. FOX Sports announced the U.S. broadcast schedule for the tournament, which will begin Wednesday, March 4 and conclude with the much-anticipated Championship Game at loanDepot Park, home of the Miami Marlins, on Tuesday, March 17 (FOX, 8 p.m. ET).In all, the WBC's 47 games will air across FOX Sports' family of networks (FOX, FS1, FS2 and FOX Deportes), as well as the FOX Sports App and Tubi. All matchups will also be available to stream live and on-demand on FOX One. Additionally, 41 out of the 47 contests will air in Spanish across a combination of FOX Deportes, the FOX Sports App, Tubi and FOX One.FOX is your exclusive home to the WBC with games spread across the FOX family of networks. FOX is set to air seven games, including three Pool B games featuring the United States team, two Quarterfinals games and the World Baseball Classic Championship Game on Tuesday, March 17 from Miami’s loanDepot Park. The remaining matchups will air across FS1, FS2, the FOX Sports app, FOX One and Tubi. Team USA is favored to win the tournament despite losing to Japan in the final in 2023.How to Stream the 2026 World Baseball ClassicAll 47 games will be available for streaming. Catch the action on the following streaming options:FOXSports.com and FOX Sports AppFOX OneTubiFOX Deportes will also carry 28 tournament games in Spanish, including all four quarterfinals games, two semifinals contests, and the Championship Game. Streaming services that carry FOX networks, like YouTube TV or Fubo, can be used to stream the tournament.The tournament will begin with Pool C play in Tokyo on March 4, with the remaining three pools – Pool A in San Juan, Puerto Rico; Pool B in Houston; and Pool D in Miami – beginning on Friday, March 6. Pool B features the star-studded Team USA, whose squad includes top players like Yankees slugger Aaron Judge and Tigers ace Tarik Skubal. FOX will broadcast its first game when the USA plays its opening game against Brazil at Daikin Park (home of the Houston Astros) on Friday, March 6 at 8 p.m. ET.FOX will carry a total of seven games, including two quarterfinal games: in Houston on Friday, March 13 at 8 p.m. ET, and the matchup in Miami on Saturday, March 14 at 9 p.m. ET. FOX will also carry the Championship Game on Tuesday, March 17 at 8 p.m. ET.FS1 coverage, which will include 19 contests, will be headlined by coverage of the semifinals in Miami on Sunday, March 15 at 8 p.m. ET and Monday, March 16 at 8 p.m. ET. In addition, FS1 will air highly anticipated pool play matchups between Korea and Japan on Saturday, March 7 at 5:00 a.m. ET; Cuba and Puerto Rico on Monday, March 9 at 7:00 p.m. ET; and the Dominican Republic and Venezuela on Wednesday, March 11 at 8:00 p.m. ET.Here's the entire WBC broadcast schedule:World Baseball Classic ScheduleAll times are ET.March 4 (Wednesday)Chinese Taipei vs. Australia: 10 p.m. on FS1/FOX DeportesMarch 5 (Thursday)Czechia vs. Korea: 5 a.m. on FS1/FOX DeportesAustralia vs. Czechia: 10 p.m. on FS1/FOX DeportesMarch 6 (Friday)Japan vs. Chinese Taipei: 5 a.m. on FS1/FOX DeportesCuba vs. Panama: 11 a.m. on FS2/FOX DeportesMexico vs. Great Britain: 1 p.m. on FS1/FOX DeportesPuerto Rico vs. Colombia: 6 p.m. on FS1/FOX DeportesUSA vs. Brazil: 8 p.m. on FOX/FOX DeportesChinese Taipei vs. Czechia: 10 p.m. on FS2March 7 (Saturday)Korea vs. Japan: 5 a.m. on FS1/FOX DeportesColombia vs. Canada: 11 a.m. on FS2/FOX DeportesNicaragua vs. Netherlands: Noon on TubiBrazil vs. Italy: 1 p.m. on FOX Sports AppPanama vs. Puerto Rico: 6 p.m. on FS1/FOX DeportesIsrael vs. Venezuela: 7 p.m. on FS2Great Britain vs. USA: 8 p.m. on FOXChinese Taipei vs. Korea: 10 p.m. on FS2March 8 (Sunday)Australia vs. Japan: 6 a.m. on FS1/FOX DeportesColombia vs. Cuba: Noon on FS2Netherlands vs. Dominican Republic: Noon on FOX/FOX DeportesGreat Britain vs. Italy: 1 p.m. on TubiPanama vs. Canada: 7 p.m. on FS2Nicaragua vs. Israel: 7 p.m. on TubiBrazil vs. Mexico: 8 p.m. on FS1/FOX DeportesMarch 9 (Monday)Korea vs. Australia: 6 a.m. on FS1/FOX DeportesColombia vs. Panama: Noon on FS2Dominican Republic vs. Israel: Noon on FS1/FOX DeportesBrazil vs. Great Britain: 1 p.m. on TubiCuba vs. Puerto Rico: 7 p.m. on FS1Venezuela vs. Nicaragua: 7 p.m. on FS2Mexico vs. USA: 8 p.m. on FOX/FOX DeportesMarch 10 (Tuesday)Czechia vs. Japan: 6 a.m. on FS1/FOX DeportesCanada vs. Puerto Rico: 7 p.m. on TubiIsrael vs. Netherlands: 7 p.m. on FOX Sports App/FOX DeportesItaly vs. USA: 9 p.m. on FS1/FOX DeportesMarch 11 (Wednesday)Canada vs. Cuba: 3 p.m. on FS2/FOX DeportesItaly vs. Mexico: 7 p.m. on TubiDominican Republic vs. Venezuela: 8 p.m. on FS1/FOX DeportesMarch 13 (Friday)Quarterfinals1. Pool C runner-up vs. Pool D winner: 6:30 p.m. on FS2/FOX Deportes2. Pool A runner-up vs. Pool B winner: 8 p.m. on FOX/FOX DeportesMarch 14 (Saturday)Quarterfinals3. Pool B runner-up vs. Pool A winner: 3 p.m. on FS1/FOX Deportes4. Pool D runner-up vs. Pool C winner: 9 p.m. on FOX/FOX DeportesMarch 15 (Sunday)Semifinal1. QF1 winner vs. QF2 winner: 8 p.m. on FS1/FOX DeportesMarch 16 (Monday)Semifinal2. QF3 winner vs. QF4 winner: 8 p.m. on FS1/FOX DeportesMarch 17 (Tuesday)ChampionshipSF1 winner vs. SF2 winner: 8 p.m. on FOX/FOX Deportes
+"""
+
+[R3] Watch World Baseball Classic Games & Shows on FOX One
+(https://www.fox.com/hub/league/baseball-wbc-league-1/wbc)
+"""
+Skip to main contentWatch the World Baseball Classic 2026 Live on FOX OneSign Up NowDisclaimer: Offers are subject to change. See FOX One for complete terms and conditions.World Baseball ClassicWhere to watch the World Baseball ClassicStream all World Baseball Classic 2026 games on FOX One from March 4 to March 17, 2026, as 20 national teams compete across the tournament. FOX One gives fans access to live WBC games, pregame coverage, highlights, expert analysis, and unforgettable moments directly to your screen. Might be late to the game? No problem — just set your DVR so you can catch up with highlights you missed, then jump into the action live. Bypass the spoilers and hide the live score until you're all caught up. Start your 7-day free trial and watch baseball games live on mobile, web or TV devices. HomeWatch World Baseball Classic Games and Events LiveWatch World Baseball Classic Games & Shows on FOX One
+"""
+
+[R4] Venezuela vs. Italy World Baseball Classic: Starters, Lineups, How To Watch
+(https://www.foxsports.com/stories/world-baseball-classic/italy-vs-venezuela-world-baseball-classic-starters-lineups-how-watch)
+"""
+Italy continues its unlikely run at the World Baseball Classic and will next take on Venezuela in Monday's semifinal game. The Venezuelans are having their own storybook run after eliminating Shohei Ohtani and defending WBC champions Japan in the quarterfinals. Next up is a spot in the final.The game will be Monday, March 16 at 8 p.m. ET on FS1. FOX is your exclusive home to the WBC with games spread across the FOX family of networks. The Italy vs. Venezuela semifinal is on FS1 on Monday (8 p.m. ET). The Championship Game will be on FOX on Tuesday, March 17 (8 p.m. ET). All games will be available for streaming on the FOX Sports app and FOX One. Catch the action on the following streaming options:Italy Lineups, PitchersAaron Nola will start Monday night’s World Baseball Classic semifinal for Italy against Venezuela rather than Michael Lorenzen.Italy manager Francisco Cervelli said he made the decision Sunday but waited until Monday to make the announcement."My reason was my gut," he said. "Everyone is available, but I think Nola is the right person. That’s my opinion, and I’m taking responsibility for my decisions."A 32-year-old right-hander, Nola got the win in the group stage finale against Mexico on March 11. He allowed four hits over five scoreless innings with five strikeouts and one walk, throwing 69 pitches.Italy has the second most home runs (12) at the tournament behind the Dominican Republic's tournament record of 15 dingers. Leading the way is the heart and soul of this Italian squad, Vinnie Pasquatino. The Royals first baseman has three homers (all against Mexico in the pool play win). A trio of Italian players (Dominic Canzone, Andrew Fischer, and Dante Nori) have five RBI each. Nori leads the team with .438 batting average. Venezuela Lineups, PitchersKeider Montero, a 25-year-old right-hander, pitched three scoreless innings of relief on Monday in a 4-0 first-round win over Nicaragua.He made his big league debut on May 29, 2024, and was 5-3 with a 4.37 ERA in 12 starts and eight relief appearances last year for Detroit during a season in which he was optioned to Triple-A Toledo six times. Monero was 4-4 with a 5.91 ERA in eight starts and two relief appearances for the Mud Hens.Luis Arráez has been a hitting machine for Venezuela. The Padres star has two home runs and nine RBI with a solid .368 batting average. Maikel Garcia and Ronald Acuña Jr. had homers in the win against Japan, as did Wilyer Abreu who hit the definitive three-run homer that sealed the win over Japan. WBC ScheduleSemifinalsMonday, March 16Italy vs. Venezuela (8 p.m., LoanDepot Park in Miami on FS1)FinalTuesday, March 17USA vs. SF2 winner (8 p.m., LoanDepot Park in Miami on FOX) Get more from the World Baseball Classic Follow your favorites to get information about games, news and more
+"""
+
+[R5] How to watch USA vs. Dominican Republic at the World Baseball Classic on March 15
+(https://www.usatoday.com/story/sports/mlb/2026/03/15/how-to-watch-usa-dominican-republic-world-baseball-classic-march-15/89164148007/)
+"""
+Updated March 15, 2026, 6:13 p.m. ETFollow USA vs. Dominican Republic live: Keep up with score and latest WBC highlightsThe 2026 World Baseball Classic continues on Sunday, March 15 with the United States taking on the Dominican Republic in semifinal action live in Miami (LoanDepot Park).USA TODAY Sports is on the ground covering the 2026 World Baseball Classic, bringing you behind the scenes with Team USA and baseball's biggest stars. Keep up with the latest scores and news all the way through the championship game in Miami. Sign up for our daily sports newsletter to get the biggest storylines straight to your inbox.Here's everything you need to tune into Sunday's action:Buy 2026 WBC ticketsUSA vs. Dominican Republic: How to watch on SundayMatchup: United States vs. Dominican RepublicTime: 8 p.m.Location: loanDepot Park in MiamiTV: FS1Streaming: FOX One AppStream the World Baseball Classic on FuboHow the 2026 World Baseball Classic worksThe 20 teams are divided into four groups. They are:Pool A (San Juan): Puerto Rico , Panama , Cuba , Canada , ColombiaPool B (Houston): United States , Mexico , Italy , Great Britain , BrazilPool C (Tokyo): Japan , South Korea , Australia , Czechia , Chinese TaipeiPool D (Miami): Venezuela , Netherlands , Dominican Republic , Israel , NicaraguaTeams play one game each against the other four teams in their pool. The top two teams from each pool advance to the knockout rounds in Houston and Miami. Teams are re-seeded after the quarterfinals.Teams that remain tied in the standings following round robin play will be seeded based on the following criteria:Head-to-head performance between the teams who are tiedFewest runs allowed divided by the number of defensive outs recorded in the games between the tied teamsFewest earned runs allowed divided by the number of defensive outs recorded in the games between the tied teamsHighest batting average in games between the tied teams.Drawing of lots conducted by WBCIPool play games will occur from March 4 to March 11. Quarterfinals begin on March 13. The semifinals begin March 15.The championship game is set for March 17 in Miami.Our team of savvy editors independently handpicks all recommendations. If you purchase through our links, the USA TODAY Network may earn a commission. Prices were accurate at the time of publication but may change.Information in this article was imported automatically into a template written and reviewed by a USA TODAY Sports editor. You can send feedback using this form.
+"""
+
+[R6] How to Watch 2026 World Baseball Classic: Streaming, Teams, Dates
+(https://www.foxsports.com/stories/world-baseball-classic/how-watch-2026-world-baseball-classic-teams-dates-streaming)
+"""
+We don't have to wait until Opening Day to see baseball's best. The World Baseball Classic is back, and starting on March 4, the world is watching. Check out everything you need to know to tune in.FOX is your exclusive home to the WBC with games spread across the FOX family of networks. FOX is set to air seven games, including three Pool B games featuring the United States team, two Quarterfinals games and the World Baseball Classic Championship Game on Tuesday, March 17 from Miami’s loanDepot Park. The remaining matchups will air across FS1, FS2, the FOX Sports app, FOX One and Tubi. Team USA is favored to win the tournament despite losing to Japan in the final in 2023.How to Stream the 2026 World Baseball ClassicAll 47 games will be available for streaming. Catch the action on the following streaming options:FOXSports.com and FOX Sports AppFOX OneTubiFOX Deportes will also carry 28 tournament games in Spanish, including all four quarterfinals games, two semifinals contests, and the Championship Game. Streaming services that carry FOX networks, like YouTube TV or Fubo, can be used to stream the tournament.When is the 2026 World Baseball ClassicThe tournament starts on March 4, 2026 at 10 p.m. ET with Chinese Taipei vs Australia and will wrap up on Tuesday, March 17 with the Championship Game. Team USA starts pool play on Friday, March 6 against Brazil. View the full WBC schedule here.Who is Playing in the 2026 World Baseball Classic?USA vs. Japan Highlights | 2023 World Baseball Classic Championship 20 teams will take to the diamond in this year's tournament. Below are the pools, where they will play and teams.PoolLocationTeamsASan Juan, Puerto RicoPuerto Rico, Cuba, Canada, Panama, ColombiaBHoustonUnited States, Mexico, Italy, Great Britain, BrazilCTokyo, JapanJapan, Australia, South Korea, Czechia, Chinese TaipeiDMiamiVenezuela, Dominican Republic, Netherlands, Israel, Nicaragua FOLLOW Follow your favorites to personalize your FOX Sports experience Get more from the Major League Baseball Follow your favorites to get information about games, news and more
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

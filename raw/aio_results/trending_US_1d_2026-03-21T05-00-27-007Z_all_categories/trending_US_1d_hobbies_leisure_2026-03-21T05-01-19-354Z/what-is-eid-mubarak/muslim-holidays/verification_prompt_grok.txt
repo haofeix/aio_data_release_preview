@@ -1,0 +1,189 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "muslim holidays"
+
+Claims:
+[1] "Muslim holidays are based on the lunar Hijri calendar."
+[2] "Muslim holidays fall about 11 days earlier each Gregorian year."
+[3] "The two major, officially observed holidays are Eid al-Fitr and Eid al-Adha."
+[4] "Eid al-Fitr marks the end of Ramadan fasting."
+[5] "Eid al-Adha celebrates sacrifice."
+[6] "Eid al-Fitr and Eid al-Adha both involve special prayers, charity, and community."
+[7] "Ramadan is the 9th month of the Islamic year."
+[8] "Muslims fast from dawn to sunset during Ramadan."
+[9] "Eid al-Fitr is a 1–3 day celebration at the end of Ramadan."
+[10] "Eid al-Fitr occurs around March 19-20, 2026."
+[11] "Eid al-Adha is a 3–4 day festival occurring during the Hajj pilgrimage."
+[12] "Eid al-Adha occurs around May 26-27, 2026."
+[13] "Eid al-Adha commemorates Abraham’s obedience."
+[14] "Al-Hijra is the Islamic New Year."
+[15] "Al-Hijra is the first day of the month of Muharram."
+[16] "Mawlid an-Nabi (Milad un Nabi) is a celebration of the birth of the Prophet Muhammad."
+[17] "Ashura is a day of fasting."
+[18] "Ashura is significant for both Sunni and Shia Muslims."
+[19] "Ashura commemorates the liberation from oppression or the martyrdom of Hussein."
+[20] "Muslim holiday dates are confirmed by the sighting of the new moon."
+[21] "Moon sighting may cause regional variations."
+[22] "Common practices on Muslim holidays include attending morning prayers, wearing new clothes, visiting family, charity (Zakat al-Fitr), and sharing meals."
+[23] ""Eid Mubarak" is the traditional greeting, meaning "Blessed Eid" or "Happy Eid"."
+[24] "Projected dates for Ramadan 2026 are Feb 18 – March 19, 2026."
+[25] "Projected dates for Eid al-Fitr 2026 are March 19 – March 20, 2026."
+[26] "Projected dates for Eid al-Adha 2026 are May 26 – May 27, 2026."
+[27] "Projected dates for Ramadan 2027 are Feb 8 – March 9, 2027."
+[28] "Projected dates for Eid al-Fitr 2027 are March 9 – March 10, 2027."
+
+Cited text snippets from the AI Overview (for additional context):
+- Muslim Holidays: Fact Sheet | Congress.gov: "In general, Muslims observe two key holidays:,the new moon with the naked eye."
+- World Religions: Islam: Major Holidays - Research Guides: "Table_title: World Religions: Islam Table_content: header: |,Wednesday , 10th Dhul Hijjah, 1447h |"
+- Islam - Holidays and Observances - Library at Webster University: "Here are some Islamic observances and holidays:,Muslims fast daily from dawn to sunset"
+Reference Sources:
+
+[R1] Whittemore Library: Religious and Cultural Holidays and Observances: Islamic Holidays and Observances
+(https://library.framingham.edu/holidaysandobservances/islamic)
+"""
+Note that all holidays begin at sundown on the evening before the date given. Ashura -- An Islamic optional one day fast. The Shia observance is based on the martyrdom of Prophet Muhammad's Grandson, Hussein, martyred on this date in 683/684 AD at the battle of Kerbala. Sunni observance is a recognition of Moses fasting in gratitude to Allah/God for liberation from oppression. Eid ul-Adha — Ritual of Sacrifice. The day after Arafat, the most important day in Hajj ritural. A three-day festival recalling Abraham's willingness to sacrifice his son in obedience to Allah. Avoid scheduling important academic deadlines on these days. Employees may ask to take a vacation day. Eid ul-Fitr — event marking the close of Ramadan. It is a festival of thanksgiving to Allah for enjoying the month of Ramadan. It involves wearing finest clothing, saying prayers, and fostering understanding with other religions. Avoid scheduling important academic deadlines, events and activities on the first day. Milad un Nabi -- Celebration of the birth of the Prophet Muhammad. Celebrations, communal meals and discussions on Islam usually take place on this day. 1st of Muharram -- The first day of the first month of the Muslim year. Ramadan — 9th month on Islamic calendar, devoted to the commemoration of Muhammad's reception of the divine revelation recorded in the Qur'an. The event begins when authorities in Saudi Arabia sight the new moon of the 9th month. It is the holiest period of the Islamic Year. There is strict fasting from sunrise to sunset. Avoid scheduling important academic deadlines, events and activities, if possible, on the first day of Ramadan. Be aware that students and employees will be fasting during the day for 30 days.
+"""
+
+[R2] Guide to Muslim Holidays, Academic Years 2022-23 through 2028-29
+(https://belonging.gsu.edu/files/2024/04/Muslim-Holidays-AY-22-23-through-AY-28-29_6222023_rev-b.pdf)
+"""
+Guide to Muslim Holidays, Academic Years 2022-23 through 2028-29
+
+Georgia State’s religious accommodation policy is outlined at https://belonging.gsu.edu/religious-observances/.
+
+All holidays begin at sundown on the first date listed.
+
+TABLE OF SELECTED HOLIDAYS, AY 2022-23 THROUGH AY 2028-29
+
+ AY 2022-23 AY 2023-24 AY 2024-25 AY 2025-26 AY 2026-27 AY 2027-28 AY 2028-29
+
+ Ramadan March 23- March 1- Feb. 18- Feb. 8-
+ March 11- Jan. 28-Feb. Jan. 16-Feb.
+ April 21, March 30, March 19, March 9,
+ April 9, 2024 26, 2028 14, 2029
+ 2023 2025 2026 2027
+
+ Eid al-Fitr April 21-22, April 9-10, March 30- March 19- March 9-10, Feb. 26-27, Feb. 14-15,
+ 2023 2024 31, 2025 20, 2026 2027 2028 2029
+
+ Eid al-Adha June 28-29, June 16-17, June 6-7, May 26-27, May 16-17, May 4-5, April 23-24,
+ 2023 2024 2025 2026 2027 2028 2029
+
+Ramadan
+
+Ramadan is the ninth month of the Islamic lunar year and is the time in which Muslims focus on faith through
+fasting and prayer, observing the fast from sunrise to sunset. The date at sundown marks the beginning of a 30-
+day observance of this important month in the Muslim calendar, with dates determined by the lunar calendar. It
+is held in the faith as when the Qur’an was first revealed to the prophet Muhammad, providing ultimate
+guidance for humankind.
+
+Muslims refrain from food and beverages during the daylight hours and smoking and sexual relations are
+forbidden. The fast is broken each night with prayer, reading of the Qu’ran, and a meal called the iftar; many
+also attend night prayers at mosques and try to give up bad habits during Ramadan.
+
+Eid al-Fitr
+
+Eid al-Fitr is the last day of Ramadan, marking the end of a month of fasting, with a celebration with friends and
+family, prayer, and often an exchange of gifts. Eid al-Fitr is a three-day celebration beginning at sundown.
+
+Eid al-Adha
+
+Eid al-Adha is a major festival with a focus on the willingness to make sacrifices in the name of one’s faith.
+Prayers and gift giving mark this holiday, beginning at sundown based on the lunar calendar.
+
+Sources: University of Missouriy, Golden Gate University and Grinnell College
+
+ Rev. B
+"""
+
+[R3] Library: Holidays and Cultural Observances: Islamic Holidays and Observances
+(https://library.mc3.edu/c.php?g=1310973&p=9653252)
+"""
+Home Find Background Information Baha'i Holidays and Observances Buddhist Holidays and Observances Christian Holidays and Observances Hindu Holidays and Observances Islamic Holidays and Observances Jewish Holidays and Observances Other Holidays and Observances Pagan & Wiccan Holidays and Observances Academic Year Holidays & Observances Fall 2025, Winter Session 2025/26, Spring & Summer Sessions 2026 Questions? Ask a Librarian! Greetings 40 Ramadan Greetings Celebrate the month of Ramadan with family and friends by sharing Ramadan greetings, wishes, and messages. Ramadan is the ninth month on the twelve month Islamic calendar. It’s a holy time of year for practicing Muslims who observe fasting from dawn until dusk. For Ramadan, fasting means refraining from all food and drink — including water. The nights are filled with standing up in prayer. Ramadan Mubarak: Hear greetings in different languages As the Muslim holy month of Ramadan is about to begin, here is how to wish someone Ramadan Mubarak in various languages around the world. Your Complete Guide to Ramadan, Including the Proper Greeting and When It Starts The month-long observance—which likely begins the evening of March 22 in 2023—sees Muslims fasting from dawn to sunset, reciting verses from the Quran and attending prayer sessions. For many of those observing Ramadan, it is a time to become closer to God. It is also a time of joy and for spending time with one’s family, and giving to charity and those in need. Halal restrictions apply: Islamic dietary laws which apply throughout the year. These restrictions include alcohol and pork. Please note that all holidays begin at sundown on the evening before the date given: Ashura /Martyrdom of Husayn/Shi'ite Holiday of Ashura — An Islamic optional one day fast. The Shia observance is based on the martyrdom of Prophet Muhammad's Grandson, Hussein, martyred on this date in 683/684 AD at the battle of Kerbala. Sunni observance is a recognition of Moses fasting in gratitude to Allah/God for liberation from oppression. Eid ul-Adha — Ritual of Sacrifice. The day after Arafat, the most important day in Hajj ritural. A three-day festival recalling Abraham's willingness to sacrifice his son in obedience to Allah. Avoid scheduling important academic deadlines on these days. Employees may ask to take a vacation day. Eid al-Fitr/Eid ul-Fitr — event marking the close of Ramadan. It is a festival of thanksgiving to Allah for enjoying the month of Ramadan. It involves wearing finest clothing, saying prayers, and fostering understanding with other religions. Avoid scheduling important academic deadlines, events and activities on the first day. Milad un Nabi / Mawlid — Celebration of the birth of the Prophet Muhammad. Celebrations, communal meals and discussions on Islam usually take place on this day. 1st of Muharram — The first day of the first month of the Muslim year. Ramadan — 9th month on Islamic calendar, devoted to the commemoration of Muhammad's reception of the divine revelation recorded in the Qur'an. The event begins when authorities in Saudi Arabia sight the new moon of the 9th month. It is the holiest period of the Islamic Year. There is strict fasting from sunrise to sunset. Avoid scheduling important academic deadlines, events and activities, if possible, on the first day of Ramadan. Be aware that students and employees will be fasting during the day for 30 days. Federal law and Pennsylvania law guarantee the right to worship and reasonable religious accommodation. Please review CAIR Philadelphia's template for requesting off from work or school. Credit: Alphabetical listing of major observances. All descriptions taken from https://www.interfaith-calendar.org/ Inclusive Facilities Inclusive Facilities Review the Inclusive facilities webpage at the Blue Bell and Pottstown campuses allow for individuals to feel connected and considered throughout their time at Montco. If locations are altered, it will be reflected on this webpage. Eid al-Fitr Video Credit: Behind the News, 2020, YouTube.
+"""
+
+[R4] Research Guides: World Religions: Islam: Major Holidays
+(https://upresearch.lonestar.edu/islam/holidays)
+"""
+Ramadan is the 9th month of the Islamic calendar, which is based on a 12-month lunar year of approximately 354 days. Because the lunar year is 11 days shorter than the solar year, each lunar month moves 11 days earlier each year. It takes 33 solar years for the lunar months to complete a full cycle and return to the same season. The month traditionally begins and ends based on the sighting of the new moon. Starting on March 22nd, Muslims throughout the United States and the rest of the world will begin to search the sky for the new crescent or will follow a pre-determined date based on astronomical calculation. The month of Ramadan is that in which was revealed the Qur'an, a guidance for the people and clear proofs of guidance and criterion. So, whoever sights the new moon of the month, let him fast it; and whoever is ill or on a journey - then an equal number of other days. Allah intends for you ease and does not intend for you hardship and wants for you to complete the period and to glorify Allah for that which He has guided you; and perhaps you will be grateful. - Quran 2:185 Ramadan Information Sheet Ramadan is considered one of the holiest months of the year for Muslims. In Ramadan, Muslims commemorate the revelation of the Qur’an, and fast from food and drink during the sunlit hours as a means of drawing closer to God and cultivating self-control, gratitude, and compassion for those less fortunate. Why Ramadan is the most sacred month in Islamic culture The sighting of a new crescent moon marks the start of Ramadan, a time for piety and self-reflection. See how almost a quarter of humanity ushered in Ramadan, their holiest month Ramadan, the holiest month in the Islamic calendar, began this weekend for the 1.8 billion Muslims around the world. From sun-up to sundown, the physically able among them will fast — abstaining not just from food but also so much as a sip of water. Ramadan The Practice of Fasting During the holy month of Ramadan, which occurs on the ninth month of the lunar-based Islamic calendar, all Muslims are required to abstain from food and drink from dawn to dusk for 30 days. Because Ramadan shifts approximately 11 days earlier each year on the solar-based Gregorian calendar, Muslims experience Ramadan in different seasons throughout the course of the lives. Center for Spiritual Life Ramadan, the ninth month of the Islamic calendar, is one of the most sacred times for Muslims. During this month, Muslims observe a strict daily fast from dawn until sunset. They are not allowed to eat or drink, not even water, during these daylight hours.
+"""
+
+[R5] Muslim Holidays: Fact Sheet
+(https://www.congress.gov/crs-product/R45003)
+"""
+Introduction Islam is one of the three major Abrahamic faiths, alongside Judaism and Christianity. According to the 2020 U.S. Religion Census, the number of followers of Islam in the United States is 4.5 million.1 Muslims annually observe two major holidays: Eid al-Fitr and Eid al-Adha. This fact sheet describes the two holidays' significance and American Muslims' observance of them and addresses the ways the holidays have been recognized by elected officials. The fact sheet also briefly describes two other widely celebrated Muslim holidays. This fact sheet is designed to assist congressional offices with work related to Islamic holidays. It contains sample speeches and remarks from the Congressional Record, presidential proclamations and remarks, and selected historical and cultural resources. This is part of a series of Congressional Research Service fact sheets on religious holidays in the United States. Major Holidays and Observances Muslims have been celebrating Eid (Muslim festival) holidays for the past 1,400 years.2 In general, Muslims observe two key holidays: Eid al-Fitr and Eid al-Adha. The dates for these two holidays are determined by tradition according to the Islamic or Hijra calendar, which follows the lunar year and is determined by the sightings of the new moon with the naked eye.3 The dates for Muslim holidays change every year. Following the Hijra or lunar calendar, the holidays move forward approximately 11 days each year on the Gregorian calendar. Eid al-Fitr (Festival of the Breaking of the Fast) Eid al-Fitr is often celebrated for one day each year at the end of the approximately 30-day month of Ramadan,4 during which many Muslim adults fast daily from sunrise to sunset and give charity to the poor and needy. Fasting for Ramadan is one of the five pillars of Islam. Eid al-Adha (Festival of the Sacrifice) Depending on the country, Eid al-Adha is celebrated from 4 to 12 days at the end of the Hajj (pilgrimage, the fifth pillar of Islam)5 to Mecca and Medina. Annually, nearly 2 million Muslims participate in the Hajj from approximately the 10th to the 13th of the month of Dhu al-Hijjah, the last month in the Islamic calendar.6 Eid al-Adha commemorates the dream in which God appeared to Ibrahim (known as Abraham to Christians) and asked him to sacrifice his son Ishmael as an act of obedience. According to religious tradition, God intervened and requested that a sheep be sacrificed in Ishmael's place. Muslims generally consider Eid al-Adha the holiest festival on the Islamic calendar.7 Nature of Eid Celebrations For the Eid holidays, homes are often decorated and, after communal prayers, Muslims wear their finest clothes. Muslims in the United States may sacrifice an animal or purchase an animal that was sacrificed according to halal standards in observance of Eid. The meat may be given, along with other gifts, to family, friends, neighbors, and the less fortunate. This is known as zakat, a religious obligation for Muslims, and it is the third of the five pillars of Islam. In Arabic, zakat means charity, purification, growth, and blessing. Paying zakat is meant to remind Muslims to appreciate the blessings that Allah has bestowed upon them and help empower those who have less.8 At the completion of both Eids, people may say "Eid Mubarak" to one another. This is an Arabic salutation meaning blessed Eid or blessed celebration. Muslims often wish each other Eid Mubarak after performing the Eid al-Adha prayer.9 Other Muslim Celebrations This section provides selected examples of Muslim celebrations. The Guibord Center–Religion Inside Out provides a list of Muslim celebrations, along with descriptions of their significance.10 Ashura For Shi'a Muslims, Ashura commemorates the murder and subsequent martyrdom of Husayn, grandson of the Prophet Muhammad, on the 10th day of the Islamic lunar month of Muharram.11 It is generally observed through wearing black clothing, engaging in lamentation (and sometimes self-flagellation), and fasting.12 Mawlid Mawlid celebrates the birthday of the Prophet Muhammad. Its legitimacy has been a topic of intense debate within the Muslim world, but it is recognized by most denominations of Islam and is a national holiday in most Muslim-majority countries, with the exception of Saudi Arabia and Qatar.13 Mawlid is celebrated during Rabi' al-awwal, the third month in the Islamic calendar.14 Recognition in the United States Observance of Muslim holidays in the United States is determined at the local level. For example, some school districts close on the two Muslim Eid holidays. In 2015, New York City became the first large metropolis in America to recognize the two Eids as official holidays and closed its public schools in observance of Eid al-Fitr and Eid al-Adha.15 Local governments in Maryland,16 Massachusetts,17 Michigan,18 Minnesota,19 Virginia,20 and other states have similar observances. In 2001, for the first time in American history, the U.S. Postal Service issued a U.S. postage stamp commemorating both Eids. Since then, there have been subsequent issues of Eid stamps, with the last one issued in 2016.21 Legislation This section provides a selection of proposed legislation regarding Muslim holidays. H.Res. 263 (2025)—Recognizing the Muslim holy month of Ramadan, commending a month of fasting and spiritual renewal, and extending best wishes to Muslims in the United States and across the globe for a joyous and meaningful observance of Eid al-Fit. H.Res. 192 (2025)—Recognizing the commencement of Ramadan, the Muslim holy month of fasting and spiritual renewal, and commending Muslims in the United States and throughout the world for their faith. H.Res. 61 (2025)—Expressing support for the recognition of January as "Muslim-American Heritage Month" and celebrating the heritage and culture of Muslim Americans in the United States. H.Res. 1128 (2024)—Recognizing the Muslim holy month of Ramadan, commending a month of fasting and spiritual renewal, and extending best wishes to Muslims in the United States and across the globe for a joyous and meaningful observance of Eid al-Fitr. H.Res. 556 (2023)—Recognizing the religious significance of Eid al-Adha and wishing Muslim Americans and Muslims around the world a prosperous holiday. H.Res. 1221 (2022)—Recognizing the religious significance of Eid al-Adha and wishing Muslim Americans and Muslims around the world a prosperous holiday. S.Res. 361 (2021)—A resolution expressing support for the recognition of July as "Muslim-American Heritage Month" and celebrating the heritage and culture of Muslim Americans in the United States. Related CRS Products CRS Report R41990, Federal Holidays: Evolution and Current Practices, by Jacob R. Straus. CRS Report R43539, Commemorations in Congress: Options for Honoring Individuals, Groups, and Events, coordinated by Jacob R. Straus. CRS Report R48065, Congressional Recognition of Commemorative Days, Weeks, and Months: Background and Current Practice, by Jacob R. Straus. Selected Congressional Statements and Remarks Elected officials often deliver speeches, make floor statements, issue press releases, or enter Extensions of Remarks into the Congressional Record to recognize federal holidays and observances. Below are selected examples: Representative Rashida Tlaib, "Eid Mubarak," remarks in the House of Representatives, Congressional Record, vol. 171, no. 58 (April 1, 2025), p. H1388. Representative Gwen Moore, "Ramadan Mubarak," accessed March 5, 2025. Retrieved from the official website of Representative Moore. Representative Yvette D. Clarke, "Rep. Clarke's Statement on Eid Marking the End of Ramadan," accessed March 5, 2025. Retrieved from the official website of Representative Clarke. Representative Debbie Dingell, "Dingell, Tlaib, Carson Introduce Resolution Recognizing Eid al-Fitr," April 10, 2024. Retrieved from the official website of Representative Dingell. Representative Suzanne Bonamici, "Muslim-American Heritage Appreciation Month," remarks in the Extensions of Remarks, Congressional Record, vol. 169, no. 69 (April 25, 2023), p. E351. Senator Richard J. Durbin, "Ramadan (Executive Session)," Senate, Congressional Record, vol. 167, no. 62 (April 12, 2021), p. S1859. Selected Presidential Proclamations, Statements, and Remarks Although the two major Muslim holidays are not recognized as official federal holidays, recent Presidents have noted the importance of these holidays to Muslim Americans and Muslims around the globe by making remarks or press statements. Examples from the past few presidential administrations include the following:Presidential Proclamations, Statements, and Remarks—Donald J. Trump (2025-)22 Presidential Proclamations, Statements, and Remarks—Joseph R. Biden (2021-2025) Presidential Proclamations, Statements, and Remarks—Donald J. Trump (2017-2021)23 Presidential Proclamations, Statements, and Remarks—Barack H. Obama (2009-2017) Presidential Proclamations, Statements, and Remarks—George W. Bush (2001-2009) Presidential proclamations and remarks from 1993 to the present are available through the GovInfo service on the U.S. Government Publishing Office website. Earlier remarks (including some audio and video clips) are available through The American Presidency Project, established by the University of California, Santa Barbara. Historical and Cultural Resources Numerous resources provide information on the history and culture of Muslim holidays, and on the Muslim-American experience in general. Some of these include the following: Arts & Culture Center at the Middle East Institute promotes Middle Eastern artists through its art gallery and guided conversations. CNN, "A Ramadan etiquette guide for non-Muslims," April 2, 2022. Collections: South Asian and Himalayan is a collection of over 1,200 objects at the Smithsonian: National Museum of Asian Art. Digital Library of the Middle East is a joint effort between Stanford Libraries and The Council on Library and Information Resources and makes accessible data about collections from around the world. Islamic Art at the Metropolitan Museum of Art highlights a collection of art from across the Islamic world. Middle Eastern Studies is an illustrated guide to resources available at the Library of Congress. National Museum of African American History & Culture, "Muslim Artifacts at the National Museum of African American History and Culture" provides over 1,093 religion objects. Southeast Asia Digital Library (SEADL) partners with institutions around the world to provide digitized books, manuscripts, multimedia, and other resources on Southeast Asia.
+"""
+
+[R6] When is Eid al-Fitr 2026? Saudi Arabia confirms end of Ramadan
+(https://www.dispatch.com/story/lifestyle/faith/2026/03/18/ramadan-over-saudi-arabia-confirms-eid-al-fitr-2026/89208174007/)
+"""
+Updated March 18, 2026, 1:02 p.m. ETEid al-Fitr is an Islamic holiday that marks the end of the holy month of Ramadan.The date of Eid al-Fitr is determined by the sighting of the crescent moon.Many Muslim communities rely on moon spotters in Saudi Arabia to confirm the date.During the holy month of Ramadan, the Muslim community fasts from dawn to sunset, abstaining from food and drink, spending time in prayer and worship. At the end of the month, when a waxing crescent moon is spotted, Muslims celebrate with Eid al-Fitr.2 billion Muslims are awaiting the confirmation of the Islamic holiday, Eid al-Fitr, which marks the end of Ramadan.Many Muslim communities rely on Saudi Arabian moon spotters to confirm Eid. Have they found the Shawwal moon yet? Has Saudi Arabia confirmed Eid al-Fitr 2026? Here's what to know.When is Eid al-Fitr 2026? Saudi Arabia confirms Eid al-Fitr dateMany Muslim communities around the world rely on Saudi Arabia and their trained moon spotters to confirm the date of the first day of the month of Shawwal, Eid al-Fitr, according to Middle East Eye.Saudi Arabian moon spotters have officially confirmed Eid al-Fitr 2026's date to be on Friday, March 20, via a post on X, after the Shawwal moon was not sighted.Does Eid al-Fitr have a definite date?Eid al-Fitr 2026 was expected to fall on either Thursday, March 19, or Friday, March 20. But the date of the celebration depends on when spotters see the waxing crescent moon, according to Islamic Relief. Now we know Ramadan will end and Eid will begin on Friday, March 20.Shawwal, the Islamic month that succeeds Ramadan, begins immediately upon the sighting of the crescent moon, or "Shawwal moon." The first day of Shawwal brings Eid al-Fitr and the end of Ramadan.Imagine explaining to your boss that you need a day off, but you are not sure if Eid is going to be on Thursday or Friday. You won't know for sure until the night before, since you must wait to see if the crescent moon is actually spotted. Once it is sighted, Muslims prepare for one of the largest celebratory days in Islam.What is Eid al-Fitr?Eid al-Fitr is the first of two celebratory days in the Islamic calendar, both observed every year. The Eid al-Fitr is marked on one day, but some Muslims celebrate the festival for as long as three days. Eid al-Fitr is celebrated on the first day of Shawwal, the 10th month in the Islamic calendar.Eid is not on the same date every year. Like Ramadan, the date of the holiday is determined by the Islamic Hijri calendar, which follows a lunar cycle. Each year, the start and end of Ramadan and both Eid holidays fall about 11 days earlier than the year before because of the lunar cycle. The sighting of the crescent moon determines the start of these holidays.What does Eid mean?Eid in Arabic means "festival" or "feast," and Fitr means "breaking the fast." In other words, Eid al-Fitr literally means “festival of breaking the fast.”How do you pronounce Eid?"Eid" can be said like the word "feed" without the "f." But here's a quick Arabic language lesson if you want to know how to really pronounce it."Eid" is "عيد" in Arabic and is actually pronounced as "'ayid." The first Arabic letter of the word, 'ع', is a consonant, which is pronounced using the back of your throat.How is Eid al-Fitr celebrated? What do people do on Eid?Muslims will wake up early in the morning, preparing food and getting ready to attend Eid prayers at local masjids. It may feel strange for Muslims to eat during daylight hours after a month of fasting between dawn and sunset, but it is actually forbidden for Muslims to fast on Eid al-Fitr. On Eid, Muslims will follow the way of Prophet Muhammad, also known as “Sunnah” in Islam. Sunnah is not followed just on Eid, but every day. Specific Sunnahs on Eid include:Taking a bath or showerWearing one’s best clothes and perfumeSaying “Takbeer” or praising God on the way to Eid prayersTaking a different path home from attending Eid prayerEid traditions vary from country to country, but friends and families commonly gather and spend time together at each other’s homes, enjoying sweets and other delicious food after Eid prayers in the morning. Children will receive gifts and money, also known as “Eidi.”How do you wish someone a happy Eid?Muslims will hug their friends and family and greet them with “Eid Mubarak,” meaning “blessed festival” in Arabic. When is Eid al-Adha, the second Eid in the Islamic calendar?The second Eid of the Islamic calendar, Eid al-Adha 2026, will fall on the 10th day in the Islamic month of Dhu al-Hijjah, which is predicted to fall on the evening of May 26, and end on the night of May 27.
+"""
+
+[R7] What is Eid al-Fitr? Muslim holiday, end of Ramadan explained
+(https://www.usatoday.com/story/news/nation/2026/03/17/eid-muslim-holiday-islam-ramadan-meaning/89193637007/)
+"""
+March 17, 2026Updated March 19, 2026, 5:36 p.m. ETThe Muslim holy month of Ramadan is almost over, which means that Eid al-Fitr is coming soon.Millions of Muslims around the world every year observe Ramadan, a period of prayer, reflection and abstinence that coincides with the ninth month of the Islamic calendar.At the end of that month – during which Muslims do not eat or drink at all during the daylight hours – they get to break their fast and celebrate Eid al-Fitr.Eid al-Fitr is one of two Eid holidays that Muslims celebrate each year. The other, Eid al-Adha, coincides with the end of the sacred Hajj pilgrimage season.The exact timing of Eid al-Fitr depends on the sight of the moon. Many Muslims follow guidance set by officials in Muslim-majority countries like Saudi Arabia and the United Arab Emirates.What is Eid?Eid al-Fitr is an annual Muslim holiday to commemorate the end of Ramadan and the breaking of the fast.The day is marked by a large morning prayer service, which many Muslims dress up for. Afterwards, people gather and visit each other, celebrating with food, gifts or other special activities.Muslims are also expected to give zakat, or almsgiving to those in need, on Eid, according to Harvard University.When is Eid 2026?Eid al-Fitr is expected to be on March 19 or 20 this year.Because the Islamic Calendar follows a lunar cycle, exact dates can change slightly depending on moon sightings.Many Muslims follow guidance set by moon sighting committees in Middle Eastern countries.In Saudi Arabia, officials have called for a moon sighting on Wednesday, March 18, according to local news outlets. If the Shawwal moon, or crescent moon, is spotted that night, Eid al-Fitr will be celebrated the following day.When is Ramadan?The timing of Ramadan, which affects the timing of Eid, also depends on the sighting of the moon.In Saudi Arabia and the United Arab Emirates, officials declared the start of Ramadan to be Feb. 18 this year.In other countries, like Oman, Turkey and Singapore, officials declared the start of Ramadan to be Feb. 19 this year.What does Eid Mubarak mean?On Eid day, Muslims celebrate with the greeting, "Eid Mubarak.""Mubarak" is an Arabic word meaning "blessing," so saying "Eid Mubarak" is wishing someone well.Melina Khan is a national trending reporter for USA TODAY. She can be reached at melina.khan@usatoday.com.
+"""
+
+[R8] Library: Holidays and Observances: Islam
+(https://library.webster.edu/holidays/islam)
+"""
+Halal restrictions apply: Islamic dietary laws which apply throughout the year. These restrictions include alcohol and pork. Note that all holidays begin at sundown on the evening before the date given. Al-Hijra – Al-Hijra, the Islamic New Year, is the first day of the month of Muharram. It marks the Hijra (or Hegira) in 622 CE when the Prophet Muhammad moved from Mecca to Medina and set up the first Islamic state. Eid ul-Adha – Festival of Sacrifice. This is a four-day holiday commemorating Abraham’s willingness to sacrifice his son, who was miraculously replaced by a lamb. It also highlights the end of the annual pilgrimage to Mecca, called Hajj. Prayers are held at the mosque followed by an evening feast. Avoid scheduling important academic deadlines on these days. Employees may ask to take a vacation day. Eid ul-Fitr – This holiday commemorates the completion of Ramadan and lasts for three days during which Muslims celebrate with special prayers, sweets, presents for children, and community festivities. Avoid scheduling important academic deadlines, events and activities on the first day. Mawlid an-Nabi – Celebration of the birth of the Prophet Muhammad. Celebrations, communal meals and discussions on Islam usually take place on this day. Ramadan – Ramadan is the 9th month of the Islamic year during which Muslims fast daily from dawn to sunset as part of an effort towards self-purification and moral excellence, with the last ten days reserved for possible all night prayer vigils. Attendance should not be affected. Avoid scheduling important academic deadlines, events and activities, if possible, on the first day of Ramadan. Be aware that students and employees will be fasting during the day for 30 days.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

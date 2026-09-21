@@ -1,0 +1,87 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "raf 07 card"
+
+Claims:
+[1] "RAF 07 took place on March 28, 2026."
+[2] "RAF 07 took place in Tampa, Florida."
+[3] "Arman Tsarukyan defeated Georgio Poullas 9-3 in a rematch at RAF 07."
+[4] "Colby Covington defeated Dillon Danis 14-4 via technical fall at RAF 07."
+[5] "RAF 07 included four championship matches."
+[6] "Kyle Dake won a championship match at RAF 07."
+[7] "Kyle Snyder won a championship match at RAF 07."
+[8] "Kennedy Blades won a championship match at RAF 07."
+[9] "Wyatt Hendrickson won a championship match at RAF 07."
+
+Cited text snippets from the AI Overview (for additional context):
+- RAF 7 results: Arman Tsarukyan crushes Georgio Poullas in wild rematch; Colby Covington destroys Dillon Danis: "Main card,for a takedown for Poullas."
+- RAF 07 Tsarukyan vs. Poullas 2 live discussion, results and highlights: "Alexander Behunin specializes in running,sports biggest stars and personalities.&text=In the RAF 07 main,and discussion throughout the evening."
+Reference Sources:
+
+[R1] RAF 07 Tsarukyan vs. Poullas 2 live discussion, results and highlights
+(https://www.mmamania.com/ncaa-wrestling-news-and-results/431872/raf-07-tsarukyan-vs-poullas-2-live-discussion-results-and-highlights)
+"""
+Real American Freestyle (RAF) returns TONIGHT (Sat., March 28, 2026) with its seventh event, streaming live from Yuengling Center of the University of South Florida in Tampa, FloridaIn the RAF 07 main event, No. 1-ranked Ultimate Fighting Championship (UFC) Lightweight and almost-title challenger Arman Tsarukyan collides with Georgio Poullas in a heated rematch — in which a brawl broke out after their first meeting.The co-main event features three-time UFC title challenger Colby Covington and former all-around troublemaker Dillon Danis in a match that should be utter chaos. In addition, four title fights are scheduled to go down on a ridiculously stacked card.RAF 07 kicks off at 8 p.m. ET and airs exclusively on FOX Nation.Below, you’ll find live results, highlights, and discussion throughout the evening.RAF 06 Results and Highlights:RAF 07 Main Event175 lbs: Arman Tsarukyan defeats Georgio Poullas 2 via points, 9-3RAF 07 Co-Main Event190 lbs: Colby Covington defeats Dillon Danis via Tech-Fall (14-4)RAF 07 Main Card190 lbs: Kyle Dake defeats Parker Keckeisen via points, 7-1 - Cruiserweight championship match215 lbs: Kyle Snyder defeats Akhmed Tazhudinov via Criteria, 3-3 - Light Heavyweight championship match150 lbs: Kennedy Blades defeats Milana Dudieva via Tech-Fall (11-0) - Middleweight championship match285 lbs: Wyatt Hendrickson defeats Trent Hillger via points, 6-2 - Heavyweight championship match145 lbs: Bo Bassett defeats Vladimer Khinchegashvili via Tech-Fall 13-3 (3rd period)190 lbs: Aeoden Sinclair defeats Khidir Saipudinov via points, 9-4175 lbs: Jason Nolf defeats Tajmuraz Salkazanov via Tech-Fall, 10-0 (1st period)215 lbs: Trent Hidlay defeats Pat Downey via Tech-Fall, 12-0 (2nd period)145 lbs: Johnni DiJulius defeats Conor Beebe via points, 9-6For the latest combat sports-related news and notes click here.
+"""
+
+[R2] RAF 7 results: Arman Tsarukyan crushes Georgio Poullas in wild rematch; Colby Covington destroys Dillon Danis
+(https://sports.yahoo.com/wrestling/breaking-news/live/raf-7-live-results-round-by-round-updates-for-arman-tsarukyan-vs-georgio-poullas-2-wrestling-card-063055217.html)
+"""
+Arman Tsarukyan continues to rack up wins away from the UFC. The top lightweight contender laid his side-quest rivalry with Georgio Poullas to rest on Saturday night, earning an impressive victory in their much-anticipated wrestling rematch at RAF 7 inside the Yuengling Center in Tampa, Florida.Tsarukyan, 29 and Poullas, 27, went viral in February for their heated match at RAF 6, which devolved into chaos after Tsarukyan nailed Poullas with illegal punches after the final bell and ignited a team-wide brawl. Tsarukyan won that first match by a 5-3 score, then bettered his own mark on Saturday night, picking up a second victory — 9-3 — after a tense and fiery back-and-forth over the three periods.AdvertisementTsarukyan pulled ahead early in RAF 7's rematch, picking up one point in each of the first two periods after Poullas failed to score during multiple shot-clock sequences. The action then picked massively in the match's wild final sprint, with Poullas clawing back into contention by scoring a takedown, only for Tsarukyan to then land a huge four-point throw in the closing seconds to seal his victory.Saturday's result marked the fourth time Tsarukyan has competed outside of the UFC in 2026. The well-traveled lightweight also defeated Lance Palmer in January under the Real American Freestyle banner, then bested former UFC flyweight Muhammad Mokaev in a grappling match earlier this month in Brazil."It was so important [to win this match]," a victorious Tsarukyan said after RAF 7.Advertisement"I'll be RAF champion, UFC champion, and I'll collect all the belts in the world."In the night's co-main event, three-time UFC title challenger Colby Covington destroyed Bellator veteran and current Misfits MMA champion Dillon Danis to win via tech fall, 14-4.After Danis worked his way to a surprising 4-4 tie in the opening period, Covington dialed up his aggression and rattled off a huge 10-0 run in the second stanza to ultimately advance his RAF record to 2-0.Also on the card, RAF champions Kyle Dake, Kyle Snyder, Kennedy Blades and Wyatt Hendrickson all successfully defended their belts.AdvertisementCheck out complete RAF 7 results below, as well as Uncrowned's round-by-round coverage of the evening's final six matches.Main cardMiddleweight: Arman Tsarukyan def. Georgio Poullas via points (9-3)Cruiserweight: Colby Covington def. Dillon Danis via tech fall (14-4)Cruiserweight championship: Kyle Dake def. Parker Keckeisen via points (7-1)Light heavyweight championship: Kyle Snyder def. Akhmed Tazhudinov via points (3-3)Women's middleweight championship: Kennedy Blades def. Milana Dudieva via tech fall (11-0)Heavyweight championship: Wyatt Hendrickson def. Trent Hillger via points (6-2)AdvertisementFeatherweight: Bo Bassett def. Vladimer Khinchegashvili via tech fall (13-3)Cruiserweight: Aeoden Sinclair def. Khidir Saipudinov via points (9-4)Middleweight: Jason Nolf vs. David Mistulov via tech fall (10-0)Light heavyweight: Trent Hidlay def. Pat Downey via tech fall (12-0)Featherweight: Johnni DiJulius def. Conor Beebe via points (9-6)Live coverage is over65 updatesSun, March 29, 2026 at 3:12 AM UTCArman Tsarukyan vs. Georgio Poullas. (Photo via Real American Freestyle)Sun, March 29, 2026 at 3:11 AM UTCWOW! Hell of a final period there.Arman with a push-out for another point. Insane scrambles. Two exposure points for Arman and two points for a takedown for Poullas. Then a HUGE four-point takedown for Tsarukyan at!Arman Tsarukyan makes it 2-0 in his series against Georgio Poullas.Sun, March 29, 2026 at 3:06 AM UTCTsarukyan gets another point off yet another failed shot-clock time by Poullas.These two are SO evenly-matched.Everything up for grabs as we hit the final two minutes!Sun, March 29, 2026 at 3:04 AM UTC... by getting his fingers taped between rounds.Arman is very frustrated.And now Poullas delays us again by going back to the corner to towel himself off.Arman is chomping at the bit.Scenes.Sun, March 29, 2026 at 3:01 AM UTCArman Tsarukyan heads into the second period up 1-0 after Georgio Poullas fails to score during his shot-clock time.Sun, March 29, 2026 at 3:00 AM UTCThe referee gives both of these fellas a talking-to after the opening minute. This is every ounce of a grudge match — and you can tell.Sun, March 29, 2026 at 2:59 AM UTCArman Tsarukyan vs. Georgio Poullas 2 is underway!Sun, March 29, 2026 at 2:57 AM UTCHere we go, y'all. Tons of bad blood in this one.Arman Tsarukyan vs. Georgio Poullas 2 is just moments away!Arman Tsarukyan vs. Georgio Poullas 2 headlines RAF 7 on Saturday in Tampa, Florida. (Photo via Real American Freestyle)Sun, March 29, 2026 at 2:49 AM UTCTAMPA, FLORIDA - DECEMBER 14: Colby Covington prepares to face Joaquin Buckley in a welterweight fight during the UFC Fight Night event at Amalie Arena on December 14, 2024 in Tampa, Florida. (Photo by Chris Unger/Zuffa LLC) (Chris Unger via Getty Images)Sun, March 29, 2026 at 2:48 AM UTCRemember that 4-4 tie? It was short-lived. Colby Covington just blanked him in the second period. This one is over.Sun, March 29, 2026 at 2:45 AM UTCWe're implausibly tied 4-4 after the first period. Colby Covington vs. Dillon Danis — who saw this coming??Sun, March 29, 2026 at 2:44 AM UTCWow, I did not foresee that coming. Mea culpaSun, March 29, 2026 at 2:40 AM UTCI'm taking bets here. Anyone willing to be brave enough to take the over?Sun, March 29, 2026 at 2:38 AM UTCWell, this should certainly be something.Colby Covington vs. Dillon Danis kicking off shortly.(Susan Plungis, Uncrowned)(Susan Plungis, Uncrowned)Sun, March 29, 2026 at 2:35 AM UTCKyle Dake is picking Arman Tsarukyan and Colby Covington in our final two matches.Gotta say, I agree with him.Sun, March 29, 2026 at 2:32 AM UTCSun, March 29, 2026 at 2:32 AM UTCHeck of a match. Parker Keckeisen pushed the action as much as he possibly could but the champ was just too good.Sun, March 29, 2026 at 2:28 AM UTCDake heads into the third round with a 2-1 lead over Parker Keckeisen.Sun, March 29, 2026 at 2:25 AM UTCIt's 1-0 Dake after the first period. Two more to go.Sun, March 29, 2026 at 2:19 AM UTCKyle Dake is seeking his third consecutive defense of the RAF cruiserweight championship.Parker Keckeisen is a five-time NCAA All American, five-time Big 12 champion and one-time NCAA champ.Good one on tap here.PARIS, FRANCE - AUGUST 10: Kyle Douglas Dake of United States celebrates after beating in his match against Hetik Cabolov of Serbia in the 74kg Men's Freestyle Wrestling Final 3-5 during the Olympic Games on August 10, 2024 in Paris, France. (Photo by Fabio Bozzani/Anadolu via Getty Images) (Anadolu via Getty Images)
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

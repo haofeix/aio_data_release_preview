@@ -1,0 +1,619 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "dispersal order"
+
+Claims:
+[1] "A dispersal order is a lawful command issued by law enforcement requiring an unlawful assembly or crowd to break up and leave a specific area."
+[2] "Dispersal orders are used when gatherings become riotous, violent, or pose an immediate threat to safety."
+[3] "Failure to comply immediately after a warning can lead to arrest or the use of force."
+[4] "Dispersal orders are used for riots, dangerous assemblies, or when conduct causes significant public distress or disorder."
+[5] "Police are expected to give a clear warning indicating a safe route to exit."
+[6] "Police are expected to allow reasonable time for people to leave before taking action."
+[7] "Individuals who refuse to leave can be arrested for failing to disperse."
+[8] "Police may use loudspeaker commands to clear an area."
+[9] "Police may use mounted units to clear an area."
+[10] "Police may use non-lethal agents to clear an area."
+[11] "In some contexts, such as the UK, dispersal orders can be used to prevent anti-social behavior in specific areas for set periods."
+
+Cited text snippets from the AI Overview (for additional context):
+- § 18.2-411. Dispersal of unlawful or riotous assemblies; duties of officers: "Section 18.2-411 of the Code of Virginia,to disperse the people before they attack."
+- 664.03 FAILURE TO DISPERSE UPON POLICE ORDER.: "A police officer can order someone to,this order is guilty of a violation."
+- How declaring an unlawful assembly can help police maintain crowd ...: "Dispersal/arrest&text=Consider issuing one final warning,in conjunction with above tactics"
+- Dispersals | Cheshire Constabulary: "When can the power be,and disorder in the locality"
+- Dispersal orders 'not fair' on young people who bear the brunt of them: "Former home secretary David Blunkett,the pendulum swinging too far.""
+- Dozens arrested after "No Kings" protest in downtown Los Angeles leads to LAPD dispersal order: ""During previous protest activities, this,several dozens in Southern California."
+Reference Sources:
+
+[R1] 664.03 FAILURE TO DISPERSE UPON POLICE ORDER.
+(https://codelibrary.amlegal.com/codes/richtonpark/latest/richtonpark_il/0-0-0-17827)
+"""
+(a) No person shall loiter, loaf, wander, stand or remain idle either alone and/or in consort with others in a public place in such a manner as to: (1) Obstruct any public street, highway, sidewalk or any other public place or building by hindering or impeding, or tending to hinder or impede, the free and uninterrupted passage of vehicles, traffic or pedestrians; or (2) Commit, in or upon any public street, highway, sidewalk or any other public place or building, any act or thing which is an obstruction or interference to the free and uninterrupted use of property or with any business lawfully conducted by anyone in or upon or facing or fronting on any such public street, highway, sidewalk or any other public place or building, all of which prevents the free and uninterrupted ingress, egress and regress therein, thereon and thereto. (b) No person shall loiter on quasipublic portions of private property, or institutional property of a public nature, such as schools, churches, etc., and which loitering is not part of or associated with the trade, business or occupation carried on or conducted on such private property. This provision does not apply to participation in a recognized athletic activity, facilities for which are provided by the institutional proprietor.(Ord. 588. Passed 6-14-82.) (c) When a person causes or commits any of the conditions set forth in subsections (a) and (b) hereof a police officer or other law enforcement officer shall order such person to stop causing or committing such condition and to move on or disperse. Whoever fails or refuses to obey such order shall be guilty of a violation of this section. (d) A person is also in violation of this section if he or she loiters or prowls in a place, at a time, or in a manner not usual for law-abiding individuals under circumstances that warrant alarm for the safety of persons or property in the vicinity. (1) Among the circumstances which may be considered in determining whether such alarm is warranted is the fact that the actor takes flight upon the appearance of a peace officer, refuses to identify himself or herself or manifestly endeavors to conceal himself or herself or any object. (2) Unless flight by the actor or another circumstance makes it impractical, a peace officer shall, prior to any arrest for an offense under this subsection, afford the actor an opportunity to dispel any alarm which would otherwise be warranted, by requesting him or her to identify himself or herself and explain his or her presence and conduct. (3) No person shall be convicted of an offense under this subsection if the peace officer did not afford the actor such opportunity or if it appears, at trial, that the explanation given by the actor was true and, if believed by the peace officer at the time, would have dispelled the alarm.664.08 PROHIBITED NOISES. The following actions are hereby prohibited: (a) Horns and Signaling Devices. Sounding of the signaling device of any automobile, motorcycle, bus or other vehicle on any street or public place of the Village, except as a danger warning; the creation by means of any such signaling device of any unreasonable, loud or harsh sound; the sounding of any such device for an unnecessary and unreasonable period of time; the use of any signaling device, except one operated by hand or electricity; the use of any horn, whistle or other device operated by engine exhaust; and the use of any such signaling device when traffic is for any reason held up; (b) Radios; Phonographs; Musical Instruments. Playing, using or operating, or permitting to be played, used or operated, any radio receiving set, musical instrument, phonograph or other machine or device for the producing or reproducing of sound in such a manner as to disturb the peace, quiet and comfort of the neighboring inhabitants, or at any time with a louder volume than is necessary for convenient hearing for the persons who are in the room, vehicle or chamber in which such machine or device is operated and who are voluntary listeners thereto. The operation of any such set, instrument, phonograph, machine or device between 10:00 p.m. and 7:00 a.m. of the following day in such a manner as to be plainly audible in the nearest dwelling or place of business from the building, structure or vehicle in which it is located, whichever distance is shorter, shall be prima-facie evidence of a violation of this subsection. Exceptions may be granted in advance by the Village Manager through the issuance of a permit. The Village Manager is hereby authorized to issue reasonable rules governing eligibility for and issuance of such permits. (c) Loudspeakers, Amplifiers and Musical Instruments for Advertising. Playing, using or operating, or permitting to be played, used or operated, any radio receiving set, musical instrument, phonograph, loudspeaker, sound amplifier or other machine or device for the producing or reproducing of sound which is cast upon the public streets for the purpose of commercial advertising or attracting the attention of the public to any building or structure; (d) Yelling, Shouting, Whistling and Singing. Yelling, shouting, hooting, whistling or singing on the public streets, particularly between 10:00 p.m. and 7:00 a.m. of the following day, or at any time or place so as to annoy or disturb the quiet, comfort or repose of persons in any office or in any dwelling, hotel or other type of residence, or of persons in the vicinity; (e) Exhausts. The discharge into the open air of the exhaust of any steam engine, stationary internal-combustion engine, motorboat, power mower or motor vehicle, except through a muffler or other device which will effectively prevent loud or explosive noises therefrom; (f) Defect in Vehicle or Load. The use of any automobile, motorcycle or vehicle so out of repair, so loaded or in such a manner as to create loud or unnecessary grating, grinding, rattling or other noise; (g) Construction or Repair of Buildings. The erection (including excavation), demolition, alteration or repair of any building, other than between 7:00 a.m. and 10:00 p.m., except in case of urgent necessity when it is determined that the interest of public health and safety will not be impaired by the erection, demolition, alteration or repair of any building or the excavation of streets and highways between 10:00 p.m. and 7:00 a.m. of the following day, and when it is further determined that loss or inconvenience would result to any party in interest. In such cases permission for such work to be done between 10:00 p.m. and 7:00 a.m. of the following day may be granted upon application being made at the time the permit for the work is awarded or during the progress of the work. (h) Drums. The use of any drum or other instrument or device for the purpose of attracting attention, by the creation of noise, to any performance, show or sale; (i) Pile Drivers and Hammers. The operation between 9:00 p.m. and 7:00 a.m. of the following day of any pile driver, steam shovel, pneumatic hammer, derrick, steam or electric hoist or other appliance, the use of which is attended by loud or unusual noise, except in emergency situations; (j) Blowers; Power Fans; Internal-Combustion Engines. The operation of any noise-creating blower, power fan or internal-combustion engine, the operation of which causes noise due to the explosion of operating gases or fluids, unless the noise from such blower or fan is muffled and such engine is equipped with a muffler device sufficient to deaden such noise; (k) Commercial/Residential Pick-Up and Delivery. The use of any automobile, motorcycle or vehicle for the purpose of pick-up or delivery between 10:00 p.m. and 7:00 a.m. of the following day in residential areas, if it annoys or disturbs the quiet, comfort or repose of the neighborhood; and (l) Outdoor Sports Activity. Engaging in outdoor sports activity at a level of volume which tends to annoy or disturb the quiet, comfort or repose of persons in the vicinity by one or more persons between 10:00 p.m. and 7:00 a.m. of the following day. Organized outdoor sports activities taking place at Rich South High School or at Glaeser Park and sanctioned by Rich South High School or the Parks and Recreation Commission are specifically exempted from this prohibition. Upon written request, the Village Manager or his or her designee may grant written permission for a waiver of the provisions of this subsection for a special event or party, upon good cause shown, and may impose such restrictions as the Village Manager or his or her designee deems appropriate, but in no event shall such permission extend beyond 12:01 a.m.(Ord. 677. Passed 9-3-86; Ord. 752. Passed 9-9-91.)
+"""
+
+[R2] LL OO SS AA NN GG EE LL EE SS PP OO LL II CC EE DD EE PP AA RR TT M
+(https://lapdonlinestrgeacc.blob.core.usgovcloudapi.net/lapdonlinemedia/2021/12/tac-dir11-crowd-mgmt.pdf)
+"""
+LL OO SS AA NN GG EE LL EE SS PP OO LL II CC EE DD EE PP AA RR TT M
+ M EE NN TT
+ USE OF FORCE-TACTICS
+ DIRECTIVE
+Directive No. 11 June 2011
+
+ CROWD MANAGEMENT, INTERVENTION, AND CONTROL
+
+ PURPOSE
+
+ In a society where free speech and assembly is guaranteed by the Federal and State
+ Constitutions, it is the mission of police officers to protect the constitutional rights of all
+ members of the public. These constitutional rights apply to individuals participating in
+ lawful activities such as public speeches, marches, demonstrations, picketing, rallies
+ and celebratory events.
+
+ This Directive was developed to provide guidelines to assist officers and supervisors in
+ identifying lawful versus unlawful assemblies. Additionally, it will provide insight into
+ how the response and actions of law enforcement may affect the demeanor and
+ response of a crowd. The thoughtful application of crowd management and intervention
+ strategies will generally assist in efforts to facilitate legal First Amendment activity while
+ at the same time removing those individuals whose illegal behavior jeopardize the
+ purpose and safety of protected activity. The Department’s Use of Force Policy relating
+ to crowd control techniques is also reviewed in this Directive.
+
+ PROTOCOL
+
+ In determining whether First Amendment activities are lawful, police officers must not
+ consider their personal views of either the political affiliation or the message of those
+ persons exercising their right to assemble and engage in expressive activities. The
+ responsibility of police officers is to objectively determine at what juncture a
+ demonstration or assembly leaves the realm of legal protest and becomes an
+ abridgement of the rights of others.
+
+ It is important for supervisors and officers to understand the definition of an unlawful
+ assembly to determine the appropriate police response. Penal Code Section 407
+ defines an unlawful assembly as: “Whenever two or more persons assemble together to
+ do an unlawful act, or to do a lawful act in a violent, boisterous or tumultuous manner,
+ such assembly is an unlawful assembly.” “Boisterous or tumultuous manner” has been
+ interpreted by the courts to mean conduct which poses a clear and present danger of
+ imminent violence.
+
+ PTE 12/9/19
+Use of Force-Tactics Directive
+Crowd Management, Intervention, and Control
+Page 2
+
+Penal Code Section 407 identifies two different circumstances when an assembly may
+be declared unlawful:
+
+The first circumstance is when people assemble to participate in an unlawful act. The
+unlawful act must be an act made criminal by law, or by the commission of an overt act
+that leads to a violation of the law. In the absence of any unlawful conduct, an
+assembly may be declared unlawful only if there is reasonable cause to believe, based
+on articulable facts, that the assembly’s purpose is unlawful. If people are assembled to
+commit an unlawful act, then they are an unlawful assembly (e.g. unlawfully blocking
+entrances to public buildings, highways, sidewalks or schools, or engaging in other
+unlawful or riotous activity).
+
+The second circumstance is when people assemble to do a lawful act in a “violent,
+boisterous or tumultuous manner.” In order to be considered violent, boisterous or
+tumultuous, the manner in which the people are acting must be violent, or pose a clear
+and present danger of imminent violence. For example, a demonstration that disturbs
+the peaceful enjoyment of property through noisy singing and chanting is not an
+unlawful assembly unless it also poses a clear and present danger of imminent
+violence. It is important to note that one must differentiate between First Amendment
+activity and other activity. A loud party would not have to be violent, boisterous or
+tumultuous to be considered unlawful.
+
+PROCEDURES
+
+Any public assembly of individuals or groups, lawful or unlawful, may require support
+and/or intervention by law enforcement. Depending upon the situation, the response of
+law enforcement can range from observation and crowd management strategies, to
+crowd intervention and control strategies. The police response to each assembly or
+protest is different and will require law enforcement’s flexibility, creativity, discipline and
+patience.
+
+Crowd Management
+
+First Amendment activity such as a march,
+demonstration, protest, rally or celebratory Crowd Management Primary Objectives
+event is most often successfully facilitated by
+initially using the least amount of visible law • Establish contact with crowd
+enforcement presence necessary. An ongoing • Obtain voluntary compliance
+assessment of crowd behavior is critical in • Minimize enforcement action
+order for supervisors and officers to
+appropriately respond to the actions of a crowd or protest group. Experience has
+shown that the appearance of an organized, disciplined contingent of police officers will
+often cause a disorderly group to abandon their disruptive activities. However, if used
+inappropriately, the mere presence of officers and/or horses in riot gear may be
+perceived as aggressive and is sufficient to change the behavior of the crowd. This can
+cause the focus of the protest to shift from the group’s original cause to the presence
+Use of Force-Tactics Directive
+Crowd Management, Intervention, and Control
+Page 3
+
+and actions of officers. Therefore, supervisors should consider this potential impact on
+crowd behavior and be thoughtful about the strategic deployment of police officers and
+horses in riot gear.
+
+Instead of thinking about the best form of police action to control the crowd, it is
+important for supervisors to focus on how to act in order to encourage the crowd to
+manage itself. One way of achieving this is to place a major emphasis on urging crowd
+members to express their views in a lawful manner, even under conditions where one is
+aware of the presence of small isolated groups with illegal goals and even at points
+where these small isolated groups start to act in illegal and violent ways.
+
+Intervention
+
+Police officers and supervisors must understand the importance of differentiating
+between violent members of the crowd and peaceful protestors. When possible, officers
+should interact with crowd members in an effort to communicate law enforcement
+support of lawful First Amendment activity and rights of free speech and expression.
+
+ Unlawful behavior by individuals, or unlawful
+ Crowd Intervention Primary Objectives conduct observed in an isolated incident,
+ should not automatically form the basis for
+ • Isolate unlawful behavior declaring an otherwise lawful assembly to be
+ • Arrest law violators unlawful. When it appears practical, officers
+ • Protect First Amendment activity should attempt to give warning to the leaders
+ • Facilitate lawful protests or spokesperson of the activity, the other
+ participants, and/or the individuals about any
+observed unlawful or potentially unlawful conduct. When appropriate, officers should
+instruct them on what they must do to comply with the laws, so as to allow an
+opportunity to correct the conduct in question. Every effort should be made to protect
+and facilitate the actions of lawful demonstrators while using intervention strategies to
+stop illegal activity and remove law violators. However, when group behavior appears
+to be unlawful, aggressive, or otherwise uncontrollable, it is reasonable for the assembly
+to be declared unlawful.
+
+Crowd Control and Dispersal
+
+In the event a group or portion of a group
+becomes involved in violent or riotous Crowd Control Primary Objectives
+behavior, the mission of the Department is to
+protect lives and property, and restore • Protect life
+conditions to normal as rapidly and efficiently • Restore and maintain order
+as possible. The rapid deployment of forces • Arrest violators
+ • Protect vital facilities
+to contain and arrest those responsible for • Protect property
+violent, riotous, or unlawful behavior and the
+dispersal of unlawful groups will help
+accomplish the Department’s crowd control primary objectives.
+Use of Force-Tactics Directive
+Crowd Management, Intervention, and Control
+Page 4
+
+When circumstances require crowd dispersal, the dispersal should generally not occur
+until control forces are in place to assist in managing the dispersed crowd, as unlawful
+conduct is extremely dynamic and mobile. Crowd dispersal strategies should only be
+used when immediate action is necessary to stop violence and/or property damage
+and/or sufficient resources are not present to ensure public safety.
+
+Dispersal Orders
+
+ The intent of a dispersal order is to
+ Methods to Deliver and Document permanently disperse a crowd, not to
+ Dispersal Orders merely relocate the problem to another
+ location. Supervisors should make a
+ • Amplified sound reasonable assessment to determine if
+ • Multiple languages when appropriate the members of a crowd are attempting
+ • Confirm audibility from various locations
+ to comply with the dispersal order, or
+ • Display signage indicating unlawful
+ assembly and dispersal when possible relocate the unlawful behavior. It
+ • Document with video/audio recording should be made clear that the crowd is
+ expected to immediately leave the
+ area, and include a warning that force
+may be used which could result in serious injury. The dispersal order must be given in a
+manner reasonably believed to be heard and understood by the intended audience.
+Based upon the circumstances, multiple announcements from various locations may be
+required. Dispersal orders should be delivered in English and in other languages that
+are appropriate for the audience. Regardless of the delivery method, the name of the
+individual giving the dispersal order and the date and time each order was given should
+be documented. Dispersal orders should not be given until control forces are in position
+to support crowd movement.
+
+THE MEDIA
+
+It is the Department’s goal to provide the media as much access as legitimately possible
+to assist them in their duties. However, when an event is declared unlawful, all persons
+present, including members of the media, may be ordered to disperse. With the
+exception of spontaneously occurring events, whenever the Department develops an
+Incident Action Plan for an event that involves a public assembly, the Department will,
+when practicable, designate an area outside of the anticipated impacted area, but within
+viewing distance and audible range of the event, for members of the media to
+assemble.
+
+USE OF FORCE
+
+During crowd control situations, police officers may be required to physically engage
+individuals who exhibit conduct ranging from uncooperative to violent behavior. In these
+situations, officers may have to utilize force to move crowd members who do not
+respond to verbal directions, control violent individuals, or to effect an arrest. When the
+Use of Force-Tactics Directive
+Crowd Management, Intervention, and Control
+Page 5
+
+use of force is appropriate in a crowd control situation, only that force reasonable to
+make an arrest or disperse a crowd should be used.
+
+There are no exceptions to the Department’s Use of Force Policy for crowd control
+situations. Officers may use only that force which is objectively reasonable.
+Verbalization should be used throughout the operation in an attempt to gain compliance.
+In determining the appropriate amount of force, officers shall evaluate each situation in
+light of the facts and circumstances of each particular case, including, but not limited to
+the seriousness of the crime(s), the level of threat or resistance presented by the
+individual(s) and the danger to the community.
+
+Baton
+
+The baton may be used to push individuals who do not respond to verbal commands
+and encroach upon officers on a skirmish line or who intentionally delay departure while
+officers attempt to disperse the crowd, whether or not a lawful dispersal order has been
+issued. When an individual’s behavior is threatening or violent in nature, the baton can
+be used as an impact device.
+
+Chemical Agents
+
+The use of any Department approved chemical agent during a crowd control incident
+requires the approval of a commander or above. Chemical agents include CS gas, CN
+gas, OC, and all tear gas canisters. Before using any chemical agent, tactical
+consideration should be given to wind direction, safety equipment for officers, and the
+potential non-effectiveness of the chemical agent.
+
+Additionally, OC chemical agent may be used to control an uncooperative suspect in an
+isolated incident when the officer reasonably believes and can articulate that the use of
+OC was reasonable. This would require a Use of Force Report.
+
+Less-Lethal Munitions
+
+Less-lethal munitions may be deployed as either target specific or non-target specific
+(dispersal) munitions. Less-lethal munitions can be deployed by Metropolitan Division
+or specially trained personnel. Both groups may deploy 37mm non-target specific
+dispersal rounds and the Super-Sock round form a beanbag shotgun as a target
+specific munitions. Only Metropolitan Division personnel may deploy the 40mm sponge
+round, and may do so only as target specific munitions.
+
+Reporting a Non-Categorical Use of Force in Crowd Control Situations
+
+In a crowd control situation, a Use of Force Report is not required when officer(s)
+become involved in an incident where force is used to push, move, or strike individuals
+who exhibit unlawful or hostile behavior and who do not respond to verbal directions by
+the police. This applies only to officers working in organized squad and platoon sized
+units directly involved in a crowd control mission. Additionally, should force be utilized
+ Crowd Management, Intervention, and Control
+ Example Dispersal Orders
+
+ DISPERSAL ORDER DISPERSAL ORDER
+ (Spanish)
+
+ “I am (rank and officer’s name), a police officer for the City of "Soy (officer's name and rank) oficial de policía de la Ciudad
+ Los Angeles. I hereby declare this to be an unlawful assembly de Los Angeles. Por la presente declaro que esta reunión es
+ and, in the name of the people of the State of California, ilegal y en nombre del pueblo del Estado de California ordeno
+ command all those assembled at (give specific location for que todas las personas reunidas en (give specific location, for
+ example, the area bounded by Main Street on the east, Spring example, the area bounded by Main Street on the east, Spring
+ Street on the west, City Hall steps on the north, and the south Street on the west, City Hall steps on the north, and the south
+ sidewalk of 1st Street on the south) to immediately disperse, sidewalk of 1st Street on the south) se dispersen
+ which means to break up this assembly. If you do not do so, inmediatamente. De lo contrario serán arrestadas o estarán
+ you may be arrested or subject to other police action. Other sujetos a otras acciones policíacas. Otras acciones policiacas
+ police action may include the use of less lethal munitions, pueden incluir el uso de minciones de menos lethal, el cual
+ which could cause significant risk of serious injury to those puede causar riesgo significacion de heridas serias a los que
+ who remain. Section 409 of the Penal Code prohibits permanecen. La Sección 409 del Código Penal prohibe
+ remaining present at an unlawful assembly. If you remain in permanecer en una reunión ilegal. Si usted/ustedes
+ the area which was just described, regardless of your purpose permanecen en las áreas mencionadas, sin importar el
+ in remaining, you will be in violation of Section 409. The propósito de su permanencia, usted/ustedes estarán violando
+ following routes of dispersal are available (give the most la sección 409 del Codigo Penal de California. Las rutas que
+ convenient route(s) of dispersal). You have ____ minutes se pueden usar para disperarse son las siguientes: (give the
+ (give a reasonable amount of time– take into consideration the most convenient route(s) of dispersal). Uds tienen ___ minutos
+ number of participants, location of the event, and number of (give a reasonable amount of time– take into consideration the
+ exit routes) to disperse.” number or participants, location of the event and number of
+ exit routes) para dispersarse."
+
+UOF-TAC DIR NO. 11, 2011
+ Crowd Management, Intervention, and Control
+ Concepts and Strategies
+
+ Lawful Assembly Isolated Unlawful Behavior Unlawful Assembly Riot
+
+Free Speech and assembly are Isolated unlawful activity by individuals 407 PC Two or more persons assemble 404 PC Riot, (a) Any use of force or
+protected First Amendment activity. or small groups within a crowd should • To do an unlawful act or violence, disturbing the public peace, or
+The following are examples: not automatically form the basis for • To do a lawful act in a boisterous any threat to use force or violence, if
+ declaring an assembly unlawful. or tumultuous manner accompanied by immediate power of
+• Speeches execution, by two or more persons acting
+ • Isolated destruction of property Assemblies may be dispersed when they are:
+• Marches together, and without authority of law, is a
+ • Isolated acts of violence Violent, or pose a clear and present danger of
+• Demonstrations riot.
+ violence, or the group is breaking some other
+• Rallies • Isolated rock or bottle throwers
+ law in the process. If a crime is occurring • Group violent behavior
+• Picketing • Individual sit down demonstrators
+ action may be taken to stop it prior to a • Group acts of property damage
+• Public assemblies Dispersal Order being given.
+• Protests
+• Celebratory events • Civil Disobedience
+ • Sit down demonstration
+
+ Police Action
+
+Use Crowd Management strategies: Use Crowd Intervention strategies: Use Crowd Control strategies: Use Crowd Control strategies:
+
+• Meet with event organizers and • Use organizers and monitors to gain • Obtain voluntary compliance • Video action of officers and law violators
+ stakeholders voluntary compliance • Video action of officers and law violators • Immediately stop the behavior
+• Determine the history and risk of • Isolate, arrest and remove law • Act quickly • Request resources (MFF)
+ the group violators as quickly as possible • Request resources (MFF) • Put control forces in place
+• Create a planning team • Video action of officers and law • Put control forces in place • Stop the illegal activity
+• Check permit limitations violators • Identify dispersal routes • Put a traffic plan in place
+• Develop commanders intent • Use amplified sound (sound trucks • Put a traffic plan in place • Track and contain groups involved in illegal
+• Develop Incident Action Plan and or CIUVs) to communicate intent or • Move media to protected area. Use behavior using cameras, observation
+ objectives to gain compliance amplified sound (sound trucks or CIUVs) to posts, Shadow Teams or Air Unit.
+• Identify and assign resources: • Use low profile tactics when communicate intent to declare an unlawful • Arrest law violators
+ Video unit, fixed posts, MFF, possible. Don’t become the focus of assembly • Use Arrest Links to move arrestees
+ Bicycle Units, Air Support, TSE, the demonstration. • Disperse unlawful crowd • With appropriate approval, deploy the
+ Shadow Teams, Mounted Unit • Use Passive Arrest Teams, Tangle • Track and contain groups involved in illegal appropriate less lethal munitions to defend
+• Monitor and assess crowd behavior Teams, Shadow Teams, Cross behavior using cameras, observation posts, officers or to stop violent behavior or
+• Separate opposing factions Bows, Arrest Circles Shadow Teams or Air Unit property damage
+• Maintain video log • When it is not possible to make an • Arrest individuals who fail to disperse or • Ensure only reasonable force
+• Provide direction and expectations immediate arrest, identify and track who are involved in illegal activity • Report use of force and munitions
+ at roll call suspects using cameras, • Use Arrest Links to move arrestees • Restore and maintain order
+• Engender facilitation not observation posts, an air unit or • With appropriate approval, deploy the • Restore traffic flow
+ shadow teams
+ confrontation appropriate less lethal munitions to defend • Discourage groups from forming
+• Ensure the appropriate uniform for • Continue to assess; escalate and officers or to disperse the crowd • Protect lives, property, and vital facilities
+ deescalate as behavior changes • Ensure only reasonable force
+ the event • Establish and patrol divisions
+• Interact with organizers and gain • Don’t increase crowd tension or • Report use of force and munitions • Remain present
+ cooperation change crowd focus to law • Restore traffic flow
+ enforcement by unnecessary • Reassess the situation
+ aggressive appearance or behavior • Return to normalcy
+ • Act quickly
+
+UOF-TAC DIR NO. 11, 2011
+ Crowd Management, Intervention, and Control
+ Terms and Definitions
+
+Active Resistance: To intentionally and unlawfully oppose the lawful order of a peace officer in a physical manner.
+
+Arrest Links: A method of linking multiple arrestees together for control purposes.
+
+Arrest Protocol: The formal process of placing subjects under arrest, taking into custody, and associating the arresting
+peace officer(s) with the specific individual arrested.
+
+Arrest Teams: Personnel assigned to arrest duties during civil disobedience/civil disorder operations.
+
+Booking Teams: Personnel assigned to custodial and processing duties during civil disobedience/civil disorder
+operations.
+
+Civil Disobedience: An unlawful event involving a planned or spontaneous demonstration by a group of people.
+
+Civil Disorder: An unlawful event involving significant disruption of the public order.
+
+Collective Behavior: The unlawful behavior of a group of persons involved in situations where normal cultural structure
+and controls are not observed, such as unruly crowds, civil disobedience, and riots.
+
+Command: The authority a person lawfully exercises over subordinates by virtue of his/her rank and assignment or
+position.
+
+Compliance Techniques: Reasonable, lawful use of force methods intended to encourage suspect cooperation.
+
+Control Devices: Devices intended to assist peace officers in gaining control of subjects who refuse to submit to lawful
+authority (e.g., batons, TASER, restraints, chemical agents, etc.).
+
+Cordoning: Surrounding or enclosing a particular problem area; also referred to as perimeter control.
+
+Critical Facilities: Any location essential to the well-being and safety of the community requiring law enforcement
+protection during a critical incident.
+
+Crowd: A number of persons collected into a close body.
+
+Crowd Control: Law enforcement response to a pre-planned or spontaneous event, activity or occurrence where there
+is a potential for unlawful activity or the threat of violence.
+
+Crowd Dynamics: Factors which influence crowd behavior.
+
+Crowd Intervention: Strategies and tactics employed by law enforcement during lawful assemblies to address unlawful
+activity, civil disorder, and to arrest violators.
+
+Crowd Management: Strategies and tactics employed by law enforcement to manage lawful assemblies in an effort to
+prevent the escalation of events into an unlawful assembly or riot.
+
+Decontamination: Procedures taken to reduce the effects of any non-lethal chemical agent.
+
+Discipline: Pattern of behavior consistent with demonstrating self-control, teamwork, moderation, and restraint.
+
+Dispersal Order: Lawful orders communicated by law enforcement personnel commanding individuals assembled
+unlawfully to disperse.
+
+Flashpoint: Specific location(s) which can be anticipated to attract criminal elements and become the origin or focal
+point of civil disorder.
+
+Force Options: Reasonable force applications utilized by law enforcement to effect arrest, overcome resistance, and
+prevent escape.
+
+UOF-TAC DIR NO. 11, 2011 1 of 3
+ Crowd Management, Intervention, and Control
+ Terms and Definitions
+
+Formations: Coordinated unit tactics utilized by law enforcement to control crowds, stop unlawful activity, and disperse
+and/or arrest violators.
+
+Incident Command System (ICS): The statewide model for field level management of emergencies mandated by the
+Standardized Emergency Management System (SEMS). ICS is specifically designed to allow its users to adopt an
+integrated organizational structure equal to the complexity of demands of single and multiple incidents without being
+hindered by jurisdictional boundaries.
+
+Less-Lethal Impact Munitions: Projectiles launched or otherwise deployed for purposes of overcoming resistance,
+preventing escape, effecting arrest, reducing serious injury and are without significant likelihood of causing death.
+
+Management: The process of planning, organizing, coordinating, directing, budgeting, and controlling resources.
+
+Mobile Arrest and Booking Teams: Mobile teams designated to assist field personnel with mass arrest and booking.
+
+Mobile Field Force: An organized, mobile law enforcement tactical force equipped and trained to respond to unusual
+occurrences. The Mobile Field Force configuration is currently the statewide standard known as “Mutual Aid Response
+Mobile Field Force.”
+
+Mobile Tactics: specialized techniques that give Mobile Field Force (MFF) personnel the ability to respond rapidly and
+complete high-risk missions beyond the capabilities of other personnel. The vehicles may also be utilized for crowd
+control and containment.
+
+Mob: A disorderly group of people engaged in unlawful activity.
+
+Mounted Tactics: Tactics while mounted on horses.
+
+Non-Compliant Behavior: Behavior which does not yield to a lawful order.
+
+Non-Lethal Chemical Agents: Devices utilized by law enforcement agencies which may include CS, CN or OC.
+
+Non-Target Specific Less-Lethal Impact Munitions: Less-lethal munitions fired at a crowd for the purpose of crowd
+control and/or dispersal (37mm, 20F Multiple Foam Rubber Projectiles).
+
+Pain Compliance: The stimulation of nerves or the manipulation of joints to elicit a sense of unease or distress in a
+subject, causing that subject to comply. Examples include control holds, impact weapons, non-lethal chemical agents,
+TASER, etc.
+
+Passive Arrest Teams (PAT): Organized teams of peace officers assigned to take “passive arrestees” into custody.
+
+Passive Resistance: A commonly used term referring to non-violent opposition to the lawful directions of law
+enforcement during arrest situations.
+
+Photographic Teams: Law enforcement photographers assigned to document designated activity involving civil
+disobedience.
+
+Platoon: A tactical component consisting of two or more supervised squads.
+
+Policy: Statements of principles and values which guide the performance of a specific Department activity. Policy
+establishes limits of action and reflects a statement of guiding principles that should be followed in order to achieve an
+agency’s objective.
+
+Procedure: A method of performing an operation, or a manner of proceeding on a course of action, within limits of
+policy.
+
+Public Disruption: The interruption or disturbance of public order.
+
+UOF-TAC DIR NO. 11, 2011 2 of 3
+ Crowd Management, Intervention, and Control
+ Terms and Definitions
+
+Shadow Team: A squad sized plain clothes unit made up of two, five-officer elements, each having a supervisor that is
+responsible for working within crowds to identify individuals involved in illegal behavior, and when possible monitor their
+behavior, and/or arrest and remove them from the crowd as quietly as possible.
+
+Uniformed Shadow Support Team: A squad of 10 uniformed officers and two supervisors that are responsible for
+coordinating with, and supporting Shadow Teams.
+
+Stakeholder: Entities having a legal, professional, economic or community interest/responsibility in the event.
+
+Standardized Emergency Management System (SEMS): A system required by the California Government Code for
+managing response to multi-agency and multi-jurisdictional emergencies in California. SEMS consists of five
+organizational levels that are activated as necessary: Field Response, Local Government, Operational Area, Region and
+State.
+
+Target Specific Less-Lethal Impact Munitions: Less-lethal munitions fired at a specific/identifiable target for purpose
+of selectively and temporarily incapacitating an individual or to cause the individual(s) to stop aggressive/combative
+actions: 12-gage Super-Sock Projectiles; 40mm Exact Impact Sponge Munitions (Metro)
+• Aggressive/Combative actions: Unlawful behavior (must include actions/movements)
+• “Objectively” confrontational
+ • Physical attacks on persons/public safety
+ • A fighting disposition, i.e., clenched fist; threats of violence coupled with “reasonable” ability to carry out
+ threat
+ • Behavior (more than “stoic or uncooperative”)
+ • Destruction of property
+
+Unlawful Assembly: Penal Code Section 407 defines an “unlawful assembly” as: “Whenever two or more persons
+assemble together to do an unlawful act, or to do a lawful act in a violent, boisterous or tumultuous manner, such
+assembly is an unlawful assembly.” “Boisterous or tumultuous manner” has been interpreted by the courts to mean
+conduct which poses a clear and present danger of imminent violence.
+
+UOF-TAC DIR NO. 11, 2011 3 of 3
+"""
+
+[R3] Dispersals
+(https://www.cheshire.police.uk/police-forces/cheshire-constabulary/areas/cheshire/about-us/about-us/transparency-openness-and-legitimacy/dispersals/)
+"""
+Section 35 of the Anti-Social Behaviour, Crime and Policing Act 2014 gives a Police Constable and a Police Community Support Officer in uniform the power to exclude a person from an area for a period of up to 48 hours with an Inspector’s authority. In addition to the Inspector’s authority the officer must have reasonable grounds to suspect that the behaviour of the person in the locality has contributed to or is likely to contribute to: members of the public in the locality being harassed, alarmed or distressed, or the occurrence in the locality of crime or disorder, and that the PC or PCSO considers that giving a direction to the person is necessary for the purpose of removing or reducing the likelihood of the above The direction given by a PC or PCSO in uniform: must be given in writing, unless that is not reasonably practicable must specify the area to which it relates may impose requirements as to the time by which the person must leave the area and the manner in which the person must do so (including the route) the officer must (unless it is not reasonably practicable) tell the person to whom the direction is given that failing without reasonable excuse to comply with it is an offence Section 35 dispersal power can be used by police officers and designated PCSOs to deal with individuals aged 10 or over engaging in anti-social behaviour or crime and disorder not only when they have occurred or are occurring, but when they are likely to occur and in any locality. A child aged under 16 can be removed to their home address or a place of safety. It applies to any behaviour, not just alcohol-related crime and disorder, and does not require the pre-designation of a dispersal zone. The key difference is that the new power requires the authority of an officer of the rank of Inspector or above before a person can be given direction to leave the locality. The authorising officer must record the authorisation in writing, specify the grounds on which it is made and sign the authorisation. Practically, this can be recorded electronically on a local system. The person being directed to leave must be given a written notice. When can the power be used? There are two conditions to use the dispersal power when authorised by an Inspector or above: The officer must have reasonable grounds to suspect that the behaviour of the person has contributed to, or is likely to contribute to: members of the public in the locality being harassed, alarmed or distressed or; crime and disorder in the locality and the officer considers the direction to leave necessary for removing or reducing the likelihood of crime, disorder or ASB What information should be on the notice? The notice must be given unless it's not reasonably practicable to do so. It should specify: name, address and date of birth of the person being directed to leave the time the direction is given the terms of the direction including details of the area from which they are excluded and the exclusion period (up to 48 hours from the time of issue)
+"""
+
+[R4] Dispersal orders 'not fair' on young people who bear the brunt of them
+(https://www.bbc.com/news/uk-england-merseyside-68440525)
+"""
+11 March 2024Daniel O'DonoghueBBC North West Investigations TeamGetty ImagesStudies have shown dispersal orders disproportionately impact young peopleAnti-social behaviour laws which give police powers to restrict freedom of movement are being used thousands of times a year, prompting claims of their overuse from human rights groups. Dispersal orders, which particularly impact young people, have been used about 2,000 times a year since they were introduced in their current form.Teenagers said the restrictions made them feel "not part of society". But police leaders said the orders were an "important" crime-fighting tool.Police officers can use dispersal orders to direct people suspected of causing nuisance, harassment or distress away from a specified area for a period of up to 48 hours. Those refusing to leave can be arrested, with conviction carrying a fine up to £2,500 or three months in prison. Research by organisations such as the Centre for Crime and Justice Studies found younger people were far more likely to be subjected to them than the general population.In some areas of England, 47% of the orders were handed to teenagers and young adults.The BBC North West investigation team approached 39 police forces across England to ask how many dispersal orders had been issued in each of the last 10 years since the 2014 Anti-Social Behaviour, Crime and Policing Act.Many forces said they either did not hold such data centrally or that it would be too costly to recover the necessary information. Seventeen forces responded in part or in full to the request, though, revealing that dispersal orders had been issued nearly 20,000 times since 2014 - an average of 37 a week.Home Office guidance states that "restricting an individual's freedom of movement is a serious issue" and therefore "the power should not be invoked lightly".In areas where there are regular problems with anti-social behaviour, the Home Office advises that "police work with the local council to find a sustainable long-term solution".Anne Longfield called for more investment in youth servicesFormer children's commissioner Anne Longfield said the increasing use of the power was a "potentially dangerous and damaging approach for young people and the community as a whole"."They're a blunt instrument," she said. "They're meant to be an emergency solution. It's not a sustainable way to go about things."If there are real concerns about anti-social behaviour... that needs not only a short-term solution but a long-term one too."We can't just get tougher and tougher. What are we going to do, have a dispersal order for a whole town? I don't think so."Ms Longfield, who chairs an independent commission on young people, cited research by the National Youth Agency (NYA) which found that spending on youth services had fallen by about 70% since 2010, from £1.2bn in 2010-11 to £379m in 2020-21."We need to instead start looking at how young people can be supported in communities and that means investing in them," she said. 'Keep bashing'Paul Oginsky, chief executive of Merseyside youth charity Vibe, agreed with Ms Longfield's analysis."To me, dispersal orders are like a hammer," he said. "And to someone with a hammer, every problem is a nail."The approach is 'let's just keep bashing', but we need to stop and think again."I think part of the problem is that over the years people have stopped valuing young people as part of the community, sometimes they're seen as a nuisance and are almost seen as the enemy, people are scared of them. "Young people are the greatest asset we've got. I've always found that if you invest time and effort with young people they pay back in dividends."Mr Oginsky warned that cuts to youth services were often costly."Youth workers are worth their weight in gold," he explained. "A youth worker's relationship to a young person is key, they form positive relationships with young people so that they can help them make better decisions in their lives."Vin and Jasmine both feel the use of dispersal orders is unfair on young peopleVin is a member one of Vibe's youth councils and meets regularly with other young people in St Helens to discuss issues in the community. "These orders are not sending the right message to young people, they're telling us that we're just not really part of society", the 15-year-old said."Most young people aren't trying to cause disturbance or anti-social behaviour - it's not really fair."Fellow Vibe member Jasmine, 13, added: "Our town is a public area, we should be able to go out... it just makes me feel really frustrated."Mark Craig backs the police use of dispersal ordersBut for many, dispersal orders are an important tool in the fight against crime. Mark Craig, from the New Ferry residents' association in Wirral, witnessed police deploy an order last year after a spate of crimes. He said there had been a number of incidents with young people "attacking passing buses by throwing bricks" and "stealing and burning bins from nearby businesses"."Anti-social behaviour is not unique to here, but things have been going from bad to worse," he said. "The gangs that hang around can sometimes be quite large in number and seem very intimidating."Mr Craig backed dispersal orders, but added: "As a society, we need to look at deterrence and punishments because what we have at the moment is not sufficient."Mark CraigMark Craig took images of young people defying a dispersal order in New Ferry last yearThe government is currently looking to toughen anti-social behaviour powers further with its Criminal Justice Bill.Among other measures, the bill would see dispersal orders extended from 48 to 72 hours.Roger HarrisDavid Blunkett introduced the original dispersal orders 21 years agoFormer home secretary David Blunkett, who oversaw the introduction of 24-hour dispersal orders in 2003, told the BBC that the balance between protecting the community and stopping anti-social behaviour was a "delicate one"."In 2003, we indicated that we wanted to offer communities a breathing space from persistent anti-social behaviour, to give all agencies a chance to put positive measures in place," said Lord Blunkett."This was at a time when we were investing in youth and leisure facilities, rather than the austerity measures which reduced spending on youth provision from 2010 by a staggering 75%."Asked about the increasing use of dispersal orders since 2003, Lord Blunkett said "there is always a danger of the pendulum swinging too far."'Important tool' Det Ch Con Andy Prophet, National Police Chiefs' Council Lead for anti-social behaviour, said dispersal orders were "an important tool" and were "proven to prevent repeat occurrences of anti-social behaviour". "Everyone should be able to live a life free from harassment, intimidation and nuisance behaviour in their own communities," he said. "Forces regularly respond to reports of anti-social behaviour, and the public rightly expect the police to take action when there are gatherings of people, regardless of their age, committing crime or making communities feel unsafe."He added: "We recognise the restrictive nature of dispersal orders, and that's why there are tight regulations in place, to ensure that officers are using them fairly and appropriately."A Home Office spokesman said the decision to issue dispersal orders was "a matter for individual police forces."
+"""
+
+[R5] Title 18.2. Crimes and Offenses Generally
+(https://law.lis.virginia.gov/vacode/title18.2/chapter9/section18.2-411/)
+"""
+§ 18.2-411. Dispersal of unlawful or riotous assemblies; duties of officers.When any number of persons, whether armed or not, are unlawfully or riotously assembled, the sheriff of the county and his deputies, the police officials of the county, city or town, and any assigned militia, or any of them, shall go among the persons assembled or as near to them as safety will permit and command them in the name of the Commonwealth immediately to disperse. If upon such command the persons unlawfully assembled do not disperse immediately, such sheriff, officer or militia may use such force as is reasonably necessary to disperse them and to arrest those who fail or refuse to disperse. To accomplish this end, the sheriff or other law-enforcement officer may request and use the assistance and services of private citizens. Every endeavor shall be used, both by such sheriff or other officers and by the officer commanding any other force, which can be made consistently with the preservation of life, to induce or force those unlawfully assembled to disperse before an attack is made upon those unlawfully assembled by which their lives may be endangered.Code 1950, §§ 18.1-254.8, 18.1-254.9; 1968, c. 460; 1975, cc. 14, 15.
+"""
+
+[R6] Know Your Rights | Protesters’ Rights | ACLU
+(https://www.aclu.org/know-your-rights/protesters-rights)
+"""
+The First Amendment protects your right to assemble and express your views through protest. Last Updated: January 30, 2026 Overview The First Amendment protects your right to assemble and express your views through protest. However, police and other government officials are allowed to place certain narrow restrictions on the exercise of speech rights. Make sure you’re prepared by brushing up on your rights before heading out into the streets. All Scenarios Your rights Your rights are strongest in what are known as “traditional public forums,” such as streets, sidewalks, and parks. You also likely have the right to speak out on other public property, like plazas in front of government buildings, as long as you are not blocking access to the government building or interfering with other purposes the property was designed for. Private property owners can set rules for speech on their property. The government may not restrict your speech if it is taking place on your own property or with the consent of the property owner. Counterprotesters also have free speech rights. Police must treat protesters and counterprotesters equally. Police are permitted to keep antagonistic groups separated but should allow them to be within sight and sound of one another. When you are lawfully present in any public space, you have the right to photograph anything in plain view, including federal buildings and the police. On private property, the owner may set rules related to photography or video. Do I need a permit? You don’t need a permit to march in the streets or on sidewalks, as long as marchers don’t obstruct car or pedestrian traffic. If you don't have a permit, police officers can ask you to move to the side of a street or sidewalk to let others pass or for safety reasons. Certain types of events may require permits. These include a march or parade that requires blocking traffic or street closure; a large rally requiring the use of sound amplifying devices; or a rally over a certain size at most parks or plazas. While certain permit procedures require submitting an application well in advance of the planned event, police can’t use those procedures to prevent a protest in response to breaking news events. Restrictions on the route of a march or sound equipment might violate the First Amendment if they are unnecessary for traffic control or public safety, or if they interfere significantly with effective communication to the intended audience. A permit cannot be denied because the event is controversial or will express unpopular views. If the permit regulations that apply to your protest require a fee for a permit, they should allow a waiver for those who cannot afford the charge. What to do if you believe your rights have been violated When you can, write down everything you remember, including the officers' badge and patrol car numbers and the agency they work for. Get contact information for witnesses. Take photographs of any injuries. Once you have all of this information, you can file a written complaint with the agency's internal affairs division or civilian complaint board. Your rights Your rights are strongest in what are known as “traditional public forums,” such as streets, sidewalks, and parks. You also likely have the right to speak out on other public property, like plazas in front of government buildings, as long as you are not blocking access to the government building or interfering with other purposes the property was designed for. Private property owners can set rules for speech on their property. The government may not restrict your speech if it is taking place on your own property or with the consent of the property owner. Counterprotesters also have free speech rights. Police must treat protesters and counterprotesters equally. Police are permitted to keep antagonistic groups separated but should allow them to be within sight and sound of one another. When you are lawfully present in any public space, you have the right to photograph anything in plain view, including federal buildings and the police. On private property, the owner may set rules related to photography or video. You don’t need a permit to march in the streets or on sidewalks, as long as marchers don’t obstruct car or pedestrian traffic. If you don't have a permit, police officers can ask you to move to the side of a street or sidewalk to let others pass or for safety reasons. What to do if you believe your rights have been violated When you can, write down everything you remember, including the officers' badge and patrol car numbers and the agency they work for. Get contact information for witnesses. Take photographs of any injuries. Once you have all of this information, you can file a written complaint with the agency's internal affairs division or civilian complaint board. What happens if the police issues an order to disperse the protest? Shutting down a protest through a dispersal order must be law enforcement’s last resort. Police may not break up a gathering unless there is a clear and present danger of riot, disorder, interference with traffic, or other immediate threat to public safety. If officers issue a dispersal order, they must provide a reasonable opportunity to comply, including sufficient time and a clear, unobstructed exit path. Individuals must receive clear and detailed notice of a dispersal order, including how much time they have to disperse, the consequences of failing to disperse, and what clear exit route they can follow, before they may be arrested or charged with any crime. I want to take pictures or shoot video at a protestYour rights When you are lawfully present in any public space, you have the right to photograph anything in plain view, including federal buildings and the police. (On private property, the owner may set rules about photography or video.) However, they may order citizens to cease activities that are truly interfering with legitimate law enforcement operations. If you’re not under arrest, a law enforcement officer needs a warrant to confiscate your device or to view its contents without your consent. If you are arrested, an officer may take your phone but still needs a warrant to search its contents. The government may never delete your photographs or videos under any circumstances. If you are videotaping, be aware that there is an important legal distinction between a visual photographic record (fully protected) and the audio portion of a videotape, which some states have tried to regulate under state wiretapping laws. What to do if you are stopped or detained for taking photographs Always remain calm and never physically resist a police officer. Police cannot detain you without reasonable suspicion that you have or are about to commit a crime or are in the process of doing so. If you are stopped, ask the officer if you are free to leave. If the answer is yes, calmly walk away. If you are detained, ask the officer what crime you are suspected of committing, and remind the officer that taking photographs is your right under the First Amendment and does not constitute reasonable suspicion of criminal activity. What to do if you believe your rights have been violated When you can, write down everything you remember, including the officers' badge and patrol car numbers and the agency they work for. Get contact information for witnesses. Take photographs of any injuries. Once you have all of this information, you can file a written complaint with the agency's internal affairs division or civilian complaint board. I was stopped by the police while protestingYour rights Stay calm. Make sure to keep your hands visible. Don't argue, resist, or obstruct the police, even if you believe they are violating your rights. Point out that you are not disrupting anyone else's activity and that the First Amendment protects your actions. Ask if you are free to leave. If the officer says yes, calmly walk away. If you are under arrest, you have a right to ask why. Otherwise, say you wish to remain silent and ask for a lawyer immediately. Don't say anything or sign anything without a lawyer. You have the right to make a local phone call, and if you're calling your lawyer, police are not allowed to listen. You never have to consent to a search of yourself or your belongings. If you do explicitly consent, it can affect you later in court. Police may "pat down" your clothing if they suspect you have a weapon and may search you after an arrest. Police officers may not confiscate or demand to view your photographs or video without a warrant, nor may they delete data under any circumstances. However, they may order citizens to cease activities that are truly interfering with legitimate law enforcement operations. What to do if you believe your rights have been violated When you can, write down everything you remember, including the officers' badge and patrol car numbers and the agency they work for. Get contact information for witnesses. Take photographs of any injuries. Once you have all of this information, you can file a written complaint with the agency's internal affairs division or civilian complaint board. I want to share this information on social mediaIf you want to share this information with others, we’ve created graphics outlining your protest rights that you can download and share on social media. We’ve also created a version that you can download to your phone and save it as your lockscreen background, so you can easily see your rights during a protest without unlocking your phone. Preview all the Know Your Protest Rights graphics here and download the graphics here.
+"""
+
+[R7] How declaring an unlawful assembly can help police maintain crowd control
+(https://www.police1.com/crowd-control/the-most-underutilized-tool-for-maintaining-peace-and-order)
+"""
+The most underutilized tool for maintaining peace and order When policing in a crowd, employ tactics that are well-trained, effective and consistently present you in a positive light Based on my experience, I have found that chemical munitions are the quickest way to disperse an unlawful assembly outdoors.Paula Bronstein/AP One of the laws that is most frequently violated yet least enforced across the nation is undoubtedly unlawful assembly.While it is critically important for law enforcement to respect citizens’ rights to lawfully assemble, it is equally important for officers to take effective action when an assembly becomes unlawful and poses an imminent threat to the property or lives of the citizens we are sworn to protect. They rely on us to do just that.There are numerous recent examples of unlawful assemblies where officers were ordered by their superiors to “stand by” or even “stand down” in the face of violence. This inaction only served to embolden unchecked troublemakers to tear down historical statues, smash, loot, burn, and terrorize communities without facing consequences. In one such instance, a police precinct headquarters was even set ablaze and destroyed.Unlawful assembly, defined by lawTo prevent an unlawful assembly from devastating large areas of your community, you must first understand the statutory definition of an unlawful assembly in your state.Here is the statute our trained team enforced to restore peace in our community when it was necessary: An unlawful assembly is an assembly that consists of three or more persons and causes such a disturbance of public order that it is reasonable to believe that the assembly will cause injury to persons or damage to property unless it is immediately dispersed.An unlawful assembly includes an assembly of persons who assemble to block or obstruct the lawful use by any other person, or persons of any private or public thoroughfares, property, or any positions of access or exit to or from any private or public building, or dwelling place, or any portion thereof and which assembly does so block or obstruct the lawful use by any other person, or persons of any such private or public thoroughfares, property or any position of access or exit to or from any private or public building, dwelling place or any portion thereof.Elements of the crime of unlawful assembly (according to this statute, not necessarily yours)The elements of unlawful assembly offense above are three or more persons whose assembly:Will or does cause injury or property damage if not immediately dispersed.Will or does obstruct access or exit, or the lawful use by others, of any private or public building.Will or does obstruct lawful use of others of any public thoroughfare.IdentificationThese specific aspects that may be present in an unlawful assembly should not just be properly dealt with, but they should be properly documented. To justify your declaration of an unlawful assembly, you should document:Estimated number of citizens blocked, threatened, obstructed and/or impededEmergency vehicles unable to pass because of the assemblyCars rolled overProperty damagedBonfires setIncendiaries thrown or firedLootingArsonCitizens batteredWomen assaultedOccupied vehicles stopped and their occupants threatened or assaultedA history of violence exists for the eventNotificationOnce a group is designated as an unlawful assembly and you determine that action is necessary, first notify the individuals making up the unlawful assembly. Use an effective method for the circumstances, such as individual contact, a public address system, a bullhorn or a long-range acoustic device (LRAD) to communicate verbally. A good communication model to follow in this circumstance would be to follow the ACT acronym: Ask them to disperse, check and confirm their compliance or non-compliance and if they remain non-compliant, tell them: Who you are and your lawful authorityThey are an unlawful assemblyThey are ordered to disperse immediatelyIf they refuse to do so, they will be subject to arrestIf necessary, the direction they should disperse towardIt is important to give them a reasonable amount of time — considering the circumstances — to disperse.You should also document:The specific order given.The number of times and time (a.m. to p.m.) each order was givenThe method of deliveryThe specific response to each order that the crowd gave, especially those whose actions warrant their arrestIf the crowd disperses, great!On the other hand, if its leader orchestrates a chanting response such as having one section shout “F—k!” and another section answer “you” at the police, this should be noted. The entire process should be recorded. It is important to arrest the leader.Dispersal/arrestWhen members of an unlawful assembly refuse a lawful order to disperse, a plan should be enacted to either disperse or arrest them. Consider issuing one final warning just before dispersal efforts begin, whenever possible.For instance, your trained and certified grenadier could pause and stand ready, holding a chemical munitions canister high in the air that they are about to deploy. This highly visible gesture provides one last chance for those inclined to disperse before being exposed to smoke, CS, CN or OC. Note: This also gives officers, who may not have received prior notice, the opportunity to put on their masks.Based on personal experience, here are effective methods a trained team can use to disperse individuals who constitute an unlawful assembly and refuse to disperse:Classic crowd control tactics in conjunction with methods listed belowIf it is chilly, indirect spraying a controlled mist of water over the assemblyChemical munitions, smoke, OC, CS or CN (This should be done by a trained grenadier and I have found from experience this is the quickest, least physical way to disperse a crowd)Mounted (horses) unitsPhysically moving them with trained teams in an organized mannerMounted (vehicles) mobile field force tactics, in conjunction with above tacticsNote: You may support any dispersal efforts with “less lethal impact munitions,” but it is important to remember that most impact munitions are designed as defensive tools to protect your people and the public from serious injury or serious physical attacks. Each individual use of impact munitions should be performed by a trained individual, be defensible and documented. Whenever possible arrest the suspect for the attack he made, or attempted, which prompted the use of the munition(s). ArrestIf you choose to arrest those who will not disperse, then make certain you have:The backing of your prosecutor. Note: If your prosecutor refuses to prosecute individuals who have been legitimately arrested violating this or any other law, such an arrest will place you in civil jeopardy.A manageable number you can physically arrest, transport, process and hold. Note: To emphasize the importance of the term “manageable number, an old sergeant once told me something I will never forget when we were moving in to disperse a rowdy crowd. He said, “When you are in a crowd, never let your mouth write a check your ass(ets) can’t cash.”Identification of each arrestee, their charges and the name of the arresting officer. Note: No matter what the offense, jailing a suspect during such chaos without a named arresting officer can place your agency in monumental civil jeopardy.An arrest observed by the crowd should be necessary and carried out by well-trained officers who are adept at distinguishing between and effectively handling “passive” and “active” resistance. Each arrest should be conducted professionally and documented thoroughly. Professionally executed legal arrests convey a strong message, whereas a poorly managed arrest can exacerbate a bad situation.Before arresting for the offense of unlawful assembly, I recommend personally issuing the dispersal order to each individual you intend to arrest, offering one final chance for them to leave. If they ignore this final order and you proceed with the arrest, this last warning in court can counter any defense claiming the arrestee did not hear the original order to disperse given to the group.In situations where offices, gates, highways, construction sites and similar locations are blocked by multiple passive resisters, take your time. Your motto during such operations should be: “Take it slow and spoil their show.”ConclusionConsider the lawful, informed enforcement of your state’s unlawful assembly statute as an effective strategy to prevent small disturbances from escalating into larger ones. I will conclude by sharing two statements I have consistently made to every team I’ve led and in every crowd control class I’ve taught: Extinguishing a cigarette butt is easier than putting out a forest fire.When policing in a crowd, employ tactics that are well-trained, effective and consistently present you in a positive light.Remember: In these situations, the entire world may be watching. Lt. Dan Marcou is an internationally-recognized police trainer who was a highly-decorated police officer with 33 years of full-time law enforcement experience. Marcou’s awards include Police Officer of the Year, SWAT Officer of the Year, Humanitarian of the Year and Domestic Violence Officer of the Year. Additional awards Lt. Marcou received were 15 departmental citations (his department’s highest award), two Chief’s Superior Achievement Awards and the Distinguished Service Medal for his response to an active shooter. Upon retiring, Lt. Marcou began writing. He is the co-author of “Street Survival II, Tactics for Deadly Encounters.” His novels, “The Calling, the Making of a Veteran Cop,” “SWAT, Blue Knights in Black Armor,” “Nobody’s Heroes” and “Destiny of Heroes,” as well as two non-fiction books, “Law Dogs, Great Cops in American History” and “Law Dogs II.” All of Lt. Marcou’s books are all available at Amazon. Dan is a member of the Police1 Editorial Advisory Board.
+"""
+
+[R8] Dozens arrested after "No Kings" protest in downtown Los Angeles leads to LAPD dispersal order
+(https://www.cbsnews.com/losangeles/news/no-kings-downtown-los-angeles-march-28/)
+"""
+By Austin Turner Web Producer, CBS News Los Angeles Austin Turner is a web producer at CBS News Los Angeles. An Inland Empire native, Austin earned a degree in journalism from San Jose State University in 2020. Before joining CBS News in 2025, he worked at KTLA, the San Jose Mercury News, the Sedona Red Rock News and various other outlets as a news and sports reporter. Read Full Bio Updated on: March 29, 2026 / 3:22 PM PDT / CBS LA Add CBS News on Google More than 70 people were arrested after a "No Kings" rally took to downtown Los Angeles city streets on Saturday, marking the third round of such protests in recent months in which demonstrators voiced their displeasure with policies set forth by the Trump administration.Organizers said that as many as 50,000 were expected to be on hand in downtown Los Angeles on Saturday afternoon. That rally and subsequent march were set for 2 p.m. at Gloria Molina Grand Park, just outside City Hall.As the rally continued downtown on Saturday, Los Angeles Police Department officers told CBS LA that the city was on "tactical alert" and that a dispersal order was issued just after 5:30 p.m., urging people on Alameda between Aliso and Temple to leave the area within 15 minutes or be subject to arrest. They said that "multiple demonstrators" failed to disperse and were being taken into custody at around 6 p.m. At the same time, U.S. Attorney Bill Essayli also posted on social media to note that federal agents have "started arresting those who assaulted our personnel at the Los Angeles courthouse." "To those who were smashing concrete blocks and throwing them at our officers, we have you on video," Essayli's post said. "We will find you and arrest you too. You've been warned."A social media post from the Department of Homeland Security said that two federal officers were hit by cement blocks and required medical care. They also said that two people were arrested for assaulting federal law enforcement, which is a felony.The tactical alert was lifted at around 8 p.m., after police had cleared most of the demonstrators from the area. On Sunday, LAPD officers told CBS LA that 75 people were arrested after the dispersal order was issued. Officers said that eight of the people taken into custody were juveniles, each of whom was charged with refusal to disperse. Sixty-seven adults were arrested, one of whom was charged with possession of a dirk or dagger, while the rest were charged with refusal to disperse. US Department of Homeland Security officers in riot gear push a protestor following clashes near the Metropolitan Detention Center during the "No Kings" national day of protest in Los Angeles on March 28, 2026. Etienne Laurent /AFP via Getty Images The rallies, which organizers described as choosing "democracy over dictatorship," began last June and were held again in October. Saturday, the first nationally-planned demonstration since the January killings of Renee Good and Alex Pretti at the hands of federal agents in Minnesota, was expected to be the largest showing yet, organizers say. "A lot of people want to help, they just don't know where to start," said 50501 SoCal organizer Emily Williams. "No Kings is that starting point. It's about community, about showing up for each other, and about turning concern into real action you can be part of."President Trump and other members of Republican leadership have dismissed prior "No Kings" rallies. In October, he told Fox News that he's simply "not a king," while House Speaker Mike Johnson referred to the protests as a "Hate America Rally." "You're going to bring together the Marxists, the Socialists, the Antifa advocates, the anarchists and the pro-Hamas wing of the far-left Democrat Party," he said. Pro immigration protesters face off against Los Angeles based police forces for the No Kings protest in downtown Los Angeles during a march against the Trump Military Parade and immigration raids by ICE in Downtown Los Angeles, United States, on June 15, 2025 Shay Horse/NurPhoto via Getty Images Crews on Friday installed gates on the 101 Freeway on and off-ramps at Los Angeles Street in anticipation of the large-scale march. A Caltrans spokesperson said the California Highway Patrol requested the gates, since the freeway has been impacted by past marches."During previous protest activities, this location has seen pedestrians walk onto the highway using these ramps, creating unsafe conditions for pedestrians and motorists," the spokesperson wrote in an email. "They will be used only as needed to ensure people are out of harm's way of fast-moving vehicles and motorists can safely use the highway."In both previous instances in downtown LA, dispersal orders have been issued well after the scheduled end time for the marches, resulting in numerous arrests.In a statement to X, Mayor Karen Bass called the planned protest "democracy in action.""Peaceful protest is our constitutional right," she said. "When people come together to make their voices heard, that is democracy in action. Please stay safe and look out for one another."Thousands of rallies are planned across the country, including several dozens in Southern California. In: Trump Administration Protest
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

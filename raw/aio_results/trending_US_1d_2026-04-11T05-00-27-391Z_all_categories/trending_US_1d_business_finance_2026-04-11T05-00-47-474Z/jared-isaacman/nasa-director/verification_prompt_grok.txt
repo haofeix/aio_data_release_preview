@@ -1,0 +1,326 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "nasa director"
+
+Claims:
+[1] "Jared Isaacman is the 15th Administrator of NASA."
+[2] "Jared Isaacman is the current Administrator of NASA."
+[3] "Jared Isaacman was sworn in on December 18, 2025."
+[4] "Jared Isaacman is a billionaire entrepreneur."
+[5] "Jared Isaacman is a commercial astronaut."
+[6] "Jared Isaacman was nominated by President Trump."
+[7] "Jared Isaacman was confirmed to lead NASA."
+[8] "The Administrator is the highest-ranking official at NASA."
+[9] "The NASA Administrator is nominated by the President and confirmed by the Senate."
+[10] "Before leading NASA, Isaacman commanded Inspiration4."
+[11] "Before leading NASA, Isaacman commanded Polaris Dawn."
+[12] "Jared Isaacman succeeded Acting Administrator Sean Duffy."
+[13] "Jared Isaacman succeeded previous Administrator Bill Nelson."
+[14] "As of early 2026, Amit Kshatriya is Associate Administrator."
+[15] "As of early 2026, Amit Kshatriya is the highest-ranking civil servant."
+[16] "As of early 2026, Janet Petro is Director of Kennedy Space Center."
+[17] "As of early 2026, Vanessa Wyche is Director of Johnson Space Center."
+
+Cited text snippets from the AI Overview (for additional context):
+- NASA Leadership: "Amit Kshatriya is NASA's associate administrator. He,associate administrators at NASA Headquarters in Washington"
+- Administrator of NASA - Wikipedia: "^ |title=Nomination of Jared,Retrieved May 31, 2025."
+- Vanessa E. Wyche - NASA: "Vanessa Wyche is the director of NASA's,astronaut corps, Mission Control Center, International Space."
+- NASA Welcomes 15th Administrator Jared Isaacman: "NASA Welcomes 15th Administrator Jared Isaacman - NASA"
+- Janet Petro - Kennedy Space Center - NASA: "Janet Petro is the director of NASA's,a position held since June 30, 2021."
+- Billionaire entrepreneur Jared Isaacman is confirmed as new NASA ...: "Billionaire entrepreneur Jared Isaacman is confirmed as new NASA chief"
+- Who is NASA chief Jared Isaacman: "Who is NASA chief Jared,Riddle Aeronautical University, worldwide campus."
+- As Artemis II Returns Home, NASA Chief Jared Isaacman Defends Billionaire Space Race: "Isaacman has become a central,included the first commercial spacewalk."
+- NASA chief Jared Isaacman backs billionaire space ventures as Artemis II lands: "NASA has also signalled a,exploration is funded and delivered."
+- Charter of the NASA Advisory Council: "3. Objectives and Scope of Activities: The,other matters pertinent to the Agency's responsibilities."
+Reference Sources:
+
+[R1] NASA Welcomes 15th Administrator Jared Isaacman - NASA
+(https://www.nasa.gov/news-release/nasa-welcomes-15th-administrator-jared-isaacman/)
+"""
+Jessica TaveauDec 18, 2025 Jared Isaacman was sworn in Thursday as NASA’s 15th administrator by District Judge Timothy J. Kelly. The oath was taken during a ceremony held at the Eisenhower Executive Office Building in Washington. As NASA administrator, Isaacman will lead the agency in bold pursuit of exploration, innovation, and scientific discovery. “I am deeply honored to be sworn in as NASA administrator,” said Isaacman. “NASA’s mission is as imperative and urgent as ever — to push the boundaries of human exploration, ignite the orbital economy, drive scientific discovery, and innovate for the benefit of all of humanity. I look forward to serving under President Trump’s leadership and restoring a mission-first culture at NASA — focused on achieving ambitious goals, to return American astronauts to the Moon, establish an enduring presence on the lunar surface, and laying the groundwork to deliver on President Trump’s vision of planting the Stars and Stripes on Mars.” Isaacman, nominated by President Donald J. Trump on Nov. 4th, was confirmed to serve as NASA administrator by the U.S. Senate on Dec. 17. Isaacman is expected to address the workforce this week. Jared “Rook” Isaacman is the 15th administrator of NASA, a pilot, astronaut, seasoned entrepreneur, philanthropist, and pioneer in commercial spaceflight. Read Isaacman’s official biography online. For more about NASA’s mission, visit: https://www.nasa.gov -end- Bethany Stevens / George AldermanHeadquarters, Washington(771) 216-2606bethany.c.stevens@nasa.gov / george.a.alderman@nasa.gov Share Details
+"""
+
+[R2] As Artemis II Returns Home, NASA Chief Jared Isaacman Defends Billionaire Space Race
+(https://observer.com/2026/04/artemis-returns-home-nasa-chief-jared-isaacman-defends-billionaire-space-race/)
+"""
+NASA administrator Jared Isaacman speaks during a status briefing of the Artemis II crewed lunar mission at Johnson Space Center in Houston, Texas, on April 7, 2026. RONALDO SCHEMIDT / AFP via Getty Images As the four astronauts on the Artemis II mission return to Earth today (April 10), the flight is refocusing attention on human space travel, just as NASA Administrator Jared Isaacman is defending the role of billionaire-backed companies in the industry. In an interview this week with Politico’s Dasha Burns, Isaacman argued that the private companies selling flights to wealthy customers are the same ones building the landers, transportation systems and other hardware NASA needs for the Artemis program. Asked why billionaires should fund space travel when Earth faces urgent problems, Isaacman, who has flown to space twice on private missions, said critics of private space ventures were “outright wrong” and thanked Elon Musk of SpaceX, Jeff Bezos of Blue Origin, and Richard Branson of Virgin Galactic for investing in the sector. His point wasn’t that leisure flights justify themselves, but that private capital has built an industrial base that NASA now depends on. NASA has already started shifting Artemis toward a deeper commercial partnership. The White House’s fiscal 2027 budget allocates $8.5 billion for Artemis—roughly 45 percent of NASA’s total funding that year—and calls for commercial landers, spacesuits and transportation systems to expand the U.S. presence on the moon “cost‑effectively.” Artemis III is now planned as a 2027 Earth‑orbit test mission that will dock with one or both commercial lunar landers, ahead of Artemis IV and V, which are targeting lunar landings in 2028. In a March report, NASA said it plans to adopt more reusable, commercially procured hardware and is aiming for crewed lunar landings every six months. The agency and the administration say this approach will lower costs and speed up missions. Also in March, NASA’s inspector general reported limited cost increases on the agency’s lunar‑lander contracts: up 6 percent for SpaceX and less than 1 percent for Blue Origin. NASA plans to use SpaceX’s lander for Artemis III and IV and Blue Origin’s for Artemis V. Isaacman has become a central figure in this transition because he bridges the public program and the private market. Sworn in as NASA’s 15th administrator in December 2025, he now oversees a lunar program increasingly reliant on commercial providers. Isaacman made his fortune through the payments company Shift4, which he founded as a teenager, and later co‑founded the military aviation contractor Draken International. Forbes estimates his net worth at about $1.5 billion. Even before leading NASA, he was one of the most visible figures in private human spaceflight. He commanded Inspiration4, a three‑day SpaceX mission in 2021 that became the first orbital flight with no professional astronauts, and in 2024 led Polaris Dawn, which reached the highest crewed orbit since Apollo and included the first commercial spacewalk. Roman Chiporukha, founder of luxury space‑travel broker SpaceVIP, said most people still don’t know where to buy private space trips or what options exist. SpaceVIP brokers access to private space missions for high-net-worth clients. There are just a handful of companies offering commercial space travel. Despite all the early talk of mass‑market access, the business remains concentrated at the very top end. Branson’s Virgin Galactic offers short, suborbital flights for $750,000 per seat, 50 percent higher than its original price a few years ago. Blue Origin requires a $150,000 refundable deposit to begin the order process for a New Shepard flight. Axiom Space has said its private astronaut missions to the International Space Station, flown aboard SpaceX vehicles, are priced in the mid‑$60 million range per seat. Still, Chiporukha said Artemis could help shift the industry away from “one‑off, rare flagship missions” and toward “a proper cadence” of launches, infrastructure, and ongoing activity. SEE ALSO: Why Ford’s Electric F-150 Never Took Off
+"""
+
+[R3] Billionaire entrepreneur Jared Isaacman is confirmed as new NASA chief
+(https://www.nbcnews.com/science/space/billionaire-entrepreneur-jared-isaacman-confirmed-new-nasa-chief-rcna248690)
+"""
+Billionaire entrepreneur Jared Isaacman was confirmed by the Senate on Wednesday to be the new head of NASA, marking the end of a dramatic saga that began more than a year ago.Isaacman was first tapped to lead NASA in December 2024 by then-President elect Donald Trump, but Trump abruptly withdrew the nomination five months later after “a thorough review of prior associations.” In an unusual turn of events, Trump renominated Isaacman in November, saying that his experience and passion for space “make him ideally suited to lead NASA into a bold new Era.” The leadership change comes at a pivotal time for NASA, as questions persist over the space agency’s future budget and priorities. Like other government agencies, NASA is still reeling from major cuts to funding and personnel as part of the Trump administration’s efforts to shrink the size of the federal workforce.The final confirmation vote was 67-30.The Senate Commerce, Science, and Transportation Committee approved Isaacman’s nomination after a Dec. 3 hearing in which he spoke about the need to return NASA astronauts to the moon before China reaches the lunar surface. Sen. Ted Cruz, a Texas Republican who chairs the committee, had said he wanted Isaacman confirmed by the end of the year.Isaacman, 42, is founder and CEO of the payment processing company Shift4 but has never worked at NASA or in the federal government. He will take control of the space agency from Transportation Secretary Sean Duffy, who had served as NASA’s interim administrator since July.During his hearing before the Senate committee, Isaacman said he is focused on returning to the moon and winning the new space race with China. Both countries want to establish a long-term human presence on the lunar surface, but NASA’s Artemis program has faced numerous delays and cost-overruns. China’s space program, meanwhile, has advanced at a furious pace in recent years.NASA aims to send four astronauts on a flight around the moon next year in a crucial test of its next-generation rocket and spacecraft. If successful, the space agency said it will attempt to land a crew near the moon’s south pole in 2027. China has said it plans to land its own astronauts on the lunar surface by 2030.Beyond NASA’s lunar ambitions, the space agency faces uncertainty over its funding and objectives. Earlier this year, Trump’s budget blueprint suggested cutting more than $6 billion, or roughly 24%, from NASA’s funding, but those proposals met strong opposition in the House and Senate. In his confirmation hearing, Isaacman faced scrutiny over leaked documents known as Project Athena that outlined his vision for NASA. The 62-page plan, first obtained by Politico, suggested prioritizing Mars missions, focusing on nuclear electric propulsion, overhauling some NASA centers and significantly changing the space agency’s science operations, including a bigger emphasis on commercialization.Isaacman said during the hearing that Project Athena was a “draft document” but stood by its content, adding that it was “all directionally correct.”Questions also arose during the confirmation process about Isaacman's ties to Elon Musk. Isaacman has twice flown to space on commercial SpaceX missions, funding the flights himself for an undisclosed sum. Musk, the founder and CEO of SpaceX, once a close Trump ally and backed Isaacman when he was first nominated.The president’s decision to withdraw Isaacman’s nomination coincided with a public feud between Trump and Musk. In his confirmation hearing, Isaacman was grilled about his connection to Musk, including how his own business dealings are intertwined with SpaceX. Isaacman downplayed the association, saying that his trips to space were with SpaceX because it is “the only organization that can send astronauts to and from space.”“There are no pictures of us at dinner, at a bar, on an airplane or on a yacht because they don’t exist,” Isaacman added.
+"""
+
+[R4] NATIONALAERONAUTICSAND SPACE ADMINISTRATION
+(https://oiir.hq.nasa.gov/docs/NAC_Amended_Charter_Aug_2018_TAGGED.pdf)
+"""
+NATIONALAERONAUTICSAND SPACE ADMINISTRATION
+
+ CHARTEROF THE
+
+ NASA ADVISORYCOUNCIL
+
+1. Official Designation: NASA Advisory Council e'Council").
+
+2. Authority: Having determinedthat it is in the public interest in connection with the
+performanceof Agency duties under the law, and withthe concurrence of the General Services
+Administration,the NASA Administratorhereby renews the Council's charter, pursuant to the
+Federal Advisory Committee Act (FACA), as amended, 5 U.S.C., App.
+
+3. Objectives and Scope of Activities: The Council shall draw on the expertise of its members
+and other sources to provide advice and make recommendationsto the NASA Administratoron
+Agency programs, policies, plans, financial controls, and other matters pertinent to the Agency's
+responsibilities. The Council shall also encourage and review proposed committee
+recommendationsfor Associate Administrators.
+
+4. Descriptionof Duties: The Council shall fimctioilsolely as an advisory body and comply
+with the provisions of FACA. The Council shall be supported by committees, subcommittees,
+and task forces as needed, to cover the breadth and depth of scope as determinedby the NASA
+Administrator.
+
+5. Official to Whom the CommitteeReports: The Council reports to the NASA
+Administrator. The committeesreport to the Council.
+
+6. Support: The Office of Internationaland Interagency Relations will provide staff support
+and operatingfunds for the Council. The Mission Directorates and/or Mission Support Offices
+shall provide staff support and operating funds for the respective committees,subcommittees,
+and task forces which report to the Council.
+
+7. EstimatedAnnual Operating Costs and Staff Years: The estimated annual operating cost
+for the Council, its committees, subcommittees,and task forces totals approximately$850,000,
+including three work-years for staff support.
+
+8. DesignatedFederal Officer: The Executive Director of the Council shall be appointedby
+the NASA Administratorand shall serve as the Designated Federal Officer (DFO). The DFO
+will be either a full-time or a perm.anentpart-time employee who will: call, attend, and adjourn
+committee meetings; approve agendas; maintain required records on costs and membership;
+ensure efficient operations; maintain records for availability to the public; and provide copies of
+Council reports to the NASA Committee Management Officer for forwardingto the Library of
+Congress. The DFO shall also work closely with the NASA Office of General Counsel (OGC)
+to ensure that all potential members (i.e., nominees) for the Council, committees,subcommittees,
+and task forces complete the mandatory Office of Government Ethics financial disclosurereports
+and receive full ethics vetting and clearance by OGC prior to formal appointmentby NASA. In
+ 2
+
+addition, the DFO shall ensure that all appointed members of the Council. committees,
+subcommittees, and task forces shall file the mandatory financial disclosure reports (annual and
+otherwise) and shall receive the mandatory annual ethics training by OGC. The DFO shall refer
+any issues that may arise relating •to potential conflicts of interest to OGC for resolution.
+
+9. EstimatedNumber and Frequency of Meetings: The Council shall meet approximately
+three times a year or as required by the NASA Administrator. Meetings shall be open to the
+public unless it is determined that the meeting, or a portion of the meeting, will be closed in
+accordance with the Government in the Sunshine Act.
+
+10. Duration: The Council is envisioned to be a continuing entity with charter renewals.
+
+11. Termination: As noted in Paragraph 15, the Council shall terminate two years from the
+date of the filing of the original charter unless renewed or terminated earlier by the NASA
+Administrator. ·
+
+12. Membershipand Designation:
+
+ 1. The Council shall consist of members to be appointed by the NASA Administrator ( or
+ designee). The Administrator shall ensure a balanced representation in terms of the
+ points of view represented and the functions to be performed. Diversity shall be
+ considered as well.
+
+ 2. The Council shall consist of approximately 10-20 members. who will serve as Special
+ Government Employees for a two-year term, renewable at the discretion of the NASA
+ Administrator, except the Chairof the Regulatory .and Policy Committee will serve on the
+ Council as a Representative or Special Government Employee as determined by the ·
+ NASA Administrator, for a two-year renewable term. Special Government Employees
+ serve as individual subject matter experts. and Representatives serve to represent the
+ interests of their specific sectors. All Council members serve at the pleasure of the
+ Adniinistrator.
+
+ 3. The NASA Administrator shall designate the Chair of the Council.
+
+ 4. The Council shall be comprised of the Chair, the committee chairs, and at-large members,
+ as appropriate, at the discretion of the NASA Administrator.
+
+ 5. The chairs of the National Research Council's Space Studies Board (SSB) and the
+ Aeronautics and Space Engineering Board (ASEB) shall be ex officio, nonvoting
+ members of the Council.
+
+13. Committees,Subcommittees,and Task Forces:
+
+ 1. The NASA Administrator shall establish the following Council committees,
+ subcommittees, and task forces:
+ 3
+
+ • AeronauticsCommittee.
+ • HumanExplorationand OperationsCommittee.
+ • Regulatoryand Policy Committee.
+ • ScienceCommittee.
+ • Technology,Innovation, and EngineeringCommittee.
+ • Ad Hoc Task Force on Science,Technology,Engineering,and Mathematics
+ (STEM)Education.
+
+2. Councilcommittees,subcommittees,and task forces may be established or discontinued
+ at the discretionof the NASA Administrator. No formal amendment(s)to this charter
+ will be requiredto effect such change(s).
+
+3. The NASA Administrator,in consultationwith the Council Chair, may establish
+ committeesunder the Council, as necessary. The tenns of reference for committeesshall
+ be subjectto the approval of the Administrator. Council committees shall consist of
+ membersto be appointedby the Administrator(or designee). Council committeesshall
+ be comprisedof 5-15 members, includingthe chair, and will be chaired by a Council
+ member. Each committeeshall deliberatethe recommendationsthat arise from the
+ committeeor are received from their subcommittees,if any. In the latter case, the
+ committeemay endorse subcommitteerecommendationsand forward them to the
+ Councilfor deliberations,or the committeemay provide comments_orsuggestionsback
+ to the subcommittee.
+
+4. The Council shall deliberate the recommendationsof the committeesand any task forces
+ that may report directly to the Council. Toe Councilmay forward a recommendationto
+ the NASA Administratorfor Agency considerationor return it to the committeewith
+ commentspertaining to its disposition,includingrequests for revision and resubmission,
+ and confirmationof its recommendedtransmissionto the appropriateAssociate
+ Administratorfor consideration. In general, Council recommendationsto the
+ Administratorpertain to strategic, crosscutting,Agency-wide,programmatic,and policy
+ topics. In general, committee recommendationsapprovedby the Councilfor the
+ committeesto transmit to AssociateAdministratorspertain to missions,programs,
+ projects,and research topics. All recommendationsforwardedto the Administratoror to
+ an AssociateAdministratorshall be tracked by the respectiveCouncilExecutiveDirector
+ or CommitteeExecutive Secretary,as appropriate. An Agency formal written response
+ to each recommendationsubmittedto the Administratorshall be providedto the Council.
+ Similarly,a formal written responseto each recommendationsubmittedto an Associate
+ Administratorshall be provided to the appropriatecommittee. A·copy of each response
+ by a NASA Associate Administratorshall be .provided by the relevant Committee
+ ExecutiveSecretaryto the Council ExecutiveDirector,to ensure full compliancewith
+ FACA and Federal record.keepingrequirements. No Council committeeshall be
+ independentlychartered under FACA.
+
+5. The NASA Administrator,in consultationwith the Council Chair, may establish
+ subcommitteesunder the Council committees,as necessary~The terms of referencefor
+ subcommitteesshall be subject to the approval of the Administrator. A memberof the
+ subcommittee'sparent committeeshall chair the subcommittee. The membersof
+ subcommitteesshall be appointedby the respectiveAssociateAdministratorfollowing
+ 4
+
+ consultation with the Administrator. The subcommittees shall report to their respective
+ committee(s).
+
+ 6. The NASA Administrator, in consultation with the Council Chair, may establish
+ temporary ad hoc task forces under the Council or under specific Council committees, as
+ necessary. The terms of reference for task forces shall be subject to the approval of the
+ Administrator. Task force chairs and members shall be appointed by the Administrator
+ (or designee).
+
+ 7. To ensure close coordination and transparency, and avoid duplication of effort, the chairs
+ of the following other NASA-chartered Federal advisory committees shall also serve as a
+ member of the respective Cowicil committee:
+
+ • Astrophysics Advisory Committee (Science Committee)
+ • Earth Science Advisory Committee (Science Committee)
+ • HeliophysicsAdvisory Committee (Science Committee)
+ • Planetary Science Advisory Committee (Science Committee)
+ • HumflllExploration and Operations Research Advisory Committee (Human
+ Exploration and Operations Committee)
+
+14. Reeordkeeping: The records of the Council, its committees, subcommittees, and task
+forces shall be handled in accordance with the General Records Schedule 6.2, or other approved
+Agency records disposition schedule. These records shall be available for public inspection and
+copying, subject to the Freedom oflnfonnation Act, 5 U.S.C. 552.
+
+15. Filing Date: This charter shall become effective upon the filing of this charter with the
+appropriate U.S. Senate and House of Representatives oversight committees. It shall terminate
+two yea.rsfrom the date of filing of this charter unless renewed or terminated earlier by the
+NASA Administrator.
+
+ Filing Date
+"""
+
+[R5] NASA chief Jared Isaacman backs billionaire space ventures as Artemis II lands
+(https://www.thenews.com.pk/latest/1398491-nasa-chief-jared-isaacman-backs-billionaire-space-ventures-as-artemis-ii-lands)
+"""
+World NASA chief Jared Isaacman backs billionaire space ventures as Artemis II lands Jared Isaacman said critics of commercial space travel were “outright wrong ” and credited figures such as Elon Musk By The News Digital Published April 11, 2026 Jared Isaacman has defended the role of billionaire-backed space companies as the Artemis II crew returns to Earth, arguing private investment is critical to the future of human spaceflight. In an interview with Politico, Isaacman said critics of commercial space travel were “outright wrong” and credited figures such as Elon Musk, Jeff Bezos and Richard Branson for building infrastructure now used by NASA. Advertisement He argued that while private flights may appear exclusive, the same companies are developing landers, transport systems and other technology needed for the Artemis programme. The White House’s proposed 2027 budget allocates $8.5 billion to Artemis, nearly half of NASA;s total funding, with a focus on commercial partnerships to expand lunar exploration “cost-effectively.” Future missions are already being shaped by this shift. Artemis III, planned for 2027, will test docking with commercial lunar landers before later missions aim for crewed moon landings. NASA has also signalled a move towards reusable, commercially sourced hardware, with goals of increasing launch frequency and reducing costs. Isaacman, who previously led private missions including Inspiration4 and Polaris Dawn, now oversees a programme increasingly tied to commercial providers, reflecting a broader transformation in how space exploration is funded and delivered. At The News Digital, our editors combine entertainment savvy with global reporting expertise. Expect authoritative coverage of royals, Hollywood, and trending topics, plus clear, reliable updates across science, politics, sports, and business. We keep it accurate, timely, and easy to understand, so you can stay ahead. Share this story: Norway telecom giant under fire for alleged role in Myanmar junta crackdown on activists Sue Prado, beloved indie film actress, breathes her last at 44 Iranian cyberattacks surge 8x across Middle East Nancy Guthrie's neighbourhood surrounded by police after complaints of YouTubers trespassing Recommended for you Norway telecom giant under fire for alleged role in Myanmar junta crackdown on activists Iranian cyberattacks surge 8x across Middle East Nancy Guthrie's neighbourhood surrounded by police after complaints of YouTubers trespassing Merger talks between United and American Airlines could raise ticket prices across the US Former US Marine pilot’s legal battle deepens as extradition appeal is denied: Here’s why Eisenhower Park shooting kills teen and injures two as police investigate gang-related incident Sukhoi Su-57 plant hit by fire as images show severe damage to key Russian fighter jet factory Flash flood warning issued in Newaygo County as rising rivers trigger state of emergency Live Nation operated illegal Ticketmaster monopoly and overcharged fans, US jury verdict Gas prices in Canada increase despite fuel tax pause as summer fuel blend drives prices higher JD Vance, Erika Kirk cancel Turning Point USA event minutes before start: Here’s why Sharon Osbourne's 5-word response to controversial rally revealed
+"""
+
+[R6] Administrator of NASA
+(https://en.wikipedia.org/wiki/Administrator_of_NASA)
+"""
+From Wikipedia, the free encyclopedia Administrator of the National Aeronautics and Space AdministrationSeal of the National Aeronautics and Space AdministrationIncumbentJared Isaacmansince December 18, 2025National Aeronautics and Space AdministrationReports toPresident of the United StatesSeatMary W. Jackson NASA Headquarters, Washington, D.C.AppointerThe presidentwith advice and consent of the SenateTerm lengthNo fixed termConstituting instrument51 U.S.C. § 20111FormationAugust 19, 1958; 67 years agoFirst holderT. Keith GlennanDeputyDeputy AdministratorSalaryExecutive Schedule, Level IIWebsitenasa.gov The administrator of the National Aeronautics and Space Administration is the highest-ranking official of NASA, the national space agency of the United States. The administrator is NASA's chief decision maker, responsible for providing clarity to the agency's vision and serving as a source of internal leadership within NASA. The office holder also has an important place within United States space policy,[1] and is assisted by a deputy administrator. The administrator is appointed by the president of the United States, with the advice and consent of the United States Senate, and thereafter serves at the president's pleasure. Jared Isaacman has served as the administrator since December 18, 2025.[2] Duties and responsibilities[edit] The administrator serves as NASA's chief executive officer, accountable to the president for the leadership necessary to achieve the agency's mission. This leadership requires articulating the agency's vision, setting its programmatic and budget priorities and internal policies, and assessing agency performance.[3] Six former NASA administrators in 1980: (from left) James E. Webb, T. Keith Glennan, Robert A Frosch, Thomas O. Paine, George M. Low, and Alan M. Lovelace The first administrator of NASA was Dr. T. Keith Glennan; during his term he brought together the disparate projects in space development research in the US.[4] Glennan presided over an organization that had absorbed the earlier National Advisory Committee for Aeronautics (NACA) intact; its 8,000 employees, an annual budget of $100 million, and three major research laboratories—Langley Aeronautical Laboratory, Ames Aeronautical Laboratory, and Lewis Flight Propulsion Laboratory—and two small test facilities made up the core of the new NASA. Within a short time after NASA's formal organization, Glennan incorporated several organizations involved in space exploration projects from other federal agencies into NASA. He brought in part of the Naval Research Laboratory and created the Goddard Space Flight Center. He also incorporated several disparate satellite programs, two lunar probes, and the research effort to develop a million pound force (4.4 MN) thrust, single-chamber rocket engine from the U.S. Air Force and the U.S. Department of Defense's (DOD) Advanced Research Projects Agency. In December 1958 Glennan also acquired control of the Jet Propulsion Laboratory, a contractor facility operated by the California Institute of Technology. In 1960, Glennan obtained the transfer to NASA of the Army Ballistic Missile Agency, located at Huntsville, Alabama, and renamed it the Marshall Space Flight Center. The second administrator, James E. Webb, served from 1961 to 1968, from the beginning of the Kennedy administration through the end of the Johnson administration, thus overseeing each of the critical first crewed missions throughout the Mercury and Gemini programs until days before the launch of the first Apollo mission. He also dealt with the Apollo 1 fire.[5] During Webb's administration, NASA developed from a loose collection of research centers to a coordinated organization. He had a key role in creating the Manned Spacecraft Center, later the Johnson Space Center, in Houston. Despite the pressures to focus on the Apollo program, Webb ensured that NASA carried out a program of planetary exploration with the Mariner and Pioneer space programs. Webb was an early champion of space telescopes,[6] like the one that would later bear his name. Encouraged by Kennedy and Johnson, Webb made racial integration a priority for the agency. NASA publicly supported the Civil Rights Act of 1964[7] and initiated a series of innovative programs aimed at increasing black participation[8] including specifically targeting black colleges and schools with recruitment programs.[9] The only person to hold the post twice is James C. Fletcher. During his first administration at NASA, Fletcher was responsible for beginning the Space Shuttle effort, as well as the Viking program that sent landers to Mars. He oversaw the Skylab missions and approved the Voyager space probes and the Apollo–Soyuz Test Project. He returned to NASA following the Challenger disaster.[10] Daniel Goldin held the post for the longest term (nearly 10 years), and is best known for pioneering the "faster, better, cheaper" approach to space programs.[11] The current administrator is entrepreneur and philanthropist Jared Isaacman, who was nominated by President Donald Trump on November 5, 2025.[12] He replaced Sean Duffy, who served as acting administrator from July 9, 2025 to December 17, 2025.[13] Jared Isaacman was nominated by Trump (while he was president-elect) on December 4, 2024,[14] but his nomination was withdrawn on May 31,[15] reportedly because of his connections to Elon Musk and donations towards Democratic, anti-Trump politicians.[16] List of administrators[edit] Status Denotes an acting administrator of NASA No. Portrait Name Took office Left office Days served Presidentserving under 1 T. Keith Glennan August 19, 1958 January 20, 1961 885 Dwight D. Eisenhower - Hugh Dryden January 11, 1961 February 14, 1961 24 John F. Kennedy 2 James E. Webb February 14, 1961 October 7, 1968 1,035 1,781(2,816 total) Lyndon B. Johnson 3 Thomas O. Paine October 8, 1968 March 21, 1969 104 60 Richard Nixon March 21, 1969 September 15, 1970 543(707 total) - George Low September 16, 1970 April 26, 1971 222 4 James C. Fletcher April 27, 1971 May 1, 1977 1,200 895 Gerald Ford 101(3258 total) Jimmy Carter - Alan M. Lovelace May 2, 1977 June 20, 1977 49 5 Robert A. Frosch June 21, 1977 January 20, 1981 1,309 - Alan M. Lovelace January 21, 1981 July 10, 1981 171(220 total) Ronald Reagan 6 James M. Beggs July 10, 1981 December 4, 1985 1,608 - William Graham December 4, 1985 May 11, 1986 158 7 James C. Fletcher May 12, 1986 April 8, 1989 984 78(3258 total) George H. W. Bush - Dale D. Myers April 8, 1989 May 13, 1989 35 8 Richard H. Truly May 14, 1989 June 30, 1989 47 July 1, 1989 March 31, 1992 1,004(1,052 total) 9 Daniel Goldin April 1, 1992 November 17, 2001 294 2,922 Bill Clinton 301(3,517 total) George W. Bush - Daniel Mulville November 19, 2001 December 21, 2001 32 10 Sean O'Keefe December 21, 2001 February 11, 2005 1,148 - Frederick D. Gregory February 11, 2005 April 14, 2005 62 11 Michael D. Griffin April 14, 2005 January 20, 2009 1,377 - Christopher Scolese January 20, 2009 July 17, 2009 178 Barack Obama 12 Charles Bolden July 17, 2009 January 20, 2017 2,744 - Robert M. Lightfoot Jr. January 20, 2017 April 23, 2018 458 Donald Trump 13 Jim Bridenstine April 23, 2018 January 20, 2021 1,003 - Steve Jurczyk January 20, 2021 May 3, 2021 103 Joe Biden 14 Bill Nelson May 3, 2021 January 20, 2025 1,358 - Janet Petro January 20, 2025 July 9, 2025 170 Donald Trump - Sean Duffy July 9, 2025 December 18, 2025 162 15 Jared Isaacman December 18, 2025 Incumbent 116 The line of succession for the administrator of the National Aeronautics and Space Administration is as follows:[17] Deputy Administrator of NASA Associate administrator of NASA Chief of staff of NASA Director of Johnson Space Center (Houston, Texas) Director of Kennedy Space Center (Merritt Island, Florida) Director of Marshall Space Flight Center (Redstone Arsenal, Alabama) In the event of there being no deputy administrator of NASA, the associate administrator will serve as acting administrator. Chairmen of the National Advisory Committee for Aeronautics NASA Chief Scientist ^ "NASA Strategic Management Handbook". Archived from the original on May 10, 2021. Retrieved April 23, 2021. ^ "Jared Isaacman Nominated as Nasa Administrator". December 17, 2025. Retrieved December 17, 2025. ^ "Chapter 2-Roles and Responsibilities". Archived from the original on April 25, 2023. Retrieved April 23, 2021. ^ "T. Keith Glennan biography". NASA. August 4, 2006. Archived from the original on July 8, 2008. Retrieved July 5, 2008. ^ Lambright, W. Henry (1993). "James E. Webb: A Dominant Force in 20th Century Public Administration". Public Administration Review. 53 (2): 95–99. doi:10.2307/976701. JSTOR 976701. ^ "James Webb Space Telescope – Who is James Webb". NASA. June 2022. Archived from the original on January 14, 2024. Retrieved November 29, 2022. ^ Moss, Steven L. (December 1997). NASA and racial equality in the south, 1961–1968. Texas Tech University Libraries (Report). Archived from the original on January 14, 2024. Retrieved November 29, 2022. ^ Paul, Richard (March 2014). "How NASA Joined the Civil Rights Revolution". Air & Space Magazine. Archived from the original on January 14, 2024. Retrieved November 29, 2022. ^ Moss, Steven; Paul, Richard (May 11, 2019). "Wernher von Braun's Record on Civil Rights". PDB. Archived from the original on January 14, 2024. Retrieved November 29, 2022. ^ "James C. Fletcher biography". NASA. Archived from the original on July 6, 2008. Retrieved July 5, 2008. ^ "Daniel S. Goldin biography". NASA. March 12, 2004. Archived from the original on June 15, 2008. Retrieved July 5, 2008. ^ |title=Nomination of Jared Isaacman|https://www.bbc.co.uk/news/articles/c78ze3r1xrro ^ "Sean Duffy to be Acting NASA Administrator". TheGuardian.com. Retrieved February 6, 2025. ^ "Trump Picks Jared Isaacman as NASA Administrator". Bloomberg.com. December 4, 2024. Retrieved December 4, 2024. ^ "White House to pull NASA nominee Isaacman". Archived from the original on May 31, 2025. Retrieved May 31, 2025. ^ Swan, Jonathan; Haberman, Maggie; Chang, Kenneth (May 31, 2025). "Trump to Withdraw Musk's Ally as Nominee for Top NASA Job". The New York Times. ISSN 0362-4331. Retrieved May 31, 2025. ^ "Designation of Officers of the National Aeronautics And Space Administration To Act as Administrator". Federal Register. January 22, 2009. Archived from the original on October 30, 2016. Retrieved October 30, 2016.
+"""
+
+[R7] Vanessa E. Wyche - NASA
+(https://www.nasa.gov/people/vanessa-e-wyche/)
+"""
+Vanessa Wyche is the director of NASA’s Johnson Space Center in Houston, home to America’s astronaut corps, Mission Control Center, International Space Station, Orion, and Gateway Programs. Her responsibilities included a broad range of human spaceflight activities, including development and operation of human spacecraft and NASA astronaut selection and training. Wyche also oversees NASA Johnson’s activities supporting the commercialization of low Earth orbit, supporting the agency’s needs following the transition from the International Space Station in 2030, and led the center’s programs supporting the exploration of the Moon and Mars, including surface system capabilities for human and commercial robotic missions, as well as simulated missions for crews on Mars. During her 35-year career, Wyche has held several other leadership roles including Johnson’s deputy center director, director of Exploration Integration and Science Directorate, flight manager of several Space Shuttle Program missions, and executive officer in the Office of the Administrator, as well as additional center-level technical and program organizations. Most recently, she served for several months in 2025 as acting associate administrator at NASA Headquarters in Washington. A native of South Carolina, Wyche earned a bachelor of science in engineering and master of science in bioengineering from Clemson University and was inducted into the Thomas Green Clemson Academy of Engineers and Scientists in 2019. She received an honorary doctor of science degree from Coastal Carolina University in 2022, as well as an honorary doctor of humane letters degree from Texas Southern University in 2024. Wyche is a member of the National Academy of Engineering. She has numerous awards and recognitions, notably the Presidential Rank Award, two NASA Outstanding Leadership Medals, two NASA Achievement Medals, and she is an AIAA Associate Fellow. Wyche is a passionate promoter of science, technology, engineering, and math (STEM), and serves as a member of American Institute of Physics Foundation board of trustees, Clemson University’s College of Engineering, Computing, and Applied Sciences advisory board, and is a past chair of the Space Center Houston board of directors.
+"""
+
+[R8] Janet Petro - Kennedy Space Center
+(https://www.nasa.gov/people/janet-e-petro/)
+"""
+Janet Petro is the director of NASA’s John F. Kennedy Space Center in Florida, a position held since June 30, 2021. Petro most recently served as NASA’s acting administrator from January to July 2025. In this role, she oversaw the agency, including budget and programs. As NASA Kennedy’s 11th director, Petro manages a team of civil service and contractor employees, determining and implementing center policy and managing and executing the spaceport’s missions and agency program responsibilities. Previously, Petro served as acting director and NASA Kennedy’s deputy director. During her tenure as deputy director, she helped the center transition into a multi-user spaceport, leading cross-agency initiatives with the Federal Aviation Administration and U.S. Air Force to streamline government processes and support commercial space operations to increase government efficiency and limit redundancy. She served a 12-month appointment at NASA Headquarters in Washington, D.C. as the deputy associate administrator and acting director for the Office of Evaluation. From 2017 through January 2020, she served as the Program Executive leading the agency-wide initiative for a phased implementation to restructure all mission enabling functions to ensure efficient and effective support of NASA’s missions. Her assignment to the Mission Support Future Architecture Program (MAP) concluded in January 2020. Prior to joining NASA, Petro served in various management positions for Science Applications International Corp. (SAIC) and McDonnell Douglas Aerospace Corp. At SAIC, Petro held a number of management positions within the corporation’s operations. She interfaced with NASA, the U.S. Air Force, the U.S. Navy, and commercial entities on numerous aerospace and military programs. At McDonnell Douglas Aerospace, Petro advanced from mechanical engineer and payload manager to multiple management positions including program manager for executing a classified, multimillion-dollar U.S. Department of Defense program, to senior manager for Communications and Data Systems Division. Petro is the recipient of numerous service and performance awards. She received the 2022 Dr. Kurt H. Debus Award by the National Space Club Florida Committee for her contributions to America’s aerospace efforts within the state of Florida. She helped lead the senior management team that was awarded the 2019 Samuel J. Heyman Service to America Sammies Management Excellence Medal. She also is the recipient of a President’s Distinguished executive award, and has received the astronaut-selected Silver Snoopy award for outstanding performance for contributing to flight safety and mission success. In 2018, Petro was selected by Florida Governor Rick Scott for induction in the Florida Women’s Hall of Fame. Petro began her professional career as a commissioned officer in the U.S. Army after graduating in 1981 from the U.S. Military Academy at West Point, New York, with a Bachelor of Science degree in engineering. She was in the second class of West Point graduates to include women. Petro also holds a Master of Science degree in business administration from Boston University’s Metropolitan College. Biography last updated July 2025
+"""
+
+[R9] Who is NASA chief Jared Isaacman
+(https://www.floridatoday.com/story/tech/science/space/2026/01/13/who-is-nasa-chief-jared-isaacman/88157249007/)
+"""
+SPACEWho is NASA chief Jared IsaacmanJared Isaacman, a billionaire pioneer of private space travel, was confirmed last month as NASA's 15th administrator. C. A. BridgesFlorida TodayUpdated Jan. 13, 2026, 8:45 p.m. ETJared Isaacman, a billionaire pioneer of private space travel, was confirmed last month as NASA's 15th administrator.As NASA head, Isaacman replaces Bill Nelson, who grew up on the Space Coast and graduated from Melbourne High School. Nelson has served as NASA administrator since April 2021.Who is Jared Isaacman?Jared Taylor Isaacman, 41, has been reaching for the stars in one way or another since high school in Bernards Township, New Jersey, where he and a friend created a company designing websites for local businesses.
+"""
+
+[R10] NASA Leadership - NASA
+(https://www.nasa.gov/nasa-leadership/)
+"""
+Search Suggested Searches Climate Change Artemis Expedition 64 Mars perseverance SpaceX Crew-2 International Space Station View All Topics A-Z HomeMissionsHumans in SpaceEarthThe Solar SystemThe UniverseScienceAeronauticsTechnologyLearning ResourcesAbout NASAEspañol News & Events Multimedia NASA+ Featured3 min readHubble Spies an Active Spiralarticle3 days ago2 min readEarthset From the Lunar Far Sidearticle7 days ago4 min readNASA’s Northrop Grumman CRS-24 Mission Overview article1 week ago Back MissionsSearch All NASA MissionsA to Z List of MissionsUpcoming Launches and LandingsSpaceships and RocketsCommunicating with MissionsArtemisJames Webb Space TelescopeHubble Space TelescopeInternational Space StationOSIRIS-RexHumans in SpaceWhy Go to SpaceAstronautsCommercial SpaceDestinationsSpaceships and RocketsLiving in SpaceEarthExplore Earth ScienceClimate ChangeEarth, Our PlanetEarth Science in ActionEarth MultimediaEarth DataEarth Science ResearchersThe Solar SystemThe SunMercuryVenusEarthThe MoonMarsJupiterSaturnUranusNeptunePluto & Dwarf PlanetsAsteroids, Comets & MeteorsThe Kuiper BeltThe Oort CloudSkywatchingThe UniverseExoplanetsThe Search for Life in the UniverseStarsGalaxiesBlack HolesThe Big BangDark EnergyDark MatterScienceEarth SciencePlanetary ScienceAstrophysics & Space ScienceThe Sun & HeliophysicsBiological & Physical SciencesLunar ScienceCitizen ScienceAstromaterialsAeronautics ResearchHuman Space Travel ResearchAeronauticsScience in the AirNASA AircraftFlight Research InnovationSupersonic FlightAir Traffic SolutionsGreen Aviation TechDrones & YouTechnologyTechnology Transfer & SpinoffsSpace Travel TechnologyTechnology Living in SpaceManufacturing and MaterialsRoboticsScience InstrumentsComputingLearning ResourcesFor Kids and StudentsFor EducatorsFor Colleges and UniversitiesFor ProfessionalsScience for EveryoneRequests for Exhibits, Artifacts, Speakers & FlyoversSTEM Engagement at NASAAbout NASANASA's ImpactsCenters and FacilitiesDirectoratesOrganizationsPeople of NASACareersInternshipsOur HistoryDoing Business with NASAGet InvolvedContactNASA en EspañolCienciaAeronáuticaCiencias TerrestresSistema SolarUniversoNews & EventsNews ReleasesRecently PublishedVideo Series on NASA+Podcasts & AudioBlogsNewslettersSocial MediaMedia ResourcesEventsUpcoming Launches & LandingsVirtual Guest ProgramMultimediaNASA+ImagesNASA LiveNASA AppsPodcastsImage of the Daye-BooksInteractivesSTEM MultimediaNASA Brand & Usage Guidelines Featured 3 min read Hubble Spies an Active Spiral article 3 days ago 2 min read Earthset From the Lunar Far Side article 7 days ago 4 min read NASA’s Northrop Grumman CRS-24 Mission Overview article 1 week ago Highlights 12 min read NASA Answers Your Most Pressing Artemis II Questions article 2 weeks ago 1 min read Artemis II Podcast Series article 3 weeks ago 7 min read NASA Releases Artemis II Moon Mission Launch Countdown article 3 weeks ago Highlights 3 min read Eyeing the Richat Structure article 13 hours ago 2 min read Honoring Alex Goetz, a Landsat Legend article 1 day ago 3 min read Contours of the James Bay Lowlands article 2 days ago Highlights 1 min read Amendment 51: C.6 Development and Advancement of Lunar Instrumentation Not Solicited in ROSES-25 article 3 days ago 3 min read Twin NASA Control Rooms Support Artemis Safety, Success article 1 week ago 4 min read A Volcanic Medley Near Mammoth Lakes article 1 week ago Featured 6 min read ‘Interstellar Glaciers’: NASA’s SPHEREx Maps Vast Galactic Ice Regions article 1 day ago 5 min read NASA Finds Young Stars Dim in X-rays Surprisingly Quickly article 2 days ago 5 min read NASA’s Webb Redefines Dividing Line Between Planets, Stars article 2 days ago Highlights 3 min read Eyeing the Richat Structure article 13 hours ago 6 min read ‘Interstellar Glaciers’: NASA’s SPHEREx Maps Vast Galactic Ice Regions article 1 day ago 3 min read Contours of the James Bay Lowlands article 2 days ago Highlights 1 min read 2025-2026 Dream with Us Design Challenge Winners article 2 days ago 4 min read NASA Selects Finalists in Student Aircraft Maintenance Competition article 3 weeks ago 2 min read NASA’s X-59 Experimental Supersonic Aircraft Makes Second Flight article 4 weeks ago Highlights 1 min read Amendment 51: C.6 Development and Advancement of Lunar Instrumentation Not Solicited in ROSES-25 article 3 days ago 2 min read Snow in the Shadow of the Andes article 1 week ago 3 min read Fires Tear Through Nebraska Grasslands article 2 weeks ago Featured 1 min read Join the Artemis Mission to the Moon article 5 months ago Featured 3 min read Twin NASA Control Rooms Support Artemis Safety, Success article 1 week ago 5 min read Meet NASA’s New Artemis II Science Officers article 2 weeks ago 4 min read NASA Strengthens Artemis: Adds Mission, Refines Overall Architecture article 1 month ago Highlights 11 min read La NASA anuncia la cobertura de la misión lunar Artemis II article 3 weeks ago 15 min read Agenda diaria de la misión a la Luna de Artemis II de la NASA article 1 month ago 6 min read La NASA refuerza Artemis: añade una misión y perfecciona su arquitectura general article 1 month ago About NASA NASA Leadership The agency’s current Administrator, Deputy Administrator, and Associate Administrator. NASA Offices and Directorates about NASA Leadership Jared Isaacman, Administrator Jared “Rook” Isaacman is the 15th Administrator of the National Aeronautics and Space Administration. An entrepreneur and skilled pilot, Isaacman commanded Inspiration4, the first all-civilian orbital spaceflight aboard the Dragon spacecraft. The mission was a major milestone in commercial spaceflight. Full Biography about Jared Isaacman, Administrator Jared Isaacman, Administrator NASA/Bill Ingalls Amit Kshatriya, Associate Administrator Amit Kshatriya is NASA’s associate administrator. Kshatriya serves as the highest-ranking civil servant at the agency and as a senior advisor to the administrator. Kshatriya leads the agency’s 10 center directors, as well as the mission directorate associate administrators at NASA Headquarters in Washington. Full Biography about Amit Kshatriya, Associate Administrator Amit Kshatriya, Associate Administrator NASA/Bill Ingalls Casey Swails, Deputy Associate Administrator Casey Swails is NASA’s deputy associate administrator. Swails is advisor to the associate administrator for day-to-day operations and long-term strategic direction across the agency’s 10 field centers, mission directorates, and staff organizations. Full Biography about Casey Swails, Deputy Associate Administrator Casey Swails, Deputy Associate Administrator NASA KEEP EXPLORING Discover More NASA Directorates Centers and Facilities NASA History Missions Was this page helpful? Δ Was this page helpful? Yes No × Notifications
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

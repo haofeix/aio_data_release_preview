@@ -1,0 +1,119 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch sacramento kings vs charlotte hornets"
+
+Claims:
+[1] "Sacramento Kings vs. Charlotte Hornets game is on Tuesday, March 24, 2026."
+[2] "Sacramento Kings vs. Charlotte Hornets game starts at 7:00 p.m. ET."
+[3] "Sacramento Kings vs. Charlotte Hornets game starts at 4:00 p.m. PT."
+[4] "Sacramento Kings vs. Charlotte Hornets game is on FanDuel Sports Network Southeast (FDSSE)."
+[5] "Sacramento Kings vs. Charlotte Hornets game is on NBC Sports California (NBCS-CA)."
+[6] "Live streaming options for Sacramento Kings vs. Charlotte Hornets include Fubo."
+[7] "Live streaming options for Sacramento Kings vs. Charlotte Hornets include NBA League Pass."
+[8] "Live streaming options for Sacramento Kings vs. Charlotte Hornets include Hulu + Live TV."
+[9] "Local TV for Charlotte is FanDuel Sports Network Southeast (FDSSE)."
+[10] "Local TV for Sacramento is NBC Sports California (NBCS-CA)."
+[11] "Fubo includes regional sports networks."
+[12] "Streaming services for Sacramento Kings vs. Charlotte Hornets include DirecTV Stream."
+[13] "NBA League Pass is for out-of-market viewing of Sacramento Kings vs. Charlotte Hornets."
+[14] "Venue for Sacramento Kings vs. Charlotte Hornets is Spectrum Center (Charlotte, NC)"
+
+Cited text snippets from the AI Overview (for additional context):
+- Kings vs. Hornets: Prediction, How to Watch for Free (3/24/26): "How to Watch Kings vs,(out-of-market)"
+- How to watch Kings vs. Hornets: TV channel and streaming ...: "How to watch Sacramento Kings,Total Under Odds: -110"
+- How to stream the Sacramento Kings – NBC Sports Bay Area & California: "You can watch the Sacramento Kings on,Kings on the NBC Sports app's website"
+- Watch NBA live on Hulu: "With a Hulu + Live TV,on Hulu all season long."
+- How to watch Sacramento Kings at Charlotte Hornets: "Advertisement-,Sacramento Kings at Charlotte Hornets: Odds, Injury Updates, How,with a 126-122 win."
+Reference Sources:
+
+[R1] How to watch Kings vs. Hornets: TV channel and streaming options for March 24
+(https://www.nytimes.com/athletic/7143693/2026/03/24/how-to-watch-kings-vs-hornets-tv-channel-and-streaming-options-for-march-24/)
+"""
+The Charlotte Hornets (37-34) hope to extend a three-game home winning streak when they host the Sacramento Kings (19-53) on March 24, 2026.How to watch Sacramento Kings vs. Charlotte Hornets Venue: Spectrum Center Time: 7 p.m. ET Streaming: Fubo (Stream now) TV: FDSSE, NBCS-CA Watching in person? Get tickets on StubHub. Sacramento vs. Charlotte odds Spread: Charlotte -17.5 (-115), Sacramento +17.5 (-105) Favorite Moneyline: Charlotte -2000 Underdog Moneyline: Sacramento +1000 Total: 232.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsHornetsKon Knueppel: Probable (Back), Tidjane Salaun: Out (Calf), Pat Connaughton: Questionable (Illness)KingsDrew Eubanks: Out For Season (Thumb), Zach LaVine: Out For Season (Finger), Domantas Sabonis: Out For Season (Back), Keegan Murray: Out (Ankle), De’Andre Hunter: Out For Season (Eye), Precious Achiuwa: Out (Back), Russell Westbrook: Out (Foot), Killian Hayes: Out (Toe), Nique Clifford: Out (Foot)Stats to know The Hornets average 116.1 points per game (just 4.9 fewer points than the 121.0 the Kings allow). The Kings’ 111.0 points per game are only 1.1 fewer points than the 112.1 the Hornets surrender to opponents. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Mar 26, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R2] Sacramento Kings at Charlotte Hornets: Odds, Injury Updates, How to Watch and More
+(https://sports.yahoo.com/articles/sacramento-kings-charlotte-hornets-odds-133853404.html)
+"""
+Date: March 24, 2026Time: 7 p.m. ETVenue: Spectrum CenterTV: FDSSEStreaming: Check local listingsRadio: 610 AM, Sports 1140 KHTKBuy tickets: Buy Kings at Hornets tickets on StubHubThe Kings have enjoyed a four-game homestand but will soon have to dust off their road jerseys. They will head out to take on the Charlotte Hornets at 7:00 p.m. on Tuesday at Spectrum Center. The Kings must know they'll be fighting an uphill battle given the 17-point spread they're up against.AdvertisementThe away team had wound up with the win the last three times the Kings and the Nets have met, but the home crowd finally got their W on Sunday. The Kings snuck past the Nets with a 126-122 win.The Kings' success was spearheaded by the efforts of Malik Monk, who went 7-for-13 from beyond the arc en route to 32 points and 6 assists, and Maxime Raynaud, who dropped a double-double with 22 points and 10 rebounds. As a matter of fact, that's the most points Monk has scored all season.The Kings were looking sharp from deep and finished the game having made 14 of their 27 three-pointers. That's their best three-point shooting percentage since January 12th.AdvertisementMeanwhile, the Hornets waltzed into their game on Saturday with two straight wins...and they left with three. They put the hurt on Memphis with a sharp 124-101 victory. Charlotte was heavily favored coming into this contest, and the results showcase why.The Hornets' win was the result of several impressive offensive performances. One of the most notable came from LaMelo Ball, who posted 29 points and 3 steals. Brandon Miller was another key player, shooting 66.7% (8-12) from the field on his way to 22 points and 5 rebounds.Charlotte has now won five of their last six games at home. That's provided a massive bump to their 37-34 record this season. The wins were due in large part to their defensive effort, having only surrendered 104.8 points on average over those games. As for Sacramento, their victory bumped their record up to 19-53.AdvertisementSacramento Kings at Charlotte Hornets Odds, Line and SpreadBetting lines as of 03/24/2026 at 9:28 AM ET. Odds subject to change.Moneyline (ML): Hornets -1639 | Kings +906Against the spread (ATS): Hornets -17 (-110) | Kings +17 (-110)Over/Under (O/U): 229.5 (O: -110 | U: -110)Sacramento Kings Injury ReportDrew Eubanks (Thumb) - Out for the SeasonDomantas Sabonis (Back) - Out for the SeasonPrecious Achiuwa (Back) - day-to-dayIsaiah Stevens (Ankle) - day-to-dayKeegan Murray (Ankle) - outDe'Andre Hunter (Eye) - Out for the SeasonDaeqwon Plowden (Foot) - day-to-dayKillian Hayes (Toe) - day-to-dayNique Clifford (Foot) - outZach LaVine (Finger) - Out for the SeasonCharlotte Hornets Injury ReportKon Knueppel (Back) - day-to-dayTidjane Salaün (Calf) - outKings vs. Hornets: Schedule ImpactKings: Playing on normal rest (1 day off). Record in this situation this season: 9-34SAC: lost 16 of last 18 games with regular restHornets: Playing on long rest (2 days). Record in this situation this season: 7-10Kings vs. Hornets: Head-to-Head in 2025-26 SeasonCharlotte Hornets lead the season series 1-0Kings vs. Hornets: AnalysisWhy the Kings Can Win: CHA: 1-6 ATS in last 7 games against the Western Conference at homeWhy the Hornets Can Win: CHA: covered 3 straight games as the favoriteAdvertisementDisclosure: Some or all of this content may have been generated by AI. While we strive for accuracy, AI can occasionally produce incorrect information. If you buy something via one of our links, we may earn a commission.This story was originally published by Athlon Sports on Mar 24, 2026, where it first appeared in the NBA section. Add Athlon Sports as a Preferred Source by clicking here.
+"""
+
+[R3] How to watch Kings vs. Hornets: TV channel and streaming options for March 24
+(https://www.nytimes.com/athletic/7143693/2026/03/24/kings-vs-hornets-stream-how-to-watch-march-24/)
+"""
+The Charlotte Hornets (37-34) hope to extend a three-game home winning streak when they host the Sacramento Kings (19-53) on March 24, 2026.How to watch Sacramento Kings vs. Charlotte Hornets Venue: Spectrum Center Time: 7 p.m. ET Streaming: Fubo (Stream now) TV: FDSSE, NBCS-CA Watching in person? Get tickets on StubHub. Sacramento vs. Charlotte odds Spread: Charlotte -17.5 (-115), Sacramento +17.5 (-105) Favorite Moneyline: Charlotte -2000 Underdog Moneyline: Sacramento +1000 Total: 232.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsHornetsKon Knueppel: Probable (Back), Tidjane Salaun: Out (Calf), Pat Connaughton: Questionable (Illness)KingsDrew Eubanks: Out For Season (Thumb), Zach LaVine: Out For Season (Finger), Domantas Sabonis: Out For Season (Back), Keegan Murray: Out (Ankle), De’Andre Hunter: Out For Season (Eye), Precious Achiuwa: Out (Back), Russell Westbrook: Out (Foot), Killian Hayes: Out (Toe), Nique Clifford: Out (Foot)Stats to know The Hornets average 116.1 points per game (just 4.9 fewer points than the 121.0 the Kings allow). The Kings’ 111.0 points per game are only 1.1 fewer points than the 112.1 the Hornets surrender to opponents. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Mar 26, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R4] Kings Streaming
+(https://www.nbcsportsbayarea.com/streaming-faqs-kings/)
+"""
+Here’s all the info to watch and stream Domantas Sabonis, Keegan Murray and the Sacramento Kings: How do I stream the Sacramento Kings online? If you live in the Kings team territory and have a provider that includes NBC Sports California, you can stream the Kings on the NBC Sports app or right here. Can I stream the Kings if I do not have cable? If you do not have cable, NBC Sports California is included on DirecTV Stream, FuboTV, Hulu, Peacock and YouTube TV. What if the stream is not working? If you are experiencing technical issues with the stream, please visit help.nbc.com, where you can submit a question, find additional tutorials and FAQs, and learn more about streaming all of the content from NBC’s family of networks. Can I stream the Kings in the NBC Sports Bay Area & CA app? Authenticated live streaming for Kings’ games on NBC Sports California is exclusively on the NBC Sports app. The NBC Sports Bay Area & CA app will link to the NBC Sports app to make it easy to find. Keep checking the NBC Sports Bay Area & CA app for all the latest news, highlights, and analysis. When do the Kings play? You can find the Sacramento Kings’ full schedule here. Stay with NBC Sports California and follow us on Twitter and Instagram for all of your Kings coverage throughout the season.
+"""
+
+[R5] Watch NBA live on Hulu
+(https://help.hulu.com/article/hulu-nba-availability)
+"""
+Oct 01, 2025 With a Hulu + Live TV subscription, you can watch and record live NBA basketball games on Hulu all season long. Log in to Hulu on any device that supports Live TV, and you'll have instant access to the live games airing through the local and regional sports networks available in your area — as well as through national networks like ABC, ESPN, ESPN2, and TNT. Select one of the options below to learn more about watching NBA on Hulu: What do I need to watch NBA on Hulu?What NBA games are available on Hulu? How do I find NBA games on Hulu? What you’ll need to watch NBA on Hulu To get in on the NBA action, you’ll need the following: Live TV subscriptionSupported deviceHome networkLive TV network coverage * *Enter your ZIP Code to confirm the network coverage in your region. BACK TO TOP Determining NBA game availability Game day availability can vary and is subject to regional restrictions and blackouts — out-of-market games may be unavailable. These restrictions are determined by sports leagues and other rights holders. With Hulu + Live TV, you can confirm if an upcoming game is unavailable or blacked out by using the Live Guide. BACK TO TOP How to find NBA games on Hulu Hulu + Live TV subscribers can go to the NBA Games Sports collection to view live games and see what match-ups are airing next (you can also search the Hulu app for the "NBA Basketball" series page). To keep track of your favorite teams and game start times, add them to My Stuff and enable push notifications on your mobile devices. BACK TO TOP
+"""
+
+[R6] Kings vs. Hornets: Prediction, How to Watch for Free (3/24/26)
+(https://globelynews.com/sports/kings-vs-hornets-prediction-how-to-watch-for-free-3-24-26/)
+"""
+The Sacramento Kings (19–53) face the Charlotte Hornets (37–34) tonight at Spectrum Center in Charlotte. Charlotte enters on a three-game winning streak and is making a late push for an automatic playoff berth. Currently sitting 10th in the conference and holding the final play-in position, the Hornets trail the sixth-place Atlanta Hawks by just 2.5 games, keeping the final guaranteed postseason spot within reach with 11 games remaining. The Hornets have boosted their standing with dominant wins over the Miami Heat and Orlando Magic — teams directly ahead of them in the race — scoring at least 130 points in both contests. They followed that stretch with a convincing 124–101 victory over the Memphis Grizzlies on Saturday. Charlotte is averaging 130.0 points per game during its three-game surge, winning by an average margin of 24.0 points. Against Memphis, LaMelo Ball led the way with 29 points on 9-of-19 shooting, including seven made three-pointers, while Brandon Miller added 22 points and knocked down five shots from beyond the arc. Charlotte shot 53% from the field and 42% from deep while controlling the glass with a 49–34 rebounding advantage. Sacramento, meanwhile, comes in off a 126–122 win over the Brooklyn Nets on Sunday, its fifth victory in the last eight games. Malik Monk paced the Kings with 32 points — including 10 in the final five minutes — while Maxime Raynaud recorded a 22-point, 10-rebound double-double. Precious Achiuwa continued his strong play in the starting lineup with 14 points and 15 rebounds. Expect a blowout in this meeting between one of the league’s worst defenses and one of its most efficient offenses as of late. Final Score Prediction: Charlotte Hornets 131, Sacramento Kings 108 Injury Report Sacramento Kings Killian Hayes — Out (Left foot soreness) Precious Achiuwa — Out (Back) Nique Clifford — Out (Left mid-foot sprain) Russell Westbrook — Out (Foot) Isaiah Stevens — Day-To-Day (Right ankle soreness) Drew Eubanks — Out (Torn UCL — left thumb) Keegan Murray — Out (Ankle) De’Andre Hunter — Out (Eye surgery) Domantas Sabonis — Out (Torn left meniscus) Zach LaVine — Out (Right hand surgery) Charlotte Hornets Pat Connaughton — Day-To-Day (Illness) Tidjane Salaun — Out (Calf) Kon Knueppel — Day-To-Day (Low back soreness) How to Watch Kings vs. Hornets Tip-off for tonight’s Kings-Hornets game is set for 7:00 PM Eastern / 4:00 PM Pacific at the Spectrum Center in Charlotte. The game airs live locally on FanDuel Sports Network Southeast and NBC Sports California. Out-of-market viewers can stream the matchup on NBA League Pass for free on Amazon Prime Video with a 7-day free trial here. Amazon also offers a discounted subscription that starts at $12.74 for the first two months (then $16.99/month). The subscription also includes access to NBA TV. Fans can also choose a Team Pass to follow one team’s games for $13.99 per month. Sacramento Kings vs. Charlotte Hornets Date: Tuesday, March 24, 2026 Time: 7:00 PM Eastern / 4:00 PM Pacific Venue: Spectrum Center TV: FanDuel Sports Network Southeast, NBC Sports California Streaming: NBA League Pass (out-of-market)
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,114 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "weather today"
+
+Claims:
+[1] "For the Washington, DC area on Monday, March 16, 2026, expect a high of 63°F."
+[2] "Heavy, windy showers expected for the Washington, DC area on Monday, March 16, 2026."
+[3] "Potential thunderstorms in the late afternoon and evening for the Washington, DC area on Monday, March 16, 2026."
+[4] "100% chance of rain for the Washington, DC area on Monday, March 16, 2026."
+[5] "20-30 mph winds for the Washington, DC area on Monday, March 16, 2026."
+[6] "Weather clears after midnight for the Washington, DC area after Monday, March 16, 2026."
+[7] "Temperatures falling after midnight for the Washington, DC area after Monday, March 16, 2026."
+[8] "Highs in the low 60s for the Washington, DC area on Monday, March 16, 2026."
+[9] "Temperatures falling to 31°F tonight for the Washington, DC area on March 16, 2026."
+[10] "30-55 mph gusts possible tonight for the Washington, DC area on March 16, 2026."
+[11] "Showers decreasing after 2 AM tonight for the Washington, DC area on March 16, 2026."
+[12] "Highs around 42°F to 44°F for the Washington, DC area on Tuesday, March 17, 2026."
+[13] "Temperatures falling into the 30s at night for the Washington, DC area on March 17, 2026."
+[14] "March 16, 2026 is Monday."
+[15] "March 17, 2026 is Tuesday."
+[16] "March 17 is St. Patrick's Day."
+[17] "There is a severe weather risk in Virginia and North Carolina."
+[18] "Severe weather risk in Virginia and North Carolina with potential for damaging winds."
+[19] "Severe weather risk in Virginia and North Carolina with potential for light hail."
+
+Cited text snippets from the AI Overview (for additional context):
+(No cited text snippets available)
+Reference Sources:
+
+[R1] National Weather Service
+(https://forecast.weather.gov/MapClick.php?CityName=Vint+Hill+Farms+Station&state=VA&site=LWX&textField1=38.7452&textField2=-77.6765&e=0)
+"""
+TonightMostly clear, with a low around 53. West wind 3 to 6 mph. ThursdayA slight chance of showers between 3pm and 5pm, then a slight chance of showers and thunderstorms after 5pm. Sunny, with a high near 81. Calm wind becoming northwest 5 to 7 mph in the morning. Chance of precipitation is 20%.Thursday NightA slight chance of showers and thunderstorms before 8pm, then a slight chance of showers between 8pm and 2am. Partly cloudy, with a low around 56. Calm wind. Chance of precipitation is 20%.FridayA chance of showers and thunderstorms after 2pm. Mostly sunny, with a high near 81. Light north wind. Chance of precipitation is 50%.Friday NightA chance of showers and thunderstorms. Mostly cloudy, with a low around 52. Light southeast wind. Chance of precipitation is 40%.SaturdayA chance of showers, then showers and possibly a thunderstorm after 2pm. High near 71. Chance of precipitation is 80%.Saturday NightShowers. Low around 49. Chance of precipitation is 80%.SundayShowers likely, mainly before 8am. Mostly cloudy, with a high near 65. Chance of precipitation is 60%.Sunday NightPartly cloudy, with a low around 45.MondayMostly sunny, with a high near 71.Monday NightA chance of showers. Mostly cloudy, with a low around 52. Chance of precipitation is 50%.TuesdayShowers likely. Mostly cloudy, with a high near 71. Chance of precipitation is 70%.Tuesday NightA chance of showers. Mostly cloudy, with a low around 51. Chance of precipitation is 50%.WednesdayA chance of showers. Partly sunny, with a high near 74. Chance of precipitation is 30%.
+"""
+
+[R2] Washington, DC Hourly Weather Forecast
+(https://www.wunderground.com/hourly/us/dc/washington#:~:text=Washington%2C%20DC%20Hourly%20Weather%20Forecaststar_ratehome,0%20in)
+"""
+Elev 118 ft, 38.9 °N, 77.04 °W Washington, DC Hourly Weather Forecaststar_ratehome71 °F Logan Circle Station|ReportReport StationThank you for reporting this station. We will review the data in question.You are about to report this weather station for bad data. Please select the information that is incorrect.|ChangeCurrent StationPersonal Weather StationLocation: Washington, DCElevation: 118ft Today Hourly 10-Day Calendar History Wundermap Hourly Forecast for Today, Wednesday 04/22Hourly for Today, Wed 04/22A clear sky. Low 57F. Winds WNW at 5 to 10 mph.Sunny along with a few clouds. High 83F. Winds NW at 5 to 10 mph.Top Video Stories[00:00:54]keyboard_arrow_leftkeyboard_arrow_right KJPN Station HistoryTemperatureRain/Snow DepthPrecipitation0 °in4.5 °in - TemperatureTop Video Stories[00:00:54]keyboard_arrow_leftkeyboard_arrow_rightAstronomyActual Time6:21 AM 7:53 PM Civil Twilight 5:53 AM8:21 PM Nautical Twilight 5:19 AM8:55 PM Astronomical Twilight 4:43 AM9:31 PM Length of Visible Light 14 h 27 m Tomorrow will be 2 minutes 18 seconds longer waxing crescent38% of the Moon is Illuminated May 1Full MoonMay 9Waning Half Last QtrMay 16New MoonMay 23Waxing Half First QtrStationsNearby Weather StationsStation LocationTempWindchillHeat IndexDew PointHumidityWindPrecip.Elev.Updated Capital City 63.0 °F63.0 °F63.0 °F50.0 °F62.6 °%SE at 4.6 °mph0.0 °in-- 9:20 pm EDT Ronald Reagan Washington Ntl 69.1 °F69.1 °F69.1 °F51.1 °F52.6 °%SW at 5.8 °mph0.0 °in-- 9:20 pm EDT Brookland, Washington, DC 65.3 °F65.3 °F65.3 °F54.1 °F67.0 °%----184.0 °ft 9:17 pm EDT Capitol Hill, Washington, DC 69.3 °F69.3 °F69.3 °F55.8 °F62.0 °%SSW at 3.4 °mph--69.0 °ft 9:19 pm EDT Green Acres, Bethesda, MD 60.1 °F60.1 °F60.1 °F53.0 °F77.0 °%----72.0 °ft 9:15 pm EDT Hawthorne, Washington, DC 61.9 °F61.9 °F61.9 °F54.0 °F75.0 °%----335.0 °ft 9:16 pm EDT Ivy City, Washington, DC 61.3 °F61.3 °F61.3 °F47.8 °F61.0 °%----157.0 °ft 9:20 pm EDT Michigan Park, Washington, DC 67.0 °F67.0 °F67.0 °F55.2 °F66.0 °%WNW at 0.6 °mph--38.0 °ft 9:18 pm EDT NoMa, Washington, DC 63.5 °F63.5 °F63.5 °F51.1 °F64.0 °%----49.0 °ft 9:15 pm EDT NoMa, Washington, DC 69.0 °F69.0 °F69.0 °F54.1 °F59.0 °%WSW at 1.6 °mph--18.0 °ft 9:24 pm EDT
+"""
+
+[R3] Weather Forecast and Conditions for Meadowbrook, Virginia 23234 | weather.com
+(https://weather.com/weather/today/l/Meadowbrook+VA?canonicalCityId=fa1b904e29210a82c694269270972daf56d2f96b0b5c258947f5aaf88b501cce)
+"""
+Search for a locationSearchAdvertisementMeadowbrook, Virginia 23234 WeatherNow77°76°75°SunnyFeels Like 75° · Day 81° · Night 52°WindWindArrow Down13 mph SSWhumidityHumidity42%Air Quality64 - ModerateDew PointDew Point50°pressurePressureArrow Down30.02 inUv IndexUV Index6 of 11ViewVisibility10 miWaxing GibbousMoon PhaseWaxing GibbousSunriseSunrise7:04 amSunsetSunset7:27 pmHourly WeatherSun and clouds mixedHumidityWindPrecipitation2 pm77°Mostly SunnyRain Drop0%Rain Drop0%40%Arrow Down13 mph0 inPlusMinusFeels LikeFeels Like77°Rain DropRain Amount0 inWindWindArrow Down13 mph SWpressurePressure30.0 Cloud CoverCloud Cover20%Dew PointDew Point51°Uv IndexUV Index6 of 11ViewVisibility10 miFoggyAir Quality64 - ModeratehumidityHumidity40%Wind GustWind Gust22 mph3 pm78°Partly CloudyRain Drop0%Rain Drop0%39%Arrow Down14 mph0 inPlusMinus4 pm79°Partly CloudyRain Drop0%Rain Drop0%37%Arrow Down15 mph0 inPlusMinus5 pm80°Partly CloudyRain Drop0%Rain Drop0%37%Arrow Down14 mph0 inPlusMinusNext 48 HoursTrending NowSevere Thunderstorms, Including Hail And Tornadoes, Possible In Midwest AgainJoin Us Live Now: Ask Our Meteorologist About Weather MythsMuch Needed Pattern Change Brings Relief To WestVideo Player1:29Little Legs, Big Snow, Tons Of HeartVideo Player0:18Severe Thunderstorms, Including Hail And Tornadoes, Possible In Midwest AgainJoin Us Live Now: Ask Our Meteorologist About Weather MythsMuch Needed Pattern Change Brings Relief To WestVideo Player1:29Little Legs, Big Snow, Tons Of HeartVideo Player0:18Daily ForecastToday81° / 65°Partly CloudyRain Drop0%Arrow Down15 mphPlusMinusThu 26 | Day81°Rain Drop0%WindSW 15 mphSun and clouds mixed. High 81F. Winds SW at 10 to 20 mph.humidityHumidity39%Uv IndexUV Index6 of 11SunriseSunrise7:04 amSunsetSunset7:27 pmThu 26 | Night65°Rain Drop3%WindSW 14 mphA few passing clouds. Low near 65F. Winds SW at 10 to 20 mph.humidityHumidity56%Uv IndexUV Index0 of 11moonriseMoonrise12:43 pmmoonriseMoonset3:21 amWaxing GibbousWaxing GibbousFri 2773° / 35°PM RainRain Drop97%Arrow Down13 mphPlusMinusSat 2852° / 30°SunnyRain Drop1%Arrow Down14 mphPlusMinusSun 2961° / 48°Partly CloudyRain Drop2%Arrow Down12 mphPlusMinusNext 10 DaysNowMapbox Logo© 2026 Mapbox© OpenStreetMap|Improve this mapAdvertisementAdvertisementTravelAnd The Best State For An Adventure Vacation Is ...Video Player0:42California Wildflower Superblooms Are Back In 2026Video Player0:433 Big Changes Coming To National Parks In 2026Video Player0:42‘Rare And Remarkable’: Lake Superior Ice Caves ReopenVideo Player0:30And The Best State For An Adventure Vacation Is ...Video Player0:42California Wildflower Superblooms Are Back In 2026Video Player0:433 Big Changes Coming To National Parks In 2026Video Player0:42‘Rare And Remarkable’: Lake Superior Ice Caves ReopenVideo Player0:30Home & GardenDon’t Make These Mistakes When Planting Your Spring GardenVideo Player0:35When To Worry About Mold Growing In Your HomeVideo Player0:38Get Ahead For Spring With Essential Winter Garden TipsVideo Player0:30Why Your Home's Air Might Be More Polluted Than OutdoorsVideo Player1:04Don’t Make These Mistakes When Planting Your Spring GardenVideo Player0:35When To Worry About Mold Growing In Your HomeVideo Player0:38Get Ahead For Spring With Essential Winter Garden TipsVideo Player0:30Why Your Home's Air Might Be More Polluted Than OutdoorsVideo Player1:04AdvertisementAdvertisementSponsored ContentUkraine Still Needs UsWorld Central Kitchen | SponsoredSponsoredDonate NowHere’s The Average Price of a 6-Hour Gutter UpgradeHomeBuddyUndoHere's What A New Gutter System Should Cost You In AshburnHomeBuddyUndoTemu Clearance SaleTEMUUndo12 Things To Cut When Money Gets TightGreensproutUndo9 Out Of 10 American Kitchens Have This Toxic Pan — Here’s The One That’s SafeKitchen-ExpertsUndoIf You're Collecting Under $3950 In Ss a Month: You're Eligible for These 10 DiscountsSilverPennyUndoUS seniors eligible for walk-in tubsForbesUndo12 Ways To Stretch Your Budget In RetirementGreensproutUndoAdvertisementAir Quality Index64Moderate Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.See detailsAir Quality IndexHealth & ActivitiesgrassSeasonal Allergies and Pollen Count ForecastTree pollen is high in your areaChevron RightFluCold & Flu ForecastFlu risk is high in your areaChevron RightAdvertisementEditor's PickWhy Your Pet Is Eating GrassBelieve it or not, your pet doesn’t eat grass as an appetizer salad course before their morning kibble. There are actually multiple potential reasons your dog or cat might be eating grass, including just plain, old animal instinct. They also could be trying to supplement their diet with missing nutrients. While it might seem harmless, eating grass can expose your pet to dangerous chemicals and bacteria.Video Player0:35AdvertisementProduct Reviews & DealsEmbracing Spring: It's The Perfect Time to Plan Your GardenAdvertisementStay SafeKnow The Difference Between Tornado Watches And WarningsVideo Player0:37Advertisement
+"""
+
+[R4] Severe storms batter Virginia & North Carolina, prompting tornado, thunderstorm warnings
+(https://www.wtkr.com/weather/todays-forecast/first-warning-forecast-widespread-severe-weather-threat-today#:~:text=This%20is%20a%20lower%20confidence,Weather%20updates%20on%20social%20media:)
+"""
+Severe storms are battering areas of Hampton Roads, with trees falling, thunderstorms warnings and even two tornado warnings occurring Monday afternoon. Hazardous weather conditions are arriving to Virginia and North Carolina on Monday, leading to multiple warnings being issued by weather authorities.As of 4:00 p.m., multiple tornado warnings and severe thunderstorm warnings were being issued in counties in and around Hampton Roads and northeastern North Carolina. All seven Hampton Roads cities will be under tornado watch until 7 p.m.A tornado warning was issued for Camden and Pasquotank Counties from around 3 p.m. until 3:30 p.m. Earlier, a tornado warning was issued for Perquimans and Chowan Counties from around 1 p.m. to 1:15 p.m.In Norfolk, a News 3 viewer sent us the below photo from the Ocean View neighborhood facing the bay showing a storm over the water. The photo was taken around 2:15 p.m. News 3 viewer Multiple videos of downed trees in Virginia Beach were sent to News 3.Watch: Video taken by Oscar Acevedo shows downed trees obstructing paths in Great Neck area Video taken by Oscar Acevedo shows downed trees in Great Neck area A massive tree toppled over onto a house at the corner of Oconee Avenue and Julie Drive in the Lynnhaven area of Virginia Beach Monday afternoon. Sent to News 3 Crews are on scene assessing the damage.Watch: Video taken by Tracy Vertelka shows broken trees near London Bridge Multiple broken trees spotted near London Bridge in VB On Fair Lady road in Virginia Beach, News 3 reporter Colter Anstaett saw Dominion Energy crews working to clean up a seriously damaged tree in front of a home. News 3 Meteorologist Tony Nargi's First Warning Forecast Today we have a very rare moderate (level 4/5) risk for severe weather in parts of our region. The last time we had a moderate risk was almost 5 years ago! This storm means business, and we are expecting a robust environment for severe storms that will lead to multiple rounds of severe weather. Temperatures will start in the upper 60s today and reach the low to mid 70s this afternoon. Winds will be out of the S at 20-30 mph, with gusts up to 40 mph OVERVIEW: Early this morning we'll see occasional showers and non-severe storms. Our severe threat will increase throughout the morning, with the severe threat window opening around 9 or 10 am. Severe storms will increase coverage by the early afternoon, with multiple rounds of severe storms possible. This means that once a storm has passed, that doesn't mean the threat is over. Later in the afternoon and through the evening, organized lines of multiple storms will likely form squall lines. The threat ends this evening as the cold front pushes though between 9 PM and midnight. LATE AM/EARLY PM: The main threat during the first half of our severe weather window will be damaging wind gusts and tornadoes. This is a lower confidence, higher intensity forecast due to the threat of supercell thunderstorms. Though the chances of a supercell forming are relatively low, if one or multiple supercells form, we could see strong (EF2+) tornadoes. Strong wind gusts and hail will still be possible during this window as well, make sure you have a way to receive severe weather warnings. LATE PM/EVENING: After around 3 PM storms will begin to organize into squall lines, with the main threat shifting to damaging wind gusts, with weaker embedded tornadoes possible. This is a higher confidence forecast, with lower peak intensity (essentially, the worst-case scenario isn't as bad). Gusts up to 80 mph will be possible during this period, check live radar before your afternoon commute and don't drive through severe storms. Things calm down on Tuesday with mostly sunny skies and cooler weather expected. Temperatures drop into the mid 40s Wednesday before bouncing back to end the week. We'll see mainly dry weather for the rest of the week. Weather updates on social media:FacebookInstagramX (Twitter)
+"""
+
+[R5] Rough weather early today
+(https://www.wtnh.com/weather/rough-weather-today-tonight/#:~:text=Downpours/scattered%20thunderstorms%20at%20times,Highs%20near%2050.)
+"""
+Downpours/scattered thunderstorms at times through the wee hours of the morning as a powerful storm system approaches. A Flood Watch and Wind Advisory is in effect through tonight for the entire state of Connecticut due to the expected combination of strong, damaging winds and periods of heavy rain. Local street, highway, basement, stream, and River Flooding are possible, along with Minor Coastal Flooding at times of high tide between 9 pm and midnight with large waves crashing onshore! Also, some Power Outages are likely. Mild, muggy, and foggy conditions too! Clearing and chilly for Tuesday, St. Patrick’s Day. Early this morning: Bands of heavy rain & possible thunderstorms with very gusty winds through coming through. Gusts 30-55MPH and isolated 60MPH causing some power outages. Mild 50s to low 60s and falling fast toward sunrise. Today (St Patrick’s Day): AM sun to more clouds for the afternoon, windy and turning colder with temperatures falling through the 40s into the 30s. Tomorrow: Mostly sunny and cold. Highs only in the upper 30s. Thursday: Some sun, chilly with highs in the mid 40s. Friday: Spring starts at 10:46 AM! Mostly sunny. More seasonable. Highs near 50. Saturday: Clouds increase with later day showers possible. High in the low-mid 50s. Sunday: Lots of clouds with more showers. Cooler. Highs in the mid 40s. Monday: Mostly sunny, windy and colder. Highs upper 30s. Tuesday: Mostly sunny and cool. Highs mid 40s.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

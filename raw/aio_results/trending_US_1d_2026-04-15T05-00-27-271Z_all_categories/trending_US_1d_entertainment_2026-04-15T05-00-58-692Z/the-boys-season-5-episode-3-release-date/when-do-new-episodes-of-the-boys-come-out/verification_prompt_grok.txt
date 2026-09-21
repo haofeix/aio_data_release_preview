@@ -1,0 +1,107 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "when do new episodes of the boys come out"
+
+Claims:
+[1] "New episodes of The Boys season 5 are released weekly on Wednesdays on Amazon Prime Video."
+[2] "The Boys season 5 had a two-episode premiere on April 8, 2026."
+[3] "The Boys season 5 consists of 8 episodes."
+[4] "New episodes of The Boys season 5 drop at 12 a.m. PT / 3 a.m. ET."
+[5] "The Boys season 5 series finale is on May 20, 2026."
+[6] "Episodes 1 and 2 of The Boys Season 5 released on April 8, 2026."
+[7] "Episodes 1 and 2 of The Boys Season 5 are available now."
+[8] "Episode 3 of The Boys Season 5 releases on April 15, 2026."
+[9] "Episode 4 of The Boys Season 5 releases on April 22, 2026."
+[10] "Episode 5 of The Boys Season 5 releases on April 29, 2026."
+[11] "Episode 6 of The Boys Season 5 releases on May 6, 2026."
+[12] "Episode 7 of The Boys Season 5 releases on May 13, 2026."
+[13] "Episode 8 of The Boys Season 5 releases on May 20, 2026."
+[14] "Episode 8 of The Boys Season 5 is the finale."
+[15] "The Boys season 5 follows the continued conflict between Billy Butcher and Homelander."
+[16] "The Boys streams exclusively on Prime Video."
+
+Cited text snippets from the AI Overview (for additional context):
+- 'The Boys' season 5 release schedule - Entertainment Weekly: "Jasper Savage/Prime. The Boys season 5 debuted,first two episodes on Wednesday, April 8."
+- The Boys Season 5: Episode Release Schedule Confirmed - IGN: "The Boys will once again be streaming,April 8, 2026, at 12am PT/3am ET."
+- The Boys: S5 - FINAL TRAILER 'RECKONING' | Prime Video: "The Boys final season is Season 5,,by weekly releases until the May 20"
+Reference Sources:
+
+[R1] When do new episodes of 'The Boys' season 5 come out? See the full release schedule
+(https://ew.com/the-boys-season-5-release-schedule-11945847)
+"""
+Tomer Capone as Frenchie, Karen Fukuhara as Kimiko, Laz Alonso as M.M., Erin Moriarty as Annie, and Jack Quaid as Hughie in 'The Boys' season 5. Credit: Jasper Savage/Prime Video The Boys season 5 premiered April 8 on Prime Video.It consists of eight episodes, with new ones dropping weekly on Wednesdays after a two-episode premiere.The final season concludes on May 20. It's the end of the line for The Boys. The fifth and final season of Amazon Prime Video's superhero satire kicked off on April 8 with a two-episode premiere. With the series heading into its endgame, creator Eric Kripke told Entertainment Weekly that wrapping things up was no easy task. "It's so hard to land the plane in a way that's satisfying, and people retroactively will judge the series based on how they feel about the finale," he said, adding that this pushed him to "work twice as hard to get it right and not take anything for granted." The fans will be the ultimate judges, but for now here's everything you need to know about The Boys season 5, including its episode release schedule. When does The Boys season 5 come out? Karen Fukuhara as Kimiko, Karl Urban as Butcher, and Erin Moriarty as Annie in 'The Boys' season 5. Jasper Savage/Prime The Boys season 5 debuted its first two episodes on Wednesday, April 8. What is The Boys season 5 release schedule? (Left to right) Tomer Capone as Frenchie, Karen Fukuhara as Kimiko, and Laz Alonso as M.M. in 'The Boys' season 5. Prime Video New episodes of The Boys hit Prime Video every Wednesday at 3 a.m. ET, leading up to the big series finale on May 20. Here's the full release schedule for season 5: April 8: Episode 1April 8: Episode 2April 15: Episode 3April 22: Episode 4April 29: Episode 5May 6: Episode 6May 13: Episode 7May 20: Episode 8 What is The Boys season 5 about? Jensen Ackles as Solider Boy and Antony Starr as Homelander in 'The Boys' season 5. Jasper Savage/Prime Video In the fifth and final season of The Boys, Homelander (Antony Starr) has taken total control of the U.S. government, and the country is bending to his every twisted whim. Hughie (Jack Quaid), Frenchie (Tomer Capone), and M.M. (Laz Alonso) are locked away in "Freedom Camps," while Starlight (Erin Moriarty) scrambles to rally a resistance against near-impossible odds. Homelander is now obsessed with immortality and ruling like a god, but Butcher (Karl Urban), now a supe himself, possesses a deadly virus that could take down Homelander and wipe out the entire supe population. And just when things couldn't get any more dangerous, Homelander drags his father, Soldier Boy (Jensen Ackles), back into the fight. Quaid recently told EW that the show isn't exactly wrapping up with a "fairytale ending." "It's gonna be pretty gruesome," he said. "I didn't know exactly what it would be, but I knew whatever it was wasn't gonna be great for a lot of the characters. I didn't know who was gonna survive or not, and we really went there this season. There are characters that meet their end." He added, "We're getting heavy this season in a really interesting, truly grave way." Who's in the The Boys season 5 cast? Jack Quaid as Hughie in 'The Boys' season 5. Jasper Savage/Prime The main cast is returning for The Boys season 5, including Urban as Butcher, Starr as Homelander, and Quaid as Hughie. In addition to Ackles (Soldier Boy), Moriarty (Annie/Starlight), Alonso (M.M.), and Capone (Frenchie), the season will see the returns of Karen Fukuhara (Kimiko), Jessie T. Usher (A-Train), Chace Crawford (The Deep), Colby Minifie (Ashley), and Nathan Mitchell (Black Noir II), among others. Daveed Diggs as Oh Father in 'The Boys' season 5. Prime Video There are a few newcomers, too. EW previously reported that Hamilton alum Daveed Diggs is joining the season 5 cast — he portrays the corrupt religious supe Oh Father. Stranger Things season 4 star Mason Dye will also appear as Bombsight (a role he'll reprise on the prequel series Vought Rising), and Maitreyi Ramakrishnan (Never Have I Ever), Emma Elle Paterson (Murdoch Mysteries), and Dylan Colton (56 Days) make up the youth superhero team Teenage Kix. Season 5 will also bring in several characters from Gen V, including Jaz Sinclair as Marie, London Thor as Jordan, Lizzie Broadway as Emma, Maddie Phillips as Cate, Asa Germann as Sam, and Keeya King as Marie's sister Annabeth. Misha Collins and Jensen Ackles as Soldier Boy in 'The Boys' season 5. Prime Video The Boys season 5 is also bringing a little Supernatural magic back to our screens. Ackles will be joined by Jared Padalecki and Misha Collins in episode 5, with Kripke telling EW that their characters are "such douchebags." "Soldier Boy is no treat either, but they're just really not morally upstanding dudes," he said. "It's a blast to watch them play that. It was just so much fun." Where can I watch The Boys? The Boys is now streaming on Prime Video. Get your daily dose of entertainment news, celebrity updates, and what to watch with our EW Dispatch newsletter.
+"""
+
+[R2] Here's When You Can Watch the Final Season of The Boys on Prime Video
+(https://www.ign.com/articles/the-boys-season-5-episode-release-schedule)
+"""
+The Boys Returns for Season 5 - Here's When You Can Watch New EpisodesThe end of an era. Amazon has revealed the full release schedule for the fifth and final season of The Boys. The new season will break a series tradition with a two-episode premiere instead of the usual three, continuing on with one new episode each week. We can only imagine what this one has in store for a series finale, slated for May 20. If you're planning to tune in, here’s all of the release information we have for The Boys Season 5.The Boys Season 5 Episode Release ScheduleStream The BoysTHE BOYS is an irreverent take on what happens when superheroes, who are as popular as celebrities, as influential as politicians and as revered as Gods, abuse their superpowers rather than use them for good. The Boys will once again be streaming exclusively on Prime Video, which is included in all Amazon Prime memberships. The fifth and final season of the series premiered with two episodes on April 8, 2026, at 12am PT/3am ET. That’s 5am BST for anyone across the pond. One new episode will continue to drop at the same time every Wednesday, leading up to the series finale in mid-May. Some Reddit users noticed leaked episode titles on TV guides long before the season premiere. The new season carries on directly from The Boys Season 4 as well as Gen V Season 2. Creator Eric Kripke has already spoken on the role of the latter, indicating we won’t just see the younger Supes fly in to save the day. The ending we will see was planned as far back as Season 3. We’ve also heard some snippets from the cast members themselves. Somewhat unsurpisingly, Karl Urban has already hinted at some massive character deaths. The creator, however, has also tried to ease expectations around any massive battle sequences, claiming “we still don't have Game of Thrones' budget.” It goes without saying that the politically charged series is also returning at a politically charged time in America. Speaking on comparisons to the Trump administration, Kripke hinted at a Homelander line we'll end up seeing in Episode 7.What’s Next for The Boys While the main series may be ending, this likely won’t be the last we see of The Boys. Or whoever survives, at least. Gen V is still waiting on a green light for Season 3, a decision that may be tied to The Boys finale. A new prequel series, Vought Rising, is also in development.Meanwhile, it’s safe to say the cast of The Boys is in high demand. For the time being, however, Antony Starr will have to continue to fight claims he’d be the perfect Wesker in a Resident Evil movie. Blythe (she/her) is an Audience Development Coordinator at IGN who, when she isn't following streaming news, spends way too much time in character customization screens and tracking down collectibles. IGN LogoRecommendsIn This Article
+"""
+
+[R3] 'The Boys' Season 5 Release Schedule: Here's When New Episodes Drop
+(https://www.thewrap.com/creative-content/what-to-watch/the-boys-season-5-new-episodes-schedule/)
+"""
+The final season of “The Boys” has landed. The last episodes of Prime Video’s extremely violent, always timely superhero drama is wrapping up its five-season run this summer. All the conflicts from the series are coming to a head as Homelander and Billy Butcher clash in a rebellion over how much power Supes should have. The Boys have a secret weapon they’re hoping to use to balance the scales – a virus that can kill Supes. Here’s everything you need to know about where and when to tune in for the fifth season of Prime Video’s “The Boys.” When does “The Boys” Season 5 come out? The fifth and final season of “The Boys” begins on Wednesday, April 8 at midnight PT. How can I watch “The Boys” Season 5? “The Boys” Season 5 will stream weekly exclusively on Prime Video. The previous four seasons are already available to binge-watch there. Are episodes released weekly or all at once? “The Boys” dropped a couple of episodes together to start off their final season before shifting to a weekly release schedule. Here is a full rundown of what days to expect new episodes of Season 5. Episode 1 – April 8 Episode 2 – April 8 Episode 3 – April 15 Episode 4 – April 22 Episode 5 – April 29 Episode 6 – May 6 Episode 7 – May 13 Episode 8 – May 20 What is “The Boys” Season 5 about? The final season of “The Boys” brings the story to its violent conclusion as Homelander amasses more power than ever in America, as he pushes a Supes agenda. Billy Butcher and the rest of The Boys have to rally a rebellion of regular people and a few brave Supes to stop the most powerful man in the world from taking over the country. Who is in “The Boys” Season 5 cast? The usual suspects return in the final season of the show. Karl Urban, Jack Quaid, Antony Starr, Erin Moriarty, Laz Alonso, Tomer Capone, Karen Fukuhara, Chace Crawford, Jessie T. Usher, and Colby Minifie all return for Season 5. The final season also holds a bit of a “Supernatural” reunion. Jensen Ackles is returning as Soldier Boy but he is joined by Jared Padalecki and Misha Collins in undisclosed roles. Watch the trailer:
+"""
+
+[R4] The Boys season 5 release schedule: When is episode 5 out on Prime Video?
+(https://www.radiotimes.com/tv/sci-fi/the-boys-season-5-schedule/)
+"""
+*Warning - contains spoilers for The Boys season 5 episodes 1-3.*Can you believe it? The Boys may feel like it's only just returned for its fifth and final season, but already we're halfway through, with the fourth episode available to watch now.This season has seen Homelander taking on a worrying new mission, after he saw a vision in the third episode of Madelyn Stillwell, telling him to become a god.Meanwhile, Soldier Boy (Jensen Ackles) has become a fully-fledged member of the Seven, we've seen new additions join the cast, and the very first episode brought with it a high-profile death - setting the stakes higher than ever.But when will the show's next instalment be available to watch on Prime Video? Read on for everything you need to know about the release schedule for The Boys season 5.The Boys season 5 episode 5 will be released on Wednesday 29 April on Prime Video.The episode is written by Judalina Neira, who has been an executive producer on the show since season 4, when she also wrote her first episode.Mother's Milk (Laz Alonso), Starlight (Erin Moriarty) in The Boys season 5. Prime VideoWhat time will The Boys season 5 episode 5 be released on Prime Video?New episodes of The Boys season 5 are released on Prime Video on Wednesdays at 8am BST in the UK.Around the world, that works out to the following times:12am (midnight) PT (USA)2am CT (USA)3am ET (USA)8am BST (UK)9am CET (Central Europe)3pm AWST (Australia)5pm AEST (Australia)Antony Starr as Homelander in The Boys season 5. Prime VideoThe Boys season 5 release schedule – When are new episodes out?As is a common release pattern for Prime Video shows, the first two episodes of The Boys season 5 were released at once.Since then, the show has switched to a weekly release structure, with each new episode arriving on a Wednesday. You can find the full release schedule for season 2 here:The Boys season 5 episode 1 – Fifteen Inches of Sheer Dynamite – Wednesday 8 April 2026 (out now)The Boys season 5 episode 2 – Teenage Kix – Wednesday 8 April 2026 (out now)The Boys season 5 episode 3 – Every One of You Sons of B*****s – Wednesday 15 April 2026 (out now)The Boys season 5 episode 4 – King of Hell – Wednesday 22 April 2026 (out now)The Boys season 5 episode 5 – Title TBC – Wednesday 29 April 2026The Boys season 5 episode 6 – Title TBC – Wednesday 6 May 2026The Boys season 5 episode 7 – Title TBC – Wednesday 13 May 2026The Boys season 5 episode 8 – Title TBC – Wednesday 20 May 2026The Boys. Jasper Savage/Prime VideoWhat is The Boys season 5 about?The synopsis for the show's new season says: "In the fifth and final season, it’s Homelander’s world, completely subject to his erratic, egomaniacal whims. Hughie, Mother’s Milk, and Frenchie are imprisoned in a 'Freedom Camp.' Annie struggles to mount a resistance against the overwhelming Supe force. Kimiko is nowhere to be found."But when Butcher reappears, ready and willing to use a virus that will wipe all Supes off the map, he sets in motion a chain of events that will forever change the world and everyone in it. It’s the climax, people. Big stuff’s gonna happen."Soldier Boy and Homelander in The Boys season 5. Prime VideoThe Boys season 5 trailerYou can watch the trailer for The Boys season 5 right here now.The Boys season 5 continues on Prime Video on 29 April 2026 – try Amazon Prime Video for free for 30 days. Plus, read our guides to the best Amazon Prime series and the best movies on Amazon Prime.Add The Boys to your watchlist on the Radio Times: What to Watch app – download now for daily TV recommendations, features and more.Check out more of our Sci-fi coverage or visit our TV Guide and Streaming Guide to find out what's on. For more TV recommendations and reviews, listen to The Radio Times Podcast.AuthorsJames Hibbs is a Drama Writer for Radio Times, covering programmes across both streaming platforms and linear channels. He previously worked in PR, first for a B2B agency and subsequently for international TV production company Fremantle. He possesses a BA in English and Theatre Studies and an NCTJ Level 5 Diploma in Journalism.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

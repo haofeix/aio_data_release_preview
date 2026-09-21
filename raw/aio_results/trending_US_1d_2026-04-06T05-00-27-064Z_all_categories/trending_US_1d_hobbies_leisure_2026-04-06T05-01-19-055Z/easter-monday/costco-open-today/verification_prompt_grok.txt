@@ -1,0 +1,106 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "costco open today"
+
+Claims:
+[1] "Costco warehouses are closed on Easter Sunday, April 5, 2026."
+[2] "All US Costco locations will be closed in observation of the holiday."
+[3] "All US Costco locations will resume normal operating hours on Monday, April 6, 2026."
+[4] "Costco standard operating hours are typically 10:00 AM – 8:30 PM."
+[5] "Costco has 9:00 AM opening for Executive Members."
+[6] "April 5, 2026 is Sunday."
+[7] "April 6, 2026 is Monday."
+
+Cited text snippets from the AI Overview (for additional context):
+- Is Costco open or closed on Easter? Here's what to know: "Gabe Hauari,open on Easter in 2026."
+- What stores are closed on Easter Sunday today? Is Target open on Easter? Costco? Here's a list: "Is the store open on,are closed on Easter Sunday."
+- W henrico Glen allen, VA Warehouse - Costco Wholesale: "Executive Member Hours,8:00am - 6:00pm"
+- Are stores open on Easter Sunday 2026? Holiday hours for Walmart, Whole Foods, Costco, and more: "Grocery store closures,as they are all closed."
+- New Costco hours take effect, here's which memberships are impacted: "Executive Member Shopping Hours,Sunday: 9 a.m. – 10 a.m."
+Reference Sources:
+
+[R1] New Costco hours take effect, here's which memberships are impacted
+(https://abcnews.com/GMA/Living/new-costco-hours-executive-membership/story?id=125155654)
+"""
+LivingSome shoppers will get to enjoy an hour of shopping before other members.September 1, 2025, 1:47 PMCostco will open its doors earlier than ever for certain membership tiers with a new policy taking effect.Costco begins early hours for executive membership shoppingCostco's "VIP hours" for shoppers who have an Executive membership allows them access into the big box store an hour sooner than other members.A person holds a Costco Executive Membership card in a Costco warehouse.Adobe StockThe new policy, which had a soft launch in June per Costco's website, to give "exclusive earlier shopping hours for Executive members" was initially only available at select warehouses, and will now take effect across all stores.In an email to members earlier this year, Costco said its locations would open at 9 a.m. exclusively for upper-tier members for an hour.Costco confirmed via email to ABC News on Monday that the new hours listed below have gone into effect.Executive Member Shopping HoursWeekdays (Monday – Friday): 9 a.m. – 10 a.m.Saturday: 9 a.m. – 9:30 a.m.Sunday: 9 a.m. – 10 a.m.A Costco membership counter in Commerce Township, Michigan, Mar 29, 2025.Adobe StockAdditionally, a representative for Costco said that "U.S. warehouses will stay open one extra hour on Saturday, closing at 7 p.m. for all members."How much are Costco memberships?Executive members pay $130 per year, which the company increased last September.A person shops at a Costo Wholesale store.Adobe StockFor U.S. and Canada Gold Star, Business, and Business add-on members pay a $65 annual fee.Popular ReadsCostco operates 882 warehouses, including 609 in the U.S. and Puerto Rico, 108 in Canada, as well as e-commerce sites.Sponsored Content by Taboola
+"""
+
+[R2] W henrico Glen allen, VA Warehouse | Costco
+(https://www.costco.com/warehouse-locations/-205.html)
+"""
+2-Day Delivery Current Order: Add $75.00 More to Avoid a ${1} Delivery Fee Home Find a Warehouse W Henrico Warehouse Print Find and select your local warehouse to see hours and upcoming holiday closures. SlowFast1 miles2 km© 2026 TomTom, © 2026 Microsoft CorporationTerms Departments and Specialty Items AT&T Cellular Kiosk Auto Buying Program Executive Membership Fresh Meat Independent Optometrist Service Deli Travel ATM Bakery Fresh Deli Fresh Produce Membership Special Order Kiosk Opening Date 11/23/1991 W Henrico Warehouse Address 9650 W BROAD ST GLEN ALLEN, VA 23060-4115 Get Directions Phone: (804) 727-3050 Phone: (804) 727-3050 Hours Executive Member Hours Mon-Fri. 09:00AM - 08:30PM Sat. 09:00AM - 07:00PM Sun. 09:00AM - 06:00PM Gold Star & Business Member Hours Mon-Fri. 10:00AM - 08:30PM Sat. 09:30AM - 07:00PM Sun. 10:00AM - 06:00PM Warehouse Services Food Court Phone: (804) 727-3052 Phone: (804) 727-3052 Gas Station Gas Hours Mon-Fri. 6:00am - 10:00pm Sat. 6:00am - 8:30pm Sun. 6:00am - 7:30pm Regular $3.599 Premium $4.399 Prices shown here are updated frequently, but may not reflect the price at the pump at the time of purchase. All sales will be made at the price posted on the pumps at each Costco location at the time of purchase. Tire Service Center Mon-Fri. 8:00am - 8:30pm Sat. 9:30am - 7:00pm Sun. 8:00am - 6:00pm Appointments recommended! Schedule your appointment today at costcotireappointments.com. Walk-in-tire-business is welcome and will be determined by bay availability. Phone: (804) 727-3066 Phone: (804) 727-3066 Pharmacy Phone: (804) 273-9276 Phone: (804) 273-9276 Mon-Fri. 9:00am - 8:30pm Sat. 9:00am - 7:00pm Sun. CLOSED When only one pharmacist is on duty the Pharmacy may be closed for 30 minutes between the hours of 1:30pm and 2:30pm Optical Department Phone: (804) 273-0937 Phone: (804) 273-0937 Hearing Aids Phone: (804) 727-3056 Phone: (804) 727-3056 Departments and Specialty Items AT&T Cellular Kiosk Auto Buying Program Executive Membership Fresh Meat Independent Optometrist Service Deli Travel ATM Bakery Fresh Deli Fresh Produce Membership Special Order Kiosk Opening Date 11/23/1991 Trending on Costco.com TurboTax Deluxe 2025 Federal E-File + State Download for Win11/Mac14, + $10 Credit In-Product TurboTax Premier 2025 Federal E-File + State Download for Win11/Mac14, + $10 Credit In-Product TurboTax Home & Business 2025 Federal E-File/State Download for Win11/Mac14, + $10 Credit In-Product Apple AirPods Pro 3, Wireless Earbuds, Active Noise Cancellation, Hearing Aid Feature, Heart Rate Sensing, Includes 2 Years of AppleCare+ Woozoo 360 Pedestal Fan Novaform 14” ComfortGrande Advanced Gel Memory Foam Mattress Kirkland Signature 680 Thread Count Sheet Set Member Only Item Kirkland Signature ProCare with Dual HMO's, Non-GMO Infant Formula, 42 oz, 2-pack Artika Austin 23" LED Fandelier Member Only Item Philips Sonicare DiamondClean Smart Electric Rechargeable Toothbrush, 2-pack Allstate 3 Years (For TVs: $500 to $1,000) MacBook Air Laptop (13-inch) - Apple M5 Chip, Built for Apple Intelligence, 10-core CPU, 8-core GPU, 16GB Memory, 512GB SSD Storage Member Only Item LG 4.5 cu. ft. Ultra Large Capacity Wi-Fi Enabled Front Load Washer with TurboWash 360° and Built-In Intelligence TurboTax Business 2025 Federal Only E-File Download for Win11, + $10 Credit In-Product Sereen 6-piece Fabric Modular Sectional, Taupe title Cancel Primary Cancel Cookie SettingsCookie DetailsStrictly Necessary, Functionality & Performance CookiesPersonalized AdvertisingCookie DetailsClick on the different category headings to find out more and change our default settings. When you visit our website, we store or retrieve information on your browser using cookies and similar technologies, which may be set by us or other companies who provide services to Costco in connection with our website. Cookies and the information they collect might relate to you, your preferences or your device, and are used to make the site work as you expect it to, store your preferences, help us understand how people use our site, and provide a more personalized web experience. For more information about how we use cookies, please see our Privacy Policy. You can choose not to allow certain types of cookies via the settings, but it may impact your experience and some features on the site. Your choice is specific to the device, website, and browser you are using, and is deleted when you clear your cookies. Strictly Necessary, Functionality & Performance CookiesStrictly Necessary CookiesStrictly necessary cookies are needed for the website to function and cannot be switched off in our systems. They enable core functions like carrying out network transmissions to help the Sites operate or are set in response to actions made by you, such as setting your privacy preferences, logging in or filling in forms. Strictly necessary cookies cannot be switched off in our systems, but you can disable them by changing your browser settings. Disabling these cookies will affect how the Sites function and may prevent you from using certain features on the Sites.Functional CookiesFunctional cookies enable our website to provide enhanced functionality and personalization on our site - for example, remembering your choice of language or region.Performance CookiesAnalytics and Performance cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site.Personalized Advertising Personalized Advertising You can opt out of cookie-based tracking for personalized, targeted advertising through our advertising partners as described below, using this toggle. Blocking these cookies may impact your experience and some features on the site. Your choice is specific to the device, website, and browser you are using, and is deleted when you clear your browser’s cookies. Due to changes implemented by Apple in the Safari browser, your cookie settings are only saved until you close the browser. Safari users should check cookie settings each time they use Safari to access Costco.com or other Costco services. You can opt-out of other sharing of your personal information for marketing purposes at Your Privacy Choices.Targeting Cookies Switch Label labelThese cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant advertisements or content on other sites. If you do not allow these cookies, you will still see advertisements, but you may receive less relevant advertising or content and some features of our site may be impacted.Back ButtonCookie List Filter ButtonConsent Leg.Interest checkbox label label checkbox label label checkbox label labelClear checkbox label labelApply CancelConfirm My Choices Allow AllFeedback Will open a new window
+"""
+
+[R3] What stores are closed on Easter Sunday today? Is Target open on Easter? Costco? Here's a list
+(https://www.indystar.com/story/money/2026/04/04/easter-2026-stores-closed-list-is-target-open-easter-sunday-is-costco-closed-when-easter-2027-date/89457952007/)
+"""
+April 4, 2026Updated April 5, 2026, 7:19 a.m. ETMany major retailers, including Target and Costco, will be closed on Easter Sunday.Several stores like Walmart, Kroger, and CVS are expected to remain open for the holiday.Shoppers are advised to call their local stores to confirm holiday hours as exceptions may occur.The article provides lists of stores anticipated to be open and closed for Easter 2026.Will Easter shopping be possible on Easter Sunday?Some stores are open on Easter Day, but several are also closed. Is Target open for Easter? Is Costco closed on the holiday?Here's what we know about which Easter stores are closed and open:Is Target open on Easter Sunday 2026? Is the store closed on Easter Day?Target stores are closed on Easter Sunday.Is Costco closed on Easter Sunday 2026? Is the store open on Easter Day?Costco stores are closed on Easter Sunday.List of stores closed Easter Sunday 2026: What stores are not open on tomorrow on Easter Day?Here's a list of stores expected to be closed on Easter Sunday. Each of these stores will have some location closures for Easter, or are expected to be closed based on recent holiday closures. Please call ahead to your local store, as there are always exceptions:AldiAppleBanana RepublicBath and Body WorksBest BuyBloomingdale'sBob's Discount FurnitureBurlingtonThe Container StoreCostcoCrate + BarrelDick's Sporting GoodFive BelowGapGoodwillH-E-B GroceryThe Honey Baked Ham CompanyHobby LobbyJCPenneyKohl'sHomeGoodsLowe'sMacy'sMarshallsMichael'sNordstromNordstrom RackOffice DepotPublixSam's ClubStaplesSuperCutsTargetT.J. MaxxList of stores open Easter Sunday 2026: What stores are not closed tomorrow on Easter Day?Here's a list of stores expected to be open on Easter Sunday. Each of these stores will be open at most locations on Easter, or are expected to be open based on recent holiday participation. Please call ahead to your local store, as there are always exceptions:Ace HardwareAlbertson'sBarnes & NobleBass Pro ShopsBig LotsBJs Wholesale ClubCabela'sCVSDollar GeneralFresh MarketOrder groceries with InstacartHome DepotIKEAKrogerOld NavyPetcoPetSmartRite AidSafewayStarbucksTrader Joe'sWalmartWalgreensWhole FoodsWhen is Easter 2027? What date is Easter Sunday next year?Easter 2027 will be celebrated on Sunday, March 28, 2027, for most Christians, predominantly Catholics and Protestants.Save on Easter supplies with Amazon PrimeChris Sims is a trending reporter at Midwest Connect Gannett. Follow him on Twitter: @ChrisFSims.Our editors independently choose our recommendations. Some content is produced with paid support from a third party, however our editorial decisions remain independent. If you buy through our links, the USA TODAY Network may earn a commission. Prices and availability may change.
+"""
+
+[R4] Is Costco open or closed on Easter? Here's what to know
+(https://www.usatoday.com/story/grocery/stores/warehouse-clubs/2026/04/05/costco-open-closed-easter-2026/89453883007/)
+"""
+April 5, 2026, 12:01 a.m. ETEaster is here and shoppers needing to make a last-minute trip to the grocery store are in luck, as many grocery store chains will remain open on the holiday.Some restaurant chains and retailers will also remain open on Sunday, April 5, while banks, post offices, and shipping services will be closed.Costco will not be an option for shoppers on Easter Sunday this year, as the company's website says warehouses will be closed in observation of the holiday.Here's what to know about other retail and grocery store chains and whether or not they'll be open on Easter in 2026.What grocery stores are open and closed on Easter?Here's which grocery stores are open on Easter. Hours are listed for the companies that provided them.WalmartMost stores in the Kroger family of companies will be open on Sunday (Baker’s, City Market, Dillons, Food 4 Less, Foods Co, Fred Meyer, Fry’s, Gerbes, Jay C Food Store, King Soopers, Kroger, Mariano’s, Metro Market, Pay-Less Super Markets, Pick’n Save, QFC, Ralphs, Ruler, Smith’s Food and Drug).BJ's Wholesale ClubTrader Joe'sFood LionWhole FoodsSafewayWegmansMeijer; 6 a.m. to midnightHarris TeeterA majority of Albertson's banner stores will be open on Easter (Safeway, Albertsons, Jewel-Osco, ACME, Vons and Tom Thumb).LidlGiant Eagle; Stores will close at 4 p.m.Winn-DixieHere's which grocery stores are closed on Easter. Hours are listed for the companies that provided them.CostcoSam's ClubTargetAldiPublixWhat retail stores are open and closed on Easter?Stores listed below will be open on April 5. Hours are listed for the companies that provided them.Home Depot; 8 a.m. to 6 p.m.Ace HardwareSephoraBarnes & NobleBass Pro Shop; 10 a.m. to 7 p.m.Cabela's; 10 a.m. to 7 p.m.REI; Noon to 6 p.m.IKEA; Stores will close at 6 p.m.PetcoPetSmart; 11 a.m. to 6 p.m.Tractor Supply Company; 9 a.m. to 6 p.m.Stores listed below will be closed on Easter.TargetTJ MaxxMarshall'sHomeGoodsLowe'sMacy'sKohl'sVictoria's SecretBelkOffice DepotOfficeMaxGabe Hauari is a national trending news reporter at USA TODAY. You can follow him on X @GabeHauari or email him at Gdhauari@gannett.com.
+"""
+
+[R5] Are stores open on Easter Sunday 2026? Holiday hours for Walmart, Whole Foods, Costco, and more
+(https://www.fastcompany.com/91521470/are-stores-open-on-easter-sunday-2026-holiday-hours-for-walmart-whole-foods-costco-and-more)
+"""
+For billions of Christians around the world, Easter celebrates the resurrection of Jesus Christ. While this is not an official federal holiday, federal offices are already closed because it always falls on a Sunday. Many private businesses and retail chains also choose to close their doors on this day, so even if you don’t celebrate, you may be impacted by the festivities. Here’s a look at what is open and closed on Easter Sunday, which is today, April 5, 2026:Mail, schools, and the stock marketThere will be no mail delivery from the U.S. Postal Service (USPS), because it is not typically delivered on Sundays. The only exception is Priority Mail Express. Subscribe to the Daily newsletter.Fast Company's trending stories delivered to you every daySimilarly, most UPS and FedEx deliveries are halted. The exceptions are UPS Express Critical and FedEx Custom Critical. The shipping organizations’ physical locations are also closed or have modified hours.Schools are always closed on weekends and many are even on spring break. If you’re a stock market investor, the New York Stock Exchange (NYSE) and the Nasdaq will resume regular trading hours on Monday, April 6.Grocery store closuresEaster Sunday is not the ideal day to stock up on groceries, so plan ahead. Explore TopicscostcoholidaysRetailWalmart
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

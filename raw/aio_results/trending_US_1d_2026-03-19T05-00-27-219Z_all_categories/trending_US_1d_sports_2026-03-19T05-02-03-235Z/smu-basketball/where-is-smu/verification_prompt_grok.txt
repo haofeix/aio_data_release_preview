@@ -1,0 +1,94 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is smu"
+
+Claims:
+[1] "Southern Methodist University (SMU) is located in Dallas, Texas."
+[2] "Southern Methodist University (SMU) is located in the residential neighborhoods of University Park and Highland Park."
+[3] "Southern Methodist University's main campus is 234 acres."
+[4] "Southern Methodist University's main campus is known as "the Hilltop.""
+[5] "Southern Methodist University's main campus is situated about 5 miles north of downtown Dallas."
+[6] "Southern Methodist University maintains a campus in Taos, New Mexico."
+[7] "Southern Methodist University's campus is bordered by Mockingbird Lane to the south."
+[8] "Southern Methodist University's campus is bordered by U.S. Highway 75 to the east."
+[9] "Southern Methodist University is located near the DART train station."
+[10] "Southern Methodist University is about a 10-minute drive from downtown Dallas."
+
+Cited text snippets from the AI Overview (for additional context):
+- Directions to SMU | World Changers Shaped Here: "SMU is located in University Park, Dallas,,International Airport** * **Dallas Love Field Airport**"
+- Location and facilities | World Changers Shaped Here: "SMU's main campus is located in Dallas,,An undergraduate research program called Big iDeas"
+Reference Sources:
+
+[R1] Location and facilities
+(https://www.smu.edu/aboutsmu/facts/location)
+"""
+About SMU SMU Facts Location and facilities SMU Facts Campus profile Academic offerings Administration Prominent alumni Intercollegiate athletics Location and facilities Student life Undergraduate costs SMU by the numbers Dallas/University Park/Highland Park campus The main SMU campus is located on 234 acres – known as the Hilltop – in the heart of Dallas, 5 miles north of downtown in the neighboring communities of University Park and Highland Park. SMU is a major contributor to the Dallas economy and enriches the community through diverse educational and cultural opportunities. SMU generates an annual economic impact of more than $7 billion in the North Texas region. More than 65,000 SMU alumni live in the Dallas-Fort Worth area. SMU attracts hundreds of thousands of visitors annually for cultural and athletic events and other programs. Each year SMU’s Meadows School of the Arts presents more than 400 events for the Dallas community and surrounding region. The Meadows Museum at SMU, housing one of the finest collections of Spanish art outside Spain, attracts an estimated 70,000 visitors annually, including more than 10,000 schoolchildren. SMU offers undergraduate students more than 100 majors and 85 minors. Nearly 3,500 undergraduate volunteers serve annually through approximately 125 area nonprofit agencies. Big iDeas is an undergraduate research program that awards grants for interdisciplinary student teams to explore such complex challenges as poverty, illiteracy, health care inequity and environmental issues and find solutions that can be applied in Dallas and the world beyond. SMU’s Moody School of Graduate and Advanced Studies offers doctoral and master’s degrees in a wide variety of fields across four different colleges and schools: Dedman College of Humanities and Sciences, Lyle School of Engineering, Meadows School of the Arts and Simmons School of Education and Human Development. SMU provides professional certificates and noncredit offerings through the Continuing and Professional Education program. SMU-in-Taos SMU-in-Taos provides opportunities for adventurous study and research in a unique setting in Northern New Mexico. The property includes pre-Civil War Fort Burgwin and the remains of a 13th-century Native American pueblo. SMU began acquiring the property in l964 and reconstructed the fort to serve as an archaeology research center. Student facilities were added in 1973. The Taos campus covers 423 acres and contains 31 buildings. It is located within the Carson National Forest and surrounded by the Sangre de Cristo Mountains. SMU-in-Taos offers credit courses in the natural and social sciences, humanities, arts and business. Emphasizing experiential learning, classes are enhanced by the region’s distinctive mix of cultures and rich natural resources. SMU-in-Taos hosts enriching programs for alumni, friends and members of the Taos community, including lectures, concerts and art exhibitions. The annual Taos Cultural Institute provides a summer weekend of informal classes for adults taught by SMU faculty members. Facilities are available for conferences, retreats and youth groups. Unique resources Distinguished speakers and programs SMU features noteworthy national and international visitors through the Willis M. Tate Distinguished Lecture Series, Hart Global Leaders Forum and John Goodwin Tower Center for Public Policy and International Affairs Medal of Freedom and other University programs. Prominent visitors have included: U.S. Presidents George H.W. Bush, George W. Bush, Jimmy Carter, Bill Clinton, Gerald R. Ford and Barack Obama U.S. First Ladies Barbara Bush, Laura Bush, Hillary Clinton and Michelle Obama U.S. Vice Presidents Dick Cheney and Al Gore U.S. Secretaries of State Madeleine Albright, Colin Powell and Condoleezza Rice U.S. Supreme Court Justices Ruth Bader Ginsburg, Sandra Day O’Connor, Antonin Scalia and Clarence Thomas U.S. Senators Bob Dole, Kay Bailey Hutchison and John McCain British Prime Ministers Tony Blair, John Major and Margaret Thatcher President of Mexico Vicente Fox King Juan Carlos of Spain His Holiness the Dalai Lama Archbishop Desmond Tutu Archbishop of Canterbury George L. Carey Soviet President Mikhail Gorbachev Anthropologist and primatologist Jane Goodall Historians Michael Beschloss, Doris Kearns Goodwin, David McCullough and Jon Meacham Director Spike Lee Documentary filmmaker Ken Burns Astrophysicist and author Neil deGrasse Tyson Physicist and cosmologist Stephen Hawking Meadows Museum Meadows Museum, a division of Meadows School of the Arts at SMU, is the leading U.S. institution focused on the study and presentation of the art of Spain. In 1962, Dallas businessman and philanthropist Algur H. Meadows donated his private collection of Spanish paintings, as well as funds to start a museum, to SMU. The museum opened to the public in 1965, marking the first step in fulfilling Meadows’ vision to create “a small Prado for Texas.” Today, the Meadows is home to one of the largest and most comprehensive collections of Spanish art outside of Spain. The collection spans from the 10th to the 21st centuries and includes medieval objects, Renaissance and Baroque sculptures, and major paintings by Golden Age and modern masters. George W. Bush Presidential Center SMU is home to the George W. Bush Presidential Center, which includes the George W. Bush Presidential Library and Museum, operated by the National Archives and Records Administration, and the George W. Bush Institute, the nonpartisan public policy arm of the Bush Center. The Bush Center enjoys a special relationship with SMU, collaborating with the University to host events, conduct research and provide unique learning opportunities for graduate and undergraduate students.
+"""
+
+[R2] Campus Info
+(https://www.smu.edu/businessfinance/campusservices/conferenceservices/campus-info)
+"""
+Skip to main content Campus Info Campus Info SMU is the Premier Choice Conference Services is proud to call Southern Methodist University home. Conveniently located in the center of the exciting city of Dallas, SMU is a private university of over 11,000 students. A nationally ranked private university with seven degree-granting schools, SMU is a distinguished center for teaching and research. The best way to experience our beautiful campus is by visiting in-person. But if time and distance is an issue, we have several options to bring the Hilltop to you! Learn more about SMU Learn More About SMU Explore our Interactive Campus Map Take a Virtual Tour of our campus. SMU's main campus continues to rank as one of the most beautiful college campuses in the country. Search the SMU website Menu Close Search Search Submit Popular Searches Current Students Majors and Minors Undergraduate Admission | SMU Graduate Admission Faculty & Staff Graduate Programs Alumni Did you know? SMU's singular approach to integrating rigorous learning with hands-on experience will prepare you to achieve your educational goals and expand your world in ways you never imagined. Ours is a community of people forging their own paths. We'd like to help you shape yours. Plan your visit
+"""
+
+[R3] Directions to SMU | SMU
+(https://www.smu.edu/aboutsmu/maps/directions)
+"""
+Skip to main content Directions to SMU Maps & Directions SMU is located in the heart of Dallas in University Park – a traditional residential neighborhood just five miles north of downtown. It is bound by U.S. Highway 75 (North Central Expressway) to the east, Hillcrest Avenue to the west, Mockingbird Lane to the south and Daniel Avenue to the north. I'm coming from... I-75 (North Central Expressway) Dallas North Tollway Denton Waco IH-30 DFW International Airport Dallas Love Field Airport × From U.S. Highway 75 (North Central Expressway) Traveling from the north, take the Lovers Lane/University Boulevard/SMU Boulevard exit. Continue on the service road to SMU Boulevard. Turn right (west) onto campus. Moody Parking Center is at the southeast corner of SMU Boulevard and Airline Road. Traveling from the south, take the Mockingbird Lane/SMU Boulevard exit. Continue on the service road to SMU Boulevard. Turn left (west). Moody Parking Center is at the southeast corner of SMU Boulevard and Airline Road. Close × From Dallas North Tollway Exit Mockingbird Lane and proceed east past Hillcrest Avenue to Bishop Boulevard. Turn left (north) onto the campus. Proceed north 300 feet to Schlegel Street. Turn right to access the Meadows Parking Center. Close × From Denton Traveling south on IH-35E, exit east on IH-635 (LBJ Freeway). Proceed to U.S. Highway 75 (North Central Expressway) and exit south toward downtown. Proceed about five miles and take the Lovers Lane/University Boulevard/SMU Boulevard exit. Continue on the service road to SMU Boulevard. Turn right (west) onto campus. Moody Parking Center is at the southeast corner of SMU Boulevard and Airline Road. Close × From Waco Traveling north on IH-35E, exit east on the Woodall Rogers Freeway just north of downtown Dallas. Proceed east for a few miles and then exit north to U.S. Highway 75 (North Central Expressway). Proceed north for about five miles and take the Mockingbird Lane/SMU Boulevard exit. Continue on the service road to SMU Boulevard and turn left (west) onto campus. Moody Parking Center is at the southeast corner of SMU Boulevard and Airline Road. Close × From IH-30 Traveling from either direction, exit north to U.S. Highway 75 (North Central Expressway); the sign indicates “Sherman.” Proceed north for about five miles and take the Mockingbird Lane/SMU Boulevard exit. Continue on the service road to SMU Boulevard and turn left (west) onto campus. Moody Parking Center is at the southeast corner of SMU Boulevard and Airline Road. Close × From D/FW International Airport Take the North Exit from the airport to IH-635 (LBJ Freeway). Proceed to U.S. Highway 75 (North Central Expressway) and exit south toward downtown. Proceed about five miles and take the Lovers Lane/University Boulevard/SMU Boulevard exit. Continue on the service road to SMU Boulevard. Turn right (west) onto campus. Moody Parking Center is at the southeast corner of SMU Boulevard and Airline Road. Close × From Dallas Love Field Airport – 15 minutes to campus Exit left (east) from the airport to Mockingbird Lane. Go east on Mockingbird. Cross Lemmon Avenue, Inwood Road, Dallas North Tollway, Preston Road, Hillcrest Avenue, Bishop Boulevard and Ownby Drive. Turn left (north) onto Airline Road to enter the campus, and go to Dublin Street. Turn left (north) onto Dublin Street. Turn left (west) onto SMU Boulevard. There is a visitor’s parking located at the intersection of Airline Road and SMU Boulevard across from the Laura Lee Blanton Student Services Building. Close × The SMU Admission Offices (Blanton Student Services Building) Copy goes here. Close × Perkins Administration Building Copy goes here. Close × Bush Presidential Center Copy goes here. Close Search the SMU website Menu Close Search Search Submit Popular Searches Current Students Majors and Minors Undergraduate Admission | SMU Graduate Admission Faculty & Staff Graduate Programs Alumni Did you know? SMU's singular approach to integrating rigorous learning with hands-on experience will prepare you to achieve your educational goals and expand your world in ways you never imagined. Ours is a community of people forging their own paths. We'd like to help you shape yours. Plan your visit
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

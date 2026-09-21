@@ -1,0 +1,539 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "el niño weather"
+
+Claims:
+[1] "El Niño is a climate pattern marked by warmer-than-average sea surface temperatures in the equatorial Pacific Ocean."
+[2] "El Niño typically occurs every 2-7 years."
+[3] "El Niño often brings wetter, cooler conditions to the Southern US."
+[4] "El Niño often brings warmer, drier conditions to the North."
+[5] "El Niño shifts the Pacific jet stream southward."
+[6] "Enhanced storm activity often occurs in the southern US, Peru, Ecuador, and parts of the Caribbean during El Niño."
+[7] "Increased precipitation often occurs in the southern US, Peru, Ecuador, and parts of the Caribbean during El Niño."
+[8] "Drought often strikes Indonesia, Australia, and parts of Africa during El Niño."
+[9] "Extreme heat often strikes Indonesia, Australia, and parts of Africa during El Niño."
+[10] "The southern tier of the U.S. experiences wetter and colder conditions during North American winter during El Niño."
+[11] "Northern U.S. states and Canada tend to be warmer and drier than average during North American winter during El Niño."
+[12] "El Niño generally increases Pacific hurricane activity."
+[13] "El Niño weakens Atlantic hurricanes."
+[14] "El Niño decreases nutrient-rich upwelling along the Pacific coast of South America."
+[15] "Forecasters are monitoring the development of a potential "Super El Niño" for 2026."
+[16] "A "Super El Niño" is defined by ocean temperatures warming more than 2°C (3.6°F) above average."
+[17] "Peak impacts of a "Super El Niño" usually occur between December and January."
+
+Cited text snippets from the AI Overview (for additional context):
+- What are El Nino and La Nina?: "than La Niña.-,El Niño,fewer phytoplankton off the coast."
+- El Niño on the Horizon: Can the Warm Phase End Six Years of ...: "El Niño is the warm,National Oceanic and Atmospheric Administration."
+- NOAA declares the arrival of El Niño: "El Niño is a natural,average every 2-7 years."
+- 4/6: Strongest El Niño in 140 years could be brewing…what ...: "El Niño happens when Pacific Ocean waters,weather patterns around the world. ￼ Possible"
+- Strongest El Niño in a century? What this rare phenomenon could bring.: "During a typical El Niño,with fewer in the Atlantic."
+- El Nino Information: "El Niño typically: * Develops during the,the coasts of Ecuador and northern Peru."
+- What is a super El Niño? Here's what the weather pattern ...: "More subtropical moisture typically enters,the strongest in recorded history."
+- ENSO: Recent Evolution, Current Status and Predictions: "A transition from La Niña to ENSO-neutral,through at least the end of 2026."
+Reference Sources:
+
+[R1] What is a super El Niño? Here's what the weather pattern means for hurricanes and US weather.
+(https://www.wusa9.com/article/weather/what-is-a-super-el-nino/507-4213800f-f091-451b-af14-448e341d2b03)
+"""
+An emerging super El Niño could have wide-reaching impacts, from fewer Atlantic hurricanes to wetter conditions across the southern U.S. WASHINGTON — A super El Niño is an especially strong phase of the El Niño–Southern Oscillation, when sea surface temperatures in the central and eastern equatorial Pacific become significantly warmer than average—typically exceeding about +2.0°C above normal. Recent mean forecast guidance from the European Centre for Medium-Range Weather Forecasts suggests this event could reach around +2.5°C, with warming continuing into October 2026. This level of warming places it firmly in “super” El Niño territory. As these ocean temperatures increase, they shift where storms form in the tropics, which in turn reshapes global atmospheric patterns. During a super El Niño, these global changes are amplified, strengthening the Pacific jet stream and redistributing heat and moisture on a global scale. What makes this notable is that oceans and surface temperatures are already elevated compared to pre‑industrial levels (mid‑to‑late 19th century), meaning El Niño will be riding on a warmer baseline compared to previous years. Potentially amplifying its influence on the climate system. One of the most consistent impacts is on Atlantic hurricane season. Strong El Niño conditions increase upper-level winds across the tropical Atlantic—known as wind shear—which disrupts storm development and makes it difficult for hurricanes to organize and intensify. As a result, super El Niño years are often associated with below-average Atlantic hurricane activity. Meanwhile, the eastern Pacific tends to be more enhanced, with warmer waters and favorable conditions supporting an increase in tropical storm and hurricane development. Across the United States, a super El Niño significantly influences seasonal rainfall, especially during winter. The stronger, more active jet stream typically shifts south, bringing wetter-than-average conditions to the southern U.S., including California, the Gulf Coast, and the Mid-South. This pattern can be especially beneficial for drought-stricken areas across the South, where repeated storm systems help replenish soil moisture, improve river and reservoir levels, and support agriculture heading into the next growing season. In contrast, the northern tier—such as the Pacific Northwest and parts of the Midwest—often sees drier and sometimes warmer conditions. While the increased rainfall in the South can raise concerns about flooding, it also provides a meaningful opportunity for drought relief. When scientists speak about historic strong El Niño events, they often reference these years, 1982‑83, 1997‑98, and 2015‑16 as benchmarks for comparison. There is growing discussion among forecasters that this could rival those historic events in magnitude — and, if the anomaly really does reach that level, it would be among the strongest in recorded history. However, forecasters caution that these outlooks made this far in advance have uncertainty, and the exact peak strength won’t be known until later this year.
+"""
+
+[R2] ENSO: Recent Evolution,
+(https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/lanina/enso_evolution-status-fcsts-web.pdf)
+"""
+ENSO: Recent Evolution,
+Current Status and Predictions
+
+ Update prepared by:
+ Climate Prediction Center / NCEP
+ 20 April 2026
+ Outline
+ Summary
+ Recent Evolution and Current Conditions
+ Relative Oceanic Niño Index (RONI)
+ Pacific SST Outlook
+ U.S. Seasonal Precipitation and Temperature Outlooks
+ Summary
+
+2/2/26: Tropical Pacific sea surface temperatures (SST) anomalies and Nino indices now
+reflect relative SST anomalies:
+https://www.weather.gov/media/notification/pdf_2026/pns26-05_Relative_ONI.pdf
+ Summary
+ ENSO Alert System Status: Final La Niña Advisory / El Niño Watch
+ENSO-neutral conditions are present.*
+Equatorial sea surface temperatures (SSTs) are near-to-below-average in the
+east-central Pacific Ocean.
+ENSO-neutral conditions favored through April-June 2026 (80% chance). In May-
+July 2026, El Niño is likely to emerge (61% chance) and persist through at least
+the end of 2026.*
+
+* Note: These statements are updated once a month (2nd Thursday of each month) in association
+with the ENSO Diagnostics Discussion, which can be found by clicking here.
+Recent Evolution of
+Equatorial Pacific SST
+Departures (oC)
+
+From August 2025 through early
+January 2026, below-average SSTs
+strengthened in parts of the equatorial
+Pacific Ocean.
+Since early January 2026, below-
+average SSTs have gradually weakened
+across most of the equatorial Pacific.
+Beginning in early February 2026,
+above-average SSTs emerged in the far
+eastern equatorial Pacific.
+Since March 2026, above-average SSTs
+have shifted eastward to near the Date
+Line.
+Niño Region SST
+Departures (oC) Recent
+Evolution
+
+The latest weekly
+SST departures are:
+
+ Niño 4 0.6ºC
+ Niño 3.4 0.1ºC
+ Niño 3 0.2ºC
+ Niño 1+2 1.2ºC
+ SST Departures (oC) in the Tropical Pacific During the Last
+ Four Weeks
+In the last four weeks, equatorial SSTs were near-to-below average in the east-central and far
+western Pacific Ocean, and above average just west of the Date Line and in the far eastern
+Pacific.
+
+ 30
+ 26
+ Global SST Departures (oC) During the Last Four Weeks
+ (Traditional SST Anomalies)
+During the last four weeks, above-average SSTs were prevalent over most of the global oceans. Equatorial SSTs were near-
+to-above-average in the Atlantic Ocean, and were near-to-below average north of Australia. Equatorial SST anomalies were
+warmer around the Date Line and far eastern Pacific compared to the east-central Pacific.
+
+ 30
+ 26
+ 30
+Weekly SST Departures
+during the Last Four
+Weeks
+
+During the last 4 weeks, below-average
+equatorial SSTs weakened in the east-central
+Pacific Ocean.
+
+Above-average SSTs stretched from Baja to
+near the Date Line in the tropical Pacific
+Ocean.
+
+Above-average SSTs persisted in the far
+eastern equatorial Pacific Ocean.
+Change in Weekly SST Departures over the Last Four
+Weeks
+During the last four weeks, mostly positive SST anomaly changes were observed across the
+eastern and central equatorial Pacific Ocean. Negative changes were evident in the eastern
+equatorial Indian Ocean and the far western Pacific Ocean.
+Upper-Ocean Conditions in
+the Equatorial Pacific
+
+The basin-wide equatorial upper ocean (0-300 m)
+heat content is greatest prior to and during the
+early stages of a Pacific warm (El Niño) episode
+(compare top 2 panels), and least prior to and
+during the early stages of a cold (La Niña)
+episode.
+
+ The slope of the oceanic thermocline is least
+ (greatest) during warm (cold) episodes.
+
+Recent values of the upper-ocean heat
+anomalies are above-average and the
+thermocline slope index is slightly below-
+average.
+
+The monthly thermocline slope index represents the
+difference in anomalous depth of the 20ºC isotherm
+between the western Pacific (160ºE-150ºW) and the
+eastern Pacific (90º-140ºW).
+ Central and Eastern Pacific Upper-Ocean (0-300 m)
+ Weekly Average Temperature Anomalies
+Weak positive subsurface temperature anomalies were present from mid-April through early July 2025.
+Negative anomalies emerged in mid-July 2025 and persisted through mid-December 2025. From mid-
+December 2025 through late February 2026, positive anomalies developed and increased. After a slight
+decrease, positive anomalies have increased again since early March 2026.
+ Sub-Surface Temperature Departures in the Equatorial
+ Pacific
+In the last two months, above-average subsurface
+temperatures have strengthened in the east-central
+equatorial Pacific Ocean.
+
+ Most recent pentad analysis
+ Tropical OLR and Wind
+ Anomalies During the Last
+ 30 Days
+Below-average OLR (enhanced convection and
+precipitation) was evident east of Papua New
+Guinea. Above-average OLR (suppressed
+convection and precipitation) was observed over
+parts of Indonesia, southeast Asia, the Philippines,
+and east of the Date Line along the equatorial
+Pacific.
+
+Low-level (850-hPa) wind anomalies were
+westerly over the western and central
+equatorial Pacific, and were easterly over the
+eastern Pacific.
+
+Upper-level (200-hPa) wind anomalies were
+westerly over the east-central and eastern C
+Pacific. An anomalous cyclonic couplet
+straddled the equator over the eastern Pacific
+Ocean. C
+Intraseasonal Variability
+
+Intraseasonal variability in the atmosphere (wind and pressure), which is often related
+to the Madden-Julian Oscillation (MJO), can significantly impact surface and subsurface
+conditions across the Pacific Ocean.
+
+Related to this activity:
+Significant weakening of the low-level easterly winds usually initiates an eastward-
+propagating oceanic Kelvin wave.
+ Weekly Heat Content
+ Evolution in the Equatorial
+ Pacific
+Equatorial oceanic Kelvin wave activity (dashed
+and dotted lines) has been present at times
+throughout the period shown. Upwelling Kelvin
+waves were initiated during July, August, and
+October 2025. Downwelling Kelvin waves were
+initiated in December 2025, January 2026, and
+March 2026.
+
+Below-average subsurface temperatures persisted
+in the east-central and eastern Pacific from July
+2025 to December 2025.
+
+Since late December 2025, above-average
+subsurface temperatures have persisted across
+most of the equatorial Pacific.
+ Equatorial oceanic Kelvin waves have alternating
+ warm and cold phases. The warm phase is
+ indicated by dashed lines. Down-welling and
+ warming occur in the leading portion of a Kelvin
+ wave, and up-welling and cooling occur in the
+ trailing portion.
+ Low-level (850-hPa)
+ Zonal (east-west) Wind
+ Anomalies (m s-1)
+From the beginning of the period through
+November 2025, low-level easterly wind
+anomalies dominated the central Pacific.
+During December 2025 and January
+2026, periodic westerly wind anomalies
+extended across the equatorial Pacific
+Ocean.
+Since February 2026, easterly wind
+anomalies have shifted from the central
+to the eastern equatorial Pacific.
+In March and early April 2026, westerly
+wind anomalies strengthened in the
+western Pacific and near the Date Line.
+
+Westerly Wind Anomalies (orange/red shading)
+Easterly Wind Anomalies (blue shading)
+ Upper-level (200-hPa)
+ Velocity Potential
+ Anomalies
+At times, regions of anomalous divergence
+(green shading) and convergence (brown
+shading) shifted eastward.
+
+Since the beginning of the period,
+anomalous divergence persisted over the
+western and central equatorial Pacific
+Ocean.
+
+Anomalous convergence persisted over the
+eastern Pacific Ocean.
+
+ Unfavorable for precipitation (brown shading)
+ Favorable for precipitation (green shading)
+ Note: Eastward propagation is not necessarily indicative of the Madden-Julian Oscillation (MJO).
+ Outgoing Longwave
+ Radiation (OLR) Anomalies
+
+Through mid-March 2026, negative OLR
+anomalies (enhanced convection/rainfall)
+generally persisted over Indonesia, and
+positive OLR anomalies (suppressed
+convection/rainfall) generally persisted
+near the Date Line.
+Since then, OLR anomalies have shifted
+eastward, with negative anomalies
+persisting in the far western Pacific Ocean
+and positive anomalies continuing over
+Indonesia.
+
+Drier-than-average Conditions (orange/red shading)
+Wetter-than-average Conditions (blue shading)
+Relative Oceanic Niño Index (RONI)
+
+The RONI is a principal measure for monitoring, assessing, and predicting ENSO. The
+RONI helps to place current events into a historical perspective.
+
+RONI is the SST departures from average in the Niño 3.4 region (5ºN-5ºS, 120º-170ºW)
+with the tropical mean (20ºS-20ºN) SST departures subtracted out. The variance is
+adjusted to match the variance of the original Niño 3.4 index. A three-month running-
+mean is applied to the index.
+
+The SST data are based on a set of improved homogeneous historical SST analyses
+(Extended Reconstructed SST – ERSST.v5). The SST reconstruction methodology is
+described in Huang et al., 2017)
+
+Note: a different SST dataset is used for weekly SST monitoring (slides #4-9) and is
+using OISSTv2.1 (Huang et al., 2021).
+
+https://www.weather.gov/media/notification/pdf_2026/pns26-05_Relative_ONI.pdf
+NOAA Operational Definitions for El Niño and La Niña
+
+El Niño: characterized by a positive RONI greater than or equal to +0.5ºC.
+
+La Niña: characterized by a negative RONI less than or equal to -0.5ºC.
+
+By historical standards, to be classified as a full-fledged El Niño or La Niña episode,
+these thresholds must be exceeded for a period of at least 5 consecutive overlapping
+3-month seasons.
+
+CPC considers El Niño or La Niña conditions to occur when the monthly relative Niño3.4
+departures meet or exceed +/- 0.5ºC along with consistent atmospheric features. These
+anomalies must also be forecasted to persist for 3 consecutive months.
+
+https://www.weather.gov/media/notification/pdf_2026/pns26-05_Relative_ONI.pdf
+ RONI (ºC): Evolution
+ since 1950
+
+The most recent RONI
+value (January – March
+2026) is -0.7ºC.
+
+ El Niño
+ Neutral
+ La Niña
+Historical El Niño and La Niña Episodes Based on the
+RONI computed using ERSST.v5
+ Recent Pacific warm (red) and cold (blue) periods based on a threshold of +/- 0.5 ºC for the
+Relative Oceanic Nino Index (RONI) [ERSST.v5 SST anomalies]. For historical purposes, periods of below and
+above normal SSTs are colored in blue and red when the threshold is met for a minimum of 5 consecutive over-
+lapping seasons.
+ The RONI is one measure of the El Niño-Southern Oscillation, and other indices can confirm
+whether features consistent with a coupled ocean-atmosphere phenomenon accompanied these periods. The
+complete table going back to DJF 1950 can be found here.
+
+ Year DJF JFM FMA MAM AMJ MJJ JJA JAS ASO SON OND NDJ
+ 2014 -0.5 -0.5 -0.3 0.0 0.1 0.0 -0.1 -0.1 0.1 0.4 0.5 0.6
+
+ 2015 0.5 0.4 0.5 0.6 0.8 1.0 1.3 1.6 1.9 2.2 2.3 2.4
+
+ 2016 2.2 1.8 1.3 0.5 -0.1 -0.6 -0.9 -1.0 -1.1 -1.1 -1.1 -1.0
+
+ 2017 -0.7 -0.5 -0.3 -0.1 0.1 0.1 -0.2 -0.5 -0.7 -1.0 -1.1 -1.3
+
+ 2018 -1.1 -1.0 -0.9 -0.7 -0.3 0.0 0.1 0.2 0.4 0.7 0.8 0.7
+
+ 2019 0.6 0.6 0.6 0.5 0.3 0.2 0.0 -0.1 0.0 0.1 0.2 0.2
+
+ 2020 0.1 0.1 0.0 -0.3 -0.6 -0.8 -0.8 -0.9 -1.2 -1.5 -1.5 -1.4
+
+ 2021 -1.2 -1.0 -1.0 -0.8 -0.6 -0.5 -0.6 -0.7 -0.9 -1.1 -1.2 -1.2
+
+ 2022 -1.2 -1.2 -1.3 -1.3 -1.2 -1.0 -0.9 -1.0 -1.1 -1.1 -1.0 -1.0
+
+ 2023 -0.8 -0.6 -0.4 -0.2 0.1 0.4 0.6 0.9 1.1 1.4 1.5 1.5
+
+ 2024 1.2 0.9 0.5 0.1 -0.3 -0.5 -0.5 -0.6 -0.8 -0.8 -0.9 -1.1
+
+ 2025 -1.1 -0.9 -0.7 -0.5 -0.5 0.0 -0.5 -0.6 -0.8 -0.9 -0.9 -1.0
+
+ 2026 -0.9 -0.7
+ CPC Probabilistic ENSO Outlook
+ Updated: 9 April 2026
+
+A transition from La Niña to ENSO-neutral is expected in the next month, with
+ENSO-neutral favored through May-July 2026 (55% chance). In June-August
+2026, El Niño is likely to emerge (62% chance) and persist through at least the
+end of 2026.
+ CPC Probabilistic ENSO Strength Outlook
+ Updated: 9 April 2026
+
+In November 2026- January 2027, there are nearly equal chances (25%) of a
+very strong, strong, or moderate strength El Niño. There is nearly a 1-in-10
+chance of ENSO-neutral.
+ SST Outlook: NCEP CFS.v2 Forecast (PDF & Spread Corrected)
+ Issued: 19 April 2026
+
+The CFS.v2 ensemble mean (black dashed line) favors the continuation of ENSO-
+neutral in the next month or two, with a transition to El Niño during May-July
+2026.
+Atmospheric anomalies over
+the North Pacific and North
+America During the Last 60
+Days
+
+Since mid-February, above-average heights and
+temperatures have dominated most of the
+contiguous U.S., while below-average heights and
+temperature were evident over Alaska and/or
+Canada.
+
+ 1 of 3
+Atmospheric anomalies over
+the North Pacific and North
+America During the Last 60
+Days
+
+Since mid-February, above-average heights and
+temperatures have dominated most of the
+contiguous U.S., while below-average heights and
+temperature were evident over Alaska and/or
+Canada.
+
+ 2 of 3
+Atmospheric anomalies over
+the North Pacific and North
+America During the Last 60
+Days
+
+Since mid-February, above-average heights and
+temperatures have dominated most of the
+contiguous U.S., while below-average heights and
+temperature were evident over Alaska and/or
+Canada.
+
+ 3 of 3
+U.S. Temperature and Precipitation Departures During
+the Last 30 Days
+
+End Date: 18 April 2026
+
+ Percent of Average Precipitation Temperature Departures (degree C)
+
+ 1 of 2
+U.S. Temperature and Precipitation Departures During
+the Last 90 Days
+
+End Date: 18 April 2026
+
+ Percent of Average Precipitation Temperature Departures (degree C)
+
+ 2 of 2
+U. S. Seasonal Outlooks
+May – July 2026
+
+ The seasonal outlooks combine the effects of long-term trends, soil moisture,
+ and, when appropriate, ENSO.
+
+ Precipitation Temperature
+ Summary
+ ENSO Alert System Status: Final La Niña Advisory / El Niño Watch
+ENSO-neutral conditions are present.*
+Equatorial sea surface temperatures (SSTs) are near-to-below-average in the
+east-central Pacific Ocean.
+ENSO-neutral conditions favored through April-June 2026 (80% chance). In May-
+July 2026, El Niño is likely to emerge (61% chance) and persist through at least
+the end of 2026.*
+
+* Note: These statements are updated once a month (2nd Thursday of each month) in association
+with the ENSO Diagnostics Discussion, which can be found by clicking here.
+"""
+
+[R3] EL NINO AN UNLIKELY PLAYER IN SHAPING VIRGINIA'S WEATHER
+(https://scholar.lib.vt.edu/VA-news/VA-Pilot/issues/1997/vp971108/11080318.htm)
+"""
+DATE: Saturday, November 8, 1997 TAG: 9711080318 SECTION: LOCAL PAGE: B3 EDITION: FINAL SOURCE: BY STEVE STONE, STAFF WRITER LENGTH: 90 lines Call it the El Nino Factor - or fiction. Mention the winter to come and someone is bound to say Virginia is assured an Arctic gift of snow and cold; others will as quickly say Hampton Roads can expect to luxuriate in a southerly flow of insulating warmth. All thanks to El Nino. The mother of all weather systems has become a cause cliche, blamed for everything short of the recent stock market plunge. Truth is, El Nino - a major warming of Pacific Ocean currents off Peru that has a huge effect on global weather patterns - is hard to link to local meteorological events. And history provides no evidence of an El Nino trend for winters in Hampton Roads. ``There's no indication whatsoever that there is any useful predictability to be derived from El Nino'' in forecasting what winter holds in store for Virginia, said Jerry Stenger, research coordinator for the Virginia State Climatologist's office. Still, folks are wondering - as they do annually - what the winter to come will bring. And even though the official National Weather Service outlook offers little in the way of excitement, El Nino has provided a tantalizing bit of spice for others who cook up seasonal forecasts. ``We've had a lot of people ask us this year how El Nino conditions are likely to affect our upcoming winter,'' said Stenger, who has done an extensive study of winter weather in Virginia during past strong El Ninos. But he found no relationship between it and rainfall, temperature or snowfall. ``As far as Virginia goes, it's not a very good predictive tool.'' Dewey Walston, a meteorologist at the Weather Service forecast office in Sterling, agrees. Periods when Pacific currents are cooler than normal - the much less heralded La Nina - actually seem to correlate more closely with significant winter weather events in Virginia. ``La Nina is a lot scarier than El Nino around here,'' Walston said. An analysis by the National Oceanic and Atmospheric Administration of weather patterns over North America during previous strong El Nino years reaches the same general conclusion. Although it shows there is a tendency for a slightly wetter winter along the East Coast - and only a narrow corridor of coastline at that - overall, the entire mid-Atlantic region is largely unaffected in terms of precipitation or temperature. So, what will happen this winter? Stenger has no idea. ``So far, we haven't gotten any really good clues as to what's lurking for us this winter,'' he said. ``Last year we saw some significant changes in the jet stream that led us to believe we might be in for a relatively uneventful winter - which it was.'' When the jet stream steers north of the mid-Atlantic region, that generally assures Virginia and North Carolina a warmer winter. Wet, perhaps, but usually lacking much, if any, snow. But if the jet stream takes a more southerly track, that increases the likelihood for a colder winter with a greater threat of snow. And place the jet stream on a track where it dips to the Gulf of Mexico and then heads north along the East Coast and you have the best setup for snow - cold air rushing down from Canada running into moist air from the South. ``At this point, however, we have not seen any development where the jet stream is locked into a persistent pattern,'' Stenger said. Others, however, say they know exactly what is in store. ``Winter storms worst ever!'' screamed the supermarket tabloid Sun last month. It promised that snow would ``blast'' the South, burying towns under 10 feet of white stuff. ``Americans will be battered by hail the size of bowling balls, incredibly huge lightning bolts will explode houses into splinters, stranded air travelers will freeze to death in blacked-out airports and San Francisco will be split in half by a monster earthquake.'' Now, back to reality. The Old Farmer's Almanac paints a picture of a rather dull winter for the middle Atlantic coast. While it foretells a colder than normal November and December, 1998 opens with four months of above-normal temperatures. Snow is forecast for Dec. 10-13, Dec. 17-20, Jan. 15-17 and Jan. 23-26 - but only in western parts of Virginia, with rain to the east. After a frosty Christmas holiday, the Blum's Farmer's and Planter's Almanac calls for the year to end with a blast. Snow is twice forecast in February, on the 8th to 11th and again on the 20th to 23rd. The Farmer's Almanac (no kin to the ``Old'' version above) offers the most eventful winter outlook. December offers an intensifying coastal storm on the 16th-19th that ``delivers high winds and heavy precipitation,'' followed by frost. Then, as the month ends, a strengthening storm from the Southern Plains ``intensifies as it moves to the mid-Atlantic states, bringing possible heavy snowfall with up to 4 inches to 8 inches, then fair and cold in time for 1998.'' Finally, there's the official, if nowhere near as exciting or specific, version from the National Weather Service. The Climate Prediction Center's computers are calling for near normal temperatures for Virginia and North Carolina this winter with normal precipitation over most of Virginia. Southeast Virginia and much of North Carolina have a 5 percent probability of more precipitation than normal. And there's no mention of bowling ball-sized hailstones. by CNB
+"""
+
+[R4] What are El Nino and La Nina?
+(https://oceanservice.noaa.gov/facts/ninonina.html)
+"""
+To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video Warmer or colder than average ocean temperatures in one part of the world can influence weather around the globe. Watch this Ocean Today video to see how this works. During normal conditions in the Pacific ocean, trade winds blow west along the equator, taking warm water from South America towards Asia. To replace that warm water, cold water rises from the depths — a process called upwelling. El Niño and La Niña are two opposing climate patterns that break these normal conditions. Scientists call these phenomena the El Niño-Southern Oscillation (ENSO) cycle. El Niño and La Niña can both have global impacts on weather, wildfires, ecosystems, and economies. Episodes of El Niño and La Niña typically last nine to 12 months, but can sometimes last for years. El Niño and La Niña events occur every two to seven years, on average, but they don’t occur on a regular schedule. Generally, El Niño occurs more frequently than La Niña. El Niño During El Niño, trade winds weaken. Warm water is pushed back east, toward the west coast of the Americas. El Niño means Little Boy in Spanish. South American fishermen first noticed periods of unusually warm water in the Pacific Ocean in the 1600s. The full name they used was El Niño de Navidad, because El Niño typically peaks around December. El Niño can affect our weather significantly. The warmer waters cause the Pacific jet stream to move south of its neutral position. With this shift, areas in the northern U.S. and Canada are dryer and warmer than usual. But in the U.S. Gulf Coast and Southeast, these periods are wetter than usual and have increased flooding. El Niño causes the Pacific jet stream to move south and spread further east. During winter, this leads to wetter conditions than usual in the Southern U.S. and warmer and drier conditions in the North. El Niño also has a strong effect on marine life off the Pacific coast. During normal conditions, upwelling brings water from the depths to the surface; this water is cold and nutrient rich. During El Niño, upwelling weakens or stops altogether. Without the nutrients from the deep, there are fewer phytoplankton off the coast. This affects fish that eat phytoplankton and, in turn, affects everything that eats fish. The warmer waters can also bring tropical species, like yellowtail and albacore tuna, into areas that are normally too cold. La Niña La Niña means Little Girl in Spanish. La Niña is also sometimes called El Viejo, anti-El Niño, or simply "a cold event." La Niña has the opposite effect of El Niño. During La Niña events, trade winds are even stronger than usual, pushing more warm water toward Asia. Off the west coast of the Americas, upwelling increases, bringing cold, nutrient-rich water to the surface. These cold waters in the Pacific push the jet stream northward. This tends to lead to drought in the southern U.S. and heavy rains and flooding in the Pacific Northwest and Canada. During a La Niña year, winter temperatures are warmer than normal in the South and cooler than normal in the North. La Niña can also lead to a more severe hurricane season. La Niña causes the jet stream to move northward and to weaken over the eastern Pacific. During La Niña winters, the South sees warmer and drier conditions than usual. The North and Canada tend to be wetter and colder. During La Niña, waters off the Pacific coast are colder and contain more nutrients than usual. This environment supports more marine life and attracts more cold-water species, like squid and salmon, to places like the California coast.
+"""
+
+[R5] El Niño on the Horizon: Can the Warm Phase End Six Years of Drought in the Southern Plains of the U.S.? | March 11, 2026 | Drought.gov
+(https://www.drought.gov/news/el-nino-horizon-can-warm-phase-end-six-years-drought-southern-plains-us-2026-03-11)
+"""
+Does El Niño Mean the Drought Across the Southern Plains Will Definitely End? No.There is a growing possibility that an El Niño will be among the strongest influences on weather patterns across the U.S. later this year. What will this mean for drought in the Southern Plains?El Niño is the warm phase of the El Niño-Southern Oscillation, or ENSO. El Niño usually (but not always) coincides with cooler, wetter conditions for the Southern U.S. Its influence is usually (but not always) strongest from late fall through early-to-mid spring. El Niño patterns can become drought busters for the Southern U.S., as occurred in the winters of 1957-58, 1982-83, 1997-98, and 2015-16. However, we can’t always count on an El Niño to eliminate drought, as in 1953-54, 1972-73, and 2023-24. An illustration of typical weather patterns during an El Niño winter for North America. During a typical El Niño winter, an extended Pacific jet stream brings wetter and colder conditions to the southern tier of the U.S., while the Northern U.S. and Canada experience warmer-than-average temperatures. Drier conditions are typically seen in the Ohio Valley and Pacific Northwest regions. Source: National Oceanic and Atmospheric Administration. One Good Year Won’t Eliminate 6 Years of Water Deficit……unless it’s exceptionally wet, like in 1957-58. Those years also saw historic floods(link is external) that led to fatalities and devastating destruction. Although they bring a lot of water, floods don’t always end a drought. Sometimes a place can experience a drought and flood at the same time. Last year, we wrote about rapid shifts from drought to flood in Texas. So what about this drought? Why wouldn’t an El Niño end this one? It could, but it would have to bring exceptionally wet weather. The American Southwest and the Southern Plains have been in drought for nearly 6 years. As a result, reservoirs are low, streamflow is low, and aquifers are low. It will take more than one wet year to refill low reservoirs, streams, and aquifers. Further, many large reservoirs in the Southern Plains rely on winter snowpack upstream to fill. This includes along the Rio Grande and the Pecos River in western Texas. Given the poor existing snowpack in this region, current runoff forecasts are below normal. Looking ahead to next winter, ENSO is somewhat useful for predicting snowpack in the Rio Grande headwaters to an extent, but the relationship is weak. A few examples from past years: The 2022-2023 (La Niña year) snowpack was great, but did little to improve long-term hydrologic drought. 2023-24 (El Niño year) saw above-average snowpack in the Rio Grande headwaters, while the 2024-251 snowpack was below average. Composite (average) precipitation rate anomalies in mm/day associated with 10 past El Niño events from 1948 to 2016. Events are defined for cold season months of November to March. Anomalies are defined as the difference from a 30-year climatology centered on the ENSO year. Greens, blues, and purples represent positive anomalies (wetter than average), and yellows, oranges, and reds represent negative anomalies (drier than average). Source: NOAA's Physical Sciences Laboratory. The Strength of the El Niño Matters for Drought Prediction in the Southern PlainsGenerally, the stronger the sea-surface temperature anomaly, the more likely the expected atmospheric response. This means there is more confidence in forecasts for wetter fall, winter, and early spring seasons across the Southern U.S. In February, NOAA’s Climate Prediction Center shifted to using the Relative Oceanic Niño Index (RONI) to provide a better sense of the magnitude of sea-surface temperature variability in the context of overall warming oceans. The magnitude of warming during an El Niño pattern is important. One example is the 2023-24 El Niño and seasonal weather patterns in the Southern U.S. Using the traditional Oceanic Niño Index (ONI), the 2023-24 El Niño looked like it was going to bring more precipitation with it, but the atmospheric response and follow-on effect on rainfall patterns were weaker than expected. The RONI showed a dampened El Niño signal and was more aligned with the weather patterns experienced. Looking ahead, if an El Niño develops in fall 2026, RONI should give a more accurate measure of the expected impact on weather across the Southern U.S.Focusing in on just Texas, the table below looks at all the El Niño events since 1950, their relative strength, and the impacts to weather. For most of the mid-20th century, RONI was either close to or sometimes stronger than the traditional ONI, and the impacts on winter precipitation followed the traditional ONI fairly well. However, as the tropical oceans warmed (mostly in the early 21st century), precipitation patterns were more aligned with the RONI through Texas. If an El Niño pattern forms in the Pacific later this year, there’s no guarantee it will remove drought conditions in the Southern Plains. Typical El Niño weather patterns would bring needed improvement to drought across the Southern Plains, but they will not definitely end it without being historically wet, which could bring other consequences (flooding).Table 1: ONI and RONI values with impacts on drought in Texas. Here we are defining El Niño’s strength using the December-January-February traditional ONI and RONI. A weak El Niño is defined as an anomaly between +0.5-0.99 ºC, a moderate El Niño is between +1.0-1.49 ºC, strong is between 1.5-1.99 ºC and a very strong El Niño is 2 ºC or warmer.Past El Niño Events and Impacts on Texas WeatherEl Niño PeriodStrength (Traditional ONI)Strength (Relative ONI)Texas Impacts1951-1952WeakWeakNone. Record-setting drought continued.1953-1954WeakModerateNone. Record-setting drought continued.1957–1959StrongVery StrongEnded the catastrophic 1950s drought of record with equally catastrophic floods. 1963-1964ModerateModerateA moderate to severe drought saw significant improvement.1965-1966ModerateStrongDrought returned in the summer but improved in the winter. 1968-1969ModerateModerateRelatively average conditions persisted through winter.1972–1973StrongVery StrongProvided significant moisture after dry early 1970s.1976-1977WeakModerateFollowing a 3-year La Niña pattern, winter 1976-1977 was very wet, but extreme drought returned the following summer.1977-1978WeakWeakSome drought improvement, but severe drought persisted.1982–1983Very StrongVery StrongExtremely wet winter for Louisiana and Mississippi; fairly average for Texas. This likely prevented drought development.1986-1987ModerateStrongVery wet winter, especially for western Texas and the Panhandle. 1987-1988WeakWeakNone. Average winter precipitation and drought returned the following spring.1991-1992StrongVery StrongVery wet winter.1994-1995ModerateModerateWetter-than-average winter for eastern Texas. Drier-than-average winter for western Texas.1997–1998Very StrongVery StrongDrought returned in spring 1996 but did not last long.1997 was a persistently wet year, and the 1997-1998 winter was wetter than average.2002-2003 2004-2005 2006-2007WeakWeakThe early 2000s experienced three weak El Niño events. Each El Niño winter saw above-average precipitation. The 2006-2007 winter precipitation ended an extreme but short-term drought.2009-2010ModerateModerateWet winter in northeast Texas; average elsewhere.2015–2016Very StrongVery StrongEnded the intense 2010–2015 Southern Plains drought, but included localized flooding.2018-2019WeakWeakAbove-average winter rainfall followed by a very wet spring and summer.2023–2024StrongModerateProvided relief, but did not eliminate the 2020–2023 drought.Thank you to Michelle L'Heureux (NOAA's National Weather Service Climate Prediction Center) and Andrew Hoell (NOAA's Physical Sciences Laboratory), who reviewed this story.1. Using the Oceanic Niño Index, 2024-25 was an ENSO-neutral year, but using the Relative Oceanic Niño Index, 2024-25 was a weak La Niña. Precipitation patterns across the southwest resembled a traditional La Niña pattern. Learn more about drought and the Relative Oceanic Niño Index here.
+"""
+
+[R6] Possible super El Niño could bring extreme heat, droughts, strong floods - The Washington Post
+(https://www.washingtonpost.com/weather/2026/04/06/super-el-nino-chances-increasing-risks/)
+"""
+Democracy Dies in DarknessBy Ben NollThe chances for a planet-warming super El Niño this year are rising, according to an updated model forecast issued Sunday.The latest ECMWF outlook indicates there’s a high chance for a supercharged version of the climate pattern that affects regional-to-global weather patterns this summer or fall, doubling down on a super El Niño prediction from last month.What readers are sayingThe comments reflect a strong concern about climate change and criticism of the Trump administration's handling of environmental issues. Many commenters express frustration with the denial of climate change and the prioritization of fossil fuels over renewable energy. There is a... Show moreThis summary is AI-generated. AI can make mistakes and this summary is not a replacement for reading the comments.Comments 617Most ReadAdam TaylorTrump administration pushes nations to sign ‘trade over aid’ declarationApril 15, 2026Júlia Ledur and Dylan MoriartyHow geography powers Iran’s grip on the Strait of Hormuz, despite U.S. blockadeApril 14, 2026Dan LamotheU.S. sends thousands more troops to Mideast as Trump seeks to squeeze IranApril 15, 2026Gretchen ReynoldsWant to control your blood sugar? Here’s the best time of day for exercise.April 15, 2026Julian MarkJustice Sotomayor issues rare apology for remarks about conservative colleagueApril 15, 2026Elazar SontagDining chat: Do I really have to tip 20% at bakeries and cafes?April 15, 2026View 3 more storiesView 3 more storiesNewsletterTUESDAYSClimate CoachClimate Coach Michael Coren advises you on how to navigate life on our changing planet. Delivered Tuesdays.Sign up5.57.4 Already a subscriber? Sign inGet unlimited access toThe Washington PostUnlimited access on the web and in our apps24/7 live news updatesMonthly$4every four weeksYearly$40for the first yearFor the first six months. Cancel anytime.Add your email addressBy creating your account, you agree to The Washington Post's Terms of Service and Privacy Policy.CardView more offers
+"""
+
+[R7] El Nino Information
+(https://www.weather.gov/ilx/el_nino)
+"""
+Background Information Near the end of each calendar year, ocean surface temperatures warm along the coasts of Ecuador and northern Peru. In the past, local residents referred to this annual warming as “El Nino,” meaning “The Child,” due to its appearance around the Christmas season. The appearance of El Nino signified the end of the fishing season and the arrival of the time for Peruvian fishermen to repair their nets and maintain their boats. Every two to seven years a much stronger warming appears along the west coast of South America, lasting for several months and often accompanied by heavy rainfall in the arid coastal regions of Ecuador and northern Peru. Over time the term El Nino began to be used in reference to these major warm episodes. During the 1960s, scientists began to link the abnormally warm waters along the west coast of South America with abnormally warm waters throughout the central and east-central equatorial Pacific. In addition, the warmer than average waters were shown to be closely related to a global atmospheric pressure oscillation known as the Southern Oscillation. The term El Nino refers to the coupled ocean-atmosphere phenomenon characterized by: Abnormally warm sea surface temperatures from the date line (180W) east to the South American coast Changes in the distribution of tropical rainfall from the eastern Indian Ocean east to the tropical Atlantic Changes in sea level pressure throughout the global Tropics Large-scale atmospheric circulation changes in the Tropics and portions of the extra-tropics in both hemispheres Latest sea surface temperatures over the eastern equatorial Pacific. Other terms commonly used for the El Nino phenomenon include “Pacific warm episode” and “El Nino/ Southern Oscillation (ENSO) episode.” The El Nino phenomena and its counterpart, La Nina (where tropical Pacific water is cooler than normal) are the main sources of year-to-year variability in weather and climate for many areas of the world. El Nino and La Nina tend to alternate in an irregular cycle, which is often referred to as the ENSO cycle. El Nino episodes tend to: Develop during the Northern Hemisphere spring season Occur every 3-5 years Usually last for 9-12 months There is considerable event-to-event variability in the timing, intensity and evolution of both El Nino and La Nina. Periods when neither El Nino nor La Nina is present are referred to as ENSO-neutral. Why do we have ENSO? ENSO appears to be a necessary mechanism for maintaining long-term global climate stability by transporting heat from the tropics to the higher latitudes. What are the effects of El Nino on the United States? El Nino conditions influence wintertime atmospheric flow across the eastern North Pacific and North America. There is considerable event-to-event variability in the character of El Nino episodes, and in some areas impacts can vary substantially from one event to another. However, there are some sections of the United States where impacts are fairly consistent and predictable, especially when associated with strong El Nino episodes. In general, El Nino results in: Increased precipitation across California and the southern tier of states, and in decreased precipitation in the Pacific Northwest and in the Ohio and Tennessee Valleys A milder than normal winter across the northern states is common In the eastern United States, El Nino episodes favor more coastal storms at the expense of Alberta Clippers During the warm season, El Nino influences hurricane development, resulting in more eastern Pacific hurricanes and fewer Atlantic hurricanes Current and Forecast Status of El Nino An El Nino Watch is in effect. A transition to El Nino conditions is expected over the next couple months. There is a greater than 90% chance that El Nino will continue through the upcoming winter. Maps below indicate the observed anomalies over various ENSI regions during the past year. Anomalies are calculated from the 1991-2020 base period. As shown in the graph below, multi-model averages indicate that SSTs will remain well above normal through winter. How Will El Nino Impact Central & Southeast Illinois? It is important to note that the atmosphere is complex, and numerous patterns, oscillations, and systems interact to produce the weather over a given period of time in the Midwest. Impacts of El Nino vary with each episode, due to the overlaid effects of other climate patterns, persistent weather features, location of the strongest SST anomalies, and individual weather patterns themselves. Having a strong event can make the impacts stronger, but there can still be variance. Because the sample size of strong El Nino events is very small, it is not relevant to draw conclusions or base assumptions on strong events alone. To get an idea of typical El Nino impacts on the local area, we look to the climate database to see what trends have been observed in past El Nino winters, compared to La Nina or ENSO-neutral winters. This comparison is depicted in the box and whiskers plots below, for Climate Division #24, which covers much of central and eastern Illinois. The box and whiskers plot is a way to show the range of percentiles that precipitation (left image) and temperature (right image) fall for the 3 different ENSO categories. The data are from 1950-2010. For a description of how to read the box and whiskers plot, click here. As we can see from the plots, winter precipitation during El Nino events tends to be slightly lower than ENSO-neutral or La Nina. Temperatures are more variable for El Nino than ENSO-neutral or La Nina, with no significant change in median value. These are the conclusions we can have confidence in, based on the historical record. Below are the current temperature and precipitation outlooks for winter 2015-16 from the Climate Prediction Center. This does not provide information about snowfall. Snowfall is highly dependent on individual storms, which are only forecast days in advance. The current forecast shows higher probabilities for above normal temperatures for most of central and southeast Illinois, and higher probabilities for below normal precipitation. These outlooks are updated once a month, near the 20th. For more information on El Nino, see the Climate Prediction Center's ENSO webpage: https://www.cpc.ncep.noaa.gov/products/precip/CWlink/MJO/enso.shtml
+"""
+
+[R8] NOAA declares the arrival of El Niño
+(https://www.weather.gov/news/230706-elnino)
+"""
+Expected to be moderate-to-strong by late fall/early winter June 8, 2023 - The expected El Niño has emerged, according to scientists at NOAA’s Climate Prediction Center, a division of the National Weather Service. In the monthly outlook released today, forecasters issued an El Niño Advisory, noting that El Niño conditions are present and are expected to gradually strengthen into the winter. El Niño is a natural climate phenomenon marked by warmer-than-average sea surface temperatures in the central and eastern Pacific Ocean near the equator, which occurs on average every 2-7 years. El Niño’s impacts on the climate extend far beyond the Pacific Ocean. "Depending on its strength, El Niño can cause a range of impacts, such as increasing the risk of heavy rainfall and droughts in certain locations around the world," said Michelle L'Heureux, climate scientist at the Climate Prediction Center. "Climate change can exacerbate or mitigate certain impacts related to El Niño. For example, El Niño could lead to new records for temperatures, particularly in areas that already experience above-average temperatures during El Niño.” El Niño’s influence on the U.S. is weak during the summer and more pronounced starting in the late fall through spring. By winter, there is an 84% chance of greater than a moderate strength El Niño, and a 56% chance of a strong El Niño developing. Typically, moderate to strong El Niño conditions during the fall and winter result in wetter-than-average conditions from southern California to along the Gulf Coast and drier-than-average conditions in the Pacific Northwest and Ohio Valley. El Niño winters also bring better chances for warmer-than-average temperatures across the northern tier of the country. A single El Niño event will not result in all of these impacts, but El Niño increases the odds of them occurring. The anticipated persistence of El Niño also contributed to the 2023 Atlantic and Eastern Pacific Hurricane Outlooks issued by NOAA last month. El Niño conditions usually help to suppress Atlantic Hurricane activity, while the presence of El Niño typically favors strong hurricane activity in the central and eastern Pacific Basins. The Climate Prediction Center’s seasonal temperature and precipitation outlooks will continue to take into account current and forecasted El Niño conditions. These seasonal outlooks are updated monthly, with the next update on June 15. The Atlantic Hurricane Season Outlook will be updated in early August. Scientists have been forecasting the development of El Niño for the last few months and issued the first El Niño Watch on April 13. Media contact John Moore, (202) 603-2523
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

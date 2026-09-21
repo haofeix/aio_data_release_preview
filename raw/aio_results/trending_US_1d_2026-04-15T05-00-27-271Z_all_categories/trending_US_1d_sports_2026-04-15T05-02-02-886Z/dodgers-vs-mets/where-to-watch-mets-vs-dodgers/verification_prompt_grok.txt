@@ -1,0 +1,110 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch mets vs dodgers"
+
+Claims:
+[1] "New York Mets vs. Los Angeles Dodgers game is on Wednesday, April 15, 2026."
+[2] "New York Mets vs. Los Angeles Dodgers game time is 10:10 p.m. ET."
+[3] "New York Mets vs. Los Angeles Dodgers game broadcasts on ESPN."
+[4] "ESPN is the national TV channel for the New York Mets vs. Los Angeles Dodgers game."
+[5] "SNY is the TV channel for the Mets market for the New York Mets vs. Los Angeles Dodgers game."
+[6] "SportsNet LA is the TV channel for the Dodgers market for the New York Mets vs. Los Angeles Dodgers game."
+[7] "Fubo offers live streaming of the New York Mets vs. Los Angeles Dodgers game with free trial."
+[8] "MLB.tv offers streaming for out-of-market New York Mets vs. Los Angeles Dodgers game."
+[9] "SNY.tv is a live streaming option for the New York Mets vs. Los Angeles Dodgers game."
+[10] "ESPN Radio carries the New York Mets vs. Los Angeles Dodgers game."
+[11] "New York Mets vs. Los Angeles Dodgers game is played at Dodger Stadium."
+
+Cited text snippets from the AI Overview (for additional context):
+- How to watch Mets vs. Dodgers: TV channel and streaming options for April 14: "How to watch New York,Total Under Odds: -118"
+- Mets vs. Dodgers: How to watch on SNY on April 14, 2026: "The way to stream SNY,computer, tablet or mobile phone."
+- Will Mets end losing streak vs Dodgers today? How to watch ...: "What time is NY Mets,2-1, 2.50 ERA)"
+- New York Mets vs Los Angeles Dodgers Live Stream - Fubo: "TV Channel: SportsNet NY, MLB,on Fubo: Start watching now!"
+- How to Watch Dodgers vs. Mets: Live Stream or on TV: "When is Dodgers vs. Mets,Dodgers vs. Mets Game Preview"
+Reference Sources:
+
+[R1] How to watch Mets vs. Dodgers: TV channel and streaming options for April 14
+(https://www.nytimes.com/athletic/7196457/2026/04/14/how-to-watch-mets-vs-dodgers-tv-channel-and-streaming-options-for-april-14/)
+"""
+The New York Mets hope to end their six-game losing run against the Los Angeles Dodgers, at 10:10 p.m. ET on Tuesday. Yoshinobu Yamamoto (2-1, 2.50 ERA) will start for the Dodgers, who are 12-4 this season and first in the NL West. Nolan McLean (1-1, 2.70 ERA) is the expected starter for the Mets, who are 7-10 and fifth in the NL East.How to watch New York Mets vs. Los Angeles Dodgers Venue: Dodger Stadium Time: 10:10 p.m. ET Streaming: Fubo (Stream now) TV: SportsNet LA and SNY Watching in person? Get tickets on StubHub. Mets vs. Dodgers odds Favorite Moneyline: Dodgers -200 Underdog Moneyline: Mets +165 Total: 7.5 Total Over Odds: -102 Total Under Odds: -118 Odds provided by BetMGM.Injury reportsDodgersTommy Edman: 10 Day IL (Ankle), Mookie Betts: 10 Day IL (Back), Brock Stewart: 15 Day IL (Shoulder), Brusdar Graterol: 15 Day IL (Shoulder), Blake Snell: 15 Day IL (Shoulder), Ben Casparius: 15 Day IL (Shoulder), Landon Knack: 15 Day IL (Undisclosed), Bobby Miller: 60 Day IL (Shoulder), Gavin Stone: 60 Day IL (Shoulder), Jake Cousins: 60 Day IL (Elbow), Kiké Hernández: 60 Day IL (Elbow), Evan Phillips: 60 Day IL (Elbow) MetsJuan Soto: 10 Day IL (Calf), A.J. Minter: 15 Day IL (Lat), Joey Gerber: 15 Day IL (Finger), Dedniel Nunez: 60 Day IL (Elbow), Tylor Megill: 60 Day IL (Elbow), Justin Hagenman: 60 Day IL (Rib), Reed Garrett: 60 Day IL (Elbow), Clay Holmes: day-to-day (Hamstring)Stats to know Los Angeles’ Andy Pages is slashing .417/.453/.733 this season with five home runs (7th in MLB), 20 RBIs (1st in MLB) and an OPS of 1.186 (3rd in MLB). He has a 25% strikeout rate and a 6.3% walk rate in 64 plate appearances, and he has scored nine total runs. Pages has recorded two steals on three attempts. In 71 plate appearances, Freddie Freeman has slashed .273/.324/.485 this season. He has hit three long balls and driven in 13 runs (14th in MLB) with a strikeout rate of 11.3% and a walk rate of 5.6%. He has come around to score eight times. New York’s Luis Robert is slashing .300/.435/.420 this season with two home runs, seven RBIs and an OPS of .855. He has a 21% strikeout rate and a 19.4% walk rate in 62 plate appearances, and he has scored nine total runs. Robert has recorded two steals on three attempts. In 51 plate appearances, Francisco Alvarez has posted a 17.6% strikeout rate and a 9.8% walk rate while slashing .302/.388/.605 with four home runs (18th in MLB), four RBIs and six runs scored. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Jamie Squire, Ishika Samant, Scott Taetsch, Alika Jenner / Getty Images Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R2] New York Mets vs Los Angeles Dodgers Live Stream: How to Watch MLB
+(https://www.fubo.tv/news/mlb/new-york-mets-vs-los-angeles-dodgers-live-stream-how-to-watch-mlb-2/)
+"""
+The New York Mets and Los Angeles Dodgers face-off on Tuesday in MLB action. Dodger Stadium is set to host the exciting mid-week matchup between the New York Mets and Los Angeles Dodgers on Tuesday in MLB regular season action. The two-time reigning World Series champions opened the three-game series with an early lead when Will Smith hit a single on a ground ball to center field that brought Shoehi Ohtani home and moved Kyle Tucker to second base in the bottom of the first inning. Then, in the bottom of the third, Andy Pages hit his fifth home run of the season on a fly ball to left field that brought both Tucker and Freddie Freeman home and gave L.A. a 4-0 lead. How to Watch New York Mets vs Los Angeles Dodgers Today: Game Date: Tuesday, April 14, 2026 Game Time: 10:00 p.m. ET TV Channel: SportsNet NY, MLB.TV – Los Angeles Dodgers Location: Dodger Stadium Live stream New York Mets vs Los Angeles Dodgers on Fubo: Start watching now! David Peterson got the start on the mound for the Mets and lasted five innings where he gave up five hits and four runs with seven strikeouts. Don’t miss the thrilling matchup between New York and Los Angeles on Tuesday in MLB regular season action. What Time is Mets vs Dodgers Game On? The New York Mets vs Los Angeles Dodgers game will take place on Tuesday, April 14, 2026 at 10:00 p.m. ET. Tune in and catch some great MLB action. What Channel Is New York Mets vs Los Angeles Dodgers? Looking to watch this game? Fans can tune into SportsNet NY, MLB.TV – Los Angeles Dodgers to see the action. Make sure you subscribe to Fubo now to watch this matchup, as well as numerous other sports leagues. Live stream New York Mets vs Los Angeles Dodgers on Fubo: Start watching now! Regional restrictions may apply.
+"""
+
+[R3] Mets vs. Dodgers: How to watch on SNY on April 14, 2026
+(https://sny.tv/articles/mets-dodgers-watch-sny-4-14-26)
+"""
+The Mets continue a three-game series against the Dodgers in Los Angeles on Tuesday night at 10:10 on SNY.Here's what to know about the game and how to watch...Mets NotesNolan McLean has a 2.70 ERA and 0.84 WHIP in 16.2 innings over three starts this season. He is allowing just 4.3 hits per nine The Mets have scored nine runs during their six-game losing streakFrancisco Lindor, who has 79 plate appearances this season, has yet to record an RBICarson Benge has reached base safely in five of his last six gamesDue in part to the Mets' six-game losing streak, Devin Williams hasn't pitched since last TuesdayToday's LineupsMETSDODGERSFrancisco Lindor, SSShohei Ohtani, DHLuis Robert Jr., CFKyle Tucker, RFJorge Polanco, DHWill Smith, CBo Bichette, 3BFreddie Freeman, 1BFrancisco Alvarez, CTeoscar Hernandez, LFBrett Baty, RFMax Muncy, 3BMark Vientos, 1BAndy Pages, CFMarcus Semien, 2BHyeseong Kim, SSCarson Benge, LFAlex Freeland, 2BWhat channel is SNY?Check your TV or streaming provider's website or channel finder to find your local listings.How can I stream the game?The way to stream SNY games is via the MLB App or MLB.tv.In order to stream games in SNY’s regional territory, you will need to have SNY as part of your TV package (cable or streaming), or you can now purchase an in-market SNY subscription package via MLB or Amazon. Both ways will allow fans to watch the Mets on their computer, tablet or mobile phone.How can I watch the game on my computer via MLB?To get started on your computer, click here and then follow these steps:Log in using your provider credentials. If you are unsure of your provider credentials, please contact your provider.Link your provider credentials with a new or existing MLB.com account.Log in using your MLB.com credentials to watch Mets games on SNY.Select the SNY Mets game you wish to view from the Multimedia Center.How can I watch the game on the MLB App?MLB App access is included for FREE with SNY. To access SNY on your favorite supported Apple or Android mobile device, please follow the steps below.Download the free MLB App.Open “MLB” and tap on “Subscriber Login” for Apple Devices or “Sign in with MLB.com” for Android Devices.Type in your MLB.com credentials and tap “Log In.” To access live or on-demand content, tap on the "Watch" tab from the bottom navigation bar. Select the "Games" sub-tab to see a listing of available games. You can scroll to previous dates using the left and right arrows. Tap on a game to select from the game feeds available. For more information on how to stream Mets games on SNY, please click here.
+"""
+
+[R4] How to Watch Dodgers vs. Mets: Live Stream or on TV - Bleacher Nation
+(https://www.bleachernation.com/how-to-watch/2026/04/14/how-to-watch-dodgers-vs-mets-live-stream-or-on-tv/)
+"""
+On Wednesday, aiming to finish off a series sweep, Shohei Ohtani takes the mound for the Los Angeles Dodgers (13-4) against Clay Holmes and the New York Mets (7-11), with first pitch scheduled for 10:10 p.m. ET. If you’re intending to watch this game, keep reading for streaming and TV options for the Los Angeles-New York matchup. When is Dodgers vs. Mets and when does it start? This contest between the Dodgers and Mets is on Wednesday, April 15, 2026. You should expect the opening pitch at 10:10 p.m. ET. Where to watch Dodgers vs. Mets The Dodgers and Mets will take to the field at Dodger Stadium for this matchup on April 15, and if you would like to see the matchup live, get your tickets now from Vivid Seats! What channel is the game on? You can catch this game live on ESPN. Watch the Dodgers vs. Mets live stream on Fubo Live Stream Online: Sign up for Fubo today! Dodgers vs. Mets Game Preview Yesterday, the Dodgers picked up a 2-1 victory over the Mets, with Blake Treinen (0.1 IP, 0 R, 0 H, 1 K) registering the win for the Dodgers. Kyle Tucker went 1 for 3 with an RBI to lead the offensive attack. Brooks Raley (1.0 IP, 1 R, 1 H, 1 K) was credited with the loss for the Mets. Dodgers Stats, Odds & Insights The Dodgers have been the moneyline favorite 17 total times this season. They’ve finished 13-4 in those games. The Los Angeles Dodgers lead baseball with 29 total home runs, averaging 1.7 per game. The Dodgers have a league-high .477 slugging percentage. Los Angeles has a 3.26 team ERA that ranks fourth across all MLB pitching staffs. Pitchers for the Dodgers combine for the No. 3-ranked WHIP in MLB (1.099). Mets Stats, Odds & Insights The Mets have entered the game as underdogs four times this season and won twice. New York ranks 23rd in Major League Baseball with 14 home runs. The Mets rank 26th in the majors with a .336 team slugging percentage. New York has the ninth-best ERA (3.58) in the majors this season. The Mets have a combined WHIP of 1.244 as a pitching staff, which ranks 11th in MLB. Dodgers Starter Recent Performance: Shohei Ohtani Opponent Date IP H R ER K BB at Blue Jays April 8 6.0 4 1 0 2 1 vs. Guardians March 31 6.0 1 0 0 6 3 Mets Starter Recent Performance: Clay Holmes Opponent Date IP H R ER K BB vs. Athletics April 10 5.1 5 1 1 3 3 at Giants April 4 7.0 3 0 0 4 2 at Cardinals March 30 5.2 4 2 2 5 3 Dodgers Key Players to Watch Ohtani (1-0) gets the start for the Dodgers, his third of the season. His last time out came on Wednesday, April 8 against the Toronto Blue Jays, when the righty tossed six innings, surrendering no earned runs while giving up four hits. Opposing hitters have a collective batting average of just .119 against him this season. He has a 0.00 ERA and 6 strikeouts per nine innings over his two appearances. Andy Pages leads Los Angeles in home runs with five, runs batted in with 20 and his batting average of .397 is also best on his team. Freddie Freeman has 18 hits and an OBP of .307 to go with a slugging percentage of .457 this season. Ohtani leads Los Angeles in home runs with five. He’s driven in 10 runs and is slugging .508. Mets Key Players to Watch Holmes (2-1) will take to the mound for the Mets and make his fourth start of the season. The right-hander’s last start was on Friday, when he tossed 5 1/3 innings while giving up one earned run on five hits in a matchup with the Athletics. The 33-year-old has pitched to a 1.50 ERA this season with 6 strikeouts per nine innings compared to 4 walks per nine across three games. Luis Robert leads the Mets with a team-best batting average of .259. Francisco Lindor is hitting .194 with a double, two triples, a home run and 10 walks. Francisco Alvarez paces the Mets with four home runs.
+"""
+
+[R5] Will Mets end losing streak today vs Dodgers? How to watch, prediction
+(https://www.northjersey.com/story/sports/mlb/mets/2026/04/14/ny-mets-los-angeles-dodgers-today-start-time-tv-channel-prediction-april-14-game/89604110007/)
+"""
+April 14, 2026, 11:35 a.m. ETThe New York Mets look to finally put an end to their losing streak as they get ready for another contest against the Los Angeles Dodgers on Tuesday night.The Mets (7-10, last in NL East) were shutout for a second straight game in a 4-0 series opening loss on Monday. The scoreless drought has now hit 20 innings for the Mets, who last scored a run in the seventh inning in the series finale versus the Athletics on Saturday, April 11.The Dodgers (12-4, first in NL West) scored four runs early against Mets starter David Peterson, as Andy Pages hit a three-run home run in the bottom of the third inning to put L.A. up for good. Starting pitcher Justin Wrobleski had his best career start, as the 25-year-old southpaw pitched eight shutout innings and only allowed two hits and no walks for his second win of the season.The Mets have now lost six consecutive games, their longest losing streak since late in last year's regular season when the team dropped a season-high eight games in a row in early September to eliminate any chance of making the playoffs.Will the Mets put an end to the losing streak tonight?Here's how to watch, the starting pitching matchup and our prediction for tonight's Mets vs. Dodgers game.:What time is NY Mets vs Dodgers game today?Time: 10:10 p.m. ETWhat channel is NY Mets vs Dodgers today?TV: SNYHow to stream NY Mets vs Dodgers game todayStreaming: MLB.TV for out of market viewersNY Mets, Dodgers starting pitchers todayMets: Nolan McLean (1-1, 2.70 ERA)Dodgers: Yoshinobu Yamamoto (2-1, 2.50 ERA)McLean has continued his solid start to 2026, as the 24-year-old right-hander has allowed two or fewer runs in all three starts so far this season in 16 2/3 innings. In his most recent appearance, McLean pitched a season-long 6 1/3 innings and tied a season-high with eight strikeouts, but was given his first loss of the year as the Mets offense couldn't generate much at all in a 7-1 loss to the Arizona Diamondbacks on April 9.Yamamoto, the reigning World Series MVP, high strikeout numbers have yet to be there but the 27-year-old Japanese ace continues to shine, as he pitched six innings for a third consecutive outing and surrendered just one run on five hits in the Dodgers' 4-1 victory over the Toronto Blue Jays in the World Series rematch on April 7.NY Mets vs Dodgers odds for today's gameOdds according to BetMGM as of Tuesday, April 14:Spread: Dodgers by 1.5Over/under: 7.5Moneyline: Dodgers (-200), Mets (+165)Prediction for Mets vs Dodgers todayThe Mets offense finally breaks the scoreless streak early in this one, but it's still not enough.McLean has his worst start yet, giving up three or more runs for the first time this season as the Dodgers offense takes advantage of the young pitcher and win the series as the Mets losing streak hits seven games.Dodgers 7, Mets 4
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

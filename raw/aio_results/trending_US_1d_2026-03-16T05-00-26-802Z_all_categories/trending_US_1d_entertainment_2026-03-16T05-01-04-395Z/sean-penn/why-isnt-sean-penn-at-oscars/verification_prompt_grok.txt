@@ -1,0 +1,111 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "why isnt sean penn at oscars"
+
+Claims:
+[1] "Sean Penn did not attend the 2026 Oscars because he was in Europe."
+[2] "Reports indicate that Sean Penn was on a trip to Ukraine."
+[3] "Sean Penn won Best Supporting Actor for One Battle After Another."
+[4] "Sean Penn has previously criticized the Academy for not allowing Ukrainian President Volodymyr Zelenskyy to speak."
+[5] "Sean Penn skipped the SAG Awards earlier in the season."
+[6] "Sean Penn skipped the BAFTAs earlier in the season."
+[7] "Sean Penn won at the SAG Awards."
+[8] "Sean Penn won at the BAFTAs."
+[9] "In 2022, Sean Penn threatened to smelt his previous Oscars if the Academy did not allow for Ukrainian representation."
+[10] "Kieran Culkin presented the Best Supporting Actor award."
+[11] "Kieran Culkin joked that Sean Penn "couldn't be here... or didn't want to"."
+
+Cited text snippets from the AI Overview (for additional context):
+- Why Did 2026 Oscars Nominee Sean Penn Skip the Show?: "What To Know,t holding tight to them."
+- The real reason Sean Penn wasn't at the 98th Academy Awards to ...: "The reason behind the no,a speech during the ceremony.&text=He expressed ahead of the,will smelt mine in public."&text=Sean continued: "I pray that's,walks out if it is.""
+- Sean Penn Wins Best Supporting Actor but Opts for Ukraine ...: "Sean Penn Wins Best Supporting Actor but Opts for Ukraine,for Penn declined to comment."
+- The real reason Sean Penn wasn't at the 98th Academy ...: "The Oscars ultimately did not,can shoot at the Russians.""
+- “Sean Penn couldn't be here this evening or didn't want to, so I'll be ...: "variety-,#SeanPenn becomes fourth male actor to win three #Oscars after,(via ABC/AMPAS)&text=The Oscars goes to Sean,the award on his behalf."
+- Why wasn't Sean Penn at the Oscars? Winner didn't show: "Cory Woodroof, For The Win,An error occurred."
+Reference Sources:
+
+[R1] Why Did 2026 Oscars Winner Sean Penn Skip the Show?
+(https://www.tvinsider.com/1251894/where-is-sean-penn-oscars-2026-missing-reason/)
+"""
+Dominik Bindl/Getty Images What To Know Sean Penn skipped the 2026 Oscars, despite being nominated for Best Actor in a Supporting Role. He received his nomination for his role in One Battle After Another. Penn also skipped the Actor Awards and BAFTA Awards, and has been known to have a complicated relationship with the Oscars. Sean Penn received a nomination (and later a win!) for Best Actor in a Supporting Role at The Oscars, but he did not show up to the ceremony on Sunday, March 15. His decision to skip the event did not come as much of a surprise, as Penn previously did not attend the Actor Awards and BAFTA Awards, despite winning for Best Actor in a Supporting Role at both telecasts. When Kieran Culkin announced Penn as the winner in the Supporting Actor category, he told the audience, “Sean Penn couldn’t be here this evening … or didn’t want to … so I’ll be accepting the award on his behalf.” It turns out the actor skipped the 2026 ceremony to meet with Ukraine’s president Volodymyr Zelenskyy. Zelenskyy shared a photo of the men together on X and captioned it, “Sean, thanks to you, we know what a true friend of Ukraine is. You have stood with Ukraine since the first day of the full-scale war. This is still true today. And we know that you will continue to stand with our country and our people.” Penn has always had a complicated relationship with awards shows and Hollywood in general. In fact, in 2023, he told Variety that he considered melting down the two Oscars he had previously won to provide Ukraine with ammunition in its war against Russia. “I thought, well, f**k, you know? I’ll give them to Ukraine,” Penn said. “They can be melted down to bullets they can shoot at the Russians.” Penn won his first Best Actor Oscar for Mystic River in 2004, followed by another for Milk in 2009. In the end, he didn’t end up melting the trophies, but he also wasn’t holding tight to them. He actually gave one to Ukraine’s president, Volodymyr Zelenskyy. “I told him to keep it and bring it to Malibu after all this is over and his country is safe,” Penn shared. Penn previously skipped the Oscars when he was nominated for Best Actor in 1996, 2000, and 2002 for his roles in Dead Man Walking, Sweet and Lowdown, and I Am Sam. This year, his win was for One Battle After Another, in which he stars as Col. Steven J. Lockjaw. While he also won at the BAFTAs and Actor Awards, he did not take home the Supporting Actor trophy at the Golden Globe Awards or Critics Choice Awards earlier this year. One Battle After Another was nominated for 13 total awards at the Oscars, the second most of the night behind Sinners, which led with 16. Its other nominations were Best Picture, Best Directing, Best Actor in a Leading Role, Best Actress in a Supporting Role, Best Writing (Adapted Screenplay), Best Music (Original Score), Best Sound, Best Casting, Best Production Design, Best Cinematography, and Best Film Editing.
+"""
+
+[R2] Sean Penn Wins Best Supporting Actor for ‘One Battle After Another’ but Skips Oscars
+(https://www.nytimes.com/2026/03/15/movies/sean-penn-oscars.html)
+"""
+AdvertisementSKIP ADVERTISEMENTSean Penn Wins Best Supporting Actor but Opts for Ukraine, Not the OscarsThe actor has a history with the country’s president, Volodymyr Zelensky, and had been skipping awards ceremonies.Listen · 4:25 min Sean Penn at a French festival in October.Credit...Arnaud Finistre/Agence France-Presse — Getty ImagesMarch 15, 2026Sean Penn won the Academy Award for best supporting actor for his turn as a military zealot in Paul Thomas Anderson’s politically charged film “One Battle After Another.”But he skipped the proceedings on Sunday and headed to Europe, where his plan as of late last week was to visit Ukraine, according to two people who spoke on the condition of anonymity because they were not authorized to discuss the matter.The people did not specify what he would be doing there or where precisely within the country he would be going. There remained some possibility that although Penn had left the United States by the time of the telecast, his itinerary might have changed.A representative for Penn declined to comment.This was the sixth Oscar nomination and third win for Penn, 65, who was a favorite to take home the honor. The other contenders for best supporting actor were Stellan Skarsgard for his self-involved father in “Sentimental Value”; Jacob Elordi for his depiction of the doctor’s monstrous creation in “Frankenstein”; Delroy Lindo as a vampire-fighting blues musician in “Sinners”; and Benicio Del Toro for his portrayal of a karate instructor and revolutionary ally in “One Battle After Another.”During the ceremony, the presenter for the supporting actor category, Kieran Culkin, said, “Sean Penn couldn’t be here this evening, or didn’t want to, so I’ll be accepting the award on his behalf.”What you should know about anonymous sources. The Times makes a careful decision any time it shields the identity of a source. The information the source supplies must be newsworthy, credible and give readers genuine insight.Penn’s performance garnered a BAFTA and an Actor’s Award from the Screen Actors Guild. But he skipped both of those ceremonies. With his win on Sunday, Penn joins a small club of actors who have won three Oscars. They include Meryl Streep, Daniel Day-Lewis, Jack Nicholson and Ingrid Bergman.Subscribe to The Times to read as many articles as you like.A correction was made onMarch 15, 2026: An earlier version of this article misstated the awards Sean Penn won for his turn in “One Battle After Another.” He did not win a Golden Globe for that performance.AdvertisementSKIP ADVERTISEMENT
+"""
+
+[R3] Why wasn't Sean Penn at the Oscars? Winner didn't show
+(https://www.yahoo.com/entertainment/movies/articles/why-wasnt-sean-penn-oscars-040413357.html)
+"""
+AdvertisementAdvertisementReturn to HomepageEntertainment: 'Survivor' surprise double-eliminationPlay Crushable by Candy CrushNew 'Harry Potter' series nameTaylor Frankie Paul backlashDuffer Brothers' new project'Sad Affleck' meme backstory'KPop Demon Hunters' happy meals'Harry Potter' series trailerMorgan Stewart on podcastingAndrew McCarthy's journeyBill for scrapped 'Bachelorette'Veteran actor Sean Penn won his third Oscar on Sunday night in Hollywood for his villainous turn as Col. Steven J. Lockjaw in Paul Thomas Anderson's One Battle After Another.However, Penn was not in attendance to accept his Best Supporting Actor Oscar. Where was he?The New York Times shared that Penn was in Europe for a planned trip to Ukraine at the same time as this year's ceremony.Why didn't he attend? Penn has been vocal about his support for Ukraine during the war, so he may have felt it more important to be there. It's also very possible Penn just did not want to attend the ceremony.AdvertisementAdvertisementHe was not present at the Actor Awards earlier this month, nor did he attend the BAFTAs in February. He's just not been as interested this go-around in attending the big shows.We're sure they'll get Penn his third Oscar statue, but it doesn't appear as if he's all that interested in winning one.Alas!This article originally appeared on For The Win: Why wasn't Sean Penn at the Oscars? Winner didn't showView comments(2)AdvertisementAdvertisementTerms and Privacy PolicyYour Privacy ChoicesAbout Our AdsTerms and Privacy PolicyYour Privacy ChoicesAbout Our AdsRecommended articlesAdvertisementAdvertisementAdvertisement
+"""
+
+[R4] The real reason Sean Penn wasn't at the 98th Academy Awards to receive his Oscar – details | HELLO!
+(https://www.hellomagazine.com/us/889632/sean-penn-no-show-oscars/)
+"""
+Sean Penn won the Oscar for Best Supporting Actor during the 98th Academy Awards for his role in One Battle After Another.Presenter Kieran Culkin shared on stage: "Sean Penn couldn’t be here this evening, or didn’t want to, so I'll be accepting this award on his behalf."© Getty ImagesSean wasn't at the Oscars on March 15The reason behind the no showDespite being honored with the prestigious award, the actor was not there in person to accept the Oscar, with reports suggesting the decision was politically motivated.Sean was reportedly in Europe and had plans to visit Ukraine, according to multiple reports. He made the conscious decision to draw attention to the ongoing war in Ukraine following Russia's invasion.In 2022 Sean warned he would boycott the Oscars if the Academy Awards prevented Ukrainian president Volodymyr Zelenskyy from giving a speech during the ceremony.© Getty ImagesHe stood up for UkraineHe expressed ahead of the ceremony on CNN: "I would encourage everyone involved to know, though it may be their moment, and I understand that, to celebrate their films, it is so much more their moment to shine and to protest and to boycott that Academy Awards. I myself, if it comes back to it, when I return, I will smelt mine in public." Sean continued: "I pray that's not what happened. I pray there have not been arrogant people who consider themselves representatives of the greater good who have decided not to check in with leadership in Ukraine. So I'm going to hope that's not what happened, and I hope everyone walks out if it is."Sean has been public about social justiceThe Oscars ultimately did not allow the Ukrainian president to speak, and that moment appeared to shift something for Sean, inspiring him to continue using his platform to advocate for Ukraine.He revealed to Variety that he planned on taking his previous Oscars for his roles in Mystic River in 2004 and Milk in 2009 off the shelf and putting them to a different use.Sean shared: "I thought, well, [expletive], you know? I'll give them to Ukraine. They can be melted down to bullets they can shoot at the Russians."Although that was his initial plan, he ended up giving one to the Ukrainian president and recalled: "I told him to keep it and bring it to Malibu after all this is over and his country is safe."© WireImageThe Oscars aren't the only ceremony he's skippedSean's activismThis isn't the first time that Sean has skipped the ceremony. He has also stayed away in 1996, 2000 and 2002.The Oscars are not the only ceremony that the actor has boycotted. He has also skipped previous Screen Actors Guild Awards (formerly known as the SAG Awards), and the BAFTA Awards.Sean is passionate about philanthropy and has previously helped provide refugee shelters and support educational programs for children in Poland.
+"""
+
+[R5] The real reason Sean Penn wasn't at the 98th Academy Awards to receive his Oscar – details | HELLO!
+(https://www.hellomagazine.com/us/889632/sean-penn-no-show-oscars/?viewas=amp)
+"""
+Sean Penn won the Oscar for Best Supporting Actor during the 98th Academy Awards for his role in One Battle After Another.Presenter Kieran Culkin shared on stage: "Sean Penn couldn’t be here this evening, or didn’t want to, so I'll be accepting this award on his behalf."© Getty ImagesSean wasn't at the Oscars on March 15The reason behind the no showDespite being honored with the prestigious award, the actor was not there in person to accept the Oscar, with reports suggesting the decision was politically motivated.Sean was reportedly in Europe and had plans to visit Ukraine, according to multiple reports. He made the conscious decision to draw attention to the ongoing war in Ukraine following Russia's invasion.In 2022 Sean warned he would boycott the Oscars if the Academy Awards prevented Ukrainian president Volodymyr Zelenskyy from giving a speech during the ceremony.© Getty ImagesHe stood up for UkraineHe expressed ahead of the ceremony on CNN: "I would encourage everyone involved to know, though it may be their moment, and I understand that, to celebrate their films, it is so much more their moment to shine and to protest and to boycott that Academy Awards. I myself, if it comes back to it, when I return, I will smelt mine in public." Sean continued: "I pray that's not what happened. I pray there have not been arrogant people who consider themselves representatives of the greater good who have decided not to check in with leadership in Ukraine. So I'm going to hope that's not what happened, and I hope everyone walks out if it is." Sean has been public about social justice The Oscars ultimately did not allow the Ukrainian president to speak, and that moment appeared to shift something for Sean, inspiring him to continue using his platform to advocate for Ukraine.He revealed to Variety that he planned on taking his previous Oscars for his roles in Mystic River in 2004 and Milk in 2009 off the shelf and putting them to a different use.Sean shared: "I thought, well, [expletive], you know? I'll give them to Ukraine. They can be melted down to bullets they can shoot at the Russians."Although that was his initial plan, he ended up giving one to the Ukrainian president and recalled: "I told him to keep it and bring it to Malibu after all this is over and his country is safe."© WireImageThe Oscars aren't the only ceremony he's skippedSean's activismThis isn't the first time that Sean has skipped the ceremony. He has also stayed away in 1996, 2000 and 2002.The Oscars are not the only ceremony that the actor has boycotted. He has also skipped previous Screen Actors Guild Awards (formerly known as the SAG Awards), and the BAFTA Awards.Sean is passionate about philanthropy and has previously helped provide refugee shelters and support educational programs for children in Poland.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

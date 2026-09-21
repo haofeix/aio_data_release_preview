@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "rbc heritage playoff format"
+
+Claims:
+[1] "The RBC Heritage features a sudden-death playoff if players are tied after 72 holes of stroke play."
+[2] "The RBC Heritage playoff begins immediately on the par-4 18th hole at Harbour Town Golf Links."
+[3] "The RBC Heritage playoff alternates with the par-3 17th hole if necessary until a winner is determined by the lowest score."
+[4] "The RBC Heritage playoff format is sudden-death."
+[5] "In the RBC Heritage playoff, the first player to win a hole wins the tournament."
+[6] "The RBC Heritage playoff starts on the 18th hole and moves to the 17th hole if necessary, repeating this rotation until a winner emerges."
+[7] "The 2023 RBC Heritage event went to a playoff."
+[8] "The 2025 RBC Heritage event went to a playoff."
+[9] "Matt Fitzpatrick won the 2023 RBC Heritage in extra holes."
+[10] "Matt Fitzpatrick won the 2026 RBC Heritage in extra holes."
+[11] "Jordan Spieth won the 2022 RBC Heritage in extra holes."
+[12] "The RBC Heritage is a PGA Tour Signature Event."
+[13] "The RBC Heritage has a 70-plus player field."
+[14] "The RBC Heritage 70-plus player field plays for 700 FedEx Cup points."
+[15] "No cut is made after 36 holes in the RBC Heritage."
+
+Cited text snippets from the AI Overview (for additional context):
+- What is playoff format at RBC Heritage? - PGA TOUR: "The playoff will start on the par-4,marsh to a long but narrow green."
+- Is There a Cut at the RBC Heritage Open 2026? Format Explained ...: "The tournament runs April 16-19, 2026, with,17th if necessary. #RBCHeritage #RBCHeritage2026 #PGATour #SignatureEvent."
+Reference Sources:
+
+[R1] Matt Fitzpatrick Defeats Scottie Scheffler In Playoff To Win RBC Heritage
+(https://www.golfmonthly.com/news/live/rbc-heritage-leaderboard-live-updates-2026)
+"""
+Refresh 3 days agoSIX REMAINPivotal moments have been aplenty, with one of those being at the 11th, with Fitzpatrick holing a 15-footer to save par and remain ahead of the chasing pack.At the 13th, Scheffler finds the fairway perfectly, while Fitzpatrick follows him with a delightful stinger. 3 days agoSI WOO CHECKING IN ON THE ACTION 3 days agoABERG TO 15-UNDER 3 days agoFITZPATRICK AIRMAILS THE GREEN Because of the mistake, the door is ajar for Fitzpatrick, but the Major winner goes even further past the green, with his wedge flying over the back and leaving a tough up-and-down. 3 days agoWHAT WAS THAT? Not sure if his first is out of bounds but, given how left it was, I wouldn't be surprised. Big mistake for the Swede! 3 days agoPARS AT THE 13TH 3 days agoWIND CAUSING HAVOC (Image credit: Getty Images) The wind is gusting at the RBC Heritage and, at the par 3 14th, Scheffler's tee shot barely clears the water short of the green. Having watched his playing partner come up short, Fitzpatrick goes up a club and plays a delightful approach into the heart of the green. Excellent from the leader. 3 days agoFOUR-WAY TIE AT 13-UNDER It means both join Collin Morikawa and Bud Cauley at 13-under, which is a share of fourth. 3 days agoBIG SAVE FOR SCOTTIE The World No.1, though, is gritty, and he rolls in an eight-footer for par to keep his card clean. He remains 16-under and two-under for the day.Alongside Scheffler, Fitzpatrick makes a comfortable two putt to remain at 19-under, three clear of Scheffler and Kim. 3 days agoFAIRWAYS FOUND AT 15 3 days agoSI WOO TO 17-UNDER (Image credit: Getty Images) Having laid up with his second shot at the par 5 15th, Kim plays a great pitch and holes his birdie putt to move to 17-under. He is now two back of Fitzpatrick, who is on the fairway at the 15th. 3 days agoFITZ AND SCOTTIE AT THE 15TH Scheffler, meanwhile, pounds his fairway wood over the trees and finds the greenside bunker. You expect him to get that up-and-down, so it's pressure on Fitzpatrick, who is 120-yards away. 3 days agoPAR FOR SCOTTIE 3 days agoSCOTTIE MOVES WITHIN TWO (Image credit: Getty Images) Fitzpatrick finds the green with his third at the par 5 15th, with the Englishman two putting for a par. Scheffler, meanwhile, produces a gorgeous bunker shot that runs out to four-feet. The World No.1 rarely misses those and, with his putt, he rams it home to move to 17-under.Scheffler is now two back of Fitzpatrick, who is 19-under. 3 days agoWOODLAND HOLES OUT AT THE LAST That's an incredible shot from the Major winner, who holes out from 205-yards for an exceptional eagle.He had been in a tie for 16th but, with that hole-out, he moves into a tie for eighth. Unreal shot from the American! 3 days agoPRESSURE FROM SCOTTIE Scheffler plays a great shot from the fairway bunker at the 16th, with the World No.1 leaving nine-foot for a birdie.Fitzpatrick, meanwhile, is short of the green and faces a tough two putt. 3 days agoSHOT OF THE YEAR 3 days agoANOTHER BIRDIE FOR SCOTTIE Scheffler, meanwhile, makes the most of his approach, as the American rolls in the birdie putt to move to 18-under.He's within one of Fitzpatrick! 3 days agoFITZY ON THE GREEN Stepping up is Fitzpatrick and, once again, he pounds his iron shot to the heart of the green.Pars are likely, but you never know in these late stages... 3 days agoHERE COMES SCOTTIE 3 days agoPAR FOR FITZPATRICK 3 days agoPAR FOR SCOTTIE 3 days agoADVANTAGE SCOTTIE Both have good lies, but Scheffler is closer to the green, albeit well back. 3 days agoKIM BOGEYS THE LAST 3 days agoMISSES TO THE RIGHT Scheffler will hit first, and you like to think Fitzpatrick will learn a lot from his attempt. 3 days agoEXCELLENT FROM SCOTTIE 3 days agoPLAYOFF TIME Tapping in for bogey, Fitzpatrick joins Scheffler at 18-under, with the pair heading for a playoff. 3 days agoWHO IS YOUR MONEY ON? (Image credit: Getty Images) 3 days agoTEE SHOTS Scheffler, meanwhile, takes out a fairway wood and carves it to right-side, also, with the four-time Major winner leaving a similar distance to that of regulation play. 3 days agoWHAT A SHOT FROM FITZY He has history at the 18th and, from 205-yards, Fitzpatrick plays a stunning long iron that nearly lands in the hole.He has 14-foot for birdie, putting the pressure on Scheffler. 3 days agoSCHEFFLER COMES UP SHORT Advantage is in Fitzpatrick's favor! 3 days agoTYPICAL SCOTTIE Fitzpatrick will have a putt for the win. 3 days agoFITZPATRICK WINS THE RBC HERITAGE 3 days agoTHE WINNING MOMENT 3 days agoWINNER WINNER (Image credit: Getty Images) 3 days agoTWO TIME WINNER
+"""
+
+[R2] 2026 RBC Heritage format, cut rules and PGA Tour playoff format
+(https://www.msn.com/en-us/sports/golf/2026-rbc-heritage-format-cut-rules-and-pga-tour-playoff-format/ar-AA2131lN?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1)
+"""
+The 2026 RBC Heritage format remains unchanged this year, with the PGA Tour event played at Harbour Town Golf Links in Hilton Head Island, South Carolina. The 2026 RBC Heritage field is 82 players. The RBC Heritage field is made up of a variety of players, namely nearly 40 top-50 players in the world and the top of this season's FedEx Cup standings. Players who won last PGA Tour season and would have qualified for The Sentry are in this event as well as a make-good for that tournament being canceled this year. A cut is not made after 36 holes to the top 65 players and ties. All players who make the field and make the cut are eligible to finish the event. For the third and fourth rounds, the pairings and tee times are made based on each player's total score through two and three rounds, respectively. Players with the highest total score go first, then in descending order until the two players with the lowest total score in the final group. The player with the lowest total score after 72 holes is the winner and will earn the 2026 RBC Heritage winner's share of the purse. The winning player will get a two-season PGA Tour exemption. The winner earns 700 FedEx Cup points and 55.7 Official World Golf Ranking points. RBC Heritage playoff format A playoff to settle any ties after 72 holes will be played under PGA Tour rules. The RBC Heritage playoff format is a sudden-death format, with playoff holes being 18, 18, then 17 and 18 in a loop, played by any qualifying players. The players compete hole by hole, and the player with the lowest score wins. In the event of a tie, the players compete hole-by-hole until a winner is determined by a player scoring the lowest among the remaining players. The post 2026 RBC Heritage format, cut rules and PGA Tour playoff format first appeared on Golf News Net. Copyright, Golf News Net. All rights reserved. 2026 RBC Heritage format, cut rules and PGA Tour playoff format ; ; 2026 Mitsubishi Electric Classic purse, winner’s share, PGA Tour Champions prize money payout 2026 Volvo China Open purse, winner’s share, DP World Tour prize money payout 2026 Zurich Classic of New Orleans purse, winner’s share, PGA Tour prize money payout Sponsored Content Jeff Bezos' Blue Origin faced a hiccup in its latest rocket launch.The New Glenn 3 rocket, intended to deliver a satellite into Earth's orbit, placed it far too low.AST SpaceMobile, the satellite company, said the satellite would not be able to operate there.Blue Origin's New Glenn 3 launch got the wrong address while delivering a satellite into Earth's orbit.New Glenn 3 took off from the Blue Origin launch base in Florida's Cape Canaveral on Sunday morning, carrying a satellite by satellite company AST Space Mobile, which it aimed to deliver into low Earth orbit.But in a post on X at about 9:40 a.m., more than two hours after New Glenn 3's liftoff, Blue Origin said it had delivered the BlueBird7 satellite to the wrong place."The payload was placed into an off-nominal orbit," the company said. "We are currently assessing and will update when we have more detailed information."A few hours later, in a press release on Sunday afternoon, AST SpaceMobile said that New Glenn 3 had placed the satellite in a "lower than planned orbit," and it would not be able to operate as planned."While the satellite separated from the launch vehicle and powered on, the altitude is too low to sustain operations with its on-board thruster technology and will de-orbited," the company said in the release.AST SpaceMobile said that the satellite's cost will be recovered from its insurance policy.The company already has seven satellites in low Earth orbit, and it plans to have about 45 by the end of 2026. The satellites are key to developing AST SpaceMobile's space-based cellular broadband network.This is Blue Origin's third New Glenn launch, following two last year. The company launches its New Shepard rocket more frequently, taking tourists and celebrities on short flights to the edge of space, including Katy Perry and Bezos' partner, Lauren Sánchez.Blue Origin and AST SpaceMobile did not respond to requests for comment from Business Insider. If you enjoyed this story, be sure to follow Business Insider on MSN. Blue Origin's commercial satellite launch did not go well Blue Origin's New Glenn 3 rocket faced a hiccup while delivering a satellite into low orbit. Paul Hennesy/Anadolu via Getty Images © Paul Hennesy/Anadolu via Getty Images ; ; Elon Musk says copycats are why Tesla can't unveil Optimus sooner Elon Musk pushed back the launch of the Tesla Roadster again Best cell phone plan for two lines (2026) Sponsored Content
+"""
+
+[R3] RBC Heritage playoff format: How the signature event settles a 72-hole tie
+(https://fansided.com/rbc-heritage-playoff-format-tiebreaker-holes)
+"""
+The RBC Heritage has long been one of the best and most exciting events on the PGA Tour, but it's move to becoming a signature event has only increased that. Situated the week following The Masters on the schedule, now golf fans get to see the best in the world still come to play. And for the 2025 RBC Heritage, we were treated to a Sunday to remember. After Justin Thomas held a commanding 18-hole lead and a much thinner 36-hole lead, he gave it up on Saturday with Si Woo Kim overtaking him and Andrew Novak, a South Carolina native looking to triumph in front of the hometown crowd, tying him. As Sunday's final round played out, Kim faded, but Thomas and Novak were locked into a duel to the very end. Once Thomas made a par on the 72nd hole of his tournament to post a score at 17-under, still tied with Novak, it seemed like we might be heading for a playoff. Just one week after seeing such a showdown at The Masters, that had golf fans asking what exactly the RBC Heritage playoff format is for the signature event. RBC Heritage playoff format: What holes are played to decide the winner?The RBC Heritage playoff format is a sudden-death tiebreaker, meaning that the tied players will play until one of them scores better on a hole and that player will then be declared the winner. At Harbour Town, the playoff will be played repetitively on the 18th hole, a Par 4 measuring 465 yards, and 17th hole, a 160-yard Par 3 on Sunday. The finishing stretch are two of the iconic holes at this course and a great alternation to decide a champion of the event. When was the last playoff at the RBC Heritage before 2025?Because Harbour Town is so demanding as a unique tee-to-green test, an RBC Heritage playoff is far from uncommon. In fact, the last playoff was just two years ago in 2023 and two of the last three iterations of the event leading into 2025 had finished in a playoff. In the 2023 playoff, the first year that this was elevated to a signature event, Matt Fitzpatrick outlasted Jordan Spieth in the extra holes after the pair were tied at 17-under, incidentally. The year prior, Spieth actually prevailed in a playoff, taking down Patrick Cantlay in difficult conditions as the two stars in golf were tied at just 13-under after regulation. Prior to the pair of Spieth playoffs that ended in different results, the most recent playoff was a bit longer back, coming when Satoshi Kodaira beat Si Woo Kim in the tiebreaker. All told, though, there had been 10 playoffs at the RBC Heritage since 2000 coming into the 2025 tournament. Add us as a preferred source on GoogleFollow
+"""
+
+[R4] What is playoff format at RBC Heritage? - PGA TOUR
+(https://www.pgatour.com/article/news/latest/2025/04/20/rbc-heritage-playoff-format-harbour-town-hilton-head-island-sudden-death)
+"""
+Apr 20, 2025Video Player is loading.Current Time 0:10Duration 1:14Remaining Time 1:04captions off, selectedEnglishJustin Thomas sinks 24-foot birdie putt at RBC HeritageEditor's note: Justin Thomas defeated Andrew Novak with a birdie on the first playoff hole. The RBC Heritage is headed to a hole-by-hole playoff, with Justin Thomas and Andrew Novak tied at 17-under 267 through 72 holes at Harbour Town Golf Links on Hilton Head Island, South Carolina.The playoff will start on the par-4 18th and move to the par-3 17th if needed, rotating between these two holes until a winner is decided. The straightaway 465-yard, par-4 18th features a generous fairway, nearly 100 yards wide, with a second shot played across the marsh to a long but narrow green. The 160-yard, par-3 17th is guarded by a long bunker down the left side and a tiny bunker alongside the green’s front-right portion, close to Sunday’s hole location.Thomas and Novak each shared second place into Sunday’s final round in South Carolina, one back of 54-hole leader Si Woo Kim, and the duo matched scores of 3-under 68. Thomas and Novak finished three strokes clear of a four-way tie for third at 14-under, which included Daniel Berger, Mackenzie Hughes, Brian Harman and Maverick McNealy.Video Player is loading.Current Time 0:00Duration 0:26Remaining Time 0:26captions off, selectedEnglishAndrew Novak makes clutch birdie at RBC HeritageThomas, a 15-time PGA TOUR winner, eyes his first win since the 2022 PGA Championship. Novak, who grew up in nearby Charleston, South Carolina, is chasing his first PGA TOUR title.This marks the third playoff in the last four editions of the RBC Heritage.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

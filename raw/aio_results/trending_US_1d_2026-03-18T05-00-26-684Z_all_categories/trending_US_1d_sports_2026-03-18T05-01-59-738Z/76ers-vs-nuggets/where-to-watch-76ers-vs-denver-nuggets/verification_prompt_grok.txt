@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch 76ers vs denver nuggets"
+
+Claims:
+[1] "The Philadelphia 76ers vs. Denver Nuggets game on Tuesday, March 17, 2026 tips off at 10:00 p.m. ET."
+[2] "The Philadelphia 76ers vs. Denver Nuggets game on Tuesday, March 17, 2026 is at Ball Arena."
+[3] "The Philadelphia 76ers vs. Denver Nuggets game on Tuesday, March 17, 2026 can be watched on NBC Sports Philadelphia."
+[4] "The Philadelphia 76ers vs. Denver Nuggets game on Tuesday, March 17, 2026 can be watched on Altitude Sports."
+[5] "The Philadelphia 76ers vs. Denver Nuggets game on Tuesday, March 17, 2026 can be streamed on Peacock."
+[6] "The Philadelphia 76ers vs. Denver Nuggets game on Tuesday, March 17, 2026 can be streamed on FuboTV."
+[7] "This video explains how Comcast and Altitude reached a deal to broadcast Nuggets games."
+
+Cited text snippets from the AI Overview (for additional context):
+- Denver Nuggets vs. Philadelphia 76ers on NBA on NBC Tonight - Playoff Hopes at Stake: "How to watch tonight's Philadelphia,Vince Carter, and Tracy McGrady."
+- How to Watch Nuggets vs. 76ers for Free: NBA Streaming, Tipoff Time, Betting Odds: "Nuggets vs. 76ers Tipoff Time,76ers +750, Nuggets -1200"
+- How to watch Sixers vs. Nuggets and 9 p.m. newscast on NBC10: "By David Chang&text=Published 2 minutes ago&text=Updated 2 minutes ago&text=The Philadelphia 76ers (37-31,streaming channel at 11 p.m."
+- Where to watch 76ers vs. Nuggets NBA game free tonight during ...: "How to watch 76ers vs,Subscribe now to continue.&text=Where: Ball Arena, Denver, Colo.&text=Streaming on: DirecTV (free trial,Peacock ($10.99+/mo.)"
+Reference Sources:
+
+[R1] How to Watch Nuggets vs. 76ers for Free: NBA Streaming, Tipoff Time, Betting Odds
+(https://sports.yahoo.com/articles/watch-nuggets-vs-76ers-free-011914329.html)
+"""
+Nikola Jokic and the Denver Nuggets will host Tyrese Maxey and the Philadelphia 76ers in Denver on Tuesday night.Jokic and his Nuggets squad are a respectable 41-27, good enough for second in the Northwest division behind Shai Gilgeous-Alexander and the Oklahoma City Thunder. The Nuggets most recently lost on Saturday 127-125 to the Los Angeles Lakers from a game-winner by Luka Doncic in overtime. The MVP center leads Denver in points per game at 28.6, rebounds at 12.7 per game, and assists at 10.5 per game.AdvertisementThe 76ers are 37-31 and are riding a four-game winning streak into Denver. Sitting at fourth in the Atlantic division and No. 9 in the Eastern Conference, the 76ers are led by their point guard Tyrese Maxey, who averages team highs in points per game at 29.0 and assists per game at 6.7. Unfortunately for Philadelphia, the team will be without its leading scorer for Tuesday's matchup.Philadelphia 76ers guard Tyrese Maxey (0)Dale Zanine-Imagn Images (Dale Zanine-Imagn Images)Nuggets vs. 76ers Tipoff TimeNuggets vs. 76ers will tip off on Tuesday at 10:00 p.m. ET. The game will be played at the Ball Arena in Denver, Colorado.AdvertisementWhat TV Channel is Nuggets vs. 76ers on?The matchup between the Nuggets vs. 76ers will air on Altitude Sports, NBC Sports Philadelphia, and NBC.How to Live Stream Nuggets vs. 76ers for FreeFans can stream Nuggets vs. 76ers for free via Fubo when they sign up for a 7-day free trial.Nuggets vs. 76ers Betting OddsSpread: Hornets -15.5 (via ESPN Bet)Over/Under: 236.5Money line: 76ers +750, Nuggets -1200Related: Lakers React to Luka Doncic Announcement on MondayThis story was originally published by Athlon Sports on Mar 18, 2026, where it first appeared in the NBA section. Add Athlon Sports as a Preferred Source by clicking here.
+"""
+
+[R2] Where to watch 76ers vs. Nuggets NBA game free tonight during NBC and FuboTV dispute
+(https://www.pennlive.com/tv/2026/03/where-to-watch-76ers-vs-nuggets-nba-game-free-tonight-during-nbc-and-fubotv-dispute.html)
+"""
+Updated: Mar. 17, 2026, 6:30 p.m.Published: Mar. 17, 2026, 6:30 p.m.Denver Nuggets center Nikola Jokić (15) and Los Angeles Lakers forward Rui Hachimura (28) in the second half of an NBA basketball game Thursday, March 5, 2026, in Denver.AP Photo/David ZalubowskiIf you purchase a product through a link on our site, we may receive compensation.By Dustin Hockensmith | dhockensmith@pennlive.comThe Philadelphia 76ers limp to Denver on Tuesday as heavy underdogs missing several key lineup pieces against Nikola Jokic and the Nuggets at Ball Arena. The game is scheduled to start at 10 p.m. ET (8 p.m. MT) with TV coverage on NBC and streaming on-demand.NBC is part of the NBC Universal family of networks currently blacked out on FuboTV during ongoing contract negotiations. Available streaming alternatives are listed below.How to watch 76ers vs. Nuggets on TV and stream without cable:When: Tuesday, March 17 at 10 p.m. ET (8 p.m. MT)Where: Ball Arena, Denver, Colo. TV channel: NBC and PeacockStreaming on: DirecTV (free trial) | SlingTV (low intro rate) | Peacock ($10.99+/mo.)76ers vs. Nuggets: The matchupThe 76ers will play without leading scorer Tyrese Maxey and starting guard Kelly Oubre Jr. for extended periods, and they will also likely be down center Joel Embiid for Tuesday’s matchup in Denver. Philadelphia has managed to stay in the postseason hunt despite the continued injury issues, and the team enters the week in ninth place in the Eastern Conference with a 37-31 record. The Sixers are just 1.5 games outside the top-6 cutoff and have an 8.5-game cushion over the Milwaukee Bucks to hold onto a spot in the East’s Play-In Tournament. The Nuggets are big 15.5-point favorites over the shorthanded 76ers, and they play six of their next eight games at Ball Arena. Denver is engaged in a fight to the finish in the Western Conference, currently sitting second in the Northwest Division and fifth overall with its 41-27 season record. The Nuggets took down top West contenders in the Houston Rockets (129-93) and San Antonio Spurs (136-131) in back-to-back games before falling to the Lakers in LA (127-125 in OT) last time out. 76ers vs. Nuggets: Know your live streamsDirecTV (free trial): DirecTV offers a 5-day free trial and a total of $30 off over the first three full months for the Choice Package, which includes 125-plus channels and access to ESPN Unlimited, a $29.99 standalone value featuring all ESPN channels and ESPN+.SlingTV (low intro rate): First full month of streaming runs as low as $29.99 with current offer for 50% off Sling’s Orange & Blue Plan. Day passes are also available for 24 hours ($4.99), as well as three-day ($9.99) and seven-day access ($14.99).Peacock ($10.99+/mo.): Peacock’s library of live sports is growing and features exclusive NFL and college football games, all in addition to NBC Universal movies, television series, and more.TOP STREAMING PICKSBY PENNLIVE.COM
+"""
+
+[R3] How to watch Sixers vs. Nuggets and 9 p.m. newscast on NBC10
+(https://www.nbcphiladelphia.com/nba/philadelphia-76ers/how-to-watch-sixers-vs-nuggets-and-9-p-m-newscast-on-nbc10/4369823/)
+"""
+A special 9 p.m. newscast will air on NBC10 before the Philadelphia 76ers take on the Denver Nuggets. Here's how to watch. The Philadelphia 76ers (37-31) take on the Denver Nuggets (41-27) Tuesday night on NBC10 and Peacock. The shorthanded Sixers are riding a two-game winning streak despite being without Joel Embiid, Tyrese Maxey, Paul George, and Kelly Oubre. The Nuggets are coming off an overtime loss to the Los Angeles Lakers over the weekend. With about a month left in the regular season, Tuesday night's matchup is critical for both teams. The Sixers are currently in the 9th seed in the Eastern Conference and fighting to get out of the play-in tournament while the Nuggets are the 5th seed in the Western Conference and fighting for homecourt advantage in the playoffs. You can watch the game at 10 p.m. ET live on NBC10 and here on Peacock. Before the game, a special newscast will air on NBC10 and stream on the NBC10 Philadelphia streaming channel from 9 p.m. to 10 p.m. Another newscast will stream on the NBC10 Philadelphia streaming channel at 11 p.m. Memory News | Brain Doctors Connect Cognitive Decline to This Daily Food - Is It on Your Plate?UndoMemory News | U.S. Neurologists Call This Drink "Bottled Cognitive Decline" — Do You Drink It ?UndoHomeBuddy | Here's What A New Gutter System Should Cost You In AshburnUndoHomeBuddy | Here’s The Average Price of a 6-Hour Gutter UpgradeUndoHealth Today Daily | They Seem Innocent: Breakfast Foods That Are Now Linked to Most of Memory Loss CasesNew JerseyTeen shot in face at Ocean County Mall, investigation underway, police sayLaGuardia AirportFlight attendant thrown from Air Canada plane survives in a 'total miracle'
+"""
+
+[R4] Denver Nuggets vs. Philadelphia 76ers on NBA on NBC Tonight - Playoff Hopes at Stake
+(https://www.nbc.com/nbc-insider/playoff-implications-in-denver-nuggets-vs-philadelphia-76ers-nba-on-nbc-game)
+"""
+Wow, just like that, and we're already nearing the end of the NBA regular season, with less than a month to play before the final game of the season on Sunday, April 12, and nothing but important games from here on out, particularly if you're one of the teams jockeying for playoff position.How to WatchThe first game of tonight's NBA Coast 2 Coast Tuesday doubleheader on NBC and Peacock features the Cavs vs. the Bucks, which certainly has its own playoff implications. Granted, if the Cavs keep playing like they have, there's a good chance they're safely in the NBA Playoffs, and avoiding Play-In territory.But in the evening's second game, the Denver Nuggets vs. Philadelphia 76ers, both teams are going to have to fight tooth and nail to avoid the Play-In. And that certainly starts tonight.RELATED: The Full 2025-2026 NBA on NBC ScheduleHow to watch tonight's Philadelphia 76ers vs. Denver Nuggets NBA on NBC game?The first game of tonight's NBA on NBC doubleheader begins with the Cleveland Cavaliers visiting the Milwaukee Bucks at 8 p.m. ET on NBC and Peacock. Game 2 between the Philadelphia 76ers and Denver Nuggets starts at 10 p.m. ET on NBC and Peacock.Both games will air in their respective regions on NBC, and you can catch all the action, regardless of region, streaming on Peacock. Live coverage begins at 7 p.m. ET on Peacock with NBA Showtime, hosted by NBC Sports’ Maria Taylor alongside NBA legends Carmelo Anthony, Vince Carter, and Tracy McGrady.What are the playoff implications in the Nuggets vs. 76ers game tonight?What's at stake for Philadelphia in tonight's 76ers vs. Nuggets game? Tonight's Nuggets-Sixers game is crucial for both squads, as both teams are doing their darndest to avoid the Play-In Tournament, but both teams are right on the edge. Things haven't exactly gone as planned this season for the 76ers, as they've been one of the most injury-plagued teams in the entire NBA. As such, they've had to learn how to play for stretches at a time without All-Stars Joel Embiid (right oblique strain) and Tyrese Maxey (right finger tendon strain), among others. They've also had to deal with another perennial All-Star, forward Paul George, being out for 25 games after being suspended for violating league policy. RELATED: Peacock NBA Monday 2025 Tipoff Revealed: Dates, Teams & How to WatchBut while injuries have hit the Sixers harder than most, there's no sympathy in the NBA, and tonight is as important a game as they've faced this season, as they've now fallen into the 9th seed in the Eastern Conference, which means they're not just in the Play-In Tournament, they're on the bottom side of the bracket. But if they start winning, the teams in front of them are very reachable, including the 8th seeded (and red hot) Atlanta Hawks, who have the same record. Plus, the 76ers are only a game behind the 7th seed Miami Heat, and a game and a half behind the 6th seed Toronto Raptors and 5th seed Orlando Magic. So yeah, they'll need to find a way to win tonight. No small task while playing a mile-high in Denver, without Embiid, Maxey, George, Johni Broome (right knee surgery recovery), Jabari Walker (illness) and perhaps Dalen Terry (left shoulder impingement). What's at stake for Denver in tonight's 76ers vs. Nuggets game? On paper, most folks would say the 76ers need tonight's win more than the Nuggets, but Nuggets fans know tonight is every bit as important. The squad is in danger of dropping into Play-In territory, and like the 76ers, they've had five wins and five losses in their last 10 games, and being average just doesn't get it done this time of year.The Western Conference is a beast, per usual, but the Oklahoma City Thunder and San Antonio Spurs have separated themselves from the rest. But just four games separate the No. 3 Los Angeles Lakers from the No. 7 Phoenix Suns, and the Nuggets are right in the middle of that pack, just two games in front of Phoenix, two games behind the Lakers, tied with the Minnesota Timberwolves, and a half game behind the Houston Rockets. So yeah, every game counts. RELATED: How to Watch Cavaliers vs. Bucks, 76ers vs. Nuggets - NBA Coast 2 Coast Tuesday (March 17)Fortunately for Denver, they're starting to get healthy again, with Peyton Watson (right hamstring strain) currently the only Nugget still on the Injury Report. That's saying something too, considering the long stretches they've had to play this season without three-time league MVP Nikola Jokic, as well as starters Aaron Gordon, Christian Braun, and Cam Johnson, among other tough injuries. The Nuggets' starters, including All-Star Jamal Murray, have only played 14 games together so far this season, so they're going to have to start gelling quickly to get into championship form.
+"""
+
+[R5] How to Watch Nuggets vs. 76ers for Free: NBA Streaming, Tipoff Time, Betting Odds
+(https://athlonsports.com/nba/denver-nuggets/how-to-watch-nuggets-vs-76ers-for-free-nba-streaming-tipoff-time-betting-odds)
+"""
+The Nuggets face off against the 76ers during Tuesday’s slate of NBA games.Mar 17, 2026 9:19 PM EDTDenver Nuggets center Nikola Jokic (15) reacts in the first quarter against the Cleveland Cavaliers at Ball Arena. Ron Chenoy-Imagn ImagesIn This Story Nikola Jokic and the Denver Nuggets will host Tyrese Maxey and the Philadelphia 76ers in Denver on Tuesday night. Jokic and his Nuggets squad are a respectable 41-27, good enough for second in the Northwest division behind Shai Gilgeous-Alexander and the Oklahoma City Thunder. The Nuggets most recently lost on Saturday 127-125 to the Los Angeles Lakers from a game-winner by Luka Doncic in overtime. The MVP center leads Denver in points per game at 28.6, rebounds at 12.7 per game, and assists at 10.5 per game. The 76ers are 37-31 and are riding a four-game winning streak into Denver. Sitting at fourth in the Atlantic division and No. 9 in the Eastern Conference, the 76ers are led by their point guard Tyrese Maxey, who averages team highs in points per game at 29.0 and assists per game at 6.7. Unfortunately for Philadelphia, the team will be without its leading scorer for Tuesday’s matchup. Philadelphia 76ers guard Tyrese Maxey (0)Dale Zanine-Imagn Images Nuggets vs. 76ers Tipoff Time Nuggets vs. 76ers will tip off on Tuesday at 10:00 p.m. ET. The game will be played at the Ball Arena in Denver, Colorado. What TV Channel is Nuggets vs. 76ers on? The matchup between the Nuggets vs. 76ers will air on Altitude Sports, NBC Sports Philadelphia, and NBC. How to Live Stream Nuggets vs. 76ers for Free Fans can stream Nuggets vs. 76ers for free via Fubo when they sign up for a 7-day free trial. Nuggets vs. 76ers Betting Odds Spread: Hornets -15.5 (via ESPN Bet) Over/Under: 236.5 Money line: 76ers +750, Nuggets -1200 This page may contain affiliate links to legal sports betting or fantasy sports partners. If you sign up, Athlon Sports and The Arena Group may be compensated at no cost to you. Read more about Sports Betting on Athlon Sports.About the authorWill Chesanek is a library and archives professional with a Master of Library Science (Archives concentration) and a Bachelor of History from North Carolina Central University. His experience spans libraries, records management, compliance, tutoring, and project coordination, supported by more than 10 years of customer service.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

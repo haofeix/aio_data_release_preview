@@ -1,0 +1,94 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "school closings today"
+
+Claims:
+[1] "As of Saturday, March 14, 2026, there are no widespread school closings, delays, or emergency cancellations reported in the Washington DC, Maryland, and Virginia (DMV) area based on WTOP."
+[2] "Schools in the Washington DC, Maryland, and Virginia (DMV) area appear to be operating on their normal schedules."
+
+Cited text snippets from the AI Overview (for additional context):
+- Closings & Delays: Washington DC, Maryland & Virginia - WTOP: "The following is a list,us by email or phone."
+- Closings & Delays - WBAL-TV: "No closings or delays at this time."
+- School Closings | Delays | Early Release: "School Closings and Delays. Scheduled school closings,a delay due to inclement weather or"
+- School Closings | News 5 Cleveland: "There are currently no active closings or delays."
+Reference Sources:
+
+[R1] School Closings
+(https://www.news5cleveland.com/weather/school-closings-delays)
+"""
+School Closings | News 5 Cleveland Watch Now Menu Local National Weather Sports Traffic Watch Now Watch Now Close × Live Watch Alerts Search site Go Stream News 5 Where You Can Watch Streaming Today As It Happened News 5 Livestream Videos Today As It Happened News 5 livestream event Weather Dog Walking Forecast Hourly Forecast Daily Forecast Live Radar Winter Weather Awareness School Closings Severe Weather Alerts Weather News Live Cameras Power Outages Tornado Safety Academic Challenge News Local Cleveland Metro Akron Canton Ohio National World News Schools Two Americas Missing Persons Made Us Smile Your Service NASA Glenn News by County Cuyahoga County Stark County News Summit County Lake County Lorain County Medina County News Geauga County News Portage County News Ashtabula County News Wayne County News Ashland County News Erie County News Richland County News Holmes County News Huron County News Tuscarawas County News Carroll County News Sports Browns Cavaliers Guardians Ohio State Next Man Up Browns Player of the Game Student Athlete of the Week Investigations All Investigations Downtown Safety Patrol Dangerously Understaffed County Jail Cleveland Water Don't Waste Your Money Team We Follow Through Let's Go NEO Politics 2025 General Election Results Abortion in Ohio Marijuana in Ohio Local Politics Elections Local Ohio Politics National Politics Elections National Entertainment TV Listings Concerts Rock Hall Cedar Point 100 Hidden Gems 50 Best Patios Traffic Traffic Map Traffic News Gas Prices Cleveland and Akron Best of Class 2025 Spotlight 5 Cleveland Home Experts Watch Cash Explosion Ohio Lottery Results News 5 User Guide About Us Staff Sales Staff Contact Us News 5 Apps News Literacy Contests Moving Forward Licensing archived video from News 5 Advertise WEWS: The first 70 years Support TV Listings Advertise with News 5 Manage Emails Apps Careers Search News5Cleveland WEWS UCAAmkc2sRESFoEtiKRTaTRA @news5cleveland 4 WX Alerts School Closings & Delays Weather Alerts Daily Forecast Detailed Forecast Dog Walking Forecast Hourly Forecast Weather News Radar Winter Weather Awareness Weather Cams More + Quick Links + School Closings & Delays Weather Alerts Daily Forecast Detailed Forecast Dog Walking Forecast Hourly Forecast Weather News Radar Winter Weather Awareness Weather Cams School Closings School closings in the Cleveland area and throughout Northeast Ohio There are currently no active closings or delays. School Closing Organization Registration Form Northeast Ohio Traffic News Don't Waste Your Money Team Sports Entertainment Life Video Marketplace Don't Waste Your Money Support Sitemap Do Not Sell My Info Privacy Policy Privacy Center Journalism Ethics Guidelines Terms of Use EEO Careers FCC Public Files FCC Application Public File Contact Accessibility Statement Scripps Media Trust Center Closed Captioning Contact News5Cleveland WEWS UCAAmkc2sRESFoEtiKRTaTRA @news5cleveland © 2026 Scripps Media, Inc Give Light and the People Will Find Their Own Way
+"""
+
+[R2] School Closings | Delays | Early Release - Winchester Public Schools
+(https://www.wps.k12.va.us/students-families/school-closings-delays-early-release)
+"""
+School Closings and Delays Scheduled school closings are marked on our School Calendar. Schools may also close or open with a delay due to inclement weather or other unplanned events. Making the Call Careful consideration goes into deciding whether students can safely be transported to school on a snowy morning. Roads and sidewalks are inspected, and weather forecasts and outdoor temperatures are monitored. Information is then reported to the Superintendent, who makes a determination about whether to cancel classes for the day. The goal is to make a decision by 5:30 a.m. Notification If school is delayed or closed, a message will go out to all WPS staff and families. Info will also be posted on the WPS website and social media. Notify your school with any changes in contact information so you will receive weather-related messages. Winchester Public Schools on Facebook Winchester Public Schools on Instagram Distance Learning Plan When school is closed due to inclement weather, the day will likely be replaced with distance learning. Please read the information below and any messages from your student’s school. *Please note: If the opportunity for a true snow day without distance learning arises, you will be notified accordingly. Elementary Schools (Grades PreK-4) Intermediate School (Grades 5-6) Middle School (Grades 7-8) High School (Grades 9-12) Elementary Schools (Grades PreK-4) Intermediate School (Grades 5-6) Middle School (Grades 7-8) High School (Grades 9-12) Regular Daily Schedule Days that students attend school are marked on our School Calendar. Elementary Schools Parent Drop-off Time 7:20 am - GQES 7:25 am - All Others Tardy Bell 7:50 am Parent Pick-up Time 2:30 pm Intermediate & Middle Schools Parent Drop-off Time 8:00 to 8:15 am Tardy Bell 8:25 am Parent Pick-up Time 3:15 pm - DMIS 3:20 pm - DMMS John Handley High School Parent Drop-off Time 8:05 am Tardy Bell 8:25 am Parent Pick-up Time 3:15 pm Early Release Schedule Scheduled early release days are marked on our School Calendar. Schools may also release early due to inclement weather or other unplanned events. Elementary Schools Early Release 1:00 p.m. Holiday Release 11:45 a.m. Apple Blossom Early Release 1:00 p.m. Last Day Release 11:15 a.m. Intermediate & Middle Schools Early Release 1:50 p.m. Holiday Release 1:00 p.m. Apple Blossom Early Release 11:45 a.m. Last Day Release 12:15 p.m. John Handley High School Early Release 1:50 p.m. Holiday Release 1:00 p.m. Apple Blossom Early Release 11:45 a.m. Last Day Release 12:15 p.m.
+"""
+
+[R3] Closings & Delays: Washington DC, Maryland & Virginia - WTOP News
+(https://wtop.com/closings-and-delays/)
+"""
+Opens in a new window Opens an external website Opens an external website in a new window This website utilizes technologies such as cookies to enable essential site functionality, as well as for analytics, personalization, and targeted advertising. Privacy Policy Accept Deny Non-Essential Manage Preferences Close Cookie Preferences Closings & Delays: Washington DC, Maryland & Virginia Registered users can submit their closings online or by calling the WTOP newsroom at 202-895-5060. To submit a multi-day closing for your organization, please call the WTOP newsroom and a team member will assist you. Sign up for WTOP Alerts Listen live for the latest traffic and weather Closings & Delays map The following is a list of the current WTOP Stormdesk Closings and Delays for schools, governments, houses of worship and other organizations. Maryland Maryland Public Schools Organization Name Status Anne Arundel County Public Schools Other on Thursday 3/26 Due to a lack of water at the school, Severn Run High School will be closed for students and staff on Thursday, March 26, 2026. Have a question or problem with WTOP’s Closings and Delays System, or need to register your organization or school in our system? Contact us by email. Please do not use the email above to submit your closing. Log in to your WTOP account for notifications and alerts customized for you. Sign up LOGOUT VIEW PROFILE ✕
+"""
+
+[R4] Closings & Delays
+(https://www.wbaltv.com/weather/closings)
+"""
+Skip to contentNOWCASTWBAL-TV 11 News at NoonWatch on DemandAdvertisementClosings & DelaysEMAIL ALERTSSign up here to receive Breaking News and Severe Weather email notifications for your area.FAQClick here to see frequently asked questions and learn more about how our closings & delays work.No active Closings & Delays match your search.When there are active school closings, you can find the most up-to-date list of closings & delays here. As schools are reported closed, they will be added to this list. Questions? Click the school closings FAQ link.Sign up to receive email alerts when severe weather happens in your area. You can also view current severe weather warnings & watches for Baltimore and Maryland on the WBAL-TV 11 News alerts page. Check the latest weather conditions, get location-specific push alerts on your phone & view our Interactive Radar at any time with the WBAL-TV 11 News app.No closings or delays at this time.When there are active school closings, you can find the most up-to-date list of closings & delays here. As schools are reported closed, they will be added to this list. Questions? Click the school closings FAQ link.Sign up to receive email alerts when severe weather happens in your area. You can also view current severe weather warnings & watches for Baltimore and Maryland on the WBAL-TV 11 News alerts page. Check the latest weather conditions, get location-specific push alerts on your phone & view our Interactive Radar at any time with the WBAL-TV 11 News app.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

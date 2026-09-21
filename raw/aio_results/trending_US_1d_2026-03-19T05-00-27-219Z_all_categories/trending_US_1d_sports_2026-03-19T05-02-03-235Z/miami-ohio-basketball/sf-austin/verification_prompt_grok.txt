@@ -1,0 +1,1192 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "sf austin"
+
+Claims:
+[1] "Stephen F. Austin State University is a public university in Nacogdoches, Texas."
+[2] "Stephen F. Austin State University was founded in 1923."
+[3] "Stephen F. Austin State University features the Lumberjacks athletics program."
+[4] "Stephen F. Austin State Park is located in Austin County, TX."
+[5] "San Felipe de Austin State Historic Site is located in Austin County, TX."
+[6] "The main campus of Stephen F. Austin State University is in Nacogdoches, East Texas."
+[7] "Stephen F. Austin State University competes in basketball."
+[8] "Stephen F. Austin State University competes in football."
+[9] "Stephen F. Austin State University competes in baseball."
+[10] "Stephen F. Austin State University competes in volleyball."
+[11] "Stephen F. Austin State University competes in soccer."
+[12] "Stephen F. Austin State University sports teams are often known as the "Jacks" or "Ladyjacks"."
+[13] "The Lumberjacks participate in the Southland Conference."
+[14] "San Felipe de Austin State Historic Site is situated near the Brazos River."
+[15] "San Felipe de Austin State Historic Site was the headquarters for Stephen F. Austin's colony in Mexican Texas."
+[16] "San Felipe de Austin State Historic Site was established in 1823."
+[17] "Stephen F. Austin lived from 1793 to 1836."
+[18] "Stephen F. Austin was a known empresario."
+[19] "Stephen F. Austin was known as the "father of Texas"."
+
+Cited text snippets from the AI Overview (for additional context):
+- Stephen F. Austin - Official Athletics Website: "Stephen F. Austin (SFA) athletics includes men's,sports include: * Cheer * Dance team"
+- An Interpretation of the Cultural and Natural History of Stephen F. Austin ...: "San Felipe de Austin State Historic Site,Road Ferry crossing of the Brazos River."
+- Football - Stephen F. Austin: "SFA's football programs also include: * **Football,Women's sports * Cheer * Dance team"
+- About SFA: "Our Location. SFA's breathtaking campus is located,Nacogdoches may actually be closer than Austin?"
+- Cheap Flights from San Francisco to Austin | United Airlines: "You can find United flights from San,Schedules are subject to change without notice"
+Reference Sources:
+
+[R1] TEXAS PARKS AND WILDLIFE
+(https://tpwd.texas.gov/publications/pwdpubs/media/pwd_bk_p4504_0051f.pdf)
+"""
+TEXAS PARKS AND WILDLIFE
+
+ An Interpretation of the
+ Cultural and Natural History of
+STEPHEN F. AUSTIN STATE PARK
+ and
+ SAN FELIPE DE AUSTIN
+ STATE HISTORIC SITE
+Stephen Fuller Austin
+ An Interpretation of the Cultural and Natural History of
+ Stephen F. Austin State Park and
+ San Felipe de Austin State Historic Site
+
+With its own special blend of cultural history, plant and animal life, Stephen
+F. Austin State Park offers many opportunities to connect with the past,
+experience nature and enjoy outdoor recreation.
+
+Stephen F. Austin State Park takes its name from Stephen Fuller Austin, con-
+sidered by many to be the father of Texas. In 1823, Austin established San
+Felipe de Austin as the Colonial Capital of Texas at the Atascosito Road
+Ferry crossing of the Brazos River. San Felipe served as the social, economic
+and political hub for the Anglo-American colonists who followed Austin to
+settle Texas. Later, San Felipe became the political center for the events
+leading to the Texas Revolution.
+
+The park consists of two non-contiguous tracts of land located near each
+other.The 14-acre state historic site, centered on Commerce Square of old
+San Felipe de Austin, is one of the most significant archeological and historic
+sites in Texas.The San Felipe Park Association dedicated the site in 1928 and
+donated it the State of Texas in 1940.The 473-acre state park includes
+mixed bottomland forest and forested swamp nestled in a scenic bend of
+the Brazos River.
+
+ ACTIVITIES AND FACILITIES
+
+Day-use facilities at the state park include a picnic area with 65 sites, each
+with a table and grill, a group picnic pavilion and a group dining hall.The
+group dining hall is equipped with a kitchen, tables and chairs, rest rooms
+and air conditioning. It seats 60 people and the picnic pavilion accommo-
+dates 30 people.
+
+Overnight facilities include 40 full hook-up, pull-through RV sites with water,
+30-amp electricity and sewer, 40 tent sites with water only, 20 screened
+shelters with water and electricity, a screened group recreation hall and rest
+rooms with showers.The screened group recreation hall has a fire ring, rest
+rooms, picnic tables and a kitchen. RV sites, tent sites and screened shelters
+are each limited to eight people per site and the group recreation hall is
+limited to 60 people.
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 1
+ The park has nearly five miles of multi-use trails for hiking and biking and a
+ 1/8-mile self-guided, interpretive nature trail.The trail system also provides
+ access to the Brazos River for fishing and to the undeveloped wooded
+ areas of the park for birding and wildlife viewing. A 30-seat amphitheater,
+ used for park interpretive programs, lies near one of the trailheads.The
+ park has a 1 3/4-mile orienteering course. Stargazing opportunities abound
+ in the park’s rural setting, away from the glare of urban centers.The park
+ also includes two swing sets, a basketball court, a volleyball court and a
+ horseshoe pit.
+
+ A well-stocked Texas State Park Store offers a variety of souvenirs.
+
+ An 18-hole public golf course, operated by the Stephen F. Austin Golf
+ Association, is adjacent to the park. Please contact the pro shop for tee
+ times and green fees at (979) 885-2811.
+
+ Located at the San Felipe de Austin State Historic Site and operated by
+ Stephen F. Austin Park Association, the restored J.J. Josey General Store
+ Museum, built in 1847, displays artifacts from the period of early Texas col-
+ onization.Tours of the museum and site are offered every Saturday and
+ Sunday afternoon.The Association charges a nominal museum entrance fee.
+
+ The historic site also includes a
+ replica of the dog-run log cabin
+ where Austin lived and conducted
+ the business of the early colony.The
+ public town well, completed in 1832,
+ is the only surviving structure from
+ the pre-Revolutionary period of the
+ town. A bronze statue of Austin
+ dominates the site. New York sculp-
+ tor John Angel cast the statue in
+ 1938. It depicts Austin seated on a
+ pink Marble Falls granite pyramid. A
+ 1928 obelisk and numerous com-
+ memorative markers on site also
+ celebrate the achievements of Austin
+ and his colonists.
+
+2 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+ Cultural History
+ NATIVE AMERICAN OCCUPATION
+
+ Kiowa
+
+ Comanche
+ Huaco
+
+ Caddo
+
+ Mescalero Tonkawa
+ Apache Atakapan
+ Lipan
+ Apache
+
+ Karankawa
+
+ Coahuiltecan
+
+Archeological evidence suggests that human habitation in the area began as
+early as 7400 B.C. during the late Paleo-Indian Period.The park lies in what
+appears to have been a zone of cultural transition between inland and
+coastal aboriginal peoples. During the early historic era the principal inland
+inhabitants were the Tonkawas, a nomadic, hunting and gathering people,
+who traveled hundreds of miles in pursuit of buffalo. They were regarded as
+friendly by Anglo settlers who moved in during the early 19th century. To
+the south and west, on the coastal lowlands, dwelt the more aggressive
+Karankawas, much feared by the settlers. San Felipe was somewhat shielded
+from the fierce Comanches and Apaches by settlements on the Colorado
+River to the west and the buffering presence of the Tonkawas to the north.
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 3
+ TONKAWAS
+
+ The Tonkawa Indians were actually a group of
+ independent bands. The remnants of these
+ tribes migrated from the high plans as late as
+ the 17th century and united in the early 18th
+ century in the Central Texas region.The name
+ Tonkawa is a Huaco Indian term meaning
+ “they all stay together.”
+
+ The Tonkawas had a Plains Indian culture,
+ subsisting on buffalo and small game.When
+ pushed from their hunting grounds, they
+ became an impoverished culture, living off
+ what little food they could scavenge. Unlike
+ other plains tribes, the Tonkawas ate fish and oysters.They also gathered
+ and ate a number of herbs, roots, fruits, seeds, acorns and pecans.When
+ Anglo settlers moved into their region, pecans became an item of barter.
+
+ Adult males wore a long breechclout, supplemented with buckskin or
+ bison moccasins and leggings.Women wore short skin skirts. Both men
+ and women tattooed their bodies. In aboriginal days the Tonkawas lived in
+ short, squat tepees covered with buffalo hides. As the buffalo became
+ scarce, brush arbors replaced the tepee.
+
+ Cabeza de Vaca may have been the first European to encounter the
+ Tonkawas during his trek through Texas, but it was La Salle at Fort St. Louis
+ that gave the first definite information concerning the tribe in 1687. A
+ period of regular Spanish contact with the Tonkawa groups began in 1690.
+ Between 1746 and 1749 the Spanish established three missions for the
+ Tonkawas on the San Gabriel River.The Tonkawas suffered several devastat-
+ ing epidemics and Apache raids during the life of the missions. By 1756 the
+ Spanish abandoned the San Gabriel missions.
+
+ Following Tonkawa participation in the 1758 destruction of the San Saba
+ Mission, built for the Apaches, Spain regarded the Tonkawas as enemies. Not
+ until 1770 did the Spanish attempt to reestablish cordial relations.Tonkawas
+ and Spanish settled into a period of uneasy peace and relations with the
+ Mexicans followed a similar period of friendly relations.The Tonkawas often
+
+4 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+aided their new Anglo allies against the Comanches.The Tonkawas remained
+staunch allies of the English-speaking settlers in Texas.They continued to
+help Texas, and later the United States, during their wars with other Indian
+tribes until 1859, when they were removed to a reservation in Indian
+Territory.Tonkawas soon intermarried with other Indians to the extent that
+they were no longer distinguishable as a separate tribe.
+
+KARANKAWAS
+
+The Karankawa Indians
+inhabited the Gulf Coast of
+Texas from Galveston Bay
+southwestward to Corpus
+Christi Bay.The name
+Karankawa is generally
+believed to mean “dog-
+lovers” or “dog-raisers.” The Karankawa were nomadic people who
+migrated seasonally between the barrier islands and the mainland.They
+obtained food by a combination of hunting, fishing and gathering. Fish,
+shellfish and turtles were staples of the Karankawa diet, but a wide variety
+of animals and plants contributed to their sustenance.
+
+Always on the move, their principal means of transportation was the dugout
+canoe.These primitive watercraft, unsuited for deep open water, were used
+primarily in the shallow waters between the islands and the mainland.The
+Karankawas traveled overland by foot, and were often described as power-
+ful runners. A portable wigwam provided shelter for the coastal people.
+Karankawas were known for their distinctive physical appearance.The men,
+described as tall and muscular, wore deerskin breechclouts.They painted
+and tattooed their bodies.Women wore skirts of Spanish moss that
+reached to the knees.
+
+The Karankawa’s entrance into the historical record in 1528 by Cabeza de
+Vaca represents the first recorded contact between Europeans and Texas
+Indians. After this encounter, the Karankawas were not visited again by
+Europeans until La Salle established Fort St. Louis in 1685 near Matagorda
+Bay, in the heart of Karankawa country. After La Salle set out for Canada to
+find help for the struggling colony, Karankawas attacked, killing nearly all of
+the colonists.
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 5
+ In the early 18th century, Karankawa country again became the center of
+ Spanish-French rivalry.The Spanish established a presidio and mission near
+ the site of La Salle’s failed Fort St. Louis.The Spanish continued their efforts
+ to missionize the Karankawas for more than a century with little success.
+ By the end of Spanish rule in Texas, the Karankawa population had been
+ greatly reduced by epidemic diseases.
+
+ Mexico won independence from Spain in 1821 and the new government
+ encouraged Anglo-American immigration to the sparsely populated
+ province of Texas. As settlers entered Karankawa territory, confrontations
+ became frequent. Mexican authorities attempted to protect the colonists
+ by making peace with the Karankawas, but their efforts were unsuccessful.
+ The colonists, spurred by empresario Stephen F. Austin, banded together to
+ rid themselves of the Indian threat. In 1824, Austin personally led an expe-
+ dition of some 90 men that drove the Karankawas to seek sanctuary in
+ La Bahia mission. An armistice was arranged but the Karankawas continued
+ to range east of the Lavaca River and conflicts were frequent.
+
+ The tribe’s population steadily diminished as they fought the growing Anglo-
+ Texan population, as well as hostile Tonkawas and Comanches. When Texas
+ became an independent republic in 1836, the Karankawas had been so
+ reduced that they were no longer considered a formidable enemy. In
+ 1858, a Texan force attacked and annihilated the small remaining band of
+ Karankawas, and after this last defeat, the coastal Texas tribe was consid-
+ ered extinct.
+
+ EARLY SPANISH AND FRENCH EXPLORATION
+
+ During the 16th, 17th and 18th centuries,Texas was part of a vast arena of
+ imperial competition between Spain and France. Although no definitive
+ archeological evidence exists, it is highly likely that the area of Texas the
+ park lies in was surveyed by two well known explorers, one Spanish and
+ one French. In addition, the Spanish constructed the Atascosito Road, some
+ time before 1767, linking Refugio and Goliad with Atascosito, a fortified
+ settlement on the lower Trinity River near the present site of Liberty.
+ Stretching through what is now southern Austin County, the Atascosito
+ Road crossed the Brazos River at an ancient site used by Native Americans
+ for centuries to ford the river.The area to the west of this crossing would
+ soon become Stephen F. Austin’s Colonial Capital, San Felipe de Austin.
+
+6 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+CABEZA DE VACA
+
+Alvar Nunez Cabeza de Vaca, an early Spanish explorer, was a member of
+the 1527 expedition to found a Spanish colony in Florida.The expedition
+landed in the Gulf coast of Florida in April 1528 and began to march up
+the interior. Faced with hostile conditions, the expedition left Florida by sea.
+Hugging the coast, the small flotilla passed the mouth of the Mississippi
+River and a storm soon beached the battered craft on an island off the
+Texas coast, probably San Luis (now known as Follet’s Island), in November
+1528. Cabeza de Vaca was among some 80 survivors who were perhaps the
+first non-Indians to set foot on Texas soil.
+
+For over three years Cabeza de Vaca ranged inland, as well as along the
+coast, becoming the first European merchant in Texas, carrying sea shells
+and mesquite beans to the interior and returning with skins and red ochre.
+In 1532, Cabeza de Vaca reluctantly left the Galveston area and traveled
+along the inner Texas coast toward Mexico. He eventually rendezvoused
+with three other expedition survivors at what they called the river of nuts,
+probably the Guadalupe River. Crossing the lower Rio Grande near the
+present site of Presidio, they continued to the Pacific Coast of Mexico,
+arriving in early 1536.
+
+Cabeza de Vaca’s Relacion reported his experiences in Texas. Biotic, ethno-
+graphic and physiographic information contained in his narratives provides
+clues as to where he spent nearly seven years in Texas and what he saw.
+Cabeza de Vaca’s experiences provide valuable data on Texas Indians, land-
+forms, flora and fauna. Cabeza de Vaca deserves recognition as the first
+geographer, historian and ethnologist in Texas. He was the only Spaniard to
+live among the coastal Indians of Texas and survive to write about them.
+
+LA SALLE
+
+Rene Robert Cavelier, Sieur de La Salle, an early French explorer, obtained
+royal support in 1683 for a voyage to the Mississippi through the Gulf of
+Mexico to establish a colony. He envisioned a port, fortified against Spanish
+and English incursion, on the Gulf to serve his commercial empire stretching
+throughout the Mississippi Valley, or Louisiana, as La Salle named the territory
+drained by the great river.
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 7
+ La Salle missed the mouth of the Mississippi and landed at Matagorda Bay
+ on the Texas coast on Feb. 20, 1685. From his Fort St. Louis, on Garcitas
+ Creek in what is now Victoria County, he explored westward
+ possibly as far as the Pecos River and eastward beyond the Trinity River, in
+ an effort to establish his location. On his second eastward journey, La Salle
+ was slain by a disenchanted follower on March 19, 1687, “six leagues” from
+ the westernmost village of the Tejas Indians. Of the 200 colonists he landed,
+ barely 15 remained alive five years later.
+
+ Although La Salle’s projects ended in failure, his explorations were land-
+ marks. His entry into the Gulf of Mexico sparked a renewal of Spanish
+ exploration in the entire Gulf region. His fruitless colony gave the French a
+ claim to Texas causing the Spaniards to jump start the Anglo-American col-
+ onization of eastern Texas. Because of La Salle, the United States was able
+ to register a claim to Texas as part of the Louisiana Purchase.
+
+ STEPHEN F. AUSTIN AND ANGLO COLONIZATION
+
+ During the early 1800s, Spain set the stage for Texas freedom by enacting
+ policies to help fend off its takeover by French and British rivals. As a last-
+ ditch defense of its unpopulated territories, the Spanish Crown opened up
+ lands between the lower Trinity and Guadalupe rivers to American immi-
+ grants. Lured by lands as cheap as four cents an acre, as opposed to $1.25
+ per acre for public land in the United States, the influx of homesteaders
+ grew from a trickle to a flood.
+
+ In January 1821, Moses Austin, founder of the American lead mining and
+ smelting industry, was granted permission by the Spanish governor in San
+ Antonio to settle 300 Roman Catholic families in Texas, but he died in
+ Missouri in June before he could realize his plans. Stephen F. Austin accepted
+ his father’s deathbed request to administer the Texas Venture and traveled
+ to San Antonio in August 1821, where he met with the Mexican governor,
+ who acknowledged Stephen as the successor of his father’s legacy.
+
+ Stephen Fuller Austin, the Father of Texas, son of Moses and Maria (Brown)
+ Austin, was born in southwestern Virginia on Nov. 3, 1793. At the age of
+ ten, his father sent him to school in Connecticut, from which he spent two
+ years at Transylvania University in Lexington, Ky. After his return from
+ Transylvania in the spring of 1810, Stephen was employed in his father’s
+
+8 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+general store and subsequently took over the management of his father’s
+lead mining business in Missouri. He served the public as adjutant of a
+militia battalion and for nearly five years was a member of the Missouri
+Territorial Legislature. In December 1820, Stephen was in New Orleans,
+where he had made arrangements to study law.
+
+Stephen was expecting to accompany his father to San Antonio when he
+learned of Moses Austin’s death. He proceeded to San Antonio, where he
+arrived in August 1821, just as news came of Mexico’s independence from
+Spain. After almost a year of unremitting attention to the Mexican gover-
+nor, Austin gained permission from the Republic of Mexico to continue the
+colonization enterprise under his father’s original Spanish grant. Stephen F.
+Austin was named an empresario.These land agents were to promote immi-
+gration to and colonization of Texas, and for their services, were to receive
+personal land grants and financial compensation. Austin was permitted by
+the governor to explore the coastal plain for the purpose of selecting a site
+for the proposed colony.
+
+Austin returned to New Orleans, published his terms, and invited colonists,
+saying that settlements would be located on the Brazos and Colorado
+rivers. Land grants were issued by the empresario in measurements of
+labors (177 acres of cropland), leagues or sitios (4,428 acres of grazing land)
+and haciendas (five leagues).The well-timbered, rich, alluvial bottomlands of
+the Brazos were major attractions for settlers, especially the prized tracts
+that combined woodland with prairie. By November 1821, the first colonists
+began to arrive in Texas by land and sea.
+
+As early as May 1823, John McFarlan settled at the Atascosito Road crossing
+of the Brazos River and began to operate a ferry. In December 1823,
+Austin, with the assistance of the land commissioner, Baron de Bastrop,
+decided to establish his colonial capital on the west bank of the Brazos near
+where McFarlan operated his ferry. McFarlan later received a lifetime license
+from Austin and Bastrop to officially operate the ferry for the colony. The
+site chosen was a high prairie on an easily defensible bluff overlooking
+broad, fertile bottomlands. The location offered a number of advantages. It
+was centrally located within Austin’s colony. Several sources of fresh water,
+independent of the Brazos, were nearby, including Arroyo Dulce or Sweet
+Creek (now known as Bullinger’s Creek). The site was protected from peri-
+odic flooding by its elevation, yet it was in close proximity to the river.
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 9
+ Several gullies cut the bluff allowing for easy access to the river from high
+ ground. And finally, the river at this location was wide and straight, slow
+ moving, and had a level bed which made crossing fairly easy.The town’s
+ name, San Felipe de Austin, was proposed by the Mexican governor to
+ honor the empresario and the governor’s own patron saint.
+
+ From late 1823 through early 1824, surveyor Seth Ingram was consumed
+ with the task of defining the boundaries of the five league expanse of
+ prairie and woodland encompassed by the municipality and platting the
+ town proper. Planned on the basis of the prevailing Mexican town model,
+ lots were arranged on a rectangular grid of avenues and streets dominated
+ by five large public plazas (Commerce Square, Military Square, the cemetery
+ and the hospicio). Despite this elaborate plan, San Felipe soon developed
+ into a village with no coherent plan and houses scattered at random,
+ sprawling westward from the Brazos for more than a half mile along both
+ sides of the Atascosito Road. Eight roads would soon link the colonial capi-
+ tal with the rest of the colony, with San Antonio and with the coastal ports
+ of Louisiana and Texas. Among these roads, the Atascosito Road ran from
+ Goliad through San Felipe and on to Liberty, the Gotier Trace ran from San
+ Felipe to Bastrop and the San Felipe Road ran from San Felipe to Harrisburg.
+
+ By the end of 1824, Austin had completed issuing the majority of his origi-
+ nal 300 titles. At this time most of the Old Three Hundred (the first group
+ of Anglo-American families) were in Texas.The majority of the Old Three
+ Hundred were from the trans-Appalachian South. Most were farmers, and
+ many already had substantial means before they arrived.Their plantation,
+ arrayed along the rich, coastal river bottoms, constituted the heart of the
+ burgeoning cotton empire in antebellum Texas.
+
+ San Felipe quickly became the political, economic and social hub of the
+ colony, which stretched northward from the Gulf of Mexico as far as the
+ Old San Antonio Road and extended from the Lavaca River in the west to
+ the San Jacinto River in the east. By 1836, San Felipe, the first true urban
+ community to develop within Austin colony, ranked second in Texas only to
+ San Antonio as a commercial center. At its peak, San Felipe contained more
+ than 45 buildings and 600 residents.
+
+ By the late 1820s, industry and agriculture were flourishing in the colony.
+ The Cumings family constructed a water-powered grist and lumber mill
+
+10 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+near the mouth of Palmetto Creek (now known as Mill Creek), probably
+the first mill of its kind in Texas. Not long thereafter, the first cotton gins
+were established.The more prosperous settlers established large cotton
+plantations emulating the example of Jared Groce, who settled on the east
+bank of the Brazos above San Felipe, and in 1822, raised what was probably
+the first cotton crop in Texas. By 1830, small herds of cattle were being
+driven from San Felipe to market at Nacogdoches.
+
+Regular mail service in the colony was inaugurated in May 1826, when
+Samuel May Williams, the Colonial Secretary, was appointed postmaster in
+San Felipe.Within seven separate postal routes converging here, the town
+remained the hub of the Texas postal service until the Texas Revolution.
+One of the earliest newspapers in Texas, the Texas Gazette, began publication
+in San Felipe on Sept. 25, 1829, under the editorship of Godwin B. Cotten. It
+is considered the first enduring newspaper in Texas. Cotten also printed the
+first book published in Texas, Translation of the Laws by Austin. Gail Borden,
+Jr. first published the Telegraph and Texas Register, which became the unoffi-
+cial journal of the Revolution, in San Felipe on Oct. 10, 1835. As early as
+1823, Stephen F. Austin began organizing a militia with which to defend the
+frontiers of his colony. He hired experienced frontiersmen to ride the range
+in punitive expeditions against Indians. Austin’s Ranging Company of
+Riflemen would later evolve into the modern Texas Rangers.
+
+The first school in the town, and the first English school in Texas, was estab-
+lished by Baptist layman Thomas J. Pilgrim in 1827, with an initial enrollment
+of 40 boys. By 1830, four schools were reported in the community, with a
+combined enrollment of 77. Although the settlement, like the rest of
+Austin’s colony, was Catholic by law, no priest resided in San Felipe until the
+April 1831 arrival of Father Michael Muldoon, a liberal Irish Catholic priest.
+Not until after the Revolution were the town’s first churches built.
+
+Austin first settled on town
+lots 13, 14 and 15 (now within
+the state historic site). By 1824,
+he built a two-room log cabin
+with a dog run connecting the
+rooms. In 1829, Austin moved a
+mile west of town near Sweet Creek to garden lot 29 or 30 (near the
+entrance to the state park). Here he built another cabin resembling his
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 11
+ town home. At both locations, Austin operated the land office from one
+ room while maintaining his living quarters in the other.
+
+ Aside from the primary business of inducing immigrants to come to his
+ colony, Austin labored most on the establishment and maintenance of the
+ land system.This involved surveying and allocating land to applicants with
+ care to avoid overlapping, thereby keeping conflicts to a minimum.
+
+ Austin held complete civil and military authority over his colonists for the
+ first four years, subject to rather nominal supervision by the officials at San
+ Antonio. He wisely allowed the colonists to elect militia officers; and, to
+ assure uniformity of court procedure, he drew up forms and a simple civil
+ and criminal code.
+
+ In November 1827, Austin seized the opportunity to relieve himself of
+ responsibility for the details of local government by hastening the organiza-
+ tion of the ayuntamiento.This Spanish form of municipal government
+ consisted of regidores (aldermen), was presided over by an alcalde (judge
+ and mayor) and supported by a sindico procurador (city attorney).This
+ governing council was the first machinery of democratic government in
+ Austin’s colony. By virtue of experience, Austin continued to exercise
+ strong influence over the ayuntamiento in relations with the Mexican state
+ and federal governments.
+
+ TEXAS REVOLUTION
+
+ Harmony with Mexican state and federal authorities was indispensable to
+ the success of the Texas colonies. Austin clearly realized this fact and never
+ allowed the settlers to forget the solid benefits they received through the
+ liberal colonization policy or their obligation to became loyal Mexican citi-
+ zens. But the seeds of discontent between the Mexican rulers and the
+ Anglo-American colonists of Texas, known as Texians, were planted long
+ before in their differing social and political habits and experiences.
+
+ By 1832 Austin’s various colonies comprised 8,000 persons, and other
+ empresarios, though less successful, had brought in a great many more.
+ Anglo-American immigrants vastly outnumbered Mexican Texans, known as
+ Tejanos. Naturally, it became more and more difficult for Austin to recon-
+ cile the colonists to his cautious leadership. On the other hand, the rapid
+
+12 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+growth of the colonies, in addition to persistent efforts of the United States
+to buy Texas, increased the anxiety of Mexican leaders and resulted in their
+consequent attempts to safeguard the territory.
+
+Due to the significance of San Felipe in the life of the colony, it was
+inevitable that the colonial capital would play an important role in the
+events leading to the Texas Revolution. Citizen delegates from throughout
+Texas met at San Felipe Town Hall in October 1832 and again in April 1833
+to hold the Conventions of 1832 and 1833 and asked for a number of privi-
+leges and reforms, of which three were the most important. First, in 1823,
+Mexico had given the colonists certain tariff exemptions.This liberal law
+expired in 1830. Both conventions adopted petitions asking for extension of
+the tariff exemptions. Second, when the Mexican federal system was insti-
+tuted in 1824, Coahuila and Texas were united as a single state, with the
+somewhat indefinite assurance that the union might be dissolved when
+Texas was qualified for statehood. Both conventions declared that Texas was
+able to maintain a state government and asked for separation.The
+Convention of 1833 went further and framed a state constitution in antici-
+pation of sovereignty apart from Coahuila. And thirdly, apprehension over
+heavy Anglo-American colonization led Mexican authorities to pass a law in
+April 1830 forbidding immigrants to settle in territory adjacent to their
+native country. Though this law was subsequently interpreted to permit
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 13
+ continued settlement in Austin’s colony, it remained a menace to the devel-
+ opment of Texas and the convention petitioned for its repeal.
+
+ Resolutions of the Convention of 1832 were never delivered. But Austin,
+ though he thought the movement ill-timed, was elected to present the peti-
+ tions of 1833 and argue for their approval. Austin arrived in Mexico City in
+ July 1833. Responding to the Convention’s petitions, the Mexican Congress
+ repealed the immigration restriction law, held the tariff plea in postpone-
+ ment and took no action on the petition for statehood. On his way home,
+ Austin was arrested under suspicion of trying to incite insurrection in Texas
+ and taken back to Mexico City.
+
+ During Austin’s imprisonment, General Antonio Lopez de Santa Anna over-
+ threw the Mexican Constitution of 1824 and seized control of Mexico,
+ establishing a dictatorship. He extended iron-handed rule to Texas. By 1835
+ Santa Anna’s attempts to stop immigration, prohibit weapons and impose
+ high tariffs turned most Texans against hopes of staying Mexican ruled.
+ Austin was freed in July 1835 and at the end of August returned to Texas.
+
+ Upon his return, he learned a group of colonists had published a call for a
+ consultation in October to meet again in San Felipe. Convening in November,
+ the delegates of the Consultation of 1835 voted to remain loyal Mexican
+ citizens, but also voted to establish provisional Mexican state government.
+ San Felipe was named as the state capital. General Sam Houston was
+ named commander-in-chief and ordered to raise an army to defend the
+ Mexican Constitution of 1824 and to offer armed resistance against the
+ dictator Santa Anna. From this time forward, only a spark was necessary to
+ set off an explosion. On Oct. 9, 1835, at the battle of Gonzales, the first
+ shot in the Texas Revolution was fired.
+
+ In late November 1835, the provisional government elected Austin to serve
+ as one of three commissioners to the United States. He arrived in New
+ Orleans in January 1836.The business of the commissioners was to solicit
+ loans and volunteers, arrange for munitions and equipment, outfit warships
+ and do whatever they could to commit the United States to recognition,
+ and eventual annexation, if Texas should declare independence from
+ Mexico. Austin and the other commissioners were fairly successful in
+ accomplishing this program, except in the effort to obtain assurances
+ regarding annexation.
+
+14 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+Santa Anna crossed the Rio Grande shortly after the 1836 New Year and
+headed toward San Antonio. His plan was simple and direct; he would crush
+the insurgency in Texas.While the few Texans held their position behind the
+inadequate defenses of the Alamo, the Convention of 1836, meeting at
+Washington-on-the-Brazos from March 1 to March 17, formally voted for
+independence on March 2, signed the Texas Declaration of Independence,
+drafted the first constitution for the Texas nation and set up its first govern-
+ment.The convention also appointed General Sam Houston as commander
+of the Texas army.While the convention at Washington was still in session,
+the Alamo fell to Santa Anna.
+
+About three weeks before the fall of the Alamo, the
+militia at San Felipe was presented a flag.The red
+English jack on a field of blue showed the origin of the
+Anglo-Americans; 13 red and white stripes represented
+that most Texas colonists were from the United States;
+and a white star on a field of green was for Texas, the
+only state in Mexico showing the last spark of liberty.
+
+Houston, arriving in Gonzales on March 11, heard of the fall of the Alamo
+and decided to withdraw northeast toward the Colorado River.Then as
+news of the massacre at Goliad spread, the withdrawal became a retreat
+and he turned northward toward the Brazos River and Jared Groce’s plan-
+tation. Fleeing from the advancing Mexican army, throngs of refugees fled
+from their homes across Texas toward the safety of Galveston and the
+United States border in what became known as the Runaway Scrape. By
+March 19, 1836, most San Felipeans had joined this mass flight.
+
+As Houston’s army retreated through what is now Austin County, he
+camped briefly at San Felipe on March 26, 1836, near Sweet Creek before
+continuing north to Groce’s plantation. On March 31, 1836, the small 100-
+man garrison under Captain Moseley Baker, a San Felipean, ordered the
+town evacuated and then burned to keep its resources from falling into the
+hands of the advancing Mexican army. Baker had refused to retreat any fur-
+ther so Houston ordered his detachment to remain at San Felipe to defend
+the Brazos crossing. After a brief skirmish with Baker’s detachment at San
+Felipe on April 7, Santa Anna was forced to march his army 16 leagues
+downstream to ford the Brazos at Fort Bend. John Bricker was the only
+Texan killed at this engagement.
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 15
+ The Texans reached the confluence of the San Jacinto River and Buffalo
+ Bayou before the Mexicans. On the marshy plain, flanked by heavy foliage,
+ Houston’s small army surprised Santa Anna’s resting forces on the after-
+ noon of April 21. In the 20-minute battle and its aftermath, virtually the
+ entire Mexican army was killed, scattered or captured, including Santa Anna.
+ Many Texans wanted Santa Anna’s life but Houston, aware of the Mexican
+ general’s value alive, spared him.The war was concluded by the Treaty of
+ Velasco. By its terms,Texas independence was recognized, hostilities were
+ ended and the Mexican army retreated beyond the Rio Grande.
+
+ Somewhat hesitantly, Stephen F. Austin consented to offer himself for the
+ presidency of the Republic of Texas. He was defeated in the election of
+ September 1836, but accepted the office of Secretary of State from
+ President Sam Houston. Austin died in service on Dec. 27, 1836, at the
+ untimely age of 43, near West Columbia.
+
+ In May 1836, as news of the victory at the battle of San Jacinto spread,
+ residents began returning to what remained of their homes at San Felipe.
+ A semblance of community life was soon restored, yet many families never
+ returned. San Felipe was incorporated in 1837 and became the seat of the
+ newly established Austin County. Even as such, the town never achieved the
+ glory of its former stature. By late 1846, the community of Bellville, near
+ the geographical center of the country, succeeded San Felipe as the county
+ seat heralding the continued decline of San Felipe.
+
+16 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+In 1879, San Felipe sold 11,635 acres of its original five leagues to the Gulf,
+Colorado and Santa Fe Railroad for establishment of the deport township
+of Sealy. During the late 19th and early 20th centuries, development was still
+slow and occurred away from the original town site, to the south near the
+railroad and major roadways. In 1972, a highway bridge crossing the Brazos
+River was constructed near the old ferry crossing, which had ceased to
+operate in the 1940s. Not until 1990 did the towns surpass its 1836 peak
+population.
+
+ J.J. JOSEY GENERAL STORE MUSEUM
+
+Built in 1847 by John Crutcher, this general store was in continuous opera-
+tion in San Felipe for 95 years. Originally constructed to replace a general
+store razed in 1836, it was one of the few commercial buildings built soon
+after the town was burned. Crutcher sold the store in 1854 and it passed
+through several owners to come to rest with Dr. J.J. Josey in 1867. He con-
+tinued to operate the building as a general store and post office until 1880
+when it was moved south, near the Texas Western Narrow Gauge Railroad
+as it passed San Felipe. Dr. Josey remained in business until his death in 1893
+at which time the building passed to W. J. Fredericks, Sr., a former employee
+of Dr. Josey. Fredericks operated the store until his death in 1942.The build-
+ing was sold and relegated to use as a barn for many years.The Stephen F.
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 17
+ Austin Park Association acquired the building in 1962. Some restoration
+ was necessary; however, considering the age, the building was well pre-
+ served.The bricks used to rebuild the flue, walk and foundation were made
+ in 1860 for buildings of the Crump plantation.The lighting
+ fixtures, counters and shelves are from several historic buildings throughout
+ Austin County. In 1970 the building was moved to the state historic site,
+ near its original location on Commerce Square.
+
+ In a 1923 journal, S.O. Eidman, Sr. writes of immigrating to Texas in 1846.
+ After entering the port of Galveston, he was forced to stop at San Felipe
+ on his way to New Braunfels due to illness in his family.The town was still
+ decimated from the 1836 razing. In September of that year, Eidman was
+ hired to haul cypress lumber by ox team for John Crutcher from the
+ steamboat landing on the Brazos River for use in constructing the future
+ J.J. Josey General Store.
+
+ The museum houses a model of San Felipe de Austin and a collection of
+ 19th century farm implements and household goods. In addition, old docu-
+ ments, ledgers, newspapers and books are on display.The showpiece of the
+ museum is Stephen F. Austin’s 1825 personal desk, which he used as
+ empresario of colonial Texas and later as Secretary of State of the fledgling
+ Republic of Texas.
+
+18 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+ Natural History
+ LOCATION AND CLIMATE
+
+Stephen F. Austin State Park encompasses 487 acres of Brazos River ripari-
+an woodlands in southeast Austin County. Park headquarters are located at
+29 48’ 51” N latitude, 96 6’ 32” W longitude. Elevation at park headquarters
+is 125 feet.
+
+Austin County lies on the boundary between the Post Oak Savanna and the
+Gulf Coastal Prairie regions of Texas. From southwest to northeast, across
+the county’s midsection, stretches a five-mile-wide band of oak-hickory
+forest intermixed with tall-grass prairies.To the south of this band, the
+coastal prairie exhibits wide expanses of open grassland fringed by stands of
+oak and elm.
+
+The park lies on the southern edge of the heavily wooded central section
+of the county, just north of the coastal prairies, in a forested floodplain.The
+Brazos River forms the eastern border of the county and the north and
+east boundaries of the park.With the exception of the far west corner, the
+entire recreational tract lies within the 100-year floodplain of the Brazos. A
+number of creeks flow southeastward across the county, traversing the
+timber belt, to the Brazos. One such creek, Bullinger’s (formerly known as
+Arroyo Dulce or Sweet Creek), cuts across the park’s interior to its
+confluence with the Brazos River.
+
+Typically, the climate of the park provides visitors with mild winters and hot,
+humid summers.The average annual rainfall is 40.7 inches.The temperature
+ranges from an average August high of 95 F to an average January low of
+41 F. Prevailing winds flow from the south to southeast most of the year
+with winter winds being more variable.
+
+BRAZOS RIVER AND BULLINGER’S CREEK
+
+The Brazos River rises at the confluence of its Salt Fork and Double
+Mountain Fork and runs more than 840 miles across Texas to its mouth on
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 19
+ the Gulf of Mexico.The river flows through most of the major geophysical
+ regions of Texas.The Brazos River watershed covers nearly 45,000 square
+ miles, about 1/6 the area of the state. It is the longest river in Texas and the
+ one with the greatest discharge, over 5.5 million acre-feet per year. Several
+ major reservoirs are located on the main stream, including Possum
+ Kingdom Lake. A number of reservoirs, including Lake Somerville, lie on
+ major tributaries of the Brazos.
+
+ Many legends have grown up explaining how the river got its name, but
+ probably the earliest is that as the Spanish explorer Francisco Vazquez de
+ Coronado was wandering up the Llano Estacado and was about to perish
+ from lack of water sometime in 1541, local Native Americans guided him
+ and his men to a small stream, which they named Rio de los Brazos de
+ Dios or River of the arms of God.
+
+ The Brazos River, throughout the lower sections, is a very scenic coastal
+ river. Here, the stream slowly meanders to the Gulf between wide, steep
+ banks across broad, low-sloping floodplains.The banks are lined with
+ hardwood trees and many scenic bluffs and sand bars exist.
+
+20 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+The Brazos River is by no means a
+stationary boundary of the park as its
+main channel has migrated substantially in
+some reaches. Lateral migration of river
+channels, or meandering, occurs as the
+outside of a meander loop is eroded and
+sediment is deposited along the inside of
+a loop. Under normal flow, banks remain
+stable for long periods of time. During flood stage, however, significant
+changes may occur with the channel being shifted laterally many tens of
+feet. During the Great Overflow of 1833, the swollen Brazos in some places
+was estimated to be 14 miles wide. More recently, major floods have
+occurred in May 1957, May 1965 and October 1994. Since 1958, the main
+channel of the Brazos adjoining the northeast section of the park has shifted
+approximately 1,850 feet to the south, eroding 13 acres of land into the
+river. Over the same period, 73 acres of new land has been deposited along
+the northwest section of the park as the river shifted course.
+
+Bullinger’s Creek (formerly known as Arroyo Dulce or Sweet Creek),
+is a spring-fed perennial stream rising three miles northwest of Sealy in
+south central Austin County and flowing east for eight miles to its mouth
+on the Brazos River, near San Felipe.The creek is name for John Bullinger,
+who immigrated to Texas and settled on Arroyo Dulce in the late 1830s.
+The five league tract of Stephen F. Austin’s colonial capital followed
+Bullinger’s Creek upstream from its mouth on the Brazos.
+
+The soils in the park can be broadly divided into four categories: 1) loamy,
+well-drained recent alluvium along the river, 2) deep poorly-drained clayey
+soils in the camping and picnic areas, 3) the sandy terrace just above the
+river at the historic site, and 4) loamy soils in the upper part of the
+historic section.
+
+ PLANT AND ANIMAL LIFE
+
+Landscape created as the Brazos River meanders across the boundary of
+the Post Oak Savanna and the Gulf Coast Prairie regions, supports a diverse
+array of flora and fauna.The park is a game preserve and hunting is not
+allowed. Fishing, however, is encouraged along the banks of the Brazos River.
+In addition, collecting of plant and animal specimens is not allowed.
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 21
+ Distinctive forest communities
+ are found in three settings in the
+ park’s recreational area; 1) mixed
+ bottomland forest along the river
+ and on the well-drained gentle
+ slopes above it, 2) mixed bottom-
+ land forest in the developed
+ recreational areas, and 3) mixed
+ bottomland forested swamp in
+ the level upland areas that hold
+ water after rains. Species compo-
+ sition and age of the plant com-
+ munity is highly dependent upon
+ its position relative to the river.
+
+ The picnic area is dominated by hackberry, water hickory and green ash.
+ The camping area is dominated by cedar elm, gum bumelia and Osage-
+ orange.The undeveloped bottomlands are mantled by thick stands of old
+ growth eastern cottonwood, sycamore and box elder maple. Along the
+ river, groves of sapling black willow stabilize sandbars. Throughout the
+ park, forest canopies shelter dense undergrowth vegetation of American
+ beautyberry, Coralberry, yaupon, grapevine, Alabama supplejack and Virginia
+ creeper. Grasses include pinehill bluestem, purpletop, wild-rye and
+ brownseed paspalum. The park’s 1/8-mile self-guided, interpretive nature
+ trail showcases excellent examples of the many tree species found
+ throughout the park.
+
+ One tree species, common in the camping area, deserves special
+ note.The Osage-orange (Maclura pomifera) is a native
+ of Texas, Oklahoma and Arkansas. Also known as
+ bodark, hedge apple, Bois d’Arc (French for wood
+ of the bow), bowood, naranjo chino and horse
+ apple, this tree has as many historical uses as it has
+ names.The Osage Indians used the twisted,
+ stringy wood to make long-lasting bows of great
+ strength and endurance. Early pioneers planted
+ young trees in closely spaced rows to produce a
+ thorny, impenetrable fencing.The roots produce a
+ thick yellow substance used to make a durable dye, which the
+
+22 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+United States military used to dye uniforms during World War I.The tree
+has a soft grey, deeply serrated outer bark with an underlying dark red col-
+oration.The smaller branches are covered with short, stout thorns, which
+can cause severe puncture wounds.These thorns most likely inspired the
+creation of barbed wire.The unusual globular fruit is four to six inches in
+diameter and resembles a rough, green orange.The fruit is inedible to
+humans, but is enjoyed by many wildlife species, especially squirrels.
+
+ Be aware of poison ivy (Toxicodendron
+ radicans) as you wander throughout the
+ park.While the trails and developed
+ campsites are relatively clear, this poi-
+ sonous plant abounds in the vegetation
+ of the park. It is a highly variable plant,
+ but readily identifiable by its triple
+ leaflet structure extending from a sin-
+ gle leaf stem.The plant manifests as a
+ sturdy vine extending high into the
+treetops or as a small, leafy shrub. All parts of the plant, including the stem
+and roots, secrete a nonvolatile oily resin that is poisonous upon contact
+causing a severe, itchy rash with blisters.The oil is insoluble in water, there-
+fore, a strong soap must be used when washing affected skin and other
+exposed surfaces. In addition, smoke from campfires burning poison ivy will
+cause severe irritation to the eyes and inhalation will cause severe injury to
+the respiratory tract.
+
+Although the bears, wolves, prairie chickens
+and buffalo that once roamed the area dis-
+appeared in the 19th century, the park’s
+heavily wooded bottomland still is home to
+many wild animal species, including coyote,
+bobcat, skunk, raccoon, opossum, armadillos
+and squirrels.White-tailed deer are the
+most numerous and most visible of the larger mammals in the park.
+
+The ability of wildlife populations to remain healthy and self sustaining depends
+on their use of seasonally dominant natural food sources, such as grasses in
+spring and summer, nuts and berries in fall, and buds and twigs in winter. Food
+provided by humans rarely meets the nutritional requirements of wildlife.
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 23
+ When provided food by humans, wildlife, especially white-tailed deer, are
+ exposed to greater risks of over-crowding and increased competition for
+ natural food sources combined with the stresses of less nutritious hand-out
+ food.These factors increase the susceptibility of animals to parasites and dis-
+ eases, such as distemper, mange and rabies, causing a slow agonizing death.
+
+ In addition, wild animals, such as raccoons and squirrels, can develop pecu-
+ liar and unnatural behaviors and habits once they learn that humans who
+ provide food are not threatening. Losing their fear of people often results
+ in wildlife conflicts with park visitors.
+
+ The diversity of habitats within the park – small open meadows, dense
+ thickets, wetlands and towering trees – support a large number of bird
+ species offering some of the best woodland birding in this region. Common
+ residents include wren, bluebirds, hummingbirds, vireo, northern harrier,
+ black-bellied whistling duck, warbler and pileated woodpecker.The park is
+ a viewing site (UTC 102) on the Katy Prairie Loop of the Great Texas
+ Coastal Birding Trail.The park’s checklist currently has over 90 species and
+ will continue to grow as visitors make valuable contributions by reporting
+ detailed observations of bird species.
+
+ The Brazos River bounds the park to the
+ north and east. It contains many species
+ of fish, reptiles, freshwater mussels and
+ other aquatic life. Channel catfish, alliga-
+ tor gar, perch and common carp are
+ some of the more common residents in
+ the Brazos. Other species calling the
+ river home include beaver, red-eared
+ slider and alligator snapping turtle.
+
+ The park is also home to many other species of reptiles, amphibians and
+ insects, including box turtles, frogs, salamanders, butterflies and dragonflies.
+ Be especially observant for two venomous species of snake, the copper-
+ head (Agkistrodon contortrix) and the eastern coral snake (Micrurus fulvius),
+ although you are more likely to see one of the many non-venomous snake
+ species in the park such as the Texas rat snake or Texas indigo racer.
+
+24 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+The distinctive markings of the copperhead make it a very striking snake.
+Their body color varies from copper to pinkish-brown but all have bold
+chestnut crossbands, which can resemble an hourglass shape, running along
+the length of the body.These markings start at the tail and stop just short
+of the head, which is unmarked and not always a copper color. Copperheads
+have a yellow-green tip to their tail that helps them to hunt. Adults have a
+characteristically triangular head and upturned nose. Typical summer
+retreats for the copperhead are stone walls, piles of wood, rotting logs and
+large flat stones near streams.When the weather turns cooler in the fall,
+they return to their winter den to hibernate.This pit viper is responsible
+for more bites than any other venomous snake in the United States.
+
+Although quite common, the eastern coral snake is rarely seen.This slender
+snake has smooth, shiny scales and is typically brightly colored with a dis-
+tinctive black snout. Behind this there is a large yellow band across its head.
+The rest of the body has large black and red bands, separated by thinner
+yellow ones.The red bands are usually spotted with black. It prefers dry,
+secluded habitats and usually hides by day under log piles, in old tree stumps
+or dense vegetation.This species can be confused with the scarlet kingsnake
+(Pampropeltis triangulum), which is a harmless mimic. Even though eastern
+coral snakes have small mouths, they are still capable of delivering their
+extremely dangerous neurotoxic venom.
+
+The highly aggressive red imported fire ant (Solenopsis invicta), accidentally
+introduced from South America in the 1920s, and has spread to infest more
+than 260 million acres in the southeastern United States, including the east-
+ern two-thirds of Texas. Adult fire ant workers are reddish brown with a
+darker abdomen and range from 1/16 to 1/4 inch in length with the largest
+workers two to three times larger than the smallest. Fire ant workers are
+attracted to oily or greasy foods.This ant prefers to build mounds in open,
+sunny areas such as pastures, lawns, meadows and cultivated fields.The
+mound, built of soft, fluffy soil, has no opening in the center, like many other
+ant mounds.When a mound is disturbed, fire ants swarm and sting anything
+threatening the colony and, unlike most native ants, will charge up vertical
+surfaces such as grasses and sticks near the disturbance.The unique venom
+of the red imported fire ant will form a white, fluid-filled blister at the red
+sting site within 24-48 hours.
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 25
+ CALENDAR OF PARK EVENTS
+
+ Youth Day Camp: Usually 3rd week in June, all day
+ Lone Star Legacy Festival: 3rd Saturday in October, all day
+ Pancake Breakfast with Santa: 2nd Saturday in December, morning
+ Christmas Tree Lighting and Caroling Hayride: 2nd Saturday in
+ December, evening
+
+ FEE SCHEDULE
+
+ Entrance Fees (daily per person)
+ Adults (13 and older) $ 3.00
+ Seniors (Texas residents 65 and older) $ 2.00
+ Children (under 13) free
+ School Groups $ .50
+
+ Facility Fees (daily per site)
+ Tent Site (water only) $ 12.00
+ Trailer Site (water, sewer and electric) $ 20.00
+ Screened Shelter (water and electric) $ 25.00
+ Excess Vehicle (over 2 vehicle) $ 2.00
+ Overnight Group Recreation Hall $ 110.00
+ Day Use Dining Hall $ 125.00
+ Picnic Pavilion $ 30.00
+ Amphitheater $ 25.00
+
+ Fees subject to change. Current at printing.
+
+ DIRECTIONS AND CONTACT INFORMATION
+
+ The park is located 3 miles north of San Felipe. San Felipe lies 47 miles
+ west of Houston and 3 miles east of Sealy.To reach the park, take
+ Interstate 10 to exit 723. Proceed north along F.M. 1458 for 2 miles
+ through San Felipe.Take P.R. 38 west for 1 mile into the park.
+
+ P.O. Box 125, San Felipe,TX 77473-0125
+ (979) 885-3613 Office (979) 885-3383 Fax
+ www.tpwd.state.tx.us/park/sfa/
+
+26 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+ AREA ATTRACTIONS
+
+Historic Austin County
+ City of Sealy
+ City of Bellville
+ City of Wallis
+ Other rural communities
+
+Surrounding Counties
+ Blue Bell Creameries
+ Antique Rose Emporium
+ Attwater Prairie Chicken National Wildlife Refuge
+ Forbidden Gardens
+ Katy Mills Mall
+ George Bush Presidential Library
+
+Houston
+ Museum District
+ Featuring 14 museums
+ Including Houston Museum of Natural Science
+ Theater District
+ Featuring 5 venues and 17 production companies
+ Space Center Houston and NASA Johnson Space Center
+ Hermann Park
+ Including the Houston Zoo
+ Downtown Aquarium
+ Six Flags Astroworld and Waterworld
+ Major professional sports
+ Featuring three venues and five teams
+
+Texas State Parks
+ San Jacinto Battleground State Historic Site
+ Battleship TEXAS State Historic Site
+ Brazos Bend State Park
+ Washington-on-the-Brazos State Historic Site
+ Huntsville State Park
+ Lake Somerville State Park and Trailway
+
+Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE 27
+ SOURCES
+
+ Barkley, Roy. 2002 The Handbook of Texas Online. Texas State Historical
+ Association, www.tsha.utexas.edu/handbook/online/.
+ Bauer, Jack. 1992. Stephen F. Austin State Park Terrestrial Habitat Assessment.
+ Texas Parks and Wildlife Department,Texas.
+ Campbell, Randolph B. 2003 Gone to Texas, A History of the Lone Star State.
+ Oxford University Press, New York, New York.
+ Cantrell, Gregg. 1999. Stephen F. Austin, Empresario of Texas.Yale University
+ Press, New Haven, Connecticut.
+ Howard, Margaret. 1999. Testing at the San Felipe de Austin Townsite
+ (41AU2) and Archeological Survey at Stephen F. Austin State Historical Park.
+ Texas Parks and Wildlife Department, Austin,Texas.
+ Stilley, Alan. 1997. Stephen F. Austin State Park Resource Management
+ Outline. Texas Parks and Wildlife Department, Austin,Texas.
+ Vines, Robert A. 1960. Trees, Shrubs, and Woody Vines of the Southwest.
+ University of Texas Press, Austin,Texas.
+
+28 Stephen F. Austin STATE PARK and San Felipe de Austin STATE HISTORIC SITE
+ STEPHEN F. AUSTIN’S LEGACY
+
+Judged by historical standards, Stephen F. Austin’s achievement is monumen-
+tal. He began an effort, unprecedented in Texas history, to colonize
+Anglo-Americans in Texas under the most difficult of conditions.Yet through
+his efforts, some 1,540 land grant titles were issued to some 5,000 people,
+making him arguably the most successful colonizer in American history.
+Austin’s original colony was the first, most famous and by far the most
+successful of the empresario grants from Mexico.
+
+Through his foresight, perseverance, tactful management and unremitting
+labor, Austin transformed a wilderness into a nation. His methods varied
+with circumstances, but he never wavered from the abiding aim to promote
+and safeguard the welfare of Texas.
+
+Intelligent, courageous and honorable, Austin continually worked to achieve
+a successful colony and when the prospects of becoming an autonomous
+Mexican state faded, he tirelessly worked to make Texas independence viable.
+
+Before his death, Stephen F. Austin wrote in July 1836:
+
+ “The prosperity of Texas has been the object of my labors,
+ the idol of my existence, it has assumed the character
+ of a religion, for the guidance of my
+ thoughts and actions, for fifteen years.”
+4200 Smith School Road
+ Austin,Texas 78744
+ www.tpwd.state.tx.us
+
+ PWD BK P4504-051F (12/05)
+"""
+
+[R2] Explore Stephen F. Austin State Park: History and Nature
+(https://www.tshaonline.org/handbook/entries/stephen-f-austin-state-park)
+"""
+By: Christopher Long Revised by: Laurie E. Jasinski Published: July 1, 1995 Updated: September 9, 2016 Stephen F. Austin State Park in Austin County offers visitors the opportunity to see area wildlife. Courtesy Texas Parks and Wildlife Department and included in accordance with Title 17 U.S.C. Section 107. Stephen F. Austin State Park.Stephen F. Austin State Park is off Farm Road 1458 just east of Sealy in Austin County. The 473-acre park, named after the well-known empresario Stephen F. Austin, is situated on a scenic bend of the Brazos River. and is near the original site of the historic community of San Felipe, which served as the seat of government for the Austin colony and was the location of the conventions of 1832 and 1833 and the Consultation of 1835. The area, including the San Felipe site, was given to the state in 1940 by the San Felipe de Austin Corporation and the San Felipe Park Association. Nothing of the original settlement now remains, but the town well, an early general store and museum, and a monument and statue of Stephen F. Austin mark the historic site. On January 1, 2008, operational control of the San Felipe de Austin State Historic Site was transferred from the Texas Parks and Wildlife Department to the Texas Historical Commission, thereby reducing the acreage of the state park, which remained under the control of the Texas Parks and Wildlife Department.The park’s heavily-wooded bottomland is home to a wide variety of animals, including deer, raccoons, skunks, armadillos, opossums, foxes, and squirrels. Among the facilities are picnic areas and playgrounds, six miles of hiking and biking trails, campsites, group lodging, and dining and recreation halls. The park offers interpretive programs as well as an annual summer youth camp. Bibliography Citation Image Use Disclaimer Published Bibliography: Ray Miller, Texas Parks (Houston: Cordovan, 1984). Stephen F. Austin State Park, Texas Parks and Wildlife Department (http://tpwd.texas.gov/state-parks/stephen-f-austin), accessed September 15, 2016. The following, adapted from the Chicago Manual of Style, 15th edition, is the preferred citation for this entry. Christopher Long Revised by Laurie E. Jasinski, “Stephen F. Austin State Park,” Handbook of Texas Online, accessed April 01, 2026, https://www.tshaonline.org/handbook/entries/stephen-f-austin-state-park. TID: GKS09 All copyrighted materials included within the Handbook of Texas Online are in accordance with Title 17 U.S.C. Section 107 related to Copyright and “Fair Use” for Non-Profit educational institutions, which permits the Texas State Historical Association (TSHA), to utilize copyrighted materials to further scholarship, education, and inform the public. The TSHA makes every effort to conform to the principles of fair use and to comply with copyright law. For more information go to: http://www.law.cornell.edu/uscode/17/107.shtml If you wish to use copyrighted material from this site for purposes of your own that go beyond fair use, you must obtain permission from the copyright owner. Original Publication Date: July 1, 1995 Most Recent Revision Date: September 9, 2016 Is history important to you? We need your Support because we are a non-profit that relies upon contributions from our community in order to record and preserve the history of our state. Every dollar helps. I Want to Help Support the Preservation of Texas History→
+"""
+
+[R3] Football - Stephen F. Austin
+(https://sfajacks.com/sports/football)
+"""
+Football - Stephen F. AustinSkip To NavigationStephen F. Austin Skip to Navigation Scoreboard (Slider) Select Sport to filter events SFA AthleticsStaff DirectoryStudent-Athlete Advisory CommitteeFacilitiesInternship Opportunities Equity In Athletics Disclosure ActDepartmentsComplianceCommunicationsSports MedicineSports PerformanceLumberjack Sports PropertiesName, Image and LikenessSFA NIL StoreThe Axe 'Em ExchangeThe Sawmill CollectiveAthletes ThreadInternal AdministrationCoaches' FormsArchived News ReleasesFacilities Request FormStudent-Athlete Handbook Returning to Main Navigation GamedayThe UniversityTraditionsFootball Gameday CentralTravelDigital Gameday ProgramsLive Event Coverage CalendarLive StatsSFA Coaches Show (Audio Only)Lil' JacksJunior Jacks Kids ClubInterest FormsTicket Interest FormFaculty & Staff TicketsFuture 'Jacks Basketball ISD DayTexas Farm Bureau Insurance Ticket ProgramGet Your SFA License PlateFOR FANSSFA Lumberjacks AppSFA Athletics Fan Guide2025-26 General Event SchedulePartnersRestaurant Partners Returning to Main Navigation CAMPSFootballRosterCoaching StaffSchedule/ResultsStatisticsNewsBuy TicketsArchivesJacks in the NFLRecord BookSouthland Conference Football 2025 SLC Football Media Hub2025 SLC Opening Drive PreviewNational CoverageOpta Analyst FCS CentralAFCA Coaches PollsCampsFacilitiesHomer Bryce StadiumProspective Student-Athlete Questionnaire Footer
+"""
+
+[R4] Explore San Felipe de Austin State Historic Site: A Journey Through Texas History
+(https://www.tshaonline.org/handbook/entries/san-felipe-de-austin-state-historic-site)
+"""
+By: Bryan McAuley Published: September 14, 2016 San Felipe de Austin State Historic Site in Austin County was designated a State Antiquities Landmark in 1983. Courtesy Texas Historical Commission and included in accordance with Title 17 U.S.C. Section 107. San Felipe de Austin State Historic Site.San Felipe de Austin State Historic Site is located just north of Interstate Highway 10 in the town of San Felipe (east of Sealy) in Austin County. The site sits on the west side of the Brazos River on Farm Road 1458 and includes much of the footprint of empresario Stephen F. Austin’s headquarters for his colony in Mexican Texas. In the 1920s local civic leaders and preservationists began to memorialize the site of Austin’s town near an extant well that was constructed of handmade brick in the 1830s. Memorial elements, including a granite obelisk (1928); the well (encased in protective concrete in 1928); a replica cabin (first iteration—1934); a bronze memorial to Texan soldier John Bricker who died preventing Santa Anna’s army from crossing the Brazos near this location (1935); and two Texas Centennial pieces—a gray granite marker noting the town hall that hosted early delegations at the town (1936); and a heroic bronze statue of Stephen F. Austin, seated on a pink granite plinth (1938); were staged prior to the donation of the site to the state of Texas by the Corporation of San Felipe in 1940.For more than sixty years the site, which was designated as a State Antiquities Landmark in 1983, was managed as part of the Texas parks system and within the supervision and boundaries of Stephen F. Austin State Park. On January 1, 2008, the Eightieth Texas Legislature officially transferred operational control of the site from the Texas Parks and Wildlife Department to the Texas Historical Commission. The transfer prompted the return to the site’s historic name of San Felipe de Austin to distinguish it from nearby Stephen F. Austin State Park, which remained under the control of the Texas Parks and Wildlife Department. Visitors to the historic site can enjoy the memorial components, a third-generation replica log cabin (1976), an interim visitors center located inside the historic J. J. Josey store building (ca. late 1840s), and tours of the historic grounds. As of 2016 San Felipe de Austin State Historic Site consisted of approximately ninety acres, and a modern museum facility was in development with an anticipated opening date in 2018. Bibliography Categories Citation Image Use Disclaimer Published Bibliography: San Felipe de Austin State Historic Site, Texas Historical Commission (http://www.thc.texas.gov/historic-sites/san-felipe-de-austin-state-historic-site), accessed September 13, 2016. Sealy News, April 3, 2009. The following, adapted from the Chicago Manual of Style, 15th edition, is the preferred citation for this entry. Bryan McAuley, “San Felipe de Austin State Historic Site,” Handbook of Texas Online, accessed April 01, 2026, https://www.tshaonline.org/handbook/entries/san-felipe-de-austin-state-historic-site. TID: GKS14 All copyrighted materials included within the Handbook of Texas Online are in accordance with Title 17 U.S.C. Section 107 related to Copyright and “Fair Use” for Non-Profit educational institutions, which permits the Texas State Historical Association (TSHA), to utilize copyrighted materials to further scholarship, education, and inform the public. The TSHA makes every effort to conform to the principles of fair use and to comply with copyright law. For more information go to: http://www.law.cornell.edu/uscode/17/107.shtml If you wish to use copyrighted material from this site for purposes of your own that go beyond fair use, you must obtain permission from the copyright owner. Original Publication Date: September 14, 2016 This entry belongs to the following special projects: Is history important to you? We need your Support because we are a non-profit that relies upon contributions from our community in order to record and preserve the history of our state. Every dollar helps. I Want to Help Support the Preservation of Texas History→
+"""
+
+[R5] Stephen F. Austin State University in Nacogdoches, TX United States - Apple Maps
+(https://maps.apple.com/place?place-id=IC830FCCE4FDE7000)
+"""
+AStandardHybridSatelliteYour location can only be shown when location services are enabled and you are connected to the Internet. Learn MoreNPrivacyTermsLegalImageryReport an IssueDoneNPrivacyTermsLegalImageryApple MapsSearchGuidesDirectionsRecentsStephen F. Austin State UniversityHave a Business on Maps?Manage Your BusinessStephen F. Austin State UniversityStephen F. Austin State UniversityUniversity · Nacogdoches, TXDirectionsCallWebsiteTicketsFoursquareFoursquareFoursquareFoursquareFoursquareAboutStephen F. Austin State University is a public university in Nacogdoches, Texas. It was founded as a teachers' college in 1923 and subsequently renamed after one of Texas's founding fathers, Stephen F. Austin. Its campus resides on part of the homestead of Thomas Jefferson Rusk. On May 11, 2023, the university joined the University of Texas System; it was previously one of two public universities in the state not affiliated with one of Texas's seven university systems.MoreLessMore on WikipediaGood to KnowAccepts Apple PayAccepts Contactless PaymentsWi-FiGood for GroupsAccepts Credit CardsAlso at This LocationSFA Beach Volleyball CourtsSports FieldDetailssfasu.edu+1 (936) 468-34011936 North StNacogdoches, TX 75965United States
+"""
+
+[R6] Cheap Flights from San Francisco to Austin | United Airlines
+(https://www.united.com/en-us/flights-from-san-francisco-to-austin)
+"""
+HomeUnited flightsFlights to United StatesSan Francisco - AustinFeatured daily fares for flights from San Francisco (SFO) to Austin (AUS)Apr 2026Viewed: 15 hours agoRoundTrip|EconomyMay 2026Viewed: 7 hours agoRoundTrip|EconomyJun 2026Viewed: 15 hours agoRoundTrip|EconomyDisplaying fares for April-202601WeAPR02Th03Fr04Sa05Su06Mo07Tu08We09Th10Fr11Sa12Su13Mo14Tu15We16Th17Fr18Sa19Su20Mo21Tu22We23Th24Fr25Sa26Su27Mo28Tu29We30Th*Prices have been available for round trips within the last 48 hours and may not be currently available. For Economy class, fares listed may be Basic Economy, which is our most restrictive fare option and subject to additional restrictions. Additional baggage charges and fees for other optional service may apply. Other terms and conditions may apply. Schedules are subject to change without notice.More United deals on San Francisco (SFO) to Austin (AUS) flightsMore United deals on San Francisco (SFO) to Austin (AUS) flightsFromToFare TypeDatesPriceSan Francisco (SFO)Austin (AUS)Roundtrip|Economy05/05/26 - 05/05/26from$ 165 or from $25/mo Viewed: 7 hours agoSan Francisco (SFO)Austin (AUS)Roundtrip|Economy06/24/26 - 07/01/26from$ 165 or from $25/mo Viewed: 15 hours agoSan Francisco (SFO)Austin (AUS)Roundtrip|Economy04/22/26 - 04/29/26from$ 165 or from $25/mo Viewed: 15 hours agoSan Francisco (SFO)Austin (AUS)Roundtrip|Economy04/28/26 - 05/05/26from$ 165 or from $25/mo Viewed: 15 hours agoSan Francisco (SFO)Austin (AUS)Roundtrip|Economy04/29/26 - 05/06/26from$ 165 or from $25/mo Viewed: 15 hours agoSan Francisco (SFO)Austin (AUS)Roundtrip|Economy04/29/26 - 05/06/26from$ 165 or from $25/mo Viewed: 16 hours agoSan Francisco (SFO)Austin (AUS)Roundtrip|Economy06/10/26 - 06/13/26from$ 168 or from $25/mo Viewed: 15 hours agoSan Francisco (SFO)Austin (AUS)Roundtrip|Economy06/02/26 - 06/06/26from$ 168 or from $25/mo Viewed: 15 hours ago*Prices have been available for round trips within the last 48 hours and may not be currently available. For Economy class, fares listed may be Basic Economy, which is our most restrictive fare option and subject to additional restrictions. Additional baggage charges and fees for other optional service may apply. Other terms and conditions may apply. Schedules are subject to change without notice. Explore United Airlines's Top-Pick DestinationsExplore more United flights
+"""
+
+[R7] Stephen F. Austin - Official Athletics Website
+(https://sfajacks.com/)
+"""
+Stephen F. Austin - Official Athletics WebsiteSkip To NavigationStephen F. Austin Skip to Navigation Scoreboard (Slider) Select Sport to filter events 8 Choose Sport events loaded Completed Event: Softball at Prairie View A&M on March 31, 2026 , Win , 12, to, 4 , (6)RecapBox Score Completed Event: Baseball versus Prairie View A&M on March 31, 2026 , Win , 15, to, 3 , (7)RecapBox Score Canceled Event: Women's Tennis at TCU Canceled Event: Women's Tennis at UT Arlington Upcoming Event: Track & Field versus Carl Kight Invite and Multi (High School Meet) on Apr. 1, 2026 Carl Kight Invite and Multi (High School Meet)Stats Upcoming Event: Track & Field versus Carl Kight Invite and Multi on Apr. 2, 2026 Carl Kight Invite and MultiStats Upcoming Event: Cheer versus Dallas Baptist on Apr. 2, 2026 Upcoming Event: Softball versus Northwestern State on Apr. 2, 2026 at 4:00 P.M.StatsSFA AthleticsStaff DirectoryStudent-Athlete Advisory CommitteeFacilitiesInternship Opportunities Equity In Athletics Disclosure ActDepartmentsComplianceCommunicationsSports MedicineSports PerformanceLumberjack Sports PropertiesName, Image and LikenessSFA NIL StoreThe Axe 'Em ExchangeThe Sawmill CollectiveAthletes ThreadInternal AdministrationCoaches' FormsArchived News ReleasesFacilities Request FormStudent-Athlete Handbook Returning to Main Navigation GamedayThe UniversityTraditionsFootball Gameday CentralTravelDigital Gameday ProgramsLive Event Coverage CalendarLive StatsSFA Coaches Show (Audio Only)Lil' JacksJunior Jacks Kids ClubInterest FormsTicket Interest FormFaculty & Staff TicketsFuture 'Jacks Basketball ISD DayTexas Farm Bureau Insurance Ticket ProgramGet Your SFA License PlateFOR FANSSFA Lumberjacks AppSFA Athletics Fan Guide2025-26 General Event SchedulePartnersRestaurant Partners Returning to Main Navigation CAMPS Footer
+"""
+
+[R8] About SFA | SFA
+(https://www.sfasu.edu/about-sfa)
+"""
+History1917-1921 SFA was chartered by the Texas legislature, Nacogdoches was selected as its location and the appropriation bill for funding was signed.1923First classes heldDuring campus construction, the first group of SFA students attended class nearby, blazing a trail for hundreds of thousands of students to follow in their footsteps.Lumberjack mascot selectedThe Lumberjack mascot was selected by popular vote at a special student assembly of faculty and students.1924Vista Drive opensSince the completion of the Austin Building in 1924, Vista Drive has provided a unique view of the campus.1935First homecoming heldHomecoming is now an annual fall event featuring a bonfire, two parades and, of course, football.1944Experimental Forest establishedThe Stephen F. Austin Experimental Forest was established by an act of Congress and measures more than 2,500 acres. It is still in use for recreation, forestry and wildlife management research.1947First Lumberjack DayLumberjack Day started by a proclamation of the Student Body President. Students on campus were expected to wear the uniform of the day: blue jeans, overalls, plaid shirts and boots. The tradition continues annually.1960College Center openedThe center included the college cafeteria, book store, post office and recreational facilities. Throughout the years, it has been called the University Center and the Baker Pattillo Student Center.1969SFA becomes a universityA big day in our history as SFA moved up from a college to a full-fledged university.1972Homer Bryce Stadium constructedThe spirited home field of the SFA Lumberjacks football team was constructed on the northeast side of campus.1979Axe ’em, Jacks hand sign createdThanks to the school spirit of a small group of creative SFA cheerleaders, the university now has its own signature hand sign.1983“Surfin’ Steve” fountain createdDue to a dramatic stance and flowing water, this iconic statue of Stephen F. Austin is affectionately nicknamed “Surfin’ Steve.”
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

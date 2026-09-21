@@ -1,0 +1,766 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "booking holdings stock split"
+
+Claims:
+[1] "BKNG) completed a 25-for-1 forward stock split on April 2, 2026."
+[2] "BKNG) started on April 6, 2026."
+[3] "Shareholders received 25 shares for every one held in the Booking Holdings stock split."
+[4] "Booking Holdings stock price reduced from over $4,000 to around $170 due to the stock split."
+[5] "The effective date of the Booking Holdings stock split was after hours on April 2, 2026."
+[6] "The shareholder record date for the Booking Holdings stock split was March 6, 2026."
+[7] "The purpose of the Booking Holdings stock split was to lower the high nominal share price of ∼$4,000+ and improve liquidity."
+[8] "Authorized common shares of Booking Holdings increased from 1 billion to 25 billion."
+[9] "The Booking Holdings stock split does not change the underlying fundamentals, valuation, or company market cap."
+[10] "For every one share held before the Booking Holdings stock split, an investor held 25 shares afterward."
+[11] "Each share after the Booking Holdings stock split was valued at 1/25th of the pre-split price."
+
+Cited text snippets from the AI Overview (for additional context):
+- A $4,000 Stock Is About to Become Affordable: Inside Booking’s ...: "Booking Holdings (NASDAQ: BKNG) is days away,range accessible to far more individual investors."
+- Booking Holdings Inc. - 25 For 1 Stock Split Option Symbols: BKNG/2BKNG: "Booking Holdings Inc. (BKNG) has announced a,The Ex-distribution Date is April 6, 2026."
+Reference Sources:
+
+[R1] Booking Holdings completes 25-for-1 stock split
+(https://finance.yahoo.com/markets/stocks/articles/booking-holdings-completes-25-1-160100775.html)
+"""
+Booking Holdings completes 25-for-1 stock split Proactive uses images sourced from Shutterstock Booking Holdings Inc (NASDAQ:BKNG, XETRA:PCE1) has completed a 25-for-1 stock split, reducing its stock price from above $4,000 to about $170 on Monday. As part of the split, shareholders of record as of March 6 received 25 shares for every one previously held. The move is intended to improve liquidity and make the stock more accessible to a broader range of investors, without impacting the company’s overall valuation or fundamentals. The split is Booking’s first-ever forward split, but its second in history after it completed a 1-for-6 reverse split in 2003. In conjunction with the split, Booking also increased its authorized common shares from 1 billion to 25 billion. Simply Wall St Wed, April 22, 2026 at 12:04 PM EDT 3 min read Earlier in April, Booking Holdings completed a 25‑for‑1 stock split and reported Q4 2025 results that exceeded expectations, alongside higher guidance, a larger dividend, and confirmation of a very large remaining share repurchase authorization of US$21.80 billion. The combination of the stock split with strong earnings, dividend growth, and ongoing buybacks highlights Booking’s focus on broadening investor access while returning substantial capital to shareholders. Next, we’ll examine how Booking’s blockbuster stock split and upbeat guidance affect its existing investment narrative built around AI and diversification. Find 58 companies with promising cash flow potential yet trading below their fair value. To own Booking today, you need to believe in its ability to translate AI driven, multi-vertical travel demand into durable earnings while managing regional and macro uncertainty in consumer travel. The recent 25 for 1 stock split, strong Q4 2025 beat, higher dividend and large buyback authorization reinforce the capital return story, but do not fundamentally change the near term catalyst around AI enabled Connected Trip adoption or the key risk that softer or more value conscious travel demand could pressure margins. Among the latest updates, the 9.4% dividend increase to US$10.50 per share stands out, because it complements the stock split and US$21.80 billion remaining buyback capacity as very visible near term supports for shareholder returns. For investors watching how the AI and diversification narrative plays out, this growing cash return profile may help offset some concern about regional demand volatility and macro driven booking mix shifts. Yet beneath the strong capital returns, investors should be aware of how a shift toward lower cost accommodations could... Read the full narrative on Booking Holdings (it's free!) Booking Holdings' narrative projects $35.2 billion revenue and $10.4 billion earnings by 2029. This requires 9.3% yearly revenue growth and roughly a $5.0 billion earnings increase from $5.4 billion today. Uncover how Booking Holdings' forecasts yield a $232.62 fair value, a 22% upside to its current price. BKNG 1-Year Stock Price Chart Ten Simply Wall St Community fair value estimates for Booking span roughly US$232 to over US$5,700 per share, showing just how far apart individual views can be. Against this wide range, the emphasis on AI powered platform integration and Connected Trip as a core earnings catalyst reminds you to weigh differing expectations about how effectively Booking can convert these initiatives into long term performance. Adam Levy, The Motley Fool Sat, April 18, 2026 at 11:20 PM EDT 4 min read When a company splits its stock, it doesn't change any of the underlying fundamentals of the business. However, a stock split can be a signal that management believes its performance will remain solid for the foreseeable future. As such, it's worth paying attention to stock splits. One of the biggest stock splits of 2026 is Booking Holdings (NASDAQ: BKNG). The online travel agency enacted a 25-for-1 stock split earlier this month, the first in the company's history. After the split, shares trade for less than $200 and could be a great addition to any portfolio. Here's why investors should take a closer look at Booking right now. Will AI create the world's first trillionaire? Our team just released a report on a little-known company, called an "Indispensable Monopoly," providing the critical technology Nvidia and Intel both need. Continue » Image source: Getty Images. Booking's management is focused on improving operations to expand its operating margin, and it's doing an incredible job. Adjusted EBITDA margin expanded to 36.9% in the fourth quarter, up from 35% a year ago. That was driven by about $250 million in savings through its "Transformation Program." Management said it exited the year with $550 million in annual run rate savings, and it expects to maintain that pace in 2026. But management isn't just letting all those savings flow to the bottom line. It sees a bevy of opportunities for continued growth. Booking plans to invest about $700 million in strategic areas, including generative artificial intelligence (AI) capabilities, its Connected Trip vision, expanding its hotel network in Asia and the U.S., growing its advertising business, and expanding its restaurant reservation platform OpenTable internationally. All of these present great long-term potential growth verticals, with management expecting the efforts to generate $400 million incremental revenue in 2026, bringing the net investment down to $300 million. Booking's biggest strength is its network of hotels and short-term rentals. It's particularly strong in Europe, where boutique hotels dominate the industry. The industry is nearly as fragmented in Asia, but much less so in the United States, where big hotel chains dominate. Booking provides an essential service to boutique hotels as an aggregator, since most are too small to market themselves effectively. The massive supply side network on Booking's platform attracts travelers looking for European accommodations. Booking can easily copy the playbook in Asia and the U.S., where opportunities remain. Danny Vena, CPA, The Motley Fool March 28, 2026 5 min read The world was very different back in 1999. The West Wing was one of the biggest shows on network television, and cable viewers were just getting hooked on The Sopranos. President Bill Clinton was facing impeachment, and Columbine became a household name for all the wrong reasons. Moviegoers were drawn into The Matrix, and the European Union (EU) adopted a single currency dubbed the Euro. The internet hadn't yet gone mainstream, and people who used it primarily did so via dial-up. However, the accelerating adoption of the internet was about to change things in a big way, though bust would follow boom. Online commerce had begun to set the world on fire, leaving a trail of would-be success stories in its wake. Priceline.com IPO'd in 1999 and became one of the unlikely survivors of the internet era, pioneering the online travel category. The platform allowed users to search travel deals and find discounts, introducing its "Name-Your-Own-Price" model that revolutionized the travel industry. Will AI create the world's first trillionaire? Our team just released a report on the one little-known company, called an "Indispensable Monopoly" providing the critical technology Nvidia and Intel both need. Continue » The company eventually rebranded as Booking Holdings (NASDAQ: BKNG), became the world's largest online travel company, and is about to initiate the first blockbuster stock split of 2026. Image source: Getty Images. In conjunction with the company's fourth-quarter results and after years of speculation, Booking announced a long-awaited 25-for-1 stock split, marking the first forward stock split in the company's history. The logic is clear. The stock has gained 753% since its 1999 IPO (despite being dragged down by the dot-com bubble) and has increased a massive 30,490% over the past 25 years (as of this writing). Booking revealed that shareholders of record as of Friday, March 6, will receive an additional 24 shares of stock for each share they own. The distribution will occur after the market close on Thursday, April 2. The stock will begin trading on a split-adjusted basis when the market opens on Monday, April 6. Booking's stock price, currently trading above $4,200 per share (as of this writing), makes it the first blockbuster stock split of 2026. It's worth noting that this is a stark reversal of fortune for the company. On the heels of the dot-com bubble and amid the travel industry's struggles in the wake of 9/11, the company faced the possibility of delisting due to its share price trading at roughly $1. To remedy the situation, Booking (then Priceline) initiated a 1-for-6 reverse stock split in a bid to restore investor confidence. Despite that move, the stock price stagnated for years before eventually climbing to new heights nearly a decade later. Simply Wall St April 3, 2026 3 min read In early April 2026, Booking Holdings executed its first-ever 25-for-1 stock split alongside reporting double‑digit quarterly revenue growth, a higher dividend, and ongoing board refresh with the appointment of former NXP CEO Kurt Sievers and the planned retirement of director Lynn Radakovich. Beyond the split, Booking’s push into pet-friendly travel through DogPack and its growing use of generative AI tools underline how technology and niche partnerships are reshaping its travel ecosystem. Next, we’ll consider how the 25-for-1 stock split and accompanying dividend increase may influence Booking Holdings’ existing investment narrative. The future of work is here. Discover the 33 top robotics and automation stocks leading the charge in AI-driven automation and industrial transformation. To own Booking, you need to believe that its asset light, global travel platform and Connected Trip vision can keep compounding through technology and partnerships, even as macro and geopolitical worries tug at demand. The 25 for 1 stock split and higher dividend do not change that thesis, but they do sharpen a near term catalyst around liquidity and investor attention, while key risks from softer consumer spending and region specific travel weakness remain broadly intact. Among the recent announcements, the DogPack partnership feels especially relevant because it shows how Booking is extending its reach into niche, high intent traveler communities. Embedding pet friendly stays directly into DogPack’s app sits neatly alongside catalysts like AI powered trip planning and alternative accommodations, giving Booking more touchpoints with travelers at the exact moment they are deciding where and how to book. But against that opportunity, investors still need to weigh growing concerns about U.S. consumers trading down and what that could mean for... Read the full narrative on Booking Holdings (it's free!) Booking Holdings' narrative projects $35.2 billion revenue and $10.4 billion earnings by 2029. This requires 9.4% yearly revenue growth and a $5.0 billion earnings increase from $5.4 billion today. Uncover how Booking Holdings' forecasts yield a $5802 fair value, a 38% upside to its current price. BKNG 1-Year Stock Price Chart Eight members of the Simply Wall St Community currently see Booking’s fair value between US$4,925 and about US$7,700, reflecting very different expectations for the business. As you weigh these views, it is worth setting them against the risk that weaker travel demand and more cautious spending could pressure both revenue growth and margins over time. MT Newswires April 6, 2026 Booking Holdings (BKNG) has an average rating of buy and mean price target of $227.60, according to Upgrade to read this MT Newswires article and get so much more. A Silver or Gold subscription plan is required to access premium news articles. Vardah Gill Fri, April 17, 2026 at 9:38 PM EDT 1 min read Booking Holdings Inc. (NASDAQ:BKNG) is included among the 10 Fastest Growing Dividend Stocks to Buy Now. B. Riley Resets Booking (BKNG) PT after Split; Tigress Financial Raises Target on AI Momentum On April 10, Naved Khan of B. Riley adjusted the firm’s price recommendation on Booking Holdings Inc. (NASDAQ:BKNG) to $272 from $6,800. It maintained a Buy rating on the shares. The change reflects the company’s 25-to-1 stock split. On April 9, Tigress Financial raised its price target on Booking Holdings to $260 from $244 and maintained a Strong Buy rating. The firm said Booking is leading an AI-driven global travel rebound, supported by “resilient” demand and a “meaningful” World Cup tailwind. Tigress told investors that the company’s agentic AI tools and planners are reshaping travel loyalty and strengthening its position in the market. It added that these tools could help the company benefit from a World Cup-driven surge in travel demand this summer. The firm also said Booking Holdings’ Genius-AI flywheel supports an “unbreakable loyalty moat” and drives “significant” growth. Booking Holdings Inc. (NASDAQ:BKNG) provides online travel and restaurant reservation services. The company operates through five main consumer brands: Booking.com, Priceline, Agoda, KAYAK, and OpenTable. While we acknowledge the potential of BKNG as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock. READ NEXT: 10 Healthcare Stocks with Highest Dividends and Early Retirement Portfolio: Top 15 Stocks to Buy Disclosure: None. Follow Insider Monkey on Google News. Vandita Jadeja Mon, April 20, 2026 at 9:16 AM EDT 5 min read Booking Holdings (BKNG) beat Q4 2025 earnings with adjusted EPS of $48.80 versus $48.04 estimate and revenue of $6.35 billion up 16.1% year over year, while merchant model revenue grew 27.4% year over year to $4.25 billion with Connected Trip transactions rising over 30% year over year. The company completed a 25-to-1 stock split effective April 2, 2026, and management guided for mid-teens adjusted EPS growth in 2026 with $21.8 billion in remaining buyback authorization and a 9.4% dividend increase to $10.50 per share. Booking trades 20% below its 52-week high of $232.20 despite generating $9.09 billion in free cash flow for full-year 2025 (up 15.1% year over year) and beating earnings in every 2025 quarter, creating a buying opportunity ahead of Q1 2026 earnings due April 28. The analyst who called NVIDIA in 2010 just named his top 10 AI stocks. Get them here FREE. Booking Holdings (NASDAQ: BKNG) trades at $184.56 as of writing, sitting 20% below its 52-week high of $232.20 and down 13.64% year to date. Our 24/7 Wall St. price target for Booking Holdings is $257.28, implying 39.4% upside over the next 12 months. The 24/7 Wall St. model rates the stock buy. The model carries moderate confidence (0.5), reflecting meaningful macro uncertainty but strong fundamental support. READ: The analyst who called NVIDIA in 2010 just named his top 10 AI stocks Metric Value Current Price$184.56 24/7 Wall St. Price Target$257.28 Upside Potential39.4% RecommendationBUY Confidence Level50% (Moderate) With 30 buy or strong buy ratings and zero sell ratings from Wall Street analysts, the fundamental backdrop is compelling at current levels. The stock trades 20% below its 52-week high, with Wall Street consensus targets implying significant upside. Booking Holdings entered 2026 at $213.72 and fell to $165.61 in February 2026, driven by Q4 2025 guidance language and macro anxiety. The stock has since recovered, gaining 4.51% over the past week and 3.86% over the past month. Over one year, shares are up just 2.39%, well below business performance. The company completed a 25-to-1 stock split effective April 2, 2026, improving retail accessibility. Q4 2025 results were strong: adjusted EPS of $48.80 against an estimate of $48.04, beating expectations by 1.58%. Revenue of $6.35 billion grew 16.1% year over year cleared the $6.14 billion consensus estimate by 3.49%. Free cash flow surged 119.53% year over year to $1.42 billion in the quarter. Despite the beat, shares fell 6.15% on earnings day before recovering.
+"""
+
+[R2] Booking Holdings Split: The Catalyst Wall Street Didn’t See Coming
+(https://finance.yahoo.com/news/booking-holdings-split-catalyst-wall-232200709.html)
+"""
+Booking Holdings logo on an airport display with luggage, highlighting travel demand and BKNG stock outlook. Booking Holdings announced a 25-for-1 stock split following double-digit revenue and EPS growth in Q4 2025. Investors remain concerned that Alphabet’s AI-powered travel tools could bypass traditional booking platforms. Despite the sell-off, analysts and institutions still see meaningful upside supported by strong bookings growth and valuation discounts. Interested in Booking Holdings Inc.? Here are five stocks we like better. Let’s not bury the lead. Booking Holdings Inc. (NASDAQ: BKNG) announced a 25-for-1 stock split effective April 2. Stock splits don’t change the intrinsic value of a company. However, BKNG stock trades for over $3,900 per share. That’s a lot of friction for retail investors. The split removes a significant amount of that friction and may invite strong retail sentiment. The stock split announcement was part of Booking’s Q4 2025 earnings report. The company beat on the top and bottom lines with earnings per share (EPS) of $48.80 on revenue of $6.35 billion. Those numbers were 17% and 16% higher on a year-over-year (YOY) basis. Another highlight of the report was that room nights were up 9% YOY, and the company’s gross bookings were up 16% YOY to $43 billion. → PayPal Is Back Near IPO-Era Prices—Value Setup or Value Trap? Booking also delivered solid guidance for the current quarter. It projects revenue growth between 14% and 16% and adjusted EBITDA growth between 10% to 14%. On a constant-currency basis, revenue growth would be between 7% and 9%, lower than the 11% generated in the current quarter. Despite the positive headline news, BKNG stock dropped 8.69% at the market open on Feb. 19, the day after Booking reported. That reverses what looked like a recovery from a bearish trend that started in July 2025. The stock is down 26.5% in 2026 and is trading near a 52-week low. → 3 Under-the-Radar AI Infrastructure Stocks Powering the Next Buildout The pullback has been due, in part, to concerns over the impact of artificial intelligence (AI) on the company’s business. Specifically, some analysts believe that Booking may be prone to AI disintermediation. That means that big tech companies, such as Alphabet Inc. (NASDAQ: GOOGL), that are leading in agentic AI could create products and services that bypass companies like Booking entirely. For example, Alphabet launched a significant update to its AI Search/Travel Mode in late 2025. This update allows AI agents to book trips for travelers inside the Google ecosystem. → Gold and Silver Pulled Back—Here’s Why the Bull Case Is Intact Vardah Gill Fri, April 17, 2026 at 9:38 PM EDT 1 min read Booking Holdings Inc. (NASDAQ:BKNG) is included among the 10 Fastest Growing Dividend Stocks to Buy Now. B. Riley Resets Booking (BKNG) PT after Split; Tigress Financial Raises Target on AI Momentum On April 10, Naved Khan of B. Riley adjusted the firm’s price recommendation on Booking Holdings Inc. (NASDAQ:BKNG) to $272 from $6,800. It maintained a Buy rating on the shares. The change reflects the company’s 25-to-1 stock split. On April 9, Tigress Financial raised its price target on Booking Holdings to $260 from $244 and maintained a Strong Buy rating. The firm said Booking is leading an AI-driven global travel rebound, supported by “resilient” demand and a “meaningful” World Cup tailwind. Tigress told investors that the company’s agentic AI tools and planners are reshaping travel loyalty and strengthening its position in the market. It added that these tools could help the company benefit from a World Cup-driven surge in travel demand this summer. The firm also said Booking Holdings’ Genius-AI flywheel supports an “unbreakable loyalty moat” and drives “significant” growth. Booking Holdings Inc. (NASDAQ:BKNG) provides online travel and restaurant reservation services. The company operates through five main consumer brands: Booking.com, Priceline, Agoda, KAYAK, and OpenTable. While we acknowledge the potential of BKNG as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock. READ NEXT: 10 Healthcare Stocks with Highest Dividends and Early Retirement Portfolio: Top 15 Stocks to Buy Disclosure: None. Follow Insider Monkey on Google News. Sajjl Nooranne April 8, 2026 2 min read Booking Holdings Inc. (NASDAQ:BKNG) is among the 13 Cheapest Strong Buy Stocks to Buy Right Now. On April 1, Wells Fargo analyst Ken Gawrelski lowered the price target on Booking Holdings Inc. (NASDAQ:BKNG) to $5,377 from $5,456 while maintaining an Equal Weight rating, reflecting expectations of a more cautious near-term outlook. The firm anticipates that geopolitical tensions in the Middle East may disrupt travel demand not only within the region but also across Europe, leading to more conservative guidance for the second quarter and potential downward revisions to full-year revenue expectations. This tempered outlook underscores the sensitivity of global travel demand to macroeconomic and geopolitical developments. Earlier, on March 11, Bernstein reduced its price target on Booking Holdings Inc. (NASDAQ:BKNG) to $4,698 from $5,407 while maintaining a Market Perform rating. While the company delivered a strong fourth-quarter performance to close out 2025—exceeding expectations on both revenue and earnings, with all major online travel platforms gaining market share profitably—investor focus has shifted toward longer-term risks. In particular, concerns surrounding potential disruption from artificial intelligence technologies on the online travel agency model have weighed on sentiment, despite the company’s demonstrated operational strength. Booking Holdings Inc. (NASDAQ:BKNG) is the world’s largest provider of online travel and related services, operating a global portfolio of brands including Booking.com, Priceline, Agoda, KAYAK, Rentalcars.com, and OpenTable. Headquartered in Norwalk, Connecticut, the company benefits from significant scale, brand recognition, and network effects. While near-term uncertainties persist, Booking’s strong market position and history of profitable growth position it well to navigate industry changes, offering a solid long-term investment opportunity with upside potential as macro conditions stabilize and innovation concerns are addressed. While we acknowledge the potential of BKNG as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock. READ NEXT:12 Cheap Penny Stocks to Invest In Now and 12 High Growth Energy Stocks to Buy Now. Disclosure: None. Follow Insider Monkey on Google News. Usman Kabir April 2, 2026 2 min read Booking Holdings Inc. (NASDAQ:BKNG) is one of the 15 Best Stocks to Buy According to Billionaire Ray Dalio. Booking Holdings Inc. (NASDAQ:BKNG) has been a major long-term bet of Bridgewater Associates since the middle of 2018. Back then, the position the fund held in the firm consisted of around 81,000 shares. However, this holding was sold off in the next few months. A new position was opened in 2021. Dalio gradually built up this stake, increasing it from 31,000 shares in 2021 to over 2 million shares at the end of the fourth quarter of 2025. The fund has made purchases of the stock in each of the last six quarters, with the major increase coming in the first quarter of 2025 during which the position was improved by over 100%. READ NEXT: 33 Stocks That Should Double in 3 Years. 5 Most Expensive Countries to Fly to Booking Holdings Inc. (NASDAQ:BKNG) is of interest to elite investors for several reasons, one of them being the 25-for-1 stock split scheduled for April 6, 2026. One important note for investors here is that although a split does not change fundamentals, hedge funds view it as a liquidity catalyst. It makes the stock more accessible to retail investors and improves options market liquidity, often leading to a valuation re-rating as the buyer pool expands. Hedge funds are also bullish on a shift by the firm toward the Merchant Model (where Booking processes the payment) over the traditional Agency model. This allows the company to hold onto cash longer and offer more integrated services. This transition helped drive a 16% year-over-year revenue increase to $6.35 billion in the most recent quarter, with an impressive net margin of 20%. While we acknowledge the potential of BKNG as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock. READ NEXT: 33 Stocks That Should Double in 3 Years and 15 Stocks That Will Make You Rich in 10 Years. Disclosure: None. Follow Insider Monkey on Google News. Faheem Tahir April 9, 2026 2 min read Booking Holdings Inc. (NASDAQ:BKNG) is included in our list of the 15 Stocks Set to Explode in the Next 3 Years. Analyst Sentiment on Booking Holdings (BKNG) Remains Strong Despite Near-Term Concerns Strong analyst sentiment continues to support Booking Holdings Inc. (NASDAQ:BKNG), despite emerging near-term caution amid economic uncertainties. As of April 6, 2026, over 80% of covering analysts maintain bullish ratings on the stock, driven by the company’s strong long-term travel demand forecast. Meanwhile, the $237.4 consensus price target (post-split) implies an upside of approximately 35% amid leadership changes. Director Lynn Radakovich will retire in June, and Kurt Sievers, who has extensive experience in technology and international markets, was named to the Booking Holdings Inc. (NASDAQ:BKNG) board on April 1, 2026. The development represents a change in governance that is in line with Booking’s shifting strategic goals amid macro uncertainty. On the same day, Ken Gawrelski of Wells Fargo reduced Booking Holdings Inc. (NASDAQ:BKNG)’s price target from $5,456 to $5,377 (pre-split) while keeping an “Equal Weight” rating. With expectations for a cautious management tone, the investment firm noted lower European booking trends linked to Middle East tensions and anticipates conservative Q2 guidance coupled with a possible decline in full-year revenue outlook, underscoring near-term demand sensitivity. Booking Holdings Inc. (NASDAQ:BKNG) provides online travel and related solutions, including accommodation reservations, including hotels, hostels, apartments, vacation rentals, and other properties. Booking Holdings owns the following companies: Booking.com, Priceline, Agoda, KAYAK, and OpenTable, to name a few. While we acknowledge the potential of BKNG as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock. READ NEXT: 33 Stocks That Should Double in 3 Years and 15 Stocks That Will Make You Rich in 10 Years. Disclosure: None. Follow Insider Monkey on Google News. Proactive April 6, 2026 1 min read Booking Holdings completes 25-for-1 stock split Proactive uses images sourced from Shutterstock Booking Holdings Inc (NASDAQ:BKNG, XETRA:PCE1) has completed a 25-for-1 stock split, reducing its stock price from above $4,000 to about $170 on Monday. As part of the split, shareholders of record as of March 6 received 25 shares for every one previously held. The move is intended to improve liquidity and make the stock more accessible to a broader range of investors, without impacting the company’s overall valuation or fundamentals. The split is Booking’s first-ever forward split, but its second in history after it completed a 1-for-6 reverse split in 2003. In conjunction with the split, Booking also increased its authorized common shares from 1 billion to 25 billion. Dan Schmidt, MarketBeat Thu, April 16, 2026 at 9:10 AM EDT 5 min read An airport screen displaying a Booking Holdings advertisement is surrounded by various suitcases and travel bags. Travel stocks like Booking Holdings have been hit hard by the oil surge following the Iran war. Online travel agencies also face long-term risks from AI disruption, which could help explain the sharp drawdown. Despite these headwinds, Booking Holdings remains the best of its class and has structural advantages over its competitors. Interested in Booking Holdings Inc.? Here are five stocks we like better. Travel stocks have been hit hard by the Iran war and the ensuing oil price spike, and Booking Holdings Inc. (NASDAQ: BKNG) is now down nearly 15% year-to-date (YTD). But now that the market appears to have turned a corner, is it time to buy this beaten-down company? We’ll review the bull and bear cases and then consult the charts to make an informed decision before the summer travel season heats up. The Online Travel Agency (OTA) industry replaced traditional travel agent business models as the internet and smartphones became ubiquitous. → $39 Trillion Debt Signal: 3 TIPS ETFs to Hedge Persistent Inflation OTAs offer platforms where thousands of hotels, airlines, and car rental agencies aggregate their offerings, allowing consumers to search for competitive prices and book vacations or experiences in one place. The OTA takes a commission, which the airline or hotel happily pays to increase their own exposure to potential customers. Booking Holdings has become the top public company in this space thanks to a slew of operational tailwinds, some of which have emerged in the last few years. → Could These 3 New-to-Market Quantum Computing Firms Threaten D-Wave? Booking Holdings has several unique advantages over competitors such as Expedia Group Inc. (NASDAQ: EXPE) and Airbnb Inc. (NASDAQ: ABNB). Some of these structural edges include: Network Effects: Booking Holdings has tremendous network effects, with nearly 30 million properties listed on its marketplace. This type of supply breadth attracts more consumers to the network, further entrenching the company as the respected OTA leader.→ Nebius Group Is Trading Near All-Time Highs, Here's How Far It Has Come Direct Traffic: Booking’s app and website drive more direct traffic than competitors, and the company relies less on advertising and paid Google search clicks. Business Model Shift: The company’s shift from an agency model to a merchant model means it collects payment upfront rather than waiting to receive a commission from the hotel or airline. This model helps improve unit economics and gives the company better control over its cash flow. John Ballard, The Motley Fool April 10, 2026 4 min read The travel industry has been on an upward trajectory since the pandemic. Booking Holdings (NASDAQ: BKNG) has ridden the industry's growth by delivering strong financial results. It could be a tempting buy, given the stock's 28% decline from recent highs. However, artificial intelligence (AI) presents both opportunities and risks that the company must navigate. Will AI create the world's first trillionaire? Our team just released a report on the one little-known company, called an "Indispensable Monopoly" providing the critical technology Nvidia and Intel both need. Continue » Here's a quick look at where the business stands and whether it's worth buying this month. Image source: Getty Images. Booking Holdings owns popular travel sites including Booking.com, Priceline, Agoda, Kayak, and OpenTable. They generate revenue from fees and commissions, supporting strong margins and a capital-light business model. Across these platforms, Booking connects travelers with more than 4 million properties worldwide. That helped drive a 13% year-over-year increase in revenue last year, to nearly $27 billion. There are several ways for travelers to book trips, but Booking's competitive edge is its scale and broad property supply. About 90% of the 1.2 billion room nights booked last year came from independent hotels, small chains, and alternative accommodations. But the company isn't relying only on supply. Its Connected Trip strategy aims to offer more services, including hotel-plus-flight packages, car rentals, and attractions. In 2025, Booking's platforms sold 68 million airline tickets, up 37% year over year, while attraction tickets jumped nearly 80%. That expansion could become a durable and profitable growth driver for shareholders. Still, investors must balance those opportunities against AI risks and macro headwinds that could pressure travel spending. Several headwinds could weigh on travel demand this year. Consumers are already dealing with higher gasoline prices tied to geopolitical conflict. For Booking, weaker discretionary spending could translate into shorter stays and lower revenue. Over the long term, the bigger risk is AI making it easier for other companies to compete. If autonomous agents start shopping and booking by scanning deals across many sites at once, the platform that travelers use today could matter less. That could weaken Booking's standing in the marketplace and pressure growth. However, Booking has advantages to counter this threat. Its broad portfolio of independent properties and data gives it a strong foundation for using AI to improve discovery and conversion. By investing in generative AI and pairing it with its Connected Trip strategy, the company can make planning faster, more personalized, and more seamless.
+"""
+
+[R3] #58460
+(https://www.miaxglobal.com/sites/default/files/alert-files/BKNG_Split_58460.pdf)
+"""
+#58460
+
+Date: March 02, 2026
+
+Subject: Booking Holdings Inc. - 25 For 1 Stock Split
+ Option Symbols: BKNG/2BKNG
+ Ex-Date: 04/06/2026
+
+Booking Holdings Inc. (BKNG) has announced a 25 for 1 stock split. The Ex-distribution Date is April 6,
+2026. The Payable Date is April 2, 2026. The Record Date is March 6, 2026.
+
+Pursuant to Chapter 28 (XXVIII) of OCC’s Rules, all Booking Holdings Inc. options will be adjusted as
+follows:
+
+Contract Adjustment
+
+Effective Date: April 6, 2026
+
+Option Symbols: BKNG remains BKNG
+ 2BKNG remains 2BKNG
+
+New Multiplier: 100 (e.g., for premium or strike dollar extensions 1.00 will equal $100)
+
+Contract Multiplier: 25.00
+
+Strike Divisor: 25.00
+
+New Deliverable
+Per Contract: 100 Booking Holdings Inc. (BKNG) Common Shares
+
+CUSIP: 09857L108
+
+ Old Strike New Strike
+ 1640.00 65.60
+ 1660.00 66.40
+ 1680.00 67.20
+ 1700.00 68.00
+ 1720.00 68.80
+ 1740.00 69.60
+ 1760.00 70.40
+1780.00 71.20
+1800.00 72.00
+1820.00 72.80
+1840.00 73.60
+1860.00 74.40
+1880.00 75.20
+1900.00 76.00
+1920.00 76.80
+1940.00 77.60
+1960.00 78.40
+1980.00 79.20
+2000.00 80.00
+2020.00 80.80
+2040.00 81.60
+2050.00 82.00
+2060.00 82.40
+2080.00 83.20
+2100.00 84.00
+2120.00 84.80
+2140.00 85.60
+2150.00 86.00
+2160.00 86.40
+2180.00 87.20
+2200.00 88.00
+2220.00 88.80
+2240.00 89.60
+2250.00 90.00
+2260.00 90.40
+2280.00 91.20
+2300.00 92.00
+2320.00 92.80
+2340.00 93.60
+2350.00 94.00
+2360.00 94.40
+2380.00 95.20
+2400.00 96.00
+2420.00 96.80
+2440.00 97.60
+2450.00 98.00
+2460.00 98.40
+2480.00 99.20
+2500.00 100.00
+2550.00 102.00
+2600.00 104.00
+2650.00 106.00
+2700.00 108.00
+2750.00 110.00
+2800.00 112.00
+2820.00 112.80
+2840.00 113.60
+2850.00 114.00
+2900.00 116.00
+2920.00 116.80
+2940.00 117.60
+2950.00 118.00
+2960.00 118.40
+2980.00 119.20
+3000.00 120.00
+3020.00 120.80
+3040.00 121.60
+3050.00 122.00
+3060.00 122.40
+3080.00 123.20
+3100.00 124.00
+3120.00 124.80
+3140.00 125.60
+3150.00 126.00
+3160.00 126.40
+3180.00 127.20
+3200.00 128.00
+3220.00 128.80
+3240.00 129.60
+3250.00 130.00
+3260.00 130.40
+3280.00 131.20
+3300.00 132.00
+3320.00 132.80
+3340.00 133.60
+3350.00 134.00
+3360.00 134.40
+3380.00 135.20
+3400.00 136.00
+3420.00 136.80
+3440.00 137.60
+3450.00 138.00
+3460.00 138.40
+3480.00 139.20
+3500.00 140.00
+3510.00 140.40
+3520.00 140.80
+3530.00 141.20
+3540.00 141.60
+3550.00 142.00
+3560.00 142.40
+3570.00 142.80
+3580.00 143.20
+3590.00 143.60
+3600.00 144.00
+3610.00 144.40
+3620.00 144.80
+3630.00 145.20
+3640.00 145.60
+3650.00 146.00
+3660.00 146.40
+3670.00 146.80
+3680.00 147.20
+3690.00 147.60
+3700.00 148.00
+3710.00 148.40
+3720.00 148.80
+3730.00 149.20
+3740.00 149.60
+3750.00 150.00
+3760.00 150.40
+3770.00 150.80
+3780.00 151.20
+3790.00 151.60
+3800.00 152.00
+3805.00 152.20
+3810.00 152.40
+3815.00 152.60
+3820.00 152.80
+3825.00 153.00
+3830.00 153.20
+3835.00 153.40
+3840.00 153.60
+3845.00 153.80
+3850.00 154.00
+3855.00 154.20
+3860.00 154.40
+3865.00 154.60
+3870.00 154.80
+3875.00 155.00
+3880.00 155.20
+3885.00 155.40
+3890.00 155.60
+3895.00 155.80
+3900.00 156.00
+3905.00 156.20
+3910.00 156.40
+3915.00 156.60
+3920.00 156.80
+3925.00 157.00
+3930.00 157.20
+3935.00 157.40
+3940.00 157.60
+3945.00 157.80
+3950.00 158.00
+3955.00 158.20
+3960.00 158.40
+3965.00 158.60
+3970.00 158.80
+3975.00 159.00
+3980.00 159.20
+3985.00 159.40
+3990.00 159.60
+3995.00 159.80
+4000.00 160.00
+4005.00 160.20
+4010.00 160.40
+4015.00 160.60
+4020.00 160.80
+4025.00 161.00
+4030.00 161.20
+4035.00 161.40
+4040.00 161.60
+4045.00 161.80
+4050.00 162.00
+4055.00 162.20
+4060.00 162.40
+4065.00 162.60
+4070.00 162.80
+4075.00 163.00
+4080.00 163.20
+4085.00 163.40
+4090.00 163.60
+4095.00 163.80
+4100.00 164.00
+4105.00 164.20
+4110.00 164.40
+4115.00 164.60
+4120.00 164.80
+4125.00 165.00
+4130.00 165.20
+4135.00 165.40
+4140.00 165.60
+4145.00 165.80
+4150.00 166.00
+4155.00 166.20
+4160.00 166.40
+4165.00 166.60
+4170.00 166.80
+4175.00 167.00
+4180.00 167.20
+4185.00 167.40
+4190.00 167.60
+4195.00 167.80
+4200.00 168.00
+4205.00 168.20
+4210.00 168.40
+4215.00 168.60
+4220.00 168.80
+4225.00 169.00
+4230.00 169.20
+4235.00 169.40
+4240.00 169.60
+4245.00 169.80
+4250.00 170.00
+4255.00 170.20
+4260.00 170.40
+4265.00 170.60
+4270.00 170.80
+4275.00 171.00
+4280.00 171.20
+4285.00 171.40
+4290.00 171.60
+4295.00 171.80
+4300.00 172.00
+4305.00 172.20
+4310.00 172.40
+4315.00 172.60
+4320.00 172.80
+4325.00 173.00
+4330.00 173.20
+4335.00 173.40
+4340.00 173.60
+4345.00 173.80
+4350.00 174.00
+4355.00 174.20
+4360.00 174.40
+4365.00 174.60
+4370.00 174.80
+4375.00 175.00
+4380.00 175.20
+4385.00 175.40
+4390.00 175.60
+4395.00 175.80
+4400.00 176.00
+4405.00 176.20
+4410.00 176.40
+4415.00 176.60
+4420.00 176.80
+4425.00 177.00
+4430.00 177.20
+4435.00 177.40
+4440.00 177.60
+4445.00 177.80
+4450.00 178.00
+4455.00 178.20
+4460.00 178.40
+4465.00 178.60
+4470.00 178.80
+4475.00 179.00
+4480.00 179.20
+4485.00 179.40
+4490.00 179.60
+4495.00 179.80
+4500.00 180.00
+4505.00 180.20
+4510.00 180.40
+4515.00 180.60
+4520.00 180.80
+4525.00 181.00
+4530.00 181.20
+4535.00 181.40
+4540.00 181.60
+4545.00 181.80
+4550.00 182.00
+4555.00 182.20
+4560.00 182.40
+4565.00 182.60
+4570.00 182.80
+4575.00 183.00
+4580.00 183.20
+4585.00 183.40
+4590.00 183.60
+4595.00 183.80
+4600.00 184.00
+4605.00 184.20
+4610.00 184.40
+4615.00 184.60
+4620.00 184.80
+4625.00 185.00
+4630.00 185.20
+4635.00 185.40
+4640.00 185.60
+4645.00 185.80
+4650.00 186.00
+4655.00 186.20
+4660.00 186.40
+4665.00 186.60
+4670.00 186.80
+4675.00 187.00
+4680.00 187.20
+4685.00 187.40
+4690.00 187.60
+4695.00 187.80
+4700.00 188.00
+4705.00 188.20
+4710.00 188.40
+4715.00 188.60
+4720.00 188.80
+4725.00 189.00
+4730.00 189.20
+4735.00 189.40
+4740.00 189.60
+4745.00 189.80
+4750.00 190.00
+4755.00 190.20
+4760.00 190.40
+4765.00 190.60
+4770.00 190.80
+4775.00 191.00
+4780.00 191.20
+4785.00 191.40
+4790.00 191.60
+4795.00 191.80
+4800.00 192.00
+4805.00 192.20
+4810.00 192.40
+4815.00 192.60
+4820.00 192.80
+4825.00 193.00
+4830.00 193.20
+4835.00 193.40
+4840.00 193.60
+4845.00 193.80
+4850.00 194.00
+4855.00 194.20
+4860.00 194.40
+4865.00 194.60
+4870.00 194.80
+4875.00 195.00
+4880.00 195.20
+4885.00 195.40
+4890.00 195.60
+4895.00 195.80
+4900.00 196.00
+4910.00 196.40
+4920.00 196.80
+4930.00 197.20
+4940.00 197.60
+4950.00 198.00
+4960.00 198.40
+4970.00 198.80
+4980.00 199.20
+4990.00 199.60
+5000.00 200.00
+5010.00 200.40
+5020.00 200.80
+5030.00 201.20
+5040.00 201.60
+5050.00 202.00
+5060.00 202.40
+5065.00 202.60
+5070.00 202.80
+5075.00 203.00
+5080.00 203.20
+5085.00 203.40
+5090.00 203.60
+5100.00 204.00
+5110.00 204.40
+5120.00 204.80
+5130.00 205.20
+5140.00 205.60
+5150.00 206.00
+5160.00 206.40
+5170.00 206.80
+5180.00 207.20
+5190.00 207.60
+5200.00 208.00
+5205.00 208.20
+5210.00 208.40
+5215.00 208.60
+5220.00 208.80
+5225.00 209.00
+5230.00 209.20
+5235.00 209.40
+5240.00 209.60
+5245.00 209.80
+5250.00 210.00
+5255.00 210.20
+5260.00 210.40
+5265.00 210.60
+5270.00 210.80
+5275.00 211.00
+5280.00 211.20
+5285.00 211.40
+5290.00 211.60
+5295.00 211.80
+5300.00 212.00
+5305.00 212.20
+5310.00 212.40
+5315.00 212.60
+5320.00 212.80
+5325.00 213.00
+5330.00 213.20
+5335.00 213.40
+5340.00 213.60
+5345.00 213.80
+5350.00 214.00
+5355.00 214.20
+5360.00 214.40
+5365.00 214.60
+5370.00 214.80
+5375.00 215.00
+5380.00 215.20
+5385.00 215.40
+5390.00 215.60
+5395.00 215.80
+5400.00 216.00
+5405.00 216.20
+5410.00 216.40
+5415.00 216.60
+5420.00 216.80
+5425.00 217.00
+5430.00 217.20
+5435.00 217.40
+5440.00 217.60
+5445.00 217.80
+5450.00 218.00
+5455.00 218.20
+5460.00 218.40
+5465.00 218.60
+5470.00 218.80
+5475.00 219.00
+5480.00 219.20
+5485.00 219.40
+5490.00 219.60
+5495.00 219.80
+5500.00 220.00
+5505.00 220.20
+5510.00 220.40
+5515.00 220.60
+5520.00 220.80
+5525.00 221.00
+5530.00 221.20
+5535.00 221.40
+5540.00 221.60
+5545.00 221.80
+5550.00 222.00
+5555.00 222.20
+5560.00 222.40
+5565.00 222.60
+5570.00 222.80
+5580.00 223.20
+5590.00 223.60
+5600.00 224.00
+5610.00 224.40
+5620.00 224.80
+5630.00 225.20
+5640.00 225.60
+5650.00 226.00
+5660.00 226.40
+5670.00 226.80
+5680.00 227.20
+5690.00 227.60
+5700.00 228.00
+5710.00 228.40
+5720.00 228.80
+5730.00 229.20
+5740.00 229.60
+5750.00 230.00
+5760.00 230.40
+5770.00 230.80
+5780.00 231.20
+5790.00 231.60
+5800.00 232.00
+5810.00 232.40
+5820.00 232.80
+5830.00 233.20
+5840.00 233.60
+5850.00 234.00
+5860.00 234.40
+5870.00 234.80
+5880.00 235.20
+5890.00 235.60
+5900.00 236.00
+5910.00 236.40
+5920.00 236.80
+5930.00 237.20
+5940.00 237.60
+5950.00 238.00
+5960.00 238.40
+5970.00 238.80
+5980.00 239.20
+5990.00 239.60
+6000.00 240.00
+6010.00 240.40
+6020.00 240.80
+6030.00 241.20
+6040.00 241.60
+6050.00 242.00
+6060.00 242.40
+6080.00 243.20
+6100.00 244.00
+6120.00 244.80
+6140.00 245.60
+6150.00 246.00
+6160.00 246.40
+6180.00 247.20
+6200.00 248.00
+6220.00 248.80
+6240.00 249.60
+6250.00 250.00
+6260.00 250.40
+6280.00 251.20
+6300.00 252.00
+6320.00 252.80
+6340.00 253.60
+6350.00 254.00
+6360.00 254.40
+6380.00 255.20
+6400.00 256.00
+6420.00 256.80
+6440.00 257.60
+6450.00 258.00
+6460.00 258.40
+6480.00 259.20
+6500.00 260.00
+6520.00 260.80
+6540.00 261.60
+6550.00 262.00
+6560.00 262.40
+6580.00 263.20
+6600.00 264.00
+6620.00 264.80
+6640.00 265.60
+6650.00 266.00
+6660.00 266.40
+6680.00 267.20
+6700.00 268.00
+6720.00 268.80
+6740.00 269.60
+6750.00 270.00
+6760.00 270.40
+6780.00 271.20
+6800.00 272.00
+6820.00 272.80
+6840.00 273.60
+6850.00 274.00
+6860.00 274.40
+6880.00 275.20
+6900.00 276.00
+6920.00 276.80
+6940.00 277.60
+6950.00 278.00
+6960.00 278.40
+6980.00 279.20
+7000.00 280.00
+7020.00 280.80
+7040.00 281.60
+7050.00 282.00
+7060.00 282.40
+7100.00 284.00
+7150.00 286.00
+7200.00 288.00
+7250.00 290.00
+7300.00 292.00
+7350.00 294.00
+7400.00 296.00
+7450.00 298.00
+7500.00 300.00
+7550.00 302.00
+ 7600.00 304.00
+ 7650.00 306.00
+ 7700.00 308.00
+ 7750.00 310.00
+ 7800.00 312.00
+ 7900.00 316.00
+ 8000.00 320.00
+ 8100.00 324.00
+ 8200.00 328.00
+ 8300.00 332.00
+ 8400.00 336.00
+ 8500.00 340.00
+ 8600.00 344.00
+
+ These strikes reflect strikes that are active as of the publication date of this information memo and will be
+ adjusted on the ex-date. Any strikes added after the publication of this memo and prior to the ex-date
+ will be adjusted using the strike divisor stated above.
+
+ Disclaimer
+
+This Information Memo provides an unofficial summary of the terms of corporate events affecting listed
+options or futures prepared for the convenience of market participants. OCC accepts no responsibility for
+the accuracy or completeness of the summary, particularly for information which may be relevant to
+investment decisions. Option or futures investors should independently ascertain and evaluate all
+information concerning this corporate event(s).
+
+The determination to adjust options and futures and the nature of any adjustment is made by OCC
+pursuant to Chapter 28 (XXVIII) of OCC’s Rules. For both options and futures, each adjustment decision
+is made on a case by case basis. Adjustment decisions are based on information available at the time
+and are subject to change as additional information becomes available or if there are material changes to
+the terms of the corporate event(s) occasioning the adjustment.
+
+ALL CLEARING MEMBERS ARE REQUESTED TO IMMEDIATELY ADVISE ALL BRANCH OFFICES
+AND CORRESPONDENTS ON THE ABOVE.
+
+For questions regarding this memo, please email the Investor Education team at options@theocc.com.
+Clearing Member Firms of OCC may contact Member Services at 1-800-544-6091 or, within Canada, at 1-
+800-424-7320, or email memberservices@theocc.com.
+"""
+
+[R4] 1 Incredible Stock-Split Stock to Buy With $200 Right Now
+(https://finance.yahoo.com/markets/stocks/articles/1-incredible-stock-split-stock-032000199.html)
+"""
+When a company splits its stock, it doesn't change any of the underlying fundamentals of the business. However, a stock split can be a signal that management believes its performance will remain solid for the foreseeable future. As such, it's worth paying attention to stock splits. One of the biggest stock splits of 2026 is Booking Holdings (NASDAQ: BKNG). The online travel agency enacted a 25-for-1 stock split earlier this month, the first in the company's history. After the split, shares trade for less than $200 and could be a great addition to any portfolio. Here's why investors should take a closer look at Booking right now. Will AI create the world's first trillionaire? Our team just released a report on a little-known company, called an "Indispensable Monopoly," providing the critical technology Nvidia and Intel both need. Continue » Image source: Getty Images. Booking's management is focused on improving operations to expand its operating margin, and it's doing an incredible job. Adjusted EBITDA margin expanded to 36.9% in the fourth quarter, up from 35% a year ago. That was driven by about $250 million in savings through its "Transformation Program." Management said it exited the year with $550 million in annual run rate savings, and it expects to maintain that pace in 2026. But management isn't just letting all those savings flow to the bottom line. It sees a bevy of opportunities for continued growth. Booking plans to invest about $700 million in strategic areas, including generative artificial intelligence (AI) capabilities, its Connected Trip vision, expanding its hotel network in Asia and the U.S., growing its advertising business, and expanding its restaurant reservation platform OpenTable internationally. All of these present great long-term potential growth verticals, with management expecting the efforts to generate $400 million incremental revenue in 2026, bringing the net investment down to $300 million. Booking's biggest strength is its network of hotels and short-term rentals. It's particularly strong in Europe, where boutique hotels dominate the industry. The industry is nearly as fragmented in Asia, but much less so in the United States, where big hotel chains dominate. Booking provides an essential service to boutique hotels as an aggregator, since most are too small to market themselves effectively. The massive supply side network on Booking's platform attracts travelers looking for European accommodations. Booking can easily copy the playbook in Asia and the U.S., where opportunities remain. Danny Vena, CPA, The Motley Fool March 28, 2026 5 min read The world was very different back in 1999. The West Wing was one of the biggest shows on network television, and cable viewers were just getting hooked on The Sopranos. President Bill Clinton was facing impeachment, and Columbine became a household name for all the wrong reasons. Moviegoers were drawn into The Matrix, and the European Union (EU) adopted a single currency dubbed the Euro. The internet hadn't yet gone mainstream, and people who used it primarily did so via dial-up. However, the accelerating adoption of the internet was about to change things in a big way, though bust would follow boom. Online commerce had begun to set the world on fire, leaving a trail of would-be success stories in its wake. Priceline.com IPO'd in 1999 and became one of the unlikely survivors of the internet era, pioneering the online travel category. The platform allowed users to search travel deals and find discounts, introducing its "Name-Your-Own-Price" model that revolutionized the travel industry. Will AI create the world's first trillionaire? Our team just released a report on the one little-known company, called an "Indispensable Monopoly" providing the critical technology Nvidia and Intel both need. Continue » The company eventually rebranded as Booking Holdings (NASDAQ: BKNG), became the world's largest online travel company, and is about to initiate the first blockbuster stock split of 2026. Image source: Getty Images. In conjunction with the company's fourth-quarter results and after years of speculation, Booking announced a long-awaited 25-for-1 stock split, marking the first forward stock split in the company's history. The logic is clear. The stock has gained 753% since its 1999 IPO (despite being dragged down by the dot-com bubble) and has increased a massive 30,490% over the past 25 years (as of this writing). Booking revealed that shareholders of record as of Friday, March 6, will receive an additional 24 shares of stock for each share they own. The distribution will occur after the market close on Thursday, April 2. The stock will begin trading on a split-adjusted basis when the market opens on Monday, April 6. Booking's stock price, currently trading above $4,200 per share (as of this writing), makes it the first blockbuster stock split of 2026. It's worth noting that this is a stark reversal of fortune for the company. On the heels of the dot-com bubble and amid the travel industry's struggles in the wake of 9/11, the company faced the possibility of delisting due to its share price trading at roughly $1. To remedy the situation, Booking (then Priceline) initiated a 1-for-6 reverse stock split in a bid to restore investor confidence. Despite that move, the stock price stagnated for years before eventually climbing to new heights nearly a decade later. Usman Kabir April 2, 2026 2 min read Booking Holdings Inc. (NASDAQ:BKNG) is one of the 15 Best Stocks to Buy According to Billionaire Ray Dalio. Booking Holdings Inc. (NASDAQ:BKNG) has been a major long-term bet of Bridgewater Associates since the middle of 2018. Back then, the position the fund held in the firm consisted of around 81,000 shares. However, this holding was sold off in the next few months. A new position was opened in 2021. Dalio gradually built up this stake, increasing it from 31,000 shares in 2021 to over 2 million shares at the end of the fourth quarter of 2025. The fund has made purchases of the stock in each of the last six quarters, with the major increase coming in the first quarter of 2025 during which the position was improved by over 100%. READ NEXT: 33 Stocks That Should Double in 3 Years. 5 Most Expensive Countries to Fly to Booking Holdings Inc. (NASDAQ:BKNG) is of interest to elite investors for several reasons, one of them being the 25-for-1 stock split scheduled for April 6, 2026. One important note for investors here is that although a split does not change fundamentals, hedge funds view it as a liquidity catalyst. It makes the stock more accessible to retail investors and improves options market liquidity, often leading to a valuation re-rating as the buyer pool expands. Hedge funds are also bullish on a shift by the firm toward the Merchant Model (where Booking processes the payment) over the traditional Agency model. This allows the company to hold onto cash longer and offer more integrated services. This transition helped drive a 16% year-over-year revenue increase to $6.35 billion in the most recent quarter, with an impressive net margin of 20%. While we acknowledge the potential of BKNG as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock. READ NEXT: 33 Stocks That Should Double in 3 Years and 15 Stocks That Will Make You Rich in 10 Years. Disclosure: None. Follow Insider Monkey on Google News. Vardah Gill Fri, April 17, 2026 at 9:38 PM EDT 1 min read Booking Holdings Inc. (NASDAQ:BKNG) is included among the 10 Fastest Growing Dividend Stocks to Buy Now. B. Riley Resets Booking (BKNG) PT after Split; Tigress Financial Raises Target on AI Momentum On April 10, Naved Khan of B. Riley adjusted the firm’s price recommendation on Booking Holdings Inc. (NASDAQ:BKNG) to $272 from $6,800. It maintained a Buy rating on the shares. The change reflects the company’s 25-to-1 stock split. On April 9, Tigress Financial raised its price target on Booking Holdings to $260 from $244 and maintained a Strong Buy rating. The firm said Booking is leading an AI-driven global travel rebound, supported by “resilient” demand and a “meaningful” World Cup tailwind. Tigress told investors that the company’s agentic AI tools and planners are reshaping travel loyalty and strengthening its position in the market. It added that these tools could help the company benefit from a World Cup-driven surge in travel demand this summer. The firm also said Booking Holdings’ Genius-AI flywheel supports an “unbreakable loyalty moat” and drives “significant” growth. Booking Holdings Inc. (NASDAQ:BKNG) provides online travel and restaurant reservation services. The company operates through five main consumer brands: Booking.com, Priceline, Agoda, KAYAK, and OpenTable. While we acknowledge the potential of BKNG as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock. READ NEXT: 10 Healthcare Stocks with Highest Dividends and Early Retirement Portfolio: Top 15 Stocks to Buy Disclosure: None. Follow Insider Monkey on Google News. John Ballard, The Motley Fool April 10, 2026 4 min read The travel industry has been on an upward trajectory since the pandemic. Booking Holdings (NASDAQ: BKNG) has ridden the industry's growth by delivering strong financial results. It could be a tempting buy, given the stock's 28% decline from recent highs. However, artificial intelligence (AI) presents both opportunities and risks that the company must navigate. Will AI create the world's first trillionaire? Our team just released a report on the one little-known company, called an "Indispensable Monopoly" providing the critical technology Nvidia and Intel both need. Continue » Here's a quick look at where the business stands and whether it's worth buying this month. Image source: Getty Images. Booking Holdings owns popular travel sites including Booking.com, Priceline, Agoda, Kayak, and OpenTable. They generate revenue from fees and commissions, supporting strong margins and a capital-light business model. Across these platforms, Booking connects travelers with more than 4 million properties worldwide. That helped drive a 13% year-over-year increase in revenue last year, to nearly $27 billion. There are several ways for travelers to book trips, but Booking's competitive edge is its scale and broad property supply. About 90% of the 1.2 billion room nights booked last year came from independent hotels, small chains, and alternative accommodations. But the company isn't relying only on supply. Its Connected Trip strategy aims to offer more services, including hotel-plus-flight packages, car rentals, and attractions. In 2025, Booking's platforms sold 68 million airline tickets, up 37% year over year, while attraction tickets jumped nearly 80%. That expansion could become a durable and profitable growth driver for shareholders. Still, investors must balance those opportunities against AI risks and macro headwinds that could pressure travel spending. Several headwinds could weigh on travel demand this year. Consumers are already dealing with higher gasoline prices tied to geopolitical conflict. For Booking, weaker discretionary spending could translate into shorter stays and lower revenue. Over the long term, the bigger risk is AI making it easier for other companies to compete. If autonomous agents start shopping and booking by scanning deals across many sites at once, the platform that travelers use today could matter less. That could weaken Booking's standing in the marketplace and pressure growth. However, Booking has advantages to counter this threat. Its broad portfolio of independent properties and data gives it a strong foundation for using AI to improve discovery and conversion. By investing in generative AI and pairing it with its Connected Trip strategy, the company can make planning faster, more personalized, and more seamless. Proactive April 6, 2026 1 min read Booking Holdings completes 25-for-1 stock split Proactive uses images sourced from Shutterstock Booking Holdings Inc (NASDAQ:BKNG, XETRA:PCE1) has completed a 25-for-1 stock split, reducing its stock price from above $4,000 to about $170 on Monday. As part of the split, shareholders of record as of March 6 received 25 shares for every one previously held. The move is intended to improve liquidity and make the stock more accessible to a broader range of investors, without impacting the company’s overall valuation or fundamentals. The split is Booking’s first-ever forward split, but its second in history after it completed a 1-for-6 reverse split in 2003. In conjunction with the split, Booking also increased its authorized common shares from 1 billion to 25 billion. Simply Wall St April 3, 2026 3 min read The future of work is here. Discover the 33 top robotics and automation stocks leading the charge in AI-driven automation and industrial transformation. To own Booking, you need to believe that its asset light, global travel platform and Connected Trip vision can keep compounding through technology and partnerships, even as macro and geopolitical worries tug at demand. The 25 for 1 stock split and higher dividend do not change that thesis, but they do sharpen a near term catalyst around liquidity and investor attention, while key risks from softer consumer spending and region specific travel weakness remain broadly intact. Among the recent announcements, the DogPack partnership feels especially relevant because it shows how Booking is extending its reach into niche, high intent traveler communities. Embedding pet friendly stays directly into DogPack’s app sits neatly alongside catalysts like AI powered trip planning and alternative accommodations, giving Booking more touchpoints with travelers at the exact moment they are deciding where and how to book. But against that opportunity, investors still need to weigh growing concerns about U.S. consumers trading down and what that could mean for... Read the full narrative on Booking Holdings (it's free!) Booking Holdings' narrative projects $35.2 billion revenue and $10.4 billion earnings by 2029. This requires 9.4% yearly revenue growth and a $5.0 billion earnings increase from $5.4 billion today. Uncover how Booking Holdings' forecasts yield a $5802 fair value, a 38% upside to its current price. BKNG 1-Year Stock Price Chart Eight members of the Simply Wall St Community currently see Booking’s fair value between US$4,925 and about US$7,700, reflecting very different expectations for the business. As you weigh these views, it is worth setting them against the risk that weaker travel demand and more cautious spending could pressure both revenue growth and margins over time. Vandita Jadeja Mon, April 20, 2026 at 9:16 AM EDT 5 min read Booking Holdings (NASDAQ: BKNG) trades at $184.56 as of writing, sitting 20% below its 52-week high of $232.20 and down 13.64% year to date. Our 24/7 Wall St. price target for Booking Holdings is $257.28, implying 39.4% upside over the next 12 months. The 24/7 Wall St. model rates the stock buy. The model carries moderate confidence (0.5), reflecting meaningful macro uncertainty but strong fundamental support. READ: The analyst who called NVIDIA in 2010 just named his top 10 AI stocks Metric Value Current Price$184.56 24/7 Wall St. Price Target$257.28 Upside Potential39.4% RecommendationBUY Confidence Level50% (Moderate) With 30 buy or strong buy ratings and zero sell ratings from Wall Street analysts, the fundamental backdrop is compelling at current levels. The stock trades 20% below its 52-week high, with Wall Street consensus targets implying significant upside. Booking Holdings entered 2026 at $213.72 and fell to $165.61 in February 2026, driven by Q4 2025 guidance language and macro anxiety. The stock has since recovered, gaining 4.51% over the past week and 3.86% over the past month. Over one year, shares are up just 2.39%, well below business performance. The company completed a 25-to-1 stock split effective April 2, 2026, improving retail accessibility. Q4 2025 results were strong: adjusted EPS of $48.80 against an estimate of $48.04, beating expectations by 1.58%. Revenue of $6.35 billion grew 16.1% year over year cleared the $6.14 billion consensus estimate by 3.49%. Free cash flow surged 119.53% year over year to $1.42 billion in the quarter. Despite the beat, shares fell 6.15% on earnings day before recovering.
+"""
+
+[R5] Down 32%, Booking Holdings Announces 25-to-1 Stock Split. Time to Buy?
+(https://finance.yahoo.com/news/down-32-booking-holdings-announces-173546077.html)
+"""
+Booking Holdings (BKNG) beat Q4 estimates with $6.35B in revenue. Booking raised its dividend 9.4%. Booking’s free cash flow surged 120% to $1.42B as operational margins expanded to 34.6%. Booking stock fell 27% year-to-date despite strong results as 2026 guidance disappointed investors. A recent study identified one single habit that doubled Americans’ retirement savings and moved retirement from dream, to reality. Read more here. Booking Holdings (NASDAQ:BKNG) just reported fourth-quarter results that beat top and bottom line estimates, raised its dividend, and announced a 25-to-1 stock split. The company continues to show strength in its core travel booking operations amid a recovering global market. However, Citi trimmed its price target, citing market volatility and slightly weaker-than-expected earnings and growth guidance. With shares down sharply in morning trading today, investors are questioning the outlook and asking if Booking Holdings is a buy. Booking delivered solid results this morning, with key metrics highlighting the resilience in its primary business of online travel reservations. Gross bookings reached $43 billion, up 16% year-over-year, driven by favorable currency effects and steady demand for accommodations and flights. Room nights -- a central indicator of booking volume -- grew 9%, marking the fourth straight quarter of acceleration and exceeding the company's own 4% to 6% guidance range. This growth was fueled by investments in Asia and improved marketing efficiency in the U.S. Revenue climbed 16% to $6.35 billion, surpassing analyst estimates of $6.12 billion. Adjusted EBITDA also rose to $2.2 billion, with margins expanding to 34.6% from 33.8% a year ago, thanks to $250 million in savings from the company's transformation program. Adjusted earnings came in at $48.80 per share, beating the consensus forecast by $0.30, while free cash flow surged 120% to $1.42 billion, underscoring Booking's efficient operations in facilitating hotel, rental car, and restaurant reservations through brands like Booking.com, Priceline, and OpenTable. These figures reflect Booking's dominance in the online travel sector, where Booking.com alone accounts for about 90% of revenue. The company benefited from double-digit growth in alternative accommodations and connected trip features, which enhance user retention by bundling services. To reward shareholders, Booking raised its quarterly dividend by 9.4% to $10.50 per share, marking a continued commitment to capital returns, alongside $2.1 billion in stock buybacks, with $21.8 billion still authorized. For the full year 2025, the company returned $8.2 billion to shareholders through buybacks and dividends. Adam Levy, The Motley Fool Sat, April 18, 2026 at 11:20 PM EDT 4 min read When a company splits its stock, it doesn't change any of the underlying fundamentals of the business. However, a stock split can be a signal that management believes its performance will remain solid for the foreseeable future. As such, it's worth paying attention to stock splits. One of the biggest stock splits of 2026 is Booking Holdings (NASDAQ: BKNG). The online travel agency enacted a 25-for-1 stock split earlier this month, the first in the company's history. After the split, shares trade for less than $200 and could be a great addition to any portfolio. Here's why investors should take a closer look at Booking right now. Will AI create the world's first trillionaire? Our team just released a report on a little-known company, called an "Indispensable Monopoly," providing the critical technology Nvidia and Intel both need. Continue » Image source: Getty Images. Booking's management is focused on improving operations to expand its operating margin, and it's doing an incredible job. Adjusted EBITDA margin expanded to 36.9% in the fourth quarter, up from 35% a year ago. That was driven by about $250 million in savings through its "Transformation Program." Management said it exited the year with $550 million in annual run rate savings, and it expects to maintain that pace in 2026. But management isn't just letting all those savings flow to the bottom line. It sees a bevy of opportunities for continued growth. Booking plans to invest about $700 million in strategic areas, including generative artificial intelligence (AI) capabilities, its Connected Trip vision, expanding its hotel network in Asia and the U.S., growing its advertising business, and expanding its restaurant reservation platform OpenTable internationally. All of these present great long-term potential growth verticals, with management expecting the efforts to generate $400 million incremental revenue in 2026, bringing the net investment down to $300 million. Booking's biggest strength is its network of hotels and short-term rentals. It's particularly strong in Europe, where boutique hotels dominate the industry. The industry is nearly as fragmented in Asia, but much less so in the United States, where big hotel chains dominate. Booking provides an essential service to boutique hotels as an aggregator, since most are too small to market themselves effectively. The massive supply side network on Booking's platform attracts travelers looking for European accommodations. Booking can easily copy the playbook in Asia and the U.S., where opportunities remain. Proactive April 6, 2026 1 min read Booking Holdings completes 25-for-1 stock split Proactive uses images sourced from Shutterstock Booking Holdings Inc (NASDAQ:BKNG, XETRA:PCE1) has completed a 25-for-1 stock split, reducing its stock price from above $4,000 to about $170 on Monday. As part of the split, shareholders of record as of March 6 received 25 shares for every one previously held. The move is intended to improve liquidity and make the stock more accessible to a broader range of investors, without impacting the company’s overall valuation or fundamentals. The split is Booking’s first-ever forward split, but its second in history after it completed a 1-for-6 reverse split in 2003. In conjunction with the split, Booking also increased its authorized common shares from 1 billion to 25 billion. Sean Williams, The Motley Fool April 2, 2026 4 min read Although artificial intelligence (AI) has been the stock market's hottest trend over the last few years, it's not the only one responsible for lifting the tide on Wall Street. Stock-split euphoria has also intrigued investors. A stock split allows a publicly traded company to alter its share price and outstanding share count without impacting its market cap or underlying operating performance. Companies that have conducted forward splits to reduce their share price and make their stock more nominally affordable for retail investors have a history of outperforming the benchmark S&P 500. Today, courtesy of online travel company Booking Holdings (NASDAQ: BKNG), we're witnessing the first blockbuster stock split of 2026 take shape. Will AI create the world's first trillionaire? Our team just released a report on the one little-known company, called an "Indispensable Monopoly" providing the critical technology Nvidia and Intel both need. Continue » Image source: Getty Images. In mid-February, the parent company of Booking.com, Priceline, Kayak, and OpenTable announced plans to complete a 25-for-1 forward split. It's the company's first-ever forward split, but its second overall following a 1-for-6 reverse split in 2003. Before trading commences today, April 2, this mammoth stock split will take effect, reducing Booking's share price to around $184 per share, based on its $4,062.14 closing price on March 27. This should make it considerably easier for retail investors to participate in Booking Holdings' growth story. Over the trailing 25-year period, shares of Booking have soared just over 31,800%, including dividends. High-octane gains like this don't occur by accident. They're a reflection of Booking's well-defined competitive advantages. Booking Holdings' most prominent advantage becomes apparent when looking beyond the borders of the United States. It's one of Europe's largest players in online travel bookings and is generating significant sales growth from its expansion in Asia. By focusing its efforts overseas, Booking has avoided being bogged down by the hypercompetitive U.S. online travel market and established a sustainable moat. This is a good time to mention that travel is a cyclical industry. Although recessions and economic slowdowns are perfectly normal, the U.S. and global economy spend far more time expanding than contracting. Put simply, it means Booking benefits from the disproportionate nature of economic cycles. Vandita Jadeja Mon, April 20, 2026 at 9:16 AM EDT 5 min read Booking Holdings (BKNG) beat Q4 2025 earnings with adjusted EPS of $48.80 versus $48.04 estimate and revenue of $6.35 billion up 16.1% year over year, while merchant model revenue grew 27.4% year over year to $4.25 billion with Connected Trip transactions rising over 30% year over year. The company completed a 25-to-1 stock split effective April 2, 2026, and management guided for mid-teens adjusted EPS growth in 2026 with $21.8 billion in remaining buyback authorization and a 9.4% dividend increase to $10.50 per share. Booking trades 20% below its 52-week high of $232.20 despite generating $9.09 billion in free cash flow for full-year 2025 (up 15.1% year over year) and beating earnings in every 2025 quarter, creating a buying opportunity ahead of Q1 2026 earnings due April 28. The analyst who called NVIDIA in 2010 just named his top 10 AI stocks. Get them here FREE. Booking Holdings (NASDAQ: BKNG) trades at $184.56 as of writing, sitting 20% below its 52-week high of $232.20 and down 13.64% year to date. Our 24/7 Wall St. price target for Booking Holdings is $257.28, implying 39.4% upside over the next 12 months. The 24/7 Wall St. model rates the stock buy. The model carries moderate confidence (0.5), reflecting meaningful macro uncertainty but strong fundamental support. READ: The analyst who called NVIDIA in 2010 just named his top 10 AI stocks Metric Value Current Price$184.56 24/7 Wall St. Price Target$257.28 Upside Potential39.4% RecommendationBUY Confidence Level50% (Moderate) With 30 buy or strong buy ratings and zero sell ratings from Wall Street analysts, the fundamental backdrop is compelling at current levels. The stock trades 20% below its 52-week high, with Wall Street consensus targets implying significant upside. Booking Holdings entered 2026 at $213.72 and fell to $165.61 in February 2026, driven by Q4 2025 guidance language and macro anxiety. The stock has since recovered, gaining 4.51% over the past week and 3.86% over the past month. Over one year, shares are up just 2.39%, well below business performance. The company completed a 25-to-1 stock split effective April 2, 2026, improving retail accessibility. Q4 2025 results were strong: adjusted EPS of $48.80 against an estimate of $48.04, beating expectations by 1.58%. Revenue of $6.35 billion grew 16.1% year over year cleared the $6.14 billion consensus estimate by 3.49%. Free cash flow surged 119.53% year over year to $1.42 billion in the quarter. Despite the beat, shares fell 6.15% on earnings day before recovering. Simply Wall St April 3, 2026 3 min read In early April 2026, Booking Holdings executed its first-ever 25-for-1 stock split alongside reporting double‑digit quarterly revenue growth, a higher dividend, and ongoing board refresh with the appointment of former NXP CEO Kurt Sievers and the planned retirement of director Lynn Radakovich. Beyond the split, Booking’s push into pet-friendly travel through DogPack and its growing use of generative AI tools underline how technology and niche partnerships are reshaping its travel ecosystem. Next, we’ll consider how the 25-for-1 stock split and accompanying dividend increase may influence Booking Holdings’ existing investment narrative. The future of work is here. Discover the 33 top robotics and automation stocks leading the charge in AI-driven automation and industrial transformation. To own Booking, you need to believe that its asset light, global travel platform and Connected Trip vision can keep compounding through technology and partnerships, even as macro and geopolitical worries tug at demand. The 25 for 1 stock split and higher dividend do not change that thesis, but they do sharpen a near term catalyst around liquidity and investor attention, while key risks from softer consumer spending and region specific travel weakness remain broadly intact. Among the recent announcements, the DogPack partnership feels especially relevant because it shows how Booking is extending its reach into niche, high intent traveler communities. Embedding pet friendly stays directly into DogPack’s app sits neatly alongside catalysts like AI powered trip planning and alternative accommodations, giving Booking more touchpoints with travelers at the exact moment they are deciding where and how to book. But against that opportunity, investors still need to weigh growing concerns about U.S. consumers trading down and what that could mean for... Read the full narrative on Booking Holdings (it's free!) Booking Holdings' narrative projects $35.2 billion revenue and $10.4 billion earnings by 2029. This requires 9.4% yearly revenue growth and a $5.0 billion earnings increase from $5.4 billion today. Uncover how Booking Holdings' forecasts yield a $5802 fair value, a 38% upside to its current price. BKNG 1-Year Stock Price Chart Eight members of the Simply Wall St Community currently see Booking’s fair value between US$4,925 and about US$7,700, reflecting very different expectations for the business. As you weigh these views, it is worth setting them against the risk that weaker travel demand and more cautious spending could pressure both revenue growth and margins over time. Danny Vena, CPA, The Motley Fool March 28, 2026 5 min read The world was very different back in 1999. The West Wing was one of the biggest shows on network television, and cable viewers were just getting hooked on The Sopranos. President Bill Clinton was facing impeachment, and Columbine became a household name for all the wrong reasons. Moviegoers were drawn into The Matrix, and the European Union (EU) adopted a single currency dubbed the Euro. The internet hadn't yet gone mainstream, and people who used it primarily did so via dial-up. However, the accelerating adoption of the internet was about to change things in a big way, though bust would follow boom. Online commerce had begun to set the world on fire, leaving a trail of would-be success stories in its wake. Priceline.com IPO'd in 1999 and became one of the unlikely survivors of the internet era, pioneering the online travel category. The platform allowed users to search travel deals and find discounts, introducing its "Name-Your-Own-Price" model that revolutionized the travel industry. Will AI create the world's first trillionaire? Our team just released a report on the one little-known company, called an "Indispensable Monopoly" providing the critical technology Nvidia and Intel both need. Continue » The company eventually rebranded as Booking Holdings (NASDAQ: BKNG), became the world's largest online travel company, and is about to initiate the first blockbuster stock split of 2026. Image source: Getty Images. In conjunction with the company's fourth-quarter results and after years of speculation, Booking announced a long-awaited 25-for-1 stock split, marking the first forward stock split in the company's history. The logic is clear. The stock has gained 753% since its 1999 IPO (despite being dragged down by the dot-com bubble) and has increased a massive 30,490% over the past 25 years (as of this writing). Booking revealed that shareholders of record as of Friday, March 6, will receive an additional 24 shares of stock for each share they own. The distribution will occur after the market close on Thursday, April 2. The stock will begin trading on a split-adjusted basis when the market opens on Monday, April 6. Booking's stock price, currently trading above $4,200 per share (as of this writing), makes it the first blockbuster stock split of 2026. It's worth noting that this is a stark reversal of fortune for the company. On the heels of the dot-com bubble and amid the travel industry's struggles in the wake of 9/11, the company faced the possibility of delisting due to its share price trading at roughly $1. To remedy the situation, Booking (then Priceline) initiated a 1-for-6 reverse stock split in a bid to restore investor confidence. Despite that move, the stock price stagnated for years before eventually climbing to new heights nearly a decade later. Usman Kabir April 2, 2026 2 min read Booking Holdings Inc. (NASDAQ:BKNG) is one of the 15 Best Stocks to Buy According to Billionaire Ray Dalio. Booking Holdings Inc. (NASDAQ:BKNG) has been a major long-term bet of Bridgewater Associates since the middle of 2018. Back then, the position the fund held in the firm consisted of around 81,000 shares. However, this holding was sold off in the next few months. A new position was opened in 2021. Dalio gradually built up this stake, increasing it from 31,000 shares in 2021 to over 2 million shares at the end of the fourth quarter of 2025. The fund has made purchases of the stock in each of the last six quarters, with the major increase coming in the first quarter of 2025 during which the position was improved by over 100%. READ NEXT: 33 Stocks That Should Double in 3 Years. 5 Most Expensive Countries to Fly to Booking Holdings Inc. (NASDAQ:BKNG) is of interest to elite investors for several reasons, one of them being the 25-for-1 stock split scheduled for April 6, 2026. One important note for investors here is that although a split does not change fundamentals, hedge funds view it as a liquidity catalyst. It makes the stock more accessible to retail investors and improves options market liquidity, often leading to a valuation re-rating as the buyer pool expands. Hedge funds are also bullish on a shift by the firm toward the Merchant Model (where Booking processes the payment) over the traditional Agency model. This allows the company to hold onto cash longer and offer more integrated services. This transition helped drive a 16% year-over-year revenue increase to $6.35 billion in the most recent quarter, with an impressive net margin of 20%. While we acknowledge the potential of BKNG as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock. READ NEXT: 33 Stocks That Should Double in 3 Years and 15 Stocks That Will Make You Rich in 10 Years. Disclosure: None. Follow Insider Monkey on Google News.
+"""
+
+[R6] 1 Incredible Stock-Split Stock to Buy With $200 Right Now
+(https://www.fool.com/investing/2026/04/18/1-incredible-stock-split-stock-to-buy-with-200-rig/)
+"""
+When a company splits its stock, it doesn't change any of the underlying fundamentals of the business. However, a stock split can be a signal that management believes its performance will remain solid for the foreseeable future. As such, it's worth paying attention to stock splits. One of the biggest stock splits of 2026 is Booking Holdings (BKNG 6.00%). The online travel agency enacted a 25-for-1 stock split earlier this month, the first in the company's history. After the split, shares trade for less than $200 and could be a great addition to any portfolio. Here's why investors should take a closer look at Booking right now. Image source: Getty Images. Book this investment now Booking's management is focused on improving operations to expand its operating margin, and it's doing an incredible job. Adjusted EBITDA margin expanded to 36.9% in the fourth quarter, up from 35% a year ago. That was driven by about $250 million in savings through its "Transformation Program." Management said it exited the year with $550 million in annual run rate savings, and it expects to maintain that pace in 2026. But management isn't just letting all those savings flow to the bottom line. It sees a bevy of opportunities for continued growth. Booking plans to invest about $700 million in strategic areas, including generative artificial intelligence (AI) capabilities, its Connected Trip vision, expanding its hotel network in Asia and the U.S., growing its advertising business, and expanding its restaurant reservation platform OpenTable internationally. All of these present great long-term potential growth verticals, with management expecting the efforts to generate $400 million incremental revenue in 2026, bringing the net investment down to $300 million. Today's ChangeCurrent Price Booking's biggest strength is its network of hotels and short-term rentals. It's particularly strong in Europe, where boutique hotels dominate the industry. The industry is nearly as fragmented in Asia, but much less so in the United States, where big hotel chains dominate. Booking provides an essential service to boutique hotels as an aggregator, since most are too small to market themselves effectively. The massive supply side network on Booking's platform attracts travelers looking for European accommodations. Booking can easily copy the playbook in Asia and the U.S., where opportunities remain. Long-term, Booking aims to be a one-stop shop for travelers via its Connected Trip vision. The company currently counts any booking where a traveler books multiple services through its platform (for example, a hotel and a flight). OpenTable expands its services to include restaurant bookings, it has a growing number of tours and experiences on its platform, and management is making it easier to pay for everything with its payments platform. Management saw high-20% growth in Connected Trips last quarter, but they're still a low-double-digit percentage of total transactions. Where to invest $1,000 right now When our analyst team has a stock tip, it can pay to listen. After all, Stock Advisor’s total average return is 972%* — a market-crushing outperformance compared to 198% for the S&P 500. They just revealed what they believe are the 10 best stocks for investors to buy right now, available when you join Stock Advisor. See the stocks ›*Stock Advisor returns as of April 22, 2026. Management expects earnings-per-share growth to be in line with its long-term target of 15% this year. With the stock trading for just 17 times forward earnings estimates, that makes the stock-split stock a great opportunity right now.
+"""
+
+[R7] Booking Holdings completes 25-for-1 stock split and increases authorized shares
+(https://www.investing.com/news/sec-filings/booking-holdings-completes-25for1-stock-split-and-increases-authorized-shares-93CH-4596679)
+"""
+ByPublished 04/02/2026, 06:50 PMBooking Holdings completes 25-for-1 stock split and increases authorized shares announced Thursday that it has completed a twenty-five-for-one forward stock split of its common stock. The company also increased the number of its authorized common shares from 1 billion to 25 billion. According to a statement in a press release filed with the Securities and Exchange Commission, the amendment to Booking Holdings’ Restated Certificate of Incorporation was filed with the Delaware Secretary of State and became effective at 4:01 p.m. Eastern Time on Thursday. Trading on a split-adjusted basis is expected to begin at the market open on Monday. The filing also lists the adjustment as previously announced and notes that the amendment to the company’s certificate is included as an exhibit to the report. Booking Holdings’ common stock is listed on the NASDAQ Global Select Market under the ticker symbol BKNG. The company also has multiple series of senior notes registered on the NASDAQ Stock Market LLC. The information in this article is based on a press release statement included in a filing with the Securities and Exchange Commission. This article was generated with the support of AI and reviewed by an editor. For more information see our T&C.Is BKNG a bargain right now?The fastest way to find out is with our Fair Value calculator. We use a mix of 17 proven industry valuation models for maximum accuracy.Get the bottom line for BKNG plus thousands of other stocks and find your next hidden gem with massive upside.Flash Sale - Price Goes Up SoonBooking Holdings completes 25-for-1 stock split and increases authorized sharesLatest commentsMedirom Healthcare Technologies schedules annual shareholder meeting for May 29ByPublished 04/22/2026, 06:20 PMMedirom Healthcare Technologies schedules annual shareholder meeting for May 29 has announced the convocation of its 26th Ordinary General Meeting of Shareholders, scheduled to take place in Tokyo, Japan, on May 29, 2026. The company circulated a formal notice and accompanying proxy materials to all holders of its common shares and American Depositary Shares on April 16. According to a statement based on a press release and filed with the Securities and Exchange Commission, the notice includes proxy cards and voting instructions for both common shareholders and holders of American Depositary Shares. These materials provide details on how shareholders can attend and vote at the upcoming meeting. The company clarified that this filing does not constitute a proxy solicitation. Shareholders are advised to refer to the distributed notice and proxy cards for specific instructions related to participation and voting procedures. Further details, including the notice of the meeting and proxy cards, were furnished as exhibits to the SEC filing. Medirom Healthcare Technologies is incorporated in Japan and provides personal services, as indicated in the filing. This information is based on a press release statement included in the company’s Form 6-K filing with the SEC. In other recent news, reported a significant development as it secured a US$276 million share of a US$691 million contract for the Howard A. Hanson Dam project in Washington State. This contract, part of a joint venture with FlatironDragados, will be included in Aecon’s Construction segment backlog for the first quarter of 2026. Additionally, Aecon has expanded its presence in the U.S. by acquiring Duna Services, LLC and its subsidiaries for $60 million, with the deal financed through a revolving credit facility. Furthermore, Aecon has appointed Jeff Lyash to its Board of Directors, with plans for him to stand for election at the company’s Annual General Meeting in June 2026.Meanwhile, faced a downgrade from BMO Capital, which adjusted the company’s rating to Market Perform from Outperform, citing concerns over its earnings growth prospects. BMO Capital set a price target of $52.00, reflecting a cautious outlook on the real estate investment trust’s financial future. Despite this, Alexandria Real Estate announced a quarterly cash dividend of $0.72 per common share, payable in April 2026. These developments provide investors with a comprehensive view of recent activities and strategic decisions by both Aecon and Alexandria Real Estate. This article was generated with the support of AI and reviewed by an editor. For more information see our T&C.Is ARE a bargain right now?The fastest way to find out is with our Fair Value calculator. We use a mix of 17 proven industry valuation models for maximum accuracy.Get the bottom line for ARE plus thousands of other stocks and find your next hidden gem with massive upside.Flash Sale - Price Goes Up SoonMedirom Healthcare Technologies schedules annual shareholder meeting for May 29Latest commentsWinmark shareholders approve board size, elect directors and ratify auditorPublished 04/22/2026, 06:14 PMWinmark shareholders approve board size, elect directors and ratify auditor reported Wednesday that shareholders approved all proposals at the company’s annual meeting, according to a statement based on a recent SEC filing. Shareholders voted to set the number of board members at seven, with 3,137,000 votes in favor, 8,484 against, and 3,902 abstentions. There were no broker non-votes on this item. The election of directors saw all seven nominees elected to the board. The vote totals for each nominee were as follows:Brett D. Heffes: 2,976,305 votes for, 56,755 withheld, 116,326 broker non-votesLawrence A. Barbetta: 2,975,914 votes for, 57,146 withheld, 116,326 broker non-votesAmy C. Becker: 2,963,646 votes for, 69,414 withheld, 116,326 broker non-votesKeith T. Credendino: 2,980,791 votes for, 52,269 withheld, 116,326 broker non-votesPhilip I. Smith: 2,984,228 votes for, 48,832 withheld, 116,326 broker non-votesGina D. Sprenger: 2,964,275 votes for, 68,785 withheld, 116,326 broker non-votesPercy C. Tomlinson, Jr.: 2,981,279 votes for, 51,781 withheld, 116,326 broker non-votesShareholders also approved an advisory vote on executive compensation, with 2,929,354 votes in favor, 100,349 against, and 3,357 abstentions. There were 116,326 broker non-votes on this matter. The approval comes as Winmark has maintained dividend payments for 17 consecutive years, currently offering a 3.65% yield—though InvestingPro data suggests the stock may be overvalued at current levels. The appointment of Grant Thornton, LLP as Winmark’s independent registered public accounting firm for the 2026 fiscal year was ratified, receiving 3,119,355 votes for, 26,488 against, and 3,543 abstentions. There were no broker non-votes on this item.All information is based on a press release statement filed with the Securities and Exchange Commission.In other recent news, Winmark Corporation announced its quarterly earnings results, revealing a cash dividend of $0.96 per share, payable on March 2, 2026, to shareholders of record as of February 11, 2026. Furthermore, the company declared a subsequent quarterly dividend of $1.02 per share, set to be distributed on June 1, 2026, for shareholders on record by May 13, 2026. These dividends reflect the company’s ongoing commitment to returning value to its shareholders. Additionally, Winmark Corporation plans to introduce new fees for its franchise network starting September 1, 2026. This includes a monthly software fee of $295 per store, expected to generate about $400,000 monthly, which will be used for the support and modernization of its point-of-sale system. These developments indicate strategic changes within Winmark’s operational framework, aiming at enhancing technological infrastructure. This article was generated with the support of AI and reviewed by an editor. For more information see our T&C.See the trade on WINA, but can't pull the trigger?Most traders can read a chart. The hard part is the moment: entry window open, pattern forming, and you're still waiting for more confirmation. That's the conviction gap — and our chart analysis closes it. Unlike other AIs that just read data, our Vision AI literally "sees" your charts and hands you a complete trading plan: entry, stop-loss, and profit target in under 60 seconds. Know exactly what to do next, every time.Flash Sale - Price Goes Up SoonWinmark shareholders approve board size, elect directors and ratify auditorLatest commentsIndustry Spotlight
+"""
+
+[R8] A $4,000 Stock Is About to Become Affordable: Inside Booking’s Historic Split
+(https://finance.yahoo.com/markets/stocks/articles/4-000-stock-become-affordable-141559947.html)
+"""
+Booking Holdings (BKNG) is executing a historic 25-for-1 forward split effective April 2, 2026, with split-adjusted trading beginning April 6, reducing the share price from $4,117.51 to approximately $165 and broadening retail investor accessibility. Q4 2025 revenue grew 16.1% year-over-year to $6.349B, beating estimates, while full-year 2025 free cash flow reached $9.086B, up 15.1%, with management guiding for mid-teens adjusted EPS growth in 2026. Booking’s fundamentals are accelerating with strong Q4 results and a 9.4% dividend increase announced simultaneously with the split, though the stock pullback of 22.6% year-to-date reflects investor concerns about consumer sentiment weakness, geopolitical uncertainty, and AI disruption in the travel sector. A recent study identified one single habit that doubled Americans’ retirement savings and moved retirement from dream, to reality. Read more here. Booking Holdings (NASDAQ: BKNG) is days away from executing the largest stock split in its history. Split-adjusted trading begins April 6, 2026, following a board-approved 25-for-1 forward split effective April 2, 2026. For a stock that closed at $4,117.51 on March 30, the split will bring shares into a price range accessible to far more individual investors. After the dot-com bust, the company then known as Priceline executed a 1-for-6 reverse split to avoid delisting. The 25-for-1 forward split mirrors that dark chapter in reverse, reflecting a company that has grown into one of the world's largest travel platforms, operating Booking.com, Priceline, Agoda, KAYAK, and OpenTable across more than 220 countries and territories. Stock splits carry no fundamental change to a company's value. Every shareholder receives more shares at a proportionally lower price, leaving total holdings unchanged. The benefit is accessibility: lower per-share prices reduce barriers for retail investors, improve options market liquidity, and can broaden institutional index eligibility. Read: Data Shows One Habit Doubles American’s Savings And Boosts Retirement Most Americans drastically underestimate how much they need to retire and overestimate how prepared they are. But data shows that people with one habit have more than double the savings of those who don’t. Recent mega-cap splits offer a clear lesson: underlying business performance drives returns, not the split mechanics. Tesla fell nearly 20% in the year following its split. Amazon was essentially flat. Apple and Nvidia gained because their businesses were accelerating; the split was incidental. Simply Wall St April 3, 2026 3 min read In early April 2026, Booking Holdings executed its first-ever 25-for-1 stock split alongside reporting double‑digit quarterly revenue growth, a higher dividend, and ongoing board refresh with the appointment of former NXP CEO Kurt Sievers and the planned retirement of director Lynn Radakovich. Beyond the split, Booking’s push into pet-friendly travel through DogPack and its growing use of generative AI tools underline how technology and niche partnerships are reshaping its travel ecosystem. Next, we’ll consider how the 25-for-1 stock split and accompanying dividend increase may influence Booking Holdings’ existing investment narrative. The future of work is here. Discover the 33 top robotics and automation stocks leading the charge in AI-driven automation and industrial transformation. To own Booking, you need to believe that its asset light, global travel platform and Connected Trip vision can keep compounding through technology and partnerships, even as macro and geopolitical worries tug at demand. The 25 for 1 stock split and higher dividend do not change that thesis, but they do sharpen a near term catalyst around liquidity and investor attention, while key risks from softer consumer spending and region specific travel weakness remain broadly intact. Among the recent announcements, the DogPack partnership feels especially relevant because it shows how Booking is extending its reach into niche, high intent traveler communities. Embedding pet friendly stays directly into DogPack’s app sits neatly alongside catalysts like AI powered trip planning and alternative accommodations, giving Booking more touchpoints with travelers at the exact moment they are deciding where and how to book. But against that opportunity, investors still need to weigh growing concerns about U.S. consumers trading down and what that could mean for... Read the full narrative on Booking Holdings (it's free!) Booking Holdings' narrative projects $35.2 billion revenue and $10.4 billion earnings by 2029. This requires 9.4% yearly revenue growth and a $5.0 billion earnings increase from $5.4 billion today. Uncover how Booking Holdings' forecasts yield a $5802 fair value, a 38% upside to its current price. BKNG 1-Year Stock Price Chart Eight members of the Simply Wall St Community currently see Booking’s fair value between US$4,925 and about US$7,700, reflecting very different expectations for the business. As you weigh these views, it is worth setting them against the risk that weaker travel demand and more cautious spending could pressure both revenue growth and margins over time. Usman Kabir April 2, 2026 2 min read Booking Holdings Inc. (NASDAQ:BKNG) is one of the 15 Best Stocks to Buy According to Billionaire Ray Dalio. Booking Holdings Inc. (NASDAQ:BKNG) has been a major long-term bet of Bridgewater Associates since the middle of 2018. Back then, the position the fund held in the firm consisted of around 81,000 shares. However, this holding was sold off in the next few months. A new position was opened in 2021. Dalio gradually built up this stake, increasing it from 31,000 shares in 2021 to over 2 million shares at the end of the fourth quarter of 2025. The fund has made purchases of the stock in each of the last six quarters, with the major increase coming in the first quarter of 2025 during which the position was improved by over 100%. READ NEXT: 33 Stocks That Should Double in 3 Years. 5 Most Expensive Countries to Fly to Booking Holdings Inc. (NASDAQ:BKNG) is of interest to elite investors for several reasons, one of them being the 25-for-1 stock split scheduled for April 6, 2026. One important note for investors here is that although a split does not change fundamentals, hedge funds view it as a liquidity catalyst. It makes the stock more accessible to retail investors and improves options market liquidity, often leading to a valuation re-rating as the buyer pool expands. Hedge funds are also bullish on a shift by the firm toward the Merchant Model (where Booking processes the payment) over the traditional Agency model. This allows the company to hold onto cash longer and offer more integrated services. This transition helped drive a 16% year-over-year revenue increase to $6.35 billion in the most recent quarter, with an impressive net margin of 20%. While we acknowledge the potential of BKNG as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock. READ NEXT: 33 Stocks That Should Double in 3 Years and 15 Stocks That Will Make You Rich in 10 Years. Disclosure: None. Follow Insider Monkey on Google News. Vardah Gill Fri, April 17, 2026 at 9:38 PM EDT 1 min read Booking Holdings Inc. (NASDAQ:BKNG) is included among the 10 Fastest Growing Dividend Stocks to Buy Now. B. Riley Resets Booking (BKNG) PT after Split; Tigress Financial Raises Target on AI Momentum On April 10, Naved Khan of B. Riley adjusted the firm’s price recommendation on Booking Holdings Inc. (NASDAQ:BKNG) to $272 from $6,800. It maintained a Buy rating on the shares. The change reflects the company’s 25-to-1 stock split. On April 9, Tigress Financial raised its price target on Booking Holdings to $260 from $244 and maintained a Strong Buy rating. The firm said Booking is leading an AI-driven global travel rebound, supported by “resilient” demand and a “meaningful” World Cup tailwind. Tigress told investors that the company’s agentic AI tools and planners are reshaping travel loyalty and strengthening its position in the market. It added that these tools could help the company benefit from a World Cup-driven surge in travel demand this summer. The firm also said Booking Holdings’ Genius-AI flywheel supports an “unbreakable loyalty moat” and drives “significant” growth. Booking Holdings Inc. (NASDAQ:BKNG) provides online travel and restaurant reservation services. The company operates through five main consumer brands: Booking.com, Priceline, Agoda, KAYAK, and OpenTable. While we acknowledge the potential of BKNG as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock. READ NEXT: 10 Healthcare Stocks with Highest Dividends and Early Retirement Portfolio: Top 15 Stocks to Buy Disclosure: None. Follow Insider Monkey on Google News. MT Newswires April 6, 2026 Booking Holdings (BKNG) has an average rating of buy and mean price target of $227.60, according to Upgrade to read this MT Newswires article and get so much more. A Silver or Gold subscription plan is required to access premium news articles. Kayode Omotosho Mon, April 20, 2026 at 1:17 PM EDT 3 min read Over the last six months, Booking’s shares have sunk to $191.83, producing a disappointing 6.7% loss - a stark contrast to the S&P 500’s 5.8% gain. This might have investors contemplating their next move. Following the pullback, is this a buying opportunity for BKNG? Find out in our full research report, it’s free. Formerly known as The Priceline Group, Booking Holdings (NASDAQ:BKNG) is the world’s largest online travel agency. Analyzing the long-term change in earnings per share (EPS) shows whether a company's incremental sales were profitable – for example, revenue could be inflated through excessive spending on advertising and promotions. Booking’s EPS grew at 31.4% compounded annual growth rate over the last three years, higher than its 16.3% annualized revenue growth. This tells us the company became more profitable on a per-share basis as it expanded. Booking Trailing 12-Month EPS (Non-GAAP) If you’ve followed StockStory for a while, you know we emphasize free cash flow. Why, you ask? We believe that in the end, cash is king, and you can’t use accounting profits to pay the bills. Booking has shown terrific cash profitability, driven by its lucrative business model that enables it to reinvest, return capital to investors, and stay ahead of the competition while maintaining an ample cushion. The company’s free cash flow margin was among the best in the consumer internet sector, averaging an eye-popping 33.5% over the last two years. Booking Trailing 12-Month Free Cash Flow Margin Average revenue per booking (ARPB) is a critical metric to track because it not only measures how much users book on its platform but also the commission that Booking can charge. Booking’s ARPB growth has been mediocre over the last two years, averaging 3.6%. This isn’t great, but the increase in room nights booked is more relevant for assessing long-term business potential. We’ll monitor the situation closely; if Booking tries boosting ARPB by taking a more aggressive approach to monetization, it’s unclear whether bookings can continue growing at the current pace. Booking ARPB Booking has huge potential even though it has some open questions. After the recent drawdown, the stock trades at 13.5× forward EV/EBITDA (or $191.83 per share). Is now a good time to initiate a position? See for yourself in our comprehensive research report, it’s free. ONE MORE THING: Top 6 Stocks for This Week. This market is separating quality stocks from expensive ones fast. AI taking down whole sectors with no warning. In a rotation this fast, you need more than a list of good companies. Neha Panjwani April 14, 2026 2 min read Booking Holdings Inc. (BKNG), headquartered in Norwalk, Connecticut, is a leader in online travel and hospitality services, operating brands like Booking.com, Priceline, Agoda, Kayak, and OpenTable. Valued at $137.4 billion by market cap, the companyoffers a platform that allows to make travel reservations, as well as accommodation reservations, rentals cars, airline tickets, and vacation packages. The leading provider of online travel and related services is expected to announce its fiscal first-quarter earnings for 2026 after the market closes on Tuesday, Apr. 28. Ahead of the event, analysts expect BKNG to report a profit of $1.11 per share on a diluted basis, up 12.1% from $0.99 per share in the year-ago quarter. The company has consistently surpassed Wall Street’s EPS estimates in its last four quarterly reports. Stocks Recover as Oracle Leads Software Companies Higher Analysts Hike Their Micron Estimates, Pushing MU Stock Price Targets Higher Dear CoreWeave Stock Fans, Mark Your Calendars for April 14 Get exclusive insights with the FREE Barchart Brief newsletter. Subscribe now for quick, incisive midday market analysis you won't find anywhere else. For the full year, analysts expect BKNG to report EPS of $9.90, up 8.6% from $9.12 in fiscal 2025. Its EPS is expected to rise 16.4% year over year to $11.52 in fiscal 2027. www.barchart.com BKNG stock has underperformed the S&P 500 Index’s ($SPX) 28.4% gains over the past 52 weeks, with shares down 3.4% during this period. Similarly, it underperformed the State Street Consumer Discretionary Select Sector SPDR ETF’s (XLY) 20.1% returns over the same time frame. www.barchart.com BKNG's underperformance was driven by rising U.S.-Iran tensions creating a risk-off environment for global travel. With heavy exposure in Asia via Agoda and Europe, fears of regional instability, higher oil prices, and trip deferrals hit transaction volumes. In addition, the U.S. government shutdown uncertainty and the Fed policy concerns added to the pressure. Analysts’ consensus opinion on BKNG stock is bullish, with a “Strong Buy” rating overall. Out of 38 analysts covering the stock, 26 advise a “Strong Buy” rating, two suggest a “Moderate Buy,” and 10 give a “Hold.” BKNG’s average analyst price target is $230.80, indicating an ambitious potential upside of 30.2% from the current levels. On the date of publication, Neha Panjwani did not have (either directly or indirectly) positions in any of the securities mentioned in this article. All information and data in this article is solely for informational purposes. This article was originally published on Barchart.com Sean Williams, The Motley Fool April 8, 2026 4 min read Although artificial intelligence (AI) has been dominating the headlines on Wall Street for years, it's not the only trend that's powered the Dow Jones Industrial Average, S&P 500, and Nasdaq Composite to new heights. Investor excitement surrounding stock splits has been an important catalyst for the broader market. Last week, the first true blockbuster stock split of 2026 took place. Booking Holdings (NASDAQ: BKNG), the parent company of Booking.com, Priceline, Kayak, and OpenTable, completed a mammoth 25-for-1 forward split and reduced its nominal share price from nearly $4,200 to around $168. Will AI create the world's first trillionaire? Our team just released a report on the one little-known company, called an "Indispensable Monopoly" providing the critical technology Nvidia and Intel both need. Continue » Investors won't have to wait long for the next blockbuster stock splits to take shape, courtesy of one of the world's largest issuers of exchange-traded funds (ETFs), Vanguard. Image source: Getty Images. An ETF contains a basket of securities that trades like a stock on an exchange and allows investors to diversify or concentrate their capital with a single purchase. If you want to own growth stocks, income stocks, large-, mid-, or small-cap companies, European stocks, or focus on a particular sector or industry, there's an ETF for that. Vanguard offers 113 ETFs in the U.S., many of which feature net expense ratios below the industry average. If investors can hang onto more of their invested capital instead of it going toward management fees, they're more likely to choose Vanguard's ETFs as their investment vehicle. On March 24, Vanguard announced that five of its U.S. ETFs, with a combined $724 billion in net assets, would undergo forward stock splits after the close of trading on April 20. This includes the: Vanguard Growth ETF (NYSEMKT: VUG): 6-for-1 forward split Vanguard Mega Cap Growth ETF (NYSEMKT: MGK): 5-for-1 forward split Vanguard S&P 500 Growth ETF (NYSEMKT: VOOG): 6-for-1 forward split Vanguard Mid-Cap ETF (NYSEMKT: VO): 4-for-1 forward split Vanguard Information Technology ETF (NYSEMKT: VGT): 8-for-1 forward split The logical reason for Vanguard to conduct stock splits for these five ETFs is their storied track record of outperformance. Since their respective inceptions in January 2004, the Vanguard Mid-Cap ETF has gained 488%, while the tech- and AI-driven Vanguard Information Technology ETF has rallied approximately 1,360%.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,108 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch lakers vs oklahoma city thunder"
+
+Claims:
+[1] "The Los Angeles Lakers vs. Oklahoma City Thunder game is on April 2, 2026."
+[2] "The Los Angeles Lakers vs. Oklahoma City Thunder game on April 2, 2026 starts at 9:30 p.m. ET."
+[3] "The Los Angeles Lakers vs. Oklahoma City Thunder game on April 2, 2026 starts at 8:30 p.m. CT."
+[4] "The Los Angeles Lakers vs. Oklahoma City Thunder game on April 2, 2026 is played at the Paycom Center in Oklahoma City."
+[5] "The Los Angeles Lakers vs. Oklahoma City Thunder game on April 2, 2026 is available to stream on Amazon Prime Video."
+[6] "The Los Angeles Lakers vs. Oklahoma City Thunder game on April 2, 2026 can be watched on Spectrum SportsNet LA for local Lakers fans."
+[7] "The Los Angeles Lakers vs. Oklahoma City Thunder game on April 2, 2026 is on Thursday."
+[8] "Local TV for Lakers fans of the Los Angeles Lakers vs. Oklahoma City Thunder game on April 2, 2026 is Spectrum SportsNet."
+[9] "Prime Video apps for the Los Angeles Lakers vs. Oklahoma City Thunder game on April 2, 2026 are accessible on smart TVs, mobile devices, or the website."
+
+Cited text snippets from the AI Overview (for additional context):
+- Thunder vs Lakers live updates: Shai Gilgeous-Alexander, OKC host Luka Doncic, Los Angeles: "What time is Thunder vs,stat voters shouldn't overlook"
+- Watch and Listen - NBA: "Spectrum SportsNet+ is a 24,the Lakers local broadcast territory.&text=The national broadcast partners of,TNT, ESPN and NBA TV."
+- Watch Lakers vs. Thunder: "Prime members can watch NBA,NBA games on Prime Video."
+- Watch Lakers vs. Thunder for free today with Prime Video - AL.com: "Fans can watch this game,of its last 10 games."
+- Jared McCain ready to rock in OKC Watch Lakers-Thunder on ...: "Jared McCain ready to rock in OKC,Prime Video, coverage starts at 9:30PM ET."
+Reference Sources:
+
+[R1] Thunder vs Lakers highlights: Shai Gilgeous-Alexander, OKC roll past Luka Doncic, LA
+(https://www.oklahoman.com/story/sports/nba/thunder/2026/04/02/thunder-vs-lakers-live-updates-game-time-tv-channel-streaming/89435883007/)
+"""
+April 2, 2026Updated April 3, 2026, 1:33 a.m. CTUPDATE: Shai Gilgeous-Alexander scored 28 points and the OKC Thunder routed the Los Angeles Lakers 139-96 at Paycom Center on Thursday.Shai Gilgeous-Alexander and the OKC Thunder will host Luka Doncic and the Los Angeles Lakers at 8:30 p.m. CT Thursday.OKC (60-16) fended off the Detroit Pistons for a 114-110 overtime home win on Monday. Los Angeles (50-26) secured a 127-113 home win over the Cleveland Cavaliers on Tuesday.Follow along for live updates throughout tonight's Thunder-Lakers game:Order new book on Thunder's run to NBA titleThunder vs Lakers score updates[ LISTEN UP: Make the "Thunder Buddies" podcast a staple of your starting lineup by following onApple,Spotify andYouTube. ]Final: Thunder 139, Lakers 96 | OKC stays two games up in loss column on Spurs in NBA playoff raceShai Gilgeous-Alexander: 28 points, 7 assists and 7 boardsIsaiah Joe: 20 points and 1 stealLu Dort: 14 points and 2 stealsOKC improves to 61-16 with a convincing victory.End of the third quarter: Thunder 112, Lakers 67 | SGA, OKC making statement as NBA playoff race heats upShai Gilgeous-Alexander: 28 points, 7 assists and 7 boardsIsaiah Joe: 17 points and 1 stealLu Dort: 14 points and 2 stealsLu Dort exits Thunder-Lakers game after hard fallOKC Thunder guard Lu Dort exited the third quarter of a home game against the Los Angeles Lakers on Thursday.Dort attempted a layup with 7:19 on the clock and took a hard fall. He eventually got on his feet but checked out of the game and went into the locker room for further evaluation.Dort has recorded 14 points and two steals in 21 minutes. He has gone 5 for 8 from the field (4 for 6 from deep).An update on Dort’s status for the rest of the game has not yet been provided. OKC holds a 90-60 lead over Los Angeles.—Justin Martinez, Staff writerLuka Donic exits Lakers-Thunder game with apparent leg injuryLuka Doncic exited the Los Angeles Lakers' game against the OKC Thunder with an apparent leg injury Thursday night at Paycom Center.Doncic appeared to tweak his left ankle or hamstring mid play before walking toward the baseline and laying down. The injury occurred with 7:39 remaining in the third quarter as the Lakers trailed OKC 90-58.Doncic previously had been grabbing at his left hamstring before Los Angeles went into the halftime break trailing by 31.Doncic went into the locker room with 12 points, seven assists and four rebounds.—Jordan Davis, Staff writerHalftime: Thunder 82, Lakers 51 | SGA extends 20-point streakShai Gilgeous-Alexander: 21 points and 5 assistsLu Dort: 14 points and 2 stealsJalen Williams: 10 points, 6 assists and 6 boardsOKC is enforcing its will on both ends of the floor.8:14 left in second quarter: Thunder 56, Lakers 24 | LeBron James, Los Angeles in big troubleOKC has a 56-24 lead over LA with 8:14 left until halftime. Still a lot of basketball to be played, but it feels like there are clear levels to championship contenders. The Lakers have looked good lately, but they aren't on the same level as the Thunder.End of the first quarter: Thunder 44, Lakers 21 | OKC routing Los Angeles early in key game for NBA playoff raceLu Dort: 14 points and 2 stealsShai Gilgeous-Alexander: 8 points and 4 assistsJaylin Williams: 6 points and 4 reboundsOKC is shooting 63% from the field and 63.6% from deep. Complete dominance against a good LA team. Lakers starting lineup tonight vs. ThunderHere are the Los Angeles Lakers' starters vs. OKC:Luka DoncicAustin ReavesJake LaRaviaLeBron JamesDeandre Ayton Thunder starting lineup tonight vs. LakersHere are OKC's starters vs. the Los Angeles Lakers:Shai Gilgeous-AlexanderJalen WilliamsLu DortChet HolmgrenIsaiah Hartenstein What time is Thunder vs Lakers game tonight?Date: Thursday, April 2Time: 8:30 p.m. CTWhere: Paycom Center in Oklahoma CityWatch Thunder vs Lakers live on FuboWhat channel is OKC Thunder vs Los Angeles Lakers on tonight?Streaming: Prime Video (how to watch)Thunder vs Lakers predictions, picksJustin Martinez: OKC 117, Los Angeles 113Los Angeles is playing great basketball right now, and its defense has seemingly turned around. But it'll be tested against an OKC offense that has plenty of weapons. Shai Gilgeous-Alexander is one of the most unguardable players in basketball. Jalen Williams is a downhill threat. Chet Holmgren is a floor-spacing five. And the Thunder's bench has spark plugs such as Ajay Mitchell, Isaiah Joe, Jaylin Williams and Jared McCain. I think it'll all be too much for Los Angeles to contain, so give me OKC at home.Thunder vs Lakers betting oddsOdds via BetMGM as of Thursday, April 2Odds: Thunder by 8.5Over/under: 227.5Moneyline: OKC -350 | Los Angeles +280Thunder vs Lakers injury updatesThunder: Alex Caruso (illness) is questionable. Thomas Sorber (right ACL surgical recovery) is out.Lakers: Kobe Bufkin (G League assignment) is out. Dalton Knecht (G League assignment) is out. Marcus Smart (right ankle contusion) is out. Adou Thiero (G League assignment) is out.Projected OKC Thunder startersShai Gilgeous-AlexanderJalen WilliamsLu DortChet HolmgrenIsaiah HartensteinProjected Los Angeles Lakers startersLuka DoncicAustin ReavesJake LaRaviaLeBron JamesDeandre AytonJustin Martinez covers the Thunder and NBA for The Oklahoman. Have a story idea for Justin? He can be reached at jmartinez@oklahoman.com or on X/Twitter at @Justintohoops. Sign up for the Thunder Sports Minute newsletter to access more NBA coverage. Support Justin's work and that of other Oklahoman journalists by purchasing a digital subscription today at subscribe.oklahoman.com.
+"""
+
+[R2] Watch Lakers vs. Thunder
+(https://www.amazon.com/Lakers-vs-Thunder/dp/B0FNCW9MYB)
+"""
+GAME RECAPApr 2, 2026Paycom CenterHighlights and bonus content GAME RECAPLakers vs. Thunder: Game highlightsHIGHLIGHTFilm Room 4/2: Thunder Lockdown DefensePOSTGAMEWatch with a subscription Sports for you Questions & answersWhich NBA games can I watch on Prime Video?Prime members can watch NBA on Prime games throughout the regular season for no additional fees, including the semifinals and championship games of the Emirates NBA Cup, plus every game of the SoFi Play-In Tournament and select playoff games. Additional NBA games are available via add-on subscriptions to NBA League Pass, Peacock, or Fox Sports One.How can I find NBA games on Prime Video?To find NBA games, go to the Prime Video app on your TV, computer, or mobile device, and you’ll see games on your homepage in Sports carousels, the Sports page, or the NBA League page. You can also search NBA, team names, or a specific game.On which devices can I watch NBA games on Prime Video?NBA games are available on Amazon devices such as the Fire TV and Fire tablet, connected TVs, web browsers, and on more than 650 connected devices via the Prime Video app. Click here to see the full list of supported devices.Can I record, fast forward, and rewind NBA games on Prime Video?Rewind, pause and fast forward functions are available for Android/iOS Mobile, Web (Chrome, Firefox, Edge), Fire TV, Apple TV (Gen 3 and latest) and select Smart TVs.I still need help watching NBA games on Prime Video.If you see "this video is unavailable" or "unavailable due to regional restrictions" that means the game isn't available in your area due to regional or national broadcast rights for that specific game. If you see "enable location for event availability" on mobile devices, location services might be turned off. To fix this, go to your device's settings and turn on location services for Prime Video. If you have anti-virus software, make sure it doesn't block Prime Video from accessing location services. If you see "Home region verification required", please sign in to Prime Video using a device in your home region to verify your location and continue streaming.See more questions and answersFeedback
+"""
+
+[R3] Lakers-Thunder free livestream: Where to watch NBA game today, TV, time
+(https://www.al.com/tv/2026/04/lakers-thunder-free-livestream-where-to-watch-nba-game-today-tv-time.html)
+"""
+Los Angeles Lakers guard Luka Doncic, right, smiles at Boston Celtics guard Hugo Gonzalez, left, during the first half of an NBA basketball game, Sunday, Feb. 22, 2026, in Los Angeles. (AP Photo/Katie Chin)APIf you purchase a product through a link on our site, we may receive compensation.By Thomas Lagrone | tlagrone@al.comThe Los Angeles Lakers play against the Oklahoma City Thunder in an NBA game today. The matchup is scheduled to begin at 8:30 p.m. CT on Prime Video. Fans can watch this game for free online by using the free trial offered by Prime Video.The Lakers enter this matchup with a 50-26 record, making them the third-best team in the Western Conference. Notably, the team has won nine of its last 10 games. In their most recent game, the Lakers knocked off the Cleveland Cavaliers 127-113. In order to win the NBA game today, the Lakers will need to rely on their star guard Luka Doncic. He leads the team in assists and averages nearly 34 points per game. The Thunder enter this matchup with a 60-16 record, making them the best team in the Western Conference. The Oklahoma City squad has won three consecutive games, and the team is coming off a 114-110 win against the Detroit Pistons. In order to win this game, the Thunder will need a great performance from their guard Shai Gilgeous-Alexander. He averages nearly 32 points per game, which leads the team. Fans can watch this NBA game for free online by using the free trial offered by Prime Video.Where to watch Braves-Phillies MLB game for free todayPFL Belfast: Kelly vs. Wilson fight free livestream, TV, timeWhere to watch Dodgers-Mets MLB game for free todayWhere to watch Clippers vs. Warriors NBA Play-In Tournament for free todayWhere to watch Yankees vs. Angels MLB game for free todayThomas Lagrone is an Alabama native and recent graduate from the University of Alabama at Birmingham with a bachelor's degree in sports communication. Thomas has loved participating in and watching sports...
+"""
+
+[R4] How to watch Lakers vs. Thunder: TV channel and streaming options for April 2
+(https://www.nytimes.com/athletic/7167256/2026/04/02/lakers-vs-thunder-stream-how-to-watch-april-2/)
+"""
+Two of the NBA’s best scorers hit the court when Shai Gilgeous-Alexander (second, 31.6 points per game) and the Oklahoma City Thunder (60-16) host Luka Doncic (first, 33.8) and the Los Angeles Lakers (50-26) on April 2, 2026 on Amazon Prime Video and SportsNet LA.How to watch Los Angeles Lakers vs. Oklahoma City Thunder Venue: Paycom Center Time: 9:30 p.m. ET TV: Amazon Prime Video, SportsNet LA Watching in person? Get tickets on StubHub. Los Angeles vs. Oklahoma City odds Spread: Oklahoma City -9.5 (-105), Los Angeles +9.5 (-105) Favorite Moneyline: Oklahoma City -375 Underdog Moneyline: Los Angeles +300 Total: 232.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsThunderThomas Sorber: Out For Season (Knee), Alex Caruso: Questionable (Illness)LakersMarcus Smart: Out (Ankle)Stats to know The 118.6 points per game the Thunder record are only 3.9 more points than the Lakers surrender (114.7). The Lakers’ 116.8 points-per-game average is 9.2 more points than the 107.6 the Thunder allow. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R5] Watch and Listen
+(https://www.nba.com/lakers/broadcast/watch-listen)
+"""
+Watch & ListenThe information you need to catch your Lakers live.Tap To WatchHomeSaturdayApr 185:30 PM PDTCrypto.com ArenaLos Angeles, CAVSHoustonRocketsWatch GameBuy TicketsABCESPN Radio, SiriusXMLakers games are broadcast locally on Spectrum SportsNet. All Lakers games will be broadcast on Spectrum SportsNet, except those games blacked out for national broadcasts. Find even more Lakers content including replays, Backstage Lakers and more on the Spectrum Schedule.Find My ChannelStream the Lake Show on Spectrum SportsNet+ in the NBA App.Spectrum SportsNet+ is a 24/7 digital stream of Spectrum SportsNet that is available to fans without a cable or satellite subscription living in the Lakers local broadcast territory.Buy NowLearn MoreThe national broadcast partners of the NBA are ABC, TNT, ESPN and NBA TV. To find your TV options for a specific game, check our schedule page.Game ScheduleFor fans outside of the United States, click below to find broadcast options within your market.Global BroadcastersStreaming and OnlineNBA League PassFor out of market viewing use NBA League Pass. League Pass has new options this year, including Single Game or Team Pass and is also available on Apple TV.Show MeNBA Audio League PassListen to live games for all teams with just one subscription.Show MeGlobal League PassStream games from around the globe with Global NBA League PassShow MeListen to Your Team PlayThe Lakers flagship radio station is ESPN LA 710. The Lakers Radio Network provides coverage of Lakers games across the Southland as well as parts of HI and NM.Listen in SpanishKWKW 1330 AM is our Spanish language radio flagship serving the Los Angeles area.Radio AffiliatesKGB 760AM - San Diego, CAKXPS 102.7FM - Palm Springs, CAKIKI 990AM - Honolulu, HIKFIG 1430AM / 790AM - Fresno, CAKHTY 990AM / 800AM - Bakersfield, CAKSZL 1230AM - Barstow, CAKMET 1490AM / 98.1FM - Banning, CAKXTK 1280AM / 101.7FM - San Louis Obispo, CAKYVA 1230AM / 98.3FM - Gallup, NMKVGQ 106.9FM - Las Vegas, NVBroadcast CrewMeet the ones that bring the game to life. Learn about your Lakers Broadcast team on TV and English and Spanish language radio.Meet the TeamYour Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I Understand
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

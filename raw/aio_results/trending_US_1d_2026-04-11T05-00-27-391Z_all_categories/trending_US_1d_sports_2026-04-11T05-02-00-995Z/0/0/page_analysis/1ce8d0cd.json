@@ -1,0 +1,51 @@
+{
+  "url": "https://en.wikipedia.org/wiki/Signed_zero",
+  "domain": "en.wikipedia.org",
+  "source_type": "aio_reference",
+  "scraped_at": "2026-04-16T10:51:56.957Z",
+  "content": {
+    "title": "Signed zero",
+    "text": "From Wikipedia, the free encyclopedia Signed zero is zero with an associated sign. In ordinary arithmetic, the number 0 does not have a sign, so that −0, +0 and 0 are equivalent. However, in computing, some number representations allow for the existence of two zeros, often denoted by −0 (negative zero) and +0 (positive zero), regarded as equal by the numerical comparison operations but with possible different behaviors in particular operations. This occurs in the sign–magnitude and ones' complement signed number representations for integers, and in most floating-point number representations. The number 0 is usually encoded as +0, but can still be represented by +0, −0, or 0. The IEEE 754 standard for floating-point arithmetic (presently used by most computers and programming languages that support floating-point numbers) requires both +0 and −0. Real arithmetic with signed zeros can be considered a variant of the extended real number line such that ⁠1/−0⁠ = −∞ and ⁠1/+0⁠ = +∞; division is undefined only for ⁠±0/±0⁠ and ⁠±∞/±∞⁠. Negatively signed zero echoes the mathematical analysis concept of approaching 0 from below as a one-sided limit, which may be denoted by x → 0−, x → 0−, or x → ↑0. The notation \"−0\" may be used informally to denote a negative number that has been rounded to zero. The concept of negative zero also has some theoretical applications in statistical mechanics and other disciplines. It is claimed that the inclusion of signed zero in IEEE 754 makes it much easier to achieve numerical accuracy in some critical problems,[1] in particular when computing with complex elementary functions.[2] On the other hand, the concept of signed zero runs contrary to the usual assumption made in mathematics that negative zero is the same value as zero. Representations that allow negative zero can be a source of errors in programs, if software developers do not take into account that while the two zero representations behave as equal under numeric comparisons, they yield different results in some operations. Binary integer formats can use various encodings. In the widely used two's complement encoding, zero is unsigned. In a 1+7-bit sign-and-magnitude representation for integers, negative zero is represented by the bit string 1000 0000. In an 8-bit ones' complement representation, negative zero is represented by the bit string 1111 1111. In all these three encodings, positive or unsigned zero is represented by 0000 0000. However, the latter two encodings (with a signed zero) are uncommon for integer formats. The most common formats with a signed zero are floating-point formats (IEEE 754 formats or similar), described below. Negative zero by IEEE 754 representation in binary32 In IEEE 754 binary floating-point formats, zero values are represented by the biased exponent and significand both being zero. Negative zero has the sign bit set to one. One may obtain negative zero as the result of certain computations, for instance as the result of arithmetic underflow on a negative number (other results may also be possible), or −1.0 × 0.0, or simply as −0.0. In IEEE 754 decimal floating-point formats, a negative zero is represented by an exponent being any valid exponent in the range for the format, the true significand being zero, and the sign bit being one. Properties and handling[edit] The IEEE 754 floating-point standard specifies the behavior of positive zero and negative zero under various operations. The outcome may depend on the current IEEE rounding mode settings. In systems that include both signed and unsigned zeros, the notation and is sometimes used for signed zeros. Addition and multiplication are commutative, but there are some special rules that have to be followed, which mean the usual mathematical rules for algebraic simplification may not apply. The sign below shows the obtained floating-point results (it is not the usual equality operator). The usual rule for signs is always followed when multiplying or dividing: There are special rules for adding or subtracting signed zero: Because of negative zero (and also when the rounding mode is upward or downward), the expressions −(x − y) and (−x) − (−y), for floating-point variables x and y, cannot be replaced by y − x. However (−0) + x can be replaced by x with rounding to nearest (except when x can be a signaling NaN). Some other special rules: Division of a non-zero number by zero sets the divide by zero flag, and an operation producing a NaN sets the invalid operation flag. An exception handler is called if enabled for the corresponding flag. According to the IEEE 754 standard, negative zero and positive zero should compare as equal with the usual (numerical) comparison operators, like the == operators of C and Java. In those languages, special programming tricks may be needed to distinguish the two values: Type punning the number to an integer type, so as to look at the sign bit in the bit pattern; using the ISO C copysign() function (IEEE 754 copySign operation) to copy the sign of the zero to some non-zero number; using the ISO C signbit() macro (IEEE 754 isSignMinus operation) that returns whether the sign bit of a number is set; taking the reciprocal of the zero to obtain either ⁠1/+0⁠ = +∞ or ⁠1/−0⁠ = −∞ (if the division by zero exception is not trapped). Note: Conversion to integral type will not usually work, since almost all systems use two's complement signed integers, which only have one representation of zero. And even when the representation has two zeros, the language, like ISO C, may not provide means to distinguish them. However, some programming languages may provide alternative comparison operators that do distinguish the two zeros. This is the case, for example, of the equals method in Java's Double wrapper class.[4] Informally, one may use the notation \"−0\" for a negative value that was rounded to zero. This notation may be useful when a negative sign is significant; for example, when tabulating Celsius temperatures, where a negative sign means below freezing. In statistical mechanics[edit] In statistical mechanics, one sometimes uses negative temperatures to describe systems with population inversion, which can be considered to have a temperature greater than positive infinity, because the coefficient of energy in the population distribution function is ⁠−1/Temperature⁠. In this context, a temperature of −0 is a (theoretical) temperature larger than any other negative temperature, corresponding to the maximum conceivable extent of population inversion, the opposite extreme to +0.[5] Line with two origins Extended real number line ^ Kahan, William. \"Branch Cuts for Complex Elementary Functions, or Much Ado About Nothing's Sign Bit\" (PDF). people.freebsd.org. Archived (PDF) from the original on 2025-06-10. Retrieved 2025-09-16. ^ William Kahan, Derivatives in the Complex z-plane, p. 10. ^ Cowlishaw, Mike (7 April 2009). \"Decimal Arithmetic: Arithmetic operations – square-root\". speleotrove.com (IBM Corporation). Retrieved 7 December 2010. ^ \"Double\". Java™ Platform, Standard Edition 6 API Specification. Oracle Help Center. Archived from the original on Aug 4, 2009. ^ Kittel, Charles and Herbert Kroemer (1980). Thermal Physics (2nd ed.). W. H. Freeman and Company. p. 462. ISBN 0-7167-1088-9. \"Floating point types\". MSDN C# Language Specification. Archived from the original on Dec 6, 2005. Retrieved 15 October 2005. \"Division operator\". MSDN C# Language Specification. Archived from the original on Nov 21, 2005. Retrieved 15 October 2005. Thomas Wang (September 2000) [March 2000]. \"Java Floating-Point Number Intricacies\". Archived from the original on 2005-09-21. Mike Colishaw (28 July 2008). \"Decimal Arithmetic Specification, version 1.68\". Speleotrove. Retrieved 2008-08-14. – a decimal floating-point specification that includes negative zero Michael Ingrassia. \"Fortran 95 SIGN Change\". Sun Developer Network. Retrieved October 15, 2005. – the changes in the Fortran SIGN function in Fortran 95 to accommodate negative zero \"JScript data types\". MSDN JScript. Retrieved October 16, 2005. – JScript's floating-point type with negative zero by definition Venners, Bill (October 1, 1996). \"Floating-point arithmetic\". Learn Java. JavaWorld. Under the Hood. Retrieved 2020-07-14. – representation of negative zero in the Java virtual machine Bruce Dawson (25 February 2012). \"Comparing floating point numbers, 2012 Edition\". – how to handle negative zero when comparing floating-point numbers John Walker. \"Minus Zero\". UNIVAC Memories. Retrieved October 17, 2005. – one's complement numbers on the UNIVAC 1100 family computers",
+    "word_count": 1352,
+    "extraction_method": "readability"
+  },
+  "ad_metrics": {
+    "iframe_ad_count": 0,
+    "total_iframes": 0,
+    "flagged_urls": []
+  },
+  "prebid": {
+    "pbjs_global_found": false,
+    "prebid_version": null,
+    "bid_adapters": [],
+    "bid_adapter_count": 0,
+    "config_summary": {
+      "bidder_timeout": null,
+      "price_granularity": null,
+      "enable_send_all_bids": null,
+      "currency": null
+    },
+    "bid_responses": [],
+    "winning_bids": [],
+    "ad_unit_summary": {
+      "total_ad_units": 0,
+      "units_with_bids": 0,
+      "total_bids": 0,
+      "avg_winning_cpm": 0,
+      "max_cpm": 0,
+      "estimated_page_rpm": 0
+    },
+    "hb_targeting_keys_found": [],
+    "alternatives": {
+      "amazon_tam": false,
+      "amazon_apstag_found": false,
+      "google_open_bidding": false
+    },
+    "prebid_script_urls": [],
+    "detected": false
+  },
+  "snapshots": {
+    "html": "page_analysis/1ce8d0cd.html"
+  },
+  "error": null
+}

@@ -1,0 +1,117 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "final four concert"
+
+Claims:
+[1] "The 2026 March Madness Music Festival is in Indianapolis."
+[2] "The 2026 March Madness Music Festival is on April 3–4."
+[3] "The 2026 March Madness Music Festival features free concerts at American Legion Mall."
+[4] "Zac Brown Band performs at the 2026 March Madness Music Festival."
+[5] "Post Malone performs at the 2026 March Madness Music Festival."
+[6] "The Chainsmokers perform at the 2026 March Madness Music Festival."
+[7] "The 2026 March Madness Music Festival includes the AT&T Block Party."
+[8] "The 2026 March Madness Music Festival includes Coca-Cola Live!."
+
+Cited text snippets from the AI Overview (for additional context):
+- Post Malone and more play free March Madness concerts. See date, times: "2:30 p.m. — Event opens,at the Indiana Roof Ballroom."
+- Final Four music festival delayed due to weather: "Jen Guadarrama Marissa Meador,Weather Service in Indianapolis cautions."
+- March Madness Music Festival - NCAA.com: "Past headliners who have celebrated,, Pitbull, and many others…"
+Reference Sources:
+
+[R1] The Chainsmokers performed between Final Four games; is that a good idea?
+(https://sports.yahoo.com/articles/chainsmokers-performed-between-final-four-014812014.html)
+"""
+The Chainsmokers performed between Final Four games; is that a good idea?INDIANAPOLIS -- The NCAA Tournament featured a musical act between the Final Four games at Lucas Oil Stadium and social media was not in favor.The concert was broadcast and is an effort to appeal to more casual fans.Advertisement"It's an event our clients are asking us for now," Dave Aussenberg, a music sponsorship agent at CAA, said of the musical roster with March Madness in Hollywood Reporter. "When the festival was first conceptualized, it was a nice-to-have complement to a weekend of basketball, but it's growing so much. ... People want entertainment, they want to make a weekend out of an event like this."The reviews of playing the college basketball semifinals and national championship received mixed reviews.1 / 11The Chainsmokers perform between Final Four games in IndianapolisThe Chainsmokers perform Saturday, April 4, 2026, between Final Four games at Lucas Oil Stadium in Indianapolis.2 / 11See our favorite photos of NCAA Final Four weekend in IndianapolisThe Chainsmokers perform Saturday, April 4, 2026, between Final Four games at Lucas Oil Stadium in Indianapolis.11 / 11The Chainsmokers perform between Final Four games in IndianapolisThe Chainsmokers perform Saturday, April 4, 2026, between Final Four games at Lucas Oil Stadium in Indianapolis.I still like the Final Four in football stadiums because it gets a lot more real fans in the door. Smaller setups mean a greater percentage of celebrities and neutrals who don't really care, pricing out fans. https://t.co/c2iJifZBMA— Chris Vannini (@ChrisVannini) April 4, 2026Maybe a hot take but I kinda like it?Lucas Oil is packed to the brim and very loud (shoutout Illinois fans). If they can sell it out, I don’t see the issue.Imagine the tickets prices for tonight if it was in an NBA arena. https://t.co/akJduZamDO— Adam Hammer (@adamhhammer) April 4, 2026Nothing against the people performing, and it’s just my opinion, but….Dear NCAA,We don’t need or want a concert between the two semifinal games. Put the appropriate time on the clock, let the teams warm up and play ball! Thank you!— Robert Brost (@brookhoops) April 5, 2026This article originally appeared on Indianapolis Star: Final Four: Social media, fans react to Chainsmokers, Lucas Oil Stadium
+"""
+
+[R2] Visit Indy | Visit Indy
+(https://www.visitindy.com/events/march-madness-music-festival/)
+"""
+Home 404 Page Not Found Well, this is embarrassing. Apparently the page you’re looking for is undergoing maintenance or is not longer available. Please check the link for accuracy, view our sitemap, or visit our homepage. Experience Builder Sign Up for the Weekend Five Get five top events sent to your inbox every Thursday morning. Navigation Things to DoIndy Attraction PassTrip IdeasSpring BreakModern FamiliesFanaticsTrip Ideas for FoodiesNature LoversHistory BuffsUrban AdventurersCultural ConnoisseursBucket ListersRomanticsBlack Culture in IndyGolf GetawaysNight OwlsDay TripsFall Trip IdeasHoliday Trip IdeasTop Ten ListsTop Ten Family FunTop Ten Sports ExperiencesTop Ten Live Music VenuesTop Ten Shopping DestinationsTop Ten Walk Run BikeTop Ten Places for PamperingTop Ten Places for a Night OutTop Ten Outdoor SpacesTop Ten Hidden GemsTop Ten Art-Inspired OutingsFree Things To Do In IndyMuseums & AttractionsThe Children's Museum of IndianapolisConner PrairieEiteljorg MuseumIndiana Historical SocietyIndiana State MuseumIndianapolis Motor Speedway MuseumIndianapolis ZooNewfieldsNDY SculpturesMonuments & MemorialsArts & CultureTheatre GuideArt GalleriesMovies & FilmGaming & ArcadesOutdoor RecreationGreater Indy TrailwaysWhite River State ParkGolf CoursesParks & PlaygroundsRunning & BikingSPARK On the CircleWater Parks & PoolsSportsIndy RacingIndianapolis Colts FootballIndiana PacersIndiana FeverIndianapolis IndiansIndy ElevenIndy IgniteIndy FuelMusic & NightlifeComedy ClubsLive MusicFamily & YouthTop Family AttractionsKid-Friendly RestaurantsCouplesRomantic GetawayUnique DatesLGBTQ+LGBTQ+ Local GuideLGBTQ+ NightlifeLGBTQ+ Three Day WeekendIndy TAG Approved HotelsBlack CultureBlack-Owned RestaurantsBlack HistoryMarhsall Major TaylorDog FriendlyShoppingIndianapolis BookstoresFarmers MarketsBoutiquesLuxury ShoppingToursEventsAmerica's 250th in IndyThe Weekend 5Annual Events & FestivalsSpend Labor Day Weekend in IndySummer FestivalsIndiana State FairFall FestivalsHalloweenHolidaysIndianapolis 500-Mile RaceJuneteenthIndy Pride Parade & FestivalIBE Summer CelebrationFourth of JulySports EventsIndianapolis 500-Mile RaceNCAA BasketballNFL Scouting CombineBig Ten Football ChampionshipHolidaysHoliday Trip IdeasHoliday AttractionsHoliday PerformancesWhere to See Holiday LightsHoliday Adventure PassLocal Holiday Gift GuideNew Year's Eve in IndyConcerts & Live MusicFood & Drink EventsArts & Culture EventsBUTTER Fine Art FairPenrod Arts FairBroad Ripple Art FairTalbot Street Art FairFirst FridaysFamily FriendlySubmit Your EventIndy Neighborhood Event ToolkitRestaurantsIndy's 25 Best RestaurantsFeaturesTrip Ideas for FoodiesDowntown RestaurantsBrunchOutdoor DiningAs Seen on TVIconic EatsGroup DiningBlack-Owned RestaurantsKid-Friendly RestaurantsBeveragesIndy Craft PassCoffee Shops in IndyBreweries in IndyWineries in IndyDistilleries in IndyCraft Cocktails in IndianapolisHotel Bars in IndyIndy Sports BarsBuzz-Free Drinks in IndyFood GuidesDonuts in IndyIce Cream in IndyFood HallsFood TrucksVegan & VegetarianFarm-To-TablePizza in IndySteakhousesLate Night BitesSweet TreatsHotelsFamily Fun PackageIndianapolis Hotel FeaturesDowntown Indianapolis HotelsNear Indianapolis AirportNear Indianapolis Convention CenterTAG Approved HotelsRomantic HotelsWith PoolsPet FriendlyExtended StayCampgrounds & RV ParksBed & BreakfastsNeighborhoodsIndy Experience HubsBottleworks IndyThe StutzFactory Arts District16 TechBroad Ripple VillageFountain-FletcherIndiana AvenueMass AveWholesale DistrictIrvingtonGarfield ParkSpeedwayTravel ToolsAbout IndianapolisSustainability in IndianapolisFast Facts About IndianapolisAttraction PassTransportation & ParkingIndianapolis International Airport (IND)Travel GuidesAccessibility GuideAttractionsHistoryOutdoorsPerforming ArtsSportsTransportationMeeting FacilitiesWeather & Average TemperaturesInternational ResourcesMeetingsContact Visit IndySubmit a Meeting RFPFill Out Our Online RFPUpload Your RFPWhy Meet in Indianapolis?About IndianapolisSustainability in IndianapolisNew DevelopmentsIndianapolis Connected HotelsIndianapolis Industry AdvantagesMeeting & Event VenuesEvent VenuesIndiana Convention CenterLucas Oil StadiumGainbridge FieldhouseIndiana State FairgroundsIndianapolis Meeting HotelsIndianapolis Private DiningPlanner ToolsGuides & MapsDestination Experience TeamInternational ResourcesGroup ExperiencesCircle City Non-Profit EngagementPlanner Interactive MapTransportation & ParkingSupplier ListingsDiscover Indianapolis Culture at The INDEXDEI ResourcesMarketing ToolkitPhotos & VideosPromotional Materials & MapsPromotional CopyMedia AccoladesPlanner InsightsFrom the Voices of Planners WeddingsStoriesDealsContestsEmail Signup Quick Search Location Map
+"""
+
+[R3] March Madness Music Festival
+(https://www.ncaa.com/mens-final-four/march-madness-music-festival)
+"""
+March Madness Music Festival Skip to main content DI Men's Basketball Champ Info 2026 NCAA® MEN'S FINAL FOUR® Indianapolis | Lucas Oil Stadium | April 3 - 6 BACK TO DI Men's Basketball Champ Info March Madness Music Festival Click Here for all the details! Please note March Madness Music Festival is a rain or shine event. Please follow @mfinalfour on social media for the latest updates regarding weather. Umbrellas are prohibited. Join us for the March Madness Music Festival, presented by AT&T, Capital One, and Coca-Cola! Enjoy three days of electrifying music—completely FREE—featuring unforgettable performances by A-list artists, all set during the most exciting weekend in college sports. Get ready for a music celebration like no other! The concert series kicks off on Friday afternoon with the AT&T Block Party and continues through the night. Saturday brings the energy of Coca-Cola Live!, followed by the grand finale on Sunday with the Capital One Jam Fest. The March Madness Music Festival delivers unforgettable performances to both basketball fans and music lovers throughout the Final Four weekend. Past headliners who have celebrated the Final Four at the March Madness Music Festival include Bruce Springsteen and the E Street Band, Rihanna, Kendrick Lamar, Dave Matthews Band, Imagine Dragons, Keith Urban, The Jonas Brothers, Jimmy Buffett, Maroon 5, The Killers, Pitbull, and many others… Click here for the 2026 Men's Final Four Security Policies Location American Legion Mall 700 N. Pennsylvania Street, Indianapolis, IN Cost FREE for all ages! No ticket or registration required. Friday, April 3 Event Date Time (ET) AT&T Block Party Event Opens 4:30 p.m. Joey Valence & Brae 5:00 p.m. keshi 6:45 p.m. Twenty One Pilots 8:30 p.m. Event Concludes 10:00 p.m. Saturday, April 4 Event Date Time (ET) Coca-Cola Live! Event Opens 3:30 p.m. BRELAND 3:45 p.m. Ravyn Lenae 5:00 p.m. Russell Dickerson 6:15 p.m. Zac Brown Band 8:10 p.m. Event Concludes 10:00 p.m. Sunday, April 5 Event Date Time (ET) Capital One JamFest Event Opens 3:00 p.m. TroyBoi 3:30 p.m. Dominic Fike 4:45 p.m. Megan Moroney 6:30 p.m. Post Malone 8:30 p.m. Event Concludes 10:30 p.m. *All Times Local & Subject to Change Advertisement Live Video (0) March Madness 🗓️ 2026 March Madness schedule, dates 🏆 2026 March Madness bracket ❓ How the field of 68 is picked 📓 College basketball dictionary: 51 terms defined DI Men's & Women's Basketball Men’s and Women’s Basketball Player Availability Reporting Policy DI Men's Basketball Greatest buzzer beaters in March Madness history DI Men's Basketball Relive Laettner's historic performance against Kentucky DI Men's Basketball The deepest game-winning buzzer beaters in March Madness history DI Men's Basketball College basketball's NET rankings, explained DI Men's Basketball What March Madness looked like the year you were born DI Men's Basketball News TNT Sports & CBS Sports Deliver Most Watched NCAA Men’s Basketball National Championship Game in Seven Years with 18.3 Million Viewers on TBS, TNT and truTV Michigan leads Andy Katz's way-too-early Power 36 How March's national title hopefuls said goodbye How often fans picked the right NCAA men's champion, every year since 2014 One team, many journeys: Michigan’s road to the top What March Madness looked like the year you were born Men's Final Four Most Outstanding Players from 1939 to present NCAA men's basketball champions from 1939 to today 2026 March Madness: Men's NCAA tournament schedule, dates The college basketball teams with the most national championships Follow NCAA March Madness Legal Terms and PrivacyBy clicking "Agree", you have read and agree to the Terms of Use and agree to the collection and use of your information by cookies and similar technologies as set forth in our Privacy Policy.Agree
+"""
+
+[R4] Final Four music festival delayed due to weather
+(https://www.indystar.com/story/news/local/2026/04/04/march-madness-ncaa-indianapolis-weather/89466329007/)
+"""
+Updated April 4, 2026, 2:51 p.m. ETSaturday's Men's Final Four Tip-Off Tailgate and March Madness Music Festival openings have been delayed due to weather.As of noon, events were set to open at 3:30 p.m., according to Marion County Emergency Management, which notes the festival is rain or shine, but umbrellas are prohibited.The Saturday, April 4, lineup includes R&B singer-songwriter Ravyn Lenae, country hip-hop fuser Breland and recently announced country singer Russell Dickerson will join Zac Brown Band. Updated performance times are:BRELAND: 3:45 p.m.Ravyn Lenae: 5 p.m.Russell Dickerson: 6:15 p.m.Zac Brown Band: 8:10 p.m.The event will still end at 10 p.m. Follow @mfinalfour on social media for updates.Most of central Indiana is under a hazardous weather outlook as thunderstorms enter the area."A threat for severe storms exists this afternoon in the form of isolated to scattered damaging winds. Locally heavy rain could be possible at times, potentially producing localized flooding as well as renewed flooding on area rivers," National Weather Service in Indianapolis cautions.Storms are unlikely in the early afternoon but will bring colder temperatures and "isolated strong to severe wind gust(s)" are possible as they develop later in the afternoon and this evening.Indianapolis weather radarContact breaking politics reporter Marissa Meador at mmeador@indystar.com or find her on X at @marissa_meador.
+"""
+
+[R5] Super Saturday Concert | 2026 NCAA Women's Final Four Phoenix
+(https://phoenixfinalfour.com/super-saturday-concert/)
+"""
+Press Alt+1 for screen-reader mode, Alt+0 to cancelAccessibility Screen-Reader Guide, Feedback, and Issue Reporting | New window Skip to content Super Saturday Concert Super Saturday Concert presented by AT&T Saturday, April 4 Hance Park It’s a fastbreak to the barricade! Join us at the FREE Super Saturday Concert presented by AT&T. This live concert will feature a heavy hitting starting lineup featuring an opening act by DJ Javin and headlined by Grammy-winning R&B singer Kehlani. Food and drink from a variety of vendors will be available for purchase, and there will be plenty of fun activities and giveaways provided by NCAA Corporate Partners.An incredible crossover of championship basketball and sound, the Super Saturday Concert is the music festival built for you! For full event information, please visit the NCAA’s official website. Super Saturday Concert Schedule 6 PM GATES OPEN 6-8 PM DJ JAVIN 8 PM KEHLANI We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept", you consent to our use of cookies.AcceptPrivacy policy Notifications
+"""
+
+[R6] Post Malone and more play free March Madness concerts. See date, times
+(https://www.indystar.com/story/entertainment/2026/04/03/march-madness-music-festival-2026-artists-post-malone-twenty-one-pilots-date-time-lineup-schedule/89451012007/)
+"""
+April 3, 2026, 1:25 p.m. ETThose flocking to downtown Indianapolis this weekend during the grand finale of the NCAA Men's Championship Basketball games have a chance to catch some of the biggest names in music, and they can listen for free.The entry-free March Madness Music Festival begins Friday, April 3. It's part of a collection of fan events for Final Four weekend, running until April 6. Here's what to know.What musical artists are coming to Indianapolis during the Final Four?Country hip-hop heavy hitter Post Malone is slated to perform at the March Madness Music Festival at American Legion Mall on April 5.The festival also will feature alternative duo Twenty One Pilots, country group Zac Brown Band and surging pop country star Megan Moroney.When is the March Madness Music Festival? Where is it?The festival runs April 3-5 at the American Legion Mall, 700 N. Pennsylvania Street, in downtown Indianapolis.Can I see Post Malone free? Is the March Madness Music Festival free?Yes, entry into the March Madness Music Festival is free. The festival is split into three days: the AT&T Block Party April 3, Coca Cola Live April 4 and the Capital One JamFest finale April 5.Each day of the festival will feature a number of supporting acts. Here's who's playing and when.Friday, April 3 musical lineup for AT&T Block PartyLo-fi alternative artist keshi and hip-hop duo Joey Valence and Brae will join Twenty One Pilots April 3.4:30 p.m. — Event opens5:00 p.m. — Joey Valence & Brae6:45 p.m. — keshi8:30 p.m. — Twenty One Pilots10:00 p.m. — Event endsSaturday, April 4 musical lineup for Coca-Cola Live!R&B singer-songwriter Ravyn Lenae, country hip-hop fuser BRELAND and recently announced country singer Russell Dickerson will join Zac Brown Band April 4.2:30 p.m. — Event opens3:15 p.m. — Breland4:45 p.m. — Ravyn Lenae6:15 p.m. — Russell Dickerson8:10 p.m. — Zac Brown Band10:00 p.m. — Event endsLate Saturday April 4: 'Madness After Dark' event with DJ setThe NCAA has also announced a Madness After Dark with a DJ set from The Chainsmokers, the popular EDM duo behind the 2016 hit, "Closer."The free event happens 10 p.m. to 2 a.m., April 4, from at the Indiana Roof Ballroom.Sunday, April 5 musical lineup for the Capital One JamFestIndie pop artist Dominic Fike will join Malone and Moroney April 5.3:00 p.m. — Event opens4:30 p.m. — Dominic Fike6:15 p.m. — Megan Moroney8:15 p.m. — Post Malone10:30 p.m. — Event endsWhat else is happening during Final Four weekend?Other festivities during the Final Four weekend include a Final Four Fan Fest setup at the Indiana Convention Center, open practices for the competing teams at Lucas Oil Stadium during Final Four Friday April 3 and watch parties along Georgia Street for the Tailgate Tip-Off.Contact IndyStar Pop Culture Reporter Heather Bushman at hbushman@indystar.com. Follow her on X @hmb_1013.John Tufts covers trending news for IndyStar and Midwest Connect. Send him a news tip at John.Tufts@IndyStar.com. Find him on BlueSky at JohnWritesStuff.
+"""
+
+[R7] WFF | Super Saturday Concert
+(https://www.ncaa.com/womens-final-four/SuperSaturday)
+"""
+Super Saturday Concert presented by AT&T Join us at the FREE Super Saturday Concert presented by AT&T. The event will feature food & drinks for purchase, an opening act and headliner. Quick Navigation: AT&T Fast Lane | Event Information AT&T Fast Lane! Since AT&T is all about speed, we're connecting customers to expedited entry through the AT&T Fast Lane at Super Saturday Concert presented by AT&T. To get in, just show the AT&T icon on your phone screen at the concert entry point. The AT&T Fast Lane allows priority entry for current AT&T customers and (1) guest at Super Saturday Concert presented by AT&T on Saturday, April 4. To take advantage of this expedited entry, fans must arrive at the Main Entry and be able to verify on their phone that AT&T is their wireless provider or have their AT&T Fiber bill ready for verification. Upon arrival, follow signage and staff direction to the AT&T Fast Lane to get your spot at the front of the line. Once doors open, the AT&T Fast Lane will be able to enter the park grounds first! Click here for the 2026 Women's Final Four Security & Bag Policies Click here for the 2026 Official Women's Final Four Event Map LOCATION Hance Park 67 W. Culver Street, Phoenix, AZ 85003 DATE Saturday, April 4, 2026 COST FREE for all ages! SCHEDULE Time (MST) Event 6:00 p.m. Gates Open 6:00 - 8:00 p.m. DJ Javin 8:00 p.m. Kehlani All times are local and subject to change.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

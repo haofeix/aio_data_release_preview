@@ -1,0 +1,114 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is today a federal holiday"
+
+Claims:
+[1] "Memorial Day will be observed on Monday, May 25, 2026."
+[2] "Juneteenth National Independence Day is Friday, June 19, 2026."
+[3] "Independence Day is Friday, July 3, 2026 (Observed)."
+[4] "Labor Day is Monday, September 7, 2026."
+[5] "Columbus Day is Monday, October 12, 2026."
+[6] "Veterans Day is Wednesday, November 11, 2026."
+[7] "Thanksgiving Day is Thursday, November 26, 2026."
+[8] "Christmas Day is Friday, December 25, 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- Federal Holidays: "Birthday of Martin Luther King,each fourth year after 1965."
+- Are banks closed on Easter Monday? Is it a federal holiday ...: "What is Easter Monday?,Monday, April 6, 2026?"
+- Are banks open today? Is there mail? What's open on Easter ...: "Is today a holiday?,parts of the United Kingdom."
+- Is stock market open Easter Monday 2026? Is today a federal holiday?: "Is stock market closed today,be open all day long."
+- Is today a federal holiday? Full list of 2026 holidays in the US: "The next federal holiday in the U.S.,Day, and Independence Day will be recognized"
+- Printable List of 2026 & 2025 U.S. Federal Holidays - TriNet: "2026 Federal Holidays,: Friday, December 25, 2026"
+Reference Sources:
+
+[R1] Are banks open today? Is the post office open today on Easter Monday?
+(https://www.cincinnati.com/story/news/2026/04/06/easter-monday-is-easter-monday-holiday-are-banks-open-easter-monday-is-there-mail-post-office/89481260007/)
+"""
+NEWSAre banks open today? Is there mail? What's open on Easter Monday Bebe HodgesCincinnati EnquirerApril 6, 2026, 7:47 a.m. ETCurious if Easter Monday will affect your errands?We don't blame you. The United States government celebrates many holidays on a different day than the actual holiday date. For example, if Independence Day falls on a Sunday, it is observed the following Monday.Well, does the government do the same for Easter? Are banks and post offices closed today? Here's what to know.
+"""
+
+[R2] Printable List of 2026 & 2025 U.S. Federal Holidays
+(https://www.trinet.com/insights/federal-holidays-for-small-business-owners)
+"""
+With the new year underway, it’s time to plan out what work schedules and calendars will look like for the year. One of the best places to start is with federal holidays.What exactly is a “Federal” holiday?Not all holidays are created equal. Some are federal, some are religious, and some are more for fun (you might have seen mentions of National Pie Day or National Chocolate-Covered Cherry Day floating around on social media.)As an employer, the most important holidays to know will be federal holidays. These are holidays that have been established by federal law and are applicable across the country.Government offices and banks are closed in observance of these holidays. Because the federal government has deemed these specific days country-wide holidays, it encourages other businesses to also close so that observance of that particular holiday can be experienced by all. That means that many private businesses are often closed on federal holidays as well.Find the Right HR Solution for Your BusinessAnswer a few quick questions to see which HR model fits your company’s needs.The difference between federal holidays and religious holidaysThe U.S. recognizes just one religious holiday as a federal holiday – Christmas Day. All other religious holidays across traditions do not have recognition as federal holidays. However, as an employer, it is important to note that by law you have an obligation to make reasonable accommodations for employees celebrating religious holidays.For example, Muslim employees may wish for time off to celebrate their holidays, two of the major ones being Eid Al-Fitr and Eid Al-Adha. To accommodate various religious beliefs and the holidays that come with them, many employers turn to offering floating holidays. Floating holidays are days off that employees can use for time off for a variety of reasons, including observations of their religious holidays.The U.S. Federal Government recognizes eleven holidays. While some federal holidays land on different days each year (more on that in a bit), there are a handful that fall on the same day each year:New Year’s Day – January 1Martin Luther King, Jr. Day – the third Monday in JanuaryPresident’s Day – the third Monday in FebruaryMemorial Day – the last Monday in MayJuneteenth – June 19Independence Day – July 4Labor Day – the first Monday in SeptemberNative American or Indigenous Peoples’ Day – the second Monday in OctoberVeterans Day – November 11Thanksgiving Day – the fourth Thursday in NovemberChristmas Day – December 252026 Federal HolidaysIn 2026, the federal holidays in the United States fall on the following dates:New Year’s Day: Thursday, January 1, 2026Martin Luther King, Jr. Day: Monday, January 19, 2026Presidents’ Day (Washington’s Birthday): Monday, February 16, 2026Memorial Day: Monday, May 25, 2026Juneteenth National Independence Day: Friday, June 19, 2026Independence Day (Observed): Friday, July 3, 2026 (Because July 4, 2026 falls on a Saturday)Labor Day: Monday, September 7, 2026Native American / Indigenous Peoples’ Day (Columbus Day): Monday, October 12, 2026Veterans Day: Wednesday, November 11, 2026Thanksgiving Day: Thursday, November 26, 2026Christmas Day: Friday, December 25, 20262025 federal holidaysIn 2025, the federal holidays in the United States fall on the following dates:New Year’s Day: Wednesday, January 1, 2025Martin Luther King, Jr. Day: Monday, January 20, 2025Presidents' Day: Monday, February 17, 2025Memorial Day: Monday, May 26, 2025Juneteenth National Independence Day: Thursday, June 19, 2025Independence Day: Friday, July 4, 2025Labor Day: Monday, September 1, 2025Native American or Indigenous Peoples' Day: Monday, October 13, 2025Veterans Day: Tuesday, November 11, 2025Thanksgiving Day: Thursday, November 27, 2025Christmas Day: Thursday, December 25, 2025State specific holidaysSome states have their own state-wide holidays that are typically observed by state governments, banks, and many private companies as well. Be sure to check with your state government for the specific holidays where you are, but some of the major state holidays include:Yearly Major State HolidaysCalifornia’s Rosa Parks Day – February 4Alabama and Louisiana’s Mardi Gras Day – February 21Texas’s Independence Day – March 2Alaska’s Seward’s Day – March 27Several states’ Good Friday – April 7Nebraska’s Arbor Day – April 28Utah’s Pioneer Day – July 24Hawaii’s Statehood Day – August 18Nevada’s Family Day – November 24Do I have to give employees time off on federal holidays?Currently, there is no federal law that requires employers to give their workers a holiday off of work. Therefore, as an employer, you do not have to give employees federal holidays off unless you’re a financial institution or government entity. Additionally, if an employer does give their employees holidays off, they do not have to pay employees for that time.That said, just because it’s not a requirement for employers to give employees holidays off or pay for any time off, the vast majority of employers choose to offer many if not all federal and state holidays off as an employee benefit. It’s used as a way to keep employees happy, productive, and satisfied. In today’s war for talent, it’s become more important than ever to do so. Ultimately, giving your employees not only holidays off — but paid holidays off — tends to generate much more good than harm. All it takes to accommodate is a little planning ahead.This article is for informational purposes only, is not legal, tax or accounting advice, and is not an offer to sell, buy or procure insurance. It may contain links to third-party sites or information for reference only. Inclusion does not imply TriNet’s endorsement of or responsibility for third-party content.Get the latest HR trends, insights, advice and more sent straight to your inbox.Enter your email address*Trending nowHR Essentials, HR OutsourcingHR Essentials, HR OutsourcingHR Outsourcing, HR Technology
+"""
+
+[R3] Is today a federal holiday? Full list of 2026 holidays in the US
+(https://www.independent.co.uk/bulletin/lifestyle/is-today-a-federal-holiday-good-friday-easter-2026-b2951494.html)
+"""
+Stay up to date with notifications from The IndependentNotifications can be managed in browser preferences.Jump to contentThank you for registeringPlease refresh the page or navigate to another page on the site to be automatically logged inPlease refresh your browser to be logged inAllNewsSportCultureLifestyleGood Friday and Easter are not federal holidays in the United States (Getty Images)Many Americans are gearing up for Easter weekend but they should note that Good Friday and Easter are not federal holidays in the U.S.The U.S. will recognize eleven federal holidays in 2026, one less than 2025, which featured Inauguration Day. The next federal holiday in the U.S. is Memorial Day on Monday, May 25.Friday, June 19, is Juneteenth National Independence Day, and Independence Day will be recognized on Friday, July 3 this year. Other federal holidays include Labor Day, on Monday, Sept. 7, Columbus Day on Monday, Oct. 12, and Veterans Day on Wednesday, Nov. 11. The last two federal holidays of the year are Thanksgiving Day on Thursday, Nov. 26, and Christmas Day on Friday, Dec. 25.In fullFull list of 2026 US federal holidaysThank you for registeringPlease refresh the page or navigate to another page on the site to be automatically logged inPlease refresh your browser to be logged in
+"""
+
+[R4] Are banks closed on Easter Monday? Is it a federal holiday? What's open, closed
+(https://www.oklahoman.com/story/news/state/2026/04/06/is-easter-monday-2026-a-federal-holiday-are-banks-open-today-markets/89462355007/)
+"""
+April 6, 2026, 7:37 a.m. CTThe most sacred week on the Christian calendar is coming to an end now that Easter 2026 has passed.Easter Monday, the day after Christ's resurrection, is celebrated by Christians across the globe. It's even a public holiday in over 100 countries, including Canada, the UK and most of Europe.But if it's a holiday, will banks and stores be open? Stock markets? Will mail run?Here's what to know about Easter Monday, its federal holiday status, and more.When is Easter 2026?Easter is celebrated on Sunday, April 5, 2026.What is Easter Monday?Easter Monday celebrates the day after Jesus Christ's resurrection. According to History, several countries observe Easter Monday as a public holiday.In the third or fourth century, Christians began extending the Easter celebration, which originally ended on Easter Sunday, to eight days, per History.When is Easter Monday 2026? What date is Easter Monday this year?Easter Monday is on Monday, April 6, 2026.Is Easter Monday a federal holiday in the US?Easter Monday is a religious holiday, but it is not recognized as a federal holiday in the U.S.Will banks be open on Easter Monday, April 6, 2026? Are banks closed today?Most banks will be open on Easter Monday, according to The Federal Reserve.Is the stock market closed on Easter Monday, April 6, 2026? Is the stock market open today?The stock markets on New York Stock Exchange, Nasdaq and the Securities Industry and Financial Markets Association are all open for trading on Easter Monday, April 6, 2026.Will mail run on Easter Monday? Is the post office open?Since Easter Monday is not a public holiday, there will be mail delivery and U.S. Postal Service post offices will be open Monday, April 6.Will FedEx be open today on Easter Monday, April 6, 2026?FedEx will be open on Easter Monday, April 6, but all other delivery options are expected to operate as normal.Will UPS be open today on Easter Monday, April 21, 2025?UPS Store is open and UPS delivery and pickup services are available on Easter Monday, April 21, 2025.Is Easter Monday a state holiday in Oklahoma?No. State employees are working all day on Easter Monday.When is Easter Day 2027? What date is Easter Sunday next year?In 2027, Easter Day will fall on Sunday, March 28.Contributing: Chris Sims
+"""
+
+[R5] Is stock market open today, Easter Monday 2026? Is stock market closed today for federal holiday?
+(https://www.indystar.com/story/news/2026/04/06/is-stock-market-open-easter-monday-2026-today-april-6-is-stock-market-closed-federal-holiday/89434407007/)
+"""
+April 6, 2026, 4:05 a.m. ETEaster Monday is not a federal holiday in the United States.The U.S. stock markets, including the NYSE and Nasdaq, will be open for trading on Easter Monday.Most banks, the U.S. Postal Service, FedEx, and UPS will operate as normal on Easter Monday.The stock markets were closed on Good Friday, but what about Easter Monday?Similarly, the religious holiday is not a federal holiday, but the U.S. stock markets should be fully operational.Here's what will be open or closed on Easter Monday from banks and USPS mail delivery to the stock market:Is Easter Monday 2026 a federal holiday today in the U.S.?Easter Monday is not specified by law to be one of the 12 federal holidays recognized in 2026, according to opm.gov.Is the stock market open on Easter Monday, April 6, 2026? Is stock market closed today?The stock markets on New York Stock Exchange and the Nasdaq are open for trading on Easter Monday, April 6, 2026. The Securities Industry and Financial Markets Association is also recommended to be open all day long.Will banks be closed on Easter Monday, April 6, 2026? Are banks open today?Most banks will be open on Easter Monday, April 6, 2026, according to The Federal Reserve.Is USPS post office open on Easter Monday, April 6, 2026? Will mail be delivered today?The United States Postal Service will be open, and mail will be delivered on Easter Monday, April 6, 2026.Is FedEx open today on Easter Monday, April 6, 2026?FedEx will be open on Easter Monday, April 6, 2026, and is expected to operate as normal.Is UPS open today on Easter Monday, April 6, 2026?UPS Store and UPS delivery and pickup services are open Easter Monday, April 6, 2026, and are expected to operate as normal.Is Easter Monday a state holiday in Indiana?Easter Monday is not a state holiday in Indiana. State government offices will be open.Are Indiana schools closed today on Easter Monday?Some schools may close on Easter Monday or be on spring break, while other schools may remain open in Indiana. Be sure to check with your local school for details.Chris Sims is a trending reporter at Midwest Connect Gannett. Follow him on Twitter: @ChrisFSims.
+"""
+
+[R6] Federal Holidays
+(https://www.ca2.uscourts.gov/clerk/calendars/federal_holidays.html)
+"""
+Appellate Filer Registration Clerk's Office Directory Decisions Electronic Payment Instructions Employee Rights and Reporting Wrongful Conduct Fee Schedule File a Document (CM/ECF) Forms and Instructions PACER Rules Home | Calendars Federal Holidays 2026 Date Holiday Thursday, January 1, 2026 New Year's Day Monday, January 19, 2026 Birthday of Martin Luther King, Jr. Monday, February 16, 2026** Washington's Birthday Monday, May 25, 2026 Memorial Day Friday, June 19, 2026 Juneteenth National Independence Day Friday, July 3, 2026*** Independence Day Monday, September 7, 2026 Labor Day Monday, October 12, 2026 Columbus Day Wednesday, November 11, 2026 Veterans Day Thursday, November 26, 2026 Thanksgiving Day Friday, December 25, 2026 Christmas Day *This holiday is designated as "Inauguration Day" in section 6103(c) of title 5 of the United States Code, which is the law that specifies holidays for Federal employees. Federal employees in the Washington, DC, area are entitled to a holiday on the day a President is inaugurated on January 20th for each fourth year after 1965. **This holiday is designated as "Washington's Birthday"; in section 6103(a) of title 5 of the United States Code, which is the law that specifies holidays for Federal employees. Though other institutions such as state and local governments and private businesses may use other names, it is our policy to always refer to holidays by the names designated in the law. ***If a holiday falls on a Saturday, for most Federal employees, the preceding Friday will be treated as a holiday for pay and leave purposes. (See 5 U.S.C. 6103(b).) If a holiday falls on a Sunday, for most Federal employees, the following Monday will be treated as a holiday for pay and leave purposes. (See Section 3(a) of Executive Order 11582, February 11, 1971.) See also our Federal Holidays - "In Lieu Of" Determination Fact Sheet at https://www.opm.gov/policy-data-oversight/pay-leave/work-schedules/fact-sheets/Federal-Holidays-In-Lieu-Of-Determination. OPM web site: "Federal law (5 U.S.C., § 6103) establishes [these] public holidays for Federal employees. Please note that most Federal employees work on a Monday through Friday schedule. For these employees, when a holiday falls on a nonworkday -- Saturday or Sunday -- the holiday usually is observed on Monday (if the holiday falls on Sunday) or Friday (if the holiday falls on Saturday)."
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

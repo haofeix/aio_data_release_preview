@@ -1,0 +1,116 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "uconn vs utsa"
+
+Claims:
+[1] "No. 1 seed UConn defeated No. 16 seed UTSA 90-52 in the 2026 NCAA Women’s Tournament first round on March 21, 2026."
+[2] "Sarah Strong led UConn with 18 points and five steals."
+[3] "UConn was 35-0."
+[4] "Ashlynn Shade scored 14 points for UConn."
+[5] "The victory was UConn's 51st consecutive victory."
+[6] "UTSA was 18-16."
+[7] "Ereauna Hardaway scored 11 points for UTSA."
+[8] "Cheyenne Rowe scored 11 points for UTSA."
+[9] "Damara Allen scored 11 points for UTSA."
+[10] "The game was at Gampel Pavilion, Storrs, Conn."
+[11] "Blanca Quinonez scored 10 points for UConn."
+[12] "UConn forced 27 turnovers."
+[13] "UConn scored 35 points off turnovers."
+[14] "UConn held a 48-14 halftime lead."
+[15] "UConn advances to face the winner of Syracuse vs. Iowa State."
+[16] "UConn limited UTSA to 41% shooting."
+[17] "UConn held UTSA to under 30 rebounds"
+
+Cited text snippets from the AI Overview (for additional context):
+- UConn 90-52 UTSA (Mar 21, 2026) Game Recap - ESPN: "UTSA Roadrunners vs. UConn Huskies: Game Highlights&text=STORRS, Conn.,USTA to three field goals.&text=Azzi Fudd picked up her,winning the American Conference tournament.&text=UConn will face either Syracuse,for the 32nd consecutive year."
+- No. 16 seed UTSA falls to No. 1 seed UConn in First Round of NCAA Tournament: "–The No. 16 seed UTSA,six points off two triples."
+- UConn women overwhelm UTSA 90-52 as the Huskies roll in their ...: "The title defense for the,came to Louisville in 1993.&text=team, so just locked in,led 48-14 at halftime."
+- UConn 90-52 UTSA (Mar 21, 2026) Final Score - ESPN: "Full Play-By-Play,OFF"
+- No. 1 UConn women roll over UTSA in March Madness - USA Today: "End of 1Q: UConn 19,paint and nine off turnovers."
+Reference Sources:
+
+[R1] No. 16 seed UTSA falls to No. 1 seed UConn in First Round of NCAA Tournament
+(https://goutsa.com/news/2026/03/21/no-16-seed-utsa-falls-to-no-1-seed-uconn-in-first-round-of-ncaa-tournament)
+"""
+Denise DePiero / UTSA AthleticsSTORRS, Conn. –The No. 16 seed UTSA women’s basketball team was unable to overcome the No. 1 overall seed in the First Round of the NCAA Tournament, falling 90-52 at Gampel Pavilion. The Roadrunners (18-16, 9-9 American) fell to the Huskies (35-0, 20-0 Big East), as senior Ereauna Hardaway, classmate Cheyenne Rowe, and sophomore Damara Allen all tied for the team lead with 11 points. Rowe flirted with a double-double, also snagging eight rebounds, and Hardaway dished out four assists. In the effort, UTSA held UConn to its second-lowest three-point percentage of the season, with the Huskies shooting 21% from beyond the arc. The Huskies struck first, scoring back-to-back buckets before Allen connected from the elbow to pull within two. UConn scored the next six for an 8-2 advantage. Sophomore Mia Hammonds hit a floater, ahead of five more for the Huskies that stretched their lead to nine. Hardaway got a bucket, and UConn finished the frame on a 6-0 run for a 19-6 edge entering the second. Rowe opened the subsequent stanza with a make, prompting a 10-2 Huskie surge. UConn stayed hot, taking a 48-14 lead into the locker room. The Huskies outscored the ‘Runners, 27-16 in the third, with Allen topping UTSA, posting six points off two triples. UTSA won the final frame, 22-15, as Hardaway scored seven, and junior Idara Udo charted five. With the loss, the Roadrunners conclude a historic season, which saw a 2026 American Women’s Basketball Tournament Championship, a third consecutive national postseason selection, and the program’s first NCAA Tournament appearance since 2009. Keep up with UTSA Women’s Basketball all season long on goutsa.com and by following the program on Facebook at /UTSAWBB, X (Twitter) @UTSAWBB, and on Instagram @UTSA_WBB. -UTSA-
+"""
+
+[R2] UConn 90-52 UTSA (Mar 21, 2026) Final Score - ESPN
+(https://www.espn.com/womens-college-basketball/game/_/gameId/401856503/utsa-uconn)
+"""
+According to ESPN AnalyticsEreauna Hardaway misses 19-foot jumperAzzi Fudd misses 19-foot pullup jump shotSerah Williams makes layup (Ashlynn Shade assists)Cheyenne Rowe misses layupSarah Strong misses 25-foot three point jumperDamara Allen misses 24-foot three point jumperAshlynn Shade misses 24-foot three point jumperIdara Udo misses 13-foot floating jump shotSerah Williams makes layupDamara Allen makes 19-foot pullup jump shotKK Arnold misses 23-foot three point jumperAshlynn Shade makes layup (Sarah Strong assists)Damara Allen misses 23-foot three point jumperAzzi Fudd misses 17-foot pullup jump shotBlanca Quiñonez misses 25-foot three point jumperSarah Strong makes layupAshlynn Shade misses 26-foot three point jumperEreauna Hardaway misses 13-foot pullup jump shotBlanca Quiñonez misses 25-foot three point jumperMia Hammonds makes 3-foot floating jump shotBlanca Quiñonez misses 24-foot three point jumperSarah Strong makes layupSanaa Bean misses layupAshlynn Shade makes 25-foot three point jumper (Azzi Fudd assists)Idara Udo misses layupAzzi Fudd misses 24-foot three point jumperEreauna Hardaway makes 18-foot jumperSarah Strong makes 24-foot three point jumper (Kayleigh Heckel assists)Sarah Strong misses 25-foot three point jumperSarah Strong makes free throw 1 of 2Sarah Strong makes free throw 2 of 2Kayleigh Heckel makes free throw 1 of 2Kayleigh Heckel misses free throw 2 of 2Ereauna Hardaway misses 60-foot three point jumperCheyenne Rowe makes 16-foot jumper (Mia Hammonds assists)Kayleigh Heckel misses free throw 1 of 2Kayleigh Heckel makes free throw 2 of 2Kayleigh Heckel makes 24-foot three point jumper (Allie Ziebell assists)Cheyenne Rowe makes layup (Damara Allen assists)Kayleigh Heckel misses 23-foot three point jumperAllie Ziebell misses layupAllie Ziebell misses 25-foot three point jumperIdara Udo misses 11-foot turnaround jump shotKK Arnold makes layup (Blanca Quiñonez assists)Blanca Quiñonez makes layupBlanca Quiñonez misses free throw 1 of 1Blanca Quiñonez makes driving layupSarah Strong misses 25-foot three point jumperCheyenne Rowe misses 17-foot jumperAllie Ziebell misses 24-foot three point jumperMia Hammonds makes free throw 1 of 2Mia Hammonds misses free throw 2 of 2Ashlynn Shade misses 25-foot three point jumperAllie Ziebell makes free throw 1 of 2Allie Ziebell makes free throw 2 of 2Cheyenne Rowe misses 17-foot jumperBlanca Quiñonez makes free throw 1 of 2Blanca Quiñonez makes free throw 2 of 2Cheyenne Rowe misses driving layupAshlynn Shade makes 21-foot pullup jump shot (Jana El Alfy assists)Cheyenne Rowe misses 20-foot jumperAshlynn Shade misses 25-foot three point jumperAshlynn Shade makes layup (Sarah Strong assists)Kayleigh Heckel makes layup (Ashlynn Shade assists)Blanca Quiñonez makes 4-foot floating jump shot (Kayleigh Heckel assists)Damara Allen makes 23-foot three point jumper (Adriana Robles assists)Kayleigh Heckel misses 25-foot three point jumperBlanca Quiñonez makes layupAshlynn Shade misses 17-foot pullup jump shotAshlynn Shade makes layupAdriana Robles misses 24-foot three point jumperSarah Strong misses free throw 1 of 2Sarah Strong makes free throw 2 of 2Ereauna Hardaway misses 16-foot pullup jump shotSarah Strong makes 9-foot floating jump shotKK Arnold makes driving layupSarah Strong misses 25-foot three point jumperDamara Allen misses driving layupKK Arnold makes driving layupSarah Strong makes layup (Azzi Fudd assists)Sarah Strong misses free throw 1 of 1Serah Williams makes free throw 1 of 2Serah Williams makes free throw 2 of 2Damara Allen makes 25-foot three point jumper (Cheyenne Rowe assists)Serah Williams misses layupAzzi Fudd misses 23-foot three point jumperAzzi Fudd makes 25-foot three point jumper (Sarah Strong assists)Cheyenne Rowe misses 13-foot floating jump shotCheyenne Rowe makes 13-foot pullup jump shotAzzi Fudd makes 19-foot pullup jump shotDamara Allen makes 24-foot three point jumper (Ereauna Hardaway assists)Azzi Fudd misses 25-foot three point jumperSerah Williams makes layupIdara Udo misses 8-foot turnaround jump shotSerah Williams misses layupDamara Allen misses 26-foot three point jumperAdriana Robles makes layupAzzi Fudd makes 17-foot jumper (Sarah Strong assists)Idara Udo makes 9-foot floating jump shot (Ereauna Hardaway assists)Ashlynn Shade makes 24-foot three point jumper (KK Arnold assists)Adriana Robles misses 27-foot three point jumperSerah Williams makes free throw 1 of 2Serah Williams misses free throw 2 of 2Cheyenne Rowe makes free throw 1 of 2Cheyenne Rowe makes free throw 2 of 2Azzi Fudd misses 25-foot three point jumperEreauna Hardaway makes free throw 1 of 2Ereauna Hardaway makes free throw 2 of 2Sarah Strong makes 25-foot three point jumper (Kayleigh Heckel assists)Sarah Strong misses 24-foot three point jumperSarah Strong misses free throw 1 of 2Sarah Strong makes free throw 2 of 2Cheyenne Rowe misses 16-foot jumperAshlynn Shade misses 24-foot three point jumperBlanca Quiñonez misses free throw 1 of 2Blanca Quiñonez misses free throw 2 of 2Blanca Quiñonez makes layup (Kayleigh Heckel assists)Damara Allen misses 23-foot three point jumperJana El Alfy makes layup (Kayleigh Heckel assists)Blanca Quiñonez misses 25-foot three point jumperEreauna Hardaway makes driving layup (Damara Allen assists)Kayleigh Heckel makes layup (Jana El Alfy assists)Cheyenne Rowe makes 24-foot three point jumper (Damara Allen assists)Mia Hammonds makes layup (Ereauna Hardaway assists)Allie Ziebell makes 19-foot pullup jump shot (Blanca Quiñonez assists)Jayda Holiman misses 25-foot three point jumperBlanca Quiñonez misses 24-foot three point jumperIdara Udo makes 12-foot jumper (Ereauna Hardaway assists)Kayleigh Heckel makes driving layupJayda Holiman misses 25-foot three point jumperIdara Udo makes 0-foot tip in layupBlanca Quiñonez makes 24-foot three point jumper (Jana El Alfy assists)Idara Udo misses 18-foot jumperEmilia Dannebauer makes layup (Adriana Robles assists)Caroline Ducharme misses 5-foot floating jump shotAllie Ziebell makes layupJayda Holiman makes 24-foot three point jumper (Adriana Robles assists)Kelis Fisher makes 12-foot floating jump shotJayda Holiman misses 15-foot pullup jump shotIdara Udo misses free throw 1 of 2Idara Udo makes free throw 2 of 2Kelis Fisher misses 26-foot three point jumperSerah Williams misses layupSerah Williams misses layupAllie Ziebell misses 24-foot three point jumperEreauna Hardaway makes 8-foot floating jump shotEreauna Hardaway misses free throw 1 of 1Ereauna Hardaway makes 25-foot three point jumper (Jayda Holiman assists)Siena Guttadauro misses 17-foot pullup jump shotKelis Fisher misses driving layupIdara Udo misses 25-foot three point jumperData is currently unavailable.
+"""
+
+[R3] UConn 90-52 UTSA (Mar 21, 2026) Game Recap - ESPN
+(http://www.espn.com/ncw/recap?gameId=401856503)
+"""
+STORRS, Conn. -- — The title defense for the UConn women’s basketball team began like so many other NCAA Tournament openers for the 12-time national champions. Sarah Strong had 18 points, five rebounds, four assists and five steals in three quarters of play as the Huskies, the top seed in the Fort Worth 1 region, rolled to a 90-52 win over No. 16 UTSA on Saturday for its 51st consecutive victory. Blanca Quinonez, one of two international players in UConn’s main rotation, had 10 points in an 18-1 run for the top-ranked Huskies, who will face Syracuse in Monday’s second round. Quinonez had 15 points, five rebounds, three steals and two blocked shots and Ashlynn Shade added 14 points as UConn (35-0) won its NCAA opener for the 32nd tournament in a row. UConn's last first-round loss came to Louisville in 1993. “I just tried to approach the game the same way we did the last couple of games,” Quinonez said. "Just tried to play hard, aggressive and just try to do the best for our team, so just locked in like everybody." UConn was just 7 of 33 from 3-point range, but 19 steals turned into 35 points off turnovers. Kayleigh Heckel had three of those steals and finished with 11 points. UConn also had 36 bench points in the win. The bench was called on early after guards Azzi Fudd and KK Arnold both picked up three fouls in the first half. The Huskies still led 48-14 at halftime. “They made a really great impact when they came in the game,” Strong said. “They were ready when they were called on, so that’s really important for us. The special thing about our team is that anyone can come in and make a difference, make a big impact.” Ereauna Hardaway was one of three UTSA players with 11 points. Cheyenne Rowe had 11 points and eight rebounds for USTA (18-17), The Roadrunners reached the NCAA Tournament for the first time since 2009 after winning the American Conference tournament. Up next UConn will face Syracuse on Monday looking to reach the Sweet 16 for the 32nd consecutive year. ------ AP March Madness bracket: https://apnews.com/hub/ncaa-womens-bracket and coverage: https://apnews.com/hub/march-madness
+"""
+
+[R4] No. 1 UConn women roll over UTSA in March Madness: NCAA highlights, score
+(https://www.usatoday.com/story/sports/ncaaw/2026/03/21/uconn-utsa-channel-stream-time-women-ncaa-tournament/89253453007/)
+"""
+Updated March 21, 2026, 5:51 p.m. ETFollow all the games today on USA TODAY Sports.STORRS, CT ― The No. 1 seed UConn women's basketball team made short work of its first-round assignment, No. 16 seed UTSA, in the NCAA Tournament Saturday, March 21.Four UConn players were in double figures in the 90-52 victory over UTSA. Sarah Strong had 18 points, Blanca Quiñonez 15, Ashlynn Shade 14 and Kayleigh Heckel 11.The Huskies were 7-for-33 from 3-point land. UConn coach Geno Auriemma was exasperated postgame that his players weren't concentrating on scoring in the paint, where they were dominating. UConn outscored UTSA in the paint 48-18."(We think if) we keep shooting them, they'll start going in," Auriemma said. "That's how you lose games. So you have to come into these games, and you gotta go where you can get the points."At one point, we were 8 for 11 in the lane. And we're, at that time, one for 17 from three. You can't be all one way."The Huskies are now 35-0 and face the winner of Iowa State-Syracuse in the second round on Monday. The defending national champions have a 51-game win streak dating back to last season.USA TODAY Studio IX: Check out our women's sports hub for in-depth analysis, commentary and more End of Q3: UConn 75, UTSA 30Sarah Strong has 18 points, five rebounds, four assists and five steals as the No. 1 team in the country is cruising to its 50th straight win. Ashlynn Shade has 14 points and six rebounds and Blanca Quiñonez 12 points, five rebounds and three steals. UConn has 34 points off turnovers and 38 points in the paint. Halftime: UConn 48, UTSA 14Sarah Strong has 12 points, Ashlynn Shade 11 and Blanca Quiñonez 10 as the Huskies have jumped out to big lead at the half. UConn has 24 points off 19 turnovers by UTSA. The Huskies are outscoring the Roadrunners 28-4 in the paint. Breanna Stewart in the crowd End of 1Q: UConn 19, UTSA 6Sarah Strong scored nine points as the Huskies built a double-digit halftime lead. They had some trouble getting their offense going off the long layoff since the Big East Tournament, shooting 39% from the field. UConn has 10 points in the paint and nine off turnovers. Huskies score firstSareh Williams gets the scoring started for UConn with the first four points of the game as we are underway in Storrs, Connecticut.What time is UTSA vs UConn first-round game?No. 1 UConn vs No. 16 UTSA tips off at 3:00 PM (ET) on Saturday, March 21 from Harry A. Gampel Pavilion (Storrs, Connecticut).What channel is UTSA vs UConn first-round game?No. 1 UConn vs No. 16 UTSA is airing live on ABC.How to stream UTSA vs UConn first-round gameNo. 1 UConn vs No. 16 UTSA is available to stream on Fubo.Stream Women's March Madness on Fubo UTSA starting five UConn starting five ESPN in the house UTSA on the way Huskies locked inWomen's March Madness schedule todaySee the schedule, live scores and results for all of Saturday's NCAA Tournament action here.2026 Women's NCAA Tournament full scheduleMarch 18-19: First FourMarch 20-21: First RoundMarch 22-23: Second RoundMarch 27-28: Sweet 16March 29-30: Elite 8April 3: Final FourApril 5: National ChampionshipJoin the USA TODAY Survivor Pool to win cash prizes
+"""
+
+[R5] UConn women overwhelm UTSA 90-52 as the Huskies roll in their March Madness opener
+(https://www.nbcconnecticut.com/news/sports/dog-house/uconn-women-overwhelm-utsa-90-52-as-the-huskies-roll-in-their-march-madness-opener/3716542/)
+"""
+The title defense for the UConn women’s basketball team began like so many other NCAA Tournament openers for the 12-time national champions. Sarah Strong had 18 points, five rebounds, four assists and five steals in three quarters of play as the Huskies, the top seed in the Fort Worth 1 region, rolled to a 90-52 win over No. 16 UTSA on Saturday for its 51st consecutive victory. Blanca Quinonez, one of two international players in UConn’s main rotation, had 10 points in an 18-1 run for the top-ranked Huskies, who will face Syracuse in Monday’s second round. Quinonez had 15 points, five rebounds, three steals and two blocked shots and Ashlynn Shade added 14 points as UConn (35-0) won its NCAA opener for the 32nd tournament in a row. UConn's last first-round loss came to Louisville in 1993. “I just tried to approach the game the same way we did the last couple of games,” Quinonez said. "Just tried to play hard, aggressive and just try to do the best for our team, so just locked in like everybody." UConn was just 7 of 33 from 3-point range, but 19 steals turned into 35 points off turnovers. Kayleigh Heckel had three of those steals and finished with 11 points. Dog House UConn also had 36 bench points in the win. The bench was called on early after guards Azzi Fudd and KK Arnold both picked up three fouls in the first half. The Huskies still led 48-14 at halftime. “They made a really great impact when they came in the game,” Strong said. “They were ready when they were called on, so that’s really important for us. The special thing about our team is that anyone can come in and make a difference, make a big impact.” Ereauna Hardaway was one of three UTSA players with 11 points. Cheyenne Rowe had 11 points and eight rebounds for USTA (18-17), The Roadrunners reached the NCAA Tournament for the first time since 2009 after winning the American Conference tournament. Up next UConn will face Syracuse on Monday looking to reach the Sweet 16 for the 32nd consecutive year. ___ AP March Madness bracket: https://apnews.com/hub/ncaa-womens-bracket and coverage: https://apnews.com/hub/march-madness
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

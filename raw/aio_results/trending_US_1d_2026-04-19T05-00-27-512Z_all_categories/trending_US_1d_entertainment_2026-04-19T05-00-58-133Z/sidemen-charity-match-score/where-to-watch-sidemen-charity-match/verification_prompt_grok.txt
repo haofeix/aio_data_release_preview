@@ -1,0 +1,97 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch sidemen charity match"
+
+Claims:
+[1] "The 2026 Sidemen Charity Match is streamed live on the official Sidemen YouTube channel."
+[2] "The 2026 Sidemen Charity Match is streamed for free on the official Sidemen YouTube channel."
+[3] "The 2026 Sidemen Charity Match takes place on Saturday, April 18, 2026."
+[4] "The 2026 Sidemen Charity Match takes place at Wembley Stadium."
+[5] "The stream of the 2026 Sidemen Charity Match starts around 2:10 PM BST."
+[6] "The kickoff of the 2026 Sidemen Charity Match is at 3:00 PM BST."
+[7] "The official Sidemen YouTube channel is the only official, free, and direct source for the 2026 Sidemen Charity Match."
+[8] "The teams in the 2026 Sidemen Charity Match are Sidemen FC vs. YouTube All-Stars."
+
+Cited text snippets from the AI Overview (for additional context):
+- Sidemen - YouTube: "@Sidemen,3:39:25"
+- SIDEMEN CHARITY MATCH 2026 [OFFICIAL STREAM]: "Any donations you make are,#SDMNCharityMatch"
+- Sidemen Charity Match: How to watch, date, kick-off time, team line ...: "How to watch 2026 Sidemen,which has 23 million subscribers."
+- How to watch Sidemen Charity Match 2026 for free - TV channel, live stream, kick-off time: "All you need to know,always-entertaining opening ceremony performances."
+- SIDEMEN CHARITY MATCH 2026 [OFFICIAL STREAM] - YouTube: "SIDEMEN CHARITY MATCH 2026 [OFFICIAL,above in the following portion:"
+- Sidemen on Instagram: "Only 1 hour to go Watch the Charity Match ...: "hour to go-,Watch the Charity Match live on Saturday!,the link in our bio"
+- How to watch the Sidemen Charity Match on TV for free - Wales Online: "The charity match will be,count is over 23 million."
+Reference Sources:
+
+[R1] How to watch the Sidemen Charity Match on TV for free - start time and teams
+(https://www.walesonline.co.uk/sport/football/football-news/how-watch-sidemen-charity-match-33790235)
+"""
+The hugely popular event is returning to Wembley Stadium for the second successive yearThe Sidemen Charity Match returns to Wembley Stadium for the second successive year this weekend, with some of the most popular creators on YouTube descending on the home of English football.Having previously been staged at St Mary's Stadium, The Valley and the London Stadium, the Sidemen had no problem filling Wembley for last year's event, and have sold it out again with 90,000 tickets being bought in just three hours.The event has raised over £8 million for charity across its previous six editions and has now raised a further £4.7 million for the Bright Side and M7 Education charities through ticket sales for this year's match.It will see members of the Sidemen - the YouTube group comprised of Olajide Olatunji (KSI), Simon Minter (Miniminter), Josh Bradley (Zerka), Ethan Payne (Behzinga), Harry Lewis (W2S), Tobi Brown (TBJZL) and Vikram Barn (Vikkstar123) split across two teams, Sidemen FC and the YouTube Allstars.They will be joined by other online creators, including I'm A Celebrity...Get Me Out of Here! winner Angry Ginge and Strictly Come Dancing finalist George Clarke to battle it out for the trophy.Here's everything you need to know about Saturday's match, including kick-off time, how to watch and the line-ups in full.Kick-off timeThe match kicks off at Wembley Stadium at 3pm on Saturday, April 18.How to watchThe charity match will be available to watch for free on the Sidemen's official YouTube channel.Launched in 2016 for the inaugural charity match, it became the fastest channel to reach one million subscribers.Today, the channel's subscriber count is over 23 million.Who is playing in the Sidemen Charity Match?Sidemen FC:Manager: Jack Joseph0 – Deji3 – Marlon4 – Zerkaa7 – Arthur TV9 – Aminematue10 – ChrisMD12 – xQc14 – Adapt19 – Jynxzi21 – TBJZL22 – Niko23 – AB30 – AJ Shabeel61 – LazarBeam67 – Lacy77 – Wroetoshaw123 – Vikkstar123YouTube AllstarsManager: Calfreezy1 – Sketch2 – WillNE4 – KSI5 – CarryMinati7 – Miniminter8 – George Clarkey9 – Max Fosh11 – Ibai13 – AngryGinge14 – Squeezie15 – MrWhoseTheBoss17 – Nykchazza25 – Behzinga28 – Danny Aarons66 – Stable Ronaldo88 – ItalianBach99 – JasontheweenPrevious resultsOver the last six years, The Sidemen have the better overall record, with four wins compared to the YouTube Allstars' two.2016: Sidemen 7-2 YouTube Allstars2017: Sidemen 0-2 YouTube Allstars2018: Sidemen 7-1 YouTube Allstars2022: Sidemen 8-7 YouTube Allstars2023: Sidemen 8-5 YouTube Allstars2025: Sidemen 9-9 YouTube Allstars (YouTube Allstars win 5-4 on penalties)
+"""
+
+[R2] Sidemen Charity Match: How to watch, date, kick-off time, team line-ups, where are Logan Paul and iShowSpeed? - ESPN
+(https://www.espn.co.uk/football/story/_/id/48510845/how-watch-date-kick-team-line-ups-where-logan-paul-ishowspeed)
+"""
+ESPNApr 18, 2026, 02:49 PMThe Sidemen are descending upon Wembley Stadium once again for their annual charity match.Last year, an incredible eight million viewers watch the match live on a YouTube stream as the Sidemen lost to the YouTube Allstars in a penalty shootout after a 9-9 draw. It raised £4.7 million and the profits went to charity.This time, 90,000 fans are expected at Wembley after a record-setting sell-out in two-and-a-half hours. Brightside and M7 Education are the charities set to benefit.Here's everything that UK fans need to know about the 2026 charity game.When is the 2026 Sidemen Charity Match?The game is on Saturday April 18, at Wembley Stadium in London.Kick-off time for 2026 Sidemen Charity MatchThe game will kick off at 3 p.m. BST.How to watch 2026 Sidemen Charity MatchYou can watch for free via a live stream on the Sidemen's YouTube channel, which has 23 million subscribers.2026 Sidemen Charity Match line-upsSidemen's line-up: Zerkaa; Vikkstar; Wroetoshaw; TBJZL; Deji; Marlon; Arthur TV; AmineMaTue; ChrisMD; xQc; Adapt; Jynxzi; Niko Omilana; AB; AJ Shabeel; LazarBeam; Lacy.YouTube Allstars: KSI; Miniminter; Behzinga; Angry Ginge; Stable Ronaldo; Squeezie; Mrwhosetheboss; JasonTheWeen; ItalianBach; Ibai; George Clarke; Danny Aarons; Chazza; CarryMinati; Sketch; WillNE; Max Fosh.Jack Joseph will manage SDMN FC, while Calfreezy takes charge of the YouTube Allstars.Unlike in previous years, KSI confirmed that Sidemen representatives will play on the YouTube Allstar's team to even up the contest.He told talkSPORT: "With this charity match, we thought we'd change it up. Normally, the Sidemen are in one team, and we're up against different players in YouTube All Stars."But this time, three of us have moved to YouTube All Stars. So, me, Simon, Ethan are now in YouTube All Stars, whereas the rest are in Sidemen."It's going to be a lot more competitive, and it's going to be intriguing to see which goals the fans celebrate more and who people want to win."It's going to be a good time in general. It's always quite entertaining, and it's always a fun time with these charity matches. Everyone always leaves with a smile on their face."Why aren't Logan Paul or iShowSpeed playing?Two big names are missing from the line-ups.Logan Paul and iShowSpeed will be busy on Saturday night in Las Vegas competing at Night 1 of WWE WrestleMania 42.Paul and Speed are a part of a six-man tag-team match, teaming with Austin Theory to face The Usos and LA Knight.
+"""
+
+[R3] How to watch Sidemen Charity Match 2026 for free - TV channel, live stream, kick-off time
+(https://www.mirror.co.uk/sport/football/news/sidemen-charity-match-watch-channel-37013951)
+"""
+SportFootballSidemen Charity MatchNeed to knowThe annual Sidemen charity fixture takes place this weekendThe Sidemen Charity Match returns on Saturday(Image: PA)All you need to know about how to watch the 2026 edition of the Sidemen charity match:When it's taking place: The Sidemen Charity Match 2026 is officially scheduled for this Saturday, April 18, at the iconic Wembley Stadium. This massive event, featuring Sidemen FC vs YouTube All-Stars, returns to the home of English football after a record-breaking sell-out saw 90,000 tickets sold in under two hours.How to watch: The most important thing for fans at home is that you can watch the entire event for free on the official Sidemen YouTube channel. There is no pay-per-view cost or subscription required, though you should be wary of third-party sites asking for credit card details to view the stream.Finding the game online: While the match will not be broadcast on traditional terrestrial TV channels like the BBC or ITV, you can easily watch it on your television using the YouTube app. Simply search for "Sidemen" on your smart TV or console to find the live broadcast, which will be pinned to the top of their channel.Kick-off time: The official kick-off is 3:00pm, though the pre-match show usually begins about an hour earlier. You will want to tune in by 2:00pm to catch the player arrivals, warm-ups, and the always-entertaining opening ceremony performances.A twist for 2026: In a massive twist this year, the Sidemen have split their own ranks, with three members joining the opposition for the first time. This shake-up means the usual chemistry is out the window, and the competitive stakes are higher than ever.The Sidemen team: Managed by Jack Joseph, the Sidemen outfit will feature Deji, Marlon Zerkaa, Arthur TV, Aminematue, ChrisMD, xQc Adapt, Jynxzi, TBJZL Niko and AB. The team will be completed by the likes of AJ Shabeel, LazarBeam, Lacy, Wroetoshaw and Vikkstar123The YouTube All-Stars team: YouTube The YouTube All-Stars will be coached by Calfreezy and will feature Sketch, KSI, CarryMinati, Miniminter, George Clarkey Ibai and AngryGinge. Making up their team is Squeezie, MrWhoseTheBoss, Nykchazza, Fanum, Behzinga, Danny Aarons, Stable Ronaldo, El Rubius, ItalianBach and Jasontheween.A good cause: Last year's game raised over £4.7million for charity after tickets sold out in just three hours, with proceeds going to Bright Side and M7 Education. The latter charity was founded by Sidemen member Simon 'Miniminter' Minter and his brother, Nick.Read more on how to get tickets for the game: Sidemen Charity Match tickets still available for YouTube Allstars Wembley gameSky Sports, HBO Max, Netflix and Disney+ with Ultimate TV packageThis article contains affiliate links, we will receive a commission on any sales we generate from it. Learn moreSky has upgraded its Ultimate TV and Sky Sports bundle to now include HBO Max, Netflix, Disney+, discovery+ and Hayu, as well as 135 channels and full Sky coverage of the Premier League and EFL.Sky broadcasts more than 1,400 live matches across the Premier League, EFL and more with at least 215 live from the top flight alongside Formula 1, darts and golf.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

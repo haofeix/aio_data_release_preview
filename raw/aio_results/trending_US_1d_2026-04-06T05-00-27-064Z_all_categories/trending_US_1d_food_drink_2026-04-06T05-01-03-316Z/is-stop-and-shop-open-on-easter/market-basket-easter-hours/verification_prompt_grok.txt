@@ -1,0 +1,97 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "market basket easter hours"
+
+Claims:
+[1] "All Market Basket supermarket locations are closed on Easter Sunday, April 5, 2026, to allow employees to spend time with their families."
+[2] "Market Basket stores will resume regular business hours on Easter Monday, April 6, 2026."
+[3] "Market Basket locations have regular hours on Easter Monday, April 6, 2026."
+[4] "All Market Basket supermarket locations will be closed on the holiday."
+
+Cited text snippets from the AI Overview (for additional context):
+- Here's which stores are open and what's closed on Easter Sunday in Massachusetts: "Is Market Basket open on,Trader Joe's open on Easter?"
+- Which grocery stores are open on Easter? See the list in Massachusetts: "Is Stop & Shop open on,be closed on Easter Sunday."
+- What's closed on Easter Sunday in MA? Target, Lowes more plan to ...: "All Market Basket stores will be closed,April 20, 2025, according to their website."
+- Happy Easter Please note that all store locations will be ...: "Easter opening hours,Good Friday & Easter Monday 🐣"
+- London Easter bank holiday - Transport, shops, attractions: "Tesco/Morrisons/Sainsbury's/Asda,Good Friday and Easter Monday."
+Reference Sources:
+
+[R1] Here's which stores are open and what's closed on Easter Sunday in Massachusetts
+(https://www.cbsnews.com/boston/news/stores-closed-on-easter/)
+"""
+Updated on: April 5, 2026 / 1:57 PM EDT / CBS Boston Add CBS News on Google Easter Sunday is today, and some grocery stores and other businesses in Massachusetts are announcing they'll be open with special holiday hours or closed altogether."Blue laws" in the state force retailers to close on some holidays like Thanksgiving and Christmas, but they do not prevent stores from opening on Easter.Here's a look at where you can and can't shop on Easter in Massachusetts:Is Market Basket open on Easter?All Market Basket supermarkets are closed on Easter Sunday.Is Big Y open on Easter?Big Y stores are also closed Sunday."We will be closed on Easter Sunday, April 5th, so that our employees may spend time with loved ones," the supermarket says on its website.Is Stop & Shop open on Easter?Stop & Shop stores will open at 7 a.m. but close early at 5 p.m. All in-store pharmacies will be closed. Is Shaw's/Star Market open on Easter?Shaw's and Star Market stores in Massachusetts will have regular Sunday hours, but all pharmacies will be closed for the day.Is Trader Joe's open on Easter?Trader Joe's will be open for regular hours on Easter.Is Price Chopper/Market 32 open on Easter?Price Chopper and Market 32 stores will be open normal hours, but pharmacies close at 2 p.m.Is Roche Bros. open on Easter?"Roche Brothers will be closed to allow associates time with their families," a store spokesperson said. Is Wegmans open on Easter?Wegmans says its stores will be open normal business hours on Sunday, but some departments might have modified or shortened hours. Customers should contact their local store for more information.Is Hannaford open on Easter?Hannaford stores in Massachusetts will be open from 7 a.m. to 3 p.m. on Easter.Is Whole Foods open on Easter?Most Whole Foods stores in Massachusetts will close early at 6 p.m. on Easter. Some will stay open until 8 p.m.Is BJ's Wholesale Club open on Easter?BJ's will be open from 8 a.m. to 6 p.m. Some club hours may vary slightly, and members can check with their local club.Are liquor stores open on Easter?Yes, liquor stores can be open and sell alcohol on Easter in Massachusetts. Is Costco open on Easter?Costco stores are closed on Easter.Is TJ Maxx/Marshalls open on Easter?Framingham-based TJX says TJ Maxx, Marshalls, HomeGoods, Sierra and Homesense stores will be closed on Easter. "We consider ourselves an Associate-friendly company and we are pleased to give Associates the time to enjoy Easter with family and friends," a TJX spokesperson said. National chains like Target, Lowe's and Kohl's are also closed on Easter. In: Boston Easter
+"""
+
+[R2] Which grocery stores are open on Easter? See the list in Massachusetts
+(https://www.telegram.com/story/grocery/2026/04/05/easter-grocery-stores-open-hours-massachusetts-2026/89439820007/)
+"""
+April 5, 2026, 5:02 a.m. ETNeed to to make a last-minute trip to the supermarket on Easter? Many Massachusetts grocery stores will be open on Easter Sunday, but their hours may be limited.While no state laws prevent supermarkets from opening as usual on Easter, many opt to open with limited hours to allow employees to celebrate the holiday.To avoid any surprises, shoppers should check store hours before heading out to the supermarket on Sunday, April 5.Here's what to know about popular Massachusetts grocery stores on the spring holiday.Is Stop & Shop open on Easter 2026?Most Massachusetts Stop & Shop stores will be open until 5 p.m. on Easter Sunday, the website said.Is Market Basket open on Easter 2026?All Market Basket stores, including the ones in Somerville, Burlington, and Brockton, will be closed on Easter Sunday.Is Shaw's/Star Market open on Easter 2026?Most Shaw's and Star Market locations will be open regular business hours on Easter Sunday.Is Big Y open on Easter 2026?Big Y grocery stores will be closed on Sunday, April 5, according to the chain's website.Is Roche Bros. open on Easter 2026?Roche Bros. stores will be closed on Easter Sunday this year, according to the company's website.Is ALDI open on Easter 2026?ALDI locations will be closed on Easter Sunday, including the Brockton, Falmouth, Springfield, Worcester, and Medford stores, according to the chain's website.Is Price Rite open on Easter 2026?Most Price Rite stores in Massachusetts will be open from 8 a.m. to 5 p.m. on April 5, according to a company spokesperson.However, both Worcester locations, the New Bedford store, the south New Bedford store, the Fall River store, the Hyde Park store, the Seekonk store, and the Lynn store will be open from 7 a.m. to 6 p.m.The West Springfield store will be open from 8 a.m. to 6 p.m.Is Hannaford open on Easter 2026?Most Hannaford locations in Massachusetts will be open until 3 p.m. on Sunday, April 5, according to the supermarket chain's website. This includes the Middleboro, Waltham, Uxbridge, and Taunton stores.As store hours vary by location, customers are encouraged to check their local store's website.Is Wegmans open on Easter 2026?Wegmans – including the locations in Chestnut Hill, Medford, and Burlington – will be open normal business hours on Easter Sunday, according to a company spokesperson.Certain departments may have modified or shortened hours, so customers should contact their local store for more information, Wegmans said.Is Whole Foods open on Easter 2026?Many Whole Foods locations are open on Easter Sunday, but with modified hours, the chain's website said.Boston's Ink Block and Charles River Plaza locations will be open from 7 a.m. to 8 p.m. on Sunday, April 5. The Shrewsbury, Hingham, Beverly, and Framingham locations will be open from 8 a.m. to 6 p.m.Customers should check their local store's website for details.Is Trader Joe's open on Easter 2026?All Trader Joe's stores, including the Boston Seaport, Newton, and Brookline locations, will be open regular hours on Easter 2026.Is Walmart open on Easter 2026?Walmart stores will be open regular hours on Easter Sunday, according to the company. This includes the Brockton, Fall River, Salem, Worcester, and Quincy locations.Is Target open on Easter 2026?All Target stores will be closed on Easter Sunday, according to the company's website.Is Costco open on Easter 2026?All Costco warehouses in Massachusetts will be closed on Easter 2026, according to the company.This includes the Avon, Danvers, Dedham, Everett, Sharon, Waltham, and West Springfield locations.Is BJ's Wholesale Club open on Easter 2026?Most BJ's Wholesale Club locations will be open from 8 a.m. to 6 p.m. on Easter Sunday, according to the company. However, customers should check with their local club to confirm hours.Is Price Chopper/Market32 open on Easter 2026?Most Price Chopper and Market 32 stores will be open normal hours on Easter Sunday, the company said.
+"""
+
+[R3] What's closed on Easter Sunday in Massachusetts? Target, Lowes more plan to close for day
+(https://www.capecodtimes.com/story/news/2025/04/18/easter-sunday-2025-stores-open-closed-in-massachusetts/83163464007/)
+"""
+April 18, 2025, 4:33 p.m. ETThis Sunday, millions of worshippers around the world will celebrate Easter.Easter Sunday is the culmination of a 40-day period of reflection and faith called Lent and celebrates the Resurrection of Jesus Christ, a widely recognized event in the Christian faith depicted in the New Testament.This year, Easter Sunday falls on April 20, 2025.While it is a widely celebrated holiday in the U.S., it is not a public, federal or state holiday. However, many businesses choose to observe the holy day and close their doors. It can be hard to know which places will be open and which will be closed on Easter Sunday.Here are the places that will be open and the places that will be closed on Easter Sunday.Is Market Basket open on Easter?All Market Basket stores will be closed on Easter Sunday, April 20, 2025, according to their website.Is Target open on Easter?No, Target stores will be closed on Easter Sunday this year, a company spokesperson confirmed to USA TODAY.Is Lowes open on Easter Sunday?Lowes is closing for Easter Sunday this year.Are TJ Maxx, Marshall's or HomeGoods open on Easter?No, all three stores will be closed on Easter Sunday, the company confirmed to USA TODAY.Is Nordstrom open on Easter?All Nordstrom and Nordstrom Rack stores will be closed on Easter this year.Is JCPenney open on Easter?No, all JCPenney stores will be closed on Easter Sunday.Is Kohl's open on Easter?No, Kohl's stores will be closed on Sunday, April 20, a company spokesperson told USA TODAY.Is Burlington open on Easter?All Burlington stores will be closed on Easter, the company confirmed to USA TODAY.Is Walmart open on Easter?Yes, Walmart will be open regular hours on Easter, the company confirmed to USA TODAY.Are Costco or Sam's Club open on Easter?No, both Costco and Sam's Club warehouses will be closed on April 20.Are liquor stores open on Easter?Yes, in Massachusetts, liquor stores are be open on Easter Sunday, as it is not on the list of holidays where liquor stores must be closed.Is Petco open on Easter?Yes, Petco stores will be open regular hours on April 20, a company spokesperson confirmed to USA TODAY.Is PetSmart open on Easter?Yes, PetSmart stores will be open from 11 a.m. to 6 p.m. on Easter Sunday.Are Office Depot and OfficeMax open on Easter?All Office Depot and OfficeMax stores will be closed on Easter, the company confirmed to USA TODAY.Rin Velasco is a trending reporter. Shse can be reached at rvelasco@gannett.com.
+"""
+
+[R4] London Easter bank holiday - Transport, shops, attractions
+(https://www.london-now.co.uk/news/25984251.london-easter-bank-holiday---transport-shops-attractions/)
+"""
+London will move to bank holiday hours this Easter, with shops closing and transport running reduced services. Easter means a shift in routine for Londoners as shops run reduced hours and public transport services change from normal running times. Shop opening hours over Easter On days such as Good Friday, April 3, and Easter Monday, April 6, larger shops in London will operate under "Sunday trading" rules. But on Easter Sunday, shoppers won't be able to rely on big supermarkets as they will be closed for the day, alongside most big shops in England. But smaller convenience stores across the city can open as usual. Good Friday, April 3, and Easter Monday, April 6, will see most shops opening on reduced hours. Expect West End flagships and shopping centres to open around 10am with earlier closing hours. The operation of supermarkets depends on location, but the general rule is reduced hours for bigger stores on Good Friday and Easter Monday, and closures on Easter Sunday. Small stores across the capital and high streets will have flexibility to open at usual times. On Easter Saturday, business is expected to operate as usual, keeping in line with typical Saturday late closing times in central London. Supermarket closures and rules Sunday service will mean that big supermarkets including Tesco, Sainsbury's, Asda, Aldi, Lidl, Morrisons, and M&S Food Halls will remain closed due to law restrictions. Several brands have already confirmed full Sunday closure for UK stores. Smaller chains and independent convenience stores will have the ability to open but may reduce working hours. Some of the variations in opening hours across stores is listed below, but you must always check your local store before making the trip. Lidl: open normal-style hours Good Friday and Saturday, closed Easter Sunday, reduced hours Easter Monday (around 9am–9pm). Aldi: open Good Friday and Saturday with long hours, closed Easter Sunday, shorter hours Easter Monday (around 8am–8pm). Tesco/Morrisons/Sainsbury’s/Asda/Waitrose/M&S: large stores closed Easter Sunday, with reduced or location‑specific hours on Good Friday and Easter Monday. Transport changes across London Transport services across London will move to weekend or bank holiday timetables from April 3 to April 6. This will be particularly true for tube, Overground, DLR, and buses. Some planned closures can be expected within different lines and branches due to ongoing engineering works. Commuters who rely on National Rail services may want to take note of the Easter bank holiday schedule. A list of engineering works is planned, affecting routes into and through London. London Waterloo will see reduced services, with train replacements on certain stretches of the Network Rail. The specific line-by-line plan for TFL will be available closer to the Easter weekend. Londoners can always check the TFL website, app, and National Rail Enquiries before planning their journey. Attractions and places to visit London's top attractions, such as London Eye, Tower of London, sightseeing bus tours, and Madame Tussauds are geared to remain operational throughout the Easter weekend. Museum-goers can look forward to Natural History Museum and Science Museum being open, with special Easter events and workshops for children. However, some venues might vary their usual hours. The British Museum, for instance, has been known to close earlier on Good Friday. Westminster Abbey and other churches and abbeys will prioritise religious services over tourism, specifically on Good Friday and Easter Sunday. For these venues, opening hours may fluctuate and only worship services may be available at exclusive times. Throughout this period, always remember to confirm timings via the website of the attraction before seizing your plans. What to expect overall Given the short notice closures or alterations, it’s best to be cautious. For London dwellers, the prolonged bank holiday feels like an extended Sunday, spreading over four days. Reduced train services, a day devoid of shopping at large supermarkets, but with the silver lining of operating high streets, markets, and major attractions. The atmosphere will be less of a complete shutdown and more of a continued festive hum, keeping the city alive with activity.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

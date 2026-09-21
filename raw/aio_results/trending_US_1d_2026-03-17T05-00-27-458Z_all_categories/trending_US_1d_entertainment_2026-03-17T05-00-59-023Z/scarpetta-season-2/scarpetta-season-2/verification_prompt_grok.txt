@@ -1,0 +1,117 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "scarpetta season 2"
+
+Claims:
+[1] "Scarpetta Season 2 is confirmed."
+[2] "Scarpetta Season 2 is already in production."
+[3] "Prime Video ordered two seasons of Scarpetta simultaneously upon announcing the show."
+[4] "Scarpetta Season 1 debuts in March 2026."
+[5] "Scarpetta Season 2 is expected to release around mid- to late 2027."
+[6] "Filming for Scarpetta Season 2 began early 2026."
+[7] "Scarpetta Season 2 adapts Patricia Cornwell’s books Cruel and Unusual and The Body Farm."
+[8] "Scarpetta Season 2 is expected to focus on elements from books 4 (Cruel and Unusual) and 5 (The Body Farm)."
+[9] "Scarpetta Season 2 will continue with a dual-timeline narrative."
+[10] "Scarpetta Season 2 will pick up after the Season 1 cliffhanger."
+[11] "Nicole Kidman returns as Kay Scarpetta in Scarpetta Season 2."
+[12] "Jamie Lee Curtis returns as Dorothy in Scarpetta Season 2."
+[13] "Bobby Cannavale returns as Pete Marino in Scarpetta Season 2."
+[14] "Simon Baker returns as Benton Wesley in Scarpetta Season 2."
+[15] "Ariana DeBose returns as Lucy in Scarpetta Season 2."
+[16] "Liz Sarnoff confirmed that Patricia Cornwell is involved in the writers' room for Scarpetta Season 2."
+
+Cited text snippets from the AI Overview (for additional context):
+- Will There Be A Season 2 of ‘Scarpetta’?: "Is Scarpetta Renewed For Season,Photo: Prime Video"
+- Everthing We Know About Scarpetta Season 2: "Season 2 will pick up after the,5, potentially exploring a darker Benton Wesley."
+- Scarpetta Season 2 Release Date Estimate, News & Updates: "The release date estimate for Scarpetta Season 2 is sometime,Book 5, The Body Farm."
+- Scarpetta's Showrunner Reveals the Super Exciting Case ...: "Season 2 will tackle a child abduction case and jump into two new books."
+- Is ‘Scarpetta’ Returning for Season 2? - Nonstop Local News: "What will happen in Scarpetta,to unravel everything she's built.”"
+- ‘Scarpetta’ Season 2 Details Revealed: "Sarnoff also confirmed that the,Premiere Date TBA, Prime Video"
+- ‘Scarpetta’ Officially Lands 2 Season Order At Prime Video - IMDb: "'Scarpetta' Officially Lands 2 Season,Among 5 New Cast - IMDb&text=Prime Video has officially ordered,Kay Scarpetta and Jake..."
+Reference Sources:
+
+[R1] ‘Scarpetta’ Officially Lands 2 Season Order At Prime Video; Ariana DeBose & Bobby Cannavale Among 5 New Cast - IMDb
+(https://www.imdb.com/news/ni64833515/)
+"""
+Similar NewsNicole KidmanLoved ‘Scarpetta’? Here are 4 crime shows to watch next3/25/2026by Thomas WaschenfelderThe StreamableJamie Lee Curtis To Star In Murder, She Wrote Reboot For Universal Pictures3/25/2026by Mona KhalifehScreenRantStephanie Faracy on working with Nicole Kidman in ‘Scarpetta’ and Kristen Bell on ‘Nobody Wants This’: ‘I caught a big wave’3/25/2026by Mia McNieceGold DerbyJamie Lee CurtisNicole Kidman (58) Shows off Retro Style in See-Through Top and Metallic Pants3/26/2026by Josip KraljikFiction HorizonNicole Kidman (58) Shows off Bold Retro Style in See-Through Outfit3/26/2026by Josip KraljikComic BasicsSave The Dates: Murder, She Wrote Movie, R.J. Decker On The Move, And More3/25/2026by Ryan SchwartzTVLine.comJason Blum (I)Psychological Thriller ‘Strung’ to Make Music on Peacock this June3/26/2026by Matt KonopkaDreadCentral.comJason Blum-Tyler Perry Psychological Thriller ‘Strung’ Debuts on Peacock in June3/26/2026by Alex DiVincenzobloody-disgusting.com‘Lee Cronin’s The Mummy’ Rated R for Strong Disturbing Violent Content3/25/2026by John Squiresbloody-disgusting.comIMDb.com, Inc. takes no responsibility for the content or accuracy of the above news articles, Tweets, or blog posts. This content is published for the entertainment of our users only. The news articles, Tweets, and blog posts do not represent IMDb's opinions nor can we guarantee that the reporting therein is completely factual. Please visit the source responsible for the item in question to report any concerns you may have regarding content or accuracy.More to exploreTop news‘Lord of the Rings’ Superfan Stephen Colbert to Write New Movie for Peter Jackson3/25/2026by Charisma MadarangRollingstone.comApple TV’s ‘For All Mankind’ Renewed for 6th and Final Season3/24/2026by Drew TaylorThe WrapGwyneth Paltrow to Star in ‘Strangers’ as Netflix Wins Movie Rights to Belle Burden’s Blockbuster Memoir3/25/2026by Matt DonnellyVariety Film + TVCelebrity newsGwyneth Paltrow to Star in ‘Strangers’ as Netflix Wins Movie Rights to Belle Burden’s Blockbuster Memoir3/25/2026by Matt DonnellyVariety Film + TVTennessee Police: Alan Ritchson Acted in Self Defense, “No Criminal Charges Pursued” After Altercation With Neighbor3/24/2026by Chris GardnerThe Hollywood Reporter - Movie NewsIndie news‘Kontinental ’25’ Review: A Transylvanian Bailiff Tries to Ease Her Guilty Conscience in Radu Jude’s Droll and Biting iPhone Comedy3/23/2026by David EhrlichIndiewire‘Miroirs No. 3’ Review: Christian Petzold’s Minor Key Is a Major One for His Beautifully Concussed Protagonist, Played by Paula Beer3/20/2026by Ryan LattanzioIndiewireWhat Went Wrong at One of Hollywood’s Newest Indie Distributors3/23/2026by Alison ForemanIndiewireMovie news‘Lord of the Rings’ Superfan Stephen Colbert to Write New Movie for Peter Jackson3/25/2026by Charisma MadarangRollingstone.com‘Spider-Man: Brand New Day’ Makes History as First Movie Trailer to Cross 1 Billion Views (Exclusive)3/24/2026by Jordan MoreauVariety - Film NewsGwyneth Paltrow to Star in ‘Strangers’ as Netflix Wins Movie Rights to Belle Burden’s Blockbuster Memoir3/25/2026by Matt DonnellyVariety Film + TVTV newsApple TV’s ‘For All Mankind’ Renewed for 6th and Final Season3/24/2026by Drew TaylorThe WrapNobody Wants This Season 3 Starts Production3/24/2026by Jean BentleyTudum - NetflixCriminal Minds Renewed At Paramount+ Ahead Of Season 19 Premiere — Heated Rivalry's Connor Storrie To Guest Star3/24/2026by Ryan SchwartzTVLine.comHomicide New York Season 2: Trailer and True Story of Each Case3/26/2026by Krutika MallikarjunaTudum - Netflix
+"""
+
+[R2] Scarpetta Season 2 Release Date Estimate, News & Updates
+(https://www.aol.com/articles/scarpetta-season-2-release-date-194741946.html)
+"""
+Photo Credit: Amazon Prime VideoThe release date estimate for Scarpetta Season 2 is highly anticipated among fans of the first season. Based on Patricia Cornwell’s iconic novel series of the same name, the show features an incredible star cast and a gripping crime drama. The debut season has seemingly exceeded many viewers’ expectations, who are now looking forward to continuing Dr. Kay Scarpetta’s story. While there are still loads of novels to adapt from, is there any official announcement about a second installment in development?Without further ado, here’s what we know so far about Scarpetta Season 2.What is the Scarpetta Season 2’s release date estimate?The release date estimate for Scarpetta Season 2 is sometime in 2027. This is based on the time it would take the studio to produce the second season.When Prime Video announced the show, it had ordered two seasons (via TV Insider). This means the show will return for at least one more installment. Furthermore, the filming of Season 1 reportedly began in October 2024 and ended in March 2025. Consequently, the show debuted on March 11, 2026.According to TV Insider, filming for the second season began earlier this month. So, if the next installment takes a similar amount of time for shooting and post-production, it could air sometime in mid- to late 2027 at the earliest. Needless to say, the filming can take longer or shorter based on the scope of Season 2.Scarpetta Season 2 news and updatesAs shared above, Scarpetta Season 2 is already in production. Similar to Season 1, it will reportedly continue to explore two timelines.The debut season incorporated elements from Book 1, Postmortem, and Book 25, Autopsy. Season 2, however, is expected to adapt elements from Book 4, Cruel and Unusual, and Book 5, The Body Farm.The cast of Scarpetta Season 2 could feature Nicole Kidman, Rosy McEwen, Jamie Lee Curtis, Bobby Cannavale, Simon Baker, Jake Cannavale, and Hunter Parrish, among others.The post Scarpetta Season 2 Release Date Estimate, News & Updates appeared first on ComingSoon.net - Movie Trailers, TV & Streaming News, and More.
+"""
+
+[R3] 'Scarpetta' Season 2 Details Revealed
+(https://www.tvinsider.com/1249407/scarpetta-season-2-premiere-date-cast-details/)
+"""
+Patricia Cornwell’s Kay Scarpetta novels finally got the screen treatment in Scarpetta, the eight-episode crime drama that premiered on Prime Video on March 11. The star-studded series followed the renowned medical examiner on a new serial killing case that has some unsettling connections to her career-making case from the ’90s, and the last episode ended with a major cliffhanger. So is the series a one-and-done, or is there more to come? Here’s what we know. Is Scarpetta renewed for Season 2? Yes! Prime Video ordered two seasons of the series. When will Scarpetta Season 2 premiere? A premiere date has not yet been revealed, but TV Insider has learned that the series went back into production starting on March 9. Who will star in Scarpetta Season 2? It is expected that all members of the main cast will return to their roles for Season 2. The series takes place across two timelines. In the present-day storyline, Nicole Kidman stars as Dr. Kay Scarpetta, while Jamie Lee Curtis stars as her chaotic sister Dorothy Farinelli, Bobby Cannavale stars as Detective Pete Marino, Simon Baker stars as FBI profiler Benton Wesley, and Ariana DeBose stars as Kay’s niece Lucy. In the ’90s-set timeline, meanwhile, Rosy McEwen stars as Kay, while Amanda Righetti stars as Dorothy, Jake Cannavale stars as Pete, and Hunter Parrish stars as Benton. What will happen in Scarpetta Season 2? An official description of the second season has not yet been revealed, but writer, executive producer, and showrunner Liz Sarnoff confirmed it will continue from the events of Season 1’s finale: “It’s half in the past and half in the present. And in the past, it’s a little bit later [than Season 1], and then the present picks up where we left off,” she told TV Insider. That means we’ll find out the answers to the most burning questions of the first season, including who walked in when Kay was pummeling her serial killer attacker in the last shot. What books will Scarpetta Season 2 be based on? The second season is expected to incorporate the events of the novels Cruel and Unusual and The Body Farm. The description for Cruel and Unusual, the fourth novel in the Kay Scarpetta series, tells us, “When an executed murderer’s fingerprints turn up at a new crime scene, Kay Scarpetta investigates.” Meanwhile, The Body Farm, which is the fifth in the series, is described like so: “Little Emily Steiner left a church meeting late one afternoon and strolled toward home along a lakeside path; a week later, her nude body was discovered, bound in blaze-orange duct tape. Called by the North Carolina authorities, forensic pathologist Kay Scarpetta recognizes similarities to the gruesome work of a serial killer who has long eluded the FBI. But as she tries to make sense of the evidence, she is left with questions that lead her to the Body Farm, a little-known research facility in Tennessee where, with the help of some grisly experiments, she might discover the answer. It is Scarpetta alone who can interpret the forensic hieroglyphics that eventually reveal a solution to the case as staggering as it is horrifying. But she must also endeavor to help her niece, Lucy, who is embroiled in controversy at Quantico. And Scarpetta, too, is vulnerable, as she opens herself to the first physical and emotional bond she has felt in far too long a time. Tenacious and brilliant, tender and gentle, this is Scarpetta even more realized and poignant than we’ve seen her before — in a stunning achievement from a bestselling author at the peak of her powers.” What else is there to know about Scarpetta Season 2? Sarnoff also confirmed that the novels’ author was involved with the creation of the series, including its second season. “She read all the scripts and corrected us when we got stuff wrong, and she was always there/ I could reach out to her, and it was wonderful for me. I’m a big fan, and she was very available to the show,” Sarnoff said. “We had her in Season 2, she was in the writers’ room a bunch where we would Zoom with her and talk to her about what we were planning. And she has unbelievable ideas, and she was just a pleasure to have as a resource.” Scarpetta, Season 2, Premiere Date TBA, Prime Video
+"""
+
+[R4] Will There Be A Season 2 of ‘Scarpetta’?
+(https://decider.com/2026/03/13/will-there-be-a-season-2-of-scarpetta/)
+"""
+Published March 13, 2026, 4:30 p.m. ET 0 seconds of 0 secondsVolume 0%Loading ad00:2500:0002:06 Where to Stream: Scarpetta Where to Watch Widget Failed To Load. Please Try Again. Powered by Reelgood Scarpetta Season 1 may be over but we’re already starting to think about Season 2. Save us, Nicole Kidman, save us! **Spoilers ahead for Season 1 of Scarpetta, now streaming on Prime Video** With one mystery in the bag and one murderer’s brain bashed in — we love seeing Nicole Kidman get her hands (and her bat!) dirty — we are already looking out at what the next season of this hit crime-drama could look like. After baiting us by making us fall in love with Dr. Kay Scarpetta (Kidman), Dorothy (Jamie Lee Curtis), Pete Marino (Bobby Cannavale), Benton (Simon Baker), and Lucy (Ariana Debose), Prime Video expects us to wait a whole year or more to see this crew return? And it’s worse because that Season 1 cliffhanger ending has us questioning who is at the door and what’s going to happen to Scarpetta next. Hopefully, it’s Pete and he can help her cover up another murder. So many questions and so little time! Here’s everything we know about Scarpetta Season 2, including if it’s happening, who is returning, and when we might be able to expect the show’s return… Photo: Connie Chornuk/Prime Is Scarpetta Renewed For Season 2? Great news, Scarpetta fans, the show has already been renewed for a second season! When Prime Video announced that Kidman and crew would be starring in the adaptation of Patricia Cornwell’s bestselling book series, the service announced that the show would be getting a two-season order. Who Is Returning For Scarpetta Season 2? As of right now, it sounds like everyone whose characters are still alive will return for the second season, including Kidman, Curtis, Cannavale, Baker and Debose. One person who will most likely not be returning is David Hornsby, who plays Officer Ryan. Of course, the last scene of Episode 8 sees Dr. Scarpetta bashing in the brains of Officer Ryan after he tried to chase her through her house. Unless flashbacks expose him as the copycat murderer to the entire cast of characters in Season 2, we think he’s probably done on the show. When Will Scarpetta Season 2 Premiere on Prime Video? Sadly, we have no release date yet for Scarpetta Season 2. We can only hope that Season 2 comes out within a year or so of Season 1. That said, we do think that due to the busy schedules of the show’s stars, it could be a year and a half to two years before we get another season. Photo: Prime Video What Books Will Season 2 of Scarpetta Adapt? While Season 1 of Scarpetta adapted the first book, Postmortem, and the 25th book, Autopsy, it sounds like Season 2 will be the fourth book in the series, Cruel and Unusual, and the fifth book, The Body Farm. According to the LA Times, who spoke with Kidman and her younger counterpart, Rosy McEwen, the next season will tackle two more of the earlier novels. Season 1 of Scarpetta is now streaming on Prime Video. If you aren’t a Prime Video subscriber yet, you can get started with a 30-day Amazon Prime free trial, including Prime perks like the Prime Video streaming service, free two-day shipping, exclusive deals, and more. After the free trial, Amazon Prime costs $14.99/month or $139/year. All 18- to 24-year-olds, regardless of student status, are eligible for a discounted Prime for Young Adults membership as well, with age verification. After a six-month free trial, you’ll pay 50% off the standard Prime monthly price of $14.99/month — just $7.49/month — for up to six years and get all the perks. Tags Nicole Kidman Prime Video Scarpetta
+"""
+
+[R5] Is ‘Scarpetta’ Returning for Season 2?
+(https://www.nbcrightnow.com/lifestyles/entertainment/is-scarpetta-returning-for-season-2/article_adc873cf-a4d2-531c-adf7-3c07fc70b9b5.html)
+"""
+Patricia Cornwell’s Kay Scarpetta novels finally get the screen treatment in Scarpetta, an eight-episode crime drama premiering on Prime Video on Wednesday, March 11.The star-studded series follows the renowned medical examiner on a new serial killing case that has some unsettling connections to her career-making case from the ’90s.Top Videos So is the series a one-and-done, or is there more to come? Here’s what we know.Yes! Prime Video ordered two seasons of the series.When will Scarpetta Season 2 premiere?A premiere date has not yet been revealed, but TV Insider has learned that the series goes back into production starting on Monday, March 9.Who will star in Scarpetta Season 2?It is expected that all members of the main cast will return to their roles for Season 2.The series takes place across two timelines. In the present-day storyline, Nicole Kidman stars as Dr. Kay Scarpetta, while Jamie Lee Curtis stars as her chaotic sister Dorothy Farinelli, Bobby Cannavale stars as Detective Pete Marino, Simon Baker stars as FBI profiler Benton Wesley, and Ariana DeBose stars as Kay’s niece Lucy. In the ’90s-set timeline, meanwhile, Rosy McEwen stars as Kay, while Amanda Righetti stars as Dorothy, Jake Cannavale stars as Pete, and Hunter Parrish stars as Benton.What will happen in Scarpetta Season 2?An official description of the second season has not yet been revealed, but writer, executive producer, and showrunner Liz Sarnoff confirmed it will continue from the events of Season 1’s finale: “It’s half in the past and half in the present. And in the past, it’s a little bit later [than Season 1], and then the present picks up where we left off,” she told TV Insider.The logline for Season 1 reads, “This dual narrative explores Kay Scarpetta’s journey from her beginnings as a Chief Medical Examiner in the late ’90s to her present-day return to her hometown, where she resumes her former position while investigating a grisly murder. As Scarpetta pursues justice, she must navigate complicated relationships, including the fraught dynamic with her sister Dorothy Farinelli, confront long-held professional and personal grudges, and face secrets that threaten to unravel everything she’s built.”What else is there to know about Scarpetta Season 2?Sarnoff also confirmed that the novels’ author was involved with the creation of the series, including its second season. “She read all the scripts and corrected us when we got stuff wrong, and she was always there/ I could reach out to her, and it was wonderful for me. I’m a big fan, and she was very available to the show,” Sarnoff said. “We had her in Season 2, she was in the writers’ room a bunch where we would Zoom with her and talk to her about what we were planning. And she has unbelievable ideas, and she was just a pleasure to have as a resource.”Scarpetta, Season 2, Premiere Date TBA, Prime VideoMore Headlines:Is ‘Scarpetta’ Returning for Season 2?Savannah Chrisley Gets Federal Warning Over Her Weight Loss Medicine Website‘American Idol’: What Is the Ohana Round? Everything to Know About the New Addition ‘CBS Mornings’ Shocker: Is Trump Supporter Sage Steele Set to Replace Gayle King?Tom Bergeron Shares His Own Health Struggles Amid Val Chmerkovskiy Hospitalization
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

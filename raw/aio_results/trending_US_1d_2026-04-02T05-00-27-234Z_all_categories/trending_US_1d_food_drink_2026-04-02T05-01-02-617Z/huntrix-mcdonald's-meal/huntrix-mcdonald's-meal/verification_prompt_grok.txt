@@ -1,0 +1,117 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "huntrix mcdonald's meal"
+
+Claims:
+[1] "The McDonald's Huntrix Meal launched on March 31, 2026."
+[2] "The McDonald's Huntrix Meal is also called HUNTR/X Meal."
+[3] "The McDonald's Huntrix Meal launched as part of the KPop Demon Hunters collaboration."
+[4] "The McDonald's Huntrix Meal features 10-piece Chicken McNuggets."
+[5] "The McDonald's Huntrix Meal features a medium drink."
+[6] "The McDonald's Huntrix Meal features Ramyeon McShaker Fries with soy-garlic-spice seasoning."
+[7] "The McDonald's Huntrix Meal includes special Demon Sauce."
+[8] "Demon Sauce is purple-colored."
+[9] "Demon Sauce is hot tangy mustard."
+[10] "The McDonald's Huntrix Meal includes Hunter Sauce."
+[11] "Hunter Sauce is sweet chili."
+[12] "Ramyeon McShaker Fries are medium fries served with a Ramyeon seasoning mix."
+[13] "The Ramyeon seasoning mix contains soy, garlic, sesame, and spice."
+[14] "Ramyeon McShaker Fries are shaken in a bag."
+[15] "Hunter Sauce is a sweet chili sauce with pepper notes."
+[16] "Demon Sauce is a bold purple-colored mustard sauce with heat."
+[17] "The McDonald's Huntrix Meal includes a medium soft drink."
+[18] "The McDonald's Huntrix Meal includes a collectible card."
+[19] "The collectible card features the Huntr/X group."
+[20] "The collectible card has a QR code to unlock exclusive content."
+[21] "The McDonald's Huntrix Meal is part of an adult meal lineup."
+[22] "The McDonald's Huntrix Meal is often served with exclusive packaging as part of the KPop Demon Hunters promotional campaign."
+[23] "10-Piece Chicken McNuggets is the core entree of the McDonald's Huntrix Meal."
+
+Cited text snippets from the AI Overview (for additional context):
+- When do McDonald's 'KPop Demon Hunters' meals come out?: "What's in 'KPop Demon Hunters,sweet chili mix) are available."
+- KPop Demon Hunters meal - McDonald’s Corporation: "For the Hunters: The HUNTR,purple, just like demon patterns."
+- K Pop Demon Hunters The Huntrix Meal at McDonald’s and new ...: "McDonald's new KPop Demon Hunters,fastfood #kpopdemonhunters #huntrix #sajaboys"
+- KPDH Huntrix Meal: 10 Piece McNuggets®, Fries & a Drink: "Hunter Sauce (package)&text=Ingredients: Sugar, Water, Corn,sodium Benzoate And Potassium Sorbate)."
+- McDonald’s launched a golden💫 collab with “KPop Demon Hunters” ...: "cheatdayorlando-,McDonald's launched a golden💫 collab with “KPop Demon Hunters,orlando #kpop #kpopdemonhunters #mcdonalds"
+- McDonald’s KPop Demon Hunters meals launch today: Huntrix Meal, Demon Sauce and Saja Boys menu revealed: "Huntrix Meal: What's Inside the,Fries, and two signature sauces."
+Reference Sources:
+
+[R1] McDonald’s and Netflix Call on Fans to Pick a Side with TwoNew “KPop Demon Hunters”-Inspired Meals
+(https://corporate.mcdonalds.com/corpmcd/our-stories/article/kpop-demon-hunters.html)
+"""
+HUNTR/X and the Saja Boys’ epic rivalry is coming to McDonald’s restaurants nationwide with dueling adult meals, and exclusive fan experiences starting March 31. (CHICAGO — March 24, 2026) — After dominating charts, screens and playlists worldwide in the Academy Award-Winning “KPop Demon Hunters,” global K-pop icons HUNTR/X and the Saja Boys are bringing their battle for the fans straight to the Golden Arches. Starting March 31, McDonald’s is teaming up with Netflix to turn restaurants into the ultimate arena. The partnership features two all-new meals for adults and exclusive photocards that unlock first-access content for a limited time. The campaign also brings flavors from McDonald’s restaurants in South Korea, connecting fans to the film through taste. “Everything we do at McDonald’s is for the fans, and no one can relate to that more than Netflix and KPop Demon Hunters,” said Alyssa Buetikofer, Chief Marketing and Customer Experience Officer at McDonald’s. “Big things happen when you bring two massive fandoms together, and this partnership was a natural fit. We found authentic ways to unite our iconic worlds — inviting HUNTR/X and Saja Boys fans into the rivalry in ways that feel true to the film and unmistakably McDonald’s.” For the Pride: The Saja Boys Breakfast Meal Think you can resist the Saja Boys? The hottest K-pop demon group is stealing the spotlight with the Saja Boys Breakfast Meal, channeling their signature heartthrob charm with a: Spicy Saja McMuffin®: A Sausage McMuffin® with Egg, topped with a peppery Spicy Saja Sauce — inspired by the fire of Gwi-Ma.Hash Browns: Our signature hash browns, crispy on the outside and soft on the inside — just like the Saja Boys’ leader Jinu.Small Soft Drink: Your choice of a little “Soda Pop” to cool down from the heat. For the Hunters: The HUNTR/X Meal HUNTR/X is taking the stage for the rest of the day to show fans “how it’s done, done, done!” The HUNTR/X Meal makes the Golden Arches even more “Golden” and includes a 10-pc. Chicken McNuggets®, medium soft drink and three limited-time menu items: Ramyeon McShaker™ Fries: A spicy, umami spin on our World Famous Fries® featuring a soy, garlic, sesame and spice seasoning — inspired by Rumi, Mira and Zoey’s go-to snack. Sprinkle the seasoning into the McShaker bag, add fries, and shake for a bold taste that’s true to South Korean flavors.Hunter Sauce: A sweet chili sauce mixing notes of chili, garlic and pepper with just enough heat inspired by HUNTR/X’s fierce, yet fun-loving personalities.Demon Sauce: A bold mustard sauce with heat and tang — made purple, just like demon patterns. “KPop Demon Hunters has ignited an incredibly passionate global fandom, and we’re always looking for authentic ways to bring fans deeper into the worlds they love,” said Marian Lee, Chief Marketing Officer, Netflix. “With McDonald’s, we were able to turn the rivalry between The Saja Boys and HUNTR/X into something fans can actually experience, drawing inspiration from Korean culture and food traditions that sit at the heart of the film. From Ramyeon McShaker Fries to Demon sauces paired with Soda Pop, every detail was designed to feel like it could have come straight out of a scene in the movie.” Exclusive Access: HUNTR/X + Saja Boys Photocards But the battle doesn’t stop at the menu. Every Saja Boys Breakfast Meal and HUNTR/X Meal comes with a collectible card pack consisting of: An exclusive photocard for either HUNTR/X or the Saja Boys andA Derpy access card. Fans can scan the QR code on each Derpy access card and enter the unique code on the McDonald’s App by April 26 to unlock first access to exclusive content and a special reveal of the group that wins the Battle for the Fans. A Rookie Performance: The Derpy McFlurry One sweet rookie is also making its debut on the mainstage. Say hello to the Derpy McFlurry — a brand-new McFlurry flavor, available a la carte, that blends creamy vanilla soft serve with berry popping pearls, enrobed in a wild berry sauce. Just like Derpy Tiger, it’s impossible not to love, no matter which side you pick. The stage is set and on March 31, the battle begins. Whether you’re a Hunter, part of The Pride or still deciding, head to your local McDonald’s or order McDelivery from the “couch, couch, couch” to try both meals and let your taste buds choose — which side are you really on? McDonald’s USA McDonald’s USA, LLC, serves a variety of menu options made with quality ingredients to millions of customers every day. Ninety-five percent of McDonald’s approximately 13,500 U.S. restaurants are owned and operated by independent franchisees. For more information, visit www.mcdonalds.com, and follow us on social: X, Instagram, TikTok and Facebook. KPop Demon Hunters From directors Maggie Kang and Chris Appelhans, KPop Demon Hunters follows K-pop superstars HUNTR/X, who, when they aren't selling out stadiums, use their secret identities as badass demon hunters to protect their fans from an ever-present supernatural threat. Together, they must face their biggest enemy yet – an irresistible rival boy band of demons in disguise. KPop Demon Hunters is a Netflix film produced in partnership with Sony Pictures Animation.
+"""
+
+[R2] When do McDonald's 'KPop Demon Hunters' meals come out?
+(https://www.app.com/story/news/2026/03/30/does-mcdonalds-kpop-demon-hunters-come-out-today-huntrix-adult-happy-meal-toys-mcdonalds-near-me/89390437007/)
+"""
+March 30, 2026, 4:32 p.m. ETMcDonald's is giving "KPop Demon Hunters" fans a K-pop battle for the ages, with its first-ever dueling adult Happy Meals featuring Netflix animated icons HUNTR/X vs Saja Boys duking it out for McDonald's "Battle of the Fans." And Huntrix fans say it's gonna be "Golden."The limited-edition McDonald's "KPop Demon Hunters" meals drop Tuesday, March 31, 2026, featuring two new Happy Meals: The Huntr/X Meal, featuring the girls who make up the fictional K-pop group HUNTR/X — Rumi, Mira and Zoey — and a Saha Boys meal for you McDonald's breakfast run.The new McDonald's adult Happy Meals don't come with Happy Meal toys — like the new McDonald's "Super Mario Galaxy" Happy Meal — but features collectible HUNTR/X and Saja Boys Photocards. The McDonald's Huntrix meal offers fans spicy Ramyeon McShaker fries and purple "Demon Sauce. A big fan of Derpy Tiger? The Derpy McFlurry is also available.Here's what to know about the new "KPop Demons Hunters" Happy Meal and how to get it in NJ.When does McDonald's 'KPop Demon Hunters' meal come out?McDonald's new "KPop Demon Hunters" Happy Meal comes out on Tuesday, March 31, 2026. The new adult Happy Meal at McDonald's will be available nationwide at participating restaurants for a limited time.What's in 'KPop Demon Hunters' adult Happy Meals?The McDonald's "KPop Demon Hunters" meals include the HUNTR/X Meal and the Saja Boys meal, which is part of McDonald's breakfast menu.The "Huntrix" meal, or Huntr/X adult Happy Meal, features 10-piece McDonald's Chicken McNuggets, medium soft drink and Ramyeon McShaker Fries, with a spicy, umami spin featuring soy, garlic, sesame and spice seasoning. The fries are inspired by Rumi, Zoey and Mira's go-to noodle snack. You'll sprinkle the seasoning into a McShaker bag, throw in the fries and shake away. Demon Sauce (purple-colored mustard) and Hunter Sauce (sweet chili mix) are available.The Saja Boys Breakfast Meal features a Sausage McMuffin with Egg, topped with a peppery Spicy Saja Sauce. You also get hash browns and a small soft drink (a little "Soda Pop" to cool down, of course)McDonald's Happy Meal toysMcDonald's new "KPop Demon Hunters" adult Happy Meals do not feature toys, like the current McDonald's Happy Meal toys in the "Super Mario Galaxy" meal but will include collectible Photocard packs consisting of an exclusive photocard for either HUNTR/X or the Saja Boys and an exclusive Derpy access card.The Derpy card — inspired by the Hunters' lovable Derpy Tiger — provides a unique QR code to scan on the McDonald's App. Fans must scan the code by April 26 to unlock first access to exclusive "KPop Demon Hunter" content and see who wins the "Battle for the Fans" between HUNTR/X and the Saja Boys.What's in the Derpy McFlurry?McDonald's "Derpy McFlurry" includes a creamy vanilla soft serve with blackberry popping pearls, all mixed in a wild berry sauce. The new "KPop Demon Hunters" McFlurry at McDonald's is inspired by fan-favorite Derpy Tiger from the popular animated film.How much does McDonald's 'Huntrix' Happy Meal cost?The cost of the "KPop Demon Hunters" adult Happy meal varies by location. When previous McDonald's Happy Meals for adults dropped, such as "The Grinch," and "Mcdonaldland," the price was between $15 and $17 across McDonald's in New Jersey. When the meal drops, check the McDonald's app, find your location to check how much it'll cost.The "Super Mario Galaxy" Happy Meal for kids averages $6 to $7 in New Jersey but varies by location.How to find a McDonald's near me in NJIs there a McDonald's near me? It's likely since there are over 250 McDonald's locations in New Jersey. To find a McDonald's near you and to grab the new HUNTER/X and Saja Boys meal in New Jersey, visit McDonald's online locator.Lori Comstock is a New Jersey-based news reporter covering trending news with USA TODAY Network's Mid-Atlantic Connect Team. She covers news in the Northeast, including New Jersey, Pennsylvania, Delaware, Washington DC, Maryland, and Virginia. Reach her at LComstock@usatodayco.com.
+"""
+
+[R3] McDonald’s KPop Demon Hunters meals launch today: Huntrix Meal, Demon Sauce and Saja Boys menu revealed
+(https://m.economictimes.com/news/international/us/mcdonalds-kpop-demon-hunters-meals-launch-today-huntrix-meal-demon-sauce-and-saja-boys-menu-revealed/articleshow/129934829.cms)
+"""
+SynopsisHuntrix Mcdonald's meal: McDonald's is celebrating the KPop Demon Hunters film with themed meals inspired by the rival groups, Huntr/X and the Saja Boys. Available from March 31, these limited-edition options include unique fries, sauces, and collectible photocards. A special Derpy McFlurry also joins the lineup, offering fans a taste of the movie's Korean-inspired flavors.ReutersHuntrix Mcdonald's mealHuntrix Mcdonald's meal: Fans of KPop Demon Hunters now have a new way to experience the story beyond the screen. Starting Tuesday, March 31, McDonald’s is turning the film’s iconic rivalry into a real-world event with themed meals inspired by Huntr/X and the Saja Boys.The fast-food chain is offering two limited-edition options, each tied to one of the groups, complete with collectible photocards and a special Derpy the Tiger access card, as per a report. The QR code on the card unlocks exclusive content through the McDonald’s app, adding an interactive layer for fans. Huntrix Meal: What’s Inside the Huntrix McDonald’s MealThe huntrix meal is built around a 10-piece Chicken McNuggets combo. It includes a medium drink, Ramyeon McShaker Fries, and two signature sauces.The fries are seasoned with soy, garlic, sesame, and spice, inspired by the characters’ favorite noodle snack. The meal also features hunter sauce mcdonald’s, described as a sweet chili sauce with notes of garlic and pepper, along with demon sauce mcdonald’s, a bold mustard sauce with heat and tang, colored purple to match the film’s demon patterns, as per a USA Today report.This huntrix mcdonald's meal is designed to reflect the energy and flavor of the trio’s on-screen world.Saja Boys Breakfast Meal Adds a Rival OptionFor fans of the opposing group, McDonald’s is also offering a breakfast-themed option. The Saja Boys meal includes a Sausage McMuffin with Egg topped with a Spicy Saja Sauce, along with hashbrowns and a small soft drink.Together, these meals form the full mcdonalds kpop demon hunters meal lineup, giving fans a choice depending on which side they support.McDonald’s KPop Demon Hunters Menu Inspired by Korean FlavorsAccording to Netflix’s chief marketing officer Marian Lee, "With McDonald's, we were able to turn the rivalry between The Saja Boys and Huntr/X into something fans can actually experience, drawing inspiration from Korean culture and food traditions that sit at the heart of the film," as quoted by USA Today. From Ramyeon-inspired fries to uniquely flavored sauces and drinks, every detail draws from Korean culture and food traditions featured in the film.Derpy McFlurry Joins the K Pop Demon Hunters McDonalds LineupThe collaboration also introduces the Derpy McFlurry, inspired by Derpy the Tiger. The dessert blends vanilla soft serve with berry-flavored popping pearls and a wild berry sauce, reflecting the playful personality of the character.As part of the full k pop demon hunters mcdonalds experience, the dessert adds a lighter, fun option alongside the themed meals.McDonalds KPop Demon Hunters Release Date and AvailabilityAll items in the mcdonalds kpop demon hunters collection, including meals and the Derpy McFlurry, are available starting March 31 at participating locations nationwide.FAQsWhat is the McDonald’s KPop Demon Hunters meal?It’s a limited-time menu inspired by the KPop Demon Hunters film, featuring themed meals and collectibles.When are the KPop Demon Hunters meals available?They launched on March 31 at participating McDonald’s locations.
+"""
+
+[R4] KPDH Huntrix Meal: 10 Piece McNuggets®, Fries & a Drink | McDonald's
+(https://www.mcdonalds.com/us/en-us/meal/kpop-demon-hunters-huntrix-meal.html)
+"""
+Important Note : At McDonald's, we take great care to serve quality, great-tasting menu items to our customers each and every time they visit our restaurants. We understand that each of our customers has individual needs and considerations when choosing a place to eat or drink outside their home, especially those customers with food allergies. As part of our commitment to you, we provide the most current ingredient information available from our food suppliers for the nine most common allergens as identified by the U.S. Food and Drug Administration (eggs, dairy, wheat, soy, peanuts, tree nuts, fish, shellfish and sesame), so that our guests with food allergies can make informed food selections. However, we also want you to know that despite taking precautions, normal kitchen operations may involve some shared cooking and preparation areas, equipment and utensils, and the possibility exists for your food items to come in contact with other food products, including allergens. We encourage our customers with food allergies or special dietary needs to visit www.mcdonalds.com for ingredient information, and to consult their doctor for questions regarding their diet. If you have questions about our food, please reach out to us directly using our contact us forms. Percent Daily Values (DV) and RDIs are based on unrounded values. **Percent Daily Values (DV) are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs. The nutrition information on this website is derived from testing conducted in accredited laboratories, published resources, or from information provided from McDonald's suppliers. The nutrition information is based on standard product formulations and serving sizes. Calories for fountain beverages are based on standard fill levels plus ice. If you use the self-service fountain inside the restaurant for your drink order, see the sign posted at the beverage fountain for beverage calories without ice. All nutrition information is based on average values for ingredients and is rounded in accordance with current U.S. FDA NLEA regulations. Variation in serving sizes, preparation techniques, product testing and sources of supply, as well as regional and seasonal differences may affect the nutrition values for each product. In addition, product formulations change periodically. You should expect some variation in the nutrient content of the products purchased in our restaurants. Beverage sizes may vary in your market. McDonald’s USA does not certify or claim any of its US menu items as Halal, Kosher or meeting any other religious requirements. We do not promote any of our US menu items as vegetarian, vegan or gluten-free. This information is correct as of January 2022, unless stated otherwise.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

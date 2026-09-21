@@ -1,0 +1,108 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "brian gutierrez"
+
+Claims:
+[1] "Brian Gutiérrez was born on June 17, 2003."
+[2] "Brian Gutiérrez is a Mexican-American professional footballer."
+[3] "Brian Gutiérrez plays as an attacking midfielder for Liga MX club Guadalajara as of early 2026."
+[4] "Brian Gutiérrez was born in Berwyn, Illinois."
+[5] "Brian Gutiérrez is a Chicago native."
+[6] "Brian Gutiérrez developed as a Homegrown Player with Chicago Fire FC."
+[7] "Brian Gutiérrez recorded over 100 appearances with Chicago Fire FC before his move."
+[8] "Brian Gutiérrez represents the Mexico national team."
+[9] "Brian Gutiérrez joined the Chicago Fire Academy before making his first-team debut."
+[10] "Brian Gutiérrez was named to the MLS 22 Under 22 list in 2023."
+[11] "Brian Gutiérrez was named to the MLS 22 Under 22 list in 2024."
+[12] "Brian Gutiérrez primarily plays as an attacking midfielder who can also play on the left."
+[13] "Brian Gutiérrez moved from Chicago Fire to Guadalajara (Chivas) in Liga MX."
+[14] "Brian Gutiérrez's contract with Guadalajara runs through 2030."
+[15] "Brian C. Gutierrez is a personal injury attorney in Texas."
+[16] "Brian C. Gutierrez is not the athlete Brian Gutiérrez."
+
+Cited text snippets from the AI Overview (for additional context):
+- Brian Gutiérrez - Wikipedia: "Brian Gutiérrez (born June 17, 2003) is,the Mexico national team. Berwyn, Illinois, U.S."
+- Born and raised in Chicago, Brian Gutiérrez is living out his dream for his ...: "Brian Gutiérrez is a midfielder for the,which has become a reality for him."
+- Brian C. Gutierrez: "Gutierrez's background includes: * Board Certification in,his offices to set up a consultation."
+- Gave everything for the badge 🙌 We’ll miss you, Guti ❤️ #cf97 | Chicago ...: "Brian Gutierrez is a fire homegrown player.,first professional start in Major League Soccer."
+Reference Sources:
+
+[R1] Brian Gutiérrez - Player profile 25/26 | Transfermarkt
+(https://www.transfermarkt.us/brian-gutierrez/profil/spieler/724443)
+"""
+Performance Data Liga MX Clausura 25/26 - 12 Possible games Appearances 12 Goals 1 Assists 1 Yellow cards 1 Second yellows 0 Red cards 0 50 % Starting eleven 59 % Minutes 8 % Goal participation Detailed performance data Player data Main position Main position: Attacking Midfield Other position: Left Midfield Market value Current Market Value : €5.50m Highest market value: €5.50m 03/26/2026 Last update: 03/26/2026 Market value details Facts and data Date of birth/Age: Jun 17, 2003 (22) Place of birth: Berwyn, Illinois Height: 1,78 m Citizenship: Mexico United States Position: Midfield - Attacking Midfield Foot: right Player agent: SXI Current club: Deportivo Guadalajara Joined: Jan 1, 2026 Contract expires: Jun 30, 2030 Outfitter: adidas Social-Media: Transfermarkt Videos Further information Chicago Fire will retain 20% of any future transfer fee. Stats of Brian Gutiérrez View full stats Compare Brian Gutiérrez with ... Compare players Which player do you prefer... Brian Gutiérrez Yael Padilla Transfermarkt Company Projects Wahretabelle Soccerdonna.de Scoutastic.com © Transfermarkt 2026 Legal notice Data protection Privacy Revoke Tracking Site policy Revoke Tracking Sie haben erfolgreich Ihre Einwilligung in die Nutzung von Transfermarkt mit Tracking und Cookies widerrufen. Sie können sich jetzt zwischen dem Contentpass-Abo und der Nutzung mit personalisierter Werbung, Cookies und Tracking entscheiden.
+"""
+
+[R2] Brian Gutiérrez Called Up to U.S. Men’s National Team for 2024-25 Nations League Finals
+(https://www.chicagofirefc.com/news/brian-gutierrez-called-up-to-u-s-men-s-national-team-for-2024-25-nations-league-finals)
+"""
+CHICAGO (March 18, 2025) – Chicago Fire FC and U.S. Soccer Federation today announced that Homegrown Player Brian Gutiérrez was called up to the U.S. Men’s National Team for the upcoming 2024-25 Concacaf Nations League Finals. The U.S. will face Panama in the first semifinal on March 20 at 6 p.m. CT (4 p.m. PT) at SoFi Stadium in Los Angeles. The match will be shown live on Paramount+ and Univision. The other semifinal match features Mexico and Canada, with the winners set to square off March 23 for the championship. It is the second call up for Gutiérrez under head coach Mauricio Pochettino, as he also joined the team for U.S. Soccer’s annual January Camp. The Chicago native earned his first two USMNT caps and starts in January, going 73 minutes against Venezuela in the 3-1 victory on Jan. 18 at Chase Stadium in Ft. Lauderdale, Fla., and playing 45 minutes in the 3-0 win against Costa Rica on Jan. 22 at Inter&Co Stadium in Orlando, Fla. Gutiérrez, 21, was one of five Homegrown Players promoted from the Chicago Fire Academy at the start of the 2020 MLS season, signing his first professional contract at 16 years old. Gutiérrez has played in 123 matches (83 starts) since 2020, and in 2024 he became the second Homegrown Player in Club history to appear in 100 or more matches. Gutiérrez was named to the 2024 MLS 22 Under 22 class for the second consecutive year, coming in at No. 4 on the list to rank in the top five for the second straight time. Gutiérrez scored six goals for the Fire in 2024, marking a career-high in a single season for the Chicago native. So far in 2025, Gutiérrez is tied for second on the team with two goals, having tallied twice in Chicago’s opening match against Columbus. Created to maximize the quality, quantity and frequency of competitive matches for all of Concacaf’s 41 Member Associations, the 2024-25 Concacaf Nations League, which commenced last September, has a revamped format to include more direct elimination matches that will qualify teams to continental summer competitions. The 2024-25 CNL continues to be played in a three-League format (A, B, and C), with the region’s 41 men’s senior national teams distributed into the Leagues according to the results of the 2023-24CNL. The USA competed in League A, which was expanded to include 16 teams (up from 12) and a new quarterfinal round has been created to deliver more direct elimination matches.
+"""
+
+[R3] Brian C. Gutierrez  | Gutierrez Law
+(https://gutierrez-law.com/about/brian-c-gutierrez/)
+"""
+Accessibility Tools Skip to main content Brian C. Gutierrez Brian C. Gutierrez is a trial lawyer who has stood on the side of working Texas families since 2006,— representing clients in College Station, Bryan, TX, and the surrounding areas. Mr. Gutierrez has tried cases in front of a jury in every county and district court in Brazos County. Brian’s Background Brian C. Gutierrez was born in Laredo, Texas. He studied political science and history and earned his undergraduate degree from Texas A&M University in College Station in 2003. He received a Bachelor of Science with honors, finishing with a perfect 4.0 in his major. He attended The University of Texas School of Law, one of the top law schools in the country, and graduated in 2006. While in law school, Mr. Gutierrez worked for a boutique firm in Austin, Texas. Today, Mr. Gutierrez enjoys a storied relationship with his community, having spent the last 17 years fighting on behalf of those who deserve it most. As a board-certified personal injury lawyer whose practice covers the full breadth of personal injury cases, Brian has established himself as a tough negotiator who will not hesitate to bring matters before a judge if necessary. For Mr. Gutierrez, personal injury advocacy isn’t just a job…it’s a passion. Memberships and Affiliations Board Certification in Personal Injury Trial Law—Texas Board of Legal Specialization The Million-Dollar Advocates Forum The Multi-Million-Dollar Advocates Forum The American Board of Trial Advocates (ABOTA) The Bryan/College Station Chapter of ABOTA Texas Bar Foundation The Texas Trial Lawyers Association (TTLA) The American Association for Justice (AAJ) College of the State Bar of Texas Pro Bono College of the State Bar of Texas The American Bar Association The National Trial Lawyers The Local Brazos County Bar Association Advocating for Justice The vast majority of Mr. Gutierrez’s cases are referred to him by his clients, colleagues, and former judges. Mr. Gutierrez is licensed in every state court of Texas and in both the Western and Southern Districts of Texas. Mr. Gutierrez is also board-certified in personal injury law, a distinction granted to fewer than 2% of all attorneys in the state of Texas. When defending his clients, Brian’s mission is always to relentlessly uncover the truth. He understands that a payout is good, but that one motivated by truth and justice is even better. He approaches every case with his client’s total support in mind so they can focus on rest and recovery while Brian and his team go to war on their behalf. Brian C. Gutierrez and his team treat every client like a member of their family…and nobody messes with family. His impressive record for success arises from his distinct ability to not just out-work but out-care his opponents. If you’d like to learn more about how Mr. Gutierrez can help you, reach out to his offices and set up your consultation today. “No words describe how amazing it is to work with Brian.” J.T. Our Commitment To Your Case No one will work harder for you. No one will care more. Contact Brian Accessibility: If you are vision-impaired or have some other impairment covered by the Americans with Disabilities Act or a similar law, and you wish to discuss potential accommodations related to using this website, please contact our Accessibility Manager at (979) 243-9912. Contact Us 👋🏼 How can I help you? 👋🏼 How can I help you? 👋🏼 How can I help you? Hi 👋🏼 Welcome to Brian C Gutierrez PLLC. What kind of matter can we assist you with? Car AccidentTruck AccidentMotorcycle AccidentWrongful DeathRide Share AccidentPedestrian AccidentSlip & FallOther Injuries Scroll Powered by Messenger WhatsApp Text us Call us Request a call back Submit a phone number Select Please enter valid phone number Powered by You’ve requested a call for Powered by Verification Required with text message Select Text verification only works in US & Canada. Switch to email Verification Required with email address Switch to phone Verification Required A 6-digit code has been sent to Enter a valid code Resend the code Switch to email Too many attempts Please try again later Powered by
+"""
+
+[R4] Brian Gutiérrez
+(https://en.wikipedia.org/wiki/Brian_Guti%C3%A9rrez)
+"""
+From Wikipedia, the free encyclopedia Brian Gutiérrez Gutiérrez with the Chicago Fire in 2025Personal informationDate of birth June 17, 2003 (age 22)Place of birth Berwyn, Illinois, U.S.Height 5 ft 10 in (1.78 m)[1]Position(s) Attacking midfielderwingerTeam informationCurrent team GuadalajaraNumber 11Youth career2015–2020 Chicago FireSenior career*Years Team Apps (Gls)2020–2025 Chicago Fire 152 (20)2026– Guadalajara 11 (1)International career‡2019 United States U16 3 (0)2021–2022 United States U20 7 (2)2023 United States U23 2 (0)2025 United States 2 (0)2026– Mexico 5 (1) * Club domestic league appearances and goals as of February 15, 2026‡ National team caps and goals as of March 31, 2026 Brian Gutiérrez (born June 17, 2003) is a professional football player who plays as an attacking midfielder for Liga MX club Guadalajara. Born in the United States, he represents the Mexico national team.[2] Born in Berwyn, Illinois, Gutiérrez began his career with the Chicago Fire youth academy in 2015.[3] On March 9, 2020, Gutiérrez signed a homegrown player deal with the club's first team in Major League Soccer.[3] Gutiérrez made his professional debut for the Chicago Fire on August 20, 2020, against Columbus Crew, coming on as an 82nd-minute substitute in a 3–0 defeat.[4] On December 12, 2025, Gutiérrez joined Mexican club Guadalajara for a reported fee of $5 million.[5] Gutiérrez made his Liga MX debut with Guadalajara on January 10, 2026 in a home match against Pachuca as a starter, contributing an assist at the 17th minute for the first goal of a 2–0 home victory.[6] International career[edit] Gutiérrez has played for the U.S. youth national teams at multiple levels, including the Under-20 level. He was also in consideration for the USMNT's senior camp in December 2021.[7] On October 8, 2023, Gutiérrez was called up to the United States under-23 national team ahead of friendlies against Mexico and Japan.[8] In January 2025, Gutiérrez played a pair of friendly matches for the senior United States; the first being against Venezuela and last being against Costa Rica. Switch to Mexico national team[edit] On November 6, 2025 Gutierrez’s management announced the player was considering switching towards the Mexico national team.[9] On 15 January 2026, Gutiérrez was called up by Mexico and appeared in a friendly match against Panama on 22 January, the same day that FIFA officials authorized his allegiance switch to Mexico.[10] On February 25, 2026, Gutierréz scored his first goal for Mexico in a friendly match against Iceland in stoppage time as Mexico took the 4–0 win.[11] Born in the United States, Gutiérrez is of Mexican descent through both of his parents, who are originally from Jalisco. He obtained his Mexican citizenship in November 2025, making him eligible to play for the Mexican national football team.[12][13] As of match played December 6, 2024[14] Appearances and goals by club, season and competition Club Season League National cup Playoffs Continental Other Total Division Apps Goals Apps Goals Apps Goals Apps Goals Apps Goals Apps Goals Chicago Fire 2020 MLS 6 0 — — — — 6 0 2021 17 0 — — — — 17 0 2022 33 2 1 0 — — — 34 2 2023 32 2 3 0 — — 3[a] 0 38 2 2024 32 6 — — — 2[a] 0 34 6 2025 0 0 — 0 0 — — 0 0 Total 120 10 4 0 0 0 0 0 5 0 129 10 Career total 120 10 4 0 0 0 0 0 5 0 129 10 ^ Jump up to: a b Appearances in Leagues Cup As of match played March 31, 2026[15] Appearances and goals by national team and year National team Year Apps Goals United States 2025 2 0 Total 2 0 Mexico 2026 5 1 Total 5 1 Career total 7 1 Scores and results list Mexico's goal tally first. List of international goals scored by Brian Gutiérrez No. Date Venue Opponent Score Result Competition 1 25 February 2026 Estadio Corregidora, Querétaro, Mexico Iceland 4–0 4–0 Friendly ^ "Brian Gutiérrez". Chicago Fire FC. Retrieved August 22, 2022. ^ "Richard Ledezma, Brian Gutiérrez complete U.S. switch to Mexico". ESPN.com. January 21, 2026. Retrieved January 23, 2026. ^ Jump up to: a b McCraney, Patrick (March 9, 2020). "Chicago Fire sign academy midfielder Brian Gutiérrez". Hot Time in Old Town. Retrieved April 4, 2021. ^ "Columbus Crew 3–0 Chicago Fire". Soccerway. ^ "Chicago Fire FC Transfers Homegrown Midfielder Brian Gutiérrez to Historic Mexican Side Club Deportivo Guadalajara". Chicago Fire Football Club. December 12, 2025. ^ https://www.soyfutbol.com/en/news/chivas-ignites-the-2026-clausura-brian-gutierrez-debuts-in-style-and-sparks-rojiblanca-excitement-20260111-0049.html ^ "Berhalter's 26-player December camp roster mixes veterans and youth". American Soccer Now. ^ "Twenty-three Players Called to U.s. Olympic Men's Soccer Team Training Camp as Preparations for Paris 2024 Kick Off in Phoenix". ussoccer.com. October 8, 2023. Retrieved October 8, 2023. ^ Cleveland, Parker (November 7, 2025). "Brian Gutiérrez reportedly wants to play for Mexico". Stars and Stripes FC. Retrieved November 5, 2025. ^ Hernández, Cesar (January 15, 2026). "Mexico calls up dual-nationals Richard Ledezma, Brian Gutiérrez". ESPN. Retrieved January 15, 2026. ^ "Mexico 4–0 Iceland". ESPN. February 25, 2026. Retrieved February 25, 2026. ^ Chairez, Marcus (August 8, 2022). "2022 Youth Series: Top 20 Born In 2003". ^ Gonzalez, Diego (November 6, 2025). "¡OFICIAL! Brian Gutiérrez ya tiene su pasaporte mexicano y eso lo habilita para algo más que la Selección Nacional" (in Spanish). TV Azteca. Retrieved November 6, 2025. ^ Brian Gutiérrez at Soccerway ^ Brian Gutiérrez at National-Football-Teams.com Brian Gutiérrez at Major League Soccer Brian Gutiérrez at Chicago Fire FC Brian Gutiérrez at U.S. Soccer
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,101 @@
+{
+  "keyword": "is home depot open today",
+  "model": "grok-4-1-fast-reasoning",
+  "n_claims": 5,
+  "n_verified": 5,
+  "label_counts": {
+    "CLEAR": 2,
+    "VAGUE": 2,
+    "AMBIGUOUS": 0,
+    "INCORRECT": 1,
+    "OMITTED": 0
+  },
+  "consistent": 4,
+  "inconsistent": 1,
+  "fidelity_rate": 0.8,
+  "verifications": [
+    {
+      "claim_id": 1,
+      "claim": "April 6, 2026 is a Monday.",
+      "label": "VAGUE",
+      "confidence": 1.0,
+      "matched_references": [
+        "R2",
+        "R6"
+      ],
+      "evidence": "\"Easter Sun., April 5\" (R2); \"Easter Sunday, April 5\" (R6)",
+      "reasoning": "Sources explicitly state Easter is Sunday, April 5, 2026, which directly implies the next day, April 6, is Monday, but do not state it explicitly."
+    },
+    {
+      "claim_id": 2,
+      "claim": "Most Home Depot stores are open on April 6, 2026.",
+      "label": "VAGUE",
+      "confidence": 0.9,
+      "matched_references": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8"
+      ],
+      "evidence": "\"Mon-Sat: 6:00am - 10:00pm\" (R1, R3, R4, R8); \"Mon 6:00 AM - 9:00 PM\" (R5, R7); \"Memorial Day Mon., May 25 Regular Hours\" (R2); no closure listed for April 6",
+      "reasoning": "Multiple store listings show locations open on Mondays (April 6 is post-Easter Monday); holiday schedule lists no closure for April 6 and regular hours for other Mondays, but no explicit mention of April 6."
+    },
+    {
+      "claim_id": 3,
+      "claim": "Most Home Depot locations open at 6:00 a.m.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1",
+        "R3",
+        "R4",
+        "R5",
+        "R7",
+        "R8"
+      ],
+      "evidence": "\"Mon-Sat: 6:00am - 10:00pm\" (R1, R3, R4, R8); \"Mon6:00 AM - 9:00 PM\" (R5, R7)",
+      "reasoning": "Numerous specific store listings directly state Monday-Saturday opening at 6:00 a.m., supporting that most locations follow this."
+    },
+    {
+      "claim_id": 4,
+      "claim": "Most Home Depot locations close at 9:00 p.m. or 10:00 p.m.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1",
+        "R3",
+        "R4",
+        "R5",
+        "R7",
+        "R8"
+      ],
+      "evidence": "\"Mon-Sat: 6:00am - 10:00pm\" (R1, R3, R4, R8); \"Mon6:00 AM - 9:00 PM\" (R5, R7)",
+      "reasoning": "Store listings directly confirm evening closings at 9:00 p.m. or 10:00 p.m. on weekdays for multiple locations."
+    },
+    {
+      "claim_id": 5,
+      "claim": "Home Depot stores are operating normal hours as of April 5-6, 2026 following Easter",
+      "label": "INCORRECT",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R6",
+        "R8"
+      ],
+      "evidence": "\"Easter Sun., April 5 8 a.m. \u2014 6 p.m.\" (R2); \"stores will be open from 8 a.m. to 6 p.m.\" on \"Sunday, April 5\" (R6); normal Sunday: \"Sun: 8:00am - 8:00pm\" (R1, R3, R4, R8)",
+      "reasoning": "April 5 is Easter Sunday with reduced hours (8 a.m.-6 p.m.), contradicting normal Sunday hours (8 a.m.-8 p.m.); claim includes April 5 as normal."
+    }
+  ],
+  "elapsed_s": 34.7,
+  "prompt_tokens": 14785,
+  "cached_tokens": 583,
+  "completion_tokens": 898,
+  "error": null
+}

@@ -1,0 +1,102 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "home depot open on easter"
+
+Claims:
+[1] "Home Depot stores are open on Easter Sunday (April 5, 2026)"
+[2] "Home Depot stores generally operate with reduced hours from 8 a.m. to 6 p.m. on Easter Sunday (April 5, 2026)"
+[3] "Home Depot store locator Easter Hours are 8 a.m. to 6 p.m."
+[4] "Lowe's stores are closed on Easter"
+
+Cited text snippets from the AI Overview (for additional context):
+- Is Home Depot Open on Easter? Details on 2026 Holiday Hours: "Is Home Depot Open on Easter 2026?,you'll find right here."
+- Easter 2025 store hours for Lowe's, Home Depot, Target and more: "Is Home Depot closing stores,the company told USA TODAY."
+- What's open, closed on Easter? See hours for restaurants ...: "Are Home Depot, Lowe's or,confirm business hours on Easter."
+- Is Home Depot open on Easter?: "Other stores open on Easter,major retailers are also open."
+Reference Sources:
+
+[R1] Store Holiday Hours at The Home Depot | The Home Depot
+(https://corporate.homedepot.com/news/company/store-holiday-hours-home-depot)
+"""
+Skip to main content Company News View All News > Store Holiday Hours at The Home Depot March 30, 2026 The Home Depot’s 2026 holiday store hour schedule includes a few adjusted hours and closures on certain major U.S. holidays—here’s the full list. Customers are encouraged to check the store locator tool for specific local hours, as operating times can vary by location.Holiday Store Hours 2026Easter Sun., April 58 a.m. — 6 p.m.Memorial Day Mon., May 25Regular HoursIndependence Day Sat., July 4Close at 8 p.m.Labor Day Mon., Sept. 7Regular HoursThanksgiving Thu., Nov. 26ClosedBlack Friday Fri., Nov. 27Open 6 a.m.Christmas Eve Thu., Dec. 24Close at 5 p.m.Christmas Day Fri., Dec. 25ClosedNew Year's Eve Thu., Dec. 31Close at 6 p.m.New Year's Day Fri., Jan. 1, 20279 a.m. — 8 p.m. Keep up with all the latest Home Depot news! Subscribe to our bi-weekly news update and get the top Built from Scratch stories delivered straight to your inbox. RELATED STORIES & ARTICLES Company April 15, 2026 The Home Depot Acquires SIMPL Automation to Accelerate Supply Chain Automation and Enhance Customer Delivery Experience Company March 30, 2026 AI at The Home Depot: A Look at the Future of Home Improvement Company March 19, 2026 The Home Depot Teams Up with David Beckham to Bring the FIFA World Cup 2026™ To Backyards Across the Country Company March 18, 2026 The Home Depot Expands Pro Digital Experience with Latest Project Management and AI Tools
+"""
+
+[R2] Is Home Depot open on Easter?
+(https://www.thestreet.com/retail/is-home-depot-open-on-easter)
+"""
+If you have home improvement project plans on Sunday, you need to know Home Depot’s hours.Apr 5, 2026 8:08 AM EDTShutterstockKey PointsHome Depot is open on more days than many retailers.The store only closes on a handful of days each year.Home Depot commands more than 50% of the home improvement market. Weekends are for home projects, and Easter weekend is no different than any other for plenty of Americans. Whether this Sunday includes yard work, closet organizing or other spring cleaning, Home Depot likely has many of the supplies you need to get the jobs done. So you’ll be happy to know that The Home Depot will be open for business on Sunday, April 5. According to the Home Depot website, stores will be open from 8 a.m. to 6 p.m. Home Depot has seen a decline in foot traffic in recent years.Photo by M. Suhail on Getty Images Home Depot only closes two days a year Home Depot is one of those stores that rarely closes. In fact, Home Depot only closes two days each year: Thanksgiving Day and Christmas Day. Home Depot, Inc. accounts for 52.4% of the home improvement market ($149.5 billion a year), according to data from IBISWorld. Still, visits to Home Depot have been down, so the company needs to keep its doors open as many days as possible. Home Depot’s foot traffic declined about 3.8% year over year in Q1 2026, according to Placer.ai data shared on Yahoo Finance. Other stores open on Easter Sunday Home Depot is open on Easter, which is good news if you’re planning to tackle home projects. And even though the Home Depot website says stores are open on Easter, use the Home Depot locator to make sure your store is. Plenty of other major retailers are also open. Kroger is open normal hours, but pharmacies are closed. Harris Teeter stores are open normal hours. Meijer stores are open from 6 a.m. to midnight. Stop and Shop locations are open from 7 a.m. to 5 p.m., but pharmacies are closed. Trader Joe’s plans to be open regular business hours. Walmart is open normal hours. Whole Foods locations are open until 6 p.m. Winn-Dixie stores will be open normal business hours.Sources: Store websites TheStreet NewslettersGet the latest in market trends or guidance on simple ways to grow your wealth.or sign in withBy signing up I agree to the Terms of Use and acknowledge that I have read the Privacy Policy. You may unsubscribe from email communication at anytime. About the authorsDana Sullivan Kilroy has been a journalist for more than 25 years. She covers retail, recalls and class action lawsuits, as well as Las Vegas travel for TheStreet. Her work has appeared in The New York Times, Real Simple, Self, Outside, BabyCenter, Everyday Health, and WebMD. Dana holds a Master’s in Journalism from the University of Nevada, Reno, and a Bachelor’s in English Literature from UCLA. She lives in Nevada.Celine is a writer and editor with over 20 years of experience and has covered diverse news, features, academic/research, and legal topics. At TheStreet.com, Celine is a senior editor with experience across retail, stocks, investing, personal finance, technology, the economy, and travel.
+"""
+
+[R3] Is Home Depot Open or Closed on Easter? What to Know for 2026
+(https://www.today.com/life/holidays/is-home-depot-open-on-easter-2026-rcna262768)
+"""
+Spring has finally arrived and with it comes a variety of home projects. From organizing the garage to yard cleanup, there's no shortage of work to be done this time of year. If your Easter plans include tackling one of the projects above or any other home task, you may be planning to pick up a few necessities this weekend. If that's the case and you're wondering if The Home Depot is open on Easter, you'll find all the details you need to know below.Given that Easter is one of the biggest Christian observances on the calendar, many stores and restaurants are closed in recognition of the April holiday, including popular retailers like Costco, Target and Lowe's. But what about The Home Depot?For the latest details on Home Depot's Easter hours, TODAY.com reached out to the home-improvement retailer for the most up-to-date information on whether or not stores will be open on Sunday, April 5.Since store openings, closings and hours may vary by location, it's a good idea to check local store hours before heading out to any retailer this Easter to ensure you don't find an empty parking lot when you arrive.Whatever you need to get the job done this Easter, you’ll be happy to know that The Home Depot will be open for business on Sunday, April 5.According to a Home Depot spokesperson, stores will be open from 8 a.m. to 6 p.m.To ensure your local Home Depot is open on Sunday, or to confirm store details, use the Home Depot locator, which you'll find right here.Stores Open on Easter 2026Along with The Home Depot, see below for a sampling of stores that will be open on Sunday, April 5, or find a complete list right here. BJ’s Wholesale Club: A majority of BJ’s clubs will be open on Easter Sunday from 8 a.m. to 6 p.m. BJ’s recommends confirming local hours before going. Find local hours here.Dollar General: Stores will be open during normal business hours. Find local hours here.Kroger: A majority of stores will operate during normal business hours. Find local hours here.Trader Joe’s: Stores will be open during regular business hours. Find local hours here.Walmart: Stores will be open during normal business hours. Find local hours here.Whole Foods: Stores are open until 6 p.m. Find local hours here.
+"""
+
+[R4] What's open, closed on Easter? See hours for restaurants, stores, more
+(https://www.usatoday.com/story/money/2026/04/04/whats-open-closed-easter-2026/89450449007/)
+"""
+April 4, 2026, 3:01 p.m. ETEaster is here, and whether you're looking to do some last-minute shopping or grab a bite to eat, consumers will have plenty of options to choose from on Sunday.Many national retailers, grocery stores and restaurant chains will be open on Easter Sunday, albeit some with reduced hours. A few companies, like Costco, Target, and Macy's, will be closed. Banks, post offices, and shipping services will also largely be closed on Easter.This year, Easter falls on Sunday, April 5. The date the holiday is celebrated depends on the year because it is one of several "moveable feasts" in the liturgical year, according to the History Channel.Other examples include Ash Wednesday and Palm Sunday. The holiday is an important one for millions of people around the world who follow the Christian faith, as it celebrates the resurrection of Jesus Christ after a 40-day period known as Lent.When is Easter 2026?This year, Easter falls on Sunday, April 5.Is Walmart open on Easter?Yes, Walmart stores will be open regular hours on Easter, according to the company's website. Most Walmart stores are open from 6 a.m. to 11 p.m. daily.Is Target open on Easter?No, Target stores will be closed on Easter Sunday this year, the company confirmed to USA TODAY.Are Costco, Sam's Club, or BJ's Wholesale open on Easter?Costco and Sam's Club warehouses will both be closed on April 5, according to each company's website. BJ's warehouses will be open from 8 a.m. to 6 p.m. on Sunday, per the company's website.Are CVS and Walgreens open on Easter?CVS locations will be open on Easter, although some locations may have reduced hours. Customers are encouraged to call their local store before visiting or checking hours online at CVS.com.Walgreens stores and pharmacies will be open regular hours on Easter, the company told USA TODAY.Are Home Depot, Lowe's or Ace Hardware open on Easter?Home Depot stores will be open 8 a.m. to 6 p.m. on Sunday, April 5, the company confirmed to USA TODAY, while Lowe's stores will be closed.While most Ace Hardware stores are expected to remain open on Easter, stores are independently owned and operated, with locations' hours varying. Customers are encouraged to contact their local store to confirm business hours on Easter.Are banks, post offices, UPS and FedEx open on Easter?U.S. Postal Service facilities will be closed for retail transactions and there will be no regular residential or business mail deliveries on Sunday, April 5. Priority Mail Express is delivered 365 days a year, including Sundays.UPS and FedEx pickup and delivery services will not be available on Easter. UPS Store locations may be closed, according the company's website, and FedEx Office hours will also be modified.Since Easter falls on a Sunday, banks that typically close on Sundays will also be closed on Easter Sunday.Restaurants open on Easter 2026The following restaurants are open on April 5.McDonald'sStarbucksDunkin'Burger KingCracker BarrelWendy'sFreddy's Frozen Custard & SteakburgersShake ShackGolden CorralOlive GardenLonghorn SteakhouseApplebee'sIHOPWaffle HouseKFCSubwayTaco BellBonefish GrillFirehouse SubsCheesecake FactoryPanera BreadKrispy KremeWhataburgerLonghorn SteakhouseFirst WatchThe following restaurants are closed on April 5.Chick-fil-AChipotleRaising Cane'sGrocery stores open on Easter 2026The following grocery stores are open on Easter. Hours are listed for the companies that provided them.WalmartMost stores in the Kroger family of companies will be open on Sunday (Baker’s, City Market, Dillons, Food 4 Less, Foods Co, Fred Meyer, Fry’s, Gerbes, Jay C Food Store, King Soopers, Kroger, Mariano’s, Metro Market, Pay-Less Super Markets, Pick’n Save, QFC, Ralphs, Ruler, Smith’s Food and Drug).BJ's Wholesale ClubTrader Joe'sFood LionWhole FoodsSafewayWegmansMeijer; 6 a.m. to midnightHarris TeeterMost Albertson's banner stores will be open on Easter (Safeway, Albertsons, Jewel-Osco, ACME, Vons and Tom Thumb).LidlGiant Eagle; Stores will close at 4 p.m.Winn-DixieThe following grocery stores are closed on Easter.CostcoSam's ClubTargetAldiPublixRetail stores open on Easter 2026Stores listed below will be open on April 5. Hours are listed for the companies that provided them.Home Depot; 8 a.m. to 6 p.m.Ace HardwareSephoraBarnes & NobleBass Pro Shop; 10 a.m. to 7 p.m.Cabela's; 10 a.m. to 7 p.m.REI; Noon to 6 p.m.IKEA stores will close at 6 p.m.PetcoPetSmart; 11 a.m. to 6 p.m.Tractor Supply Company; 9 a.m. to 6 p.m.Stores listed below will be closed on April 5.TargetTJ MaxxMarshall'sHomeGoodsLowe'sMacy'sKohl'sVictoria's SecretBelkOffice DepotOfficeMaxGabe Hauari is a national trending news reporter at USA TODAY. You can follow him on X @GabeHauari or email him at Gdhauari@gannett.com.
+"""
+
+[R5] Easter 2025 store hours for Lowe's, Home Depot, Target and more
+(https://www.courier-journal.com/story/news/2025/04/09/lowes-is-closed-on-easter-2025-home-depot-store-hours-ace-hardware-target-walmart-costco-sams-club/83005191007/)
+"""
+NEWSWhat stores are open on Easter 2025? Home Depot, Walmart and more store hours so farKatie Wiseman Gabe HauariUSA TODAY NETWORKApril 9, 2025, 9:11 a.m. ETYou never know what you might need last minute on a holiday, especially if you're hosting. Easter is now less than two weeks out.Here's a few stores we know so far and whether or not they will be open on Easter this year.Is Lowe's closing stores on Easter?Yes, all Lowe's stores will be closed on the holiday.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,107 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "how many times has justin bieber performed at coachella"
+
+Claims:
+[1] "Justin Bieber has performed at Coachella multiple times."
+[2] "Justin Bieber headlined the main stage at Coachella in 2026."
+[3] "Justin Bieber's 2026 Coachella performance was a 90-minute performance."
+[4] "Justin Bieber's 2026 Coachella performance featured The Kid LAROI."
+[5] "Justin Bieber's 2026 Coachella performance featured Tems."
+[6] "Justin Bieber's 2026 Coachella performance featured Wizkid."
+[7] "Justin Bieber appeared as a surprise guest with Ariana Grande at Coachella in 2019."
+[8] "Justin Bieber performed "Sorry" as a guest for Ariana Grande at Coachella in 2019."
+[9] "Justin Bieber appeared as a surprise guest with Daniel Caesar and Giveon at Coachella in 2022."
+[10] "Justin Bieber performed "Peaches" as a guest for Daniel Caesar at Coachella in 2022."
+[11] "Justin Bieber's 2026 Coachella performance followed a hiatus due to health issues."
+
+Cited text snippets from the AI Overview (for additional context):
+- Justin Bieber gives most chill retrospective ever at Coachella 2026: "Excitement and uncertainty surrounded Justin Bieber's headlining,to perform for a huge crowd again?"
+- Justin Bieber is facing backlash after his 2026 Coachella Valley Music ...: "Justin Bieber is facing backlash after his,“lazy” for such a high-paid headline act."
+Reference Sources:
+
+[R1] Justin Bieber's Coachella setlist – Every song he performed in order
+(https://www.usatoday.com/story/entertainment/music/2026/04/12/justin-bieber-coachella-setlist/89578816007/)
+"""
+Updated April 12, 2026, 12:07 p.m. ETINDIO, Calif. − Justin Bieber made his comeback on April 11 at Coachella Valley Music and Arts Festival, riding on the vibes of his "Swag" era.The 90-minute set featured Bieber's mature side, showcasing selections from his recent two-part album, "SWAG," including popular hits both recent and older.After the first 13 songs, something shifted in the vibe of the setlist. All of a sudden we stepped into the most laid-back retrospective arguably ever, with Bieber sitting on a stool in front of a laptop on a simple high table.He pulled up old music video after old music video, checking the livestream to see what people wanted to hear, and then he'd play a crowd favorite with the video displayed behind him while he sang along (or sometimes just jammed out without holding the microphone to his mouth).Honestly, it felt like you were in your childhood bedroom hanging out with a friend watching music videos, and it kind of ruled.Here's everything the millennial pop star played on Saturday, April 11:"All I Can Take""Speed Demon""First Place""Go Baby""Butterflies""Walking Away""All The Way"/"405"/"Too Long"/"Petting Zoo"/"I Do""Stay" (with the Kid LAROI as guest)"Things You Do""Glory Voice Memo""Zuma House""Dotted Line""Everything Hallelujah""Baby""Favorite Girl""That Should Be Me""Beauty and a Beat""Never Say Never""Confident""All That Matters""With You" (Chris Brown cover)"So Sick" (Ne-Yo cover)"Sorry""Where Are U Now""I'm The One""Yukon""Devotion" (with Dijon as guest)"I Think You're Special" (with Tems as guest)"Essence" (Wizkid cover with Wizkid and Tems as guests)"Daisies" (with Mk.gee as guest)
+"""
+
+[R2] Justin Bieber gives most chill retrospective ever at Coachella 2026
+(https://www.desertsun.com/story/entertainment/coachella/2026/04/12/tems-justin-bieber-see-who-biebs-brought-out-at-coachella-2026/89573017007/)
+"""
+April 12, 2026Updated April 13, 2026, 6:35 p.m. PTExcitement and uncertainty surrounded Justin Bieber's headlining performance on the second day of Coachella 2026 Saturday. The set marked his major comeback, despite his recent warm-up shows at the Troubadour and The Roxy Theatre in Los Angeles, and begged the question — was Bieber ready to perform for a huge crowd again?The answer, undoubtedly, was yes.When Bieber opened with “All I Can Take,” he walked down the large oval-shaped structure at center stage — the only major set piece — donning a simple red hoodie and sunglasses. A disc of lights overhead filled the frame above him.The song quickly transitioned to “Speed Demon” as the stage washed red and he danced back and forth, his image multiplied across the video screen with a tracer effect.That beginning made everyone wonder — are we going to get any of the high-energy hits, or just the stripped-down Grammys version of Bieber?The set leaned heavy on 'Swag'Bieber then paused to ask “Coachella, what’s good?” before moving to his laptop, which fed the video screen and a simultaneous livestream for those watching at home. He invited fans to drop requests in the chat, then performed “Go Baby” and “Butterflies.” The crowd interaction was all building, and he acknowledged fans calling for “Walking Away.”The red oversized hoodie stayed on, the sunglasses eventually came off, and the Coachella crowd got the mature Bieber on his own terms — present, engaged and working the audience.A medley of “All The Way,” “405,” “Too Long,” “Petting Zoo,” and “I Do” followed — vocally brilliant, blending his rapping and soulful singing — but 30 minutes in, the production was starting to feel flat, and the audience could only take so many songs from "Swag" before getting antsy.Then, Bieber surprised the crowd. “You all need some energy right now,” he said, and brought out The Kid LAROI to sing their hit “Stay.”Then, the energy shifted again when an acoustic portion of the set took a more mellow, spiritual turn through “Things You Do,” “Glory Voice Memo,” “Zumba House,” and “Dotted Line.”'How far back do you go?'The next part of the set was the most squeal-inducing. Suddenly, the hood was thrown off, and it felt like we were chilling at Bieber's house with him watching videos on YouTube like so many 30-somethings of his generation used to do with their friends.With his trusty laptop in front of him, Bieber selected old track after old track and started playing his old music videos on the screen behind him. He sang along to sections of “Baby,” “Favorite Girl,” “That Should Be Me,” “Beauty and a Beat,” and more, and the fans went wild.Before each song, he'd repeat one question: “How far back do you go?” seemingly testing the crowd to see how deep their knowledge of his discography was.Many of these were songs he hadn’t performed in over a decade. The hoodie was off, and Bieber appeared to be genuinely having fun. Whatever troubles had followed him in recent years seemed forgotten — he was back on stage doing what he does best.“Wi-Fi man, come on!” he said at one point, apparently unaware that he had already broken the internet, giving fans exactly what they had been desperately hoping for — and waiting a long time to get."These paparazzi," he said shaking his head at one point. "They just won’t leave me alone" before playing the viral, meme-making "you're not clocking it" pap interaction video.When the world's most chill retrospective was over, the laptop was closed, the music videos dissapeared from the screen and the regular set resumed with “Yukon," then followed with special guests Dijon on "Devotion," Tems on "I Think You're Special," and Wizkid and Tems on "Essence" (Wizkid's song).So. What did I think overall? Some parts of the show could have been better — I wish, for example, that he'd fully sang the song snippets that he jammed out to (a lot of that section was just him dancing along to the recording without putting the mic to his lips) in front of his laptop, but I enjoyed the live songs that he sang in full, and I thought his voice sounded great — very similar to his original recordings of his recent songs.Many of the songs on "Swag" reflect his vulnerability and the fact that he's not a child star anymore. The stage production was quite minimal for a headlining performance, but considering his everyday attire in recent years matched what he wore on stage, that appeared to be by design.What really matters is that "Bieberchella" was a momentous occasion for Biebs and his fans, and you could tell that our favorite Coachella head was soaking in his moment. He expressed his excitement several times during the performance, stating "I've been dreaming of this night for a long time."(This story was updated to add photos and links.)
+"""
+
+[R3] Justin Bieber at Coachella 2026: Start time, setlist and special guests for weekend two
+(https://www.timeout.com/los-angeles/news/justin-bieber-at-coachella-2026-start-time-and-everything-to-know-041026)
+"""
+Coachella is back, back again for its second weekend, April 17 to 19, when the iconic music festival will once again offer ticket holders an unforgettable lineup of performers. Among them is a full-on pop comeback moment that has taken the internet by storm: Justin Bieber once again headlines Coachella on Saturday, April 18 (he previously headlined April 11). Will he bust out his laptop and log in to YouTube again? Will there be surprise guests? Here’s everything you need to know before he takes the stage.Discover Time Out original videoNapa Rose What day is Justin Bieber performing at Coachella? Bieber headlines the Coachella Stage on Saturday, April 18. What time is Justin Bieber performing at Coachella? The April 18 performance is scheduled to start at 11:25pm, following sets by artists including the Strokes and Addison Rae earlier in the evening. Like most Coachella headliners, expect the set to end well past midnight; Bieber’s April 11 headlining set ran 90 minutes. If you want a decent spot, plan to camp out during the preceding acts, because this will be one of the weekend’s most crowded sets—especially after last week. How many times has Justin Bieber headlined Coachella? This is Bieber’s first time headlining Coachella. Not only that, but this is something of a live performance comeback after several turbulent years, including health issues that forced him to cancel a 2022 tour. He only recently returned to the stage with a Grammy Award performance and a small warm-up show in Los Angeles, making this his first major festival set in years. That may be one reason for the vociferous online reaction to his set the first weekend. Has Justin Bieber’s setlist for Coachella been announced? Not yet, but based on the first weekend, we know a few things. There was newer material from his recent albums Swag and Swag II, which he previewed during a surprise show ahead of the festival. And there will almost certainly be sincere moments of genuine emotion, as when he sang acoustic versions of “Glory Voice Memo” and “Everything Hallelujah.” The big question is whether or not he will stream YouTube videos of himself and sing songs from his back catalog again, after the internet and fans erupted at what some called “YouTube karaoke.” Will any special guests be joining Justin Bieber’s Coachella set? It’s Coachella, so almost definitely, although nothing is confirmed. But Biber’s April 11 set included appearances from the Kid LAROI, Tems, Wizkid, Dijon and producer Mk.gee, so expect that they might return for the second weekend. Bieber has a deep bench of collaborators and a history of surprise appearances, so only time will tell who might join him on stage. Can I livestream Justin Bieber’s Coachella set? Yes. Coachella will livestream major sets on YouTube, including Bieber’s on Saturday from 11:25pm to 12:55am; you can catch the main stage feed below. What’s the rest of the Coachella 2026 schedule like? You can check out the full festival schedule below, which also includes Sabrina Carpenter, Karol G, Anyma, Katseye and BIGBANG—plus a surprise last-minute weekend two performance from Kacey Musgraves. Courtesy Goldenvoice Courtesy Goldenvoice Courtesy Goldenvoice Courtesy Goldenvoice
+"""
+
+[R4] Justin Bieber Coachella setlist: Every song he performs in order
+(https://www.capitalfm.com/news/music/justin-bieber-coachella-setlist-songs-order/)
+"""
+14 April 2026, 10:56 Justin Bieber Coachella setlist: Every song he performs in order. Picture: Getty What songs did Justin Bieber sing at Coachella? Here's a full guide to his 2026 setlist. Beliebers assemble! Justin Bieber just officially headlined Coachella for the first time but what songs made his setlist?It is wild to think that Justin Bieber has never headlined Coachella before. After first rising to fame as a teenager with his YouTube covers, Justin quickly amassed a huge fanbase and it wasn't long before he signed a record deal. He's since shaped the sound of modern pop with songs like 'Baby', 'Sorry' and his critically-acclaimed SWAG album. With so many hits to choose from, all eyes were on Justin to find out what songs he would do at Coachella this year. Scroll down to see Justin's full Coachella setlist and all the details you need to know about his live show.Read more: Sabrina Carpenter Coachella setlist: Every song she performs in order Justin Bieber performs intimate show ahead of Coachella What songs did Justin Bieber sing at Coachella?To date, Justin Bieber has released eight albums with countless hits. From 'One Time' on My World 2.0 and 'As Long As You Love Me' on Believe to 'Where Are Ü Now' on Purpose and 'Peaches' on Justice, Justin is spoiled for choice when it comes to deciding what songs to sing at Coachella this year.What songs are on the setlist though? Here's every song Justin performed on Weekend 1 of Coachella 2026:ALL I CAN TAKESPEED DEMONFIRST PLACEGO BABYBUTTERFLIESWALKING AWAYALL THE WAY405TOO LONGPETTING ZOOI DOSTAY (with The Kid LAROI)THINGS YOU DOGLORY VOICE MEMOZUMA HOUSEDOTTED LINEEVERYTHING HALLELUJAHBabyFavorite GirlThat Should Be MeBeauty and a BeatNever Say NeverConfidentAll That MattersWith You (Chris Brown cover)So Sick (Ne-Yo cover)SorryWere Are Ü NowI'm the OneYUKONDEVOTION (with Dijon)I THINK YOU'RE SPECIAL (with Tems)Essence (with Wizkid & Tems)DAISIES (with Mk.gee)Justin Bieber started his set by performing the same SWAG and SWAG II focused setlist he sang at an intimate gig at the Troubadour in West Hollywood on April 4th including an acoustic set. However, he then did an entire section of his biggest hits from 'Baby to 'Sorry' on the main stage with his old music videos playing in the background.Justin even called back to his early YouTube cover days by singing Chris Brown's 'With You' and Ne-Yo's 'So Sick' with his younger self projected behind him. Bookmark this page and we'll update it with any changes when Justin performs next week. Who are Justin Bieber's Coachella surprise guests? Picture: Getty Who are Justin Bieber's Coachella surprise guests?In the past, Justin has appeared as a surprise guest at Coachella. In 2019, Justin joined Ariana Grande on stage in her headline set. For Week 1, Justin brought out The Kid LAROI to sing 'STAY, Dijon to sing 'DEVOTION' and Tems to sing 'I THINK YOU'RE SPECIAL'. Wizkid also appeared alongside Justin and Tems to sing 'Essence'.Finally, Justin invited Mk.gee on stage to play guitar on their hit collaboration 'DAISIES'. It's currently unclear if Justin will bring out the same guests for Weekend 2 or change things up. Bookmark this page and we'll keep you posted with any Weekend 2 updates.Read more about Justin Bieber here:Kim Kardashian admits 'problematic' Justin Bieber photoshoot should’ve got her cancelledThe real meaning behind Justin Bieber's 'Yukon' lyrics and who features on it explainedJustin Bieber's romantic 'Better Man' lyrics and meaning explainedDid Selena Gomez make a dig at Justin Bieber in Wizards Beyond Waverly Place?Is Justin Bieber going on tour in 2026?Listen live to Capital, and catch up on any shows you missed, on Global Player.
+"""
+
+[R5] Justin Bieber Was Offered To Headline Coachella, But Here's Why He Said No | iHeart
+(https://www.iheart.com/content/2023-01-11-justin-bieber-was-offered-to-headline-coachella-but-heres-why-he-said-no/)
+"""
+Coachella put dozens of rumors to rest when it announced its highly anticipated lineup this week, which included Bad Bunny, BLACKPINK and Frank Ocean as headliners. Justin Bieber, Olivia Rodrigo, Rihanna, Red Hot Chili Peppers, Drake, Blink-182 and Dua Lipa were just a few of the names making the rounds on the internet that didn't quite make it to the final lineup as headliners. One of these, however, we finally have answers about. Bieber was asked to headline Coachella this year, but ultimately said no so he could focus on his album, TMZ reports. He's a frontrunner to headline in 2024, however, and there's a "good chance" he does! While JB has never been on a Coachella lineup, he's made his presence known in the desert many a time! Most recently, he joined Daniel Caesar on stage and performed "Peaches" with him — shirtless, we might add. Back in 2019, he also joined Ariana Grande for a performance of "Sorry." As far as Justin's music goes, he opened up in May 2022 about what fans can expect from his seventh studio album. "I don't think there’s a date yet, but I do know that we’re wrapping it up. It's almost done. It sounds really good. I'm really excited about it. I got a lot of cool features and yeah, it should be dropping not too long from now," he said at the time. One of those features was revealed to be John Mayer. As you'll recall, the Biebs had to cancel the remainder of his tour last year for mental and physical health reasons after he was diagnosed with Ramsay Hunt Syndrome. Good news for fans, though — he's been spotted going in and out of studios in Los Angeles over the past few months!
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

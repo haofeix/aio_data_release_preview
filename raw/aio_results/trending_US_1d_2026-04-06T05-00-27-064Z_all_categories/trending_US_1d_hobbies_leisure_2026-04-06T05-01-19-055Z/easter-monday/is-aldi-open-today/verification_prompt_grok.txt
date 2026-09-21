@@ -1,0 +1,106 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is aldi open today"
+
+Claims:
+[1] "Most Aldi stores are closed on Sunday, April 5, 2026, for Easter Sunday."
+[2] "Aldi typically closes all U.S. branches on Easter."
+[3] "Aldi typically closes many UK branches on Easter."
+[4] "Aldi stores will reopen with regular hours on Monday, April 6, 2026."
+[5] "The Aldi store locator indicates stores are closed on Easter Sunday."
+[6] "The Aldi store locator indicates regular business hours resume on Monday, April 6, 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- Hours And Locations I Customer Support ALDI: "Answer/Description,Locations I Customer Support ALDI"
+- Is Aldi Open on Easter? Details on 2026 Holiday Hours: "As a regular shopper at,a complete list right here."
+- Are Costco, Aldi, Walmart open today on Easter Sunday? Illinois hours: "Is Aldi open on Easter,Walmart closed on Easter Sunday?"
+- All the major supermarkets including Dunnes, Tesco, Lidl, Aldi ...: "Check online using their store,Opened til 1 Friday."
+- Aldi Easter Sunday 2026 Opening & Closing Times: Are Supermarkets Open or Close Today? All You Need to Know: "On Easter Sunday, most Aldi,and much of the UK."
+- Easter supermarket times: When are Lidl, Aldi and Dunnes open? - Extra.ie: "STORY CONTINUES BELOW,166 branches for the holiday."
+Reference Sources:
+
+[R1] Are Costco, Aldi, Walmart open today on Easter Sunday? Illinois hours
+(https://www.pjstar.com/story/entertainment/holiday/2026/04/05/is-aldi-open-on-easter-sunday-2026-in-illinois-holiday-hours-walmart-target/89454375007/)
+"""
+April 5, 2026, 5:04 a.m. CTNot everyone celebrates Easter Sunday, but many will need to run last-minute errands to grab snacks, paper towels or the odd iced coffee.But how will the holiday affect store hours in Illinois? Here's a look at which stores are expected to be open and closed.As always, these are general rules. Residents should check with their local stores, as there are always exceptions.Is Aldi open on Easter Sunday?Aldi stores will be closed on Easter Sunday.Is Best Buy open on Easter Sunday?Best Buy stores are generally expected to be closed on Easter Sunday.Is Costco closed on Easter Sunday?Costco warehouses will be closed on Easter Sunday.Is CVS closed on Easter Sunday?CVS stores will generally be open, though the pharmacy is expected to be closed for Easter.Is IKEA closed on Easter Sunday?IKEA stores will be open, but with limited hours. Stores in Illinois will close early at 6 p.m.Is Starbucks open on Easter Sunday?Starbucks stores will generally be open on Sunday.Is Target open on Easter Sunday?Target stores will be closed on Easter Sunday.Is TJ Maxx closed on Easter Sunday?T.J. Maxx stores will be closed Easter Sunday.Is Trader Joe's open on Easter Sunday?Trader Joe's stores will be open Easter Sunday.Is Walmart closed on Easter Sunday?Walmart stores will be open on Sunday.Is Walgreens closed on Easter Sunday?Walgreens stores will be open on Easter Sunday, but the pharmacies will generally be closed.
+"""
+
+[R2] Easter supermarket times: When are Lidl, Aldi and Dunnes open?
+(https://extra.ie/2026/04/05/news/real-life/easter-times-dunnes-lidl-aldi)
+"""
+Households around the country are currently celebrating Easter Sunday, holding out hope that they don’t run out of chocolate eggs. If they do, however, there will be a limited amount of time to rush to the shops and restock their baskets. Aldi won’t be an option on Easter Sunday, though, as the retailer has closed all 166 branches for the holiday. Aldi has closed all 166 branches for the holiday. Pic: ChameleonsEye/Shutterstock The supermarket will be back open for the bank holiday on Easter Monday, working on reduced hours. On Monday. Aldi will be opening one hour later than usual at 9am and closing one hour earlier at 9pm. Similarly, Dunnes Stores has closed all 138 of its Irish branches for Easter Sunday. Dunnes Stores has also closed all 138 of its Irish branches. Pic: Artur Widak/NurPhoto/REX/Shutterstock Before resuming normal operations from Tuesday, most shops are expected to be open from 9am to 7pm on the bank holiday. However, each branch will have its own arrangement and customers are urged to check the individual shop’s times. Meanwhile, Supervalu will be maintaining its typical Sunday schedule on both Easter Sunday and Monday. Supervalu will be maintaining its typical Sunday schedule. Pic: Colin Keegan/Collins Dublin Like Dunnes, individual branches will have their own plans. For Tesco, selected branches are shut for Easter Sunday, while others will run bank holiday hours. The outlets will typically work from 9am to 8pm on the bank holiday, though some branches may also differ. Lidl supermarkets are open for reduced hours of 9am to 6pm. Pic: Lidl Ireland Finally, Lidl supermarkets are open for reduced hours of 9am to 6pm on Easter Sunday. The branches will then be open from 9am to 9pm on Monday before resuming normal opening hours the following day. In the meantime, Easter Sunday has marked the first celebration with Pope Leo XIV at the helm. The holiday comes almost a year after the death of Pope Francis, who was last seen on Easter Sunday 2025. Taking to social media this weekend, Pope Leo spoke of the ‘severing of bonds through war.’ He said: ‘Even today there are tombs to be opened, and often the stones sealing them as so heavy and so closely guarded that they seem to be immovable. ‘Some weigh heavily on the human heart, such as mistrust, fear, selfishness and resentment; others, stemming from these inner struggles, sever the bonds between us through war, injustice and the isolation of peoples and nations.’ Listen to our Podcasts Share Now
+"""
+
+[R3] Aldi Easter Sunday 2026 Opening & Closing Times: Are Supermarkets Open or Close Today? All You Need to Know
+(https://sundayguardianlive.com/world/aldi-easter-sunday-2026-opening-closing-times-are-supermarkets-open-or-close-today-all-you-need-to-know-181747/)
+"""
+Easter Sunday 2026, observed on April 5, affects supermarket operations across both the United Kingdom and the United States. Many grocery retailers adjust their schedules for the holiday, with several major chains choosing to close completely. As a result, shoppers planning last-minute purchases are advised to check store availability in advance. Is Aldi Open Today on Easter Sunday? On Easter Sunday, most Aldi stores are not open. The company follows a consistent holiday policy that includes closing stores on major occasions such as Easter, Thanksgiving, and Christmas.This means customers will generally not be able to access Aldi stores on this day, particularly in key markets like the United States and much of the UK. Easter Sunday 2026: Is Aldi Closed Today? Yes, Aldi is closed on Easter Sunday 2026 in most regions.In the United States, all Aldi locations remain closedIn the UK, stores in England, Wales, and Northern Ireland are closed due to trading lawsSome stores in Scotland may remain open, depending on regional regulations You Might Be Interested In Will Aldi Be Closed Tomorrow (Easter Monday)? No, Aldi will not remain closed after Easter Sunday.Stores reopen on Easter MondayOperations resume with regular or slightly reduced hoursCustomers can continue shopping without major restrictions Will Aldi Be Open Tomorrow (Easter Monday)? Yes, Aldi will be open on Easter Monday. While most locations return to normal schedules, some may operate under bank holiday hours, particularly in the UK. Aldi Timings (Easter Weekend 2026) Easter Sunday: Closed in most regionsEaster Monday: Open with normal or limited hours Overall, Aldi remains closed on Easter Sunday 2026, aligning with its holiday policy and regional trading laws. However, stores reopen on Easter Monday, ensuring shoppers regain access to regular grocery services shortly after the holiday.
+"""
+
+[R4] Is Aldi Open on Easter 2026? Find Out if Stores Are Open This Sunday
+(https://www.today.com/life/holidays/aldi-easter-hours-2026-rcna264881)
+"""
+Is Aldi Open on Easter? Details on 2026 Holiday Hours Planning to do some grocery shopping this Sunday? Here's what to know on Aldi's Easter hours this year.April 4, 2026, 2:00 PM CDTIf your Easter plans include a trip to Aldi, here's what to know about the grocer's holiday hours for 2026.. SOPA Images / Getty ImagesCreate your free account or log in to save this articleSunday, April 5, is Easter. For many people, the holiday is a day dedicated to spending time with family, attending church service or simply taking advantage of spring's long-awaited arrival.Whatever you've got going on this weekend, a trip to the grocery store may be on your to-do list. Whether it's to pick up a few last-minute Easter essentials for brunch or to stock up on necessities ahead of the work week, you may be wondering if Aldi is open on Easter.Given that it's one of the holiest days on the Christian calendar, as well as one of the biggest commemorations of the year, many retailers and restaurants are closed to give employees the opportunity to celebrate with loved ones or enjoy a day off.But what about Aldi? See below to find all the details you need to know about the discount grocery chain's Easter hours this year and whether or not stores will be welcoming customers on the April holiday. As a regular shopper at Aldi, you may already know that the grocery chain is closed on major holidays like Thanksgiving, Christmas and New Year's Day. Aldi also operates with adjusted hours on other holidays including Memorial Day, Independence Day and Labor Day.See below to learn more about Aldi's Easter hours for 2026 and whether or not stores will be open this Sunday. According to the Aldi website, all stores will be closed on Easter Sunday. Doors will reopen for business as usual on Monday, April 6. To confirm your local hours or find an Aldi location near you, find a store locator right here. Stores Open on Easter 2026Though Aldi stores will be closed this Sunday, see below for a sampling of retailers that will remain open this Easter or find a complete list right here. BJ’s Wholesale Club: A majority of BJ’s clubs will be open on Easter Sunday from 8 a.m. to 6 p.m. BJ’s recommends confirming local hours before going. Find local hours here.Dollar General: Stores will be open during normal business hours. Find local hours here.Home Depot: Stores are open from 8 a.m. to 6 p.m. Hours may vary by location. Find local hours here.Kroger: A majority of stores will operate during normal business hours. Find local hours here.Trader Joe’s: Stores will be open during regular business hours. Find local hours here.Walmart: Stores will be open during normal business hours. Find local hours here.Whole Foods: Stores are open until 6 p.m. Find local hours here.
+"""
+
+[R5] Hours And Locations  I Customer Support ALDI
+(https://help.aldi.us/faqs/article/Hours-And-Locations)
+"""
+Back to overviewALDI FAQsHours And LocationsAnswer/DescriptionALDI has more than 2,100 stores in 38 states, and we're constantly expanding.To locate your closest ALDI store location and to view their store hours, their services, their payment options, and their weekly ad please visit our store locator. Holiday HoursALDI stores are closed on New Year’s Day, Easter Sunday, Thanksgiving Day and Christmas Day. Additionally, ALDI stores operate limited hours on Memorial Day, Independence Day, Labor Day, Christmas Eve and New Year’s Eve.Hours And Locations I Customer Support ALDI Cookie NoticeALDI and our third-party technology providers use cookies, pixels, and similar tracking technologies on this site to enable essential site functionality and for business analytics purposes, including to analyze site usage and performance and assist in our internal marketing efforts. You may customize your cookie preferences by clicking the “Cookie Preferences” button below. You can also choose accept or reject all non-essential cookies by clicking the buttons below. To learn more, review our Privacy Policy. Cookie Preferences Reject All Non-Essential Accept AllYour opt-out signal has been honored.Cookie PreferencesWhen you visit our website, we and certain third parties, including advertising companies, use cookies, pixels, tags, and similar tracking technologies to collect information about you, your browser and device, and your visits to our website. We and third parties use the information for various purposes such as to make the site work as you expect it to and to improve your experience, to enhance website security, and to show you personalized content, including delivering advertisements that may be relevant to your interests. To opt-out of certain categories of cookies, please click on the toggle button below so it turns grey. Please be sure to click the “Confirm Choices” button at the bottom to save your preferences. If you use different devices or browsers, you may need to indicate your opt-out choices on each of those devices and browsers. Learn more about how we collect and process your data in our Privacy Policy.Accept AllManage Consent PreferencesStrictly Necessary CookiesAlways ActiveThese cookies are necessary for the website to function (such as setting your privacy preferences, remembering your settings, or filling in forms) and cannot be switched off in our systems.Targeting Cookies Targeting Cookies We and certain third-party advertising, analytics, social media, and similar partners may collect data from visitors through cookies for various purposes, including to serve you targeted ads and content. If you opt-out of these cookies, you will still see advertising on our site and elsewhere online, but the advertisements you see may be less relevant to you. Under certain circumstances, the collection of personal information through these cookies may be considered “sales” or “sharing” or “targeted advertising” under applicable privacy laws.Performance Cookies Performance Cookies These cookies enable the website to provide enhanced functionality and user experience (for example, to remember choices you make when using our site, like your region, language preferences, or login details). They may also allow us to count visits and traffic sources so we can measure and improve the performance of our site, to help us to know which pages are the most and least popular and see how visitors move around the site. They may be set by us or by third party providers whose services we have added to our pages.Back ButtonCookie List Search IconFilter IconClear checkbox label labelApply CancelConsent Leg.Interest checkbox label label checkbox label label checkbox label labelReject All Non-Essential Confirm Choices
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

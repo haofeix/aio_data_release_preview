@@ -1,0 +1,118 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "cream abdul jabbar st louis"
+
+Claims:
+[1] ""Cream Abdul-Jabbar" is the popular nickname for Robbie Avila."
+[2] "Robbie Avila is a 6'10" center for the Saint Louis University Billikens."
+[3] "The nickname "Cream Abdul-Jabbar" was coined during Robbie Avila's time at Indiana State."
+[4] "Robbie Avila's other nicknames include "Larry Nerd" and "College Jokic"."
+[5] "Robbie Avila transferred to Saint Louis University for the 2024-25 season."
+[6] "Robbie Avila transferred to Saint Louis University to reunite with coach Josh Schertz."
+[7] "Robbie Avila had a sophomore season at Indiana State."
+[8] "Robbie Avila was a finalist for the 2025 Kareem Abdul-Jabbar Center of the Year Award."
+[9] "Robbie Avila earned All-MVC honors in 2024."
+[10] "Robbie Avila earned All-Atlantic 10 honors in 2025."
+[11] "Robbie Avila led Saint Louis University to the 2026 NCAA Tournament."
+
+Cited text snippets from the AI Overview (for additional context):
+- Robbie Avila - Better Known As 'Cream Abdul-Jabbar' - OutKick: "Louis, as the program finished,try to influence his decision.&text="There was a bunch of,tournament bid in program history."
+- At last, ‘Cream Abdul-Jabbar’ and Saint Louis arrive at March Madness: "The begoggled Avila became a,“Cream Abdul-Jabbar?”"
+- St. Louis star center Robbie Avila blind ranks his favorite nicknames 👀: "Cream Abdul-Jabbar (aka Robbie,🤔🤔"
+- Who is Robbie Avila? Meet the St. Louis star trending in March ...: "Meet the St. Louis star trending in March Madness,-Manuel Meza&text=Robbie Avila.,the country, according to Patch."
+- Cream Abdul-Jabbar is one of the all time greatest nicknames ...: "Saint Louis is the No. 9 seed,Avila in March Madness! #MarchMadness · College"
+- Avila Named Top 10 Candidate for Kareem Abdul-Jabbar Award: "SPRINGFIELD, Mass.,during the finalist selection process."
+- St. Louis Star Robbie Avila Shines in March Madness Debut: "Got story updates?,with an impressive stat line."
+Reference Sources:
+
+[R1] Avila Named Top 10 Candidate for Kareem Abdul-Jabbar Award
+(https://slubillikens.com/news/2025/2/7/mens-basketball-avila-named-top-10-candidate-for-kareem-abdul-jabbar-award.aspx)
+"""
+SPRINGFIELD, Mass. – Saint Louis junior center Robbie Avila is one of 10 candidates for the 2025 Kareem Abdul-Jabbar Award, the Naismith Basketball Hall of Fame announced today. The annual Kareem Abdul-Jabbar Award, named after the Class of 1995 Hall of Famer and three-time NCAA Champion, celebrates its 11th year by honoring the top centers in NCAA Division I men's college basketball. Avila averages 16.6 ppg and 6.6 rpg entering the Billikens' game Feb. 7 at Saint Joseph's. He leads all centers in NCAA Division I in assists per game (4.2) and 3-pointers made per game (1.6). Last season at Indiana State, Avila averaged 17.4 points, 6.6 rebounds and 4.1 assists while shooting 53.6 percent from the field and 39.4 percent from the arc. He led all NCAA Division I centers in assists a season ago. Fans are encouraged to participate in Fan Voting starting on Friday, February 7, on hoophallawards.com. The Fan Vote will count as one committee vote during the finalist selection process. Kareem Abdul-Jabbar Center of the Year Award Candidates Ryan Kalkbrenner, Creighton Asa Newell, Georgia Hunter Dickinson, Kansas Derrick Queen, Maryland Vladislav Goldin, Michigan Dawson Garcia, Minnesota Nate Bittle, Oregon Oscar Cluff, South Dakota State Robbie Avila, Saint Louis Maxime Raynaud, Stanford
+"""
+
+[R2] Robbie Avila - Better Known As 'Cream Abdul-Jabbar' - Has Officially Transferred To St. Louis
+(https://www.outkick.com/sports/robbie-avila-better-known-as-cream-abdul-jabar-has-officially-transferred-to-st-louis)
+"""
+PublishedApril 20, 2024 7:09 PM EDT•UpdatedApril 20, 2024 7:09 PM EDTFinally Taking Action: Senator Tuberville Introduces New Bill To Fix The Transfer Portal0 seconds of 56 minutes, 14 secondsVolume 90%The biggest star in men’s college basketball has officially chosen his new team.No, I’m not talking about FAU’s Johnnell Davis, Duke’s Jeremy Roach, or Auburn’s Aden Holloway. I’m talking about someone whose talent and aura make him the most electric player in the sport.The one and only Robbie Avila, better known as "Cream Abdul-Jabbar," or "Larry Curd."The Indiana State big man has decided to take his talents to St. Louis next season, and the Billikens are getting a human Swiss Army knife. Don’t let the funky goggles and the unorthodox physique fool you, this guy is a savant with the ball in his hands and knows how to shred defenses to pieces.That man is an absolute wagon, and fans were rightfully disappointed when the Sycamores got left out of March Madness, since that meant we didn’t get to see Avila on the sport's biggest stage.His chances of getting back in the tournament didn’t improve all that much by choosing to go to St. Louis, as the program finished just 13-20 overall last season and second-to-last in the Atlantic 10.However, he’s following his former Indiana State coach, Josh Schertz, so that’s a natural fit. But that doesn’t mean other big schools didn’t try to influence his decision.Indiana State Sycamores center Robbie Avila will take his talents to St. Louis for next season. © Grace Hollars/IndyStar / USA TODAY NETWORK"There was a bunch of ACC schools, all of the Power 5s reached out. I had contact with a lot of schools," Avila said. "It was crazy, I felt like I was in high school all over again doing the entire recruitment process. It all came at once, the first day you're in they all try to contact you."In the end, his relationship with Schertz, whom Avila said was one of the few coaches to believe in him in high school, persuaded him to go to St. Louis."He showed the interest right away that the bigger schools didn't show out to me. A lot of schools thought I wasn't good enough to play at this level. He didn't. He really trusted me, he really saw the vision," Avila said. "I think we've built such a great relationship, I couldn't see myself playing under anybody else right now."Who knows? Maybe the coach-player duo can recreate their magic once again and help St. Louis earn its 11th tournament bid in program history.
+"""
+
+[R3] Who is Robbie Avila? Meet the St. Louis star trending in March Madness | Sporting News
+(https://www.sportingnews.com/us/ncaa-basketball/news/who-robbie-avila-meet-st-louis-march-madness/24afc961345002fc828f715b)
+"""
+Robbie Avila is a 6-foot-10 center at Saint Louis University, who was key to the first round of the 2026 NCAA Tournament against Georgia.Interestingly, he is gaining a lot of popularity for his protective goggles and his nickname, "Cream Abdul-Jabbar," which is basically a nod to Kareem Abdul-Jabbar. He is also known as "Larry Nerd" or "Larry Blurred." Another curiosity is that due to his resemblance to Denver Nuggets center Nikola Jokic, Avila was also nicknamed College Jokic.He was born in Oak Forest, Illinois, on Sept. 10, 2003. As a rookie, Avila averaged 10.7 points and 4 rebounds during his time at Indiana State and was named to the MVC All-Freshman Team.During his junior year, Avila averaged 25.5 points and 11.5 rebounds at Oak Forest High School. He was subsequently ranked as the sixth-best player in the state of Illinois and the 54th-best power forward in the country, according to Patch.Robbie Avila, aka 'College Jokic,' leads Saint Louis in March MadnessOn Thursday, at the start of the game between St. Louis and Georgia, he was key to his team going into halftime up 49-32, with eight points (3-of-4 from the field), four rebounds, three assists, one block, and two turnovers. Not bad.Avila was the constant focus of the CBS broadcast and the cameras, which also followed his family in the stands.Robbie is now a senior, transferred from Indiana State — where he had already gone viral in 2024 for his uncommon combination of size and court vision — and comes in averaging about 17 points, seven rebounds, and four assists in the A-10 with St. Louis.His reading of the game and his resources are making him a very striking figure in March Madness.
+"""
+
+[R4] At last, ‘Cream Abdul-Jabbar’ and Saint Louis arrive at March Madness
+(https://www.nytimes.com/athletic/7129464/2026/03/18/robbie-avila-saint-louis-ncaa-tournament-cream-abdul-jabbar/)
+"""
+BUFFALO, N.Y. — Among the many nicknames given to Saint Louis big man Robbie Avila, coach Josh Schertz is partial to “Milk Chamberlain” and “SLU Alcindor.”“Those two are probably two of my favorites,” said Schertz, whose ninth-seeded Billikens face No. 8 Georgia on Thursday in a Midwest Region first-round game that matches two of the highest-scoring teams in the country.The begoggled Avila became a cult hero among college basketball fans two seasons ago when he led Indiana State to one of the best seasons in the history of a program that produced Hall of Famer Larry Bird. Avila picked up the monikers “Larry Nerd” and “Larry Blurred” because of that connection. Or maybe you prefer “Cream Abdul-Jabbar?”The Sycamores fell just short of reaching the NCAA Tournament in 2023-24 after losing to Drake in the Missouri Valley Conference title game, instead landing in the NIT.They then lost the NIT final to Seton Hall by 2 points.Avila was the star of that team, averaging 17.4 points, 6.6 rebounds and 4.4 assists per game. When Schertz left for Saint Louis after that season, the 6-foot-10, 240-pound Avila followed the coach to the Atlantic 10.Avila was just as productive last season, but the Billikens finished off the pace in the A-10 and were one-and-done in the NIT.“I wanted to get this team to the NCAA Tournament for a lot of reasons, but he was the biggest,” Schertz said Wednesday. “There’s a lot of people that helped bring me here, but I just never wanted for him to have ended his career not in the tournament, particularly after what happened to that Indiana State team in 2024.”Avila’s numbers are down this year (12.9 points, 4.5 rebounds), but that’s because Saint Louis features one of the deepest and most balanced teams in the country with seven players averaging at least 9 points per game.“Everything he sacrificed, he sacrificed money, sacrificed playing time,” Schertz said. “He sets an unbelievable tenor for our whole program. His sense of humor, his humility, his team orientation, the kind of competitor he is, the way he cares about people. His compassion.”Georgia coach Mike White said Avila is literally and figuratively at the center of the Billikens’ offense.“He’s a guy that the more you study him on film, the more you appreciate his instincts and his quick-thinking ability. He’s got an innate ability to draw fouls,” White said. “He shoots it really well from 3 at pretty high volume. Shoots it like a guard. But in my opinion, I think what really separates him as at 6-10, 240 is his ability to pass the basketball and makes everybody around him better. They’ve got other good passers, too, but I don’t think we have faced a 5 that passes it like this this season.”Your browser does not support the video tag.Schertz said success following Avila is no coincidence.“When you look at the history of Indiana State basketball, the history of Saint Louis basketball, they all have pockets of success, but he’s really changed the trajectory of two mid-major programs that aren’t household, nationally ranked teams on a year-in, year-out basis, and he did the same thing in high school,” Schertz said.Avila was the last Saint Louis player to leave the floor of the KeyBank Center on Wednesday as he took time to sign autographs and pose for photos with fans after the open practice.He called the relationship he has built with Schertz “special.”“To kind of end my last year with him and just being in college in general with a tournament appearance, it’s a blessing,” Avila said. “And to be able to do it with the group of guys we’ve got here, it makes it more special. We’re just soaking it in, but we’re just ready to compete.” Mar 26, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R5] Avila on Kareem Abdul-Jabbar Center of the Year Watch List
+(https://slubillikens.com/news/2025/10/31/mens-basketball-avila-on-kareem-abdul-jabbar-center-of-the-year-watch-list.aspx)
+"""
+ST. LOUIS – Saint Louis senior center Robbie Avila has landed on the preseason Watch List for the Kareem Abdul-Jabbar Center of the Year Award, the Naismith Basketball Hall of Fame announced today. The annual Kareem Abdul-Jabbar Award, named after the Class of 1995 Hall of Famer and three-time NCAA Champion, celebrates its 12th year by honoring the top centers in Division I men's college basketball. Last season, Avila was a top-10 finalist for the award. Avila is a preseason first-team All-Conference selection and was tabbed the Atlantic 10 Conference Preseason Player of the Year by Blue Ribbon. He averaged 17.3 points and 6.9 rebounds per game last season, leading all centers in Division I in 3s made per game and assists per game. In addition to being a top 10 candidate for the Kareem Abdul-Jabaar Center of the Year Award, Avila was named to Watch Lists for the Naismith Trophy, Wooden Award and Lute Olson Award. Fans can support their favorite player by participating in Fan Voting starting today, Friday, October 31. In early February, the watch list of 20 players for the 2026 Kareem Abdul-Jabbar Award will be narrowed to 10, and then in early March, to just five. Later in March, the five finalists will be presented to Abdul-Jabbar and Hall of Fame's selection committee, where winners will be selected. Previous winners of the Kareem Abdul-Jabbar Award are Ryan Kalkbrenner, Creighton (2025), Zach Edey, Purdue (2023-24), Oscar Tshiebwe, Kentucky (2022), Luka Garza, Iowa (2020-21), Ethan Happ, Wisconsin (2019), Angel Delgado, Seton Hall (2018), Przemek Karnowski, Gonzaga (2017), Jakob Poeltl, Utah (2016), and Frank Kaminsky, Wisconsin (2015). Avila and the Billikens open the season Monday night against Southeast Missouri at Chaifetz Arena. Game time is 7 p.m.
+"""
+
+[R6] St. Louis Star Robbie Avila Shines in March Madness Debut - Oak Forest Today
+(https://nationaltoday.com/us/il/oak-forest/news/2026/03/20/st-louis-star-robbie-avila-shines-in-march-madness-debut/)
+"""
+Mar. 20, 2026 at 4:21am Got story updates? Submit your updates here. ›Robbie Avila, a 6-foot-10 center for Saint Louis University, has become a breakout star in the 2026 NCAA Tournament. Known for his protective goggles, resemblance to Nikola Jokic, and nicknames like "Cream Abdul-Jabbar" and "College Jokic", Avila led his team to a dominant first-round win over Georgia with an impressive stat line. Why it matters Avila's performance has captured the attention of college basketball fans across the country, showcasing his unique combination of size, skill, and court vision. As a transfer from Indiana State, where he had already gone viral for his standout play, Avila is now poised to become one of the must-watch players of the NCAA Tournament. The details In the first-round game against Georgia, Avila was key to his team's 49-32 halftime lead, scoring 8 points on 3-of-4 shooting, grabbing 4 rebounds, dishing out 3 assists, and recording 1 block. For the season, the senior is averaging around 17 points, 7 rebounds, and 4 assists per game in the A-10 conference. Avila was born on September 10, 2003 in Oak Forest, Illinois.As a rookie at Indiana State in 2024, Avila averaged 10.7 points and 4 rebounds and was named to the MVC All-Freshman Team.During his junior year of high school at Oak Forest, Avila averaged 25.5 points and 11.5 rebounds and was ranked as the 6th-best player in Illinois and the 54th-best power forward in the country.On March 20, 2026, Avila led Saint Louis to a dominant first-round NCAA Tournament win over Georgia. The players Robbie AvilaA 6-foot-10 center for Saint Louis University who has become a breakout star in the 2026 NCAA Tournament, known for his distinctive look, multiple nicknames, and impressive all-around game.Nikola JokicThe Denver Nuggets center whose resemblance to Avila has led to the Saint Louis player being nicknamed "College Jokic". Got photos? Submit your photos here. › What’s next Avila and Saint Louis will look to continue their NCAA Tournament run in the next round, as they aim to make a deep March Madness push. The takeaway Robbie Avila's breakout performance in the NCAA Tournament has made him a must-watch player, showcasing his unique blend of size, skill, and court vision. As a transfer from Indiana State, Avila is now poised to become a household name in college basketball.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

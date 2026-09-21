@@ -1,0 +1,114 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "masters coverage saturday"
+
+Claims:
+[1] "Saturday, April 11, 2026 features coverage of the Masters third round."
+[2] "Masters third round TV coverage airs on CBS from 2 p.m. to 7 p.m. ET."
+[3] "Masters third round early coverage airs on Paramount+ and Masters.com from 12 p.m. to 2 p.m. ET."
+[4] "Featured groups and holes (Amen Corner) are available on Masters.com and the Masters App throughout the day."
+[5] "Masters On the Range coverage airs from 10 a.m. to 12 p.m. ET on Masters.com, Masters App, and Paramount+."
+[6] "Masters Featured Groups coverage airs from 10:15 a.m. to 7 p.m. ET on Masters.com, Masters App, and Paramount+."
+[7] "Masters Featured Holes (Amen Corner) coverage airs from 11:45 a.m. to 6 p.m. ET on Masters.com, Masters App, and Paramount+."
+[8] "Masters Round 3 Early Coverage airs from 12 p.m. to 2 p.m. ET on Paramount+."
+[9] "Masters Round 3 CBS Telecast airs from 2 p.m. to 7 p.m. ET on CBS and Paramount+."
+[10] "Masters.com and Masters App provide free streaming."
+[11] "Paramount+ streams the CBS broadcast and early coverage."
+[12] "Paramount+ requires a subscription."
+[13] "ESPN App features coverage for subscribers."
+[14] "Fubo TV carries CBS."
+
+Cited text snippets from the AI Overview (for additional context):
+- 2026 Masters Saturday TV coverage: How to watch Round 3: "Check out the full 2026,a.m. – Patrick Cantlay, Sungjae Im"
+- 2026 Masters Saturday channel: TV schedule for Round 3 - GOLF.com: "What channel is Masters Round,more Masters coverage available online.&text=Gary Player was golf's first,round of the 2026 Masters."
+- What time does the Masters start today? Tee times, leaderboard: "How to watch and live,trial subscription for new users."
+- Stream the Third & Final Rounds of The Masters this Saturday ...: "5 likes, 0 comments - vizio on,Coverage begins 12PM ET - Get Started!"."
+- How to watch the Masters today, Round 3 start time, TV schedule: "Featured group and hole streaming,free trial for new subscribers."
+- 2026 Masters Tournament Schedule - Round 3 - Day 6: "2026 Masters Tournament Schedule - Round,1:00 PM"
+Reference Sources:
+
+[R1] How to watch the Masters today, Round 3 start time, TV schedule
+(https://www.palmbeachpost.com/story/sports/pga/2026/04/11/watch-masters-coverage-live-streaming-tv-channel-round-3/89469257007/)
+"""
+Updated April 11, 2026, 1:06 p.m. ET(Update: Follow along with the latest from the 2026 Masters with our live leaderboard.)The Masters rarely disappoints when it comes to the biggest golf moments of the year. And Friday's Round 2 was no different, as Rory McIlroy had a back-nine to remember.The 2025 Masters champ shook off his bogey on No. 10 with six birdies on the final seven holes to reach 12 under for the tournament. His six-shot lead after 36 holes is the largest in the tournament's 90-year history.The question now: can McIlroy become just the fourth man to win consecutive Green Jackets, joining Jack Nicklaus, Nick Faldo and Tiger Woods?Watch the Masters live on Fubo (free trial)Here's everything you need to know about Round 3 of the Masters, including TV schedule and streaming information:What channel is the Masters on today? Time, TV scheduleAll times Eastern:Saturday, April 11: Paramount+ (noon-2 p.m.) | CBS (2-7 p.m.)Sunday, April 12: Paramount+ (noon-2 p.m.) | CBS (2-7 p.m.)Coverage of rounds 3 and 4 of the 2026 Masters will start on Paramount+, CBS' subscription streaming service, at noon before switching to CBS at 2 p.m. April 11-12. The CBS broadcast can be streamed via Fubo, which includes a free trial for new subscribers.➤ 2026 Masters purse:See record payout, breakdown by player, winner's shareWhere to watch Masters 2026 on streamingAll times Eastern:Saturday, April 11: ESPN app (10:15 a.m.-7:30 p.m.) | Masters.com and the Masters appSunday, April 12: ESPN app (10:15 a.m.-7:30 p.m.) | Masters.com and the Masters appFeatured group and hole streaming is available on PGA Tour Live on ESPN+ (available on the ESPN app with the Select plan). The main broadcast can be streamed via Fubo, which carries CBS and includes a free trial for new subscribers.Masters tee times todayRory McIlroy tees off with Sam Burns at 2:50 p.m. ET. Look through all of the Round 3 tee times.Masters location: Where is Augusta National?The Masters is the only one of golf's majors that doesn't change location each year, taking place annually at Augusta National Golf Club. Augusta, Georgia is right along the South Carolina border about 95 miles southeast of the University of Georgia in Athens and 75 miles southwest of the University of South Carolina in Columbia.Who won the Masters 2025?Rory McIlroy defeated Justin Rose on the first hole of a sudden-death playoff to win his first green jacket at the 2025 Masters, giving the 35-year-old the career grand slam. McIlroy and Rose both shot 11 under for the tournament, two shots ahead of Patrick Reed and three ahead of defending champion Scottie Scheffler.Our editors independently choose our recommendations. Some content is produced with paid support from a third party, however our editorial decisions remain independent. If you buy through our links, the USA TODAY Network may earn a commission. Prices and availability may change.
+"""
+
+[R2] 2026 Masters Tournament Schedule - Round 3 - Day 6
+(https://www.masters.com/en_US/tournament/schedule/day6/index.html)
+"""
+During the Tournament, view scores, highlights and My Moments here.The 2026 Masters has concluded.Leader BoardMasters VaultNewsTicketsThe CoursePlayersRange TrackerAbout the MastersFantasyMy Group(0)Track ShotsPatron InfoApril 9-12, 2026Welcome to the MastersSince 1934, amidst blooming azaleas, towering pines and flowering dogwoods, the first full week of April ushers in a stage unique to golf and to sport.Leader BoardVideosAccountHello, Guest My Group(0)Watch all your favorite playersFantasyCompete against family & friendsMasters VaultGet access to exclusive video content NewsletterTicket InformationThe Masters at Augusta NationalThe Masters at Augusta NationalMasters Watch LiveMasters Video HighlightsMasters LeaderboardThe Masters Tournament HistoryMasters Tournament ScheduleMasters Patrons: Weather, Parking, DirectionsMasters FieldMasters - Augusta National Golf CourseTrack Your Favorite Players at the MastersShop: The Masters at Augusta NationalThe Masters: Tee Times & GroupingsMasters NewsletterPlay Masters FantasyThis website uses cookies and similar technologies.We do this to understand how visitors use our site, improve your experience, and provide content we think might interest you. For more information see our Privacy StatementPatron ParkingOpen6:00 AM EDTClose10:00 PM EDTTicketing GatesOpen7:00 AM EDTClose (no further entries)6:00 PM EDTCourse GatesOpen7:30 AM EDTClose (no further entries)6:00 PM EDTGolf ShopsOpen7:00 AM EDTClose30 minutes after playPatron PhotosOpen7:30 AM EDTClose5:00 PM EDTTee TimesBeginApprox. 9:31 AM EDTFuture Dates2027Mon, April 5 - Sun, April 112028Mon, April 3 - Sun, April 92029Mon, April 2 - Sun, April 8
+"""
+
+[R3] 2026 Masters Saturday channel: TV schedule for Round 3 at Augusta National
+(https://golf.com/news/2026-masters-saturday-channel-tv-schedule-round-3/)
+"""
+Hoping to watch the 2026 Masters on TV Saturday? We've got you covered. Getty Images You’re reading our Masters viewer’s guide for Round 3. To see complete TV coverage and streaming schedules for Sunday’s final round of the 2026 Masters, click here.———The 2026 Masters continues on Saturday with Round 3 at Augusta National. CBS will provide TV coverage of all the third-round action, but there are plenty of other opporunities to watch as well. Keep reading for a complete 2026 Masters Saturday TV schedule and streaming information.What channel is Masters Round 3 on?ESPN aired TV coverage for Thursday’s opening round and Friday’s second round, but for Saturday’s third round, coverage will switch to the Masters longtime TV home: CBS.CBS’ Masters Saturday broadcast will start at 2 p.m. ET and last five hours, finishing at 7 p.m. ET. But there’s even more Masters coverage available online.As they did last year, Paramount+ will provide two hours of early Saturday streaming coverage beginning at 12 p.m. ET. You can also watch the early coverage (and CBS’ broadcast) for free on Masters.com and the Masters App.Additional viewing options will be provided online via Masters.com, the Masters App, Paramount+, the ESPN App and more, including featured group and featured hole coverage.Below you will find more detailed information on how to watch the third round of the 2026 Masters.Masters Saturday TV scheduleCBS will air Saturday’s third round of the 2026 Masters on TV from 2-7 p.m. ET.Masters Saturday streaming scheduleYou can stream Saturday’s third round of the 2026 Masters online on Masters.com, the Masters app, the ESPN App, Amazon Prime Video, Paramount+ and DirecTV.Here’s the full Masters streaming schedule for Saturday:On the Range: 10 a.m.-12 p.m. (Masters.com, Masters App, Paramount+)Featured Groups: 10:15 a.m.-7 p.m. (Masters.com, Masters App, Paramount+, Prime Video, ESPN App, DirecTV)Featured Holes (4, 5 and 6): 10:30 a.m.-3:30 p.m. (Masters.com, Masters App, ESPN App)Featured Holes (Amen Corner, 11, 12 and 13): 11:45 a.m.-6 p.m. (Masters.com, Masters App, Paramount+, Prime Video, ESPN App, DirecTV)Featured Holes (15 and 16): 11:45 a.m.-7 p.m. (Masters.com, Masters App, Paramount+, Prime Video, ESPN App, DirecTV)Round 3 Early Coverage: 12-2 p.m. (Paramount+)Round 3 CBS Telecast: 2-7 p.m. (Paramount+)Full Round 3 Stream: 12-7 p.m. (Masters.com, Masters App)2026 Masters Saturday tee times (All times ET)Tee No. 19:31 a.m. – Kurt Kitayama, Alex Noren9:42 a.m. – Charl Schwartzel, Rasmus Højgaard9:53 a.m. – Jon Rahm, Si Woo Kim10:04 a.m. – Brian Harman, Corey Conners10:15 a.m. – Sergio Garcia, Maverick McNealy10:26 a.m. – Keegan Bradley, Viktor Hovland10:37 a.m. – Justin Thomas, Gary Woodland10:48 a.m. – Samuel Stevens, Adam Scott11:10 a.m. – Marco Penge, Matt McCarty11:21 a.m. – Jordan Spieth, Sepp Straka11:32 a.m. – Aaron Rai, Jacob Bridgeman11:43 a.m. – Patrick Cantlay, Sungjae Im11:54 a.m. – Dustin Johnson, Russell Henley12:05 p.m. – Harris English, Ryan Gerard12:16 p.m. – Ludvig Åberg, Scottie Scheffler12:38 p.m. – Collin Morikawa, Brian Campbell12:49 p.m. – Nick Taylor, Matt Fitzpatrick1:00 p.m. – Hideki Matsuyama, Michael Brennan1:11 p.m. – Jake Knapp, Xander Schauffele1:22 p.m. – Ben Griffin, Max Homa1:33 p.m. – Chris Gotterup, Brooks Koepka1:55 p.m. – Jason Day, Cameron Young2:06 p.m. – Haotong Li, Kristoffer Reitan2:17 p.m. – Wyndham Clark, Tyrrell Hatton2:28 p.m. – Shane Lowry, Tommy Fleetwood2:39 p.m. – Patrick Reed, Justin Rose2:50 p.m. – Rory McIlroy, Sam Burns Latest In News Kevin Cunningham Golf.com Editor As senior managing producer for GOLF.com, Cunningham edits, writes and publishes stories on GOLF.com, and manages the brand’s e-newsletters, which reach more than 1.4 million subscribers each month. A former two-time intern, he also helps keep GOLF.com humming outside the news-breaking stories and service content provided by our reporters and writers, and works with the tech team in the development of new products and innovative ways to deliver an engaging site to our audience. Related Articles
+"""
+
+[R4] What time does the Masters start today? Tee times, leaderboard
+(https://www.dispatch.com/story/sports/pga/2026/04/11/masters-weekend-channels-streaming-tee-times-live-leaderboard/89535959007/)
+"""
+April 11, 2026, 5:52 a.m. ETThe 90th Masters Tournament is underway and runs through Sunday, April 12 at Augusta National Golf Club in Augusta, Georgia.Defending champion Rory McIlroy was tied for the lead after the first round, and Australian native and Ohio resident Jason Day was in the top 10, according to USA TODAY. Two-time winner Scottie Scheffler is among many top players competing for the Masters' iconic green jacket, which is made in Cincinnati. Here's how fans can watch the Masters this weekend.How to watch and live stream the 2026 Masters this weekendWeekend coverage on both Saturday and Sunday begins at noon ET on Paramount+ before airing on CBS from 2–7 p.m. ET.Amazon Prime Video streams the Masters on April 9–10 from 1–3 p.m. ET, followed by ESPN coverage from 3–7:30 p.m. ET. Fans can also live stream coverage for free through the Masters App and Masters.com, as well as via Fubo, which currently offers a free trial subscription for new users.Third round broadcast schedule on Saturday, April 11Masters.com/Masters App: noon-7 p.m.Paramount+: noon-2 p.m. and 2-7 p.m.CBS: 2-7 p.m.ESPN Deportes: 5-6 p.m.The full daily broadcast schedule is available on the Masters' official website.Masters 2026 live leaderboard, tee timesUSA TODAY offers a live Masters leaderboard that shows scores, course progress and upcoming tee times for the current round.Weekend tee times are determined by overall score. The list of tee times for Rounds 3 and 4 will appear on the Masters website.
+"""
+
+[R5] 2026 Masters Saturday TV coverage: How to watch Round 3 at Augusta National
+(https://golf.com/news/2026-masters-saturday-tv-coverage-watch-round-3/)
+"""
+Rory McIlroy has a huge lead heading into Saturday's third round at Augusta National. David Cannon/Getty Images You’re reading our viewer’s guide for Round 3. To see complete TV coverage and streaming schedules for Sunday’s final round of the 2026 Masters, click here.———The third round of the 2026 Masters gets underway Saturday morning, April 11, at Augusta National. Here’s everything you need to know to watch the tournament on Saturday, including full Masters TV coverage, streaming info and Round 3 tee times.How to watch Masters on SaturdaySeveral star players put together solid starts to get toward the top of the leaderboard at the halfway point of the Masters. But the man at the very top of that leaderboard is way, way ahead. Defending champion Rory McIlroy showed off his elite skills and knowledge of Augusta National in Round 2, making birdies on six of his last seven holes to shoot a seven-under 65. 9 surprising players who missed the 2026 Masters cut By: Josh Schrock The incredible round moved McIlroy to 12 under, giving him a six-shot lead heading into Saturday’s third round. That’s the biggest 36-hole lead in Masters history.Major winners Patrick Reed, Justin Rose, Shane Lowry, Tommy Fleetwood and Jason Day are among McIlroy’s closest chasers with two rounds to play. But they all have a lot of ground to cover to prevent McIlroy from winning a second-straight green jacket.Bryson DeChambeau, on the other hand, will not be playing the weekend. He made a triple bogey at 18 on Friday to miss the cut.You can watch the third round of the Masters on TV via CBS, which will air coverage beginning at 2 p.m. ET on Saturday. Masters.com, the Masters app, Amazon Prime Video, Paramount+ and the ESPN App will provide streaming coverage beginning Saturday at 9:53 a.m. ET.Below you will find everything you need to know to watch the third round of the 2026 Masters.How to watch on TV SaturdayCBS will provide third-round TV coverage of the 2026 Masters on Saturday from 2-7 p.m. ET.How to stream online SaturdayYou can stream the third round of the 2026 Masters via Masters.com, the Masters app, the ESPN App, Amazon Prime Video, Paramount+ and DirecTV, with several streaming options available. Check out the full 2026 Masters Saturday streaming schedule below.On the Range: 10 a.m.-12 p.m. (Masters.com, Masters App, Paramount+)Featured Groups: 10:15 a.m.-7 p.m. (Masters.com, Masters App, Paramount+, Prime Video, ESPN App, DirecTV)Featured Holes (4, 5 and 6): 10:30 a.m.-3:30 p.m. (Masters.com, Masters App, ESPN App)Featured Holes (Amen Corner, 11, 12 and 13): 11:45 a.m.-6 p.m. (Masters.com, Masters App, Paramount+, Prime Video, ESPN App, DirecTV)Featured Holes (15 and 16): 11:45 a.m.-7 p.m. (Masters.com, Masters App, Paramount+, Prime Video, ESPN App, DirecTV)Round 3 Early Coverage: 12-2 p.m. (Paramount+)Round 3 CBS Telecast: 2-7 p.m. (Paramount+)Full Round 3 Stream: 12-7 p.m. (Masters.com, Masters App) NEWSLETTER Sign up for GOLF’s Top Stories Newsletter! Get the latest golf news and our most-read stories delivered to your inbox daily! SIGN UP NOW 2026 Masters Round 3 tee times (ET)Tee No. 19:31 a.m. – Kurt Kitayama, Alex Noren9:42 a.m. – Charl Schwartzel, Rasmus Højgaard9:53 a.m. – Jon Rahm, Si Woo Kim10:04 a.m. – Brian Harman, Corey Conners10:15 a.m. – Sergio Garcia, Maverick McNealy10:26 a.m. – Keegan Bradley, Viktor Hovland10:37 a.m. – Justin Thomas, Gary Woodland10:48 a.m. – Samuel Stevens, Adam Scott11:10 a.m. – Marco Penge, Matt McCarty11:21 a.m. – Jordan Spieth, Sepp Straka11:32 a.m. – Aaron Rai, Jacob Bridgeman11:43 a.m. – Patrick Cantlay, Sungjae Im11:54 a.m. – Dustin Johnson, Russell Henley12:05 p.m. – Harris English, Ryan Gerard12:16 p.m. – Ludvig Åberg, Scottie Scheffler12:38 p.m. – Collin Morikawa, Brian Campbell12:49 p.m. – Nick Taylor, Matt Fitzpatrick1:00 p.m. – Hideki Matsuyama, Michael Brennan1:11 p.m. – Jake Knapp, Xander Schauffele1:22 p.m. – Ben Griffin, Max Homa1:33 p.m. – Chris Gotterup, Brooks Koepka1:55 p.m. – Jason Day, Cameron Young2:06 p.m. – Haotong Li, Kristoffer Reitan2:17 p.m. – Wyndham Clark, Tyrrell Hatton2:28 p.m. – Shane Lowry, Tommy Fleetwood2:39 p.m. – Patrick Reed, Justin Rose2:50 p.m. – Rory McIlroy, Sam Burns Latest In News Kevin Cunningham Golf.com Editor As senior managing producer for GOLF.com, Cunningham edits, writes and publishes stories on GOLF.com, and manages the brand’s e-newsletters, which reach more than 1.4 million subscribers each month. A former two-time intern, he also helps keep GOLF.com humming outside the news-breaking stories and service content provided by our reporters and writers, and works with the tech team in the development of new products and innovative ways to deliver an engaging site to our audience. Related Articles
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

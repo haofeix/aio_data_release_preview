@@ -1,0 +1,110 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is duke"
+
+Claims:
+[1] "Duke University is located in Durham, North Carolina."
+[2] "Duke University has a 9,000-acre campus."
+[3] "Duke University's campus is situated in the Research Triangle area of North Carolina."
+[4] "Duke University's campus is near Raleigh."
+[5] "Duke University's campus is near Chapel Hill."
+[6] "Duke University has a West Campus."
+[7] "Duke University's West Campus features the Duke Chapel."
+[8] "Duke University's campus includes historic Gothic architecture."
+[9] "Duke Chapel is 210 feet tall."
+[10] "Duke University's campus includes large wooded areas like the Duke Forest."
+[11] "Duke University is located near the Raleigh-Durham International Airport (RDU)."
+[12] "Duke University has the Duke-NUS Medical School in Singapore."
+[13] "Duke University has Duke Kunshan University in China."
+
+Cited text snippets from the AI Overview (for additional context):
+- Duke University: "Duke University is a prestigious research university,and education programs** Located across the globe"
+- About - Duke University: "Established in 1924 in Durham, North Carolina,,institutions for education, research, and patient care."
+- About the Triangle | Duke Department of Surgery: "The Raleigh-Durham-Chapel Hill area of North Carolina,a hub for technology and biotech companies."
+Reference Sources:
+
+[R1] Durham, NC | Sanford School of Public Policy
+(https://sanford.duke.edu/student-life/durham-nc/)
+"""
+Duke's hometown is Durham, a city with vibrant research, medical and arts communities. Durham, along with nearby cities Raleigh and Chapel Hill, form the Research Triangle — a growing metropolitan area of more than a million people.Nearby UNC-Chapel Hill and North Carolina State University increase research collaboration and social options. North Carolina's mild weather allows for outside fun year round. The mountains and beaches are just a few hours away from Durham by car. Durham has gained national attention: #2 Best Places to Live - US News & World Report America's Foodiest Small Town - Bon Appétit Magazine Best Places for Businesses and Careers - Forbes.com A Corner of Durham Comes to Life - New York Times 34 Amazing Things That Will Make You Fall in Love with Durham, NC - Buzzfeed "Durham offers big city activities without the big city hassle. It's the best of both worlds - you can be outdoors hiking in nature and then have dinner at a terrific restaurant. The residents here love their city, and our students often don't want to leave."Pope "Mac" McCorkle, Professor of the PracticeClose Ties to Washington Ideal for policy students, our location allows for easy travel to Washington, D.C., and other major East Coast cities. The Sanford School has special relationships with D.C.-based alumni and employers who provide valuable internship and job search connections. Policymakers, politicians and dignitaries regularly visit campus, too. We encourage you to visit our campus in person for a great Southern experience you won't forget. Our Campus Located in central North Carolina, Duke University's campus spans nearly 9,000 acres. The university offers many activities for all types of interests, from professional theater, music and film festivals to exciting intramural and NCAA athletic events. Outstanding on-campus facilities facilities include
+"""
+
+[R2] About the Triangle | Duke Department of Surgery
+(https://surgery.duke.edu/about-department/about-triangle)
+"""
+The Raleigh-Durham-Chapel Hill area of North Carolina is also called the Research Triangle because of its proximity to three major research universities—Duke, the University of North Carolina at Chapel Hill, and North Carolina State University—as well as being a hub for technology and biotech companies. The area has developed into a center for culture, too, with world-class restaurants and entertainment. At the same time, the Triangle maintains a reasonable cost of living compared to other cities. From Forbes to USA Today, the Raleigh-Durham area consistently lands on the major top 10 lists of best places in the country to visit, live, and do business. Located halfway between the stunning Blue Ridge Mountains and the spotless beaches of the Outer Banks, Durham is the fourth largest municipality in North Carolina. Visitors come to Durham for its sports teams, eclectic restaurants, and vibrant culture; residents live here for its reasonable cost of living, strong sense of community, and agreeable weather. Durham has the charm of a Southern college town with the amenities of a larger city. Durham Performing Arts Center (DPAC) attracts national touring artists and Broadway shows. The annual Full Frame Documentary Film Festival brings together people from all over the world to showcase the work of new and established filmmakers. And Duke Arts Presents brings in world-class musicians every season. Durham’s food scene has been praised by Gourmet and Bon Appétit magazines as well as The New York Times. Sports fans will revel in the achievements of our Blue Devils in basketball, lacrosse and more. The Durham Bulls offer family-friendly baseball experiences throughout the summer. With more than 60 parks, an extensive network of running and biking trails, and several major waterways, the city offers abundant activities for outdoors enthusiasts. Access to and from Durham is convenient, as the RDU airport just 12 miles outside the city. What People are Saying Visit the Duke in Durham website to learn why Durham is such a great place to live.
+"""
+
+[R3] Life in Durham | Duke Department of Psychiatry & Behavioral Sciences
+(https://psychiatry.duke.edu/about/life-durham)
+"""
+Duke University is located in Durham, North Carolina, one of three cities—Durham, Chapel Hill and Raleigh—that form North Carolina’s famed Triangle region. Each of the cities is home to a major research university. The Triangle area, with a combined triangle-wide population of more than a million people, boasts a robust intellectual climate and broad cultural diversity. Visit Duke in Durham Whether you know of Durham as the “City of Medicine” or the “Bull City,” it’s easy to see why so many residents and businesses call Durham home. Learn about living, working, learning, and playing in Durham, North Carolina. Do Durham Welcome to Durham, the City of Medicine—Bull City, born in 1869. Built on old tobacco, now thriving on research, technology and education. We are a city of doers. Durham Is ... “Durham is … the Farmer’s Market, the Pride Parade, empanadas, slow-roasted barbecue, and every flavor at The Parlour.” In celebration of Duke Service-Learning’s annual theme, #MakingPlaceMatter, students and faculty reflect on what they’ve learned in Durham in this animated crowdsourced poem. Bull City Anthem The "Bull City Anthem" is a unifying song/video created by local artists about our community showing some of the ways we stand together as a community and reflecting our love for and pride in our city.
+"""
+
+[R4] About - Duke University
+(https://www.duke.edu/about/)
+"""
+Duke’s story is being written every day. It’s shaped by bold ideas and a shared commitment to progress. Help write our next chapter. Know What You Need? If you know what you are looking for, please use our search engine. Duke Facts What makes us Duke isn’t just in the numbers. It’s in the impact behind them: how we learn, discover and lead. Our Facts and Figures Reflect aUniversity Shaping the Future 16Nobel laureatesare Duke affiliated students or faculty 91%4 year graduation rate 95%employment rateamong graduates A Thriving Network 6,400Undergradsbringing unique perspectives and talents 10,200graduate and professional studentsdedicated to advancing knowledge and innovation 4,100faculty membersguiding the next generation as leaders in their fields 47,000dedicated staffsupporting our mission across the university and health system 196,000active alumnimaking impactful contributions worldwide Success at Duke isn’t just measured in the lecture halls and labs. It shows up in game-day wins too. 17NCAA National ChampionshipsBasketball, Golf, Lacrosse, Soccer and Tennis legacy of champions Go Duke Blue Devil pride runs deep, with 27 varsity teams making an impact across conferences and national competitions. See the stats and stories of our student-athletes and what gives Duke Athletics its competitive edge. Our Second Century our focus A Strategic Vision President Vincent Price leads the Duke community with a compelling vision for advancing both the university and the world over the next century. Empower the Boldest Thinkers Duke is the place where the world’s brightest minds come to meet the most important challenges. We recognize that their accomplishments comprise the true measure of our institutional excellence. Transform Teaching and Learning Duke is rethinking our undergraduate, graduate, and professional education strategy, taking advantage of new technological opportunities, and building a responsive, team-based learning community that includes everyone. Strengthen Our Campus Community Working to ensure that all who call Duke home share a lived experience that is increasingly inclusive, equitable, engaging, healthy and vibrant. Duke seeks to be a diverse and stimulating campus that promotes personal growth among all of our students, faculty, staff, and visitors. Partner With Purpose Strengthening relationships in Durham and serve as a collaborative catalyst in our region to our research ecosystem while improving community health, housing, and education. Engage a Global Network Activating our alumni and engaging our friends to create new opportunities for growth and discovery to advance our educational, research, and service missions. Our Climate Commitment sustainability Collaboration and Community The Duke Climate Commitment encompasses the full breadth of the University — every school, center and institute on our campuses has a role in our work to develop and implement climate solutions. As we chart our course for the next century, the Duke Climate Commitment is essential to our vision. This university-wide initiative addresses the climate crisis by fostering sustainable and equitable solutions for a resilient, carbon-neutral world. – Vincent Price, President Our First 100 Years Duke wasn’t always Duke. What started as a small school two hours west of Durham has grown in incredible ways. What is 100 Years? Established in 1924 in Durham, North Carolina, Duke University is one of the world’s leading institutions for education, research, and patient care. Take a look at Duke’s 100 year history as we reflect on the moments that made us. A Centennial of Progress The captivating story of the founding of Duke University tells of grand dreams and progressive ideals, but it is only one of Duke’s stories. In 2024 we celebrated the one hundred years since Trinity College became Duke University. See a few of the highlights in this gallery or visit 100.duke.edu to relive the celebration.Permanent Good: A Duke Documentary chronicles the evolution of Duke University from a one-room schoolhouse to one of the world’s preeminent institutions of higher learning, bringing to life the moments and people that forged this path.Duke Decades are visual deep dives through the archives exploring Duke’s first 100 years through historical photos and videos, one decade at a time.Centennial Spotlights look back at the people who contributed to Duke’s meteoric rise and the trajectory they helped to set for the university.Then & Now vividly shows the changes that have happened across campus over the past hundred years. Leadership Our institutional culture is built upon our history and values. Our shared values—respect, trust, inclusion, discovery and excellence—are more than aspirations. They are the beliefs and behaviors that we expect of ourselves and of our colleagues. President Vincent Price Vincent Price is the 10th President of Duke University, where he is also Walter Hines Page Professor of Public Policy and Political Science in the Sanford School of Public Policy and Trinity College of Arts & Sciences. A leading global expert on public opinion, social influence, and political communication and former editor-in-chief of Public Opinion Quarterly, President Price came to Duke in 2017. Since arriving on campus, he has turned his attention to the future of the university, developing a strategic vision focused on five core principles: empowering people, transforming education, building community, forging partnerships, and engaging a global network. Daniel Ennis Executive Vice President Alec Gallimore Provost Mary E. Klotman Executive Vice President for Health Affairs, Duke University culture Duke’s Values At Duke, our values are more than words. They shape how we learn, work, and lead. Built on respect, trust, inclusion, discovery, and excellence, these values guide our community and influence how we honor our past while preparing for the future. The Duke Endowment The Duke Endowment is a private foundation established in 1924 that strengthens communitiesin North and South Carolina by funding initiatives in child and family well-being, health care, and higher education. Let Duke Be a Part of Your Story Resources for media and communicators to understand and apply the Duke brand. Find the latest Duke news, contacts and media kits. Access logos and clear guidance on using and protecting the Duke brand. Explore the policies that support a respectful, inclusive, and productive work culture.
+"""
+
+[R5] Duke University | Association of American Universities (AAU)
+(https://www.aau.edu/who-we-are/our-members/duke-university)
+"""
+Duke University | Association of American Universities (AAU) topSkip to main content Visit the STEM Member Page Younger than most other prestigious U.S. research universities, Duke University consistently ranks among the very best. Duke’s graduate and professional schools — in business, divinity, engineering, the environment, law, medicine, nursing and public policy — are among the leaders in their fields. Duke’s home campus is situated on nearly 9,000 acres in Durham, N.C, a city of more than 200,000 people. Duke also is active internationally through the Duke-NUS Graduate Medical School in Singapore, Duke Kunshan University in China and numerous research and education programs across the globe. More than 75 percent of Duke students pursue service-learning opportunities in Durham and around the world through DukeEngage and other programs that advance the university’s mission of “knowledge in service to society.” Visit the university website. Close
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

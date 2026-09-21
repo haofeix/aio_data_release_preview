@@ -1,0 +1,107 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "sabado de gloria 2026"
+
+Claims:
+[1] "El Sábado de Gloria en 2026 se celebra el 4 de abril."
+[2] "El Sábado de Gloria marca el séptimo día de la Semana Santa."
+[3] "El Sábado de Gloria es el Sábado Santo antes del Domingo de Resurrección."
+[4] "La Semana Santa 2026 abarca del 29 de marzo al 5 de abril."
+[5] "El Sábado de Gloria conmemora el día en que Jesús permanece en el sepulcro tras la crucifixión del Viernes Santo, antes de la resurrección."
+[6] "La Vigilia Pascual se celebra por la noche del Sábado de Gloria."
+[7] "La Vigilia Pascual incluye la bendición del fuego nuevo."
+[8] "La Vigilia Pascual incluye la bendición del agua."
+[9] "La Vigilia Pascual incluye la renovación de las promesas bautismales."
+[10] "Tradicionalmente en México, la gente se mojaba con agua en señal de purificación en el Sábado de Gloria."
+[11] "Actualmente se promueve evitar el desperdicio de agua en esa tradición en México."
+[12] "El Viernes Santo es el 3 de abril."
+[13] "El Domingo de Resurrección es el 5 de abril."
+[14] "El periodo vacacional de la SEP en México para 2026 está programado para abarcar desde el 30 de marzo hasta el 10 de abril."
+
+Cited text snippets from the AI Overview (for additional context):
+- Semana Santa 2026: ¿qué oraciones se rezan el sábado de gloria 4 de abril?: "La comunidad cristiana en todo,el lunes 13 de abril.&text=Semana Santa 2026: ¿Cuál es,Resurrección o Domingo de Pascua?"
+- Sábado de Gloria 2026: ¿Por qué se moja la gente en esta fecha?: "Este 4 de abril se,de las ceremonias más importantes."
+- ¡Confirmado! A esta HORA iniciará la misa de Sábado de Gloria 2026 en la Catedral de Mérida HOY: "sabe al respecto.-,¿A qué hora inicia la misa en la Catedral de,luz y la renovación espiritual.&text=Representantes eclesiásticas han invitado a,más importantes del calendario litúrgico.&text=¿Quieres mantenerte informado o enviarnos,, Instagram, TikTok y WhatsApp."
+- ¿Cuando es el Sábado de Gloria 2026?: "¿En qué fecha cae el,será el 5 de abril."
+- La Semana Santa 2026 se celebrará del 29 de marzo al 5 de ...: "CALENDARIO DE SEMANA SANTA 2026 29 de,vida social del país. Mientras crece la"
+Reference Sources:
+
+[R1] ¿Cuando es el Sábado de Gloria 2026?
+(https://www.razon.com.mx/virales/2026/03/17/cuando-es-el-sabado-de-gloria-2026/)
+"""
+Semana SantaEstas son las fechas de la Semana Santa 2026Semana Santa Foto: Especial Durante la Semana Santa las personas conmemoran la última semana de vida de Jesucristo, y antes de este periodo también ocurre la Cuaresma, que es un periodo de cuarenta días que evocan el ayuno y sufrimiento de Cristo.La Semana Santa también es conocida como la Semana Mayor, y este periodo es considerado como el más sagrado dentro del año liturgico de las personas católicas y cristianas.Esta semana representa la pasión y resurrección de Cristo, y se celebra anualmente entre el 22 de marzo y el 25 de abril, pues se toma en cuenta la primer luna llena que ocurre después del equinoccio de primavera.Este 2026 la semana santa comienza el domingo 29 de marzo con el Domingo de Ramos, y culmina el domingo 5 de abril con el Domingo de Pascua.Semana Santa ı Foto: Especial ¿En qué fecha cae el Sábado de Gloria 2026?Este 2026 el Sábado de Gloria ocurrirá el 4 de abril, mientras que todos los días clave de la Semana Santa serán en las siguientes fechas:El Domingo de Ramos será el 29 de marzo.El Jueves Santo será el 2 de abril.En el Viernes Santo será el 3 de abril.El Sábado de Gloria será el 4 de abril.El Domingo de Pascua será el 5 de abril.¿Qué se hace el Sábado de Gloria?El Sábado de Gloria representa el día que existe entre la muerte y la resurrección de Cristo, por lo que durante este dia se acostumbra a evocar el dolor de la Virgen María y la esperanza.Las personas religiosas dedican este día a la reflexión de la pasión, muerte y resurrección de Jesús, este día no se realizan misas ni se tocan las campanas de las iglesias.Algunas personas incluso realizan ayuno durante el Sábado de Gloria; que es considerado como un día de silencio y de luto, con la finalidad de tener un periodo de preparación para conmemorar la resurrección de Jesucristo.Pese a que anteriormente las personas acostumbraban arrojarse agua como una manera de purificación de sus almas, en diversos lugares se implementaron sanciones por mal uso del vital líquido, por lo que actualmente esta costumbre ya quedó descartada.Periodo de luto ı Foto: Especial Únete a nuestro canal de WhatsApp. En La Razón enviamos a tu celular lo más importante México y el Mundo, recuerda que una persona informada siempre tiene La Razón.Temas:religionesSemana Santa
+"""
+
+[R2] Semana Santa 2026: ¿qué oraciones se rezan el sábado de gloria 4 de abril?
+(https://heraldodemexico.com.mx/espectaculos/2026/4/3/semana-santa-2026-que-oraciones-se-rezan-el-sabado-de-gloria-de-abril-790352.html)
+"""
+La comunidad cristiana en todo el mundo conmemora el Sábado de Gloria este 4 de abril, también conocido como el Sábado Santo. Este día representa un tiempo de silencio, luto y reflexión profunda tras la crucifixión de Jesús, pero es también la víspera del acontecimiento más importante del calendario litúrgico: la Resurrección. La Semana Santa 2026 en México se celebra oficialmente del domingo 29 de marzo al domingo 5 de abril. Los días de mayor relevancia para la tradición religiosa y el descanso laboral comienzan con el Jueves Santo el 2 de abril, seguido por el Viernes Santo el 3 de abril, el Sábado de Gloria el 4 de abril y concluyen con el Domingo de Resurrección el 5 de abril. Para el sector educativo y muchos trabajadores en el país, este periodo implica un receso importante. De acuerdo con el calendario de la Secretaría de Educación Pública (SEP), los estudiantes suelen gozar de dos semanas de vacaciones, que en este 2026 abarcan desde el 30 de marzo hasta el 10 de abril, regresando a las aulas el lunes 13 de abril. Lecturas del día - 4 de abril De acuerdo con la tradición, durante la Vigilia Pascual, la celebración más solemne del año que inicia al caer la noche de este 4 de abril, la lectura de la biblia juega un papel fundamental para narrar la historia de la salvación. En este sentido, las lecturas que debes hacer, son las siguientes: Lectura del libro del Génesis 1, 1 — 2, 2 Gn 22, 1-18 Lectura del libro del Éxodo 14, 15 — 15, 1a Lectura del libro de Isaías 54, 5-14 Lectura del libro de Isaías 55, 1-11 Lectura del libro de Baruc 3, 9-15. 32 — 4, 4 Lectura de la profecía de Ezequiel 36, 16-28 Lectura de la carta del apóstol san Pablo a los Romanos 6, 3-11 Evangelio del Día - 4 de abril Pero también debes hacer la lectura del evangelio del día, misma que es la Lectura del santo evangelio según san Mateo 28, 1-10, mismo que tienes aquí completo: Pasado el sábado, al alborear el primer día de la semana, fueron María Magdalena y la otra María a ver el sepulcro. Y de pronto tembló fuertemente la tierra, pues un ángel del Señor, bajando del cielo y acercándose, corrió la piedra y se sentó encima. Su aspecto era de relámpago y su vestido blanco como la nieve; los centinelas temblaron de miedo y quedaron como muertos. El ángel habló a las mujeres: «Vosotras, no temáis, ya sé que buscáis a Jesús el crucificado. No está aquí: ¡ha resucitado!, como había dicho. Venid a ver el sitio donde yacía e id aprisa a decir a sus discípulos: “Ha resucitado de entre los muertos y va por delante de vosotros a Galilea. Allí lo veréis”. Mirad, os lo he anunciado». Ellas se marcharon a toda prisa del sepulcro; llenas de miedo y de alegría corrieron a anunciarlo a los discípulos. De pronto, Jesús les salió al encuentro y les dijo: «Alegraos». Ellas se acercaron, le abrazaron los pies y se postraron ante él. Jesús les dijo: «No temáis: id a comunicar a mis hermanos que vayan a Galilea; allí me verán».
+"""
+
+[R3] Sábado de Gloria 2026: ¿Por qué se moja la gente en esta fecha?
+(https://www.informador.mx/mexico/sabado-de-gloria-2026-por-que-se-moja-la-gente-en-esta-fecha-20260404-0056.html)
+"""
+Este 4 de abril se conmemora el Sábado de Gloria, una de las fechas más representativas de la Semana Santa que, con el paso del tiempo, ha combinado el sentido religioso con tradiciones populares muy arraigadas en México. Dentro del calendario cristiano, este día se ubica entre el Viernes Santo y el Domingo de Resurrección. De acuerdo con la Iglesia católica, es una jornada de silencio y reflexión que recuerda el momento en que Jesucristo permanece en el sepulcro antes de resucitar. Durante el día no se celebran misas, y es hasta la noche cuando se realiza la Vigilia Pascual, una de las ceremonias más importantes. Te puede interesar: Suman 250 asesinatos en México durante Semana Santa Sin embargo, más allá del ámbito religioso, el Sábado de Gloria también es conocido por una práctica muy común: mojarse con agua. ¿De dónde surge la tradición de mojarse en Sábado de Gloria? Aunque es una de las prácticas más conocidas, arrojar agua no forma parte de los rituales oficiales de la Iglesia. Su origen se relaciona con el simbolismo del agua como elemento de purificación, asociado a la renovación espiritual. Históricamente, durante la Vigilia Pascual se realizaban bautismos, lo que reforzó el vínculo del agua con esta fecha. Con el tiempo, esta idea se trasladó a la vida cotidiana y derivó en la costumbre de mojarse como una forma simbólica de “limpiar” faltas o iniciar una nueva etapa. En México, esta práctica terminó por volverse algo más social que religioso. El uso de cubetas, globos o mangueras en la calle se hizo cada vez más común, dejando atrás su significado original y transformándose en una forma de convivencia. ¿Hay multas por desperdiciar agua? En los últimos años, esta tradición también ha generado llamados de atención por parte de las autoridades, principalmente por el desperdicio de agua. En la Ciudad de México, las sanciones pueden superar los 35 mil pesos para quienes sean sorprendidos tirando agua en la vía pública. En otros Estados, las multas también existen y pueden rebasar los 10 mil pesos, dependiendo de la zona. También puedes leer: ¿Cuántos días de descanso le quedan a abril? Además de las sanciones económicas, cada año se refuerzan las recomendaciones para evitar el uso innecesario del agua, especialmente ante los problemas de escasez que se registran en varias regiones del país. Así, aunque el Sábado de Gloria sigue siendo una fecha importante tanto en lo religioso como en lo cultural, la forma de celebrarlo ha ido cambiando, con un enfoque cada vez más marcado en el cuidado del agua y el uso responsable de este recurso. * * * Mantente al día con las noticias, únete a nuestro canal de WhatsApp * * * XP
+"""
+
+[R4] ¡Confirmado! A esta HORA iniciará la misa de Sábado de Gloria 2026 en la Catedral de Mérida HOY
+(https://www.aztecayucatan.com/noticias/sabado-gloria-2026-a-que-hora-inicia-la-misa-en-la-catedral-merida/)
+"""
+La Catedral de Mérida confirmó a través de las redes sociales el horario de la misa del Sábado de Gloria, una de las celebraciones más importantes de la Semana Santa 2026. En TV Azteca Yucatán te contamos lo que se sabe al respecto.¿A qué hora inicia la misa en la Catedral de Mérida? De acuerdo a la información compartida, la también conocida como Vigilia Pascual se llevará a cabo a las 8:00 de la noche de este sábado 4 de abril de 2026. Y es que durante esta celebración eucarística, los fieles participarán en momentos significativos como la bendición del Fuego Nuevo, la bendición del agua y la renovación de las promesas bautismales, rituales que simbolizan el paso de la oscuridad a la luz y la renovación espiritual.Te puede interesar: Asi se vivió el viacrucis viviente en calles de Pacabtún Representantes eclesiásticas han invitado a la comunidad a asistir y ser parte de esta ceremonia que marca el inicio de la Pascua, otra de las fechas más importantes del calendario litúrgico. Semana Santa 2026: Yucatecos católicos celebran ESPIRITUALMENTE el miércoles de ceniza en las iglesias de Mérida¿Quieres mantenerte informado o enviarnos tu reporte ciudadano? Síguenos en Facebook, X, Instagram, TikTok y WhatsApp.También puedes disfrutar de la programación en vivo de Azteca UNO y Azteca 7
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

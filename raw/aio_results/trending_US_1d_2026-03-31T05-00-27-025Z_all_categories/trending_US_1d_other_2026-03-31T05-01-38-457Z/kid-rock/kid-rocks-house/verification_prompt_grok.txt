@@ -1,0 +1,122 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "kid rocks house"
+
+Claims:
+[1] "Kid Rock owns a 27,000-square-foot mansion in Whites Creek, Tennessee, near Nashville."
+[2] "Kid Rock's mansion in Whites Creek, Tennessee is designed as a replica of the White House."
+[3] "Kid Rock's 68-acre hilltop estate in Whites Creek, Tennessee is valued around $3.1 million."
+[4] "Kid Rock's estate in Whites Creek, Tennessee is known as the "Southern White House"."
+[5] "Kid Rock's estate in Whites Creek, Tennessee features a bowling alley."
+[6] "Kid Rock's estate in Whites Creek, Tennessee features a movie theater."
+[7] "Kid Rock's estate in Whites Creek, Tennessee features a swimming pool."
+[8] "Kid Rock's estate in Whites Creek, Tennessee features a church."
+[9] "Kid Rock's estate in Whites Creek, Tennessee features a gas station."
+[10] "Kid Rock's estate in Whites Creek, Tennessee features a barber shop."
+[11] "Kid Rock's estate in Whites Creek, Tennessee features a golden toilet."
+[12] "Kid Rock's estate in Whites Creek, Tennessee features a golden shower."
+[13] "In March 2026, it was reported that U.S. Army Apache helicopters were spotted hovering near Kid Rock's home in Whites Creek, Tennessee, prompting an official investigation."
+[14] "Kid Rock previously owned a 6,000-square-foot colonial-style home on the Detroit River at 9090 Dwight Street."
+[15] "Kid Rock renovated his 6,000-square-foot colonial-style home on the Detroit River before listing it in 2019."
+[16] "Kid Rock formerly owned a Balinese-inspired compound in Malibu."
+[17] "Kid Rock sold his Balinese-inspired compound in Malibu in 2017."
+
+Cited text snippets from the AI Overview (for additional context):
+- Kid Rock’s Mini White House Revealed After Star Spent 20 Years Building It—Complete With a Golden Urinal, Church and More: "Kid Rock, the controversial rocker, spent 20,Oversized furniture * A 24-carat gold eagle"
+- Apache helicopters seen near Kid Rock's home in viral videos were on training route, Army says: "A spokesman for the 101st,a second helicopter flew by."
+- Kid Rock Shows Off Photos of Army Attack Helicopters Over His House, Military Says It's Investigating: "The musician posted videos on,the singer's home near Nashville."
+- Kid Rock's 27,000-square-foot mini White House in Nashville is packed ...: "11󰞋󱟠-,Kid Rock's 27,000-square-foot mini White House in Nashville,golden urinal and matching shower."
+- Kid Rock's former house on the Detroit River is back on the market: "Kid Rock, whose real name is Robert,brand kitchen appliances, and remodeled owner's bath"
+Reference Sources:
+
+[R1] Kid Rock’s former compound lists for $14 million in Malibu - Los Angeles Times
+(https://www.latimes.com/business/real-estate/story/2020-09-15/kid-rock-former-compound-for-sale-malibu)
+"""
+Kid Rock’s former compound — complete with a Balinese-inspired home, guesthouse, swimming pool and pavilion — just surfaced for sale in Malibu for $14 million.The musician took a hefty loss on the home a few years ago. Records show he paid $11.6 million in 2006 and, following five years of price cuts and relists, sold the place in 2017 for $9.5 million.Spanning an acre and a half near Point Dume, the custom residence was updated by the artist during his stay. Across 8,300 square feet, it has seven bedrooms, seven bathrooms and stylish living spaces with Bali flourishes such as hand-carved doors, ebony wood floors and ornate woodwork.Dramatic wood-vaulted ceilings hang over the kitchen, and three sets of French doors line the adjacent dining room. A dual-sided fireplace connects the space to the indoor-outdoor living room.Outside, the covered pavilion includes a built-in TV, grill, dining area and fireplace. The main house sits on one end of the lot, and the guesthouse occupies the other. A lawn, tropical landscaping and ivy-covered lounge surround the swimming pool.Michael Cunningham of Pinnacle Estate Properties holds the listing.Rock, 49, gained fame for his 1998 album “Devil Without a Cause,” which sold 14 million copies. The genre-bending musician, whose real name is Robert Ritchie, has released 11 studio albums over the course of three decades including 2017’s “Sweet Southern Sugar.” More to Read Sign up for Essential California The most important California stories and recommendations in your inbox every morning. By continuing, you agree to our Terms of Service, which include arbitration and a class action waiver. You agree that we and our third-party vendors may collect and use your information, including through cookies, pixels and similar technologies, for the purposes set forth in our Privacy Policy such as personalizing your experience and ads. Jack Flemming covers real estate for the Los Angeles Times. He was raised in St. Louis and studied journalism at the University of Missouri. Before joining The Times as an intern in 2017, he wrote for the Columbia Missourian and Politico Europe. More From the Los Angeles Times
+"""
+
+[R2] Kid Rock Shows Off Photos of Army Attack Helicopters Over His House, Military Says It's Investigating
+(https://people.com/kid-rock-shows-off-photos-of-army-attack-helicopters-over-his-house-military-says-investigating-11937747)
+"""
+Kid Rock. Credit : Dia Dipasupil/Getty; Kid Rock/X NEED TO KNOW An investigation is underway after Kid Rock posted a video online that seemingly showed an Army helicopter flying low outside his Tennessee homeA spokesperson for the Army said that it had begun an administrative review "to assess the mission and verify compliance with regulations"Videos posted by the musician to X on Saturday show him applauding and saluting the helicopter as it hovers near his outdoor pool before flying off An investigation is underway after Kid Rock posted a video online that seemingly showed a U.S. Army Apache attack helicopter flying low outside the singer's home near Nashville. A spokesperson for the 101st Airborne Division, in Fort Campbell, Ky., told NBC News and local outlet WSMV that the two AH-64 Apache helicopters were following a training route in the Nashville area on Saturday, March 28 — and that their presence was "entirely coincidental" to the No Kings protests taking place that same day. The musician, 55, posted two videos to X on Saturday, showing him applauding and saluting a helicopter as it hovers near his outdoor pool before flying off. "This is a level of respect that s--- for brains Governor of California will never know," he captioned one post, referring to California Gov. Gavin Newsom. "God Bless America and all those who have made the ultimate sacrifice to defend her." "The 101st Airborne Division (Air Assault) and Fort Campbell maintain strict standards for aviation safety, professionalism, and adherence to established flight regulations," the spokesperson told WSMV in part. "We take all concerns regarding aircraft operations and their impact on the surrounding community seriously.” Maj. Montrell Russell, a spokesperson for the Army, also told Politico in a statement that the Army had begun an administrative review "to assess the mission and verify compliance with regulations and airspace requirements." "The Army is aware of a video circulating online that appears to show AH‑64 Apache helicopters operating in the vicinity of a private residence in the Nashville area," Russell said. "Army aviators must adhere to strict safety standards, professionalism, and established flight regulations." The Army will take "appropriate action" if it finds any violations took place, he added, per Politico. PEOPLE reached out to the Army for comment. Saturday also marked the third nationwide No Kings protest, during which millions of people took to the streets to march against President Donald Trump and his administration. The protests were organized by No Kings Coalition, a network of progressive groups opposed to the administration's agenda. Kid Rock introduces U.S. Vice President JD Vance to speak in front of members of the US Military on November 26, 2025 in Fort Campbell, Kentucky. Brett Carlsen/Getty Never miss a story — sign up for PEOPLE's free daily newsletter to stay up-to-date on the best of what PEOPLE has to offer​​, from celebrity news to compelling human interest stories. Related Stories Kid Rock has been a vocal supporter of the Trump administration — and a critic of Newsom for the past several years. The singer recently headlined Turning Point USA’s All-American Halftime Show, the conservative group’s alternative programming to the 2026 Apple Music Super Bowl LX Halftime Show. The event was created after Puerto Rican reggaeton rapper Bad Bunny would be taking the stage as the Super Bowl Halftime Show performer, sparking backlash from conservatives, including Trump. Kid Rock has also been seen golfing with Trump and has visited the White House multiple times during Trump's two terms in office.
+"""
+
+[R3] Kid Rock's former house on the Detroit River is back on the market
+(https://www.freep.com/story/money/real-estate/michigan-house-envy/2020/09/05/kid-rock-house-for-sale-detroit-river/3448914001/)
+"""
+MICHIGAN HOUSE ENVYKid Rock's former house on the Detroit River is back on the marketJudy RoseSpecial to the Detroit Free PressUpdated Sept. 5, 2020, 9:21 a.m. ETThis white-pillared beauty on the Detroit River — once owned and improved by Detroit native Kid Rock — has come back on the market at $2.2 million.The house looks as it did when he sold it last August (2019) for the same $2.2 million. The investors who bought it have neither moved in nor removed the things the musician, whose real name is Robert James Ritchie, left behind.
+"""
+
+[R4] Apache helicopters seen near Kid Rock's home in viral videos were on training route, Army says
+(https://www.nbcnews.com/news/us-news/apache-helicopters-seen-kid-rocks-home-viral-videos-training-route-arm-rcna265898)
+"""
+Two U.S. Army helicopters that were recorded flying by the Tennessee home of Kid Rock were following a training route in the Nashville area, a military official said Monday.A spokesman for the 101st Airborne Division, at Fort Campbell, Kentucky, said their presence was “entirely coincidental” to “No Kings” protests in Nashville.Video posted Saturday by Kid Rock, whose real name is Robert Ritchie, showed him standing near an outdoor pool while an aircraft the Army identified as an Apache helicopter hovered for several seconds near his home.Kid Rock calls his Nashville-area hilltop estate the "Southern White House.”In the video, he could be seen clapping and saluting. At one point, a second helicopter flew by."God Bless America and all those who have made the ultimate sacrifice to defend her," read a post accompanying the video. The post also used a profanity to describe California Gov. Gavin Newsom, saying "this is a level of respect" Newsom will never know.An Army spokesperson said officials are aware of the video, which appeared to show the AH-64 Apaches operating in the vicinity of a private home, and are investigating. “Army aviators must adhere to strict safety standards, professionalism, and established flight regulations,” the spokesman said. “An administrative review is underway to assess the mission and verify compliance with regulations and airspace requirements. Appropriate action will be taken if any violations are found.”The spokesman would not comment further. A representative for Kid Rock declined to comment.
+"""
+
+[R5] Kid Rock lists home for sale for $2.2 million
+(https://www.freep.com/story/news/local/michigan/detroit/2019/07/23/kid-rock-detroit-home-for-sale/1805964001/)
+"""
+DETROITKid Rock's Detroit mansion for sale for $2.2 millionAnna BaumanDetroit Free PressUpdated July 23, 2019, 4:49 p.m. ETKid Rock is selling his mansion located on Detroit's east side.The famous musician's 6,000-square foot, six-bedroom home is listed for $2.2 million, according to realtor.com. The house, located at 9090 Dwight Street, is one of few located on the Detroit River.
+"""
+
+[R6] Kid Rock’s Mini White House Revealed After Star Spent 20 Years Building It—Complete With a Golden Urinal, Church and More
+(https://www.realtor.com/news/celebrity-real-estate/kid-rock-mini-white-house-revealed/)
+"""
+Kid Rock’s new abode is fit for an “American Bad Ass.”The controversial rocker, 54, spent the past 20 years building himself a mini White House dupe, and now, he’s practically living like his good friend, President Donald Trump.Rock’s new 27,000-square-foot presidential replica is perched high atop the hills in Nashville, Tennessee, with a giant US flag proudly waving in the sky — and you won’t believe its amenities that even the first lady wouldn’t turn her nose up at.The “Cowboy” hitmaker’s not-so-humble knockoff is equipped with its own church, a barber shop, and a gas station, per The US Sun.But the wildest addition is Rock’s golden urinal and his matching shower, which he gloated about to Tucker Carlson after giving the ex-Fox News host a look inside the home in 2022.Kid Rock’s mini White House dupe has taken him 20 years to build.Fox NewsHe included a golden urinal and matching shower.Fox NewsWhile the actual White House has 16 bedrooms, the musician’s version allegedly only has two, according to Joe Rogan, who previously shared that the remaining rooms are entirely dedicated to partying and include a bowling alley and oversized furniture.Country singer Zac Brown also left his mark at Rock’s crib after reportedly exchanging a huge bed and a brass eagle for a few signs. Rock told Carlson that he had the eagle plated in 24-carat gold, reported Taste of Country, with it since being placed on the roof.But Tucker and Brown aren’t the only ones in awe of Rock’s 20-year commitment.Former NFL star Derek Wolfe once called the property “the wildest s–t you’ve ever seen” after claiming he toured Rock’s White House replica.The “Bawitdaba” singer’s mini knockoff gained attention again after he visited Trump at the real Oval Office on Monday in an outrageous but patriotic outfit.Kid Rock’s mini White House and golden toilet room.Fox NewsKid Rock at the actual White House on Monday.Andrew Harnik/Getty ImagesRock appeared alongside the president in an attention-grabbing red, white, and blue shirt and matching pants, complete with stars, stripes and eagle wings. His attire also had the number “250” on it to reference the upcoming 250th anniversary of the Declaration of Independence next year.He paired the wild look with a white-rimmed hat that also included the US’ patriotic colors, with many fans at home taking to social media to say they’d “pay” to see Trump in the getup.Rock and Trump’s friendship goes way back, with the rocker performing a slew of hits at the president’s victory rally on January 19 at Capital One Arena.When he wasn’t on the stage, Rock was seen seemingly flirting with Lauren Boebert, 38, with witnesses telling Page Six that they left in a cab together at 2:30 a.m.Rock also recently made headlines after he threw a tantrum and stormed off a stage in Nashville because the crowd didn’t react the way he wanted them to.Get real estate news in your inbox
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

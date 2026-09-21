@@ -1,0 +1,100 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "celtics game tonight"
+
+Claims:
+[1] "The Boston Celtics played the New York Knicks on April 9, 2026."
+[2] "The Boston Celtics-New York Knicks game was at 7:30 p.m. ET."
+[3] "The Boston Celtics-New York Knicks game was at Madison Square Garden, New York."
+[4] "The New York Knicks defeated the Boston Celtics 112-106."
+[5] "The Boston Celtics-New York Knicks game was available exclusively on Prime Video."
+[6] "The Boston Celtics are scheduled to play the New Orleans Pelicans on Friday, April 10, 2026."
+[7] "The Boston Celtics-New Orleans Pelicans game is at home for the Boston Celtics"
+
+Cited text snippets from the AI Overview (for additional context):
+- Boston Celtics Tickets | 2026 NBA Tickets & Schedule: "Games in United States,Boston Celtics"
+- Celtics vs. Knicks game tonight: You need Prime Video to watch: "Where is the game being,in New York City, NY."
+- How to Watch Celtics vs. Knicks Tonight: Channel, Live Stream ...: "for Thursday's game.-,How to watch Celtics vs,tonight: TV channel, live stream&text=Celtics vs. Knicks will not,free trial for new users.&text=Stream high-quality content anytime on any device."
+- EAST #2 VS #3 AT MSG The Celtics visit the Knicks tonight at ...: "EAST #2 VS #3 AT,Cavaliers and hold the tiebreaker."
+- CELTICS at KNICKS | FULL GAME HIGHLIGHTS | April 9, 2026: "The Knicks defeated the Celtics, 112-106 tonight,points along with 5 three pointers and"
+Reference Sources:
+
+[R1] Celtics vs. Knicks game tonight: You need Prime Video to watch
+(https://www.providencejournal.com/story/sports/nba/celtics/2026/04/09/celtics-vs-knicks-game-tonight-you-need-prime-video-to-watch-boston-massachusetts-nba-ne-nyc-msg/89525622007/)
+"""
+CELTICSCeltics heading to NYC, playing Knicks tonight. Watch with Prime VideoSeth JacobsonUSA TODAY NETWORK - New EnglandUpdated April 9, 2026, 8:50 a.m. ETThree games left.That's all the games the Boston Celtics have remaining in the NBA regular season before the playoffs begin.And tonight, the Celtics − who are in second place in the Eastern Conference with a record of 54-25 − will take on the third place New York Knicks.Our editors independently choose our recommendations. Some content is produced with paid support from a third party, however our editorial decisions remain independent. If you buy through our links, the USA TODAY Network may earn a commission. Prices and availability may change.
+"""
+
+[R2] Boston Celtics Tickets | 2026 NBA Tickets & Schedule | Ticketmaster
+(https://www.ticketmaster.com/boston-celtics-tickets/artist/805903)
+"""
+Your browser is not supported. For the best experience, use any of these supported browsers: Chrome, Firefox, Safari, Edge.HomeSportsBasketballNBABoston Celtics TicketsScheduleAboutFAQSReviewsFans Also ViewedGames in United StatesApril 19, 2026Sunday 01:00 PMBoston, MATD GardenEast Conf Qtrs: Philadelphia 76ers at Boston Celtics Rd 1 Hm Gm 1April 21, 2026Tuesday 07:00 PMBoston, MATD GardenEast Conf Qtrs: Philadelphia 76ers at Boston Celtics Rd 1 Hm Gm 2Promoted event recommended by TicketmasterFriday, April 24, 2026 at 8:00 PMWe Them One's Comedy TourSaint Louis, MissouriChaifetz ArenaApril 24, 2026Friday 07:00 PMPhiladelphia, PAXfinity Mobile ArenaEast Conf Qtrs: Celtics @ 76ers: Round 1 Home Game 1April 26, 2026Sunday 07:00 PMPhiladelphia, PAXfinity Mobile ArenaEast Conf Qtrs: Celtics @ 76ers: Round 1 Home Game 2April 28, 2026Tuesday 12:00 AMBoston, MATD GardenEast Conf Qtrs: Philadelphia 76ers at Boston Celtics Rd 1 Hm Gm 3April 30, 2026Thursday 12:00 AMPhiladelphia, PAXfinity Mobile ArenaEast Conf Qtrs: Celtics @ 76ers: Round 1 Home Game 3May 2, 2026Saturday 12:00 AMBoston, MATD GardenEast Conf Qtrs: Philadelphia 76ers at Boston Celtics Rd 1 Hm Gm 4No date yetBoston, MATD GardenEast Conf Semis: TBD at Celtics Rd 2 Hm Gm 1No date yetBoston, MATD GardenEast Conf Semis: TBD at Celtics Rd 2 Hm Gm 2No date yetBoston, MATD GardenEast Conf Semis: TBD at Celtics Rd 2 Hm Gm 3No date yetBoston, MATD GardenEast Conf Semis: TBD at Celtics Rd 2 Hm Gm 4No date yetBoston, MATD GardenEast Conf Finals: TBD at Celtics Rd 3 Hm Gm 1Promoted event recommended by TicketmasterPAW Patrol Live! "A Mighty Adventure"Secure your seats, the show is about to begin!No date yetBoston, MATD GardenEast Conf Finals: TBD at Celtics Rd 3 Hm Gm 2No date yetBoston, MATD GardenEast Conf Finals: TBD at Celtics Rd 3 Hm Gm 3No date yetBoston, MATD GardenEast Conf Finals: TBD at Celtics Rd 3 Hm Gm 4No date yetBoston, MATD GardenNBA Finals: TBD at Celtics Rd 4 Hm Gm 1No date yetBoston, MATD GardenNBA Finals: TBD at Celtics Rd 4 Hm Gm 2No date yetBoston, MATD GardenNBA Finals: TBD at Celtics Rd 4 Hm Gm 3No date yetBoston, MATD GardenNBA Finals: TBD at Celtics Rd 4 Hm Gm 4AboutOfficial Ticket Marketplace of the Boston CelticsBoston Celtics HistoryThe Celtics are one of the most successful franchises in NBA history, holding the record for most NBA Championships at 18, along with 11 conference titles and 35 division titles. They’ve retired 24 jersey numbers — the most of any franchise in the league.The franchise was founded in 1946 and won their first championship in the 1956–57 season, which was the start of the most dominant run by any team in NBA history. Powered by Hall of Famers Bill Russell and coach Red Auerbach the Celtics won 11 NBA Championships in a 12-year span. Russell won the NBA MVP Award five times in that stretch, and teammate Bob Cousy also was named league MVP once. Of their first 11 championships, seven came against the Lakers, launching a cross-country rivalry that is still one of the league’s fiercest today.After two more titles in the ’70s, the Celtics began another dominant stretch, making the finals five times in seven years and winning behind three-time season MVP Larry Bird. The Celtics did not return to the finals until the 2007–08 season, when they formed the "Big Three" of Kevin Garnett, Paul Pierce and Ray Allen. They once again beat the Lakers to win their 17th championship.The Celtics advanced to the NBA Finals in 2022, but eventually lost to the Golden State Warriors. The team recorded the league’s highest all-time regular season offensive rating and won the championship in 2024, led by Finals MVP Jaylen Brown and Jayson Tatum.Boston Celtics Team InfoConference: EasternDivision: AtlanticYear Founded: 1946Team Colors: Green, Gold, Black, WhiteTeam Rivals: Los Angeles Lakers(Opens in new tab), Philadelphia 76ers(Opens in new tab), New York Knicks(Opens in new tab), Miami HEAT(Opens in new tab), Brooklyn Nets(Opens in new tab), Toronto Raptors(Opens in new tab)Boston Celtics at TD GardenTD Garden(Opens in new tab) opened in 1995 and replaced the original Boston Garden, which housed the Celtics for 49 years. In the nearly 30 years it has hosted the Celtics, TD Garden has been renovated four times: in 2006, 2009, 2014 and 2019. The latest renovations added a combined 50,000 square feet of additional space on all levels, a new grand entrance directly from Causeway Street through The Hub on Causeway, new smart elevators that expedite the process by scanning tickets, and 500 new parking spots.TD Garden also houses The Sports Museum, which features memorabilia from various sports teams and events in the area, including the Boston Celtics, Boston Bruins, Boston Red Sox and New England Patriots. It also features sculptures of some of the most legendary athletes in Boston's history, including Larry Bird.FAQSTickets for the 2025–26 regular season can be purchased on Ticketmaster, the Official Ticket Marketplace of the Boston Celtics. And if you're thinking about last-minute tickets, all tickets purchased through Ticketmaster are 100% verified and instantly delivered to your phone.Ticket prices for Boston Celtics games depend on a variety of factors, including date and time, city, matchup, seat location, and when the tickets are purchased. You can find Boston Celtics tickets for as low as $60.The Boston Celtics have made 23 appearances in the NBA Finals, and have won 18 times (in 1957, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1968, 1969, 1974, 1976, 1981, 1984, 1986, 2008 and 2024).Rating: 4.5 out of 5 based on 1992 reviewsRating: 5 out of 5Excellentby Dad on 4/8/26TD Garden - BostonGreat time, great seats. Great win. Great experience.Rating: 5 out of 5Last minuteby LakersFan on 3/30/26TD Garden - BostonGreat experience! I was in town and decided to go check out the game (my son is a Celtics fan). It was very easy and fast to get tickets. Seats were perfect!Rating: 5 out of 5First Celtics gameby Sports girl on 3/28/26TD Garden - BostonWe had a wonderful time attending our first professional basketball Celtics game. The lines ran smoothly upon entrance and exit. TD Garden has many offerings for food and beverage to suit everyone’s taste.Rating: 5 out of 5Fun!by Jojo on 3/21/26TD Garden - BostonTook my son to see the Boston Celtics vs. Golden State Warriors game was such a special experience—it was his birthday gift, and he was beyond excited to finally see his favorite shooter, Stephen Curry, play live. Unfortunately, Steph was out due to injury, which was definitely disappointing, especially for my son. That said, the night was still amazing. We had incredible seats, and there’s nothing like the energy of being in the arena and watching the game live—it’s a whole different experience. The crowd, the atmosphere, the intensity… it was all so fun to witness together. The Celtics pulled off the win, and seeing Jaylen Brown dominate in person was a highlight—he looked so good out there and played an incredible game. Even without Steph playing, it turned into a memorable night for both of us. Definitely a birthday we won’t forget 💚🏀Rating: 5 out of 5I Love the Boston Celticsby Lindsey on 3/9/26TD Garden - BostonI always have a blast at Celtics games. It was unreal to see Jayson Tatum come back. I love the Boston Celtics and I will be back many times in the future!Rating: 5 out of 5Bucket List Family Tripby Ace on 3/9/26TD Garden - BostonWe lucked out so much! I bought our tickets back in September 2025 because I knew that part of my kids Christmas present would be taking them to my older son’s favorite team’s game. We had discussed trying to see the Celtics Spurs game as the Spurs are my younger son’s favorite team, but we decided against it due to potential weather problems as we are driving from eight hours away. To be at the game where Tatum came back to play and the whole stadium got T-shirts commemorating it was just amazing. My younger son was ecstatic to film Tatum‘s dunk from his phone. The crowd was electric and it was really easy to use the bathroom (no lines) and get refreshments and shop for souveniers as well. 10 out of 10 family trip.Rating: 5 out of 5The best!!!!!by Gup on 3/2/26TD Garden - BostonEverything was great. Best experience ever. I hope we get to do it again. From Ohio to Boston you all rock!!!Rating: 4 out of 5Go Celtics!by Bob on 2/14/26TD Garden - BostonGreat seats for Celtics/Bulls and the Celtics did their part In beating the Bulls. Pritchard and Brown certainly deliveredRating: 1 out of 5Terribleby Patrick on 12/10/25TD Garden - BostonLoad management, player is not playing. Win by a lot but it’s not a good game. Waste of moneyRating: 5 out of 5Nice evening. Excellent organization and TD Garden amazingby SB68 on 11/6/25TD Garden - BostonIt was the first time, for me, attending an NBA game in USA. I enjoyed a lot the atmosphere, the organization and the respect of all the people partecipating to the event. TD Garden is really fantastic and very well organized, in managing so many people entering in few minutes.
+"""
+
+[R3] How to Watch Celtics vs. Knicks Tonight: Channel, Live Stream & Start Time for NBA Game | NESN
+(https://nesn.com/boston-celtics/news/watch-celtics-vs-knicks-channel-stream-start-time/d6191d1d0de6a207ada8f7d1)
+"""
+If you purchase a product or register for an account through one of the links on our site, we may receive compensation. Learn more > Before potentially meeting in the 2026 NBA Playoffs, the Celtics and Knicks will face off one more time in the regular season.Boston has been building momentum as it prepares for the postseason, winning 11 of its last 13 games. If the Celtics defeat the Knicks on Thursday night, they will secure the No. 2 seed in the Eastern Conference bracket. The Knicks, who are sitting right behind the Celtics in the standings, have won three games in a row, most recently beating the Hawks on Monday. Jalen Brunson led the way for New York in the 108-105 victory with 30 points and 13 assists.Here is everything you need to know about Celtics vs. Knicks, including TV and streaming options for Thursday's game.How to watch Celtics vs. Knicks tonight: TV channel, live streamTV channel: N/ALive stream: Prime VideoCeltics vs. Knicks will not air on a national TV channel. The game will be available to stream exclusively on Prime Video, which is currently offering a 30-day free trial for new users. Celtics vs. Knicks start timeDate: Thursday, April 9Time: 7:30 p.m. ETCeltics vs. Knicks is scheduled to start at 7:30 p.m. ET on Thursday, April 9. The game will be played at Madison Square Garden in New York.Boston Celtics schedule 2025-26Here is the upcoming schedule for the Celtics:DateOpponentTime (ET)April 9at Knicks7:30 p.m. April 10vs. Pelicans7:30 p.m.April 12vs. Magic6 p.m.New York Knicks schedule 2025-26Here is the upcoming schedule for the Knicks:DateOpponentTime (ET)April 9vs. Celtics7:30 p.m.April 10vs. Raptors7:30 p.m.April 12vs. Hornets6 p.m.More CelticsLatest Celtics news2025-26 Celtics schedule2025-26 Celtics rosterComplete history of Celtics championships
+"""
+
+[R4] How to watch Celtics vs. Knicks NBA game tonight on Prime: Start time, free live stream
+(https://www.pennlive.com/tv/2026/04/how-to-watch-celtics-vs-knicks-nba-game-tonight-on-prime-start-time-free-live-stream.html)
+"""
+New York Knicks' OG Anunoby, left, defends Boston Celtics' Jayson Tatum (0) during the second half of Game 4 in the Eastern Conference semifinals of the NBA basketball playoffs Monday, May 12, 2025, in New York.(AP Photo/Frank Franklin II)If you purchase a product through a link on our site, we may receive compensation.By Dustin Hockensmith | dhockensmith@pennlive.comThe New York Knicks continue their bid for Eastern Conference playoff positioning Thursday night at Madison Square Garden with a visit from the Boston Celtics. The game is scheduled to start at 7:30 p.m. ET with streaming exclusively on Amazon Prime.How to watch: The Celtics vs. Knicks matchup will be carried live on Prime Video, which comes with a 30-day free trial for new users.Boston Celtics (54-25) at New York Knicks (51-28)NBA matchup at a glanceWhen: Thursday, April 9 at 7:30 p.m. ETWhere: Madison Square Garden, New York, N.Y.TV channel: N/ALive stream: Amazon Prime exclusive (free trial)The Knicks currently sit in the No. 3 spot in the East with their 51-28 record and three games separating them from the second-place Celtics. Perhaps more importantly, the Knicks are a half-game ahead of the fourth-place Cleveland Cavaliers and seek to fortify their position to maintain that spot. Boston is mathematically within reach, particularly with a win Thursday night, but plenty more would have to go the Knicks’ way to make that leap. The Detroit Pistons are 58-22 and have already clinched the No. 1 seed in the East.The Knicks are listed as 5.5-point betting favorites entering Thursday’s contest on a run of three straight wins, most recently beating the Atlanta Hawks (108-105) on the road Monday night. The Celtics have won four straight and seven of their past eight as the 1-2 punch of Jaylen Brown and Jayson Tatum start to fire on all cylinders for a potential championship run.The Knicks and Celtics are set for a 7:30 p.m. ET start exclusively on Prime Video, which comes with a free trial.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

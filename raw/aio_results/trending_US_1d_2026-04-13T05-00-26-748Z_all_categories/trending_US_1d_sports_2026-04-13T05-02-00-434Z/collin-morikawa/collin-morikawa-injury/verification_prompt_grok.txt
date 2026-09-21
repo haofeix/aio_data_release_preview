@@ -1,0 +1,113 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "collin morikawa injury"
+
+Claims:
+[1] "Collin Morikawa withdrew from The Players Championship in March 2026 due to a sudden back injury."
+[2] "The back injury was specifically described as a back spasm felt during a practice swing on the 11th tee during the first round."
+[3] "Collin Morikawa described the injury as a recurring, severe issue that made it impossible to swing through, forcing his withdrawal."
+[4] "The injury was a back injury/spasms triggered during a practice swing on the 11th tee at TPC Sawgrass."
+[5] "Collin Morikawa withdrew from the Valero Texas Open to recover."
+[6] "Collin Morikawa returned for the 2026 Masters."
+[7] "The 2026 Masters was in April 2026."
+[8] "Collin Morikawa stated he was "taking it day by day"."
+[9] "Collin Morikawa stated that the injury did not worsen."
+[10] "Collin Morikawa stated that he had to manage residual effects and mental hurdles."
+[11] "Collin Morikawa indicated he underwent MRIs."
+[12] "Collin Morikawa indicated he focused on rest and rehab to ensure the injury did not create further, long-term setbacks."
+
+Cited text snippets from the AI Overview (for additional context):
+- Collin Morikawa taking it 'day by day' as injury leaves Masters status ...: "– Collin Morikawa said Monday that,round with a back injury."
+- Collin Morikawa says his performance this week at the Masters while ...: "Collin Morikawa withdrew from THE,worst thing in the world.”"
+- 'Toughest round I've ever played': Collin Morikawa battles mental ...: "Morikawa said Thursday that his,he's still trying to overcome."
+- Collin Morikawa has withdrawn from The Players due to a ...: "Morikawa has withdrawn from this player's championship,sign look at the consternation on Morikawa's"
+- Collin Morikawa injury update: Is he healthy enough for The ...: "Morikawa told reporters before the,up with in the past."
+- Collin Morikawa back injury: How American golfer is battling ...: "Recommended Stories,back on a practice swing."
+- Collin Morikawa has withdrawn from the Valero Texas Open ...: "Collin Morikawa has withdrawn from the Valero,from the back injury at The Players.""
+Reference Sources:
+
+[R1] ‘Toughest round I’ve ever played': Collin Morikawa battles mental demons in Masters first round - PGA TOUR
+(https://www.pgatour.com/article/news/latest/2026/04/09/collin-morikawa-battles-demons-first-round-74-masters-2026-major-augusta-national-back-injury)
+"""
+6D AGOCollin Morikawa hits his second shot on No. 9 during the first round of the 2026 Masters. (David Cannon/Getty Images)Written by Paul HodowanicAUGUSTA, Ga. – Collin Morikawa wasn’t confident he would make contact with his tee shot when he started his Tuesday practice round. That’s how far down the mental rabbit hole Morikawa has fallen as he continues to recover from the aftereffects of back spasms that pulled him out of THE PLAYERS Championship last month. Morikawa said Thursday that his back no longer hurts, but the spasms left debilitating mental scars – not physical ones – that he’s still trying to overcome.That he managed a 2-over 74 at the first round of the Masters was something he could be proud of.“Honestly, it's probably the toughest round I've ever played,” an exasperated Morikawa said afterward. “I don't know.”Morikawa’s return to competitive golf has undergone more lumps than he anticipated. When he withdrew from THE PLAYERS after just one hole of his first round, he spoke as if he understood the issue. He said he had experienced it before and knew how to react. Nearly a month out from the injury, Morikawa is still struggling, painting an unflattering picture of the ailment’s long tail.To be clear: Morikawa isn’t in pain, but he’s still uncomfortable. Walking is difficult, and he has yet to feel like his legs are fully under him. As a result, the swings he is taking are mostly upper body and lack his normal power. He didn’t hit more than 50 range balls per day in the lead-up to the first round and was well below his baseline of speed when he did. Then there’s the mental block that he has yet to free himself from. Morikawa said he woke up Thursday morning with more nerves than he’s ever felt before a round of golf.“I've never felt this nervous, like, in my life,” he said. “I've played in majors. I've played in other events. I think it's a trust factor, right? I think when it happened out on the course at THE PLAYERS, you know, there's a certain doubt factor of, like, is this going to happen, is this not? … My head gets in the way, and the head can stop so much.”Morikawa had no idea what he might shoot. He played nine holes on Tuesday and Wednesday, but Thursday brought new challenges. He wasn’t sure how his body or head would react. He opened with six straight pars before a bogey on the seventh put him over par, where he would stay the rest of the day. He dropped another shot at the ninth, before playing the difficult duo of 10 and 11 in even par (birdie-bogey). He tried to turn the momentum with a birdie at the 13th but followed it with another bogey that dropped him back to 2-over.“The mind is a powerful, powerful thing,” Morikawa said. “It can lead (in) the wrong direction sometimes, and it can lead you in the right direction.”Morikawa’s hoping for the latter for three more rounds, though he will need a solid round Friday to avoid an early exit.“You never know if you're going to find some luck and be able to figure something out,” Morikawa said.
+"""
+
+[R2] Is Collin Morikawa healthy enough to play 2026 Masters after injury?
+(https://www.usatoday.com/story/sports/golf/masters/2026/04/08/collin-morikawa-injury-update-masters-2026/89523109007/)
+"""
+April 8, 2026Updated April 9, 2026, 9:41 a.m. ETFollow along for live coverage from the first round of the Masters.Collin Morikawa never had an injury like this one and he's not sure how it'll hold up at the 2026 Masters.The two-time major winner pulled out of The Players Championship after one hole last month when he injured his back while swinging. He hasn't played since then, but hopes to tee it up at Augusta National Golf Club this week despite some lingering concerns."When you hurt yourself swinging," Morikawa said earlier this week, "it's a completely different beast of itself because you just don't know."Here's the latest on Morikawa's injury and playing status heading into the opening round of the 2026 Masters on Thursday, April 9:Masters 2026: Is Collin Morikawa healthy enough to play?Yes, but Morikawa is uncertain how his back and body will hold up once he's out on the course at Augusta National Golf Club during Thursday's opening round.Morikawa told reporters before the tournament began this week that he's "taking it day-by-day," and admitted his back is not in the condition he hoped it would be by this point.Collin Morikawa injury updateMorikawa had MRIs done on his back in recent weeks and said the injury didn't get worse since he first suffered it during the first round of The Players Championship. He was in the field for last week’s Valero Texas Open but withdrew before the event began. He then played a nine-hole practice round alongside Scottie Scheffler and Cameron Young on Monday at Augusta National."It's been a little bit of a mental battle just trying to trust where it's at," Morikawa said. "The back actually feels fine. It's just other parts of the body not cooperating a little bit how I want."Morikawa noted there will be shots he hit in previous years at The Masters that he won't be able to attempt this year due to this back ailment."It's frustrating, but at the same time, I can't do anything stupid and push my body in a way it doesn't want to do," he added. "Sometimes you've got to find other ways to get around a golf course. So I'm kind of making a different game plan than I think I've come up with in the past. Some shots that you might be able to hit in the past, you might not be able to hit right now. But yeah, it's a work in progress."Morikawa had a disappointing year on the PGA Tour in 2025, but looked to be on the rebound this year before his injury when he won the AT&T Pebble Beach Pro-Am and had top-seven finishes at the Genesis Invitational and Arnold Palmer Invitational.
+"""
+
+[R3] Collin Morikawa injury update after PGA Tour star withdrew from Players Championship
+(https://www.aol.com/entertainment/collin-morikawa-injury-pga-tour-202325603.html)
+"""
+Morikawa is at home resting after withdrawing from the Players Championship -Credit:Getty Images (Getty Images)Collin Morikawa withdrew after playing just one hole at The Players Championship and is in rest mode now after suffering a back injury.Morikawa tweaked his back Friday on a practice swing and took himself out of contention for the $4.5 million purse at TPC Sawgrass following Rory McIlroy's withdraw from the Arnold Palmer Invitational where he also suffered an injury. An injury update was provided Friday, saying he is resting and preparing for future events.“He’s home,” said Kira Dixon on the Golf Channel broadcast. “Rest and recovery is a priority for Collin but it seems like all signs are pointing to his back injury being minor and it should not create further setbacks. Fingers crossed that we’ll see Morikawa back on the PGA Tour very soon as well.”• Incredible new images of $3.8 billion NFL stadium Donald Trump wants named after him• NFL team completes 'most consequential transaction in last five years' to land new QBMorikawa was coming off a top-five finish at the Arnold Palmer Invitational and had earned his first win in 849 days just weeks before that at the AT&T Pebble Beach Pro-Am."I felt fine in warm-up," Morikawa said. "Like nothing’s been any signs of back problems. Honestly, (on the) first hole (I) felt great, hit two great shots, hit a great putt. Teed it up, nothing felt bad. (I) teed it up on 11 and took one practice swing and I just knew it was gone. It all hit me at one second, where I was like, ‘Something doesn’t feel right.’""I took a practice swing, there it was, like not being able to swing. Trust me, I would play if I could. It’s just the worst thing in the world."Morikawa earned a win in the 2026 season at the AT&T Pebble Beach Pro-Am -Credit:Getty ImagesMorikawa initially thought it was just a muscle spasm.“I've had this stuff before, and been healthy all throughout the year, been moving weight and pushing, going fast,” said Morikawa.“I don't know, like, before I even took my practice swing, it's like you had, like a weird, like deja vu thing. I took the practice swing and immediately knew, like, I just couldn't get through impact. So at that point called over my trainer, and talked about it with my caddie Mark, and it just sucks. I don't know how to put it in words.”• Scottie Scheffler's brutal self-reflection speaks volumes after rough Players round• Angel Reese coach emerges as top candidate for Penn State jobHowever, Morikawa had no warning this injury was going to creep in.“No, no. I mean, warm-up, prep, nothing,” said Morikawa referring to if he could feel it before. “I was ready to go swing even harder this week if I had to, right. Honestly, first hole felt great. Hit two great shots. Hit a great putt. Teed it up, nothing felt bad. Honestly, it was like, it's like a deja vu. Like it all hit me at one second, where I was like, something doesn't feel right. I took a practice swing, there it was, like not being able to swing.”
+"""
+
+[R4] Collin Morikawa taking it 'day by day' as injury leaves Masters status uncertain - PGA TOUR
+(https://www.pgatour.com/article/news/latest/2026/04/06/collin-morikawa-back-injury-recovery-status-ahead-of-masters-augusta-national-hurt-withdraw-health)
+"""
+9D AGOVideo Player is loading.Current Time 0:13Duration 2:47Remaining Time 2:34captions settings, opens captions settings dialogcaptions off, selectedEnglishFive looming questions ahead of MastersWritten by Paul HodowanicAUGUSTA, Ga. – Collin Morikawa said Monday that he is “taking it day by day” as he continues to recover from a back injury that ended his THE PLAYERS Championship and threatens to jeopardize this week’s Masters.Morikawa has not played since pulling out of THE PLAYERS after the first hole of his first round with a back injury. He was in the field for last week’s Valero Texas Open but withdrew before the event began. That left his Masters status uncertain.“It's not exactly where I want to be, and it's unfortunate, but that's just the body, and I can't push it,” said Morikawa, who played a nine-hole practice round alongside Scottie Scheffler and Cameron Young on Monday. “It's been a little bit of a mental battle, I think, just trying to trust with where it's at. The back actually feels fine. It's just other parts of the body not cooperating a little bit how I want.”Morikawa didn’t elaborate on the parts of his body that he struggled with. Still, he alluded to there being a connection between the back spasms he experienced at TPC Sawgrass and his current issues. The biggest offshoot of his current struggles has been the lack of trust with his body, he said.“I had hurt myself before and never had to worry about swinging on the golf course because a lot of the stuff I had done -- I hurt myself in the gym,” Morikawa explained. “When you hurt yourself swinging, it's a completely different beast of itself because you just don't know. There's a little bit of a commitment, trust (issue).”Morikawa has changed his preparation and game plan accordingly. He admitted Monday that there are certain shots he’s hit in previous years that he won’t be able to hit given his physical and mental restrictions.A limited Morikawa could still be a dangerous Morikawa. He boasts an impressive Masters history, with four straight top 15s at Augusta National. His best finish was a tie for third in 2024. He also won earlier this year at the AT&T Pebble Beach Pro-Am and continued that strong play over the next month. He finished in a tie for seventh at The Genesis Invitational and fifth at the Arnold Palmer Invitational presented by Mastercard. That was his last complete start, however, derailing his momentum ahead of the year’s first major.“It's a work in progress,” Morikawa said. “But each day just staying positive, trying to get through it.”
+"""
+
+[R5] Collin Morikawa back injury: How American golfer is battling through ailments to play in 2026 Masters
+(https://sports.yahoo.com/articles/collin-morikawa-back-injury-american-161337551.html)
+"""
+Collin Morikawa back injury: How American golfer is battling through ailments to play in 2026 Masters originally appeared on The Sporting News. Add The Sporting News as a Preferred Source by clicking here.Collin Morikawa is no stranger to high finishes at the Masters. This time around, however, he'll have an uphill battle, playing through a back injury.AdvertisementMorikawa's results were looking up following a strong performance at the 2024 Masters and a win at the Pebble Beach Pro-Am in February, but this injury has plagued him over the past month.This year will be Morikawa's seventh time at the Masters, but it remains to be seen how long he will be able to keep competing in this year's event.SN's MASTERS HQ:Live Masters leaderboard | Masters TV coverage | Live streamingMorikawa withdrew from both The Players Championships and the Valero Texas Open due to sharp back pains on a practice swing on the second hole of The Players Championships.AdvertisementMorikawa's current status is day-to-day as he recovers."It's not exactly where I want to be, and it's unfortunate, but that's just the body and I can't push it," Morikawa told Cameron Jourdan of Golfweek.There's also a mental aspect that has affected Morikawa."It's been a little bit of a mental battle, I think, just trying to trust with where it's at. The back actually feels fine. It's just other parts of the body not cooperating a little bit how I want," Morikawa said.MORE: Collin Morikawa's majors timeline, wins, championship historyAdvertisementHow did Collin Morikawa hurt his back?During the second hole of The Player's Championship, Morikawa began grabbing at his back in pain. He later sat on the golf cart and departed from the green, withdrawing.At Valero, Morikawa elected not to play a hole at all, withdrawing before his tee time as a result of the same back injury.There are also concerns with Morikawa's ability to hit long drives. In Monday's practice, Morikawa was "really just chipping and putting," according to Paul Hodowanic of PGA Tour.MORE: Why did Collin Morikawa withdraw from The Players Championship?AdvertisementHas Collin Morikawa won a Masters?Morikawa has never won a Masters, but that's not for lack of trying. After he graduated from the University of California - Berkeley in 2019, he launched onto the pro scene, playing in his first Masters Tournament in 2020.In the five years that followed, he finished in the top 20 every single time, with his highest placement being a third-place tie in 2024.With a fully healthy Collin Morikawa, seeing him win the Masters would hardly be a surprise.MORE MASTERS 2026:Collin Morikawa Masters resultsMorikawa has flirted with a Masters win several times in his career, finishing in the top five in two of the past four years.YearFinish2025T-142024T-32023T-10202252021T-182020T-44MORE: Why is the Masters on Amazon? More on Prime's role at Augusta
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,119 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch golden state warriors vs lakers"
+
+Claims:
+[1] "The Golden State Warriors vs. Los Angeles Lakers game is primarily available to stream live on Amazon Prime Video."
+[2] "The Golden State Warriors vs. Los Angeles Lakers game is not on traditional broadcast television."
+[3] "The Golden State Warriors vs. Los Angeles Lakers game is scheduled for 7:00 PM PDT on April 9, 2026."
+[4] "The Golden State Warriors vs. Los Angeles Lakers game is accessible via Prime Video on TV, mobile devices, and Prime Video sports."
+[5] "Highlights of the Golden State Warriors vs. Los Angeles Lakers game are available on NBA.com."
+[6] "Additional NBA games are available via NBA League Pass, Peacock, or Fox Sports One"
+
+Cited text snippets from the AI Overview (for additional context):
+- Watch Lakers vs. Warriors - Prime Video: "Watch Lakers vs. Warriors"
+- How to live stream Lakers vs Warriors: Watch NBA on ...: "This is a great NBA,Start your free trial now!"
+- Watch Lakers vs. Warriors: "Which NBA games can I,latest) and select Smart TVs."
+- Golden State Warriors vs. Los Angeles Lakers - 3rd Quarter Highlights: "Golden State Warriors vs. Los,NBA.com"
+- What channel is Warriors vs. Lakers on today? Time, TV schedule, ...: "Warriors vs. Lakers will not,game live with Prime Video.&text=Stream high-quality content anytime,up and start streaming today."
+- Steve Kerr explains why Warriors are resting Steph Curry vs. Lakers, not Kings: "Apr 14,Video @7:00 PM PDT"
+- Golden State Warriors vs. Los Angeles Lakers San Francisco Tickets - 04/09/2026: "Golden State Warriors vs. Los Angeles Lakers,09,2026 at 07:00PM PDT at Chase Center."
+Reference Sources:
+
+[R1] Golden State Warriors vs. Los Angeles Lakers - 3rd Quarter Highlights | NBA.com
+(https://www.nba.com/watch/video/golden-state-warriors-vs-los-angeles-lakers-3rd-quarter-highlights-2?plsrc=nba&collection=lebron-james)
+"""
+SchedulePlay-In TournamentPlayoffsBAL 2026League PassGamesWatchNewsStatsStandingsTeamsPlayersNBA PlayFantasyStoreTicketsAffiliatesBracketLatest NewsSeriesSchedulelebron james00:00:0000:00:00Golden State Warriors vs. Los Angeles Lakers - 3rd Quarter HighlightsApr 09, 2026Watch the 3rd Quarter Highlights from Golden State Warriors vs. Los Angeles Lakers, 04/09/2026Playlist02:0202:0201:2901:2201:2102:0801:5801:2201:2700:22Your Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I UnderstandEnter your email to create an NBA IDclose email sign up bannerGet more from the league you loveSign up for your free NBA ID to personalize your experience and earn exclusive benefits.Please enter aboveCreate My NBA IDClick "Create My NBA ID" to agree to our Terms of Use and to sign up for emails about the latest news and products from the NBA and its partners. By clicking submit, you also acknowledge our Privacy Policy.close email sign up banner
+"""
+
+[R2] Steve Kerr explains why Warriors are resting Steph Curry vs. Lakers, not Kings
+(https://www.nbcsportsbayarea.com/nba/golden-state-warriors/steph-curry-out-lakers-kings/1930127/?partner=yahoo)
+"""
+Warriors fans haven’t received their usual dose of Steph Curry magic at Chase Center this season, and that trend continued Thursday when Golden State’s star guard was ruled out of the regular-season home finale against the Los Angeles Lakers due to knee injury management. But when a reporter at Steve Kerr’s Thursday pregame press conference asked the Warriors coach if the team had given any thought to letting Curry play in front of his home fans one more time—and resting him Friday in Sacramento instead—Kerr insisted there was nothing to be done. “It was a hundred percent health related,” Kerr said. “If we were making decisions on [those] criteria, we would have played him tonight. But this was 100 percent about his health and recovery from the two games that he’s played and the preparation for next week. This made the most sense.” The Warriors are locked into the No. 10 seed in the Western Conference and, mathematically, have nothing left to play for until the NBA play-in tournament begins. Still, fans were surely looking forward to the latest chapter in the Curry-LeBron James saga, one that now will likely have to wait until next season. The Warriors aren’t taking any chances with Curry, however. The four-time NBA champion missed 27 straight games with a nagging “runner’s knee” injury that turned Golden State’s season upside-down, and now that he has returned, the team’s priority is keeping him on the court when the games matter most. “Steph’s doing well,” Kerr said. “Just with the ramp-up, playing the last two games [and] three in four nights to end the season, it makes the most sense to give him tonight…he’ll be good to go [Friday] night.” The Warriors will play either the Portland Trail Blazers or the Los Angeles Clippers on the road in the first round of the play-in tournament next Wednesday. Golden State Warriors Find the latest Golden State Warriors news, highlights, analysis and more with NBC Sports Bay Area and California. Download and follow the Dubs Talk Podcast
+"""
+
+[R3] How to live stream Lakers vs Warriors: Watch NBA on Thursday, TV channel
+(https://www.thebiglead.com/how-to-live-stream-lakers-vs-warriors-watch-nba-on-thursday-tv-channel/)
+"""
+The Los Angeles Lakers and Golden State Warriors clash in a late-season Western Conference showdown shaped heavily by injuries, momentum swings, and major implications for playoff positioning. MORE: Luka Doncic injury stokes debate about NBA 65-game rule for postseason awards Advertisement Feb 28, 2026; San Francisco, California, USA; Los Angeles Lakers guard Marcus Smart (36) dribbles against Golden State Warriors guard De’Anthony Melton (8) in the first quarter at Chase Center. Mandatory Credit: David Gonzales-Imagn Images How to Watch Lakers vs Warriors When: Thursday, April 9, 2026 Time: 10:00 PM ET TV Channel: Prime Video Live Stream: Prime (try for free) The Lakers come in at 50–29 but are dealing with serious roster limitations at the worst possible time, with both Luka Dončić (hamstring) and Austin Reaves (oblique) sidelined, forcing LeBron James back into a primary offensive role. Los Angeles has lost three straight games and is coming off a blowout loss to Oklahoma City, in which they posted a season-low output, highlighting just how dependent they’ve become on LeBron to generate offense, who is also out for this game. When he’s on the floor and dictating pace, the Lakers can still produce efficiently, ranking among the league leaders in paint scoring and free-throw rate, but without secondary creators, their margin for error is extremely thin. – Live Stream Lakers vs Warriors with Prime – Advertisement Golden State, sitting at 37–42, is locked into the play-in picture but trending slightly upward thanks to improved guard play and recent wins, including a victory over Sacramento earlier this week. However, their situation is just as volatile. Stephen Curry is expected to sit out this game for injury management, and the Warriors are already missing multiple rotation pieces, leaving their offense driven by depth players like Brandin Podziemski and De’Anthony Melton. Golden State still relies heavily on perimeter shooting (top tier in threes per game), so if they can get hot from deep and exploit a short-handed Lakers rotation, they have a clear path to control the game at home. This is a great NBA matchup that you will not want to miss; make sure to tune in and catch all the action. Advertisement Live stream Lakers vs Warriors on Prime: Start your free trial now! With Prime Video, you can watch live television without cable on your phone, TV, or tablet. Prime carries a wide array of sports and entertainment channels, and the best part is you can try it out today for free. Regional restrictions may apply. If you purchase a product or register for an account through one of the links on our site, we may receive compensation. — Enjoy free coverage of the top news & trending stories on The Big Lead —
+"""
+
+[R4] What channel is Warriors vs. Lakers on today? Time, TV schedule, live stream to watch Thursday NBA game | Sporting News
+(https://www.sportingnews.com/us/nba/news/what-channel-warriors-lakers-time-schedule-stream-watch-nba/4649154a74fab1c1fdb4ba31)
+"""
+If you purchase a product or register for an account through one of the links on our site, we may receive compensation. Learn more > With three games to go in this year's NBA season, the Los Angeles Lakers will travel upstate to visit the Golden State Warriors.This year, the Lakers have clinched a playoff berth for the fourth straight season. They are guaranteed a top-5 seed and finish the season as high as No. 3 in a loaded Western Conference. While decimated by injuries throughout the year, the Warriors have still clinched a Play-In appearance. Golden State is most likely locked into the No. 10 seed and will be battling from the bottom of the Play-In teams to vie for one of the final eight playoff spots in the West. The Lakers will be without Luka Doncic and Austin Reaves for this game, as both L.A. stars are unavailable for weeks due to injury. Doncic has headed to Europe to undergo treatment for his left hamstring sprain. Reaves, who has been the Lakers' second leading scorer, will be out four to six weeks with an oblique strain. Unfortunately for the City of Angels, they may be without their two top scorers once playoff basketball begins.Golden State's star Steph Curry looks to play against the Lakers after returning to play after a lengthy knee injury. The Warriors will need their longtime man in order to have any hopes of qualifying to these 2026 playoffs. With his injury and Jimmy Butler's season-ending torn ACL, Brandin Podziemski has been the next man up, and the third-year player has averaged 13.5 points, 5.3 rebounds, and 3.8 assists, while shooting 45.4% from the field and 36.9% from beyond the arc.Here’s everything you need to know about watching the Warriors battle the Lakers, including TV and streaming information. What channel is Warriors vs. Lakers on today? TV channel: NoneLive stream: Prime VideoWarriors vs. Lakers will not air on traditional broadcast television. Instead, viewers can stream the game live with Prime Video. Warriors vs. Lakers start timeDate: Thursday, April 9Time: 10:00 p.m. ETTip-off of Warriors vs. Lakers is scheduled for 10:00 p.m. ET on Thursday, April 9. The game will be played at Chase Center in San Francisco.Warriors vs. Lakers radio station Radio channel: SiriusXM Fans can listen to the Warriors vs. Lakers clash live on SiriusXM via channel 86. Warriors schedule 2025-26Here's a look at the remaining schedule for Golden State: DateGameTime (EST)Thurs., April 9vs. Lakers10 p.m.Fri., April 10at Kings10 p.m.Sun., April 12at Clippers8:30 p.m.Lakers schedule 2025-26Here's a look at the remaining schedule for Los Angeles: DateGameTime (EST)Thurs., April 9at Warriors10 p.m.Fri., April 10vs. Suns10:30 p.m.Sun., April 12vs. Jazz8:30 p.m.Related LinksLatest NBA news and rumorsFull 2025-26 NBA schedule and scoresHow to bet on the NBAThe GOAT Debate: Michael Jordan vs. LeBron James
+"""
+
+[R5] Event ended
+(https://www.unation.com/event/golden-state-warriors-vs-los-angeles-lakers-60980551/)
+"""
+Event endedThis is a past event, but here are more events to discover, or go backNBA in San FranciscoMake the most of your plans with these NBA events.EventNBA Western Conference First Round: Golden State Warriors vs. Oklahoma City Thunder - Home Game 1, Series Game 3 (If Necessary) - Chase CenterSat, Apr 25, 2026 | 3:30 AMChase CenterEventNBA Western Conference First Round: Golden State Warriors vs. Oklahoma City Thunder - Home Game 2, Series Game 4 (If Necessary) - Chase CenterMon, Apr 27, 2026 | 3:30 AMChase CenterEventNBA Western Conference First Round: Golden State Warriors vs. Oklahoma City Thunder - Home Game 3, Series Game 6 (If Necessary) - Chase CenterFri, May 1, 2026 | 3:30 AMChase CenterIt’s better in the appUnlock the best things to do in your city all in one place! From unforgettable events to exciting activities, hidden gems, new spots, helpful guides, and more, the UNATION app delivers personalized recommendations right to your phone.
+"""
+
+[R6] Watch Lakers vs. Warriors
+(https://www.amazon.com/Lakers-vs-Warriors/dp/B0FNCG33RJ)
+"""
+GAME RECAPApr 9, 2026Chase CenterHighlights and bonus content GAME RECAPLakers vs. Warriors: Game highlightsPOSTGAMEWatch with a subscription Sports for you Questions & answersWhich NBA games can I watch on Prime Video?Prime members can watch NBA on Prime games throughout the regular season for no additional fees, including the semifinals and championship games of the Emirates NBA Cup, plus every game of the SoFi Play-In Tournament and select playoff games. Additional NBA games are available via add-on subscriptions to NBA League Pass, Peacock, or Fox Sports One.How can I find NBA games on Prime Video?To find NBA games, go to the Prime Video app on your TV, computer, or mobile device, and you’ll see games on your homepage in Sports carousels, the Sports page, or the NBA League page. You can also search NBA, team names, or a specific game.On which devices can I watch NBA games on Prime Video?NBA games are available on Amazon devices such as the Fire TV and Fire tablet, connected TVs, web browsers, and on more than 650 connected devices via the Prime Video app. Click here to see the full list of supported devices.Can I record, fast forward, and rewind NBA games on Prime Video?Rewind, pause and fast forward functions are available for Android/iOS Mobile, Web (Chrome, Firefox, Edge), Fire TV, Apple TV (Gen 3 and latest) and select Smart TVs.I still need help watching NBA games on Prime Video.If you see "this video is unavailable" or "unavailable due to regional restrictions" that means the game isn't available in your area due to regional or national broadcast rights for that specific game. If you see "enable location for event availability" on mobile devices, location services might be turned off. To fix this, go to your device's settings and turn on location services for Prime Video. If you have anti-virus software, make sure it doesn't block Prime Video from accessing location services. If you see "Home region verification required", please sign in to Prime Video using a device in your home region to verify your location and continue streaming.See more questions and answersFeedback
+"""
+
+[R7] Watch Lakers vs. Warriors
+(https://www.primevideo.com/detail/Lakers-vs-Warriors/0T8TFXNMDFZ8XI5XHTFQ0SVO1A)
+"""
+Questions & answersWhich NBA games can I watch on Prime Video?Prime members can watch NBA on Prime games throughout the regular season for no additional fees, including the semifinals and championship games of the Emirates NBA Cup, plus every game of the SoFi Play-In Tournament and select playoff games. Additional NBA games are available via add-on subscriptions to NBA League Pass, Peacock, or Fox Sports One.How can I find NBA games on Prime Video?To find NBA games, go to the Prime Video app on your TV, computer, or mobile device, and you’ll see games on your homepage in Sports carousels, the Sports page, or the NBA League page. You can also search NBA, team names, or a specific game.On which devices can I watch NBA games on Prime Video?NBA games are available on Amazon devices such as the Fire TV and Fire tablet, connected TVs, web browsers, and on more than 650 connected devices via the Prime Video app. Click here to see the full list of supported devices.Can I record, fast forward, and rewind NBA games on Prime Video?Rewind, pause and fast forward functions are available for Android/iOS Mobile, Web (Chrome, Firefox, Edge), Fire TV, Apple TV (Gen 3 and latest) and select Smart TVs.I still need help watching NBA games on Prime Video.If you see "this video is unavailable" or "unavailable due to regional restrictions" that means the game isn't available in your area due to regional or national broadcast rights for that specific game. If you see "enable location for event availability" on mobile devices, location services might be turned off. To fix this, go to your device's settings and turn on location services for Prime Video. If you have anti-virus software, make sure it doesn't block Prime Video from accessing location services. If you see "Home region verification required", please sign in to Prime Video using a device in your home region to verify your location and continue streaming.See more questions and answers
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,132 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "na'ziyah harris"
+
+Claims:
+[1] "Na'Ziyah Harris was a 13-year-old Detroit girl."
+[2] "Na'Ziyah Harris went missing in January 2024."
+[3] "Na'Ziyah Harris was murdered by Jarvis Butts."
+[4] "Na'Ziyah Harris was last seen on January 9, 2024."
+[5] "Na'Ziyah Harris was last seen after getting off a school bus in Detroit."
+[6] "Prosecutors stated that Jarvis Butts, 43, had been grooming Na'Ziyah Harris since 2022."
+[7] "Prosecutors stated that Jarvis Butts killed Na'Ziyah Harris after discovering she was pregnant with his child."
+[8] "Evidence included search history for abortion methods."
+[9] "Evidence included text messages."
+[10] "In February 2026, Jarvis Butts pleaded guilty to second-degree murder."
+[11] "In February 2026, Jarvis Butts pleaded guilty to multiple counts of criminal sexual conduct involving other children."
+[12] "On March 12, 2026, Jarvis Butts was sentenced to 35 to 60 years in prison."
+[13] "Na'Ziyah Harris's body has not been recovered."
+[14] "Authorities had been searching for Na'Ziyah Harris's remains."
+[15] "Part of Jarvis Butts' plea deal required him to disclose the location."
+[16] "On March 26, 2026, Jarvis Butts was found dead in his cell at the Charles E. Egeler Reception and Guidance Center in Michigan."
+[17] "Jarvis Butts's death was reported as a suspected suicide."
+[18] "The Detroit Police Department has stated they will continue their efforts to locate Na'Ziyah Harris's body."
+
+Cited text snippets from the AI Overview (for additional context):
+- Jarvis Butts, who killed Na'Ziyah Harris, found dead in prison: "Butts glanced briefly at his,her and then killed her."
+- Jarvis Butts, man who murdered Detroit teen Na'Ziyah Harris, found dead in MDOC facility: "Second-degree criminal sexual conduct,the 13-year-old."
+- Jarvis Butts, convicted in Detroit girl’s killing, dies in prison: "The prosecutor's office was satisfied,prison to serve their time."
+- 'Demonic force:' Death of Na’Ziyah Harris' killer has family worried her body won't be found: "Na'Ziyah Harris' killer found,being reported as a suicide."
+- Have you seen this child? Naziyah Harris - MissingKids.org: "Missing Since: January 9, 2024,NCMEC: 2011548"
+- Jarvis Butts 'took coward's way out' with suicide says family of ...: "The Brief * Jarvis Butts was sentenced,that it was "a cowardly way out.""
+- Jarvis Butts dies in prison weeks after sentencing for killing Na'Ziyah Harris: "Butts was incarcerated after being,family some semblance of closure."
+- Jarvis Butts, the man convicted of killing Na'Ziyah Harris ... - Facebook: "Staff rushed to try and,- in Detroit, MI."
+Reference Sources:
+
+[R1] Jarvis Butts, who killed Na'Ziyah Harris, found dead in prison
+(https://www.detroitnews.com/story/news/local/detroit-city/2026/03/26/jarvis-butts-killed-13-year-old-detroit-girl-naziyah-harris-found-dead-prison-suicide-reported/89330421007/)
+"""
+Updated March 26, 2026, 4:12 p.m. ETJarvis Butts, who was sentenced to up to 60 years in prison two weeks ago following his second-degree murder conviction for sexually assaulting and killing 13-year-old Na'Ziyah Harris, was found dead in prison Thursday, state corrections officials said.Butts' body was discovered Thursday morning after an apparent suicide at the Charles Egeler Reception and Guidance Center in Jackson, Michigan Department of Corrections spokesperson Jenni Riehle said."MDOC staff provided life-saving measures which were unsuccessful," Riehle said in a statement. "The Michigan State Police have been called to the facility to investigate; the death is currently being reported as a suicide."Butts, 43, pleaded guilty in February to second-degree murder, the sexual assault of Na'Ziyah and the sexual assaults of five young girls ranging in age from 4 to 13. Butts was sentenced on March 12 to 35 to 60 years in prison.Na'Ziyah's grandmother and aunt, Butts' sister and three girls he sexually assaulted gave victim impact statements at his sentencing. Butts glanced briefly at his sister and one of the girls as they approached the witness stand, but looked back down at his feet almost immediately. Marketta Harris, Na'Ziyah's aunt, asked that Hathaway give Butts the electric chair, "a life for a life.""You are a serial habitual predator," Marketta Harris said. "I'll never be able to get to hold her again, I'll never be able to listen to her, see her smile. … I'll never get to be able to have that chance, ever again, because of you. It hurts."As part of Butts' plea deal, he was to tell the truth about what happened to Na’Ziyah’s body. Wayne County Prosecutor Kym Worthy said in a statement this month, "We are satisfied with the statement he has given,” although she did not disclose what happened to the victim's body.Na'Ziyah was reported missing after she didn't return home from school on Jan. 9, 2024. Her body was never recovered.Prosecutors said Butts allegedly got Na'Ziyah pregnant after sexually assaulting her and then killed her.Butts was originally charged with first-degree murder, child sexually abusive commercial activity and two counts of sexual assault of Na'Ziyah, which were all dismissed in exchange for the plea to second-degree murder. Butts was dating Na'Ziyah's aunt at the time he started sexually assaulting her niece.He also pleaded guilty to four counts of second-degree criminal sexual conduct and one count of third-degree criminal sexual conduct in connection with the sexual assaults of five girls, ages 4, 7, 8, 8 or 9 and 13.Na'Ziyah, a seventh grader at the J.E. Clark Preparatory Academy, reportedly got off her school bus Jan. 9, 2024, near Cornwell Street and Three Mile Drive on Detroit's east side, but never made it home.Texts show that Na'Ziyah met up with Butts, who had children with Na'Ziyah's aunt, on Jan. 9 after school at Butts' auto repair shop in Detroit. Several people close to Butts saw them together.Butts was seen the next day in the Rouge River area in Detroit, where the clothes Na'Ziyah was last seen wearing were found.Na'Ziyah's father, Murvin Jennings, became ill and died after searching for his daughter in abandoned houses and overgrown fields.Family friend and former Detroit Board of Police Commissioners vice president Tamara Liberty Smith said Butts' death means questions about the case will go unanswered."I feel like justice hasn't been served," Smith said.ghunter@detroitnews.com(313) 222-2134@GeorgeHunter_DNStaff Writer Kara Berg contributed.
+"""
+
+[R2] 'Demonic force:' Death of Na’Ziyah Harris' killer has family worried her body won't be found
+(https://www.fox2detroit.com/news/demonic-force-death-naziyah-harris-killer-has-family-worried-her-body-wont-be-found)
+"""
+Published March 26, 2026 11:34pm EDT Na’Ziyah Harris' killer found dead in prison Part of Butts’ plea was that he would reveal, once and for all, where her body was. Now that he’s dead, the family is worried they’ll never find her remains. They’ve been searching since 2024, when she went missing. (FOX 2) - A serial child rapist and murderer was found dead in his jail cell on Thursday. Jarvis Butts was sentenced just two weeks ago for killing 13-year-old Na’Ziyah Harris, whose body was never found. Big picture view: Now that he’s dead, the family is worried they’ll never find her remains. They’ve been searching since 2024, when she went missing. "I think it was a bit of a cowardly way out, but he made his bed so he has to lay in it," said Roxy, the victim's cousin. There were no tears from the family of Na’Ziyah Harris upon learning that Butts was found dead in his jail cell Thursday in a Jackson prison. The Michigan Department of Corrections tells FOX 2 his death is being reported as a suicide. "I feel like we still didn’t get answers for Na’Ziyah. I feel like there were still unanswered questions about the case," said Roxy. Part of Butts’ plea was that he had to reveal where he dumped Na’Ziyah’s body on that winter's day back in 2024 after she got off the school bus. She was believed to be pregnant with his child. Community activist Tamara Liberty-Smith, who has been on this case since the beginning, says there’s a trail of trauma left behind by Butts and anyone who covered for him over the years. "Just saying you threw her in the river isn’t good enough," said Tamara. "With a plea, you give us something, we give you this, and we didn’t get that. And the community is very angry about that." Dig deeper: Butts' history of raping children spans more than a decade, involving victims as young as four years old, even within his own family. "Hopefully, all victims can get the resources that’s needed so that chain will be broken, and this demonic force does not continue," said Tamara. The latest, most substantial lead as to where Na’Ziyah’s body might be is that she was dumped in the Rouge River off 7 Mile in Detroit. Detroit police say even with this update, their work is not done, and they will continue to follow leads to find her body. Crime and Public SafetyDetroit
+"""
+
+[R3] Jarvis Butts, man who murdered Detroit teen Na'Ziyah Harris, found dead in MDOC facility
+(https://www.wxyz.com/news/jarvis-butts-man-sentenced-in-murder-of-naziyah-harris-found-dead-police-sources-confirm)
+"""
+Jarvis Butts, the man who was recently convicted for the murder of Detroit teen Na'Ziyah Harris, was found dead in a Michigan Department of Corrections facility in Jackson on Thursday. (WXYZ) — Jarvis Butts, the man who was recently convicted for the murder of Detroit teen Na'Ziyah Harris, was found dead in a Michigan Department of Corrections facility in Jackson on Thursday morning, the MDOC confirms. Watch Tiarra Braddock's video report: Jarvis Butts, man who murdered Na'Ziyah Harris, found dead, MDOC confirms According to the MDOC, staff tried to provide life-saving measures to Butts this morning at the Charles Egeler Reception and Guidance Center. The death is currently being reported as a suicide, the MDOC says. Michigan State Police say they were contacted at 6:45 a.m. on Thursday for a death investigation. On March 12, Harris was sentenced to 35 to 60 years in prison. In addition to Na'Ziyah's case, Butts was sentenced to five other cases of criminal sexual conduct. All of them were to be served concurrently.Butts was sentenced to the following on March 12:Second-degree murder; 35 to 60 yearsSecond-degree criminal sexual conduct with a person 17 years or olderThird-degree criminal sexual conduct with a person 13 to 15 years oldThree counts of second-degree criminal sexual conduct with people under the age of 13Prosecutors say Butts murdered the teen after finding out she was pregnant with his child. Her body has never been found.Detroit Police sent out this statement regarding the ongoing search for Harris's body: "The Detroit Police Department is aware of the death of Jarvis Butts, who was convicted of killing 13-year-old Na’Ziyah Harris. Although the legal process ended with a conviction in court, our work is not done. Our department will follow all leads for a homicide and continue our efforts to locate the body of Na’Ziyah Harris to help bring closure to her family." Detroit Police Department Watch below: Years before Na'Ziyah Harris murder case, CPS warned repeatedly about alleged killer Years before Na'Ziyah Harris murder case, CPS warned repeatedly about alleged killer The 43-year-old was charged last year in connection with Na'ziyah's murder and sexual assault in other cases. Butts took a plea deal weeks before he was set to go to trial for the sexual assault and murder of the 13-year-old.As part of the plea deals, several charges were dropped in each of those cases, including the sexual assault charge in the Na'Ziyah case.Stay with WXYZ.com for updates on this developing story.
+"""
+
+[R4] Jarvis Butts dies in prison weeks after sentencing for killing Na'Ziyah Harris
+(https://www.fox2detroit.com/news/jarvis-butts-dies-prison-weeks-after-sentencing-killing-naziyah-harris-sources-say)
+"""
+Published March 26, 2026 9:51am EDT Na’Ziyah Harris' killer found dead in prison Na’Ziyah Harris' killer found dead in prison Part of Butts’ plea was that he would reveal, once and for all, where her body was. Now that he’s dead, the family is worried they’ll never find her remains. They’ve been searching since 2024, when she went missing. (FOX 2) - Jarvis Butts, the man convicted of killing Na'Ziyah Harris and sexually assaulting multiple girls, has died while behind bars. The Michigan Department of Corrections confirmed that Butts died Thursday at the Charles Egeler Reception and Guidance Center in Jackson. MDOC officials said his death is being investigated by Michigan State Police as a suicide. "MDOC staff provided life-saving measures which were unsuccessful. The Michigan State Police have been called to the facility to investigate; the death is currently being reported as a suicide," officials said in a statement. Jarvis Butts (MDOC) Butts was incarcerated after being sentenced to 35-60 years in prison two weeks ago. The 43-year-old pleaded guilty to second-degree murder for the death of Harris, who was 13. He was also sentenced to five 10-15-year sentences for sexually assaulting children. Dig deeper: Harris was last seen getting off a bus in Detroit in January 2024. Wayne County Prosecutor Kym Worthy said text messages show that she met up with Butts the day she disappeared. The prosecutor said evidence also showed that Butts, who knew Harris's family members, allegedly groomed the girl starting in 2022. Harris was pregnant when she was killed, and Butts was allegedly the unborn child's father. According to the prosecutor's office, Butts searched for abortions, abortion pills, and drinking red anti-freeze before Harris's death. Harris' body was never found, but as part of his plea, Butts was required to provide a statement about the location of her body. "One of the most important aspects of the plea agreement was giving Na’Ziyah’s family some semblance of closure. The disclosure of the location of her body was crucial," Worthy said. After Butts was charged with the murder of Harris, he was charged with varying degrees of sex crimes against five girls between the ages of 4 and 13. Those crimes happened before Harris' disappearance. Butts also has a previous sex crime conviction for an assault against a child. The Source: Information from the Michigan Department of Corrections and previous reporting was used in this report. Watch FOX 2 News Live Crime and Public SafetyDetroitInstastories
+"""
+
+[R5] Have you seen this child? Naziyah Harris
+(https://www.missingkids.org/poster/NCMC/2011548/1)
+"""
+Families across the country are searching for missing loved ones. Support this critical work today. Skip to main content ✕Close When a child goes missing, every second matters. Support families in crisis today. Donate! Missing Child Call 911 Submit A Tip Print Poster Share Naziyah Harris NCIC# M828011145 Missing Since: January 9, 2024 Detroit, MI Age Now: 15 Years Old Female Na'ziyah was last seen on January 9, 2024. Detroit Police Department (MI) (313) 267-4600 NCMEC: 2011548 × Subscription Errors × CONFIRMATION Thank you. Your request has been submitted × Please type the 4 digit code below in the box and click on submit to finalize the application. Click refresh to get a new code. Submit Copy link✓Thanks for sharing!Find any serviceAddToAnyMore…
+"""
+
+[R6] Jarvis Butts 'took coward's way out' with suicide says family of murdered Na'Ziyah Harris
+(https://www.fox2detroit.com/news/jarvis-butts-took-cowards-way-out-suicide-says-family-murdered-naziyah-harris)
+"""
+Published March 26, 2026 5:52pm EDT Jarvis Butts dies in prison weeks after sentencing in Na'Ziyah Harris murder FOX 2 - Jarvis Butts, the man convicted of killing Na'Ziyah Harris and sexually assaulting multiple girls, has died while behind bars. The backstory: Two weeks ago, he was sentenced in the murder of Na'Ziyah Harris to 35-60 years in prison. The location of her body is still a mystery. The Michigan Department of Corrections confirmed that Butts died Thursday at the Charles Egeler Reception and Guidance Center in Jackson. It is a prison in-take center, where the MDOC confirmed his body was found. MDOC officials said his death is being investigated by Michigan State Police as a suicide. "Him doing, you know, deciding to take his own life, it was unexpected literally two weeks after the sentencing," said Harris' cousin Roxy. "You know, he made his bed. He got to lay in it. I think it was a bit of a cowardly way out but he made his bed so he has to lay in it." Two weeks ago, Butts was sentenced in the murder of 13-year-old Na’Ziyah Harris, sentenced to 35-60 years. He pleaded guilty to second-degree murder. As part of the plea deal, he was supposed to provide information as to where her body was. The Wayne County Prosecutor's Office says he did that. Na'Ziyah Harris "MDOC staff provided life-saving measures which were unsuccessful. The Michigan State Police have been called to the facility to investigate; the death is currently being reported as a suicide," officials said in a statement. Related: Jarvis Butts dies in prison weeks after sentencing for killing Na'Ziyah Harris Harris was last seen in January 2024 and prosecutors say she met up with Butts the day she disappeared, and she was pregnant. Butts was allegedly the father. Roxy spoke about the concerns the family still has. "We ultimately, you know, want to still know where she is because we still don’t have those answers," she said. "You know, we just want to lay her to rest and things like that. So there’s still a lot of unanswered questions." After Butts was charged with the murder of Harris, he was charged with varying degrees of sex crimes against five girls between the ages of 4 and 13. Those crimes happened before Harris' disappearance. Jarvis Butts (MDOC) Butts also has a previous sex crime conviction for an assault against a child. The prosecutor's office says Butts provided information on where her body was and referred us to Detroit police. FOX 2 contacted DPD for more information, but was told it is now investigating based on the information Butts provided before his death and following all leads. The Source: Information from the Michigan Department of Corrections and previous reporting was used in this report. Crime and Public SafetyDetroit
+"""
+
+[R7] Jarvis Butts, convicted in Detroit girl’s killing, dies in prison
+(https://www.freep.com/story/news/local/michigan/detroit/2026/03/26/jarvis-butts-prison-suicide-detroit-murder-naziyah-harris/89330228007/)
+"""
+Updated March 26, 2026, 3:55 p.m. ETA man convicted of murder in the 2024 disappearance of a 13-year-old Detroit girl has died in prison from an apparent suicide, a Michigan Department of Corrections official confirmed.Jarvis Butts, 43, was sentenced in March of this year to 35 to 60 years in prison after he pleaded guilty to second-degree murder in the death of Na'Ziyah Harris, who was last seen getting off a school bus Jan. 9, 2024, in the area of Cornwall Street and Three Mile Drive on Detroit's east side, police have said.At the time Butts was charged in the case, the girl's body had still not been found. A condition of his plea agreement was that he give truthful information about the location of her body.“One of the most important aspects of the plea agreement was giving Na’Ziyah’s family some semblance of closure," Wayne County Prosecutor Kym Worthy said after the sentencing. "The disclosure of the location of her body was crucial."Did they find Na'Ziyah Harris' body?The prosecutor's office was satisfied Butts gave truthful information, spokeswoman Maria Miller said March 26, but Detroit Police Department spokeswoman Jasmin Barmore said the girl's body has not yet been found. "We will continue our efforts in locating the body of 13-year-old Naziyah Harris," she said in a March 26 email.Butts' sentencingButts was also sentenced to concurrent prison terms of 10 to 15 years on five counts of criminal sexual conduct involving female victims between 4 and 13 years old, the Wayne County Prosecutor's Office said in a March 12 news release.Butts' death 'reported as a suicide'MDOC spokeswoman Jenni Riehle confirmed that Butts was found dead in his cell on the morning of March 26 at the Charles E. Egeler Reception and Guidance Center near Jackson. She said his death "is currently being reported as a suicide," but gave no other details."MDOC staff provided life-saving measures which were unsuccessful," she said. "The Michigan State Police have been called to the facility to investigate; the death is currently being reported as a suicide."Egeler is where state prisoners are held for a time after sentencing before they are sent to another state prison to serve their time.If you or someone you know needs help, the national suicide and crisis lifeline in the U.S. is available by calling or texting 988. There is also an online chat at 988lifeline.org.(This story has been updated to add new information.)Contact Paul Egan: 517-372-8660 or pegan@freepress.com.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

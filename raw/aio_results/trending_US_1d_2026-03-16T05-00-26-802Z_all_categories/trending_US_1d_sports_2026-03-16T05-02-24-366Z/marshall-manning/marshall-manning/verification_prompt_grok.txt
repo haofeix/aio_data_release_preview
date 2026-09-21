@@ -1,0 +1,119 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "marshall manning"
+
+Claims:
+[1] "Marshall Manning is 14 years old."
+[2] "Marshall Manning is the son of NFL Hall of Famer Peyton Manning."
+[3] "A 7-on-7 video of Marshall Manning's passing for The Baylor School went viral with over 1.5 million views."
+[4] "Marshall Manning was born in 2011."
+[5] "Marshall Manning is the son of Peyton Manning and Ashley Manning."
+[6] "Marshall Manning has a twin sister named Mosley."
+[7] "Marshall Manning is an 8th-grade student."
+[8] "Marshall Manning passed to NFL receivers at the 2023 Pro Bowl."
+[9] "Marshall Manning is a quarterback."
+[10] "Marshall Manning wears No. 16."
+[11] "Peyton Manning wore No. 16 at Tennessee."
+[12] "Marshall Manning is considered a prospect for the 2030 class."
+[13] "A recent 7-on-7 video of Marshall Manning throwing in Tennessee in March 2026 significantly increased his public profile."
+
+Cited text snippets from the AI Overview (for additional context):
+- Marshall Manning, Peyton's son, is drawing attention for his playing style following a viral video: "The transition from middle,for four Super Bowl victories."
+- Video Of Peyton Manning’s Son Throwing Pass Has 1.5 Million Views: "Key Points,be led by his son."
+- Peyton Manning’s son Marshall stirs quarterback buzz in new video: "The Manning family quarterback tree,while still in middle school."
+- Marshall Manning, Baylor School, Quarterback - 247 Sports: "Prospect Info * High School Baylor School. * City Chattanooga, TN. * Class 2030."
+- Peyton Manning's 2 Kids: Everything to Know About His Twins: "Marshall Williams Manning, 14&text=Marshall Williams was born on,Colts from 1998 until 2011.)"
+- Peyton Manning's son, Marshall, looks just like dad in the pocket at 2023 Pro Bowl | Fox News: "Peyton Manning's son, Marshall, was seen at,next generation of Mannings in the NFL."
+Reference Sources:
+
+[R1] Peyton Manning's 2 Kids: Everything to Know About His Twins
+(https://people.com/parents/peyton-manning-kids-everything-to-know/)
+"""
+Peyton Manning is as much a family man as he is a world-class football player. The former NFL quarterback and his wife, Tennessee native Ashley Thompson Manning, wed in March 2001 and welcomed their children a decade later. Their fraternal twins, son Marshall Williams and daughter Mosley Thompson, were born in March 2011. Ahead of his third Super Bowl appearance in 2014, Peyton told PEOPLE that Ashley and his kids were his good luck charms. ​​"My entire family keeps me positive and they always support me ... Without them, I would not be where I am today. I am very grateful," he said. The New Orleans native believes that the twins joined him and his wife exactly when they were supposed to. "I think about the year they were born and all that was going on with my injuries and it was the ultimate blessing in disguise," he told WTHR in 2021. "They came into my life at the time I needed them the most." Though they live relatively private lives, the twins have been at their dad's side for many of his biggest moments, including the press conference announcing his retirement from the NFL in March 2016. Marshall even clung to his dad's leg as Peyton made his entrance. The former Indianapolis Colts player paid tribute to his wife and kids in his retirement speech, saying, "Marshall and Mosley have only been around for a couple of years but they have changed my life forever. … Our children are small now, but as they grow up, we're going to teach them to enjoy the little things in life because one day they will look back and discover that those really were the big things." Marshall and Mosley are cousins to Eli Manning and Cooper Manning's kids — including Arch Manning, who made his starting quarterback debut with the Texas Longhorns on Aug. 30, 2025. Read on to learn more about Peyton Manning's two children, Marshall and Mosley. Marshall Williams Manning, 14 Peyton Manning with his son Marshall. Ezra Shaw/Getty Marshall Williams was born on March 31, 2011, in Indianapolis. (Peyton played for the Indianapolis Colts from 1998 until 2011.) Marshall and his sister, Mosley, joined the Manning clan just 10 days after Peyton's younger brother, Eli, and his wife, Abby, welcomed their first child, daughter Ava. Peyton may be one of the most famous NFL players of all time, but that doesn't mean Marshall's football idol is his dad. Marshall is a big fan of the Kansas City Chiefs and their Super Bowl-winning ​​quarterback, Patrick Mahomes. "It's very humbling having to ski with a Chiefs jersey right next to you, but since I'm related to the kid, I feel like I have to do it," Peyton said on The Kelly Clarkson Show in June 2021. And even though Peyton coaches Marshall's flag football team, the Bills, rather than putting the family name on the back of the jersey, Marshall opted for "J. Allen," as in Buffalo Bills quarterback Josh Allen. "Tell me how to interpret that," Peyton told Allen on the ManningCast of Monday Night Football in November 2021. "And would you please tell him that's not a nice way to treat his father?" Marshall Manning. Donald Page/Getty This wasn't always the case, however. When Peyton won the 2016 AFC Championships with the Denver Broncos, a then-4-year-old Marshall rocked his dad's No. 18 jersey and a Broncos hat on the field while hiding behind the podium during the quarterback's post-game conference. Football is famously in Peyton's DNA, and Marshall got an early start on the field. While Peyton was still playing, Marshall would accompany his dad to practice, tossing the pigskin with his father's teammates and practicing drills and exercises. He was also spotted at several of Peyton's big games, including the 2016 AFC Championship and Super Bowl 50. After Peyton's retirement, Marshall got his dad into fantasy football. "When you're playing in football season, it's one thing, but now that you're not, it means fantasy football. For the second year, that is what is going on big in my life," Peyton told PEOPLE in 2016. It's not football-only in the Manning household, though. The football Hall of Famer and his son also take in NBA games, like a 2018 matchup between the Denver Nuggets and Memphis Grizzlies, where Marshall was seen cheering and yelling for the jumbotron. Peyton and Marshall enjoyed a father-son trip, attending the Giants-Eagles game in Philadelphia on Jan. 21, 2023, then heading to Orchard Park for the Bengals-Bills game on Jan. 22, 2023. The two were on the sidelines for both games, with Marshall wearing the jerseys of each of the home teams' starting quarterbacks. The NFL posted about the family-fun weekend, sharing photos of Peyton and Marshall at each game on Twitter. "Peyton Manning and his son Marshall are doing a tour of the #NFLPlayoffs," the caption read. In February 2023, Marshall attended the Pro Bowl game in Las Vegas with Peyton, who coached the AFC squad. The aspiring quarterback helped the AFC and NFC teams warm up ahead of the event— throwing to players including wide receiver Justin Jefferson. In September 2025, Marshall appeared in a Sunday Night Football commercial with his dad where they looked back on the very first game played during the time slot — one where Peyton and the Indianapolis Colts faced off against Eli and the New York Giants in 2006. As Peyton talked about the game, Marshall called his uncle Eli, telling him, "Uncle E, Dad is making me watch that Colts-Giants game again." Mosley Thompson Manning, 14 Peyton Manning with daughter Mosley. Sean M. Haffey/Getty Mosley Thompson is Marshall's fraternal twin, and her middle moniker comes from her mother's maiden name. Football is in Mosley's blood. When her famous dad hung up his cleats in 2016, the then-toddler got a special shout-out in his retirement speech. "A week before the Super Bowl, our daughter Mosley asked me, 'Daddy, is this the last game?' 'Yes, Mosley, it's the last game of the season.' 'I sure do want you to win that trophy.' 'I do, too, Mosley. And that's what we're going to try to do,' " he recalled, referring to Super Bowl 50. He then teased that Mosley was trying to break the news of her dad's retirement, saying, "Then she asked, 'Daddy, is this the last game ever?' And that's just when I shook my head in amazement because I was thinking, 'Mort and Adam Schefter had gotten to my 5-year-old daughter to cultivate a new source.' " Mosley Manning. Donald Page/Getty While she doesn't play football, Mosley is into sports, and now that her dad is retired, she gets to see him cheering on the sidelines of her games. "My kids are playing flag football and soccer so I go to those practices and games," he said on the MMQB Podcast With Peter King in 2017. "It's important to me to be a part of those and to be around." Peyton later told WTHR in 2021 that like he did as a kid, both his children play "whatever's in season," which for Mosley includes softball, volleyball and tennis. Peyton has repeatedly reiterated that he's reveling in being a hands-on dad. Post-retirement, he told WISH-TV in 2017 that his kids "will always be a priority, to be around," noting he enjoys "taking them to school" and coaching their sports teams. Though she and her brother don't make many red carpet appearances, Mosley did get to be her dad's date to the 2015 ESPY Awards, where she posed with her dad after he received the award for Best Record-Breaking Performance.
+"""
+
+[R2] Marshall Manning, Baylor School, Quarterback
+(https://247sports.com/player/marshall-manning-46161245/)
+"""
+JoinUPGRADE & SAVE! 50% off annual VIP membership Edit Profile Edit Skills Manage Connections Manage Evaluations There are no interests Add Video H.S. Athletic Background Marshall Manning is a Quarterback from Chattanooga, TN. Peyton Manning Father University of Tennessee QB from 1994-97; First overall pick by Indianapolis in 1998; Played 18 years in the league, winning two Super Bowls; Ranks third on the list of all-time NFL passing yardage leaders Archie Manning Grandfather Ole Miss QB from 1968-70; No. 2 overall NFL Draft pick in 1971 by New Orleans; Played in the league for 14 seasons Eli Manning Uncle Ole Miss QB from 1999-2003; First overall pick in the 2024 NFL Draft by the New York Giants; Won two Super Bowls in his 16-year career; Ranks 11th on the NFL all-time passing list Arch Manning Cousin University of Texas QB from 2023-present. No. 1 overall recruit in the class of 2023 Add Timeline Events Add Stats Add Photos View all articles Early EnrolleeEarly Signee Walk-On Grey Shirt Red Shirt Medical RedshirtP PrimaryS SecondaryK KeeperP Primary (Inactive)S Secondary (Inactive)K Keeper (Inactive) Timer List Your Privacy Choices
+"""
+
+[R3] Video Of Peyton Manning's Son Throwing Pass Has 1.5 Million Views
+(https://thespun.com/nfl/video-of-peyton-mannings-son-throwing-pass-has-1-5-million-views)
+"""
+Wow.Mar 15, 2026 4:01 PM EDTMarshall Manning throwing pass. CBS Sports.Key PointsMarshall Manning, Peyton's 14-year-old son, gains attention as a football recruit.His passing video at a 7-on-7 event reached 1.5 million views online.Ohio State, Georgia, and Tennessee are early contenders for Marshall's college choice. The apple doesn’t fall far from the tree in the Manning family. While Archie, Peyton and Eli Manning all starred in the National Football League, Arch Manning is currently a top NFL Draft prospect at the University of Texas. And there’s another Manning coming. Marshall Manning, the 14-year-old son of Peyton Manning, is already emerging in recruiting circles. Over the weekend, he was seen throwing at a 7-on-7 event. Video of Marshall Manning completing a pass down the right sideline already has 1.5 million views. “Like father, like son! ☝️,” CBS Sports wrote on Instagram. (You can see the video here). Marshall Manning is a Class of 2030 recruit out of The Baylor School. It’s early, but three schools have been named contenders Three schools – Ohio State, Georgia and Tennessee – have been named contenders for Marshall Manning’s services. Tennessee, the hometown option, might be the favorite. The Vols were once led by Peyton Manning and could soon be led by his son. Where do you see him ending up? This page may contain affiliate links to legal sports betting or fantasy sports partners. If you sign up, The Spun and The Arena Group may be compensated at no cost to you. Read more about Sports Betting on The Spun.About the authorAndrew Holleran has been leading coverage at The Spun since 2014, with 15 years of experience covering college football, the NFL, sports media and more.
+"""
+
+[R4] Peyton Manning's son, Marshall, looks just like dad in the pocket at 2023 Pro Bowl
+(https://www.foxnews.com/sports/peyton-mannings-son-marshall-looks-like-dad-pocket-2023-pro-bowl)
+"""
+When discussing the next generation of Mannings in the NFL, Cooper’s son, Arch, a Class of 2023 quarterback who has committed to the University of Texas, is usually the top subject. But don’t forget Peyton’s son, 11-year-old Marshall, who could be in the same conversation down the line.Prior to the final flag football game in the 2023 Pro Bowl Games in Las Vegas, where his father is coaching against uncle Eli, Marshall was seen throwing a seed to Minnesota Vikings star receiver Justin Jefferson during warm-ups.CLICK HERE FOR MORE SPORTS COVERAGE ON FOXNEWS.COM Former Denver Broncos quarterback Peyton Manning stands with his children, Marshall and Mosley, and former teammate Brandon Stokley at Empower Field at Mile High on Oct. 31, 2021. (AAron Ontiveroz/MediaNews Group/The Denver Post via Getty Images)Marshall may still be a kid, but that spiral is looking just like his Hall of Fame dad’s.ARCH MANNING ANNOUNCES HIGHLY ANTICIPATED COMMITMENTThe ball went about 30 yards downfield, which Jefferson caught with one hand. NFC head coach Eli Manning, right, and AFC head coach Peyton Manning talk during the Pro Bowl Games at Allegiant Stadium on Feb. 5, 2023, in Las Vegas. (Ethan Miller/Getty Images)But that wasn’t all. He was also seen throwing a touchdown to Buffalo Bills receiver Stefon Diggs, and his constantly moving feet in the pocket resembles Peyton as well.Marshall still has a few years before it’s time for him to possibly step into Arch’s shoes and become the talk of high school football. And Arch certainly sets the bar high, as he’s ranked the No. 1 quarterback by 247 Sports in the Class of 2023.PEYTON MANNING REVEALS ELI GAVE HIM ‘ATOMIC WEDGIE’ IN GOLF-TRIP SKIRMISH: ‘I WAS SO ANGRY’But the gene pool is certainly strong with evidence being Marshall’s mechanics and delivery in Las Vegas. AFC head coach Peyton Manning looks on during the NFL Pro Bowl Games at Allegiant Stadium on Feb. 5, 2023, in Las Vegas. (Ethan Miller/Getty Images)CLICK HERE TO GET THE FOX NEWS APPPeyton reached the Hall of Fame after being selected to 14 Pro Bowls and seven All-Pro teams, while winning two Super Bowls, five MVPs and throwing for 71,940 yards with 539 touchdowns. Scott Thompson is a sports writer for Fox News Digital.
+"""
+
+[R5] Peyton Manning’s son Marshall stirs quarterback buzz in new video
+(https://sports.yahoo.com/articles/peyton-manning-son-marshall-stirs-005453044.html)
+"""
+An image collage containing 3 images, Image 1 shows Marshall Manning looks on prior to the 2025 NFL Pro Bowl Games at Camping World Stadium on February 02, 2025 in Orlando, Florida. , Image 2 shows Two football players in white and orange uniforms on a football field with a third player in light blue in the distance, Image 3 shows Peyton Manning looks on prior to the start of Super Bowl LX between the Seattle Seahawks and the New England Patriots at Levi's Stadium on February 08, 2026 in Santa Clara, California. The Manning family quarterback tree continues to spread.Peyton Manning’s son has put in a claim to be the actual heir to his father’s throne, while garnering attention for his performance during a 7-on-7 football event in Murfreesboro, Tenn.Baylor (TN) quarterback Marshall Manning has shown good velocity and anticipation the entire day todayHe has taken another step forward into his development and will be an exciting young QB for Baylor to build around#PRZMusicCityMayhem pic.twitter.com/Og6xutBXc4— Shayne Pickering (@shaynep_media) March 14, 2026Prep Redzone Tennessee’s Shayne Pickering shot the video and said Manning “has shown good velocity and anticipation the entire day” and “has taken another step forward into his development.”AdvertisementIn the video, the younger Manning — wearing No. 16, as his Hall of Fame father did while at Tennessee before being the No. 1 overall pick in the 1998 NFL Draft — flashed potential beyond his years.Marshall Manning looks on prior to the 2025 NFL Pro Bowl Games at Camping World Stadium on February 02, 2025 in Orlando, Florida. Getty ImagesNotably, Marshall Manning also made waves throwing to NFL receivers during the Pro Bowl Games last year, also while still in middle school.Manning will be a high school freshman this fall at Baylor School in Chattanooga, Tenn.Peyton Manning looks on before the start of Super Bowl LX between the Seattle Seahawks and the New England Patriots at Levi’s Stadium on February 08, 2026 in Santa Clara, California. Getty ImagesThe school won a state title in football during 2025, their second in the last four years and third ever.The school’s alumni include John Hannah, a Hall of Fame guard for the Patriots from 1973-85, earning spots on the NFL’s All-Decade Team in both the 70s and the 80s, and was an All-Pro in 10 of his 13 NFL seasons.
+"""
+
+[R6] Marshall Manning, Peyton's son, is drawing attention for his playing style following a viral video
+(https://www.marca.com/en/ncaa/2026/03/15/69b69da946163f4e7c8b458e.html)
+"""
+The transition from middle school to high school is a period of development usually kept far from the public eye, but for a quarterback named Manning, privacy is not part of the playbook. To watch this video, agree to share video information with third partiesAgree|More infoMarshall Manning, the eighth-grade son of Hall of Famer Peyton Manning, recently found himself at the center of a social media firestorm following a 7-on-7 appearance at Oakland High School in Tennessee. While the event was intended as a developmental showcase, the release of a 10-second video of Marshall Manning throwing a deep pass triggered a wave of hyper-analysis. Peyton Manning's son sparks debate after viral camp throwFor a certain segment of the football public, the raw arm talent of a young teenager was secondary to a minute breakdown of his current mechanics, proving that "not every famous last name guarantees instant praise." The scrutiny is fueled by a family tree that defines the modern quarterback position. Marshall Manning is the latest representative of a three-generation dynasty that began with his grandfather, Archie Manning. The standard was set impossibly high by his father, Peyton Manning, and his uncle, Eli Manning, who combined for four Super Bowl victories. This legacy created a massive ripple effect last season for Arch Manning, and it now casts a long shadow over Marshall Manning's own journey.Scouting potential versus the reality of physical growthDespite the mixed reactions from casual observers, professional talent evaluators remain focused on the trajectory of Marshall Manning's growth rather than his current finished product. Reporter Shayne Pickering, who watched the young quarterback throughout the Music City Mayhem event, offered a glowing review of his progress. Shayne Pickering noted that the Baylor (TN) quarterback has shown "good velocity and anticipation the entire day today," adding that "he has taken another step forward in his development and will be an exciting young QB for Baylor to build around." This assessment suggests that while fans may be "unsure" of his future, the foundational traits required for elite play are already beginning to surface. The divide between expert opinion and fan commentary often comes down to a matter of patience. While scouts look at Marshall Manning's "raw arm talent" and "velocity," skeptics on social media have chosen to "magnify the flaws in his technique" and focus on his physical maturity.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,131 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "oscar time"
+
+Claims:
+[1] "The 98th Academy Awards air live on Sunday, March 15, 2026."
+[2] "The 98th Academy Awards start at 7 p.m. ET."
+[3] "The 98th Academy Awards start at 4 p.m. PT."
+[4] "Conan O'Brien hosts the 98th Academy Awards."
+[5] "The 98th Academy Awards ceremony is held at the Dolby Theatre in Los Angeles."
+[6] "The 98th Academy Awards can be watched on ABC."
+[7] "The 98th Academy Awards can be streamed live on Hulu."
+[8] "Red Carpet Coverage for the 98th Academy Awards starts at 3:30 p.m. ET on ABC."
+[9] "Red Carpet Coverage for the 98th Academy Awards starts at 12:30 p.m. PT on ABC."
+[10] "The 98th Academy Awards are estimated to run for 3.5 hours."
+[11] "The 98th Academy Awards can be streamed on YouTube TV."
+[12] "The 98th Academy Awards can be streamed on FuboTV"
+
+Cited text snippets from the AI Overview (for additional context):
+- How to watch the 2026 Oscars: Where to stream the Academy Awards tonight, start time, full nominations list and more: "The awards kick off slightly,to stream the 2026 Oscars"
+- It's time for the Oscars! How to watch the 2026 Academy Awards: "The biggest night in Hollywood,in Montclair, Wayne and Paterson."
+- How To Watch The Oscars: "THE OSCARS PRESHOW,7PM ET | 4PM PT"
+- What Time Do the Oscars Start? - TheWrap: "Read Next,show for the second time."
+- What time does the Oscars red carpet start? How to watch: "Where to watch Oscars red,PT with Zuri Hall hosting."
+- What time are the Oscars? Where to watch on TV and streaming: "Taylor Ardrey Saman Shafiq,to stream the 2026 Oscars."
+- How long does the Oscars ceremony last? 2026 Academy Awards duration: "How long do the Oscars,typically the last award announced."
+Reference Sources:
+
+[R1] What time are the Oscars? Where to watch on TV and streaming
+(https://www.usatoday.com/story/entertainment/movies/oscars/2026/03/15/oscars-2026-time-watch/89122619007/)
+"""
+Updated March 15, 2026, 4:35 p.m. ETThe 98th Academy Awards, one of the most prestigious events in entertainment, has arrived.Host Conan O'Brien will kick off the ceremony Sunday night, March 15, and after weeks of predictions, it's time to finally find out who will take home the Oscar for Best Picture.There are several ways to tune in via cable or streaming services, some of which offer free trials.Here's what to know about how to stream the 2026 Oscars.When are the 2026 Oscars?The 98th Academy Awards will take place at the Dolby Theater in Hollywood. The show starts at 7 p.m. ET / 4 p.m. PT.The awards ceremony has been held at the theater, previously known as the Kodak Theatre, located inside the Ovation Hollywood shopping center, since 2001, according to the venue's website.How to watch and stream the 2026 OscarsThe show will air live on ABC and the ABC app (if you're a cable subscriber) on Sunday from 7 p.m. to 10 p.m. ET / 4 p.m. to 7 p.m. PT.You can also stream the awards ceremony live on Hulu, FuboTV, YouTubeTV, and via AT&T TV.How to watch the Oscars live red carpet coverageABC News' "On the Red Carpet at the Oscars" preshow will air on the company's television stations and affiliates at 3:30 p.m. ET. It will also stream on ABC News Live. British comedian Amelia Dimoldenberg will host the official live show at 6:30 ET.CNN and Variety are doing joint red carpet coverage starting at 4 p.m. ET. You can watch the special on CNN or stream it on the network's digital platform.E! will also be on the red carpet interviewing celebrities beginning at 4 p.m. ET.Who's presenting at the 2026 Oscars?The following celebrities have been tapped to present at the 98th Oscars so far:Gwyneth PaltrowAdrien BrodyJavier BardemKieran CulkinChris EvansChase InfinitiMikey MadisonDemi MooreKumail NanjianiMaya RudolphZoe SaldañaWill ArnettPriyanka Chopra JonasRobert Downey Jr.Anne HathawayPaul MescalContributing: Saman Shafiq, USA TODAYTaylor Ardrey is a news reporter for USA TODAY. You can reach her at tardrey@usatodayco.com.
+"""
+
+[R2] 2026 Oscars live stream, start time, TV channel for Academy Awards
+(https://www.yahoo.com/entertainment/movies/articles/2026-oscars-live-stream-start-220045834.html)
+"""
+The stars are out in Hollywood for one of the greatest nights in entertainment on Sunday, March 15, with the 2026 Oscars set to take place at the Dolby Theatre in Los Angeles, California.Late-night talk show host Conan O’Brien is hosting the 98th annual Academy Awards, which will honor the standouts in film from the past year.MORE: 2026 Oscars Governors Ball menu by Wolfgang Puck revealedRyan Coogler’s Sinners leads the way with 16 nominations, setting a record for the most in Oscar history, followed by Paul Thomas Anderson’s One Battle After Another with 13. A full list of nominees can be seen here.Ryan Coogler, left, Danai Gurira and Michael B. Jordan arrive at Variety’s Creative Impact Awards and 10 Directors to Watch during the Palm Springs International Film Festival at the Parker Palm Springs on Friday, January 4, 2019. Psiffcreativeimpactawards5060It’s going to be interesting to see whether Michael B. Jordan, who took home the SAG Award for Best Actor, can continue to bring home the hardware or whether Timothee Chalamet will bounce back for the win after some negative press in recent weeks.The awards ceremony is set to begin at 7:00 p.m. ET on ABC.All of the information you need to watch the Oscars award ceremony can be seen below.— Watch the Oscars Red Carpet Show live on Fubo (free trial) —2026 Oscars TV & viewing infoMar 27, 2022; Los Angeles, CA, USA; Oscar trophies are prepared backstage during the 94th Academy Awards at the Dolby Theatre. Mandatory Credit: Al Seib/A.M.P.A.S/Handout via USA TODAY NETWORKDate: Sunday, March 15, 2026Start Time: 7:00 p.m. ETLocation: Hollywood, Los Angeles, CaliforniaVenue: Dolby TheatreTV Info: ABCLive Stream: Stream 1Your best bet for watching the Red Carpet Show via streaming is through Fubo TV. Fubo includes a lineup of the top sports networks like ESPN, FS1, CBS Sports Network & more, along with networks like ABC, CBS, and NBC to get big headlines and expert analysis from TV’s most popular shows and events.— Enjoy free coverage of the top news & trending stories on The Big Lead —NFL: Updated 2026 NFL salary cap space for all 32 teams after first free agency waveMARCH MADNESS: Dick Vitale selects ‘All Rolls Royce PTPERS’ for 2025-26 college basketball seasonOSCARS: Full list of nominees for the 98th Academy AwardsWORLD BASEBALL CLASSIC: USA-Dominican Republic, WBC semifinals pitching matchup confirmedGOLF: 2026 Players Championship payouts for full $25M pursueVIRAL: Miami Open introduces Love All Frosé cocktail in eye-catching cupThe post 2026 Oscars live stream, start time, TV channel for Academy Awards appeared first on The Big Lead.
+"""
+
+[R3] How To Watch The Oscars
+(https://www.oscars.org/how-to-watch/)
+"""
+When to Watch Tune in to the 98th Oscars at the new time of 7:00pm EDT / 4:00pm PDT / 11:00pm GMT / 7:00am CST. Follow the Oscars season journey across Oscar.com, Oscars.org, or on the Academy’s Instagram, YouTube, TikTok and Facebook to learn more about this year's nominees and show! How to Watch See it for free over-the-air on your local ABC station and streaming live on Hulu for the first time. If you’re a cable or satellite subscriber, ABC is part of your lineup. Stream It Subscribe instantly with streaming services like Hulu Live TV, YouTubeTV, AT&T TV and FuboTV– many of these services offer a free trial as well. Watch on ABC.COM and the ABC app by authenticating with your provider Select your tv provider TV provider may vary based on zip code. watching outside the U.S. Outside of the U.S.? The show is broadcast in more than 200 territories worldwide. Click Here to check your international local listings. YOUR OSCARS SUNDAY SCHEDULE VIEW NOW THE OSCARS PRESHOW 6:30 PM ET | 3:30 PM PT THE 98TH OSCARS 7PM ET | 4PM PT The star lineup includes Stephanie Beatriz, DJ Khaled, Jennifer Garner, H.E.R., Tiffany Haddish, Tony Hawk, Bill Murray, Elliot Page, Kelly Slater and Shaun White, Halle Bailey, Ruth E. Carter, Sean “Diddy” Combs, Kevin Costner, Jamie Lee Curtis, Woody Harrelson, Anthony Hopkins, Samuel L. Jackson, Lily James, Daniel Kaluuya, Zoë Kravitz, Mila Kunis, Lady Gaga, John Leguizamo, Simu Liu, Rami Malek, Shawn Mendes, Lupita Nyong’o, Rosie Perez, Tyler Perry, Chris Rock, Tracee Ellis Ross, Naomi Scott, Wesley Snipes, Uma Thurman, John Travolta, Yuh-Jung Youn and more! HIDE Explore A.frame A.frame is the digital magazine for the Academy of Motion Picture Arts and Sciences. Previous 2024 Oscars: Where to Watch the Best Picture Nominees Everything to Know About the 96th Oscars 2024 Oscars Nominations: See the Full List Governors Awards 2023 Honorees: Angela Bassett, Mel Brooks, Carol Littleton and Michelle Satter Every Oscar Host in History - See the Full List The Academy's New CEO Bill Kramer Is on a Mission to Unify the Film Industry (Exclusive) Next Subscribe to our newsletter Get the latest features direct from the Academy every week, delivered to your inbox. ×
+"""
+
+[R4] How to watch the 2026 Oscars: Where to stream the Academy Awards tonight, start time, full nominations list and more
+(https://www.yahoo.com/entertainment/tv/article/how-to-watch-the-2026-oscars-where-to-stream-the-academy-awards-tonight-start-time-full-nominations-list-and-more-170539172.html)
+"""
+The 98th Academy Awards are this Sunday, and Sinners leads the nominees with 16 nods — the most in Oscars history! One Battle After Another follows with 13 nominations. Marty Supreme, Frankenstein, Sentimental Value, and Hamnet are also high up in the mix. This awards will once again be hosted by Conan O'Brien, and performers will include K-Pop Demon Hunters' HUNTR/X and Sinners star Miles Caton. The awards kick off slightly earlier than usual: 7 p.m. ET/4 p.m. PT on March 15, 2026.The 2026 Oscars will air on ABC and stream live on Hulu — yes, even for a basic, ad-supported subscription that usually features no live TV (and right now, you can get a deal on the Hulu and Disney+ bundle, just $4.99 a month). Here’s everything you need to know about watching the 2026 Oscars.Looking for live Oscars red carpet updates? Yahoo Entertainment has you covered.When are the Oscars this year?The 98th Academy Awards will be held this Sunday, March 15.2026 Oscars start timeThe Oscars begin at 7 p.m. ET/4 p.m. PT. Red carpet coverage starts at 3:30 p.m. ET/12:30 p.m. PT on ABC and Hulu.2026 Oscars TV channelThe Oscars will air on ABC and stream live on Hulu, even for those without a live TV subscription.Where to stream the 2026 Oscars: Will the Oscars be on Disney+?No. While Hulu and Disney+ have essentially merged content (for bundle subscribers), to stream the Academy Awards live on Hulu, you need to be signed into your bundle account via Hulu (not Disney+).Who is hosting the Oscars this year?Conan O'Brien returns to host the Oscars for the second year.Who is presenting at the Oscars this year?Stars slated to present at this year's Academy Awards include Adrien Brody, Mikey Madison, Kieran Culkin, Zoe Saldaña, Javier Bardem, Chris Evans, Chase Infiniti, Demi Moore, Kumail Nanjiani, Maya Rudolph, Will Arnett, Priyanka Chopra Jonas, Robert Downey Jr., Anne Hathaway, Paul Mescal and Gwyneth Paltrow.2026 Oscars performersOnly two of the nominated songs this year will be performed at the 2026 Oscars: "Golden" from K-Pop Demon Hunters and "I Lied To You" from Sinners. That means we'll see EJAE, Audrey Nuna and Rei Ami (the voices of HUNTR/X), plus Miles Caton and Raphael Saadiq grace the stage this Sunday.2026 Oscar predictionsLooking for Oscars predictions ahead of the awards? We've got what you need to ace your ballot at this year's Academy Awards watch party.Who votes on Oscar nominations?Members of the Academy of Motion Picture Arts and Sciences vote for Best Picture and categories within their respective disciplines (acting, writing, directing, producing).2026 Oscar nominations (full list)Actress in a Supporting RoleElle Fanning, Sentimental ValueInga Ibsdotter Lilleaas, Sentimental ValueAmy Madigan, WeaponsWunmi Mosaku, SinnersTeyana Taylor, One Battle After AnotherMakeup and HairstylingFrankensteinKokuho Sinners The Smashing MachineThe Ugly StepsisterMusic (Original Score)BugoniaFrankenstein Hamnet One Battle After Another SinnersLive Action Short FilmButcher's Stain A Friend of Dorothy Jane Austen's Period Drama The SingersTwo People Exchanging SalivaAnimated Short FilmButterfly Forevergreen The Girl Who Cried PearlsRetirement Plan The Three SistersWriting (Adapted Screenplay)Bugonia Frankenstein Hamnet One Battle After Another Train DreamsWriting (Original Screenplay)Blue Moon It Was Just An Accident Marty Supreme Sentimental Value SinnersActor in a Supporting RoleBenicio Del Toro, One Battle After AnotherJacob Elordi, FrankensteinDelroy Lindo, SinnersSean Penn, One Battle After AnotherStellan Skarsgard, Sentimental ValueCastingHamnetMarty Supreme One Battle after AnotherThe Secret Agent SinnersCostume DesignAvatar: Fire and Ash Frankenstein Hamnet Marty SupremeSinnersMusic (Original Song)"Dear Me" from Diane Warren: Relentless"Golden" from KPop Demon Hunters"I Lied To You" from Sinners"Sweet Dreams Of Joy" from Viva Verdi!"Train Dreams" from Train DreamsDocumentary Feature FilmThe Alabama Solution Come See Me in the Good Light Cutting Through Rocks Mr. Nobody Against Putin The Perfect NeighborDocumentary Short FilmAll the Empty Rooms Armed Only with a Camera: The Life and Death of Brent Renaud Children No More: Were and are GoneThe Devil is Busy Perfectly a StrangenessInternational Feature FilmThe Secret Agent, BrazilIt Was Just an Accident, FranceSentimental Value, NorwaySirat, SpainThe Voice of Hind Rajab, TunisiaAnimated Feature FilmArcoElio Kpop Demon Hunters Little Amelie or The Character of RainZootopia 2Production DesignFrankenstein Hamnet Marty SupremeOne Battle After AnotherSinnersFilm EditingF1 Marty Supreme One Battle After Another Sentimental Value SinnersSoundF1 Frankenstein One Battle After Another Sinners SiratVisual EffectsAvatar: Fire and AshF1 Jurassic World Rebirth The Lost Bus SinnersCinematographyFrankenstein Marty Supreme One Battle After Another Sinners Train DreamsActor in a Leading RoleTimothee Chalamet, Marty SupremeLeonardo DiCaprio, One Battle After AnotherEthan Hawke, Blue MoonMichael B. Jordan, SinnersWagner Moura, The Secret AgentActress in a Leading RoleJessie Buckley, HamnetRose Byrne, If I Had Legs I'd Kick YouKate Hudson, Song Sung BlueRenate Reinsve, Sentimental ValueEmma Stone, BugoniaDirectingChloe Zhao, HamnetJosh Safdie, Marty SupremePaul Thomas Anderson, One Battle After AnotherJoachim Trier, Sentimental ValueRyan Coogler, SinnersBest PictureBugonia F1 Frankenstein Hamnet Marty Supreme One Battle After Another The Secret Agent Sentimental Value Sinners Train DreamsMore ways to watch the 2026 Oscars
+"""
+
+[R5] What Time Do the Oscars Start?
+(https://www.thewrap.com/creative-content/what-to-watch/what-time-do-the-oscars-start-2026/)
+"""
+The 2026 Oscars kick off shortly. A lot of attention will be paid to Ryan Coogler’s “Sinners,” which leads the pack with an astounding 16 nominations (the most any single film has ever earned). But it’s going head-to-head with Paul Thomas Anderson’s “One Battle After Another” in the night’s biggest categories, including Best Picture. This year’s ceremony will be held at the Dolby Theatre in Los Angeles. What time do the Oscars start? Red carpet coverage began at 4 p.m. ET on some networks, and the official red carpet show begins at 6:30 p.m. ET. The Oscars ceremony starts at 7 p.m. ET/4 p.m. PT. How can I watch the 2026 Oscars? The Oscars ceremony will air live on ABC. Are the Oscars streaming? Yes. The Oscars are also streaming live on Hulu with a subscription. Last year’s ceremony was the first that was live-streamed. Who is hosting the 2026 Oscars? Late night talk show host Conan O’Brien will the awards show for the second time. Presenters also include last year’s winners for Best Actor, Actress, Supporting Actor, and Supporting Actress: Adrien Brody, Mikey Madison, Kieran Culkin and Zoe Saldaña. Other presenters include Delroy Lindo, Wagner Moura and Rose Byrne. Who is nominated for the Oscars this year? There are 24 categories up for awards this year. The nominees for Best Picture include “Train Song,” “Sinners,” “Marty Supreme,” “F1,” “Bugonia” “Hamnet,” “Frankenstein,” “One Battle After Another,” “The Secret Agent,” and “Sentimental Value.” The nominees for Best Actor are Timothee Chalamet, Michael B. Jordan, Ethan Hawke, Leonardo DiCaprio, and Wagner Moura. The Best Actress nominees include Jessie Buckley, Rose Byrne, Kate Hudson, Renate Reinsve, and Emma Stone.
+"""
+
+[R6] Oscars 2026. Where to watch the Oscars red carpet?
+(https://www.cincinnati.com/story/entertainment/television/2026/03/15/oscars-2026-what-time-does-oscars-red-carpet-start-how-to-watch/89140702007/)
+"""
+TELEVISIONWhat time does the Oscars red carpet start? How to watch Bebe HodgesCincinnati EnquirerUpdated March 15, 2026, 4:55 p.m. ETThe Oscars is one of the biggest nights in fashion, giving viewers a glimpse into what to expect from luxury fashion houses.The 98th Academy Awards take place Sunday, March 15. But before the best picture can be crowned, nominees will line the red carpet in gorgeous gowns and suits.This year will likely be different from recent Oscar ceremonies. Items from the archives have dominated the red carpet in the last couple years, as a slew of creative director changes stunted the showcase of new designs.If you purchase through our links, the USA Today Network may earn a commission. Prices were accurate at the time of publication but may change.
+"""
+
+[R7] It's time for the Oscars! How to watch the 2026 Academy Awards
+(https://www.northjersey.com/story/entertainment/2026/03/15/oscars-how-to-watch-2026-academy-awards-best-picture-best-actor-best-actress-best-director/89167201007/)
+"""
+Updated March 15, 2026, 5:00 p.m. ETThe awards begin live at 7 p.m. on ABC and Hulu TVAmong the nominees are Kate Hudson for her performance in "Song Sung Blue," which was filmed on location in Montclair.The biggest night in Hollywood kicks off at 7 p.m. on Sunday, March 15, as the 98th Academy Awards airs coast-to-coast. Filmmakers and actors will take home statuettes for their work on some of the most lauded movies of 2025.Viewers can watch the ceremony, hosted by Conan O'Brien, with all its glitz and glamor, broadcast live on their local ABC affiliate, or streaming online through Hulu TV, FuboTV or YouTubeTV, and via AT&T TV.Among the contenders are Kate Hudson, for her performance in the musical drama "Song Sung Blue," which was filmed on location in Montclair, Wayne and Paterson.Here are the nominees for some of this year's top awards:Best picture"Bugonia""F1""Frankenstein""Hamnet""Marty Supreme""One Battle After Another""The Secret Agent""Sentimental Value""Sinners""Train Dreams"Best actor in a leading roleTimothée Chalamet, "Marty Supreme"Leonardo DiCaprio, "One Battle After Another"Ethan Hawke, "Blue Moon"Michael B. Jordan, "Sinners"Wagner Moura, "The Secret Agent"Best actress in a leading roleJessie Buckley, "Hamnet"Rose Byrne, "If I Had Legs I'd Kick You"Kate Hudson, "Song Sung Blue"Renate Reinsve, "Sentimental Value"Emma Stone, "Bugonia"Best directorChloé Zhao, "Hamnet"Josh Safdie, "Marty Supreme"Paul Thomas Anderson, "One Battle After Another"Joachim Trier, "Sentimental Value"Ryan Coogler, "Sinners"Best actor in a supporting roleBenicio del Toro, "One Battle After Another"Jacob Elordi, "Frankenstein"Delroy Lindo, "Sinners"Sean Penn, "One Battle After Another"Stellan Skarsgård, "Sentimental Value"Best actress in a supporting roleElle Fanning, "Sentimental Value"Inga Ibsdotter Lilleaas, "Sentimental Value"Amy Madigan, "Weapons"Wunmi Mosaku, "Sinners"Teyana Taylor, "One Battle After Another"
+"""
+
+[R8] How long does the Oscars ceremony last? 2026 Academy Awards duration
+(https://en.as.com/entertainment/how-long-does-the-oscars-ceremony-last-2026-academy-awards-duration-f202603-n/)
+"""
+It’s here. The 98th edition of the Oscars arrives today on March 15 at 7 p.m. ET with a lineup of winners across a total of 24 categories.The event will be hosted by Conan O’Brien, while each category will be presented by two internationally recognized personalities.The event will begin at 4 p.m. local time. Before the awards ceremony, we will see Hollywood stars walk down the iconic red carpet, one of the main attractions for fans worldwide. After this tradition, guests will head to the Dolby Theatre in Los Angeles to enjoy the awards ceremony.How long do the Oscars last?The usual duration of the ceremony is approximately three and a half hours, from the moment the host, in this case, Conan O’Brien, kicks off the night with his opening jokes, to the presentation of the Oscar for Best Picture, which is typically the last award announced.Who is hosting the 2026 Oscars?Conan O’Brien will return as host for a second year in a row. The comedian received universal acclaim for his debut appearance in 2025.“Conan was the perfect host — skillfully guiding us through the evening with humor, warmth and reverence,” said Bill Kramer, CEO of the Academy of Motion Picture Arts and Sciences, and Janet Yang, the group’s president, in a statement.Related storiesGet closer to the game! Whether you like your soccer of the European variety or that on this side of the pond, our AS USA app has it all. Dive into live coverage, expert insights, breaking news, exclusive videos, and more. Plus, stay updated on NFL, NBA and all other big sports stories as well as the latest in current affairs and entertainment. Download now for all-access coverage, right at your fingertips – anytime, anywhere.And there’s more: check out our TikTok and Instagram reels for bite-sized visual takes on all the biggest soccer news and insights.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

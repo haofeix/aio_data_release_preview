@@ -1,0 +1,98 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "what time does american idol come on tonight"
+
+Claims:
+[1] "American Idol airs tonight at 8 p.m. ET/PT (7 p.m. CT) on ABC."
+[2] "American Idol episode can be streamed on Hulu the following day."
+[3] "ABC Network is a TV watch option for American Idol."
+[4] "ABC app is a streaming watch option for American Idol."
+[5] "Hulu (next day) is a streaming watch option for American Idol."
+[6] "Disney+ is a streaming watch option for American Idol."
+[7] "FuboTV is a cable-free watch option for American Idol."
+[8] "DIRECTV is a cable-free watch option for American Idol."
+[9] "Free trials are available for FuboTV or DIRECTV."
+[10] "Tonight's episode of American Idol will feature the Top 12 contestants performing hits from the 1990s."
+
+Cited text snippets from the AI Overview (for additional context):
+- Watch American Idol TV Show - ABC.com: "Watch American Idol TV Show,episodes here & stream on Hulu"
+- American Idol (@americanidol) · Los Angeles, CA: "It's 90s Night y'all,& @abc at 8/7c"
+- What time is 'American Idol' on tonight? How to watch 2026 Top 14: "Monday, April 6.-,When is 'American Idol' on tonight?,and 7 p.m. Arizona time."
+- American Idol on Instagram: "Tonight's gonna be off the hook ...: "American Idol american idol Live,3"
+- American Idol (@AmericanIdol) / Posts / X: "americanidol-,Ooh, Darlin'!,://www.ameri..."
+- 'American Idol' season 24 episode 11 '90s hits night - MassLive: "The top 12 perform 90s,and promotional offers are available."
+Reference Sources:
+
+[R1] What time is 'American Idol' on tonight? How to watch 2026 Top 14
+(https://www.azcentral.com/story/entertainment/music/2026/04/06/when-is-american-idol-on-tonight-2026/89479896007/)
+"""
+April 6, 2026, 12:01 p.m. MTThere are 14 contestants remaining on Season 24 as "American Idol" turns its attention from “Songs of Faith” to "’90s Judges' Song Contest," which as the title clearly indicates, means those 14 hopefuls will be singing ’90s songs selected by Luke Bryan, Carrie Underwood and Lionel Richie.The “Songs of Faith” episode started by weeding the Top 20 down to the 14 singers who performed on last week’s episode, with Brooks boldly choosing John Lennon’s “Imagine,” which famously opens on the line “Imagine there's no heaven/ It's easy if you try / No hell below us/ Above us, only sky.”We’ll see the how the Christians Nationalists tuning in for “Songs of Faith” respond to that.Two contestants were supposed to be sent home at the conclusion of the episode, but the voting turnout was much higher than expected, so we’ll find out when the show returns on Monday, April 6.Here’s everything you need to know about the latest episode of “American Idol.”'American Idol' vote 2026You can’t use the “American Idol” app in 2026. That’s been discontinued. You can still vote through the website, though, at americanidol.com, or via text.Top 14 'American Idol' contestants for 2026These are the singers remaining in the "American Idol" Top 14 for 2026:Jordan McCulloughBrooksKyndal InskeepPhilmon LeeBraden RumfeltJake ThistleJesse FindlingLucas LeonHannah HarperChris TungsethJulián KalelRaeDaniel StallworthKeyla RichardsonFan favorite Hannah Harper sang 'Ain't No Grave' in HawaiiHannah Harper sang “At the Cross (Love Ran Red)" by worship leader Chris Tomlin, telling Ryan Seacrest the song was an “opportunity to give an invitation” to Jesus.What did 'American Idol' contestants sing on 'Songs of Faith' night?Here's who sang what:Jake Thistle did "Have a Little Faith in Me" by John Hiatt.Daniel Stallworth did "Brighter Days" by Blessing Offor.Kyndal Inskeep did "Nothing But the Blood of Jesus" by Robert Lowry.Jesse Findling did "Bless the Broken Road" by the Nitty Gritty Dirt Band.Hannah Harper did “At the Cross (Love Ran Red)" by Chris Tomlin.Braden Rumfelt did "Hard Fought Hallelujah" by Brandon Lake.Brooks did "Imagine" by John Lennon.Philmon Lee did "Simple Man" by Lynyrd Skynyrd.Rae did "Up to the Mountain (MLK Song)" by Patty Griffin.Lucas Leon did "Gratitude" by Brandon Lake.Jordan McCullough did "I Can Only Imagine" by MercyMe.Chris Tungseth did "By Your Grace" by Cody Johnson.Julian Kalel did "Fix You" by Coldplay.Keyla Richardson did "Jireh" by Elevation Worship and Maverick City Music.This newsletter goes to 11. Sign up for weekly music news. Where are 'American Idol' contestants competing tonight?"American Idol" is in Los Angeles this week.2026 judges for 'American Idol'The judges for Season 24 of "American Idol" are Lionel Richie, Luke Bryan and Carrie Underwood, who joined the cast in 2025 when Katy Perry signed off after seven seasons.Before signing on as a judge, Underwood won Season 4 and went on to enjoy one of the most successful post-“Idol” careers of any former winner — right up there with Kelly Clarkson.Is 'American Idol' on tonight?Yes. "American Idol" will feature the Top 20 hopefuls competing live in Los Angeles on Monday, April 6.When is 'American Idol' on tonight?"American Idol" airs at 8 p.m. ET and 7 p.m. Arizona time.How to watch 'American Idol' tonightYou can watch "American Idol" live on ABC15 in Arizona or on your local ABC network.'American Idol' time"American Idol" airs at 8 p.m. ET and 7 p.m. Arizona time.What is 'American Idol' on tonight?In addition to airing in Arizona on ABC15, "American Idol" Season 24 will be available to stream the following day on Hulu.A subscription to Hulu costs $11.99 a month (or $119.99/year) for the ad-supported plan. Students can get Hulu with ads for $1.99 a month, and Hulu Premium, with no ads, is $18.99 a month.'American Idol' winnersTrying to remember who won "American Idol" the year you graduated high school or more recently? We've got you covered.Kelly Clarkson, as you know: Season 1Ruben Studdard: Season 2Fantasia Barrino: Season 3Carrie Underwood: Season 4Taylor Hicks: Season 5Jordin Sparks: Season 6David Cook: Season 7Kris Allen: Season 8Lee DeWyze: Season 9Scotty McCreery: Season 10Phillip Phillips: Season 11Candice Glover: Season 12Caleb Johnson: Season 13Nick Fradiani: Season 14Trent Harmon: Season 15Maddie Poppe: Season 16Laine Hardy: Season 17Just Sam: Season 18Chayce Beckham: Season 19Noah Thompson: Season 20Iam Tongi: Season 21Abi Carter: Season 22Jamal Roberts: Season 23We don't know yet: Season 24Ed has covered pop music for The Republic since 2007, reviewing festivals and concerts, interviewing legends, covering the local scene and more. He did the same in Pittsburgh for more than a decade. Follow him on X and Instagram @edmasley and on Facebook as Ed Masley. Email him at ed.masley@arizonarepublic.com.
+"""
+
+[R2] Watch American Idol TV Show - ABC.com
+(https://abc.com/show/baf4f444-36a4-4340-ac11-c570f0da4977)
+"""
+Skip to ContentThere are singers, then there are IDOLS.LIVE MONDAYS 8/7cWatch full episodes here & stream on HuluMY LISTABOUTseason 9See Allseason 901:24:49S9 E12 - 912 (Rock & Roll Hall of Fame)Performing hits from Rock & Roll Hall of Fame inductees.TV-PG | 04.13.202601:24:44S9 E11 - 911 (90s Judges' Song Contest)The Top 12 perform '90s hits secretly picked by the judges.TV-PG | 04.06.202601:28:50S9 E10 - Songs of FaithThe hopefuls lift their voices in inspiring songs of faith.TV-PG | 03.30.202601:25:04S9 E9 - 909 (Top 20 at Disney's Aulani Resort in Hawai'i -- Part 2)Brad Paisley and Keke Palmer continue mentoring.TV-PG | 03.23.202601:25:05S9 E8 - 908 (Top 20 at Disney's Aulani Resort in Hawai'i -- Part 1)Brad Paisley and Keke Palmer mentor the Top 20 hopefuls.TV-PG | 03.16.202601:25:04S9 E7 - 907 ('Ohana Round)Hopefuls take the stage to perform in Hawaii.TV-PG | 03.09.202601:25:04S9 E6 - 906 (Hollywood Week in Music City -- Part 2)Hollywood Week continues; in the end, only 30 move forward.TV-PG | 03.02.202601:25:05S9 E5 - 905 (Hollywood Week in Music City -- Part 1)Idol is bringing Hollywood Week to Music City.TV-PG | 02.23.202601:25:04S9 E4 - 904 (Auditions)Rising stars deliver showstopping performances.TV-PG | 02.16.202601:25:05S9 E3 - 903 (Auditions)The stakes rise as additional hopefuls face the judges.TV-PG | 02.09.202601:25:04S9 E2 - 902 (Auditions)Hopefuls deliver unforgettable performances.TV-PG | 02.02.202601:25:04S9 E1 - 901 (Auditions)The judges welcome the new hopefuls to Idol University.TV-PG | 01.26.2026Sign up for free tickets to "American Idol"GO NOW > GO NOWLatest ClipsLatest Clips04:54American Idol Official Podcast - Trailer04.01.202600:30American Idol - Mondays 8/7c01.26.2026Watch highlights and performances from Rock Night (Week 12)!GO NOW > GO NOWFind out how to vote for your favorite contestants! GO NOW > GO NOWMeet the CastSee AllMeet the CastCarrie UnderwoodJudgeLuke BryanJudgeLionel RichieJudgeRyan SeacrestHostRecommended ShowsRecommended Shows9-1-19-1-1: NashvilleAbbott ElementaryGrey's AnatomyHigh PotentialThe RookieScrubsShark TankShifting GearsWill TrentMORE TO WATCH ON FREEFORM, FX & NATIONAL GEOGRAPHICMORE TO WATCH ON FREEFORM, FX & NATIONAL GEOGRAPHICThe SimpsonsProject RunwayPole to Pole with Will SmithNecaxaSwitched at BirthThe Tale of SilyanBob's BurgersTrafficked with Mariana van ZellerEnglish TeacherTo Catch a SmugglerFamily Guy Your Opt Out Preference Signal is HonoredNotice of Right to Opt Out of Sale/SharingSome US states provide residents (or their authorized agents) with the right to opt out of “targeted advertising,” “selling,” or “sharing” of personal information, as defined by applicable laws. You can move the toggle to the left and click “Submit” to opt out of such activities occurring through this digital property. If you are logged in, we may be able to associate your choice with your account and apply it to data sharing occurring through this digital property (across your browsers and devices) as well as other digital properties of The Walt Disney Family of Companies. You can confirm the status of your choice or opt out or in by clicking “Do Not Sell or Share My Personal Information” or “Your Privacy Choices” on each property. Manage Consent PreferencesSelling, Sharing, Targeted Advertising Selling, Sharing, Targeted Advertising If you are not logged in, your opt-out will be specific to this property and device or browser. For our other digital properties, to opt out, select “Do Not Sell or Share My Personal Information” or “Your Privacy Choices” on each. If you clear your tracking history or use another browser or device, you’ll need to opt out again.You can also submit this opt-out form, which may enable us to apply your opt-out more broadly, for example, to stop data sharing in connection with advertising intended to reach you on platforms not operated by Disney (e.g., social media platforms). You may enable online, where available, a universal tool that automatically communicates your opt-out, such as Global Privacy Control (“GPC”), which we’ll process as if you had opted out through the toggle.Even if you opt out, you may continue to see advertising, including ads that may be based on personal information processed before you opted out. Please visit Your US State Privacy Rights for more information about your rights and how to exercise them.Back ButtonCookie List Search IconFilter IconClear checkbox label labelApply CancelConsent Leg.Interest checkbox label label checkbox label label checkbox label label Submit
+"""
+
+[R3] ‘American Idol’ season 24 episode 11 ’90s hits night - How to watch for free tonight
+(https://www.masslive.com/tv/2026/04/american-idol-season-24-episode-11-90s-hits-night-how-to-watch-for-free-tonight.html)
+"""
+A new episode of "American Idol" season 24 will air on Monday, April 6 on ABC (photo courtesy of American Idol on YouTube).American Idol/ABCIf you purchase a product through a link on our site, we may receive compensation.By Ariana Tourangeau | atourangeau@masslive.comThe top 12 perform 90s hits secretly picked by Luke Bryan, Lionel Richie, or Carrie Underwood in a new episode of “American Idol” airing on Monday, April 6. The new episode will air at 8 p.m. ET on ABC. Those without cable can watch the show for free through FuboTV or DIRECTV, each of which offers a free trial to new users. Sling is another option for streaming the show and promotional offers are available.Ryan Seacrest hosts season 24 of “American Idol” alongside judges Carrie Underwood, Luke Bryan, and Lionel Richie.In the new episode, “The top 12 perform 90s hits secretly picked by Luke Bryan, Lionel Richie, or Carrie Underwood. Stars of ABC’s ”TGIF" ‘90s lineup hang with the hopefuls in the lounge as America votes for the top 11."Below is a look at the season so far from American Idol’s YouTube channel:Streaming ServiceStarting Monthly PriceFree TrialFree Trial LengthMax DiscountDIRECTV$89.99Yes5 days$40 off first monthFuboTV$55.99Yes5 days$30 off first monthSling TV$45.99NoN/A$30 off first monthHow can I watch “American Idol” without cable?Those without cable can watch the show for free through FuboTV or DIRECTV, each of which offers a free trial to new users. Sling is another option for streaming the show and promotional offers are available.What is FuboTV?FuboTV is an over-the-top internet live TV streaming service that offers more than 100 channels, like sports, news, entertainment and local channels. It offers DVR storage space, and is designed for people who want to cut the cord, but don’t want to miss out on their favorite live TV and sports. FuboTV offers up to $30 off your first month.What is DIRECTV?The streaming platform offers a vast array of content, including the best of live and on-demand streaming, with over 75 live TV channels to get started.What is Sling?Sling TV is the first app-based TV service, letting you stream live television and on-demand content over the internet. With Sling TV, you get to choose the television option that’s right for you, including Channel Add-ons, Premium Add-ons, DVR Plus and more.Watch ‘Survivor’ season 50 episode 8 tonight for free here‘Scrubs’ Revival season finale premieres tonight - Here’s how to watch free‘MasterChef’ season 25 premieres tonight - How to watch for freeSombr announces first arena tour - Where to buy tickets before they sell out‘Welcome to Plathville’ season 8 airs new episode tonight - Here’s how to watch freeAriana is the Commerce Reporter at MassLive.com where she primarily focuses on global concert ticket deals and how to watch popular TV shows on various streaming services. She joined MassLive in 2022 and has...
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

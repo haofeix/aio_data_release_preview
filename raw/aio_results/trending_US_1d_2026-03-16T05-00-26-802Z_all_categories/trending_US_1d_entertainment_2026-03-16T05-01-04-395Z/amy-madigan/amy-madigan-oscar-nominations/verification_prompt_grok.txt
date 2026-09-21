@@ -1,0 +1,99 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "amy madigan oscar nominations"
+
+Claims:
+[1] "Amy Madigan won the Academy Award for Best Supporting Actress for her role as Aunt Gladys in Weapons at the 98th Academy Awards in March 2026."
+[2] "Amy Madigan's win marks her first win."
+[3] "Amy Madigan's only previous nomination was for Best Supporting Actress for Twice in a Lifetime (1985) at the 1986 ceremony."
+[4] "Amy Madigan was a nominee for Best Supporting Actress for Twice in a Lifetime at the 58th Academy Awards."
+[5] "Amy Madigan won Best Supporting Actress for Weapons at the 98th Academy Awards."
+[6] "Her 40-year gap between nominations from 1986 to 2026 set a new record for the longest gap for an actress."
+[7] "The Guardian reported on her win in March 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- Amy Madigan wins best supporting actress Oscar for Weapons: "Amy Madigan has won the,Brien in his opening skit."
+- Amy Madigan wins Oscar for 'Weapons,' 40 years after her first ...: "“None of this would mean,happen,'” Madigan said."
+- Amy Madigan in Dior at the 2026 Oscars: "Her First Appearance-,Amy Madigan Returns to the Oscars Red Carpet 40 Years,Arturo Holmes//Getty Images"
+- Amy Madigan wins Oscar for best supporting actress in 'Weapons,' 40 ...: "(AP) - Amy Madigan won,whose classmates go missing overnight."
+Reference Sources:
+
+[R1] Amy Madigan wins Oscar for best supporting actress in ‘Weapons,’ 40 years after last nomination
+(https://www.fox10tv.com/2026/03/16/amy-madigan-wins-oscar-best-supporting-actress-weapons-40-years-after-last-nomination/)
+"""
+(AP) - Amy Madigan won the Academy Award for best supporting actress Sunday for her role in the supernatural thriller “Weapons,” 40 years after her last nomination.Madigan embodied the role of Gladys, giving a phenomenally creepy portrayal of the great-aunt of a young boy whose classmates go missing overnight. She won the Critics’ Choice Award and Actor Award in the same category.The 75-year-old let out a deep cackle as she went on stage to accept the award.Amy Madigan, winner of the award for actress in a supporting role for "Weapons," poses in the press room at the Oscars on Sunday, March 15, 2026, at the Dolby Theatre in Los Angeles.(Source: Jordan Strauss/Invision/AP)“We’re kind of advised, ‘Don’t say all these names, as nobody knows who the hell these people are,’” she said. “But you’re not rattling them off. They mean something to you; that you couldn’t be here without them.”The last time she was nominated for an Oscar was for her role in 1985 family drama “Twice in a Lifetime,” setting a record for the longest gap between nominations for an actress.“Everybody’s asking me … ‘Well it’s been 40 years, what’s different about this time?’” Madigan said. “What’s different is this little gold guy.”Her character is so integral to one of the movie’s biggest twists that she was kept out of the press tour and early marketing for the film so as to not give away any spoilers.“Gladys has surprised me, she’s getting a lot of love back,” Madigan said in her acceptance speech at the Annual Actor Awards. “I didn’t know y’all wanted to hang out with her.”Her character is “kind of inspiring in a strange way,” despite being the movie’s villain, she said after her Oscar win.If given the opportunity, she would love to reprise the role in an Aunt Gladys prequel, she said.Some of Madigan’s most notable roles in her long career were in “Field of Dreams” and “Uncle Buck” in 1989. She has also acted in Broadway and off-Broadway productions.“Opportunities (as an older actress) are less and you just hope that something finds you so you can find it,” she said in an interview with The New York Times. “And I don’t take it for granted, because you can go up and then you can go all the way down, as we know.”Madigan thanked director and writer Zach Cregger for writing a “dream part” for her. While horror movies have traditionally been snubbed for awards, being treated like the “little kids table at Thanksgiving,” Madigan said she was heartened by the recognition for genre films like “Weapons” and “Sinners” this year.She also gave a shoutout to the other nominees Teyana Taylor in “One Battle After Another,” Wunmi Mosaku in “Sinners,” and Elle Fanning and Inga Ibsdotter Lilleaas in “Sentimental Value.” The category did not have a clear favorite ahead of this year’s ceremony, with a crowded field of nominees splitting the biggest awards of the season.___For more coverage of the 2026 Oscars, visit apnews.com/hub/academy-awards.Copyright 2026 The Associated Press. All rights reserved.
+"""
+
+[R2] Amy Madigan Returns to the Oscars Red Carpet 40 Years After Her First Appearance
+(https://www.townandcountrymag.com/leisure/arts-and-culture/a70734798/amy-madigan-red-carpet-photos-oscars-2026/)
+"""
+2 min readForty years ago, in 1986, Amy Madigan was a first-time Oscar nominee for Best Supporting Actress for her performance in Twice in a Lifetime. This evening, she’s back at the Academy Awards, with her second nod: also in the Best Supporting Actress category, for horror film Weapons.Tonight, she arrived wearing a Dior outfit, Messika earrings, and sunglasses, and accessorized with an Omega timepiece.Arturo Holmes//Getty ImagesMadigan is nominated tonight.Advertisement - Continue Reading BelowArturo Holmes//Getty ImagesMadigan and her husband Ed Harris on the red carpet.“It was much smaller. It wasn’t all of this,” Madigan recalled of her first time as a nominee. “There was no social media. There were no podcasts. There was no this and no that.” At the 1986 Academy Awards, she wore a black dress with a sheer top, accessorizing with a matching necklace and earrings set. Like tonight, back then, she was joined by her husband Ed Harris.Ron Galella, Ltd.//Getty ImagesAmy Madigan and Ed Harris during 58th Annual Academy Awards.Advertisement - Continue Reading BelowRon Galella//Getty ImagesMadigan was a Best Supporting Actress nominee for Twice in a Lifetime.“I’m just kind of stunned by the whole journey that I’ve been on,” Madigan said after her nomination. “This is just kind of another piece of it that I was not expecting, but I’m just very happy and gratified and it’s just a reflection on the film Weapons and how people are responding to it. So that — nothing is a better feeling than that.”She added, “It just means that you can have a long career. And I’ve had a long career and I’m continuing to do that… People always say, ‘If you have a dream, follow it,’ et cetera. But those are true things when actors and writers and directors get up there and say that because it’s a long, arduous trip, it takes a lot of work. Don’t be deterred. And it’s really true. When a good piece of material comes by, the actors, they want to grab it by the throat. It’s exciting. That’s why we do what we do. So it’s all been kind of a whirlwind, but very exciting.”Emily Burack (she/her) is the Deputy Digital Editor for Town & Country, where she covers entertainment, celebrities, the royals, and a wide range of other topics. Before joining T&C, she was the deputy managing editor at Hey Alma, a Jewish culture site. Follow her @emburack on Instagram, Twitter, and other social media platforms.
+"""
+
+[R3] Amy Madigan wins Oscar for 'Weapons' supporting role of Aunt Gladys - Los Angeles Times
+(https://www.latimes.com/entertainment-arts/awards/story/2026-03-15/amy-madigan-wins-oscars-2026-supporting-actress-weapons)
+"""
+Amy Madigan was horror’s secret weapon this awards season, and now she has the gold to prove it. Madigan won the Academy Award for supporting actress for her turn as the ginger wig-donning witch Aunt Gladys in Zach Cregger’s “Weapons.” She was the supernatural film’s sole nominee and beat out contenders Teyana Taylor (“One Battle After Another”), Wunmi Mosaku (“Sinners”), Elle Fanning (“Sentimental Value”) and Inga Ibsdotter Lilleaas (“Sentimental Value”) for the award.“This is great!” Madigan exclaimed as she accepted the honor Sunday evening. She added with a laugh that she’d brainstormed speech material the previous night while shaving her legs, despite the fact that she was outfitted in slacks at the ceremony. The actor said that the press has repeatedly asked her what’s different about this nomination from her first several decades ago. “What’s different is I have this little gold guy,” she quipped. Madigan went on to thank Cregger for writing her a “dream part,” and actor Ed Harris, her husband of 40-plus years, for his support. “He’s been with me forever, and that’s a long-ass time,” she said. “None of this would mean anything if he wasn’t by my side.” Madigan’s role in “Weapons” was so iconic that ceremony host Conan O’Brien parodied her character in his opening monologue, running with a trail of children behind him through various Oscar-nominated movies — from “Sinners” to “KPop Demon Hunters” (in animated form). With her nomination for “Weapons,” Madigan set a new record for the longest gap between Oscar nominations for an actress. She earned her last nod 40 years ago for her performance as Sunny in 1985’s “Twice in a Lifetime,” directed by Bud Yorkin and starring Gene Hackman.Madigan’s win on Sunday marked the first supporting actress victory for a horror film since Ruth Gordon’s win for “Rosemary’s Baby” in 1969. Back in the press room after her win, Madigan said she loved Cregger’s script, and the character of Gladys, from the jump. “As soon as I read it, I knew I knew this woman. I knew a lot about her. I just knew that I could grab it by the throat,” she said. The actor added that an Aunt Gladys sequel is in high demand and highly likely to come to fruition. “[Cregger] says, ‘Yes, this is going to happen,’” Madigan said. “But we know how long stuff takes. We know what this business is like, and nothing’s real ‘til it is.”This awards season, Madigan also received nominations from the Golden Globe Awards, Critics Choice Awards and Actor Awards, the latter two of which she turned into wins. The actor referenced her decades-long career as she dedicated her Actor Award win to her fellow SAG-AFTRA members earlier this month: “It’s such an honor to be here. I’ve been doing this a long-ass time.” “Gladys has surprised me. She’s getting a lot of love back,” Madigan said. “I didn’t know y’all want to hang out with her.”The veteran performer expressed similar surprise about her “Weapons” character’s rapid rise to icon status in a recent episode of The Times’ Envelope podcast. “I thought people would really have a good time with Aunt Gladys,” she said. “But the night that we opened it was, ‘Boom.’ So this was all a surprise to me.” More to Read
+"""
+
+[R4] Amy Madigan wins best supporting actress Oscar for Weapons
+(https://www.theguardian.com/film/2026/mar/15/amy-madigan-wins-best-supporting-actress-oscar-for-weapons)
+"""
+Amy Madigan has won the best supporting actress Oscar for Weapons at the 98th Academy Awards,.Madigan defeated a strong field to take the prize, including Elle Fanning for Sentimental Value, Wunmi Mosaku for Sinners and Teyana Taylor for One Battle After Another. In doing so she set a new record for the longest gap between nominations before a win; she was previously nominated in the same category 40 years ago, in 1986, for Twice in a Lifetime.In an emotional and good-humoured speech, the actor said that she had been asked about the difference between the two nominations, saying: “What’s different is I got this little gold guy.”In Weapons, a supernatural horror film written and directed by Zach Cregger, Madigan plays the malevolent Aunt Gladys, whose heavy makeup and large glasses became a popular internet meme, referenced by Oscars host Conan O’Brien in his opening skit.Madigan has had a strong awards season, gaining a best supporting actress nomination from the Golden Globes, and winning the Actor award earlier this month, yet her victory was far from certain, with Mosaku perceived to present especially strong competition.“This is great,” she said. “I was in the shower last night trying to think of something to say as I was shaving my legs – I’ve got pants on, I don’t need to worry about that.”The actor went on to thank her fellow nominees for bringing her into their fold, as – unlike them – she was the sole figure representing Weapons on the press circuit.“Most of all, I want to thank my beautiful daughter, Lily,” she concluded, “her husband, Sean. And, of course, all the dogs. But the most important is my beloved Ed. You’ve been with me forever. And that’s a long-ass time, and none of this would mean anything if he wasn’t by my side.”Madigan and her husband, Ed Harris, went down in the annals of Academy Award history in 1999, when they conspicuously failed to applaud the awarding of an honorary Oscar to On the Waterfront’s Elia Kazan, who testified at the House Un-American Activities Committee in 1952.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,87 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "how old is lisa kudrow"
+
+Claims:
+[1] "Lisa Kudrow is currently 62 years old."
+[2] "Lisa Kudrow was born on July 30, 1963."
+[3] "Lisa Kudrow was born in Encino, California."
+[4] "Lisa Kudrow celebrated her 62nd birthday in July 2025."
+[5] "Lisa Kudrow played the role of Phoebe Buffay on Friends."
+[6] "Lisa Kudrow was the voice of Aphrodite for episodes of Disney's Hercules."
+[7] "Lisa Kudrow is 62 years old as of March 2026."
+[8] "Lisa Kudrow was the oldest cast member of Friends"
+
+Cited text snippets from the AI Overview (for additional context):
+- Happy 62nd Birthday to Actress Lisa Kudrow born today, July 30th, 1963, in Encino, California. 🥳 Best known for her role as Phoebe Buffay on the hit television sitcom Friends, Kudrow also provided the voice of Aphrodite for episodes of Disney's Hercules: "Actress Lisa Kudrow was born on July,episodes of Disney's *Hercules: The Animated Series*."
+- How Friends Hid Its Stars' Pregnancies On Screen ... - IMDb: "Friends fans remember Phoebe's surprise pregnancy in,while staying true to Phoebe's quirky roots."
+- Who is the oldest cast member of Friends? - Our 'Friends' - Quora: "Born in 1963, Lisa Kudrow is the,Perry, born in 1969, is the youngest."
+Reference Sources:
+
+[R1] https://www.quora.com/Who-is-the-oldest-cast-member-of-Friends/answer/Grace-Kelly-238
+(https://ourfriends.quora.com/Who-is-the-oldest-cast-member-of-Friends)
+"""
+Born in 1963, Lisa Kudrow is the show's oldest cast member, while Matthew Perry, born in 1969, is the youngest. If you are asking about characters then- 1.) Monica says in Season 3 that it took her 28 years to find a guy she wanted to spend the rest of her life with: Richard. meaning Monica should've been 26 in Season 1. 2.) Rachel is the same age as Monica, which also would have made her 26. 3.) Ross says in the Pilot episode that he is 26. While it may seem confusing, considering Ross is a year older than Monica, it possibly means that Monica already celebrated her birthday that year, Ross not yet, meaning the Pilot occurs sometime in August-September. 4.) Chandler is a few months older than Ross, making him at least 26-27 in the beginning. 5.) In the beginning of Season 4, which counts as Season 3's year, Phoebe yells ather birth mother "You had 29 years to know that and you didn't even try." 29-3= 26, meaning she's 26. 6.) In Season 6, Rachel reminds Joey he's 31. 31-6= 25, making Joey the youngest in the group. Basically, Joey is the youngest, followed, by Monica, then Rachel, then Phoebe, then Ross,then chandler is the oldest one. Edit : Holy Shit!!! 8K views! It's amazing! Thank you so much!
+"""
+
+[R2] How Friends Hid Its Stars’ Pregnancies On Screen—The Clever Tricks They Used - IMDb
+(https://www.imdb.com/news/ni64924556/)
+"""
+How Friends Hid Its Stars’ Pregnancies On Screen—The Clever Tricks They UsedHere’s how Friends hid the pregnancies of the main stars ( Photo Credit – Instagram )Sometimes, TV magic isn’t just about the laughs – it’s about clever tricks behind the scenes. Friends fans remember Phoebe’s surprise pregnancy in season 4, but Lisa Kudrow’s real-life bump had a twist. Instead of hiding it, the writers got creative and made Phoebe a surrogate for her half-brother! Brilliant, right? This kept Kudrow’s pregnancy in the spotlight while staying true to Phoebe’s quirky roots.Pregnancies on TV are common, but Friends took it up a notch. Kudrow’s character was all about that free-spirited vibe, so turning her into a mom would’ve felt off. Instead, the writers rolled with it, making Phoebe pregnant with triplets. It was the perfect fix, keeping Friends rolling without missing a beat.Kudrow has shared how heartwarming the experience was, especially with her castmates. Recalling her time on set,...See full article at KoiMoi8/9/2025by Heena SinghKoiMoiSimilar NewsInstagramBrooks Nader Turns Heads in Sports Illustrated Photos Wearing Barely-There String Bikini3/26/2026by Josip KraljikFiction HorizonBrooks Nader Shows off Daring Bikini Held Together by Only a Few Strings3/26/2026by Josip KraljikComic BasicsSee ‘Live’s Mark Consuelos in Rehearsals for His Upcoming Broadway Debut (Video)3/26/2026TV InsiderTwitterPaul Thomas Anderson Vs Ryan Coogler Box Office: Which Director’s Last 5 Films Delivered A Better Return On Budget?3/26/2026by Pranshu AwasthiKoiMoiHaibara's Teenage New Game+ Anime Adds Aimi to Cast3/26/2026by Paul ChapmanCrunchyrollReminders Of Him North America Box Office: Closing In On Markiplier’s Self-Financed Hit Iron Lung3/26/2026by Esita MallikKoiMoiYouTubeRobert Earl Keen, Once Retired, Has Become a North Star of the Stage3/26/2026by Josh CrutchmerRollingstone.comDhurandhar 2 + Dhurandhar Box Office: With 2384 Crore In 7 Days, Ranveer Singh & Aditya Dhar Hit 3 Massive Franchise Records!3/26/2026by Trisha GaurKoiMoiWhere is the marketing for mid-level movies that are playing at your theater?3/26/2026by EJ TangonanJoBlo.comIMDb.com, Inc. takes no responsibility for the content or accuracy of the above news articles, Tweets, or blog posts. This content is published for the entertainment of our users only. The news articles, Tweets, and blog posts do not represent IMDb's opinions nor can we guarantee that the reporting therein is completely factual. Please visit the source responsible for the item in question to report any concerns you may have regarding content or accuracy.More to exploreTop news‘Lord of the Rings’ Superfan Stephen Colbert to Write New Movie for Peter Jackson3/25/2026by Charisma MadarangRollingstone.comApple TV’s ‘For All Mankind’ Renewed for 6th and Final Season3/24/2026by Drew TaylorThe WrapGwyneth Paltrow to Star in ‘Strangers’ as Netflix Wins Movie Rights to Belle Burden’s Blockbuster Memoir3/25/2026by Matt DonnellyVariety Film + TVCelebrity newsGwyneth Paltrow to Star in ‘Strangers’ as Netflix Wins Movie Rights to Belle Burden’s Blockbuster Memoir3/25/2026by Matt DonnellyVariety Film + TVTennessee Police: Alan Ritchson Acted in Self Defense, “No Criminal Charges Pursued” After Altercation With Neighbor3/24/2026by Chris GardnerThe Hollywood Reporter - Movie NewsIndie news‘Kontinental ’25’ Review: A Transylvanian Bailiff Tries to Ease Her Guilty Conscience in Radu Jude’s Droll and Biting iPhone Comedy3/23/2026by David EhrlichIndiewire‘Miroirs No. 3’ Review: Christian Petzold’s Minor Key Is a Major One for His Beautifully Concussed Protagonist, Played by Paula Beer3/20/2026by Ryan LattanzioIndiewireWhat Went Wrong at One of Hollywood’s Newest Indie Distributors3/23/2026by Alison ForemanIndiewireMovie news‘Lord of the Rings’ Superfan Stephen Colbert to Write New Movie for Peter Jackson3/25/2026by Charisma MadarangRollingstone.com‘Spider-Man: Brand New Day’ Makes History as First Movie Trailer to Cross 1 Billion Views (Exclusive)3/24/2026by Jordan MoreauVariety - Film NewsGwyneth Paltrow to Star in ‘Strangers’ as Netflix Wins Movie Rights to Belle Burden’s Blockbuster Memoir3/25/2026by Matt DonnellyVariety Film + TVTV newsApple TV’s ‘For All Mankind’ Renewed for 6th and Final Season3/24/2026by Drew TaylorThe WrapNobody Wants This Season 3 Starts Production3/24/2026by Jean BentleyTudum - NetflixCriminal Minds Renewed At Paramount+ Ahead Of Season 19 Premiere — Heated Rivalry's Connor Storrie To Guest Star3/24/2026by Ryan SchwartzTVLine.com‘Stranger Things: Tales from ’85’ Trailer: It’s (Already) Time to Return to Hawkins in Netflix’s Animated Spinoff3/26/2026by Wilson ChapmanIndiewire Television
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

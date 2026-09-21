@@ -1,0 +1,797 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "atlanta hawks coach"
+
+Claims:
+[1] "Quin Snyder is the head coach of the Atlanta Hawks"
+[2] "Quin Snyder took over as head coach of the Atlanta Hawks on February 26, 2023"
+[3] "Quin Snyder served as head coach of the Utah Jazz from 2014 to 2022"
+[4] "Quin Snyder had four top-10 finishes in NBA Coach of the Year voting between 2017 and 2021"
+[5] "Quin Snyder was an assistant coach for the Lakers"
+[6] "Quin Snyder was an assistant coach for the Hawks"
+[7] "Quin Snyder was an assistant coach for the 76ers"
+[8] "Quin Snyder was an assistant coach for the Clippers"
+[9] "Ronald Nored is an assistant coach for the Atlanta Hawks"
+[10] "Antonio Lang is an assistant coach for the Atlanta Hawks"
+[11] "Igor Kokoskov is an assistant coach for the Atlanta Hawks"
+[12] "Bryan Bailey is an assistant coach for the Atlanta Hawks"
+[13] "Mike Brey is an assistant coach for the Atlanta Hawks"
+
+Cited text snippets from the AI Overview (for additional context):
+- Head Coach - Quin Snyder - Atlanta Hawks Basketball Academy: "Snyder finished Top 10 in NBA Coach,four-time Western Conference Coach of the Month."
+- The Atlanta Hawks Have A Big Decision To Make On Their Head ...: "Part of that was the presence of,fared much better on the defensive end."
+- Quin Snyder Named Eastern Conference Coach of the Month: "ATLANTA – Atlanta Hawks Head Coach Quin,played in March, the NBA announced today."
+- Quin Snyder: "Return to Atlanta (2023–present) On February 26,,Atlanta Hawks hired Snyder as head coach."
+- Quin Snyder: "On February 26, 2023, the Atlanta Hawks hired Snyder as head coach."
+- Quin Snyder: Coaching Record, Awards: "Quin Snyder ( Quin Price Snyder ),as Head Coach by the Atlanta Hawks."
+- Hardaway credits Hawks for getting his career on the right path | Dallas Mavericks: "17. BRIEFLY: Quin Snyder coached the Jazz,Snyder ultimately resigned on June 5, 2022"
+- Rising Coaches on Instagram: "Atlanta Hawks Assistant Coach Bryan Bailey shares his eye-opening experience when he first started in the NBA G-League. 🎙️Listen now on the Rising Coaches Podcast": "Atlanta Hawks Assistant Coach Bryan Bailey shares,🎙Listen now on the Rising Coaches Podcast"
+Reference Sources:
+
+[R1] Quin Snyder - Head Coach
+(https://basketballacademy.hawks.com/wp-content/uploads/2025/09/Atlanta-Hawks-Coaching-Staff-Bios-2025-2026.pdf)
+"""
+Quin Snyder - Head Coach
+Quin Snyder was named the 15th full-time head coach of the Atlanta Hawks on
+February 26, 2023.
+
+Atlanta finished the 2024-25 season at 40-42, a +4-win increase from the 2023-24
+season. The Hawks ranked second in the NBA in assists per game (29.6, most in
+franchise history) and steals per game (9.73), third in points in the paint per game
+(55.0), opponent turnovers per game (16.0) and free throws made per game
+(18.0).
+
+Under the tutelage of Snyder and his staff, Dyson Daniels earned the Kia NBA Most
+Improved Player Award and was runner-up for the NBA Defensive Player of the
+Year. Zaccharie Risacher was named to the Kia NBA All-Rookie First Team while
+finishing as runner-up for NBA Rookie of the Year.
+
+Snyder owns 458 career regular season wins, the fifth-most among all active head
+coaches. Snyder won his 450th career game on Mar. 12, 2025, as Atlanta topped
+Charlotte at State Farm Arena, 123-110.
+
+Snyder served as head coach of the Utah Jazz from the 2014-15 to 2021-22
+seasons, accumulating a 372-264 record (.585) and leading the Jazz to the playoffs
+in six of his eight seasons. Over his final six seasons (2016-17 to 2021-22), the Jazz
+compiled a 294-178 record, the third-highest winning percentage (.623) in the
+NBA and best in the Western Conference over that span. Utah started the 2020-21
+season with a 23-5 record, earning Snyder the honor of being named the head
+coach of the 2021 Western Conference All-Star team, and finished the regular
+season with the best record in the NBA (52-20; .722) and the fifth-highest single-
+season winning percentage in franchise history. His 372 wins are the second-most
+in Jazz history behind only Jerry Sloan.
+
+Snyder finished Top 10 in NBA Coach of the Year voting in four-of-five seasons
+between 2017-21, including second in 2018, third in 2021, sixth in 2017 and
+eighth in 2019. He is a four-time Western Conference Coach of the Month.
+The Jazz reached the playoffs in six consecutive seasons, advancing to the Western
+Conference Semifinals on three occasions (2017, 2018 and 2021).
+
+Before his hiring by the Jazz in 2014-15, Snyder was an assistant coach with the
+Hawks during the 2013-14 season. Prior to joining the Hawks in 2013-14, Snyder
+worked as an assistant coach for CKSA Moscow (2012-13), the Los Angeles Lakers
+(2011-12) and Philadelphia 76ers (2010-11). From 2007-10, Snyder was head
+coach of the Austin Toros (the NBA G League affiliate of the San Antonio Spurs),
+recording a 94-56 (.627) mark, while leading the Toros to three straight playoff
+appearances and the 2008 National Basketball Development League
+championship game. He was the 2008-09 D-League Coach of the Year.
+Snyder began his head coaching career at the University of Missouri in 1999,
+where in seven seasons, he led the Tigers to a 128-96 (.571) record, and four
+NCAA Tournaments including an Elite Eight appearance. Prior to starting with
+Missouri, he served as an assistant with the Los Angeles Clippers (1992-93) under
+Larry Brown and at Duke (1995-99) under Mike Krzyzewski.
+
+Snyder was named a McDonald’s All-American at Mercer Island High School. He
+played in 136 games over four years (1985-89) at Duke University, reaching three
+Final Fours and earning Academic All-American honors.
+
+Snyder earned undergraduate degrees in philosophy and political science from
+Duke, later earning a Juris Doctor and Master’s in Business Administration (MBA)
+from Duke as well. He is a native of Mercer Island, WA.
+
+ Bryan Bailey - Assistant Coach
+Bryan Bailey is in his third season as an assistant coach with the Hawks. He came
+to Atlanta after spending four years as an assistant coach with the Utah Jazz.
+
+Previously, Bailey served as an assistant coach with the Salt Lake City Stars and the
+Westchester Knicks, both of the NBA G League.
+Bailey most recently served as head coach of the Hawks’ 2025 summer league
+team, leading the club to a 4-1 mark, Atlanta’s best summer league record since
+beginning play in Las Vegas in 2010, and tying for the third-best record at this
+year’s Las Vegas Summer League.
+
+The Hempstead, N.Y. native’s 13-year playing career took him to Germany
+(Wurzburg, Artland, Oldenburg, Medi Bayreuth), the Netherlands (Landstede
+Zwolle), Bosnia (KK Bosna), Poland (PGE Turow), Cyprus (Keravnos) and Italy
+(Virtus Roma).
+
+He is the co-founder of DIME Athletics, which focuses on assisting competitive
+high school, collegiate and pro basketball players on improving their basketball
+skills, strength, conditioning and overall athleticism.
+
+Bailey played collegiately at Bucknell University, where he was named First Team
+All-Patriot League in his final two seasons. He is a Certified Strength and
+Conditioning Specialist (CSCS) by the National Strength and Conditioning
+Association.
+
+ Mike Brey - Assistant Coach
+Mike Brey is in his third season as an assistant coach with the Hawks following a
+memorable run as head coach at Notre Dame, where he finished as the
+winningest coach in school history, accumulating a 483-280 (.633) mark over 23
+seasons.
+Under his guidance, the Irish reached the postseason 18 times, including 13 NCAA
+Tournament berths, three Sweet 16 trips, two Elite Eight appearances and the
+2015 ACC Championship.
+Originally named head coach at Notre Dame in 2000, Brey was named the
+Associated Press and the Henry Iba/USBWA National Coach of the Year award in
+2011, while also being named BIG EAST Coach of the Year in 2006-07, 2007-08 and
+2010-11.
+Prior to his arrival at Notre Dame, Brey served as head coach at University of
+Delaware, where he compiled a 99-52 mark from 1995-2000 and won America
+East Co-Coach of the Year honors in 1998.
+Brey was previously an assistant coach at Duke University for eight years, helping
+the Blue Devils to advance to the Final Four six times and win back-to-back
+national championships in 1991 and 1992.
+Before entering the collegiate ranks, Brey played for and coached with legendary
+coach Morgan Wootten and DeMatha High School.
+He is a graduate of George Washington University with a degree in physical
+education. Brey and his wife, Suzanne, have four children between them - Kyle,
+Callie, Emmett and Wade – and Brey has three grandchildren, Olivia, Jude and
+Wes.
+
+ Steve Klei - Assistant Coach
+In his third full season in Atlanta is assistant coach Steve Klei. He also serves as
+head coach of the Hawks’ NBA G League affiliate, the College Park Skyhawks, a
+position he was named to in September, 2024.
+
+Last season, Klei led the Skyhawks to a 26-24 record, including a 9-7 Showcase Cup
+record and 17-17 regular season mark. Under Klei’s lead, the Skyhawks finished in
+the top-10 in multiple defensive categories for both seasons combined, while also
+breaking single season franchise records for most three pointers (668), most
+assists (1211), and most rebounds (2337).
+
+Klei and his staff were instrumental in the development of Mouhamed Gueye,
+who spent 24 games with the Skyhawks on assignment before ending the year in
+the rotation for the Hawks, where he appeared in 33 games (28 starts). The
+Skyhawks also saw four players receive NBA callups in Dominick Barlow, Tony
+Bradley, Kevon Harris and Daeqwon Plowden.
+
+Klei joined the Hawks in March, 2023, after spending the first part of the 2022-23
+season with Olimpia Milano in Italy as director of player development.
+
+He was previously with the Utah Jazz from 2016-22, spending time in the DAV
+program (player development/advanced scouting/video), including as head video
+coordinator prior to becoming a coaching associate.
+
+He began his career with the Canton Charge of the NBA G League in 2015-16. Klei
+is a graduate of Indiana University with a degree in Kinesiology, Sports Marketing
+and Management.
+
+ Antonio Lang - Assistant Coach
+In his third season as a Hawks assistant coach is Antonio Lang.
+
+He came to Atlanta after four seasons with the Cleveland Cavaliers as an assistant
+coach following five seasons with the Utah Jazz (2014-19).
+
+Before joining the Jazz, Lang served as head coach of the Mitsubishi Diamond
+Dolphins in Japan for four years.
+Selected by Phoenix with the 29th overall pick in the 1994 NBA Draft, Lang played
+in 143 career regular season games with the Suns, Cavaliers, Miami Heat, Toronto
+Raptors and Philadelphia 76ers over six seasons.
+
+He also played in the Continental Basketball Association (CBA), International
+Basketball League (IBL), in the Philippines and in Japan. He is fluent in Japanese.
+Raised in Mobile, Al., Lang played four collegiate seasons at Duke University
+(1990-94), appearing in three Final Fours and winning back-to-back national titles
+in 1991 and 1992.
+
+ Sanjay Lumpkin – Assistant Coach
+Former College Park Skyhawks player Sanjay Lumpkin is in his third season as an
+assistant coach with the Hawks.
+
+Lumpkin came to Atlanta from the Utah Jazz, where he was a player development
+coach in 2022-23 following two years on Utah’s DAV (player
+development/advanced scouting/video) staff.
+
+He played five collegiate seasons at Northwestern University (2012-17) before
+playing in the NBA G League with the Erie BayHawks (2018-19) and the Skyhawks
+in 2019-20.
+
+Lumpkin holds a degree in learning & organizational change from Northwestern,
+where he also earned a Master’s in Sports Administration.
+ Ronald Nored - Assistant Coach
+Ronald Nored is in his third season as an assistant coach with the Hawks. He came
+to Atlanta after spending the prior two seasons on the Indiana Pacers’ coaching
+staff following three years with the Charlotte Hornets.
+
+The Hawks’ summer league head coach in 2024, Nored held the same position
+previously with Indiana (2022) and Charlotte (2019).
+The former head coach of the Long Island Nets of the NBA G League, Nored also
+spent time with the Maine Red Claws. He began his coaching career at
+Brownsburg High School near Indianapolis.
+
+Nored played collegiately at Butler University, where he helped lead the Bulldogs
+to back-to-back National Championship game appearances in 2010 and 2011. He
+was a two-time Horizon League Defensive Player of the Year.
+
+Nored and his wife Danielle have four children; daughters Avery and Campbell,
+and sons Kai and Jude.
+
+ Reggis Onwukamuche - Assistant Coach
+Former College Park Skyhawks player Reggis Onwukamuche is in his third season
+with the Hawks and second as an assistant coach. He spent 2023-24 as a player
+development coach prior to his promotion.
+
+Onwukamuche came to Atlanta after having worked with the Utah Jazz in DAV
+(player development/advanced scouting/video) during the 2021-22 season and
+with the Milwaukee Bucks in 2022-23 as assistant video coordinator/player
+development.
+
+As a player, the native of Houston, Texas appeared in 144 career games in the NBA
+G League, also spending time with the Lakeland Magic and Erie BayHawks. He was
+also part of the Hawks’ mini-camp roster in September 2020.
+
+Onwukamuche played collegiately at Prairie View A&M from 2013-15, appearing
+in 64 contests.
+
+ Ryan Schmidt - Assistant Coach
+Ryan Schmidt is in his third season as an assistant coach with the Hawks.
+
+In 2023-24, he also served as head coach of the College Park Skyhawks of the NBA
+G League, where he guided the team to the best defensive season in franchise
+history. The Skyhawks led the G League in opponent points per game (102.9), field
+goals made per game (35.7) and points in the paint (44.0), while ranking second in
+defensive rating (105.5) and opponent field goal percentage (.444).
+
+Schmidt came to Atlanta after spending the 2022-23 campaign as head coach of
+the London Lions of the British Basketball League, where he was named the 2023
+BBL Coach of the Year after leading the team to three domestic titles.
+
+Schmidt previously served as head coach of the Brampton Honey Badgers of the
+Canadian Elite Basketball League from 2020-22, where he earned 2022 CEBL
+Coach of the Year honors for leading the Honey Badgers to the CEBL
+Championship. He was also an assistant coach for Raptors 905 of the NBA G
+League for four seasons (2017-21).
+A native of Keizer, Ore., Schmidt played college basketball at the University of
+Hawaii (2001-04) and at Western Oregon University (2004-05). While at Western
+Oregon, Schmidt served as team captain and led the Wolves in scoring his senior
+year before being selected by Idaho in the 2008 NBA Development League Draft.
+Schmidt played for Honolulu in the American Basketball Association during the
+2009-10 season.
+
+He and his wife, Whitney, have a daughter named Deklynn and a son, Beckham.
+
+ Ekpe Udoh – Assistant Coach
+Longtime NBA and international big man Ekpe Udoh is in his third season as an
+assistant coach with the Hawks after 13 professional playing seasons.
+
+A former sixth overall pick in 2010 by Golden State, Udoh appeared in 384 regular
+season games (56 starts) for the Warriors, Milwaukee Bucks, LA Clippers and Utah
+Jazz, with international stops in Israel, Turkey, China, Italy and Japan.
+
+With Fenerbahce (Turkey) from 2015-17, Udoh earned All-Euro League First Team
+honors and Final Four MVP, leading the Euro League in rebounding and blocks en
+route to the championship, playing alongside former Hawk Bogdan Bogdanovic.
+
+Udoh played collegiately at Michigan (2006-08) and Baylor (2009-10). He is an avid
+reader who created “Ekpe’s Book Club” during his playing career, routinely hosting
+club meetings and social media chats.
+ Ashton Smith - Assistant Coach
+Ashton Smith is in his second season with the Hawks and first as an assistant
+coach. He spent the 2024-25 campaign as a player development coach after time
+in the 2023-24 season with the College Park Skyhawks as an assistant coach.
+Smith has previous coaching experience with the London Lions, Raptors 905 and
+Hamilton Honey Badgers of the CEBL.
+
+His playing career spanned eight years and five countries, including Austria,
+Canada, Colombia, Indonesia and the NBA G League.
+
+Smith played collegiately at Indiana University of Pennsylvania (IUP), where he left
+as the all-time leader in wins and assists, was a three-time conference champion,
+the 2011-12 conference player of the year, and 2011-12 NCAA Division II All-
+American. He will be inducted into the school’s Hall of Fame later this year.
+
+Born and raised in Scarborough, Ontario, Canada, Smith’s parents are from
+Jamaica and Barbados, respectively. Smith and his wife, Falan, have a son, Kairo
+and a daughter, Kalina.
+
+ Jeff Watkinson - Assistant Coach
+Jeff Watkinson is in his third full season as an assistant coach for the Hawks. He
+returned to the organization in March, 2023, after spending seven seasons as
+assistant coach/integrated player development with the Utah Jazz. Watkinson was
+originally with the Hawks as the team’s strength and conditioning coach from
+2012-15.
+Prior to his initial stint with the Hawks, Watkinson served in similar capacities at
+Indiana University, University of Missouri, Clemson University, UNC Charlotte and
+the College of Charleston.
+
+The suburban Chicago native is a graduate of North Carolina State University (pre-
+medicine), where he played collegiate baseball. He later earned a Master’s in
+Exercise Science from Indiana University.
+
+Jeff is the father of two children – daughter Evelyn (7) and son Dax (5).
+"""
+
+[R2] Quin Snyder: Coaching Record, Awards | Basketball-Reference.com
+(https://www.basketball-reference.com/coaches/snydequ01c.html)
+"""
+Opens in a new window Opens an external website Opens an external website in a new window Close this dialog This website utilizes technologies such as cookies to enable essential site functionality, as well as for analytics, personalization, and targeted advertising. To learn more, view the following link: Privacy Policy Manage Preferences Close Cookie Preferences Sports Reference ® Baseball Football (college) Basketball (college) Hockey Soccer Blog Stathead ® Immaculate Grid ® Questions or Comments? Welcome · Your Account Logout Ad-Free Login Create Account MENU PlayersNBA & ABA Player DirectoryIn the News: L. Dončić · L. James · S. Curry · A. Edwards · D. Mitchell · T. Maxey · K. Durant · J. Harden · J. Embiid …All-Time Greats: L. James · K. Abdul-Jabbar · W. Chamberlain · K. Malone · C. Paul · M. Jordan · J. Stockton · T. Duncan · D. Nowitzki …Active Greats: LeBron James · Kevin Durant · James Harden · Stephen Curry · Nikola Jokić · Jimmy Butler · Giannis Antetokounmpo · Rudy Gobert · Anthony Davis …Game Logs: S. Gilgeous-Alexander · J. Duren · A. Thompson · J. Murray · L. Dončić · C. Holmgren …Splits: N. Jokić · K. Durant · V. Wembanyama · K. Towns · K. Leonard · N. Queta … » All NBA & ABA Players · G-League Players · NBL Players · International Players · WNBA Players Teams Eastern Conference Atlantic Division Boston Celtics(56-26)F$ New York Knicks(53-29)F$ Toronto Raptors(46-36)F$ Philadelphia 76ers(45-37)F$ Brooklyn Nets(20-62)F$ Central Division Detroit Pistons(60-22)F$ Cleveland Cavaliers(52-30)F$ Milwaukee Bucks(32-50)F$ Chicago Bulls(31-51)F$ Indiana Pacers(19-63)F$ Southeast Division Atlanta Hawks(46-36)F$ Orlando Magic(45-37)F$ Charlotte Hornets(44-38)F$ Miami Heat(43-39)F$ Washington Wizards(17-65)F$ Western Conference Northwest Division Oklahoma City Thunder(64-18)F$ Denver Nuggets(54-28)F$ Minnesota Timberwolves(49-33)F$ Portland Trail Blazers(42-40)F$ Utah Jazz(22-60)F$ Pacific Division Los Angeles Lakers(53-29)F$ Phoenix Suns(45-37)F$ Los Angeles Clippers(42-40)F$ Golden State Warriors(37-45)F$ Sacramento Kings(22-60)F$ Southwest Division San Antonio Spurs(62-20)F$ Houston Rockets(52-30)F$ New Orleans Pelicans(26-56)F$ Dallas Mavericks(26-56)F$ Memphis Grizzlies(25-57)F$ » All NBA & ABA Teams · G-League Teams · NBL Teams · International Teams · WNBA Teams Seasons2025-26: Summary · Standings · Schedule & Results · Playoffs · Leaders · Coaches · Stats (Per G & Totals & Per 36 Min & Per Poss & Advanced) …2024-25: Summary · Standings · Schedule & Results · Playoffs · Leaders · Coaches · Stats (Per G & Totals & Per 36 Min & Per Poss & Advanced) …2023-24: Summary · Standings · Schedule & Results · Playoffs · Leaders · Coaches · Stats (Per G & Totals & Per 36 Min & Per Poss & Advanced) …2022-23: Summary · Standings · Schedule & Results · Playoffs · Leaders · Coaches · Stats (Per G & Totals & Per 36 Min & Per Poss & Advanced) … » All NBA & ABA Seasons · G-League Seasons · NBL Seasons · International Seasons · WNBA Seasons LeadersSeason: 2025-26 NBA · 2024-25 NBA · 2023-24 NBA · 2022-23 NBA · 2021-22 NBA Regular SeasonWS: Season · Career · Active · YearWS/48: Season · Career · Active · YearPPG: Season · Career · Active · YearRPG: Season · Career · Active · YearAPG: Season · Career · Active · Year PlayoffsWS: Season · Career · Active · YearWS/48: Season · Career · Active · YearPPG: Season · Career · Active · YearRPG: Season · Career · Active · YearAPG: Season · Career · Active · Year » All NBA & ABA Leaders & Records · G-League Leaders · NBL Leaders · International Leaders · WNBA Leaders Scores3 April 21, 2026 (Daily Leaders) > April 20, 2026 (Daily Leaders) Philadelphia 111 Final Boston 97 PTS J. Brown-BOS 36 TRB J. Tatum-BOS 14 Houston 94 Final LA Lakers 101 PTS L. James-LAL 28 TRB A. Şengün-HOU 11 Portland 106 Final San Antonio 103 PTS S. Henderson-POR 31 TRB D. Vassell-SAS 12 » All NBA Box Scores From 1946-47 to Present · All WNBA Box Scores From 1997 to Present WNBAWNBA Players: L. Leslie · A. Wilson · D. Taurasi · B. Stewart · T. Catchings · S. BirdWNBA 2026: Summary · Standings · Schedule & Results · Playoffs · Leaders · Player Stats · DraftWNBA 2025: Summary · Standings · Schedule & Results · Playoffs · Leaders · Player Stats · DraftWNBA 2024: Summary · Standings · Schedule & Results · Playoffs · Leaders · Player Stats · DraftWNBA 2023: Summary · Standings · Schedule & Results · Playoffs · Leaders · Player Stats · Draft » WNBA Home · WNBA Leaders · WNBA Teams · WNBA Playoffs · WNBA Draft · WNBA Awards · WNBA Rookie Leaders DraftPicks By Year: 2025 NBA · 2024 NBA · 2023 NBA · 2022 NBA · 2021 NBA · 2020 NBA · 2019 NBA · 2018 NBA …Picks By Team: Lakers · Celtics · 76ers/Nationals · Knicks · Pistons · Hawks · Warriors · Kings/Royals · Spurs/Chaparrals …Expansion Picks: 2004 NBA · 1995 NBA · 1989 NBA · 1988 NBA · 1980 NBA · 1974 NBA · 1970 NBA … » All NBA Drafts · Draft Rights » All WNBA Drafts Stathead Stathead Basketball's Most Powerful Research Tools Players: Season Finder · Game Finder · Streak Finder · Span Finder · Quarter Finder · Versus Finder Teams: Season Finder · Game Finder · Streak Finder · Span Finder Other: Event Finder · Shot Finder College: Player Game Finder · Player Season Finder · Team Game Finder · Team Season Finder » All Stathead Tools Newsletter Full Site Menu Below You are here: /coaches/snydequ01c.html Stathead > Coaches > Quin Snyder Welcome · Your Account Logout Ad-Free Login Create Account Quin Snyder Quin Price Snyder Born: October 30, 1966 (Age: 59-175d) in Mercer Island, Washington High School: Mercer Island in Mercer Island, Washington Become a Stathead & surf this site ad-free. Coaches Menu Coaches Index More Snyder Pages Quin Snyder College Basketball statistics Quin Snyder College Basketball Coaching Record On this page Coaching Record Awards Coach of the Year Voting Transactions Full Site Menu Keyboard Shortcuts \ to toggle sidebar navigation / to toggle search input More about this update Coaching Record Assistant Coach and Staff records might not be complete. Share & ExportModify, Export & Share TableGet as Excel WorkbookGet table as CSV (for Excel)Get Link to TableAbout Sharing ToolsVideo: SR Sharing Tools & How-toVideo: Stats Table Tips & TricksData Usage Terms Coaching Record Table Regular Season Playoffs Season Age Tm Lg G W L W/L% W > .500 Finish G W L W/L% Notes 1992-9326LACNBAAssistant Coach 2010-1144PHINBAAssistant Coach 2011-1245LALNBAAssistant Coach 2013-1447ATLNBAAssistant Coach 2014-1548UTANBA823844.463-3.03 2015-1649UTANBA824042.488-1.03 2016-1750UTANBA825131.62210.011147.364 2017-1851UTANBA824834.5857.031156.455 2018-1952UTANBA825032.6109.03514.200 2019-2053UTANBA724428.6118.03734.429 2020-2154UTANBA725220.72216.011165.545 2021-2255UTANBA824933.5988.01624.333 2022-2356ATLNBA211011.476-0.52624.333 2023-2457ATLNBA823646.439-5.03 2024-2558ATLNBA824042.488-1.02 2025-2659ATLNBA824636.5615.01211.500 CareerNBA903504399.55852.5592435.407 8 seasonsUTANBA636372264.58554.0512130.412 4 seasonsATLNBA267132135.494-1.5835.375 Awards Awards Table Season Lg Award 2017-18NBAWestern Conference Coach of the Month (March) 2020-21NBAWestern Conference Coach of the Month (January) 2020-21NBAWestern Conference Coach of the Month (February) 2021-22NBAWestern Conference Coach of the Month (February) 2025-26NBAEastern Conference Coach of the Month (March) Coach of the Year Voting Coach of the Year Voting Table Season Lg Rank Voting First Pts Won Pts Max Share 2014-15NBA8 (V)0.07.06500.011 2015-16NBA11 (V)0.03.06500.005 2016-17NBA6 (V)1.037.05000.074 2017-18NBA2 (V)21.0217.05000.434 2018-19NBA8 (V)0.02.05000.004 2020-21NBA3 (V)10.0161.05000.322 Transactions June 6, 2014: Hired as Head Coach by the Utah Jazz.February 26, 2023: Hired as Head Coach by the Atlanta Hawks. Transactions Table Coaches Index Welcome · Your Account Logout Ad-Free Login Create Account You are here: /coaches/snydequ01c.html Stathead > Coaches > Quin Snyder Full Site Menu Return to Top Players In the News: V. Wembanyama, L. James, K. Durant, J. Embiid, J. Harden, S. Curry, L. Dončić ... All-Time Greats: E. Hayes, J. Stockton, H. Olajuwon, W. Chamberlain, D. Schayes, J. Havlicek ... Active Greats: L. James, G. Antetokounmpo, N. Jokić, J. Harden, S. Curry, K. Durant ... Teams Atlantic: Toronto, Boston, New York, Brooklyn, Philadelphia Central: Cleveland, Indiana, Detroit, Chicago, Milwaukee Southeast: Miami, Atlanta, Charlotte, Washington, Orlando Northwest: Oklahoma City, Portland, Utah, Denver, Minnesota Pacific: Golden State, Los Angeles Clippers, Sacramento, Phoenix, Los Angeles Lakers Southwest: San Antonio, Dallas, Memphis, Houston, New Orleans Seasons 2025-26, 2024-25, 2023-24, 2022-23, 2021-22, 2020-21, 2019-20 ... Leaders Season Points, Career Rebounds, Active Assists, Yearly Steals, Progressive Blocks ... Or, view "Trailers" for Season Field Goal Pct, or Career Blocks Per Game NBA Scores Yesterday's Games and Scores from any date in BAA/NBA or ABA history NBA Schedules Team Schedules and League Schedules NBA Standings Today's Standings and Standings for any date in history Stathead Player Finders: Season Finder, Game Finder, Streak Finder, Span Finder Team Finders: Season Finder, Game Finder, Streak Finder, Span Finder Other Finders: Versus Finder, Shot Finder College Tools: Player Season Finder, Player Game Finder, Team Season Finder, Team Game Finder Coaches Richie Guerin, Rudy Tomjanovich, Jim O'Brien, Mike Fratello, Alvin Gentry ... Awards NBA MVP, All-NBA, Defensive Player of the Year, Rookie of the Year, All-Rookie, Hall of Fame ... NBA Contracts Main Index, Team Payrolls, Player Contracts, Glossary ... Playoffs 2026 NBA Playoffs, 2025 NBA Playoffs, 2024 NBA Playoffs, 2023 NBA Playoffs, 2022 NBA Playoffs, 2021 NBA Playoffs, 2020 NBA Playoffs, Playoffs Series History ... All-Star Games 2025 All-Star Game, 2024 All-Star Game, 2023 All-Star Game, 2022 All-Star Game, 2021 All-Star Game, 2020 All-Star Game, 2019 All-Star Game ... NBA Draft 2025 Draft, 2024 Draft, 2023 Draft, 2022 Draft, 2021 Draft, 2020 Draft, 2019 Draft ... Frivolities Players who played for multiple teams (WNBA), Birthdays, Colleges, High Schools, Milestone Watch ... Executives Daryl Morey, Masai Ujiri, Pat Riley, Danny Ainge, Jon Horst ... Referees Joe Forte, Tony Brothers, Dan Crawford, Ron Olesiak, David Jones ... G League Stats Players, Teams, Seasons, Leaders, Awards ... International Basketball Stats Players, Teams, Seasons, Leaders, Awards ... WNBA Players, Teams, Seasons, Leaders, Awards, All-Star Games, Executives ... NBL Players, Teams, Seasons, Leaders, Awards ... About Glossary, Contact and Media Information, Frequently Asked Questions about the NBA, WNBA and Basketball, NBA Data Coverage, ABA Data Coverage, ... Immaculate Grid (Men's) and Immaculate Grid (Women's) Put your basketball knowledge to the test with our daily basketball trivia games. Can you complete the grids? Basketball-Reference.com Blog and Articles We're Social...for Statheads Site Last Updated: Wednesday, April 22, 5:21AM Question, Comment, Feedback, or Correction? Subscribe to our Free Email Newsletter Subscribe to Stathead Basketball: Get your first month FREEYour All-Access Ticket to the Basketball Reference Database Do you have a sports website? Or write about sports? We have tools and resources that can help you use sports data. Find out more. FAQs, Tip & Tricks Tips and Tricks from our Blog. Do you have a blog? Join our linker program. Watch our How-To Videos to Become a Stathead Subscribe to Stathead and get access to more data than you can imagine All logos are the trademark & property of their owners and not Sports Reference LLC. We present them here for purely educational purposes. Our reasoning for presenting offensive logos. Logos were compiled by the amazing SportsLogos.net. Data Provided By the official stats partner of the NBA, NHL and MLB. Copyright © 2000-2026 Sports Reference LLC. All rights reserved. The SPORTS REFERENCE, STATHEAD, IMMACULATE GRID, and IMMACULATE FOOTY trademarks are owned exclusively by Sports Reference LLC. Use without license or authorization is expressly prohibited. Sports Reference ® Baseball Football (college) Basketball (college) Hockey Soccer Blog Stathead ® Immaculate Grid ® About • Conditions & Terms of Service • Advertise With Us • Jobs at SR • Basketball-Reference.com T-Shirts & Store • Your Privacy Choices Sports Reference Purpose: We will be the trusted source of information and tools that inspire and empower users to enjoy, understand, and share the sports they love. Privacy Policy • Gambling Revenue Policy • Accessibility Policy • Use of Data
+"""
+
+[R3] Quin Snyder Named Eastern Conference Coach of the Month | Atlanta Hawks
+(https://www.nba.com/hawks/news/quin-snyder-named-eastern-conference-coach-of-the-month)
+"""
+Secured 500th Career Win, Leading the Hawks to an Eastern Conference-Best 13 Victories; Earns Fifth-Career Coach of the Month HonorATLANTA – Atlanta Hawks Head Coach Quin Snyder has been named the Eastern Conference Coach of the Month for games played in March, the NBA announced today. Snyder earns his fifth career Coach of the Month honor and becomes the seventh Hawks head coach to earn the monthly honor.Notable Statistics from March:Atlanta won 13 games, the most by any Eastern Conference team in the month, the team’s most wins in a single month since January 2015 (17) and tied for the fourth-most wins in a single month in franchise historyOwned a point differential of +12.1 over the month, the best in the East and second-best in the NBARanked first amongst all Eastern Conference teams in points per game (122.5), effective field goal percentage (.576%), forced turnovers per game (17.6), and points off turnovers per game (24.9), while ranking second in net rating (11.5), defensive rating (109.4), and true shooting percentage (.605%)Snyder secured his 500th regular season career victory on March 28, becoming the 41stcoach in NBA history to 500 career wins and the sixth active head coach to do soSnyder led the Hawks to an Eastern Conference-best 13-2 (.867%) record in the month of March, tied for the most wins in a single month in his head coaching career. Two of Atlanta’s conference-leading 13 victories came against the top two teams in the East: at Detroit (March 25), vs. Boston (March 30).Over Atlanta’s 15 games in the month, the Hawks averaged 122.5 points, 44.3 rebounds, including 12.5 offensive boards (third in the East), 30.2 assists (third in the East), and 9.4 steals (third in the East), forcing an NBA-leading 17.6 turnovers per game, leading to a league-best 24.9 points off turnovers. Atlanta’s 17.6 forced turnovers per game are its most in a single month since December 2006, per Elias Sports (min. 15 GP).The Hawks entered the month of March on a three-game winning streak. From Feb. 22 through March 18, Atlanta won 11 straight games, winning all but one game by double digits (March 7 vs. Philadelphia, 125-116, +9). The Hawks became just the second team in NBA history to win 11 straight contests by nine-or-more points, joining the 1946 Washington Capitols. In March, Atlanta went a perfect 10-0 inside the award-winning State Farm Arena and is currently riding a 13-game home winning streak, the club’s longest single-season home winning streak since the 1996-97 campaign (20).Since the NBA All-Star break, the Hawks own an 18-3 record (.857%), the best clip in the Eastern Conference. Per Elias Sports, this is just the sixth season in franchise history the club has won 18 games over a 21-game stretch and the first time doing so since the 2014-15 campaign (1968-69, 1986-87, 1987-88, 1993-94, 2014-15, 2025-26). Over that time, the Hawks rank second in the NBA in defensive rating (107.3), third in net rating (11.2), and eighth in offensive rating (118.5). Atlanta is leading the NBA in assists per game this season (30.3), on pace to be the eighth-most assists in a single season in NBA history. With five regular season games left to play, the Hawks hold a 44-33 record (.571%), the team’s most wins in a single season since 2015-16, including securing 21 road wins, the most road victories in a single season since the 2015-16 season.In addition to Snyder's Coach of the Month honors, Hawks forward Jalen Johnson was named the Eastern Conference Player of the Month.
+"""
+
+[R4] Atlanta Hawks Team Info and News | NBA.com
+(https://www.nba.com/team/1610612737/hawks)
+"""
+SchedulePlayoffsBAL 2026League PassGamesWatchNewsStatsStandingsTeamsPlayersNBA PlayFantasyStoreTicketsAffiliatesAtlanta Hawks46 - 36 | 6th in EasternFOLLOWPPG6th118.5RPG18th43.5APG1st30.1OPPG18th116.0ProfileScheduleStatshawks.comStoreTicketsUpcoming GamesSee Full ScheduleApr 20Final6ATL1073NYK106LPApr 237:00 pm ET3NYK1 - 16ATL1 - 1Prime VideoApr 256:00 pm ET3NYK1 - 16ATL1 - 1NBC, PeacockApr 288:00 pm ET6ATL1 - 13NYK1 - 1NBC, PeacockTBD3NYK1 - 16ATL1 - 1TBDTBD6ATL1 - 13NYK1 - 1TBD ROSTERPlayer#PosHeightWeightBirthdateAgeExpSchoolHow AcquiredKeshon GilbertG6-4200 lbsJUN 30, 200322RIowa StateSigned on 03/04/26RayJ Dennis00G6-1180 lbsMAR 30, 2001251BaylorSigned on 12/31/25Jonathan Kuminga0F6-7225 lbsOCT 06, 2002234NBA G League IgniteTraded from GSW on 02/05/26Jalen Johnson1F6-8219 lbsDEC 18, 2001244Duke#20 Pick in 2021 DraftKeaton Wallace2G6-3185 lbsFEB 26, 1999271Texas-San AntonioSigned on 09/29/23CJ McCollum3G6-3190 lbsSEP 19, 19913412LehighTraded from WAS on 01/09/26Gabe Vincent4G6-2200 lbsJUN 14, 1996296California-Santa BarbaraTraded from LAL on 02/05/26Dyson Daniels5G6-7199 lbsMAR 17, 2003233NBA G League IgniteTraded from NOP on 07/06/24Nickeil Alexander-Walker7G6-5205 lbsSEP 02, 1998276Virginia TechTraded from MIN on 07/06/25Buddy Hield8G6-4220 lbsDEC 17, 1992339OklahomaTraded from GSW on 02/05/26Zaccharie Risacher10F6-8200 lbsAPR 08, 2005211JL Bourg-en-Bresse#1 Pick in 2024 DraftChristian Koloko10C6-11225 lbsJUN 20, 2000253ArizonaSigned on 01/16/26Tony Bradley13C-F6-10248 lbsJAN 08, 1998287North CarolinaSigned on 04/06/26Asa Newell14F6-10220 lbsOCT 05, 200520RGeorgiaDraft Rights Traded from NOP on 06/25/25Onyeka Okongwu17F-C6-10240 lbsDEC 11, 2000255Southern California#6 Pick in 2020 DraftMouhamed Gueye18F6-11210 lbsNOV 09, 2002232Washington StateDraft Rights Traded from BOS on 06/28/23Corey Kispert24F6-6224 lbsMAR 03, 1999274GonzagaTraded from WAS on 01/09/26Jock Landale31C6-11255 lbsOCT 25, 1995304St. Mary'sTraded from UTA on 02/05/26COACHING STAFFHead CoachQuin SnyderAssistant CoachRonald NoredAntonio LangJeff WatkinsonIgor KokoskovEkpe UdohBryan BaileyRyan SchmidtSanjay LumpkinMike BreyAssistant Coach for Player DevelopmentReggis OnwukamucheTrainerScottie ParkerAssistant TrainerJohn DuselFANTASY NEWSSee All04/22/2026, 9:37 PMUndergoes surgery TuesdayA two-way player for Atlanta, Gilbert is not eligible to play in the postseason and will be re-evaluated ahead of Summer League. The 22-year-old guard appeared in four regular-season games between the Hawks and Wizards in 2025-26, averaging 4.3 points, 3.0 assists, 1.3 rebounds, 1.0 blocks and 0.8 steals in 18.5 minutes per contest.04/21/2026, 2:31 PMPops off benchKuminga nearly matched the output of the New York second unit with 19 points compared to their 20. He's averaging 13.5 points, 4.0 rebounds and 1.0 assists through two postseason games, but he's shooting just 16.7 percent from beyond the arc thus far.04/21/2026, 2:23 PMNotches 17 points in winThis was a mild effort from Johnson based on his regular-season standards. The Knicks have clearly made it a priority to slow him down, but he's still managing averages of 20.0 points, 7.5 rebounds, 3.0 assists and 0.5 steals on 45.2 percent shooting from the field through two games.RETIRED NUMBERS#PlayerPOSSeasons With TeamYear of Induction44Pete MaravichG1971-1974201755Dikembe MutomboC1997-2001201540Jason CollierC2003-2005200517Ted TurnerOwner1977-2001200421Dominique WilkinsF1983-1994200123Lou HudsonG-F1967-197719779Bob PettitF1955-1965HALL OF FAMEPlayerPOSSeasons With TeamYear of InductionLou HudsonG-F1967-19772022Toni KukocF2001-20022021Chuck CooperF1955-19562019Sidney MoncriefG19912019Maurice CheeksG1991-19922018Tracy McGradyG-F2011-20122017Zelmo BeatyC1963-19682016Dikembe MutomboC1997-20012015Richie GuerinG1964-19702013Dominique WilkinsF1983-19942006Moses MaloneC1989-19912001Walt BellamyC1970-19741993Connie HawkinsF19761992Lenny WilkensG1961-19681989Clyde LovelletteC1959-19621988Bob HoubregsF19541987Pete MaravichG1971-19741987Slater MartinG1957-19601982Cliff HaganF1957-19661978Bob PettitF1955-19651971Ed MacauleyC1957-19591960ALL TIME RECORDSTotal PointsDominique Wilkins23292Total AssistsTrae Young4837Total ReboundsBob Pettit12849Total BlocksTree Rollins2283Total StealsMookie Blaylock1321ACHIEVEMENTSChampionship Wins1958Conference TitlesDivision Titles1957195819591960196119681970198019871994201520212023BACKGROUNDFounded1949CityAtlantaArenaState Farm ArenaG-LeagueCollege Park SkyhawksGovernor(s)Tony ResslerGeneral ManagerTravis SchlenkHead CoachQuin SnyderYour Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I UnderstandEnter your email to create an NBA IDclose email sign up bannerGet more from the league you loveSign up for your free NBA ID to personalize your experience and earn exclusive benefits.Please enter aboveCreate My NBA IDClick "Create My NBA ID" to agree to our Terms of Use and to sign up for emails about the latest news and products from the NBA and its partners. By clicking submit, you also acknowledge our Privacy Policy.close email sign up banner
+"""
+
+[R5] Hardaway credits Hawks for getting his career on the right path | Dallas Mavericks
+(https://www.nba.com/mavs/hardawaycreditshawks)
+"""
+ATLANTA – For Tim Hardaway Jr., the foundation that set his NBA career spiraling in the right direction started with theAtlanta Hawks.After playing two ho-hum seasons with the New York Knicks in 2013-15, Hardaway was subsequently traded to the Hawks. And it was with the Hawks’ franchise where his career completely took off.“This is the place that molded me into being a professional, true professional, knowing the ins and outs in the game of basketball, the NBA, the culture of the NBA, how you can prolong your career in the NBA and not just be a journeyman,” Hardaway told Mavs.com. “That was the help with (Hawks assistant coach) Charles Lee, (Hawks head coach) Mike Budenholzer, a lot of guys, (Hawks assistant coach) Kenny Atkinson.“The list goes on and on and on. It was a surreal moment, a great moment and a teaching moment and I’m happy that I overcame it.”What the Hawks’ coaching staff did with Hardaway at that time was basically almost take him back to the basic of basketball. Theye were so invested in Hardaway that he even had two stints in the G League with the Canton Charge and Austin Spurs.“They just told me the first 25 games I’m not playing and we’re going to mold you into the player that we want you to become for the Atlanta Hawks,” Hardaway said. “It was from then on a couple of stints in the G League.“It was a surreal humbling experience and an experience I was grateful for.”At the time, Hardaway really didn’t think he needed time in the G League to get to where he wanted to go in the NBA. But the Hawks’ brass thought otherwise.“It wasn’t obviously a goal of mine to go to the G League,” Hardaway said. “But at the same time when you go down there you actually see a lot of great talent, a lot of guys that are trying to find their way in the league, and you respect it when you go down there.“It’s really humbling just to go down there and see what those guys do travel-wise, and where they’re staying. At the time when I was going there — I don’t know how it is now (in the G League) – driving two, three, four, five hours just to get to a place to go play instead of us chartering or flying private.”Now in his fifth season with the Mavs, Hardaway looks back on those days in the G League and can appreciate how that helped him become the sharpshooter that he is today.“My first (G League) stint was in Canton,” he said. “I did OK, but I didn’t really shoot the ball well, and then I went to the Austin Spurs at the time just because they kind of ran some of the same actions and systems that we had when we were here (in Atlanta).“And Budenholzer coming from (Spurs coach Gregg) Popovich, you kind of got an idea of how culturally they were as a franchise and how they moved. I felt good, I felt more confident, and it felt good. In my first game down there with Austin, it was at AT&T Center, where the San Antonio Spurs were playing, so I kind of felt like — even though I’m in the G League — I’m at home in an NBA arena, and it felt good and I felt comfortable.”Although he already had two years of experience in the NBA, Hardaway just wanted to fit in with his G League teammates.“Like I said, I was grateful for it,” he said. “Those guys treated me as an equal to them. I didn’t want no high standards or anything.“I was down there to work and get better and hoop. That was an opportunity for me to hoop and that’s what I love to do.And when he finally got back to the NBA – for good – Hardaway said: “I looked at it more so of just having my confidence back and me knowing that I can play with these guys at a very, very high level on both ends of the floor. And I just took it and ran with it.”Did he ever.With his first of three made three-pointers during Friday’s 148-143 victory over the Atlanta Hawks, Hardaway became just the 40th player in NBA history with at least 1600 made three-pointers.“I’m just over here breaking records,” Hardaway said. “That’s crazy. I’m going up the ladder.“I’m happy to be able to do it mostly in a gym that I played in for a couple of years. It’s a great accomplishment. It’s always been a goal of mine to be in the top tier three-point shooters in this league ever since I was in high school, so I’m happy that I’m able to accomplish that and have an opportunity to keep on going higher.”SNYDER ROOTING FOR EXUM: Atlanta Hawks coach Quin Snyder is very familiar with Mavericks guard Dante Exum and the injuries he has battled over the years.When Snyder became the coach of the Utah Jazz on June 6, 2014, 20 days later the Jazz made Exum the No. 5 overall pick of the NBA Draft. Unfortunately for Exum, a slew of injuries prevented him from reaching his full potential with the Jazz.Exum played for the Jazz from 2014-19 and for the Cleveland Cavaliers before going overseas to play for FC Barcelona (2021-22) and Partizan Belgrade (2022-23), and then signing with the Mavs last summer.“People forget when he was drafted he had a number of injuries that were really difficult, and he was able to battle through that,” Snyder said. “Andthen what he did going to Barcelona, going to Partizan and just continuing to get better.“The fortitude and the toughness that he’s shown going through those situations, it’s not at all surprising to me that he’s having the success he’s having right now, and I’m very confident it will continue, and then he’ll continue to improve as a player.”Exum is averaging 9.5 points in 19.5 mutes this season for the Mavs. And when Snyder was discussing Exum, he sounded like a proud papa, adding that he’s proud of his growth.“He’s worked,” Snyder said. “A lot of times you weren’t able to see that because he was working through an ACL, working through a shoulder and some things that he had to really battle through that frankly for a lot of players, the fact that they came consecutively, he worked so hard to get healthy, and then he’d have something else. It was just bad luck.“I’m just really happy for him and the season that he’s having and what he’s done and the way that he’s dug in and the way his path has taken him. The fact that he’s doing what he’s doing right now, like I said, is not surprising. I always wish him well and root for him.”DONCIC, YOUNG JOINED AT THE HIP: Mavs point guard Luka Doncic and Atlanta Hawks point guard Trae Young will forever be joined at the hip. That’s because the two players were traded for each other on the day of the 2018 NBA Draft.Doncic was the third overall pick of the ’18 draft by the Hawks, while Young was the fifth overall pick of the ’18 draft by the Mavs. A short time later, both players were traded for each other, and the rest is history.“They’re both special players,” Hawks coach Quin Snyder said. “As far as their productivity within the league, whether it be their impact in assists, scoring, different things that they’re both capable of doing, their teams, the success — even though we’re not having the kind of success we want right now — both of these guys are capable of impacting the game in a lot of different ways on the offensive end and they’re both unique.“The fact that they came out in the same draft, that’s beyond me. They’re both elite players.”MAVS-WARRIORS GAME RESCHEDULED: The Jan. 19 game the Mavs were scheduled to play against the Golden State Warriors in San Francisco has been rescheduled by the NBA.That game will now be played on April 2 in San Francisco at 9 p.m. Dallas time.Also, the April 2 game the Warriors were slated to play in Dallas against the Mavs has been moved to April 5 at 7:30 p.m. at American Airlines Center. Plus, the April 5 game in Dallas between the Mavs and Atlanta Hawks will now be played on April 4 at 7:30 p.m. at AAC.The re-scheduling of the schedule resulted when the Jan. 19 game between the Mavs and Golden State was postponed after Warriors assistant coach Dejan Milojevic suddenly died of a heart attack on Jan. 17.BRIEFLY: Quin Snyder coached the Jazz from 2014-22, and his final game for Utah came against the Mavs. That occurred in the first round of the 2022 playoffs when the Mavs won that series in six games, and Snyder ultimately resigned on June 5, 2022. . .Luka Doncic was doused with a lot of celebratory water when he entered the Mavs’ locker room following his franchise-record 73-point game against the Hawks on Friday. “It was water,” Doncic said. “And then Tim (Hardaway Jr.) threw the ice stuff at me, so I almost had a heart attack.”. . . Friday was the four-year anniversary of the day former Los Angeles Lakers icon, Kobe Bryant, and eight others – including Bryant’s 13-year old daughter, Gianna — were killed in a helicopter crash in Calabasas, Calif. “We all love Kobe, man,” Mavs point guard Luka Doncic said. “It was a big tragedy. I can’t believe it’s been four years already. It’s special to (scored 73 points Friday) on the same day. Obviously, I wish he was here.” The Lakers will honor Bryant with a statue outside of Crypto.com Arena on Feb. 8 . . . Since the 1997-98 season, there have been only three games where a player made at least 16 field goals in a half. Kobe Bryant made 18 field goals in the second half of a game against Toronto on Jan. 22, 2006. Brandon Jennings connected on 17 field goals in the second half of a game against Golden State on Nov. 14, 2009. And the 16 field goals Luka Doncic made during the first half of Friday’s contest against Atlanta.X: @DwainPrice
+"""
+
+[R6] Mike Brey
+(https://en.wikipedia.org/wiki/Mike_Brey)
+"""
+From Wikipedia, the free encyclopedia Mike BreyBrey in 2014Atlanta HawksTitleAssistant coachLeagueNBAPersonal informationBornMarch 22, 1959 (age 67)Bethesda, Maryland, U.S.Listed height6 ft 0 in (1.83 m)Career informationHigh schoolDeMatha Catholic(Hyattsville, Maryland)College Northwestern State (1977–1980) George Washington (1981–1982) PositionGuardCoaching career1982–presentCareer historyCoaching1982–1987DeMatha HS (assistant)1987–1995Duke (assistant)1995–2000Delaware2000–2023Notre Dame2023–presentAtlanta Hawks (assistant)Career highlights 2× America East regular season (1998, 1999) 2× America East tournament (1998, 1999) Big East West Division (2001) ACC tournament (2015) America East Coach of the Year (1998) 3× Big East Coach of the Year (2007, 2008, 2011)[1][2][3] CBSSports.com National Coach of the Year (2011)[4] Sports Illustrated National Coach of the Year (2011)[5] 2× NABC District V Coach of the Year (2011, 2012)[6] Jim Phelan National Coach of the Year Award (2012)[7] Associated Press College Basketball Coach of the Year (2011) Skip Prosser Man of the Year Award (2008) Michael Paul Brey[8] (born March 22, 1959) is an American basketball coach who is an assistant coach for the Atlanta Hawks of the National Basketball Association (NBA). He previously served as head coach of the Delaware Fightin' Blue Hens from 1995 to 2000, and the Notre Dame Fighting Irish from 2000 to 2023. Early life and education[edit] Brey, the son of Olympic swimmer Betty Brey,[9] graduated from DeMatha Catholic High School in Hyattsville, Maryland in 1977. As a two-year letter winner under coach Morgan Wootten, Brey helped the team to a 55–9 mark. He enrolled at Northwestern State University, where he played varsity basketball for three years (1977–1980). He played one season at George Washington in 1981–82 after sitting out the 1980–81 season as a transfer. He served as team captain and was named most valuable player with 5.0 points and 4.8 assists per game for the Colonials.[10] In 1982 Brey graduated from George Washington University with a bachelor's degree in physical education. Brey returned to his former high school, becoming an assistant coach under Morgan Wootten. In 1987, he was hired by Duke University to assist Mike Krzyzewski, and in 1995 he took over his first head coaching job at the University of Delaware. Brey guided the Fightin' Blue Hens to a 99–51 record over five years, leading the team to two America East Conference Championships and subsequently two trips to the NCAA Tournament. In 2000, Brey became the head coach at the University of Notre Dame. Notre Dame Fighting Irish[edit] In 2000, Brey succeeded Matt Doherty as head coach of the Notre Dame Fighting Irish men's basketball team. Notre Dame had not been to the NCAA tournament since 1990. Brey led the Irish to the NCAA tournament in his first three years as head coach (2001–2003), notching a Sweet Sixteen appearance in 2003. He has since led the team to tournament appearances in 2007, 2008, 2010, 2011, 2012, 2013, 2015, 2016, 2017 and 2021. On December 29, 2017, Brey tied Digger Phelps for most wins by a Notre Dame coach with 393. During the 2007–08 season, Brey led the Irish to a 24–6 regular-season mark. He was named the Big East Coach of the Year for the second consecutive season on March 11, 2008.[11] Notre Dame had a 45-game home winning streak between February 2006 and February 2009 – the second-longest in school history. By completing the 2007–2008 regular season 18–0 at home, Brey coached the first team in Big East history to have consecutive undefeated seasons at home. On June 19, 2012, Brey signed a 10-year extension to remain the head coach of the Notre Dame Irish up until 2022. The financials were not released. During the 2014–15 season, Brey's Notre Dame team went 32–6 and won the ACC conference tournament. The squad advanced to the Elite Eight, losing a close game to Kentucky. The 32 wins were the most by a Notre Dame men's team since 1908–09. He also passed Hall of Famer George Keogan for second place on Notre Dame's all-time wins list, trailing only Digger Phelps. Notre Dame advanced to the Elite Eight for the second consecutive season, defeating Michigan, Stephen F. Austin, and Wisconsin as the 6 seed in the East region. Notre Dame lost to North Carolina 88–74 in the Elite Eight. During the 2016–17 regular season, Brey's team went 23–8. They finished the season in a three-way tie with Florida State and Louisville. The Irish were given a 3-seed in the ACC tournament which guaranteed them a double bye. Notre Dame dominated its first two games against Virginia and Florida State and sparked another ACC tournament final appearance for the second time in three years. The Irish went on to lose in the tournament final to Duke, 75–69. Notre Dame received a 5-seed in the West Region of the NCAA tournament, and defeated Princeton in the first round before falling to West Virginia in the second round. Resignation from Notre Dame[edit] With his 2022–23 team struggling to stay out of the basement of the ACC standings, on January 19, 2023, Brey announced that the 2022–23 season would be his last as head coach at Notre Dame, although he said that he was definitely not done coaching.[12][13] On June 15, 2023, Brey was hired as assistant coach for the Atlanta Hawks.[14] He reunited with head coach Quin Snyder, who played his junior and senior seasons at Duke while Brey was an assistant under Mike Krzyzewski. The two then coached at Duke together during the 1994–1995 season. Head coaching record[edit] Statistics overview Season Team Overall Conference Standing Postseason Delaware Fightin' Blue Hens (America East Conference) (1995–2000) 1995–96 Delaware 15–12 11–7 T–3rd 1996–97 Delaware 15–16 8–10 5th 1997–98 Delaware 20–10 12–6 T–1st NCAA Division I Round of 64 1998–99 Delaware 25–6 15–3 T–1st NCAA Division I Round of 64 1999–00 Delaware 24–8 14–4 3rd NIT first round Delaware: 99–52 (.656) 60–30 (.667) Notre Dame Fighting Irish (Big East Conference) (2000–2013) 2000–01 Notre Dame 20–10 11–5 1st (West) NCAA Division I Round of 32 2001–02 Notre Dame 22–11 10–6 2nd (West) NCAA Division I Round of 32 2002–03 Notre Dame 24–10 10–6 T–3rd (West) NCAA Division I Sweet 16 2003–04 Notre Dame 19–13 9–7 7th NIT quarterfinal 2004–05 Notre Dame 17–12 9–7 6th NIT first round 2005–06 Notre Dame 16–14 6–10 T–11th NIT second round 2006–07 Notre Dame 24–8 11–5 4th NCAA Division I Round of 64 2007–08 Notre Dame 25–8 14–4 T–2nd NCAA Division I Round of 32 2008–09 Notre Dame 21–15 8–10 T–9th NIT semifinal 2009–10 Notre Dame 23–12 10–8 T–7th NCAA Division I Round of 64 2010–11 Notre Dame 27–7 14–4 2nd NCAA Division I Round of 32 2011–12 Notre Dame 22–12 13–5 3rd NCAA Division I Round of 64 2012–13 Notre Dame 25–10 11–7 T–5th NCAA Division I Round of 64 Notre Dame Fighting Irish (Atlantic Coast Conference) (2013–2023) 2013–14 Notre Dame 15–17 6–12 T–12th 2014–15 Notre Dame 32–6 14–4 3rd NCAA Division I Elite Eight 2015–16 Notre Dame 24–12 11–7 T–5th NCAA Division I Elite Eight 2016–17 Notre Dame 26–10 12–6 T–2nd NCAA Division I Round of 32 2017–18 Notre Dame 21–15 8–10 T–10th NIT second round 2018–19 Notre Dame 14–19 3–15 T–14th 2019–20 Notre Dame 20–12 10–10 T–6th N/A (COVID) 2020–21 Notre Dame 11–15 7–11 11th 2021–22 Notre Dame 24–11 15–5 T–2nd NCAA Division I Round of 32 2022–23 Notre Dame 11–21 3–17 14th Notre Dame: 483–280 (.633) 225–181 (.554) Total: 582–332 (.637) National champion Postseason invitational champion Conference regular season champion Conference regular season and conference tournament champion Division regular season champion Division regular season and conference tournament champion Conference tournament champion ^ Noie, Tom (March 7, 2007). "A big year for Brey". South Bend Tribune. Retrieved December 21, 2007.[permanent dead link] ^ "Notre Dame's Harangody and Brey sweep Big East postseason awards". Sports Illustrated. March 11, 2008. Retrieved March 11, 2008.[dead link] ^ "Notre Dame's Hansbrough Named BIG EAST Player of the Year" Archived March 18, 2012, at the Wayback Machine. BigEast.org. Published 2011-03-08. Retrieved 2011-03-08. ^ "National awards: Jimmer clear choice as top player". Archived from the original on October 22, 2014. Retrieved August 8, 2015. ^ "Sports Illustrated names Brey National Coach of the Year". www.wndu.com. Archived from the original on March 11, 2011. Retrieved January 17, 2022. ^ "Notre Dame Athletics | the Fighting Irish". Archived from the original on January 22, 2016. Retrieved June 15, 2012. ^ "Mike Brey Named Jim Phelan National Coach of the Year". Archived from the original on March 6, 2016. Retrieved June 15, 2012. ^ "Vol 1981: Potpourri". Northwestern State University. 1981. Archived from the original on March 25, 2016. Retrieved March 29, 2015. ^ Norlander, Matt (March 22, 2015). "Winning Notre Dame coach Mike Brey reveals his mom died on Saturday". The Roanoke Times. Retrieved March 26, 2015. ^ "Notre Dame Athletics | The Fighting Irish". Notre Dame Fighting Irish - Official Athletics Website. ^ "Harangody, Brey Take Home Top Big East Honors". UHND.com. March 11, 2008. Retrieved March 12, 2008. ^ @tnoieNDI (January 19, 2023). "BREAKING: Source tells South Bend Tribune that #NotreDame coach Mike Brey will retire at end of season" (Tweet) – via Twitter. ^ Young, Ryan (February 13, 2023). "Longtime Notre Dame coach Mike Brey not retiring despite plans to leave Fighting Irish". yahoosports.com. Retrieved March 8, 2023. ^ "Hawks' Quin Snyder finalizes coaching staff, includes Igor Kokoskov & Mike Brey". NBA.com. June 15, 2023. Retrieved June 15, 2023. Mike Bray college playing stats at Sports Reference Notre Dame Fighting Irish profile
+"""
+
+[R7] Quin Snyder
+(https://en.wikipedia.org/wiki/Quin_Snyder)
+"""
+From Wikipedia, the free encyclopedia Quin SnyderSnyder coaching the Atlanta HawksAtlanta HawksPositionHead coachLeagueNBAPersonal informationBornOctober 30, 1966 (age 59)Mercer Island, Washington, U.S.Listed height6 ft 3 in (1.91 m)Listed weight180 lb (82 kg)Career informationHigh schoolMercer Island(Mercer Island, Washington)CollegeDuke (1985–1989)NBA draft1989: undraftedCoaching career1992–presentCareer historyCoaching1992–1993Los Angeles Clippers (assistant)1995–1999Duke (assistant)1999–2006Missouri2007–2010Austin Toros2010–2011Philadelphia 76ers (assistant)2011–2012Los Angeles Lakers (assistant)2012–2013CSKA Moscow (assistant)2013–2014Atlanta Hawks (assistant)2014–2022Utah Jazz2023–presentAtlanta HawksCareer highlightsAs player: McDonald's All-American (1985) As head coach: NBA All-Star Game head coach (2021) NBA D-League Coach of the Year (2009) Quin Price Snyder (born October 30, 1966)[1][2] is an American professional basketball coach who is the head coach for the Atlanta Hawks of the National Basketball Association (NBA). After being named a McDonald's All American as a high school player in Washington, he played college basketball for the Duke Blue Devils. He was previously the head coach of the Utah Jazz for eight seasons.[3] Snyder was born in Mercer Island, Washington, and graduated from Mercer Island High School in 1985. A two-time state basketball player of the year, Snyder led the team to the 1985 state championship. During this time Mercer Island achieved a No. 1 ranking in USA Today's high school polls. Snyder was named a McDonald's All American, the first player chosen from Washington.[2][4][5] Snyder as a freshman at Duke At Duke University, Snyder was a point guard for the Blue Devils from 1985 to 1989, and his team played in the Final Four in 1986, 1988, and 1989. He became a starter in his second season (1987) and started almost all games the remainder of his career.[6] He was elected a team captain and honored as an Academic All-American during his senior season. He graduated from Duke in 1989 with a double major in philosophy and political science, and, later received a J.D. degree from Duke Law School in 1995 and an M.B.A. degree from the Duke Fuqua School of Business in 1995.[7] Los Angeles Clippers (1992–1993)[edit] In the middle of his graduate work, Snyder spent the 1992–93 NBA season as an assistant coach for the Los Angeles Clippers.[7] From 1993 to 1995, Snyder served as an administrative assistant to men's basketball coach Mike Krzyzewski while Snyder completed his MBA and JD at Duke. After completing both degrees in 1995, Snyder became a full-time assistant coach under Krzyzewski. In 1997, Duke promoted Snyder to associate head coach.[7] During Snyder's time as a Duke assistant coach, Duke made the 1994 and 1999 NCAA tournament championship rounds and the Elite Eight round in 1998. Duke also won the ACC tournament in 1999.[8] Missouri (1999–2006)[edit] In 1999, Snyder accepted the head coaching position for the University of Missouri Tigers men's basketball team, succeeding longtime coach Norm Stewart. He eventually led the Tigers to four consecutive NCAA tournament berths, including the Elite Eight in 2002, matching the deepest run ever made by a Missouri team in the NCAA Tournament.[9] His first team knocked off a ranked Illinois team and then defeated Kansas in Snyder's first game against Mizzou's archrival. Snyder's second season was punctuated by similar success. He once again toppled a ranked Kansas team and led the Tigers to their first NCAA victory since 1995. The eventual 2001 NCAA National Champion Duke ended the Tigers' season in the NCAA Tournament.[10] He was named Rookie Coach of the Year by the Basketball Times after the season.[9] In the summer of 2003, Snyder was an assistant coach for United States at the Pan American Games.[9] In May 2004, Snyder was named in 17 allegations as a part of an NCAA investigation over recruiting violations, centering on improper gifts to guard Ricky Clemons.[11] The program was placed on a three-year probation that November after the NCAA infractions committee ruled that an assistant bought meals, provided transportation and illegally contacted recruits. The committee rejected claims by the school that the rule violations were inadvertent, although it also dismissed charges of major violations, including the Clemons' claim that assistant coaches paid players cash.[12] Snyder later admitted to having players at his house for "an occasional meal" and giving Clemons clothing.[13] Snyder resigned as coach on February 10, 2006, following a 26-point loss to Baylor that extended a losing streak to six and dropped the Tigers to a 10–11 record overall, 3–7 in the Big 12. He finished with a 126–91 record over seven years, reaching the NCAA tournament in each of his first four seasons but posting only a 42–42 record since.[14] After his resignation, Snyder accused Missouri athletic director Mike Alden of sending Gary Link, a basketball analyst and assistant to Alden, to inform him that he would be fired after the season.[15] Austin Toros (2007–2010)[edit] Following his departure from Missouri in 2006, Snyder initially gave up on coaching for good.[13] But in May 2007, he accepted the head coaching position of the Austin Toros in the NBADL[16] In the first season, Snyder's team won the Southwest Division championship and reached the D-League Finals. In his second season, Snyder led the Toros to a 32-win season; coached in the 2009 NBA D-League All-Star Game in Phoenix; received the Dennis Johnson Coach of the Year award; and reached the D-League Semi-Finals. In his final season with the team, the Toros compiled another 32-win season – this time with more rookies than any other team in the D-League – and again reached the Semi-Finals. During his three-year tenure in Austin, Snyder compiled more wins and guided more players to the NBA than any other coach in the D-League.[17] Philadelphia 76ers (2010–2011)[edit] Snyder became a player development coach for the Philadelphia 76ers of the NBA on June 11, 2010, working under Doug Collins.[18] Soon afterward, Snyder began training draft prospects in workouts preceding the 2010 NBA draft, including future 76ers player Evan Turner.[19] The 76ers finished 41–41 in the 2010–11 season. Los Angeles Lakers (2011–2012)[edit] On July 1, 2011, NBA team Los Angeles Lakers hired Snyder as an assistant under coach Mike Brown.[20] In a season shortened by a lockout, the Lakers finished the 2011–12 season in first place in the Pacific Division with a 41–25 record. The Lakers advanced to the Western Conference semi-finals. CSKA Moscow (2012–2013)[edit] On July 8, 2012, the Russian Professional Basketball League team CSKA Moscow hired Snyder as the head assistant coach under Ettore Messina.[21] CSKA reached the Euroleague Final Four this season, but lost to eventual champion Olympiacos in the semi-final round.[22] Atlanta Hawks (2013–2014)[edit] On June 10, 2013, the Atlanta Hawks hired Snyder as the head assistant coach.[23] Utah Jazz (2014–2022)[edit] Coach Snyder coaching the Utah Jazz in 2017 On June 6, 2014, Snyder was hired by the Utah Jazz to be the team's head coach.[24] He reportedly signed a three-year deal with a team option for a fourth season.[25] Snyder previously worked with Jazz general manager Dennis Lindsey from 2007 to 2010 when Lindsey was an assistant general manager with the San Antonio Spurs and Snyder coached the Toros, the Spurs' D-League affiliate.[26] On May 6, 2016, the Jazz announced a long-term contract extension for Snyder.[27] In June 2018, Snyder was named a finalist for NBA Coach of the Year.[28] On October 19, 2019, the Jazz signed Snyder to a new contract extension.[29] On February 18, 2021, Snyder was named as the Western Conference head coach for the 2021 NBA All-Star Game as a result of his team's NBA-best 23–5 record.[30][31] On June 5, 2022, Snyder resigned as head coach of the Jazz after eight seasons with a 372–264 (.585) regular season record.[32] Return to Atlanta (2023–present)[edit] On February 26, 2023, the Atlanta Hawks hired Snyder as head coach.[33] Head coaching record[edit] Statistics overview Season Team Overall Conference Standing Postseason Missouri Tigers (Big 12 Conference) (1999–2006) 1999–00 Missouri 18–13 10–6 6th NCAA Division I First Round 2000–01 Missouri 20–13 9–7 6th NCAA Division I Second Round 2001–02 Missouri 24–12 9–7 6th NCAA Division I Elite Eight 2002–03 Missouri 22–11 9–7 T–5th NCAA Division I Second Round 2003–04 Missouri 16–14 9–7 T–5th NIT First Round 2004–05 Missouri 16–17 7–9 T–8th NIT First Round 2005–06 Missouri 10–11* 3–7* Missouri: 126–91 56–50 Total: 126–91 *Resigned before the season ended; Melvin Watkins became interim coach afterward, and Missouri finished the 2005–06 season 12–16 (5–11 Big 12) and 11th in the Big 12. Legend Regular season G Games coached W Games won L Games lost W–L % Win–loss % Playoffs PG Playoff games PW Playoff wins PL Playoff losses PW–L % Playoff win–loss % ^ Coats, Bill (April 11, 1999). "The new MU coach is a man for all seasons". St. Louis Post-Dispatch. Archived from the original on March 3, 2014. Retrieved March 26, 2013. ^ Jump up to: a b "Quin Snyder". Missouri Tigers. Archived from the original on November 15, 2013. Retrieved March 26, 2013. ^ "Gut Reaction: What Quin Snyder's Resignation Means for Jazz's Future | Inside the Jazz". www.si.com. Retrieved July 22, 2022. ^ "McDonald's High School Basketball All American Teams". Basketball-Reference.com. Retrieved May 22, 2019. ^ Raley, Dan (December 11, 2003). "Quin comes home". Seattle Post-Intelligencer. Retrieved March 26, 2013. ^ "Quin Snyder". Duke Blue Devils Basketball Statistical Database. Retrieved March 24, 2013. ^ Jump up to: a b c "Quin Snyder". NBA. Retrieved March 22, 2013. ^ "Duke Blue Devils". sports-reference.com/cbb. Retrieved March 26, 2013. ^ Jump up to: a b c "Snyder Named a Pan-American Games Coach". At Mizzou. November 19, 2004. Archived from the original on June 13, 2003. Retrieved March 24, 2013. ^ "Back to the Basics". Columbian Missourian. February 14, 2007. Archived from the original on January 31, 2012. Retrieved March 24, 2013. ^ "School releases allegations with names". Associated Press. May 25, 2004. Retrieved January 10, 2015. ^ "Missouri Penalized by the NCAA". Los Angeles Times. November 4, 2004. Retrieved January 10, 2015. ^ Jump up to: a b Pearlman, Jeff (April 18, 2009). "The Ballad of Quin Snyder". ESPN Page 2 online. Retrieved March 24, 2013. ^ "Snyder out as Missouri hoops coach". ESPN.com. February 10, 2006. Retrieved January 10, 2015. ^ "Missouri chancellor backs AD in Snyder resignation – Men's College Basketball". Associated Press. February 16, 2006. Retrieved January 10, 2015. ^ Katz, Andy (June 6, 2007). "Snyder to Replace Late Dennis Johnson as Toros Coach". ESPN.com. Retrieved March 24, 2013. ^ Kelley, Steve (July 2, 2010). "Commentary: Ex-Toros coach Snyder likes life out of spotlight's glare". Austin American-Statesman online. Archived from the original on June 12, 2014. Retrieved March 24, 2013. ^ Tatum, Kevin (June 12, 2010). "76ers coach adds Snyder as assistant". Philadelphia Inquirer. Archived from the original on October 9, 2015. Retrieved March 26, 2013. ^ Jasner, Phil (June 18, 2010). "Local players get pointers from Sixers". Philadelphia Daily News. Retrieved March 26, 2013.{{cite web}}: CS1 maint: deprecated archival service (link) ^ Stevens, Matt (July 1, 2011). "Lakers hire assistant coaches Chuck Person and Quin Snyder". Lakers Now. Los Angeles Times. Archived from the original on January 25, 2016. Retrieved March 26, 2013. ^ Bresnahan, Mike (July 9, 2012). "Lakers assistant Quin Snyder accepts same job with CSKA Moscow". Los Angeles Times. Retrieved March 26, 2013. ^ "CSKA Moscow". euroleague.net. Retrieved May 22, 2019. ^ "Hawks Name Quin Snyder as Assistant Coach". NBA.com. June 10, 2013. ^ "Utah Jazz Names Quin Snyder Head Coach". NBA.com. June 6, 2014. Retrieved June 7, 2014. ^ NBA's Jazz hire Quin Snyder as head coach ^ Genessy, Jody (June 6, 2014). "Utah Jazz hire Quin Snyder as head coach". Deseret News. Archived from the original on June 7, 2014. Retrieved January 10, 2015. ^ Sanchez, Matt (May 6, 2016). "Jazz Announce Snyder Contract Extension". NBA.com. Retrieved May 6, 2016. ^ "Ex-Raptors coach Dwane Casey wins NBA's Coach of Year honors". ESPN.com. June 25, 2018. Retrieved October 18, 2018. ^ Falk, Aaron (October 19, 2019). "Utah Jazz head coach Quin Snyder agrees to long-term contract extension". NBA.com. ^ "Utah Jazz head coach Quin Snyder 'honored' to lead Western Conference All-Star team". NBA.com. February 18, 2021. Retrieved February 19, 2021. ^ Bontemps, Tim (February 17, 2021). "Sources: Utah Jazz coach Quin Snyder to lead Western Conference in NBA All-Star Game". ESPN.com. Retrieved February 19, 2021. ^ Hundman, Gabby (June 5, 2022). "Quin Snyder to Conclude Tenure as Head Coach of the Utah Jazz". NBA.com. Retrieved June 5, 2022. ^ "Atlanta Hawks Name Quin Snyder Head Coach". NBA.com. February 26, 2023. Retrieved February 26, 2023. Media related to Quin Snyder at Wikimedia Commons
+"""
+
+[R8] Quin Snyder - Head Coach
+(https://basketballacademy.hawks.com/wp-content/uploads/2025/10/Coaching-Staff-2025-bios-hawks-and-skyhawks.pdf)
+"""
+Quin Snyder - Head Coach
+Quin Snyder was named the 15th full-time head coach of the Atlanta Hawks on
+February 26, 2023.
+
+Atlanta finished the 2024-25 season at 40-42, a +4-win increase from the 2023-24
+season. The Hawks ranked second in the NBA in assists per game (29.6, most in
+franchise history) and steals per game (9.73), third in points in the paint per game
+(55.0), opponent turnovers per game (16.0) and free throws made per game
+(18.0).
+
+Under the tutelage of Snyder and his staff, Dyson Daniels earned the Kia NBA
+Most Improved Player Award and was runner-up for the NBA Defensive Player of
+the Year. Zaccharie Risacher was named to the Kia NBA All-Rookie First Team while
+finishing as runner-up for NBA Rookie of the Year.
+
+Snyder owns 458 career regular season wins, the fifth-most among all active head
+coaches. Snyder won his 450th career game on Mar. 12, 2025, as Atlanta topped
+Charlotte at State Farm Arena, 123-110.
+
+Snyder served as head coach of the Utah Jazz from the 2014-15 to 2021-22
+seasons, accumulating a 372-264 record (.585) and leading the Jazz to the playoffs
+in six of his eight seasons. Over his final six seasons (2016-17 to 2021-22), the Jazz
+compiled a 294-178 record, the third-highest winning percentage (.623) in the
+NBA and best in the Western Conference over that span. Utah started the 2020-21
+season with a 23-5 record, earning Snyder the honor of being named the head
+coach of the 2021 Western Conference All-Star team, and finished the regular
+season with the best record in the NBA (52-20; .722) and the fifth-highest single-
+season winning percentage in franchise history. His 372 wins are the second-most
+in Jazz history behind only Jerry Sloan.
+
+Snyder finished Top 10 in NBA Coach of the Year voting in four-of-five seasons
+between 2017-21, including second in 2018, third in 2021, sixth in 2017 and
+eighth in 2019. He is a four-time Western Conference Coach of the Month.
+The Jazz reached the playoffs in six consecutive seasons, advancing to the Western
+Conference Semifinals on three occasions (2017, 2018 and 2021).
+
+Before his hiring by the Jazz in 2014-15, Snyder was an assistant coach with the
+Hawks during the 2013-14 season. Prior to joining the Hawks in 2013-14, Snyder
+worked as an assistant coach for CKSA Moscow (2012-13), the Los Angeles Lakers
+(2011-12) and Philadelphia 76ers (2010-11). From 2007-10, Snyder was head
+coach of the Austin Toros (the NBA G League affiliate of the San Antonio Spurs),
+recording a 94-56 (.627) mark, while leading the Toros to three straight playoff
+appearances and the 2008 National Basketball Development League
+championship game. He was the 2008-09 D-League Coach of the Year.
+Snyder began his head coaching career at the University of Missouri in 1999,
+where in seven seasons, he led the Tigers to a 128-96 (.571) record, and four
+NCAA Tournaments including an Elite Eight appearance. Prior to starting with
+Missouri, he served as an assistant with the Los Angeles Clippers (1992-93) under
+Larry Brown and at Duke (1995-99) under Mike Krzyzewski.
+
+Snyder was named a McDonald’s All-American at Mercer Island High School. He
+played in 136 games over four years (1985-89) at Duke University, reaching three
+Final Fours and earning Academic All-American honors.
+
+Snyder earned undergraduate degrees in philosophy and political science from
+Duke, later earning a Juris Doctor and Master’s in Business Administration (MBA)
+from Duke as well. He is a native of Mercer Island, WA.
+
+ Bryan Bailey - Assistant Coach
+Bryan Bailey is in his third season as an assistant coach with the Hawks. He came
+to Atlanta after spending four years as an assistant coach with the Utah Jazz.
+
+Previously, Bailey served as an assistant coach with the Salt Lake City Stars and the
+Westchester Knicks, both of the NBA G League.
+Bailey most recently served as head coach of the Hawks’ 2025 summer league
+team, leading the club to a 4-1 mark, Atlanta’s best summer league record since
+beginning play in Las Vegas in 2010, and tying for the third-best record at this
+year’s Las Vegas Summer League.
+
+The Hempstead, N.Y. native’s 13-year playing career took him to Germany
+(Wurzburg, Artland, Oldenburg, Medi Bayreuth), the Netherlands (Landstede
+Zwolle), Bosnia (KK Bosna), Poland (PGE Turow), Cyprus (Keravnos) and Italy
+(Virtus Roma).
+
+He is the co-founder of DIME Athletics, which focuses on assisting competitive
+high school, collegiate and pro basketball players on improving their basketball
+skills, strength, conditioning and overall athleticism.
+
+Bailey played collegiately at Bucknell University, where he was named First Team
+All-Patriot League in his final two seasons. He is a Certified Strength and
+Conditioning Specialist (CSCS) by the National Strength and Conditioning
+Association.
+
+ Mike Brey - Assistant Coach
+Mike Brey is in his third season as an assistant coach with the Hawks following a
+memorable run as head coach at Notre Dame, where he finished as the
+winningest coach in school history, accumulating a 483-280 (.633) mark over 23
+seasons.
+Under his guidance, the Irish reached the postseason 18 times, including 13 NCAA
+Tournament berths, three Sweet 16 trips, two Elite Eight appearances and the
+2015 ACC Championship.
+Originally named head coach at Notre Dame in 2000, Brey was named the
+Associated Press and the Henry Iba/USBWA National Coach of the Year award in
+2011, while also being named BIG EAST Coach of the Year in 2006-07, 2007-08 and
+2010-11.
+Prior to his arrival at Notre Dame, Brey served as head coach at University of
+Delaware, where he compiled a 99-52 mark from 1995-2000 and won America
+East Co-Coach of the Year honors in 1998.
+Brey was previously an assistant coach at Duke University for eight years, helping
+the Blue Devils to advance to the Final Four six times and win back-to-back
+national championships in 1991 and 1992.
+Before entering the collegiate ranks, Brey played for and coached with legendary
+coach Morgan Wootten and DeMatha High School.
+He is a graduate of George Washington University with a degree in physical
+education. Brey and his wife, Suzanne, have four children between them - Kyle,
+Callie, Emmett and Wade – and Brey has three grandchildren, Olivia, Jude and
+Wes.
+
+ Steve Klei - Assistant Coach
+In his third full season in Atlanta is assistant coach Steve Klei. He also serves as
+head coach of the Hawks’ NBA G League affiliate, the College Park Skyhawks, a
+position he was named to in September, 2024.
+
+Last season, Klei led the Skyhawks to a 26-24 record, including a 9-7 Showcase
+Cup record and 17-17 regular season mark. Under Klei’s lead, the Skyhawks
+finished in the top-10 in multiple defensive categories for both seasons combined,
+while also breaking single season franchise records for most three pointers (668),
+most assists (1211), and most rebounds (2337).
+
+Klei and his staff were instrumental in the development of Mouhamed Gueye,
+who spent 24 games with the Skyhawks on assignment before ending the year in
+the rotation for the Hawks, where he appeared in 33 games (28 starts). The
+Skyhawks also saw four players receive NBA callups in Dominick Barlow, Tony
+Bradley, Kevon Harris and Daeqwon Plowden.
+
+Klei joined the Hawks in March, 2023, after spending the first part of the 2022-23
+season with Olimpia Milano in Italy as director of player development.
+
+He was previously with the Utah Jazz from 2016-22, spending time in the DAV
+program (player development/advanced scouting/video), including as head video
+coordinator prior to becoming a coaching associate.
+
+He began his career with the Canton Charge of the NBA G League in 2015-16. Klei
+is a graduate of Indiana University with a degree in Kinesiology, Sports Marketing
+and Management.
+
+ Antonio Lang - Assistant Coach
+In his third season as a Hawks assistant coach is Antonio Lang.
+
+He came to Atlanta after four seasons with the Cleveland Cavaliers as an assistant
+coach following five seasons with the Utah Jazz (2014-19).
+
+Before joining the Jazz, Lang served as head coach of the Mitsubishi Diamond
+Dolphins in Japan for four years.
+Selected by Phoenix with the 29th overall pick in the 1994 NBA Draft, Lang played
+in 143 career regular season games with the Suns, Cavaliers, Miami Heat, Toronto
+Raptors and Philadelphia 76ers over six seasons.
+
+He also played in the Continental Basketball Association (CBA), International
+Basketball League (IBL), in the Philippines and in Japan. He is fluent in Japanese.
+Raised in Mobile, Al., Lang played four collegiate seasons at Duke University
+(1990-94), appearing in three Final Fours and winning back-to-back national titles
+in 1991 and 1992.
+
+ Sanjay Lumpkin – Assistant Coach
+Former College Park Skyhawks player Sanjay Lumpkin is in his third season as an
+assistant coach with the Hawks.
+
+Lumpkin came to Atlanta from the Utah Jazz, where he was a player development
+coach in 2022-23 following two years on Utah’s DAV (player
+development/advanced scouting/video) staff.
+
+He played five collegiate seasons at Northwestern University (2012-17) before
+playing in the NBA G League with the Erie BayHawks (2018-19) and the Skyhawks
+in 2019-20.
+
+Lumpkin holds a degree in learning & organizational change from Northwestern,
+where he also earned a Master’s in Sports Administration.
+ Ronald Nored - Assistant Coach
+Ronald Nored is in his third season as an assistant coach with the Hawks. He came
+to Atlanta after spending the prior two seasons on the Indiana Pacers’ coaching
+staff following three years with the Charlotte Hornets.
+
+The Hawks’ summer league head coach in 2024, Nored held the same position
+previously with Indiana (2022) and Charlotte (2019).
+The former head coach of the Long Island Nets of the NBA G League, Nored also
+spent time with the Maine Red Claws. He began his coaching career at
+Brownsburg High School near Indianapolis.
+
+Nored played collegiately at Butler University, where he helped lead the Bulldogs
+to back-to-back National Championship game appearances in 2010 and 2011. He
+was a two-time Horizon League Defensive Player of the Year.
+
+Nored and his wife Danielle have four children; daughters Avery and Campbell,
+and sons Kai and Jude.
+
+ Reggis Onwukamuche - Assistant Coach
+Former College Park Skyhawks player Reggis Onwukamuche is in his third season
+with the Hawks and second as an assistant coach. He spent 2023-24 as a player
+development coach prior to his promotion.
+Onwukamuche came to Atlanta after having worked with the Utah Jazz in DAV
+(player development/advanced scouting/video) during the 2021-22 season and
+with the Milwaukee Bucks in 2022-23 as assistant video coordinator/player
+development.
+
+As a player, the native of Houston, Texas appeared in 144 career games in the NBA
+G League, also spending time with the Lakeland Magic and Erie BayHawks. He was
+also part of the Hawks’ mini-camp roster in September 2020.
+
+Onwukamuche played collegiately at Prairie View A&M from 2013-15, appearing
+in 64 contests.
+
+ Ryan Schmidt - Assistant Coach
+Ryan Schmidt is in his third season as an assistant coach with the Hawks.
+
+In 2023-24, he also served as head coach of the College Park Skyhawks of the NBA
+G League, where he guided the team to the best defensive season in franchise
+history. The Skyhawks led the G League in opponent points per game (102.9), field
+goals made per game (35.7) and points in the paint (44.0), while ranking second in
+defensive rating (105.5) and opponent field goal percentage (.444).
+
+Schmidt came to Atlanta after spending the 2022-23 campaign as head coach of
+the London Lions of the British Basketball League, where he was named the 2023
+BBL Coach of the Year after leading the team to three domestic titles.
+
+Schmidt previously served as head coach of the Brampton Honey Badgers of the
+Canadian Elite Basketball League from 2020-22, where he earned 2022 CEBL
+Coach of the Year honors for leading the Honey Badgers to the CEBL
+Championship. He was also an assistant coach for Raptors 905 of the NBA G
+League for four seasons (2017-21).
+
+A native of Keizer, Ore., Schmidt played college basketball at the University of
+Hawaii (2001-04) and at Western Oregon University (2004-05). While at Western
+Oregon, Schmidt served as team captain and led the Wolves in scoring his senior
+year before being selected by Idaho in the 2008 NBA Development League Draft.
+Schmidt played for Honolulu in the American Basketball Association during the
+2009-10 season.
+
+He and his wife, Whitney, have a daughter named Deklynn and a son, Beckham.
+
+ Ekpe Udoh – Assistant Coach
+Longtime NBA and international big man Ekpe Udoh is in his third season as an
+assistant coach with the Hawks after 13 professional playing seasons.
+
+A former sixth overall pick in 2010 by Golden State, Udoh appeared in 384 regular
+season games (56 starts) for the Warriors, Milwaukee Bucks, LA Clippers and Utah
+Jazz, with international stops in Israel, Turkey, China, Italy and Japan.
+
+With Fenerbahce (Turkey) from 2015-17, Udoh earned All-Euro League First Team
+honors and Final Four MVP, leading the Euro League in rebounding and blocks en
+route to the championship, playing alongside former Hawk Bogdan Bogdanovic.
+
+Udoh played collegiately at Michigan (2006-08) and Baylor (2009-10). He is an avid
+reader who created “Ekpe’s Book Club” during his playing career, routinely hosting
+club meetings and social media chats.
+ Ashton Smith - Assistant Coach
+Ashton Smith is in his second season with the Hawks and first as an assistant
+coach. He spent the 2024-25 campaign as a player development coach after time
+in the 2023-24 season with the College Park Skyhawks as an assistant coach.
+Smith has previous coaching experience with the London Lions, Raptors 905 and
+Hamilton Honey Badgers of the CEBL.
+
+His playing career spanned eight years and five countries, including Austria,
+Canada, Colombia, Indonesia and the NBA G League.
+
+Smith played collegiately at Indiana University of Pennsylvania (IUP), where he left
+as the all-time leader in wins and assists, was a three-time conference champion,
+the 2011-12 conference player of the year, and 2011-12 NCAA Division II All-
+American. He will be inducted into the school’s Hall of Fame later this year.
+
+Born and raised in Scarborough, Ontario, Canada, Smith’s parents are from
+Jamaica and Barbados, respectively. Smith and his wife, Falan, have a son, Kairo
+and a daughter, Kalina.
+
+ Jeff Watkinson - Assistant Coach
+Jeff Watkinson is in his third full season as an assistant coach for the Hawks. He
+returned to the organization in March, 2023, after spending seven seasons as
+assistant coach/integrated player development with the Utah Jazz. Watkinson was
+originally with the Hawks as the team’s strength and conditioning coach from
+2012-15.
+
+Prior to his initial stint with the Hawks, Watkinson served in similar capacities at
+Indiana University, University of Missouri, Clemson University, UNC Charlotte and
+the College of Charleston.
+
+The suburban Chicago native is a graduate of North Carolina State University (pre-
+medicine), where he played collegiate baseball. He later earned a Master’s in
+Exercise Science from Indiana University.
+
+Jeff is the father of two children – daughter Evelyn (7) and son Dax (5).
+ College Park Skyhawks Coaches
+
+ STEVE KLEI - Head Coach
+Steve Klei enters his second season with the College Park Skyhawks after being
+named the fourth head coach in Skyhawks franchise history on September 17,
+2024. In addition to manning the helm as College Park’s head coach, Klei will also
+serve as an assistant coach for the Atlanta Hawks under Head Coach Quin Snyder.
+Klei finished his first season with a 26-24 record, including a 9-7 Showcase Cup
+record and 17-17 regular season record. Under Klei’s lead, the Skyhawks
+continued to dominate on the defensive side of the ball, finishing in the top-10 in
+multiple defensive categories for both seasons combined, while also breaking
+single season franchise records for most three pointers (668), most assists (1211),
+and most rebounds (2337).
+
+Klei was instrumental in developing players such as Atlanta Hawks forward
+Mouhamed Gueye, who spent 24 games with the Skyhawks on assignment before
+ending the year as a consistent starter for the Atlanta Hawks, where he appeared
+in 33 games (28 starts). Klei also saw four players receive their NBA callups in
+Kevon Harris, Tony Bradley, Daeqwon Plowden and Dominick Barlow.
+
+Prior to taking over the helm of the Skyhawks, Klei spent the latter half of the
+2022-23 and 2023-24 seasons with the Hawks as an assistant coach. During the
+first part of the 2022-23 season, Klei was director of player development with
+Italian professional team Olimpia Milano, competing in the EuroLeague during his
+tenure in Milan.
+
+Klei worked alongside Synder with the Utah Jazz from 2016-22, spending time in
+the DAV program including as head video coordinator prior to becoming a
+coaching associate. Klei’s time in Utah saw playoff appearances in all six seasons,
+including three trips to the Western Conference Semifinals and three division
+championships, going back-to-back in the 2020-21 and 2021-22 seasons.
+Prior to his time in Utah, Klei spent the 2015-16 season with the Canton Charge
+(now Cleveland Charge), the NBA G League affiliate of the Cleveland Cavaliers, as a
+basketball operations assistant under current Brooklen Nets head coach Jordi
+Fernandez, and current Cleveland Cavaliers General Manager, Mike Gansy. As part
+of Fernandez’s staff, Klei helped guide the Charge to a 31-19 regular season
+record, advancing to the second round of the NBA G League playoffs.
+
+A native of Northport, New York, Klei attended Indiana University where he was a
+manager on the men’s basketball team under Tom Crean from 2011-15 and
+graduated with a degree in Kinesiology, Sports Marketing and Management.
+
+ KARI KORVER - Assistant Coach
+Kari Korver, a native of Paramount, California, begins her second season with the
+Skyhawks after most recently serving as Director of Basketball Operations with the
+LA Sparks of the WNBA from 2020-22. Prior to her time with the Sparks, Korver
+spent two years at Northern Colorado as an assistant coach, helping guide the
+women’s basketball team to a WNIT appearance during her first season.
+
+A five-year player at UCLA from 2012-17 (sat out 2013-14 due to an ACL injury),
+she was voted team captain for four straight seasons and finished tied for the
+most three-pointers made in Bruins history (256).
+ O’NEIL HOLDER - Assistant Coach
+Holder enters his fifth season within the Atlanta Hawks organization, and second
+with the College Park Skyhawks. He started with the Hawks during the 2021-22
+season as a video assistant, before transitioning to DAV under Snyder for the
+2023-24 season. Prior to Atlanta, Holder was an assistant coach at Montclair State
+University from 2019-21.
+
+A native of East Stroudsburg, Pennsylvania, Holder was a standout forward at
+Moravian University from 2015-19, finishing First-Team All-Conference two of his
+four years, and earned the Landmark Conference Rookie of the Year his freshman
+season.
+
+ SETH JACKSON - Assistant Coach
+Jackson enters his second season in College Park after serving as an assistant
+coach with the Oklahoma City Blue from 2022-24, most recently part of the squad
+that defeated the Maine Celtics 2-1 in the 2024 NBA G League Finals. Jackson
+helped guide the Blue to a 21-13 regular season record and earn the top
+rebounding team in the G League, plus top three finishes in points per game and
+assists per game.
+Prior to serving as a video coordinator with the Thunder during the 2021-22
+season, Jackson held roles as the director of scouting & analytics at George
+Washington University (2020-21), assistant coach at McKendree University (2018-
+2020) and as a video coordinator and operations intern at the Grand Rapids Drive.
+The Richmond, Virginia, native played professionally overseas with BC Balkan in
+Bulgaria (2015-16) and with Vllaznia Shkodra in Albania (2016-17) after a four-year
+colligate career at Truman State University. Jackson was a four-time All-Conference
+honoree, was named the Mid-America Intercollegiate Athletic Association (MIAA)
+Freshman of the Year in 2011-12 and capped his career ranked third on the
+Bulldogs’ all-time scoring list with 1,655 points.
+
+ ENZO LI - Assistant Coach
+Li enters his second year in College Park after most recently serving as an assistant
+coach with the Beijing Ducks of the Chinese Basketball Association from 2022-24.
+Prior to serving as an assistant, Li was the head coach of the Ducks’ Chinese
+Basketball Development League’s team, the CBA’s equivalent of the G League. Li
+has served as an International Guest Coach on the Atlanta Hawks NBA 2K24 and
+2K25 Summer League teams, where he facilitated team practices, individual
+workouts, and scouting.
+
+A graduate with a bachelor’s in mathematics from Tsinghua University in Beijing, Li
+was a five-year walk-on player from 2009-14 on the varsity basketball team which
+made two National Final Fours. Li also earned his masters of sports management
+from Columbia University in 2017.
+"""
+
+[R9] The Atlanta Hawks Have A Big Decision To Make On Their Head Coach This Summer
+(https://www.si.com/nba/hawks/onsi/news/the-atlanta-hawks-have-a-big-decision-to-make-on-their-head-coach-this-summer-01khmt1b1p2r)
+"""
+When the Hawks fired former head coach Nate McMillan in the middle of the 2022-2023 season, they did so with the idea that they'd be able to find a coach who could make them a consistent playoff threat and build a team around Trae Young. They selected Quin Snyder in large part due to his success building around Donovan Mitchell with the Utah Jazz, another small guard who had comparable scoring gravity to Young at the time. In particular, Snyder turned Rudy Gobert into a DPOY contender and empowered Mitchell to be a quality first option. That duo, coupled with good supporting players like Mike Conley and Royce O'Neale, turned the Jazz into a regular-season machine that unfortunately fell short in the playoffs. However, Snyder hasn't even been able to make the Hawks a consistent playoff team during the three seasons he's already coached in Atlanta. They made the first round during his first season with the team, losing to the Boston Celtics in six games, but they missed the playoffs in back-to-back years before this season. Making the playoffs in 2025-26 is hardly a guarantee. As things currently stand, the Hawks are 10th in the Eastern Conference and four games under .500. Therefore, it's a real question as to whether the Hawks should keep Snyder around for the long haul. His contract runs through the 2026-27 season and it doesn't really make sense for him to go into the season without a new contract. Therefore, it behooves both the Hawks and Snyder to come to an agreement this summer - or decide to go their seperate ways. Hiring someone new shouldn't be an issue either. Jalen Johnson is an All-NBA level player who has an extremely rare skillset as a forward who can dribble, pass and shoot. He's flanked by good complementary players in Nickeil Alexander-Walker, Dyson Daniels and Onyeka Okongwu. Furthermore, Atlanta is going to likely have a lottery pick and ample amounts of salary flexibility to work with. If the Hawks do move on from Snyder, it wouldn't be surprising if the Hawks' head coaching position is actually one of the more attractive options around the league. The Argument For Keeping Quin SnyderJan 19, 2026; Atlanta, Georgia, USA; Atlanta Hawks head coach Quin Snyder high-fives Atlanta Hawks guard CJ McCollum (3) during a timeout against the Milwaukee Bucks during the fourth quarter at State Farm Arena. Mandatory Credit: Jordan Godfree-Imagn Images | Jordan Godfree-Imagn ImagesZaccharie Risacher's development hasn't quite gone to plan, but Snyder has actually done a good job of getting the most out of several other players on the roster. He's been a big factor in empowering Jalen Johnson to become a bigger part of the team's offense, while Nickeil Alexander-Walker has turned into a solid starter after just being a rotation piece in Minnesota. Dyson Daniels is having a down shooting season, but Daniels has taken legitimate strides since his days as a role player in New Orleans. Despite only hitting 13.3% from deep this season, he's posted a career-high AST% of 24.7% and turned himself into one of the better perimeter defenders in the NBA. This season has also been good for the growth of Onyeka Okongwu. Okongwu hasn't quite turned into the center Atlanta expected when they took him with a top-10 pick, but he's a starting center on a great contract who can offer spacing. After never shooting above 33% from deep in his career, he's hitting 37.9% of his 5.4 three point attempts a game. Snyder's also done a great job of leaning into the advantages of his roster in transition. The Hawks have the NBA's most productive transition offense in terms of points per 100 possessions and they're a top-five team in transition frequency. Transition offense isn't as sustainable as half-court production and teams that rely exclusively on it usually struggle to maintain success. However, it can be a edge in the regular season and it speaks to Snyder's coaching that the Hawks are so effective in situations where the other team turns it over. The Argument Against Keeping Quin SnyderFeb 3, 2026; Miami, Florida, USA; Atlanta Hawks head coach Quin Snyder reacts against the Miami Heat during the second half at Kaseya Center. Mandatory Credit: Rhona Wise-Imagn Images | Rhona Wise-Imagn ImagesEven though there are a lot of positives Snyder has brought to the Hawks, there are also several compelling reasons to think the Hawks could benefit from a change at the head spot on their coaching staff. The most compelling one is the stagnation of Atlanta's defense. When Snyder was in Utah, the Jazz ranked towards the top of the NBA in defense more often than not. They finished as a top-10 defense six times out of the eight seasons Snyder was at the helm. Part of that was the presence of Rudy Gobert, but the Hawks undoubtedly hired Snyder because they thought he could build a competent defense around Trae Young. He was never able to do that and his attempts to build around Johnson haven't fared much better on the defensive end. Despite having two pretty solid perimeter defenders in Nickeil Alexander-Walker and Daniels, the Hawks have been consistently poor at closing out on shooters on the perimeter. They've been better this year (11th-best 3P% allowed in 2025-26), but this comes after two straight seasons of being second-to-last in 3P% allowed. They also have yet to break past 16th in points allowed per 100 possessions. Their lack of true progress on defense is part of the reason why the Hawks have failed to be a serious playoff team. They were able to take two games off the Celtics and avoided a sweep by the Heat, but they were thoroughly outmatched in both series. The injuries they've experienced certainly play a role and it shouldn't be entirely dismissed as a reason why Atlanta has underachieved in the Snyder era. However, barring a encouraging run this season, the Hawks cannot keep a coach who's failed to take them past the first round in four tries. Snyder's rotation decisions are also linked to the team's struggles during the regular season and postseason. He hasn't been able to empower Zaccharie Risacher or find a way to maximize the strengths that he does have. His decision to use the trio of Vit Krejci, Luke Kennard and Keaton Wallace despite it being statistically one of the worst three-man lineups in the NBA made zero sense. That grouping got 109 minutes on the season, had a -19.5 net rating and swung games in the negative for the Hawks. Mo Gueye also struggled to find any sort of consistent minutes under Snyder despite showing flashes in limited showings. Final ThoughtsJan 9, 2026; Denver, Colorado, USA; Atlanta Hawks head coach Quin Snyder reacts in the second quarter against the Denver Nuggets at Ball Arena. Mandatory Credit: Ron Chenoy-Imagn Images | Ron Chenoy-Imagn ImagesBased on his track record and the Hawks' play this season, this summer is the perfect time for the Hawks to make a clean break and hire a new coach to lead their team. Multiple teams like the Phoenix Suns, Boston Celtics and Oklahoma City Thunder have seen a revitalization when taking chances on a relatively unknown coach. The Hawks should do the same and hire a newcomer with fresh ideas for building a team around Jalen Johnson. They have a very young team and will likely add a lottery pick to their lineup. Therefore, it would make sense for the Hawks to hire a new leader that can grow with the new direction of the team. More Atlanta Hawks News:Add us as a preferred source on GoogleFollow
+"""
+
+[R10] Hawks coach Quin Snyder admits to Knicks Karl-Anthony Towns mismatch: ‘It’s pick your poison’
+(https://www.nydailynews.com/2026/04/18/hawks-hc-quin-snyder-admits-to-knicks-kat-mismatch-its-pick-your-poison/)
+"""
+NEW YORK, NEW YORK – APRIL 10: Karl-Anthony Towns #32 of the New York Knicks reacts after dunking the ball during the first quarter against the Toronto Raptors at Madison Square Garden on April 10, 2026 in New York City. NOTE TO USER: User expressly acknowledges and agrees that, by downloading and or using this photograph, User is consenting to the terms and conditions of the Getty Images License Agreement. (Photo by Pamela Smith/Getty Images) Atlanta Hawks head coach Quin Snyder admitted the Karl-Anthony Towns matchup in his team’s first-round Eastern Conference playoff series against the Knicks will be difficult for his undermanned team to handle. “That’s a challenge for us right now,” said Snyder, whose Hawks lost backup center Jock Landale to an ankle injury for two weeks. “It’s a little bit of pick your poison, you know? How do you ...RevContent Feed Mets’ Juan Soto wasn’t in touch with team while on IL despite horrific losing streak Yankees make their case for new alternate jerseys: ‘It wouldn’t be the end of the world’ Knicks Notebook: Better paint protection is a key to Game 3 vs. Hawks Ohio State safety Caleb Downs could be next Giants defensive leader 2026 April 18
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

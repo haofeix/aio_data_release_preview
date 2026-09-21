@@ -1,0 +1,107 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "7-eleven closing stores"
+
+Claims:
+[1] "7-Eleven is closing 645 underperforming stores across North America during the 2026 fiscal year."
+[2] "7-Eleven's fiscal 2026 is from March 1, 2026 to February 28, 2027."
+[3] "7-Eleven plans to close 645 locations."
+[4] "7-Eleven plans to open 205 new stores."
+[5] "7-Eleven will have a net loss of 440 stores."
+[6] "7-Eleven's store closures are driven by declining traffic, inflation, and lower cigarette sales."
+[7] "7-Eleven's store closures are part of a restructuring to shift focus toward larger, food-focused stores and away from traditional small kiosks."
+[8] "7-Eleven's decision to close stores is due to underperforming locations, falling sales, inflationary pressure, and a significant drop in cigarette purchases."
+[9] "7-Eleven's closures are part of a long-term plan to pivot toward food-forward stores that prioritize fresh food, hot meals, and beverage options."
+[10] "7-Eleven's food-forward stores compete with chains like Wawa and Sheetz."
+[11] "Some of 7-Eleven's closed stores will be converted into wholesale fuel stores."
+[12] "Wholesale fuel stores operate without the retail staff and overhead of a full convenience store."
+[13] "7-Eleven's current move marks the fifth consecutive year that 7-Eleven has closed more stores than it has opened."
+[14] "7-Eleven has not released a public list of the specific stores scheduled for closure."
+
+Cited text snippets from the AI Overview (for additional context):
+- 7-Eleven plans to close 645 c-stores in fiscal 2026: "7-Eleven has closed more,closing 3806 and opening 477."
+- 7-Eleven plans to close 645 stores across North America: "7-Eleven plans to close 645 convenience stores in North,474 the year before that."
+- Iconic 99-year-old convenience store chain closing 645 stores: "7-Eleven, one of the,in 2024 and 2025 combined."
+- Blame Buc-ee's? 7-Eleven to close 645 stores in major revamp: "Food & Drink-,7-Eleven will close 600 stores this year — to prepare,an upgraded in-store experience."
+- 7-Eleven plans to close 645 stores during 2026 fiscal year - Facebook: "now󰞋󱟠-,7-Eleven plans to close 645 stores,2026 fiscal year | DETAILS⬇️"
+Reference Sources:
+
+[R1] Iconic 99-year-old convenience store chain closing 645 stores
+(https://www.thestreet.com/retail/7-eleven-closing-645-stores-in-2026)
+"""
+Convenience stores have evolved, becoming more than just someplace to pick up a snack, grab a pack of cigarettes, or use the restroom after you gas up your car. Chains like Wawa and Sheetz have added food, coffee bars, and other upgraded services to make them more of a destination. “Fuel and tobacco products remain essential categories for the nation’s 150,000-plus convenience stores, but sector growth is being led by store formats that feature higher quality and greater variety of prepared foods and beverages,” NIQ shared in The 2024 State of Convenience. Food offerings have been improving as well. Prepared foods enjoyed a 12% increase year over year, according to the NACS 2023 State of the Industry Report. 7-Eleven, one of the leaders in the convenience store space, has been evolving its store fleet to meet those changing demands. In many cases, that means a remodel, while in select cases, it has chosen to close stores that can’t meet changing demands. 7-Eleven plans to close more than 600 stores in 2026 “As 7-Eleven eyes a 2027 IPO, the company continues adjusting its footprint, mainly through closing underperforming locations and opening new ones under its large format, food-focused design,” Convenience Store Dive reported. Some locations will also be converted to “wholesale fuel stores,” which the company does not include in its store count, according to parent company Seven & i Holdings’ fourth-quarter earnings release. The company said it plans to continue closing underperforming stores in 2026 as part of its ongoing portfolio optimization strategy. The chain closed more than 600 locations in 2024 and 2025 combined. More Retail: Walmart fires OpenAI in playbook-changing move Costco CEO just gave members a new reason to renew Bath & Body Works makes big change customers will notice right away 7-Eleven has closed stores as part of a broader effort to evolve its business to lean into food more. EMarketer Senior Retail Analyst Blake Doersch explained the chain’s changes in a recent podcast. “I think I don’t really see it as much of an expansion as it is sort of a transformation of their business model because while they are continuing to open new stores, they’ve also, I think, closed more stores than they’ve opened the past two years and planned to do the same this year. And I think it’s really because they are completely shifting their business model from just convenience store to convenience store, plus restaurant or food service outlet plus grocery,” he said. TheStreet NewslettersGet the latest in market trends or guidance on simple ways to grow your wealth.or sign in withBy signing up I agree to the Terms of Use and acknowledge that I have read the Privacy Policy. You may unsubscribe from email communication at anytime. 7-Eleven’s past closures at a glance: 7-Eleven closed about 444 stores across the U.S. and Canada in 2024 as part of a broader portfolio review of underperforming locations, citing inflation, weaker traffic, and shifting consumer behavior, according to OPB.org. The closures represented roughly 3% of its North American store base, which totals more than 13,000 locations, reported WAFB. Industry reporting noted that closures have been part of a longer-term optimization strategy, with underperforming stores removed as the chain adjusts to shifting consumer trends, according to Convenience Store Dive. 7-Eleven has closed stores as part of a broader effort to evolve its business.Shutterstock American convenience stores are changing How Americans use convenience stores has changed, Shell’s Global Manager of Convenience Retailing Operations Richard Garcia told Nielsen NIQ. “The historical model for convenience, particularly in the U.S., is that you use fuel to attract people to your location,” he shared. “That is absolutely changing to the store becoming the destination, and while they’re there, you hope they might buy fuel. Now it’s already happened.” Many of the changes are about attracting customers more often. “When you look at our numbers, the average person fills up their car, I think it’s 2, 2.3 times a month. The average C-store shopper comes to a convenience store more than three times a week. So, the store has become the destination,” he added. Fresher food has become a driver for the industry. “Today, next to standard-issue soft drinks and churros, shoppers often encounter branded coffees, premium shakes and meal offerings that can rival the quality of many quick-service restaurants. Customizable fare such as made-to-order sandwiches, hot soups and sides — even items from the grill — are making their way onto C-store menus, driving traffic for meal-based (versus gasoline-based) missions,” L.E.K. Consulting reported in its Evolving the Convenience Store report. About the authorsDaniel Kline serves as co-editor-in-chief of TheStreet. He has more than 30 years of experience covering retail, restaurants, travel, and technology. He's the creator of Come Cruise With Me, and a noted expert on cruise travel. He has been passionate about the changing state of retail and loves to show why companies succeed or fail. Celine is a writer and editor with over 20 years of experience and has covered diverse news, features, academic/research, and legal topics. At TheStreet.com, Celine is a senior editor with experience across retail, stocks, investing, personal finance, technology, the economy, and travel.
+"""
+
+[R2] 7-Eleven plans to close 645 stores across North America
+(https://www.localmemphis.com/article/news/nation-world/7-eleven-closing-645-stores-north-america/507-1eba84ec-d82d-42b0-9810-e686d8438729)
+"""
+The closures mark the fifth straight year the chain has closed more locations than it opened in North America. 7-Eleven plans to close 645 convenience stores in North America over the next fiscal year — the most aggressive round of cutbacks yet for a chain that has been shrinking its footprint for half a decade. Seven & i Holdings, the chain's Japanese parent company, also recently pushed back a highly anticipated stock market debut until at least 2027. The announcements were both made as part of the company's earnings release on April 9. According to Seven & i's earnings documents, 7-Eleven, Inc., the U.S. arm of the chain based in Irving, Texas, expects to close 645 retail locations in its current fiscal year while opening just 205 — a net loss of 440 stores. Some of those locations will not disappear entirely: the parent company said some closures will happen because of conversion to wholesale fuel stores, a model that keeps a location operating as a gas supplier without the retail staff and overhead of a full convenience store. The closures would make fiscal year 2026 the fifth year in a row that the company has closed more stores than it opened. 7-Eleven did not release a list of stores it is planning to close. The chain already had a tough stretch in recent years. 7-Eleven closed 373 North American stores in fiscal 2025 — and 474 the year before that. Even as it closes hundreds of locations, 7-Eleven plans to invest heavily in a new format: larger stores with expanded food menus, seating areas and, in many cases, fuel stations. The chain has set a goal of opening 1,300 new-format North American stores by 2030. The strategy mirrors a broader shift across the convenience store industry, where chains like Wawa and Casey's General Stores have built loyal followings — and strong sales — by competing more aggressively on fresh, made-to-order food. The 7-Eleven chain was initially founded in Dallas in 1927 as the Southland Ice Co. As it expanded its volume of convenience stores in the following years, the company was rebranded as Tote'm Stores, until 1946, when its name was changed to 7-Eleven to reflect its then-companywide store operating hours of 7 a.m. to 11 p.m.
+"""
+
+[R3] 7-Eleven will close 600 stores this year — to prepare for massive makeover
+(https://nypost.com/2026/04/13/lifestyle/7-eleven-to-close-645-stores-in-major-food-focused-revamp/)
+"""
+1/1 Continue watchingafter the adVisit Advertiser websiteGO TO PAGE Call it a Slurpee shake-up. 7-Eleven is slashing hundreds of stores — and supersizing what’s left — as the convenience giant pivots from quick pit stops to full-on food destinations. Amid a national trend toward better eats and bigger stores from other, growing chains like Wawa, Sheetz and Bu-cee’s, the long-running brand confirmed it will shutter 645 locations during its 2026 fiscal year — as part of a sweeping overhaul that swaps struggling storefronts for larger footprints and a whole lot more grub. But don’t pour one out just yet: the company is also in expansion mode, planning hundreds of new locations as it eyes a future that looks less like a corner store and more like a fast-casual pit stop. At the heart of the revamp is a new “food-forward” store format — one that leans into prepared meals, drinks and an upgraded in-store experience. “These food-forward stores are resonating with our customers and driving [average sales per store day] about 18% higher than our system average,” 7-Eleven President Stan Reynolds said in the company’s fiscal Q4 earnings call. “We’ll continue learning from these stores and refine our new store standard to meet the needs of consumers both now and in the future.” Translation: less dusty shelves, more dinner staples. 7-Eleven is axing 645 stores while beefing up the survivors, trading quick pit stops for food-packed, fast-casual-style hubs. The redesigned locations will feature expanded food and beverage options and a broader product assortment, with some stores even morphing into so-called “wholesale fuel stores” — a format that won’t count toward the company’s official store total. The closures are part of what the company calls “portfolio optimization” — corporate speak for cutting underperformers loose. And there are plenty to cut. As reported by The Post, 7-Eleven has already closed more than 600 stores across 2024 and 2025 combined, including nearly 450 locations in North America alone. Weak cigarette sales — once the backbone of convenience store profits — have taken a major hit, plunging 26% since 2019, alongside decreased foot traffic and inflation pressures. While hundreds of locations are getting the ax, the company is still planting new flags. 7-Eleven isn’t just trimming the fat — it’s playing retail musical chairs. The chain’s still expanding, rolling out bigger locations that promise more meals, more drinks and way more than your average quick bite run. LightRocket via Getty Images The chain is expected to open 122 stores this year while shuttering 373, then ramp things up next year with 205 openings and a hefty 645 closures — all while plotting a 500-store expansion blitz between 2025 and 2027. It’s less a retreat — and more a reshuffle. And industry analysts say the shift is bigger than it looks. In a recent podcast episode, eMarketer senior retail analyst Blake Droesch described the shift as more of a “transformation” than an expansion, noting that 7-Eleven has actually been closing more stores than it’s opening — a trend he said is set to continue this year. He added that they are “completely shifting their business model from just convenience store to convenience store, plus restaurant or food service outlet plus grocery.” The new-look stores will be bigger, bolder and packed with more food and drink. Mdv Edwards – stock.adobe.com Behind the scenes, there’s a bigger play brewing. Parent company Seven & I Holdings is gearing up to take 7-Eleven public, as reported by Convenience Store Dive — but not before giving it a glow-up. The IPO, originally slated for 2026, has been pushed to 2027 to give the chain time to tighten operations and boost performance. All those closures, openings and menu upgrades? They’re part of the pregame. Ultimately, the convenience giant isn’t just tweaking layouts — it’s rewriting its menu. 7-Eleven has already teased a lineup of international-inspired eats heading to US stores, including milk bread, egg sandwiches and even miso ramen — a far cry from the roller grill staples of yesteryear. The message is clear: snacks are out, meals are in. As the chain barrels toward its 100th anniversary, it’s betting big that customers want more than a quick checkout — they want a reason to stick around. And if that means fewer stores but better bites? 7-Eleven is all in.
+"""
+
+[R4] 7-Eleven plans to close 645 c-stores in fiscal 2026
+(https://www.cstoredive.com/news/7-eleven-plans-to-close-645-c-stores-in-fiscal-2026/817294/)
+"""
+This audio is auto-generated. Please let us know if you have feedback. Dive Brief: 7-Eleven expects to close 645 convenience stores in North America during fiscal 2026, which runs from March 1, 2026 to Feb. 28, 2027, parent Seven & i Holdings revealed in one of its fourth-quarter earnings documents last week. The closings include “the conversion to wholesale fuel stores” for some sites, according to the document, which also noted that 7-Eleven does not include wholesale locations in its store count. Although 7-Eleven said it also expects to open more than 200 North American locations in the same period, fiscal 2026 will be the fifth year in a row that the company has closed more stores than it opened. Dive Insight: As 7-Eleven eyes a 2027 IPO, the company continues adjusting its footprint, mainly through closing underperforming locations and opening new ones under its large format, food-focused design. However, 7-Eleven now appears to be adding another layer to those adjustments by converting various company-owned sites to its wholesale segment — a strategy that wasn’t mentioned in any of its earnings in recent years. 7-Eleven did not respond by press time when asked about this conversion program, including how many stores it’s converting to wholesale versus closing entirely. 7-Eleven has closed more stores than it opened in recent years. If the company hits its estimates for the current fiscal year, it will make five straight years of closing more stores than it opened. Converting company-owned locations to wholesale can help a retailer save money on operations while still profiting by selling fuel to a tenant. Virginia-based Arko Corp., which owns over 1,000 c-stores through its GPM Investments arm, has taken a similar approach in recent years. As of February, through its “dealerization” strategy, Arko has converted 409 sites since mid-2024 and expects the program to be complete by the end of the year. In taking this approach, 7-Eleven appears eager to cut costs in preparation for the IPO, which the retailer announced last week has been delayed by at least 11 months due to market uncertainty. Other ways the company has reduced expenses in the past year have included various “productivity improvement initiatives” and bringing some maintenance tasks in house, Seven & i Director, Managing Officer and CFO Yoshimichi Maruyama said in January.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

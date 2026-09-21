@@ -1,0 +1,100 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "warning vs watch"
+
+Claims:
+[1] "A watch covers a large area for several hours."
+[2] "A warning is for a smaller area."
+[3] "A warning indicates danger is happening now."
+[4] "Conditions are favorable for severe weather (tornado, flash flood, thunderstorm) to develop under a watch."
+[5] "A watch usually covers a large geographic area (multiple counties or states)."
+[6] "A severe weather event has been sighted or indicated by radar under a warning."
+[7] "A warning usually covers a smaller, specific area (a few towns or counties)."
+[8] "A 1m YouTube video by 1m5NEWS published on Mar 4, 2026 explains the difference between a watch and a warning."
+
+Cited text snippets from the AI Overview (for additional context):
+- Severe Weather Warnings vs. Watches | Progressive: "Severe weather warning indicates the weather is,severe weather and you should plan accordingly."
+- Tornado Watch vs Tornado Warning: "A tornado watch means be prepared, while,shelter is an above/below ground storm shelter."
+- Watch vs. Warning: Here's what those severe weather alerts mean: https://www.wtsp.com/article/weather/watch-vs-warning-what-those-severe-weather-alerts-mean/507-b3bc3186-2e41-40e2-b15b-64c45835ad3a: "Do you know the difference between watches,when the cake is ready to eat."
+- Watch vs. Warning: Here's what those severe weather alerts mean: "Here is a creative way to remember,imminent and you need to take shelter."
+Reference Sources:
+
+[R1] Tornado watch vs. warning: How to stay safe during severe weather
+(https://www.fox5dc.com/news/tornado-watch-vs-warning-how-stay-safe-during-severe-weather)
+"""
+Published March 15, 2026 2:05pm EDT WASHINGTON, D.C. - Tornadoes may be a rare occurrence in the Northeast, but it is still important to know when and how to stay safe when severe weather threatens your home. Tornado watch vs. warning What we know: A tornado watch is issued if weather conditions favor thunderstorms capable of producing tornadoes in a region. You should watch for additional alerts and be prepared to seek shelter. When a tornado has been sighted on the ground or is indicated by weather radar, a tornado warning is issued. You should seek shelter immediately. Stay up to date with the latest alerts by signing up for AlertDC and following the National Weather Service. How to prepare What you can do: Before a potential tornado, the first step is making an emergency plan, which means having enough food and water to last at least three days, charging your devices, identifying a safe shelter and to make sure everyone knows where to go before the tornado hits. Those in tornado watch areas are advised to review and discuss emergency plans, check supplies and review a safe room in case conditions change. During a tornado warning, there is "imminent danger to life and property," according to the National Weather Service, who urges people to "move to an interior room on the lowest floor of a sturdy building and void windows." Wearing a helmet and placing blankets, pillows or even a mattress over your body may protect you from debris. After a tornado is over, stay indoors until it is safe to come out. What to do if you're in a car Dig deeper: Many people believe stopping under a highway overpass during a tornado is safe, but it actually puts you at a greater risk of harm, according to the NWS. Flying debris from the tornado's winds could seriously injure or kill you, and wind speeds could increase under the bridge. Instead of driving to the closest overpass, experts say it's safer to remain inside your vehicle with your seatbelt fastened, keeping your head below the windows. If there’s a lower area nearby, such as a ditch or depression, carefully leave the car and lie down there, shielding your head with your hands. However, getting to shelter safely is the best option. The Source: Information from this article was provided by the National Weather Service and FOX News. Washington, D.C.Severe Weather
+"""
+
+[R2] Severe Weather Warnings vs. Watches
+(https://www.progressive.com/answers/storm-watches-vs-warnings/)
+"""
+Severe Weather Warnings vs. Watches | ProgressiveAnswersThe difference between a severe weather warning vs. watchA severe weather warning is an indication that you need to immediately take shelter and precautions for severe weather. A watch, on the other hand, means that the conditions are favorable for that type of weather activity to occur. While both weather statements indicate potential severe weather, a warning is more serious than a watch. 5 minute to readExplore Progressive's editorial standards for Answers articles to find out why you can trust the insurance information you find here.Is a severe weather watch or warning worse? Both are serious, but a severe weather warning is typically worse than a watch because it confirms that severe weather is in the area. A watch simply indicates that conditions are favorable for severe weather. If a watch is issued, stay on alert — a watch can quickly turn to a warning as conditions develop. What to look for: The difference between warning and watch The indicators for watches and warnings vary by weather activity. Here's what the National Weather Service defines as a watch and warning for common weather alerts:Type of weatherWarning (according to NWS.com)Watch (according to NWS.com)FloodWarning (according to NWS.com)Flooding is imminent or occurring.Watch (according to NWS.com)Conditions are favorable for flooding. If flash flooding is possible, the watch will mention it. High WindWarning (according to NWS.com)Issued when the following conditions are expected: Sustained winds of 40 mph or higher for one hour or more OR Wind gusts of 58 mph or higher for any duration Watch (according to NWS.com)Issued when the following conditions are possible: Sustained winds of 40 mph or higher for one hour or more OR Wind gusts of 58 mph or higher for any duration HurricaneWarning (according to NWS.com)Issued when sustained winds of 64 kt (74 mph) or higher associated with a tropical cyclone are expected in 36 hours or less. These winds may be accompanied by storm surge, coastal flooding, and/or river flooding. A hurricane warning can remain in effect when dangerously high water or a combination of dangerously high water and exceptionally high waves continue, even though winds may be less than hurricane force.Watch (according to NWS.com)Issued when a tropical cyclone containing winds of 64 kt (74 mph) or higher poses a possible threat, generally within 48 hours. These winds may be accompanied by storm surge, coastal flooding, and/or river flooding.ThunderstormWarning (according to NWS.com)Issued when severe thunderstorms are occurring or imminent in the warning area. Severe thunderstorms are defined as follows: Winds of 58 mph or higher AND/OR Hail 1 inch in diameter or larger. Watch (according to NWS.com)Issued when severe thunderstorms are possible in and near the watch area. Severe thunderstorms are defined as follows: Winds of 58 mph or higher AND/OR Hail 1 inch in diameter or larger. TornadoWarning (according to NWS.com)Issued when a tornado is imminent. When a tornado warning is issued, seek safe shelter immediately.Watch (according to NWS.com)Issued when severe thunderstorms and tornadoes are possible in and near the watch area. Tropical StormWarning (according to NWS.com)Issued when sustained winds of 34 to 63 kt (39 to 73 mph) or higher associated with a tropical cyclone are expected in 36 hours or less. These winds may be accompanied by storm surge, coastal flooding, and/or river flooding.Watch (according to NWS.com)Issued when a tropical cyclone containing winds of 34 to 63 kt (39 to 73 mph) or higher poses a possible threat, generally within 48 hours. These winds may be accompanied by storm surge, coastal flooding, and/or river flooding.Winter stormWarning (according to NWS.com)Issued when a significant combination of hazardous winter weather is occurring or imminent. Significant and hazardous winter weather is defined as a combination of: 5 inches or more of snow/sleet within a 12-hour period or 7 inches or more of snow/sleet within a 24-hour period AND/OR Enough ice accumulation to cause damage to trees or powerlines. AND/OR A life threatening or damaging combination of snow and/or ice accumulation with wind. Watch (according to NWS.com)Issued when there is the potential for significant and hazardous winter weather within 48 hours. Significant and hazardous winter weather is defined as a combination of: 5 5 inches or more of snow/sleet within a 12-hour period or 7 inches or more of snow/sleet within a 24-hour period AND/OR Enough ice accumulation to cause damage to trees or powerlines. AND/OR A life threatening or damaging combination of snow and/or ice accumulation with wind. What should you do when storm warnings and watches are issued? If it's a storm warning, the first thing to do is take cover. Make sure you and your family are safe. No matter the type of weather alert issued, staying safe should be your top priority. If a storm watch is issued, you may have more time to prepare. Do you have a patio umbrella that could easily blow away? A car to move into your garage? Maybe lawn ornaments that a strong wind could impact? If it's something as easy as getting those down and put away, do it quickly — even blown-away lawn accessories could cause real damage to your home and surrounding structures. Make sure you're protected when a storm hits Severe weather can make a mess of our yards, but it can also cause serious damage to our homes and vehicles. Make sure you're covered the next time you get a weather alert so you can focus on keeping yourself and your family safe from whatever Mother Nature sends your way. New Progressive customers Quote auto insurance, homeowners insurance, renters insurance, or condo insurance online or call 1-866-749-7436 to get customized coverage for when a storm hits. Current Progressive customers Log in to your policy or call 1-866-749-7436 to adjust your coverages, report storm damage, or file a claim.Have more questions? Browse articles by insurance type
+"""
+
+[R3] What is a tornado watch vs. warning? How to stay safe in Florida
+(https://www.tallahassee.com/story/weather/2026/03/12/florida-weather-tornado-warning-watch-radar/89114848007/)
+"""
+Updated March 12, 2026, 7:55 a.m. ETA tornado watch has been issued for parts of the Florida Panhandle as a line of severe storms approaches the Tallahassee area Thursday morning, March 12. The National Weather Service in Tallahassee issued the watch at 5:56 a.m., and it remains in effect until 9 a.m. for Franklin, Jefferson, Leon and Wakulla counties in Florida.Just over the state line, the National Weather Service office in Tallahassee issued tornado warnings for Thomas. Twiggs, Baldwin, Hancock and Washington counties.Forecasters say a squall line moving through the region could bring scattered damaging wind gusts of 60 to 70 mph and the potential for a few tornadoes.The March 12 storms come amid a week of active weather, including several tornado outbreaks in the Midwest, which have killed two in Oklahoma, six in Michigan and two in Indiana since last Thursday, March 5.Tornado warnings in effectTornado warning (confirmed) — East-central Twiggs County, GA — until 7:45 a.m.Tornado warning (radar) — Northeastern Thomas and southwestern Colquitt counties, GA — until 7:45 a.m.Tornado warning (radar) — Southern Thomas County, GA — until 8 a.m.Tornado warning (radar) — Northeastern Baldwin, southwestern Hancock and northwestern Washington counties, GA — until 8 a.m.What is a tornado watch?A tornado watch is an alert issued by the National Weather Service. It means that tornadoes are possible in and near the "watch" area.A tornado watch is issued by the Storm Prediction Center for counties where tornadoes may occur, and the watch area is typically large, covering numerous counties or states.If a tornado watch is issued in your area, the NWS says to be prepared and be ready to act quickly if the next level, a warning, is issued or if you suspect a tornado is approaching.What is a tornado warning?A tornado warning is a more serious alert, indicating that a tornado is either happening or is about to happen, and you should take shelter immediately.There are two types of alerts:Radar-indicated warning: Strong rotation is detected; a tornado may form or is in the process of forming. When a warning is radar-indicated, it typically means the radar has detected a rotating thunderstorm (called a mesocyclone) capable of producing a tornado. However, not all radar-indicated warnings result in an actual tornado touchdown.Confirmed warning : A tornado has been spotted or detected by radar through a debris signature.Regardless of whether the warning is radar-indicated or confirmed, it is critical to take shelter immediately, as tornadoes can form quickly and radar cannot always capture what's happening at ground level.What to do in a tornado warningA tornado warning means a tornado has been sighted or indicated by radar. Take shelter immediately.Go to the lowest level of a building: Move to a basement if one is available. If not, go to the lowest floor.Stay in a small interior room: Choose a bathroom, closet or hallway — away from windows, doors and outside walls.Cover your head and neck: Use a mattress, heavy blankets, coats or a helmet if available to protect yourself from debris.Avoid large open rooms: Gymnasiums, auditoriums and rooms with wide roofs are more likely to collapse.If you are in a mobile home, leave immediately: Mobile homes are not safe during tornadoes. Go to the nearest sturdy building or storm shelter.If you are outside or in a vehicle: Get to a sturdy building right away. If no shelter is available, lie flat in a low-lying area such as a ditch and cover your head.Stay sheltered until the warning expires: Tornadoes can strike quickly and with little visibility during storms, especially when rain is falling.Florida radarFlorida weather watches and warningsStay informed. Get weather alerts via text.Brandi D. Addison covers weather across the United States as the Weather Connect Reporter for the USA TODAY Network. She can be reached at baddison@gannett.com. Find her on Facebook here.
+"""
+
+[R4] Storm Watch vs Warning - Evan's Fire Protection District
+(https://www.evansfiredistrict.org/storm-watch-vs-warning/)
+"""
+Welcome to the Evans Fire Protection District. We are dedicated to keeping our community safe. Storm alerts can be confusing, but knowing the difference between watches and warnings can save lives. Here, you’ll find essential information to help you stay prepared and protected during severe weather events. Our team is here to serve you with 24-hour emergency and non-emergency services, ensuring that you know what to do when every moment counts. Stay informed and receive notification directly to your phone with the CodeRED Mobile Alert app. Most tornado deaths occur in cars and mobile homes. If you live in a mobile home park, you should find out from the manager where you should go in the event of a tornado–but don’t wait until you really need the information–ask him/her on a nice day! Mobile home parks may have a designated tornado shelter, or a steel reinforced concrete laundry room. If they don’t, you need to find another substantial structure that you can reach very quickly. You may have only seconds to get to it. Go to interior rooms and halls on the lowest floor. Stay away from glass enclosed places or areas with wide-span roofs such as auditoriums, theaters, and warehouses. Crouch down and cover your head. Deaths have occurred in large, single story department stores when the roof or wide span brick walls collapsed. A corner would be safer than the middle of the wall. A bathroom, closet, office, or maintenance room with short walls would be the safest area, especially if it is on the north or east side of the building.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

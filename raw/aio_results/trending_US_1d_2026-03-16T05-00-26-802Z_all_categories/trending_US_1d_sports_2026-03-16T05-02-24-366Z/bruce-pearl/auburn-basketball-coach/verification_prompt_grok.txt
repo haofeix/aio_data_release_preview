@@ -1,0 +1,97 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "auburn basketball coach"
+
+Claims:
+[1] "Steven Pearl is the head coach of the Auburn Tigers men’s basketball team."
+[2] "Steven Pearl took over the head coach position of the Auburn Tigers men’s basketball team for the 2025–26 season."
+[3] "Bruce Pearl is the father of Steven Pearl."
+[4] "Bruce Pearl retired from the head coach position of the Auburn Tigers men’s basketball team."
+[5] "Bruce Pearl transitioned to an ambassador role within the athletic department."
+[6] "Bruce Pearl had an 11-year tenure as head coach of the Auburn Tigers men’s basketball team."
+[7] "Bruce Pearl stepped down in September 2025."
+[8] "Steven Pearl was the associate head coach of the Auburn Tigers men’s basketball team prior to 2025."
+[9] "Larry Vickers is the head coach of the Auburn women's basketball team."
+[10] "Larry Vickers was hired in 2025."
+
+Cited text snippets from the AI Overview (for additional context):
+- Former Tennessee and Auburn coach Bruce Pearl was ...: "Bruce Pearl is stepping down,🧡🏀💙"
+- Auburn women's basketball coach Larry Vickers previews the ...: "Auburn women's basketball coach Larry,previewed his team's upcoming season."
+- Inside Larry Vickers' first two months as Auburn women's basketball ...: "From assembling a staff, getting to know,coach Larry Vickers, who was hired in"
+- Bruce Pearl retires: Rick Barnes on Auburn coach, Steven Pearl hiring: "Pearl retired after 11 years,Fours in 2019 and 2025."
+- Bruce Pearl still on Auburn payroll while employed at CBS, TNT, per public record: "Per Rauterkus, citing Auburn's online,Thanatos • 0 minutes ago"
+Reference Sources:
+
+[R1] What Rick Barnes said about Bruce Pearl retiring at Auburn, Steven Pearl's hiring
+(https://www.knoxnews.com/story/sports/college/university-of-tennessee/mens-basketball/2025/09/23/rick-barnes-bruce-pearl-tennessee-basketball/86298350007/)
+"""
+Updated Sept. 23, 2025, 3:53 p.m. ETFormer Tennessee and Auburn coach Bruce Pearl announced his retirement from coaching.Tennessee coach Rick Barnes expressed his happiness for Pearl and respect for his decision.Pearl's son, Steven, has been named the new head coach for Auburn.Rick Barnes caught up with Bruce Pearl in mid-September.The Tennessee basketball coach left that conversation with an inkling of what was coming for the Auburn coach. That inkling became reality on Sept. 22 as the Tigers coach and former Vols coach announced his retirement."I am happy for him," Barnes said Sept. 23. "I really am. What he said and what he meant in his statement from talking to him, he felt it was time. I certainly respect that. You look at him, everywhere he has been, he has built a winning program and has done a great job."Pearl retired after 11 years as the Auburn coach, which marked the most successful run in the program's history. He is moving into an ambassador’s role in the athletic department as special assistant to the athletics director.He went 246-125 at Auburn and took the Tigers to Final Fours in 2019 and 2025. Auburn won the SEC regular-season title in 2024-25, one of its four combined SEC titles between the conference tournament and the regular season.Pearl's son, Steven, took over as the head coach for the 2025-26 season after signing a five-year contract."I think Steven will do a great job," Barnes said. "You can’t live with someone like Bruce and not understand the game, being around the game. ... I think Steven has worked hard and I think the fact Auburn has given him this opportunity speaks volumes of what they think about him."The Vols went 7-9 against Pearl during Barnes' tenure. They won the final matchup 70-65 in the SEC Tournament semifinals in 2025."This is something I knew that he wanted," Barnes said. "I am happy for him. I am happy for Steven. There is no doubt he is going to continue to do a great job.”Pearl coached at Tennessee from 2005-11, elevating the program by going 145-61 and reaching the NCAA Tournament in each of his six seasons. He was fired following the 2010-11 season amid NCAA recruiting violations and a charge from the NCAA for unethical conduct for lying during the investigation into the recruiting violations. He received a three-year show-cause penalty in August 2011. Auburn hired Pearl in March 2014.UT reached its first Elite Eight in 2010 under Pearl. It has gone to back-to-back Elite Eights under Barnes in the past two seasons.Pearl also led UT to its first No. 1 ranking, a one-week stint in the 2007-08 season. The Vols were the top-ranked team for four consecutive weeks in the 2018-19 season. They spent a program-record five weeks as the No. 1 team in the 2024-25 season.Pearl had a 708-269 career record, which included stops at Division II Southern Indiana (1992-2001) and Milwaukee (2001-05).Mike Wilson covers University of Tennessee athletics. Email him at michael.wilson@knoxnews.com and follow him on X @ByMikeWilson. If you enjoy Mike’s coverage, consider a digital subscription that will allow you access to all of it.
+"""
+
+[R2] Inside Larry Vickers’ first two months as Auburn women’s basketball coach
+(https://www.al.com/auburn/2025/05/inside-larry-vickers-first-two-months-as-auburns-womens-basketball-coach.html)
+"""
+Auburn Tigers SportsUpdated: May. 28, 2025, 6:19 p.m.Published: May. 28, 2025, 4:51 p.m.By Peter Rauterkus | prauterkus@al.comThe first few months of a new coaching job is busy to say the least.From assembling a staff, getting to know your colleagues, introducing yourself to the community and more often than not building a whole new team, there’s a seemingly endless to-do list for new head coaches in college sports.That’s no different for new Auburn women’s basketball coach Larry Vickers, who was hired in March to replace former head coach Johnnie Harris. He arrived on the Plains after a successful nine-year tenure at Norfolk State, finishing with an overall record of 174-91 and an 83-17 record since 2022.The al.com logoA subscription is required to read this story.Subscribe now to continue.Since his arrival, Vickers has had to put together a staff and rebuild the roster from scratch. Every single scholarship player under Harris entered the transfer portal after she was fired, and only Syriah Daniels and Kaitlyn Duhon will return next season.Despite the whirlwind of the first two months, Vickers says there has been a lot of excitement in and around the program since he was hired.“Everybody’s been extremely supportive in the department,” Vickers told AL.com at SEC spring meetings. “Everybody understands that certain elements look a little different. I think for me, it was just putting a quality staff together, understanding that everybody can’t go with you.”Vickers’ staff at Auburn doesn’t include any of his former assistants at Norfolk State, meaning that it will be a whole new group for him, not just for Auburn.The same is true for the roster, as none of Vickers’ players from Norfolk State followed him south to the Plains. As mentioned earlier, only two players from last season’s Auburn team will return, creating an entirely new look program.“Coach Johnnie had some terrific players on the team that were willing to stay it might didn’t necessarily fit with what we’re looking to do with Auburn moving forward,” Vickers said. “So, that’s helping them find a new home, and then that’s us finding new players to kind of fit that style of play. I felt like in in the full six weeks we were able to do that.“Now it’s just a matter of, because we don’t necessarily have, that A-level, putting those Cs and Bs in places to win, and just doing it with our depth.”Auburn signed six players out of the portal and one JUCO transfer since Vickers was hired, while retaining two others and bringing in three freshmen.RECOMMENDEDWhen asked about the type of players Auburn wanted to add in the portal, Vickers said they didn’t want to take many risks with the players that could build a new foundation for the program in his first season.“In Year 1, you don’t wanna bring any problems into administration,” Vickers said. “We wanted to know what exactly we’re getting out of the portal, one from a statistics standpoint, but also from a personality standpoint.”Peter Rauterkus covers Auburn sports for AL.com. You can follow him on X at @peter_rauterkus or email him atprauterkus@al.comPeter Rauterkus is an Auburn Sports Reporter for AL.com covering football, basketball and all things Auburn sports. He joined AL.com in July 2024. Prior to joining the sports staff at AL.com, Peter spent time...
+"""
+
+[R3] Bruce Pearl still on Auburn payroll while employed at CBS, TNT, per public record
+(https://awfulannouncing.com/college-basketball/bruce-pearl-auburn-payroll-employed-cbs-tnt.html)
+"""
+Credit: CBS Bruce Pearl has been at the center of the college basketball world’s attention for all of the wrong reasons in recent weeks. The former Auburn head coach first began his run of controversy by suggesting the then-undefeated Miami (Ohio) RedHawks should not make the NCAA Tournament as an at-large selection if they were to lose in their conference tournament, while at the same time arguing his son’s Auburn team, sitting just one game above .500, deserve to get in. That exact situation, of course, came to pass when the RedHawks lost in the quarterfinals of the MAC Tournament to UMass. They’ll await the selection committee’s decision on Sunday evening, as will Auburn, during the Selection Show, which airs on CBS at 6 p.m. ET. Offering his instant reactions to the committee’s decisions on CBS’s panel? None other than Bruce Pearl, of course. Now, having opinionated analysts on a sports studio show is nothing new. In fact, it’s encouraged. Likewise, analysts with close ties, even familial ties, to the teams and individuals they’re covering is also something that happens with relative frequency in sports television. But what is perhaps quite new is having someone who is actively on a school’s payroll cover whether that school does or does not deserve selection into the tournament, while purportedly being cast as an objective observer. That’s exactly what is happening in Pearl’s case, however, according to a report by Peter Rauterkus on Sunday in AL.com. Per Rauterkus, citing Auburn’s online payroll database, Pearl received a payment from Auburn as recently as Feb. 27 under the title of “Special Assistant to the Athletic Director.” Awful Announcing calculates, per the same payroll database, that Bruce Pearl has received $156,250 in payments from Auburn since resigning as the school’s head basketball coach in September. Now, that’s a far cry from the over $5 million per year Pearl was making as head coach of the Tigers. But as someone who now serves in a prominent media position with CBS Sports and TNT, any form of payment from a school he’s covering can give the appearance of impropriety. And depending on what happens with his son’s Auburn team and Miami (Ohio) on Sunday evening, that conflict of interest could be on full display during the Selection Show.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

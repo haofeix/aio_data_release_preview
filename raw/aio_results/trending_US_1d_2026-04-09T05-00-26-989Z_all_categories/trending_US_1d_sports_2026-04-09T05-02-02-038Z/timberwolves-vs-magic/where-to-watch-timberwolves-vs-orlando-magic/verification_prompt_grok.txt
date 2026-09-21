@@ -1,0 +1,129 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch timberwolves vs orlando magic"
+
+Claims:
+[1] "Minnesota Timberwolves vs. Orlando Magic on April 8, 2026"
+[2] "The game is at 7:00 PM ET"
+[3] "The game is broadcast on FanDuel Sports Network Florida (FDSFL)"
+[4] "The game is broadcast on FanDuel Sports Network North (FDSN North)"
+[5] "The game is held at the Kia Center"
+[6] "Live streaming options for the game include Fubo"
+[7] "FanDuel Sports Network Florida is regional TV for the Magic"
+[8] "FanDuel Sports Network North is regional TV for the Timberwolves"
+[9] "Fubo has a free trial available"
+[10] "NBA League Pass is alternative streaming for out-of-market viewers"
+[11] "IHeartRadio carries the game on the Timberwolves channel"
+[12] "The game is available on Prime Video for select viewers"
+
+Cited text snippets from the AI Overview (for additional context):
+- Where to Watch Orlando Magic Games | TV & Radio Broadcast - NBA: "FanDuel Sports Network is your,live pregame and postgame coverage."
+- How to watch Timberwolves vs. Magic: TV channel and ...: "How to watch Minnesota Timberwolves vs. Orlando,TV: FDSN, FDSFL · Streaming (out-of-market viewers):"
+- Watch Orlando Magic at Minnesota Timberwolves (Free Trial): "Watch the Orlando Magic at Minnesota Timberwolves,Watch your local teams with Regional S"
+- How to watch Timberwolves at Sixers tonight: game preview, injury ... - NBA: "The game will be broadcast,100.3 and the Timberwolves app."
+- How to watch Timberwolves at Pistons tonight: game preview, injury ... - NBA: "The game will be broadcast,channel and the Timberwolves app."
+Reference Sources:
+
+[R1] Watch Orlando Magic on Prime Video
+(https://www.primevideo.com/tournament/amzn1.dv.icid.e0a8697e-3149-40ec-ad6b-a1e2c1c3e528)
+"""
+InfoSome titles might be unavailable in your current location. Go to amazon.com to see the video catalog available in United States.CloseOrlando MagicOrlando MagicMore details Watch with a subscription – Live and upcoming ForwardHornets vs. MagicUPCOMINGStore FilledHornets vs. MagicTomorrow 6 PMForwardTeams ForwardAtlanta HawksBoston CelticsBrooklyn NetsCharlotte HornetsChicago BullsCleveland CavaliersDallas MavericksDenver NuggetsDetroit PistonsGolden State WarriorsHouston RocketsIndiana PacersForwardWatch with a subscription – Full replays ForwardMagic vs. 76ersGAME RECAPMagic vs. 76ersWed, Apr 15Magic vs. BullsGAME RECAPMagic vs. BullsFri, Apr 10Timberwolves vs. MagicGAME RECAPTimberwolves vs. MagicWed, Apr 8Pistons vs. MagicGAME RECAPPistons vs. MagicMon, Apr 6Magic vs. PelicansGAME RECAPMagic vs. PelicansSun, Apr 5Magic vs. MavericksGAME RECAPMagic vs. MavericksFri, Apr 3Hawks vs. MagicGAME RECAPHawks vs. MagicWed, Apr 1Suns vs. MagicGAME RECAPSuns vs. MagicTue, Mar 31Magic vs. RaptorsGAME RECAPMagic vs. RaptorsSun, Mar 29Kings vs. MagicGAME RECAPKings vs. MagicThu, Mar 26Magic vs. CavaliersREPLAYStore FilledMagic vs. CavaliersTue, Mar 24Pacers vs. MagicGAME RECAPPacers vs. MagicMon, Mar 23ForwardForwardExplore more leagues NBANASCARMLBNHLUFCF1PGA TourNWSLUCLEPLMLSSoccerNFLNBA G-LeagueGolfWNBANCAA Men's College FootballNCAA Men's College BasketballPBCONE ChampionshipAEWUTR Pro Tennis TourForward Subtitles and AudioSubtitlesOffSubtitles SettingsAudioOptionsCheck quality infoFullscreenClose player00:00Your video continues here after the break
+"""
+
+[R2] Where to Watch Orlando Magic Games | TV & Radio Broadcast
+(https://www.nba.com/magic/broadcast)
+"""
+Local TV & Streaming Watch the Orlando Magic All Season Long! FanDuel Sports Network is your home for Orlando Magic games—stream every matchup not nationally televised, plus enjoy live pregame and postgame coverage. Ways to Watch on FanDuel Sports Network: Streaming Subscription: Get a FanDuel Sports Network season pass and save up to 25% Off. Shop Plans Prime Video: Add FanDuel Sports Network to your Prime Video subscription. Visit Amazon.com/channels and search for FanDuel Sports Network to subscribe. Cable/Satellite: FanDuel Sports Network is Available on Spectrum, DIRECTV, Xfinity, Fubo, and more. View All Local Listings Local TV Games The Orlando Magic, WESH 2, CW18, WMOR-TV, and FanDuel Sports Network Florida have partnered to simulcast 10 Magic games during the 2025-26 season on Hearst stations in Central Florida and Tampa. Fans can also watch on FanDuel Sports Network Florida, the FanDuel app, and FanDuelSportsNetwork.com. SUN., NOV 16 at HOUSTON 7:00 PM ET SUN., DEC 07 at NEW YORK 12:00 PM ET SUN., FEB 01 at SAN ANTONIO 9:00 PM ET SAT., MAR 14 AT MIAMI 8:00 PM ET SAT., DEC 27 DENVER 7:00 PM ET FRI., JAN 02 AT CHICAGO 8:00 PM ET SAT., JAN 24 CLEVELAND 7:00 PM ET FRI., APR 03 AT DALLAS 8:30 PM ET FRI., APR 10 AT CHICAGO 8:00 PM ET National TV Games Throughout the season, select Magic games will be aired nationally outside FanDuel Sports Network: WED., NOV 12 at NEW YORK 7:00 PM ET Fri., Jan 30 Toronto 7:30 PM ET WED., MAR 11 CLEVELAND 7:30 PM ET THU., JAN 15 MEMPHIS 2:00 PM ET SUN., JAN 18 at MEMPHIS 12:00 PM ET THU., FEB 26 HOUSTON 7:30 PM ET SAT., MAR 07 at MINNESOTA 3:00 PM ET TUE., NOV 04 at ATLANTA 8:00 PM ET NBC | Peacock TUE., NOV 25 at PHILADELPHIA 8:00 PM ET NBC | Peacock MON., DEC 01 CHICAGO 7:30 PM ET Peacock MON., JAN 26 at CLEVELAND 7:00 PM ET Peacock MON., FEB 09 MILWAUKEE 7:30 PM ET Peacock MON., MAR 16 at ATLANTA 7:00 PM ET Peacock TUE., MAR 24 at CLEVELAND 8:00 PM ET NBC | Peacock Out-Of-Market & More NBA GAMES NBA League Pass excludes Orlando Magic games for most Floridians but allows you to watch NBA games from every other market. Live outside the state of Florida? Stream all Magic games live and on-demand with NBA League Pass. Blackout restrictions may apply in your area. Click here to learn more. Magic Radio Network Listen to Orlando Magic Games on the Go! All preseason, regular season, and postseason Magic games are aired on the Magic Radio Network, with affiliates across Florida. In Orlando, FM 96.9 The Game serves as the flagship station, also available on AM 740 and via the iHeart Radio App*. *Select games may air on FM 104.5 instead of FM 96.9 and AM 740. FAQs
+"""
+
+[R3] How to watch Timberwolves vs. Magic: TV channel and streaming options for April 8
+(https://www.nytimes.com/athletic/7181005/2026/04/08/how-to-watch-timberwolves-vs-magic-tv-channel-and-streaming-options-for-april-8/)
+"""
+The Orlando Magic (43-36) will attempt to build on a three-game winning streak when they host the Minnesota Timberwolves (47-32) on April 8, 2026 at Kia Center.How to watch Minnesota Timberwolves vs. Orlando Magic Venue: Kia Center Time: 7 p.m. ET TV: FDSN, FDSFL Streaming (in-market viewers): Fubo (try for free) Streaming (out-of-market viewers): NBA League Pass Watching in person? Get tickets on StubHub. Minnesota vs. Orlando odds Spread: Orlando -10.5 (-110), Minnesota +10.5 (-110) Favorite Moneyline: Orlando -450 Underdog Moneyline: Minnesota +340 Total: 231.5 Total Over Odds: -115 Total Under Odds: -105 Odds provided by BetMGM.Injury reportsMagicJonathan Isaac: Out (Knee), Jett Howard: Out (Ankle)TimberwolvesAyo Dosunmu: Out (Rest), Julius Randle: Out (Hand), Mike Conley: Out (Rest), Anthony Edwards: Out (Knee), Rudy Gobert: Out (Rest)Stats to know The 115.5 points per game the Magic average are only 1.4 more points than the Timberwolves surrender (114.1). The Timberwolves average only 2.4 more points per game (117.6) than the Magic allow on average (115.2). This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R4] How to live stream Timberwolves vs Magic: NBA, TV channel
+(https://www.thebiglead.com/how-to-live-stream-timberwolves-vs-magic-nba-tv-channel/)
+"""
+The Minnesota Timberwolves (47-32) travel to the Kia Center to face the Orlando Magic (43-36) in a Wednesday night NBA matchup. MORE: Luka Doncic injury stokes debate about NBA 65-game rule for postseason awards Mar 14, 2025; Minneapolis, Minnesota, USA; Orlando Magic guard Anthony Black (0) works around Minnesota Timberwolves guard Donte DiVincenzo (0) in the third quarter at Target Center. Mandatory Credit: Bruce Kluckhohn-Imagn Images How to Watch Timberwolves vs Magic When: Wednesday, April 8th, 2026 Time: 7:00 PM ET TV Channel: FanDuel Sports Net Florida / FanDuel Sports Net North Live Stream: Fubo (try for free) The Timberwolves snapped a three-game losing streak in their last game, defeating the Indiana Pacers 124-104. Ayo Dosunmu led the team in scoring with 24 points, adding three steals. Julius Randle and Bones Hyland added 19 points each, while Rudy Gobert controlled the paint, pulling down 12 rebounds and blocking two shots. The win came at an important time for the Timberwolves, who were trying to avoid the play-in tournament, and they now sit in the No. 6 seed, four games ahead of the Phoenix Suns with three to play. – Live Stream Timberwolves vs Magic with Fubo – While the season as a whole has been underwhelming, the Magic look to be rounding into form at the right time. A recent six-game losing streak pushed the Magic down to the No. 8 seed in the Eastern Conference, but a recent three-game winning streak gives reason for hope heading into the NBA Playoffs. Most recently, the Magic held serve at home against the Detroit Pistons, defeating them 123-107. Paolo Banchero was a perfect 10-for-10 from the foul line en route to his team-high 31 points, while Desmond Bane scored 25 with three blocks in support. This is a great NBA matchup that you will not want to miss; make sure to tune in and catch all the action. Live stream Timberwolves vs Magic on Fubo: Start your free trial now! With Fubo, you can watch live television without cable on your phone, TV, or tablet. Fubo carries a wide array of sports and entertainment channels, including local sports packages and top national channels like ABC, FOX, CBS, ESPN, FS1, MTV, Comedy Central, and much more. The best part is you can try it out today for free. Regional restrictions may apply. If you purchase a product or register for an account through one of the links on our site, we may receive compensation. — Enjoy free coverage of the top news & trending stories on The Big Lead —
+"""
+
+[R5] How to watch Timberwolves at Pistons tonight: game preview, injury updates and TV and streaming info | Minnesota Timberwolves
+(https://www.nba.com/timberwolves/news/how-to-watch-timberwolves-pistons-tonight-game-preview-injury-updates-tv-streaming-info)
+"""
+The Minnesota Timberwolves are back in action Thursday with a road matchup against the Pistons in Detroit.Minnesota is coming off a dominant 124–94 win over the Dallas Mavericks on Monday. The victory was highlighted by the return of Anthony Edwards, who finished with 17 points, and a triple-double from Ayo Dosunmu, who recorded 18 points, 15 rebounds and 12 assists.Sixth in the West at 46–29, the Wolves are 6–4 over their last 10 games and 21–15 on the road. Minnesota currently ranks fifth in the league in defense (111.9 defensive rating) and 12th in offense (115.5 offensive rating).Here is your full guide to Thursday’s Timberwolves at Pistons matchup, including injury news and how to watch live.How to watch, stream & listen to Timberwolves at PistonsDate: Thursday, April 2Start Time: 6 PM CTTV Channel/Live Stream: FanDuel Sports Network | Prime VideoRadio: iHeartRadio | Timberwolves app Where: Little Caesars Arena | Detroit, MIWolves at Pistons tips off at 6 PM on Thursday, April 2 from Little Caesars Arena in Detroit. The game will be broadcast and streamed on FanDuel Sports Network and Prime Video.Injury ReportNote: Tonight's injury report will be updated before the start of the game.Timberwolves Out: Anthony Edwards, Jaden McDaniels, Enrique Freeman, Zyon Pullin and Rocco ZikarskyAnthony Edwards (Right Knee; Patellofemoral Pain Syndrome; Illness), Jaden McDaniels (Left Knee; Patella Tendinopathy), Enrique Freeman (G League-Two-Way), Zyon Pullin (G League-Two-Way) and Rocco Zikarsky (G League-Two-Way) are out.PistonsQuestionable: Marcus SasserOut: Cade Cunningham & Isaiah Stewart Marcus Sasser (Right Hip Strain) is questionable to play. Cade Cunningham (Left Lung; Pneumothorax) and Isaiah Stewart (Left Calf; Strain) are out.Jerseys Timberwolves: Association EditionPistons: Statement EditionThe Wolves will be in their white Association Edition uniforms against the Pistons, who will be in their black Statement Edition uniforms.What to know about the PistonsFirst in the East at 55–21, Detroit enters Thursday’s matchup following a 127–116 win over Toronto on Tuesday. The Pistons rank second in the league in defense (108.8 defensive rating) and ninth in offense (116.9 offensive rating).Thurday marks the second and final matchup between Detroit and Minnesota this season. The Pistons lead the season series 1-0.With star guard Cade Cunningham and forward Isaiah Stewart sidelined, Detroit will continue to lean on big man Jalen Duren. The starting group also features Kevin Huerter, Tobias Harris, Ausar Thompson, and Daniss Jenkins. Despite the injuries to Cunningham and Stewart, the Pistons have remained elite, winning seven of their last 10 games to maintain the top seed in the Eastern Conference.
+"""
+
+[R6] How to watch Timberwolves at Sixers tonight: game preview, injury updates and TV and streaming info | Minnesota Timberwolves
+(https://www.nba.com/timberwolves/news/how-to-watch-timberwolves-sixers-game-preview-injury-updates-tv-streaming-info)
+"""
+The Minnesota Timberwolves are back in action Friday for a road matchup against the 76ers in Philadelphia.Friday marks the second night of a back-to-back for Minnesota, following a 113–108 road loss to the Detroit Pistons on Thursday. Julius Randle led the Wolves with 27 points, six rebounds and six assists, while Ayo Dosunmu added 19 points. Naz Reid chipped in 19 points of his own off the bench.Sixth in the West at 46–30, the Wolves have gone 6–4 over their last 10 games and hold a 21–16 record on the road. Minnesota currently ranks fifth in the league in defense (111.9 defensive rating) and 12th in offense (115.4 offensive rating).Here’s your full guide to Friday’s Timberwolves at 76ers matchup, including the latest injury report & how to watch live.How to watch, stream & listen to Timberwolves vs. SixersDate: Friday, April 3Start Time: 6 PM CTTV Channel/Live Stream: FanDuel Sports NetworkRadio: iHeartRadio | Timberwolves app | KFAN 100.3Where: Xfinity Mobile Arena | Philadelphia, PAWolves at Sixers tips off at 6 PM on Friday, April 3 from the Xfinity Mobile Arena in Philadelphia. The game will be broadcast and streamed on FanDuel Sports Network.Injury ReportNote: Tonight's injury report will be updated before the start of the game.Timberwolves Out: Jaden McDaniels, Enrique Freeman, Zyon Pullin & Rocco ZikarskyJaden McDaniels (Left Knee; Patella Tendinopathy), Enrique Freeman (G League-Two-Way), Zyon Pullin (G League-Two-Way) and Rocco Zikarsky (G League-Two-Way) are out.SixersOut: Johni BroomeJohni Broome (Right Knee Surgery Recovery) is out.Jerseys Timberwolves: Statement EditionSixers: Statement EditionThe Wolves will be in their shadow gray Statement Edition uniforms against the Sixers, who will be in their red Statement Edition uniforms.What to know about the SixersSixth in the East at 42–34, the Sixers are 7-3 in their last 10 games and are 21-17 at home. Philadelphia ranks 14th in offense (114.9 offensive rating) and 18th in defense (115.0 defensive rating).Friday's game will be the second and final meeting between Philadelphia and Minnesota this season. This Sixers lead the season series 1-0.Led by All-Star guard Tyrese Maxey and rookie V.J. Edgecombe, Philadelphia’s rotation is expected to feature Joel Embiid, Paul George, Kelly Oubre Jr., Andre Drummond, Quentin Grimes, Dominick Barlow, Adem Bona and Cameron Payne.
+"""
+
+[R7] Watch Orlando Magic at Minnesota Timberwolves (Free Trial)
+(https://www.fubo.tv/welcome/matches/EP051853722434)
+"""
+Final: Orlando Magic at Minnesota Timberwolves on Sat Mar 7, 2026From the Target Center in Minneapolis.From the Target Center in Minneapolis.FinalSat, Mar 7Live and upcoming for Minnesota TimberwolvesLive and upcoming for Orlando MagicUpcomingTomorrow, 4:00pm • 2h • NBA TVOrlando Magic at Philadelphia 76ersNBAThe 76ers and the Magic compete in an Eastern Conference Play-In Tournament at Xfinity Mobile Arena. Tyrese Maxey leads Philadelphia with 28.3 points and 6.6 assists, while Paolo Banchero leads Orlando with 22.2 points and 8.4 rebounds.Read More +ScheduleDateAwayHomeTimeSat, Apr 18Toronto RaptorsCleveland Cavaliers12:00 PM CDTSat, Apr 18Minnesota TimberwolvesDenver Nuggets2:30 PM CDTSat, Apr 18Atlanta HawksNew York Knicks5:00 PM CDTSat, Apr 18Houston RocketsLos Angeles Lakers7:30 PM CDTSun, Apr 19Philadelphia 76ersBoston Celtics12:00 PM CDTSun, Apr 19Team TBDOklahoma City Thunder2:30 PM CDTSun, Apr 19Team TBDDetroit Pistons5:30 PM CDTSun, Apr 19Portland Trail BlazersSan Antonio Spurs8:00 PM CDTMon, Apr 20Toronto RaptorsCleveland Cavaliers6:00 PM CDTMon, Apr 20Atlanta HawksNew York Knicks7:00 PM CDTMon, Apr 20Minnesota TimberwolvesDenver Nuggets9:30 PM CDTTue, Apr 21Philadelphia 76ersBoston Celtics6:00 PM CDTTue, Apr 21Portland Trail BlazersSan Antonio Spurs7:00 PM CDTTue, Apr 21Houston RocketsLos Angeles Lakers9:30 PM CDTWed, Apr 22Team TBDDetroit Pistons6:00 PM CDTWed, Apr 22Team TBDOklahoma City Thunder8:30 PM CDTThu, Apr 23New York KnicksAtlanta Hawks6:00 PM CDTThu, Apr 23Cleveland CavaliersToronto Raptors7:00 PM CDTThu, Apr 23Denver NuggetsMinnesota Timberwolves8:30 PM CDTFri, Apr 24Boston CelticsPhiladelphia 76ers6:00 PM CDTFri, Apr 24Los Angeles LakersHouston Rockets7:00 PM CDTFri, Apr 24San Antonio SpursPortland Trail Blazers9:30 PM CDTSat, Apr 25Detroit PistonsTeam TBD12:00 PM CDTSat, Apr 25Oklahoma City ThunderTeam TBD2:30 PM CDTSat, Apr 25New York KnicksAtlanta Hawks5:00 PM CDTSat, Apr 25Denver NuggetsMinnesota Timberwolves7:30 PM CDTSun, Apr 26Cleveland CavaliersToronto Raptors12:00 PM CDTSun, Apr 26San Antonio SpursPortland Trail Blazers2:30 PM CDTSun, Apr 26Boston CelticsPhiladelphia 76ers6:00 PM CDTSun, Apr 26Los Angeles LakersHouston Rockets8:30 PM CDTStandingsTop Minnesota Timberwolves playersTop Orlando Magic playersPopular games on FuboSt. Louis Blues atUtah MammothHouston Rockets atLos Angeles LakersSt. Louis Cardinals atHouston AstrosSt. Louis Cardinals atMiami MarlinsTBA atOklahoma City ThunderSeattle Kraken atColorado AvalancheMore matches on Fubo
+"""
+
+[R8] How to watch Timberwolves at Magic tonight: game preview, injury updates and TV and streaming info | Minnesota Timberwolves
+(https://www.nba.com/timberwolves/news/how-watch-timberwolves-magic-tonight-game-preview-injury-updates-tv-streaming)
+"""
+The Minnesota Timberwolves are back in action Wednesday for a road matchup against the Magic in Orlando.Wednesday marks the second night of a back-to-back for Minnesota, following a dominant 124–104 win over the Indiana Pacers on Tuesday. Ayo Dosunmu set the tone with 24 points and five rebounds, while Julius Randle added 19 points. The Wolves also got a major boost from the bench, with Bones Hyland finishing with 19 points and seven assists and Naz Reid chipping in 17 points.Sixth in the West at 47–32, the Wolves have gone 5–5 over their last 10 games and hold a 22–17 record on the road. Minnesota currently ranks fifth in the league in defense (111.9 defensive rating) and 12th in offense (115.2 offensive rating).Here’s your full guide to Wednesday’s Timberwolves at Magic matchup, including the latest injury report and how to watch live.How to watch, stream & listen to Timberwolves vs. MagicDate: Wednesday, April 8Start Time: 6 PM CTTV Channel/Live Stream: FanDuel Sports NetworkRadio: iHeartRadio | Timberwolves app | KFAN 100.3Where: Kia Center | Orlando, FLWolves at Magic tips off at 6 PM on Wednesday, April 8 from the Kia Center in Orlando. The game will be broadcast and streamed on FanDuel Sports Network.Injury ReportNote: Tonight's injury report will be updated before the start of the game.Timberwolves Out: Rudy Gobert, Mike Conley, Ayo Dosunmu, Anthony Edwards & Julius RandleRudy Gobert (Rest), Mike Conley (Rest), Ayo Dosunmu (Right Calf; Injury Maintenance), Anthony Edwards (Right Knee; Injury Maintenance) and Julius Randle (Right Hand; Soreness) are out.MagicQuestionable: Jamal Cain & Wendell Carter Jr. Out: Jett Howard & Jonathan IsaacJamal Cain (Left Calf; Contusion) & Wendell Carter Jr. (Nasal; Fracture) are questionable to play. Jett Howard (Left Ankle; Sprain) and Jonathan Isaac (Left Knee; Sprain) are out.Jerseys Timberwolves: Classic EditionMagic: Association EditionThe Wolves will be in their black trees Classic Edition uniforms against the Magic, who will be in their white Association Edition uniforms.What to know about the MagicNinth in the East at 43-36, Orlando enters Wednesday's matchup on a three-game win streak. The Magic are 5-5 in their last 10 games and are 24-15 at home.The Magic are ranked 14th on defense (113.9 defensive rating) and are 18th on offense (114.1 offensive rating). Wednesday marks the second and final meeting between Indiana and Orlando this season. The Magic lead the season series 1-0.Led by Paolo Banchero, Orlando's rotation will include Tristan da Silva, Wendell Carter Jr., Desmond Bane, Jalen Suggs, Anthony Black, Jevon Carter, Goga Bitadze, Moritz Wagner and Jamal Cain.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

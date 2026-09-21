@@ -1,0 +1,273 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "what is a red flag warning weather"
+
+Claims:
+[1] "Red Flag Warning is the highest-level alert issued by the National Weather Service for critical fire weather conditions."
+[2] "Red Flag Warning indicates that a dangerous combination of high temperatures, very low humidity, and strong, gusty winds is happening or imminent within 24 hours."
+[3] "Fire Weather Watch is issued 24-72 hours in advance when conditions are possible."
+[4] "Red Flag Warnings are most common in the Western U.S. during dry, windy seasons."
+
+Cited text snippets from the AI Overview (for additional context):
+- Red Flag Warning - Sonoma County Emergency: "Red Flag Warnings are issued by the,potential for ignited fires to spread rapidly."
+- 🔥 What is Fire Weather? What are Red Flag Warnings? 🌦️ The simple ...: "Red Flag Warnings are issued by the,elevated conditions that could start a fire."
+- Binghamton, NY > Fire Weather: "Red Flag Warning: Issued to warn of,in the very high to extreme category."
+Reference Sources:
+
+[R1] Red flag warning: What is it and what does it mean?
+(https://www.cbsnews.com/news/red-flag-warning-fire-weather-meaning/)
+"""
+What is a red flag warning and what areas are at risk? By Emily Mae Czachor News Editor Emily Mae Czachor is a reporter and news editor at CBSNews.com. She typically covers breaking news, extreme weather and issues involving social justice. Emily Mae previously wrote for outlets like the Los Angeles Times, BuzzFeed and Newsweek. Read Full Bio April 13, 2023 / 12:50 PM EDT / CBS News Add CBS News on Google On the heels of a frosty winter season that brought record-low temperatures to parts of the Northeast, the sudden onset of warm weather this month has come alongside a pattern of red flag warnings seen recently across large sections the U.S. The National Weather Service issues these advisories to alert people about increased risks of fire in their areas. In addition to formal bulletins released by the agency, red flag warnings appear in banners at the top of daily or weekly forecasts in smartphone weather applications. Intentional burns are strongly discouraged while they are in effect, from prescribed blazes scheduled routinely on federal lands to more ordinary hazards, like improperly disposing of a match or cigarette from inside a moving vehicle.What is a red flag warning?Red flag warnings are issued when forecasts indicate that a combination of high temperatures, very low humidity and strong winds in a given location could create an environment that is conducive to dangerous fires, according to the National Weather Service. The agency sets these warnings most often between February 1 and April 30, and again from October 1 to December 15, when typical weather conditions are consistent with that criteria.More specific criteria established by the National Weather Service, in coordination with government land management agencies, uses thresholds to determine whether a red flag warning should be issued, when it should be issued and for how long. The criteria considers fuel conditions — a parameter that refers to the amount of water held by "small vegetation," like grass, leaves and mulch, which indicates how the land could respond to either wet or dry environmental changes — when they have reached a critical point that could be favorable to the growth and spread of large fires, according to the agency. Officials warned of heightened fire danger in parts of Colorado this week as relative humidity dropped below 15% while wind gusts increased to 50 miles per hour. CBS Criteria also stipulates that a red flag warning is issued when relative humidity in an area drops to about 25% while surface winds or frequent gusts simultaneously climb to at least 25 miles per hour. Both conditions must occur simultaneously for at least three hours over a 12-hour period. Widely scattered, dry thunderstorms could trigger a red flag warning as well, with the National Weather Service deeming a thunderstorm "dry" if it produces less than 1/10 of an inch of rainfall.Other environmental factors that contribute to a red flag warning include: lightning, when it is significant and occurs for the first time after a hot and dry period; dry cold fronts forecasted to cause strong and gusty winds and abrupt wind shifts, but little or no rainfall, especially in areas where there are ongoing wildfires or prescribed burns; and any weather and fuel conditions that could otherwise elevate the risks of fires when taken together, like unusually high temperatures and long-term drought. In California, for example, where massive and devastating wildfires are one consequence of a lengthy and severe drought in the American West, some experts have suggested that parts of the state are now experiencing a "wildfire season" that lasts year-round.Red flag warning vs. fire weather watchA red flag warning is technically not the same as a fire weather watch, whose threat is more explicit, although both kinds of advisories rely on the same fundamental criteria. Fire weather watches can develop into red flag warnings if environmental conditions progress to a point of serious urgency. The National Weather Service generally issues a fire weather watch to alert officials and the public to "the possible development of red flag conditions in the near future," often between 24 and 72 hours in advance of a forecasted weather event. Then, if necessary, it will issue a red flag warning to advise "of occurring or imminent red flag conditions, generally within the next 12 to 24 hours." Who is at risk this season?Red flag warnings are usually issued in western and southwestern U.S. states, where arid climates have historically made the land more susceptible to wildfires. Parts of those regions are still receiving red flag warnings in mid-April — one advisory that remained in effect on Thursday applied to Denver, Colorado — but the addition of numerous places also under warnings, which stretched from New Mexico to the eastern tip of Massachusetts earlier this week, prompted more widespread questions and concerns than usual about the forecast and what it could mean.As an enormous wildfire burned nearly 4,000 acres of land in New Jersey on Wednesday, vast sections of the tristate area and New England, including New York City, southern Connecticut and the entire state of Pennsylvania, had just emerged from a smattering of red flag warnings that ultimately expired in waves. The National Weather Service noted in a bulletin shared Wednesday night that relative humidity in southern Connecticut was still quite low, but the fire hazard diminished with calmer winds. A massive wildfire had burned through almost 4,000 acres of land in New Jersey on Wednesday, April 12. CBS News Philadelphia In New York and parts of New Jersey and Connecticut, recent red flag warnings coincided with a spike in temperatures over the last 10 days or so. The heat in Newark, Islip, Bridgeport and the areas around LaGuardia and John F. Kennedy Airports broke their daily high temperature records for April 6 this year, while Central Park tied its record high, according to the National Weather Service's New York branch. Red flag warnings had moved to parts of the upper Midwest on Thursday, with the Twin Cities and southern Minnesota under advisories that included 31 individual counties, CBS Minnesota reported. In Wisconsin, Governor Tony Evers declared a state of emergency in response to the threat of dangerous wildfire conditions touching most of the state. The same day, the Wisconsin Department of Natural Resources had reported a 100-acre wildfire in the central part of the state, about 90 miles north of Madison, which the agency attributed to warm temperatures, low humidity and gusty winds, according to CBS Minnesota. In: National Weather Service Red Flag Warning Fire
+"""
+
+[R2] Red Flag Warning
+(https://socoemergency.org/emergency/red-flag-warning/)
+"""
+En español » Red Flag Warnings are issued by the National Weather Service, when a there is a combination of warm temperature, low humidity and strong winds expected. With these factors combined, there is an increased risk of fire danger and potential for ignited fires to spread rapidly. About Red Flag Warnings A Red Flag Warning means that there is an increased risk for fire danger due to warm temperatures, very low humidity and stronger winds. The following activities are strongly discouraged when Red Flag Warning has been issued: Never mow or trim dry grass during a red flag warning because a power tool could spark on a rock and start a grass fire. It is not recommended even on windy, dry, hot days. No wood or charcoal camp fires in forests during periods of high fire danger. Thoroughly extinguish all cigarettes and smoking material. Don’t pull your vehicle over in grass as it can spark a grass fire. If necessary, pull over on paved roads. Use spark arrestors on portable gasoline powered equipment to avoid an accidental fire. Properly maintain vehicles to prevent starting fires along roads due to sparks or flammable materials being spit out from the catalytic converter system. Ensure trailer chains don’t drag on the ground and spark. Shooting of firearms is unsafe during periods of high fire hazards. Use extreme caution with welding or blowtorch projects. Burning plant cuttings on high fire danger days is unsafe.
+"""
+
+[R3] Fire Weather
+(https://www.weather.gov/bgm/fireWeatherMain)
+"""
+HOME FORECAST Local Graphical Aviation Marine Rivers and Lakes Hurricanes Severe Weather Fire Weather Sunrise/Sunset Long Range Forecasts Climate Prediction Space Weather PAST WEATHER Past Weather Astronomical Data Certified Weather Data SAFETY INFORMATION Wireless Emergency Alerts Weather-Ready Nation Brochures Cooperative Observers Daily Briefing Damage/Fatality/Injury Statistics Forecast Models GIS Data Portal NOAA Weather Radio Publications SKYWARN Storm Spotters StormReady TsunamiReady Service Change Notices EDUCATION NEWS SEARCH Search For NWS All NOAA ABOUT About NWS Organization For NWS Employees National Centers Careers Contact Us Glossary Social Media NWS Transformation Local forecast by "City, St" or ZIP code Sorry, the location you searched for was not found. Please try another search. Multiple locations were found. Please select one of the following: Location Help News Headlines Looking for Rain, Snow or, Wind Reports? Weather Safety Information See what we are talking about in the Weather Story Customize Your Weather.gov Enter Your City, ST or ZIP Code Remember Me Privacy Policy LOADING... Binghamton, NY Weather Forecast Office Fire Weather Weather.gov > Binghamton, NY > Fire Weather Current Hazards River Flooding Briefing Page Space Winter Local Outlook Drought Thunderstorms Hurricanes Graphical Hazardous Weather Outlook Submit a Storm Report Current Conditions Rainfall Observations (List) Observations (Map) Satellite Air Quality Observation (list) Local Storm Reports More Satellite More Surface Observations Upper Air Radar Local KBGM Standard Radar (low bandwidth) Local KBGM Enhanced Radar Regional Standard Radar (low bandwidth) National Standard Radar (low bandwidth) More Radar Forecasts Forecasters' Discussion Tropical Aviation Map View Hourly View Coastal Flood Threat (East Coast) Fire Weather HeatRisk Model Data Space Weather Text Products Winter Weather Weather Story Rivers and Lakes Current & Past Streamflow Ensemble River Guidance River Observations (Map) River Forecast Centers River Forecasts (Map) Flood Inundation Maps County Flash Flood Guidance Climate and Past Weather Snowfall Records Past Observed Weather Past Rainfall CoCoRaHS 24 Hour Summary Drought Outlook Climate Prediction Local Records NOWData Past Weather Events Snow and Rain Reports Local Storm Reports Tropical Cyclone Reports Local Programs About Our Office Citizens Weather Observing Contact Info Cooperative Observers Help/FAQ Hydrology NOAA Weather Radio Outreach Preparedness SKYWARN Spotters Rain/Snow Storm Ready Storm Reports Student Opportunities Text Products Webcam Main Current Conditions Forecasts Fuel Conditions Drought/Precipition Info Climate/Fire Outlooks Fire Weather Watch/Red Flag Warning LATEST NWS FIRE WEATHER ANNUAL OPERATING PLANS For New York (State) (PDF) For Pennsylvania (State) (PDF) Spot Forecast Click on the icon Fire Weather Dashboard Click on the icon. Fire Weather Dashboard for known/upcoming Prescribed Burn Projects: Cicero RX (Onondaga County NY) When a briefing has been issued, the book icon below will be opened. Click on the open book to view a PDF containing the briefing. No briefing in effect. The National Weather Service office in Binghamton, New York is responsible for issuing Fire Weather Forecasts, Red Flag Warnings and Fire Weather Watches for parts of Central New York and Northeast Pennsylvania as shown in the image below. Display in a new tab. A hourly weather graph forecast can be generated by going to the Hourly Graph website. Guide to decoding the forecast below. 270 FNUS51 KBGM 011931 FWFBGM Fire Weather Planning Forecast for Central NY/Northeast PA National Weather Service Binghamton NY 331 PM EDT Wed Apr 1 2026 .SYNOPSIS...There are no fire weather concerns at this time. NYZ210-020800- Leatherstocking- 331 PM EDT Wed Apr 1 2026 Tonight Thu Thu Night Fri Cloud Cover Mcldy Mcldy Mcldy Pcldy Precip Type Showers Showers Tstms Showers Chance Precip (%) 90 60 30 40 Chance of Thunder (%) 0 0 20 0 Temp (24h trend) 36 (-12) 48 (-4) 38 71 RH % (24h trend) 100 (0) 74 (+17) 100 55 Wind 20ft/early(mph) Lgt/Var E 3-7 SE 7-11 G23 S 8-12 G25 Wind 20ft/late(mph) Lgt/Var SE 5-9 G18 S 8-12 G25 SW 8-12 G21 Precip Amount 0.36 0.15 0.01 0.03 Precip Duration 8 4 2 2 Precip Begin 6 PM Continuing Continuing Continuing Precip End Continuing Continuing Continuing Continuing Mixing Hgt(ft-agl/msl) 1740 3270 Transport Wnd (mph) SE 18 SW 29 Vent Rate (kt-ft) 45070 107220 DSI 1 1 1 1 Sunshine Hours 2 4 ADI early 11 Poor 25 Fair 25 Fair 45 Gen Good ADI late 7 Poor 31 Fair 22 Fair 73 Good Max LVORI early 4 7 4 5 Max LVORI late 6 4 5 3 Remarks: ADI is Atmospheric Dispersion Index by Lavdas. LVORI is Low Visibility Occurrence Risk Index. .FORECAST FOR DAYS 3 THROUGH 7... .SATURDAY...Mostly cloudy with showers likely and a slight chance of thunderstorms. Lows in the upper 40s. Highs in the lower 70s. Chance of precipitation 70 percent. North winds around 5 mph. .SUNDAY...Showers, cooler. Lows in the upper 40s. Highs in the upper 50s. Chance of showers 90 percent. South winds around 10 mph. .MONDAY...Mostly cloudy with a slight chance of rain and snow showers. Colder. Lows in the lower 30s. Highs in the lower 40s. West winds around 10 mph. .TUESDAY...Partly cloudy. A slight chance of snow showers. Lows in the upper 20s. Highs around 40. West winds around 5 mph. .WEDNESDAY...Mostly clear. Lows in the lower 20s. Highs in the mid 40s. Northwest winds around 5 mph. $$ PAZ038-039-043-020800- Bradford-Susquehanna-Wyoming- Including the cities of Sayre, Towanda, Hallstead, Montrose, and Tunkhannock 331 PM EDT Wed Apr 1 2026 Tonight Thu Thu Night Fri Cloud Cover Mcldy Mcldy Mcldy Mcldy Precip Type Showers Showers Showers Showers Chance Precip (%) 90 50 20 30 Chance of Thunder (%) 0 0 0 0 Temp (24h trend) 40 (-12) 52 (-7) 42 71 RH % (24h trend) 100 (0) 77 (+20) 100 59 Wind 20ft/early(mph) NE 3-7 Lgt/Var SE 7-11 G21 S 7-11 G22 Wind 20ft/late(mph) Lgt/Var SE 5-9 G17 S 7-11 G22 SW 8-12 G22 Precip Amount 0.54 0.11 0.00 0.00 Precip Duration 8 2 1 1 Precip Begin 6 PM Continuing 8 PM Continuing Precip End Continuing 6 PM Continuing Continuing Mixing Hgt(ft-agl/msl) 1770 3100 Transport Wnd (mph) SE 17 SW 23 Vent Rate (kt-ft) 34180 71020 DSI 1 1 1 1 Sunshine Hours 2 4 ADI early 13 Gen Poor 25 Fair 25 Fair 37 Fair ADI late 8 Poor 29 Fair 20 Gen Poor 53 Gen Good Max LVORI early 5 8 5 5 Max LVORI late 7 4 5 3 Remarks: ADI is Atmospheric Dispersion Index by Lavdas. LVORI is Low Visibility Occurrence Risk Index. .FORECAST FOR DAYS 3 THROUGH 7... .SATURDAY...Mostly cloudy. A chance of showers and a slight chance of thunderstorms. Lows in the lower 50s. Highs in the mid 70s. Chance of precipitation 50 percent. North winds around 5 mph. .SUNDAY...Mostly cloudy with showers likely. Cooler. Lows in the lower 50s. Highs around 60. Chance of showers 70 percent. South winds around 10 mph. .MONDAY...Mostly cloudy. A slight chance of rain and snow showers. Cooler. Lows in the lower 30s. Highs in the mid 40s. West winds around 10 mph. .TUESDAY...Partly cloudy. A slight chance of snow showers. Lows in the upper 20s. Highs in the lower 40s. Northwest winds 5 to 10 mph. .WEDNESDAY...Mostly clear. Lows in the lower 20s. Highs in the mid 40s. Northwest winds around 10 mph. $$ PAZ044-047-020800- Lackawanna-Luzerne- Including the cities of Scranton, Hazleton, and Wilkes-Barre 331 PM EDT Wed Apr 1 2026 Tonight Thu Thu Night Fri Cloud Cover Mcldy Mcldy Mcldy Mcldy Precip Type Showers Showers Showers None Chance Precip (%) 90 40 20 0 Chance of Thunder (%) 0 0 0 0 Temp (24h trend) 43 (-14) 51 (-13) 40 71 RH % (24h trend) 100 (0) 68 (+13) 100 49 Wind 20ft/early(mph) NE 3-7 E 4-8 G17 SE 5-9 G21 S 4-8 G18 Wind 20ft/late(mph) Lgt/Var SE 4-8 G18 SE 4-8 G19 SW 6-10 G19 Precip Amount 0.40 0.06 0.00 0.00 Precip Duration 6 1 1 Precip Begin 6 PM Continuing 8 PM Precip End Continuing 4 PM 6 AM Mixing Hgt(ft-agl/msl) 1710 3210 Transport Wnd (mph) SE 15 SW 22 Vent Rate (kt-ft) 31030 79630 DSI 1 1 1 1 Sunshine Hours 2 3 ADI early 15 Gen Poor 24 Fair 20 Gen Poor 27 Fair ADI late 9 Poor 23 Fair 15 Gen Poor 51 Gen Good Max LVORI early 5 5 5 6 Max LVORI late 6 4 6 3 Remarks: ADI is Atmospheric Dispersion Index by Lavdas. LVORI is Low Visibility Occurrence Risk Index. .FORECAST FOR DAYS 3 THROUGH 7... .SATURDAY...Mostly cloudy. A chance of showers and a slight chance of thunderstorms. Lows in the mid 50s. Highs in the mid 70s. Chance of precipitation 50 percent. West winds around 5 mph. .SUNDAY...Showers, cooler. Lows in the mid 50s. Highs in the lower 60s. Chance of showers 80 percent. South winds around 10 mph. .MONDAY...Mostly cloudy. Cooler. Lows in the mid 30s. Highs in the upper 40s. Northwest winds around 10 mph. .TUESDAY...Partly cloudy. A slight chance of snow showers. Lows in the lower 30s. Highs in the mid 40s. Northwest winds around 5 mph. .WEDNESDAY...Mostly clear. Lows in the mid 20s. Highs in the upper 40s. Northwest winds around 5 mph. $$ PAZ040-048-072-020800- Northern Wayne-Pike-Southern Wayne- Including the cities of Damascus, Equinunk, Milford, and Honesdale 331 PM EDT Wed Apr 1 2026 Tonight Thu Thu Night Fri Cloud Cover Mcldy Mcldy Mcldy Mcldy Precip Type Showers Showers Showers None Chance Precip (%) 100 40 30 0 Chance of Thunder (%) 0 0 0 0 Temp (24h trend) 41 (-16) 46 (-18) 38 70 RH % (24h trend) 100 (0) 66 (+13) 100 59 Wind 20ft/early(mph) Lgt/Var E 5-9 G17 SE 5-9 G17 S 4-8 Wind 20ft/late(mph) E 3-7 SE 5-9 G17 SE 4-8 G17 SW 6-10 G18 Precip Amount 0.43 0.10 0.00 0.00 Precip Duration 7 2 2 Precip Begin 6 PM Continuing Continuing Precip End Continuing Continuing 6 AM Mixing Hgt(ft-agl/msl) 1860 3130 Transport Wnd (mph) SE 16 SW 23 Vent Rate (kt-ft) 36510 72030 DSI 2 1 1 1 Sunshine Hours 2 4 ADI early 17 Gen Poor 29 Fair 23 Fair 28 Fair ADI late 10 Poor 28 Fair 16 Gen Poor 66 Good Max LVORI early 5 5 5 6 Max LVORI late 7 4 6 3 Remarks: ADI is Atmospheric Dispersion Index by Lavdas. LVORI is Low Visibility Occurrence Risk Index. .FORECAST FOR DAYS 3 THROUGH 7... .SATURDAY...Mostly cloudy. A chance of showers and a slight chance of thunderstorms. Lows in the lower 50s. Highs in the lower 70s. Chance of precipitation 50 percent. West winds around 5 mph. .SUNDAY...Showers, cooler. Lows in the lower 50s. Highs in the lower 60s. Chance of showers 80 percent. South winds around 10 mph. .MONDAY...Mostly cloudy. A slight chance of rain and snow showers. Cooler. Lows in the lower 30s. Highs in the mid 40s. Northwest winds around 10 mph. .TUESDAY...Partly cloudy. A slight chance of snow showers. Lows in the upper 20s. Highs in the mid 40s. Northwest winds around 5 mph. .WEDNESDAY...Mostly clear. Lows in the mid 20s. Highs in the mid 40s. Northwest winds around 5 mph. $$ Fuel Conditions Click on the images below to view them in higher detail. When doing so, each set of fuel moisture images will contain both the observed / computed and forecast. To view either, click left or right on images. Observed/Computed Forecast Drought MonitorExpandCollapse U.S. Drought Monitor Seasonal Drought Assessment Palmer Drought Severity Rain Needed to End Drought Local Precipitation AnalysisExpandCollapse One Day Precipitation Totals Three Day Precipitation Totals Five Day Precipitation Totals 24-Hr Observed Precipition 48-Hr Observed Precipition 72-Hr Observed Precipition Precipitation (Over Time)ExpandCollapse 7-Day Precip 14-Day Precip 30-Day Precip 60-Day Precip 90-Day Precip Since April 1 Precip Since July 1 Precip 6-Month Precip 12-Month Precip 24-Month Precip 36-Month Precip Month-to-Date Precip Year-to-Date Precip Water-Year Precip Precipitation (Departure from Normal)ExpandCollapse 7-Day Precip Dept 14-Day Precip Dept 30-Day Precip Dept 60-Day Precip Dept 90-Day Precip Dept Since April 1 Precip Dept Since July 1 Precip Dept 6-Month Precip Dept 12-Month Precip Dept 24-Month Precip Dept 36-Month Precip Dept Month-to-Date Precip Dept Year-to-Date Precip Dept Water-Year Precip Dept Precipitation (Percentage of Normal)ExpandCollapse 7-Day Precip % Norm 14-Day Precip % Norm 30-Day Precip % Norm 60-Day Precip % Norm 90-Day Precip % Norm Since April 1 Precip % Norm Since July 1 Precip % Norm 6-Month Precip % Norm 12-Month Precip % Norm 24-Month Precip % Norm 36-Month Precip % Norm Month-to-Date Precip % Norm Year-to-Date Precip % Norm Water-Year Precip % Norm Additional Resources: Precipitation Mapper Interactive Snowfall Information Regional Snow Analysis CoCoRaHS Precipitation Reports NWS Binghamton Winter Weather Climate and Fire Weather Outlook Temperature and Precipitation - 6-10 / 8-14 Day OutlooksExpandCollapse 6-10 Day Temp 6-10 Day Precip 8-14 Day Temp 8-14 Day Precip Temperature and Precipitation - One / Three Month OutlooksExpandCollapse One Month Temp One Month Precip Three Month Temp Three Month Precip Fire Potential OutlooksExpandCollapse Current Fire Potential One Month Outlook Two-Three Month Outlook Fire DangerExpandCollapse NY State Fire Danger Ratings Observed Eastern Area Fire Danger Class Forecast Eastern Area Fire Danger Class Additional Resources: GACC Eastern Area Weekly Outlook GACC Eastern Area Monthly Outlook Predictive Services 7-Day Significant Fire Potential Fire Weather Watch: Used to advise of the possible development of a red flag event in the near future. Usually fire danger is in the very high to extreme category. A Fire Weather Watch will normally be issued 12 to 48 hours in advance of the expected onset of severe fire weather conditions. The watch will be issued via an RFW product (i.e. ALBRFWBGM). The product will contain a headline and the basis for the watch issuance. Fire Weather Watch information will be included in the affected areas of the daily routine Fire Weather Forecast. A Fire Weather Watch will be canceled via an RFW if subsequent information indicates that the conditions are no longer expected to develop. A Fire Weather Watch should not be issued, or continued, to indicate low confidence or borderline conditions. In these situations, the forecaster should describe the expected conditions and reasons for uncertainty in the discussion portion of the routine Fire Weather Planning Forecast. Red Flag Warning: Issued to warn of an impending or occurring Red Flag Event and denotes a high degree of confidence that weather and fuel conditions consistent with local Red Flag Event criteria will occur in 24 hours or less. Usually the fire danger is in the very high to extreme category. A Red Flag Warning may or may not be preceded by a Fire Weather Watch. The warning will be issued via an RFW product and contain a headline and basis for the warning issuance. A Red Flag Warning will be canceled via an RFW if subsequent information indicates that the conditions are no longer expected to develop. Radar Current Weather Rivers & Lakes Satellite Forecast Maps Hour by Hour Forecast Graphical Hazards Winter Weather Weather Hazard Briefing Forecaster's Discussion Text Bulletins Submit Storm Report Climate Plots Skywarn NOAA Weather Radio Fire Weather Heat Follow us on X Follow us on Facebook Follow us on YouTube BGM RSS Feed Current Hazards Briefing Drought Fire Weather Graphical Hazardous Weather Outlook Hurricanes Local Outlook River Flooding Space Weather Thunderstorms Winter Current Conditions Air Quality Local Storm Reports Observation (list) Observations (Map) More Surface Observations Rainfall Satellite More Satellite Upper Air Radar Local Enhanced Radar Local Standard Radar (low bandwidth) Regional/National Standard Radar (low bandwidth) More Radar Forecasts Activity Planner Aviation Fire Weather Forecaster's Discussion HeatRisk Hourly View Map View Model Data NWS GIS Viewer Space Weather Text Products Rivers and Lakes River Observation/Forecasts (Map) River Forecast Centers County Flash Flood Guidance Current Streamflow Ensemble River Guidance Flood Inundation Maps Climate and Past Weather Past Observed Weather Drought Outlook Climate Prediction Local Records 24 Hour Summary CoCoRAHS Past Rainfall Snowfall Records NOWData Past Weather Events Snow and Rainfall Reports Tropical Cyclone Reports Local Programs About Our Office Cooperative Observers Help/FAQ NOAA Weather Radio Outreach Preparedness SKYWARN Storm Ready Webcam Contact Info Hydrology Rain and Snow Spotters Storm Reports Citizens Weather Observing Student Opportunities US Dept of Commerce National Oceanic and Atmospheric Administration National Weather Service Binghamton, NY 32 Dawes Drive Johnson City, NY 13790 (607) 729-1597 Comments? Questions? Please Contact Us. Disclaimer Information Quality Help Glossary Privacy Policy Freedom of Information Act (FOIA) About Us Career Opportunities Thank you for visiting a National Oceanic and Atmospheric Administration (NOAA) website. The link you have selected will take you to a non-U.S. Government website for additional information.NOAA is not responsible for the content of any linked website not operated by NOAA. This link is provided solely for your information and convenience, and does not imply any endorsement by NOAA or the U.S. Department of Commerce of the linked website or any information, products, or services contained therein.You will be redirected to: ContinueNew WindowCancel
+"""
+
+[R4] Fire weather watch, red flag warnings for Texas South Plains, Panhandle
+(https://www.lubbockonline.com/story/news/2026/03/20/what-is-fire-weather-watch-heres-what-to-know-for-south-plains-panhandle-lubbock-amarillo/89248402007/)
+"""
+March 20, 2026, 3:23 p.m. CTA fire weather watch is in place for the South Plains and southern Panhandle regions Saturday while a red flag warning will be active across the Panhandle as dry and windy conditions are expected, according to the National Weather Service.Here's what that means and what people should look out for this weekend.What is a fire weather watch and Red Flag Warning?A fire weather watch is issued by NWS when dry fuels, such as grass, and weather conditions could lead to dangers of extreme fires. The combination usually includes high temperatures, sustained high winds, and low humidity. This watch is issued up to 72 hours before conditions are expected to begin.The same criteria is used to issue Red Flag Warnings, though these are issued within 24 hours of expected conditions' starting.What is the fire watch forecast for Lubbock, South Plains area?Saturday: The watch is in effect from noon-8 p.m. Saturday. Conditions will have winds 15-20 mph with 25 mph gusts, relative humidity as low as 5% and critical fire danger, according to NWS. The high temperature is expected to reach around 97 degrees.Sunday: Similar to Saturday, it will be sunny and hot with a high around 97 degrees. Wind speed is expected to be between 10-15 mph.Monday: The high temperature will be around 76 degrees, with winds at the 10-15 mph mark. The night's low will be around 51 temperatures.What is the Red Flag Warning forecast for Amarillo and the Panhandle?Saturday: A Red Flag warning will be in effect from noon to 8 p.m. Saturday for Amarillo and much of the Texas and Oklahoma Panhandle region. High temperatures in the mid to uppers 90s with breezy conditions and low humidity are expected to create a high risk for wildfires. Any fires that develop will have the potential to spread very rapidly.What to do during a fire weather watchAccording to NWS:Cover all burn barrels with a weighted metal cover with holes no larger than 3/4 of an inch.Do no throw cigarettes or matches out of moving vehicles.Extinguish outdoor fires properly. That means drowning out fires with water and stirring to make sure everything is cold to the touch. Charcoal should be dunked in water until it is cold. Do not throw live charcoal on the ground.Never leave fires unattended.Alana Edgin writes about business for the Lubbock Avalanche-Journal. Got a news tip? Contact her via email at aedgin@lubbockonline.com.
+"""
+
+[R5] Powered by the
+(https://www.iafc.org/docs/default-source/pdf/red-flag-resource-long-.pdf)
+"""
+Powered by the
+ IAFC
+
+ GET SET: Red Flag Warning
+
+Wildland fire is an increasing threat and a year-round
+reality in many areas. As a resident , it’s important
+ – Be ready.
+to educate yourself and do your part to prepare. Create defensible space by clearing brush away from
+The Ready, Set, Go! Program provides valuable structures. Use fire-resistant landscaping and harden
+guidance to increase the safety of you and your structures using fire-safe construction. Assemble
+family. This includes speaking with local fire emergency supplies and belongings in a safe place.
+department personnel about your area’s threat for Plan escape routes. Prepare and share your action
+wildland fire and learning more about the wildland plan with everyone involved.
+urban interface (WUI), an area which is not only
+limited to forest vegetation.
+ – Be alert.
+
+Use this guide to help educate yourself on ways to be Put together a “Go” kit. Learn how to receive and
+fire-adapted and implement the following wildland fire stay aware of the latest news and information on the
+safety tips. fire from local media, fire departments and public
+ safety agencies.
+
+ – Act early!
+ For more information visit
+ www.WildlandFireRSG.org. Follow your personal wildland fire action plan. Doing
+ so will not only support your safety, but will allow
+ firefighters to best maneuver resources during a fire.
+
+ What is a Red Flag Warning?
+ A Red Flag Warning is a weather warning issued only by the National
+ Weather Service for a select area.
+ This warning forecasts warm temperatures, low humidity in dried fuel
+ moistures, and strong winds expected within 24 hours. The combination
+ of these increased risks results in an increased risk for a wildland fire or
+ rapid-fire growth if an incident were to occur.
+ During a Red Flag Warning, ALWAYS follow the instructions provided
+ by your local fire department and maintain a heightened awareness of
+ anything that can generate a spark or flame. ALWAYS be prepared to
+ take action if a wildland fire develops in your area.
+
+ A fire adapted community is a community located in a WUI that requires little assistance from
+ firefighters during a wildland fire. Residents accept the responsibility for living in a high fire-hazard
+ area. They possess the knowledge and skills to prepare their homes and property to survive
+ wildland fire and evacuate early, safely, and efficiently.
+ Red Flag Warning Safety Tips
+
+Equipment
+• Avoid using lawn mowers in dry vegetation.
+• Follow all local fire restrictions on the use of chainsaws, mowers and other equipment during high
+ risk times.
+
+Outdoor Fires
+• Be mindful and follow any fire restrictions or burn bans in your area. Obtain a permit if needed.
+• Extinguish outdoor fires properly and never leave them unattended. Always drown them with plenty
+ of water.
+• Soak ashes and charcoal in water and dispose of them in a metal can. These materials can reignite
+ days after a fire or BBQ is extinguished.
+• Report unattended outdoor fires immediately to 911.
+
+Vehicles
+• NEVER throw cigarettes or matches out of a vehicle. They can ignite grasses on the side of the road
+ and start a wildland fire.
+• Do not drive your vehicle in dry tall grass. The underside of your vehicle is hot and can easily ignite
+ grasses from your exhaust muffler.
+• Ensure trailer chains do not drag on the ground.
+
+ Always Maintain Situational Awareness
+ Stay on top of weather reports and ensure you are registered for state and local emergency alerts.
+ Follow and monitor warnings by your local fire department.
+
+ Warnings can include:
+ • Alerts on social media and emergency notification applications.
+ • The enacting of Burn Restrictions or Burn Bans.
+ • Prohibiting open burning or prescribed fire.
+
+ For additional information, contact your local fire department.
+
+ www.wildlandfirersg.org
+ Wildland Fire
+ Action Plan
+
+ (Before a Red Flag Warning has been issued)
+
+• Create and maintain at least 100 feet of defensible space around your home. Perform general
+ wildfire mitigation actions including:
+  Clear overgrown combustible vegetation
+  Keep grasses short and watered
+  Remove needles and leaves from roofs, eaves, and gutters
+• Complete and practice your Personal Wildland Fire Action Plan including all exit routes from your
+ immediate area.
+• Sign up with local agencies to receive emergency notifications.
+
+ (During the warning)
+• Maintain good situational awareness by following weather reports and local news.
+• Do not perform any actions that may cause a spark or produce a flame.
+• Monitor your local fire department for valuable information.
+• Be prepared by having your “Go” kit packed and near your door in case you need to evacuate
+ quickly. Include the following:
+  Your Personal Wildland Fire Action Plan.
+  Prescription medications and any medical devices you may need.
+  Important documents including your passport, birth certificate, driver’s license, marriage
+ license, insurance policy and any other legal documents.
+
+ (Act early when a wildfire threatens your area)
+• Remain calm and collected.
+• Follow directives and information provided by your local authorities and fire department.
+• Use your Personal Action Plan for guidance.
+• Cooperate with local authorities during evacuation and re-entry.
+
+ www.wildlandfirersg.org
+ Wildland Fire
+ Action Plan
+Write up your Wildland Fire Action Plan and post it in a location where every household member can see it.
+Practice multiple exit routes. During high-fire-danger days in your area, monitor your local media for
+information and be ready to implement your plan. Hot, dry, and windy conditions create the perfect
+environment for a wildland fire.
+IMPORTANT PHONE NUMBERS (Emergency and Non-emergency)
+Name Phone Number
+
+___________________________________________ ________________________________________
+___________________________________________ ________________________________________
+___________________________________________ ________________________________________
+PROPERTY OWNER
+____________________________________________________________________________________
+
+LIST LOCAL NEWS AND RADIO STATIONS
+_____________________________________________________________________________________
+PROPERTY MAINTENANCE CONTACTS
+_____________________________________________________________________________________
+LOCATION OF ELECTRICAL AND NATURAL GAS SHUT OFFS
+_____________________________________________________________________________________
+DIRECTIONS NOTING ALL NEIGHBORHOOD EXITS
+_______________________________________________________________________________________
+_______________________________________________________________________________________
+_______________________________________________________________________________________
+EXIT ROUTES
+1. _________________________________________________________________________________
+2. _________________________________________________________________________________
+3. _________________________________________________________________________________
+4. _________________________________________________________________________________
+
+MEETING LOCATION
+____________________________________________________________________________________
+AREA SHELTERS/SAFETY ZONES
+Name Address Phone Number
+_____________________________ __________________________ _______________________
+_____________________________ __________________________ _______________________
+
+ IAFC’s Wildland Fire Programs are funded in cooperation with the USDA Forest Service. In accordance with
+ Federal law and U.S. Department of Agriculture policy, this institution is prohibited from discriminating on the basis
+ of race, color, national origin, sex, age, or disability. (Not all prohibited bases apply to all programs). To file a
+ complaint alleging discrimination, write USDA, Director, Office of Civil Rights, 1400 Independence Avenue, SW,
+ Washington DC 20250-9410 or call toll free voice (866) 632-9992, TDD (800) 877-8339, or voice relay (866) 377-
+ 8642. USDA is an equal opportunity provider and employer.
+"""
+
+[R6] Red flag warning affecting the Kansas City area until Saturday night
+(https://www.kansascity.com/news/weather-news/article315137474.html)
+"""
+The creation of this content included the use of AI based on templates created, reviewed and edited by journalists in the newsroom. Read more on our AI policy here.A red flag warning was issued by the National Weather Service on Saturday at 1:47 a.m. valid between 11 a.m. and 10 p.m. The warning is for Platte, Worth, Gentry, Harrison, De Kalb, Daviess and Clinton counties.The NWS states that the warning was issued for wind and low relative humidity. Expect winds to be southwest around 15 MPH with gusts to 25 MPH and humidity between 15 and 25% in the afternoon."Low relative humidity and wind gusts around 25 MPH on Saturday afternoon, leading to critical fire weather conditions," according to the NWS. "Any fire that develops will catch and spread quickly. Outdoor burning is not recommended."This warning is in effect until 10 p.m. What does a red flag warning mean? A red flag warning means that extreme fire weather conditions are either occurring now or will shortly, according to the NWS. Warm temperatures, very low humidities, and stronger winds are expected to combine to produce an increased risk of fire spreading rapidly.What actions are necessary during a red flag warning? A red flag warning demands vigilance and immediate readiness to respond to potential fires. The NWS provides these vital guidelines to minimize fire hazards and ensure your safety:1. Secure burn barrels:If burning is permitted in your area, ensure that all burn barrels have a weighted metal cover, complete with holes no larger than 3/4 of an inch.2. Responsible disposal of smoking materials:Prudently discard cigarette butts and avoid flinging cigarettes or matches from a moving vehicle. These seemingly innocuous actions can kindle dry grass, potentially triggering a wildfire.3. Prudent fire extinguishing practices:To safeguard against accidental fires, diligently extinguish all outdoor fires. Drown them with an ample amount of water and stir to confirm that everything is cold to the touch. Submerge charcoal in water until it's thoroughly cooled. Never dispose of live charcoal on the ground.4. Never leave fires unattended:Avoid abandoning any fire without supervision. Even minor sparks or drifting embers can incite nearby foliage or grass, setting off a rapidly spreading fire.Understanding the gravity of a red flag warning and adhering to these precautions is pivotal in reducing the risk of wildfires during these hazardous conditions. Prioritize safety, stay informed, and act responsibly to protect lives and property.Source: The National Weather ServiceUnited Robots Kansas CityThis story was originally published March 21, 2026 at 1:50 AM.
+"""
+
+[R7] What is a red flag warning? Ohio counties at 'critical' risk for wildfires. Here's where
+(https://www.cantonrep.com/story/news/2025/03/19/red-flag-warning-ohio-counties-meaning-critical-risk-wildfires-nws-fire/82537974007/)
+"""
+March 19, 2025, 9:21 a.m. ETSmokers, don't toss that lit cigarette from the car window. The National Weather Service warns that it could spark a wildfire, especially today.The NWS has issued a red flag warning from 11 a.m. to 10 p.m. today for several counties from Central to Southeast Ohio. Here's what that means.What is a red flag warning? National Weather Service definitionA red flag warning means that warm temperatures, very low humidity and strong winds are expected to combine to create an increased risk of fire danger, according to the NWS.Per the NWS warning issued today, south winds of 15 to 20 mph with gusts up to 35, humidity as low as 14%, temperatures of up to 79 degrees and moisture in wood of 5-8% will create "critical fire weather conditions."On federal land, red flag warnings alert fire managers that conditions are bad for prescribed burns and may lead to "dangerous wildfire growth."What Ohio counties are under a red flag warning?The following Ohio counties are under a red flag warning today:AdamsBelmontCarrollColumbianaCoshoctonGuernseyFairfieldHarrisonHockingJeffersonLewisLickingMonroeMuskingumNoblePikeRossSciotoTuscarawasWhat to do if you are under a red flag warning?To fight that risk, the NWS advises:If you are allowed to burn in your area, all burn barrels must use a weighted metal cover, with holes no larger than three-quarters of an inch.Do not throw cigarettes or matches out of a moving vehicle. They may ignite dry grass on the side of the road that can become a wildfire.Extinguish all outdoor fires properly. Drown fires with plenty of water and stir the ashes to make sure everything is cold to the touch. Dunk charcoal in water until cold. Do not throw live charcoal on the ground and leave it.Never leave a fire unattended. Sparks or embers can blow into leaves or grass and ignite a fire that can quickly spread.The International Association of Fire Chiefs also advises you:Avoid using lawn mowers or other power equipment in dry vegetation.Don't drive through tall grass. Your vehicle's exhaust could spark a fire.Clear overgrown, dry vegetation from around your house.Wildfires burn in Texas, OklahomaPortions of Texas are under red flag warnings as wildfires burn through the Lone Star State, USA TODAY reports. In Oklahoma, wildfires have killed four people and injured at least 200, per USA TODAY.Low humidity is affecting South Central Texas as wildfires burn thousands of acres, according to the Texas A&M Forest Service Incident Viewer. The region faces "critical fire weather conditions" today as humidity levels are low, between 9% and 25%, and sustained winds of 15 to 25 mph, with some gusts reaching 35 mph sweep across the area, according to the National Weather Service.In Oklahoma, wildfires have destroyed almost 300 structures, including over 200 homes, and burned 179,000 acres, according to the Oklahoman, a part of the USA TODAY Network.
+"""
+
+[R8] Fire Weather Watch, Warning and Advisory Definitions
+(https://www.weather.gov/dtx/fire_defs)
+"""
+HOME FORECAST Local Graphical Aviation Marine Rivers and Lakes Hurricanes Severe Weather Fire Weather Sunrise/Sunset Long Range Forecasts Climate Prediction Space Weather PAST WEATHER Past Weather Astronomical Data Certified Weather Data SAFETY INFORMATION Wireless Emergency Alerts Weather-Ready Nation Brochures Cooperative Observers Daily Briefing Damage/Fatality/Injury Statistics Forecast Models GIS Data Portal NOAA Weather Radio Publications SKYWARN Storm Spotters StormReady TsunamiReady Service Change Notices EDUCATION NEWS SEARCH Search For NWS All NOAA ABOUT About NWS Organization For NWS Employees National Centers Careers Contact Us Glossary Social Media NWS Transformation Local forecast by "City, St" or ZIP code Sorry, the location you searched for was not found. Please try another search. Multiple locations were found. Please select one of the following: Location Help News Headlines 🌧️ Volunteer Weather Observers Needed Across Southeast MI! 🌧️ Changes for Three River Forecast Points in Southeast MI to Take Effect April 1, 2026 Virtual Spring Spotter Training Opportunities! 2026 In-Person Spring Skywarn Spotter Training Schedule Expert Forecast Opinion Additional Headlines Customize Your Weather.gov Enter Your City, ST or ZIP Code Remember Me Privacy Policy LOADING... Detroit/Pontiac, MI Weather Forecast Office Fire Weather Watch, Warning and Advisory Definitions Weather.gov > Detroit/Pontiac, MI > Fire Weather Watch, Warning and Advisory Definitions Current Hazards Experimental Graphical Hazardous Weather Outlook Storm and Precipitation Reports Outlooks Submit a Storm Report Current Conditions Local Snowfall Reports Local Ice Accumulation Reports Satellite Snowfall Analysis Observed Precipitation Observations Local Storm Reports Radar Local Enhanced Radar Local Standard Radar (low bandwidth) Regional Standard Radar (low bandwidth) Forecasts Experimental Probabilistic Quantitative Precipitation Forecast Fire Weather Experimental Heat Risk Winter Weather Forecast Discussion Hourly Forecasts Rivers and Lakes National Water Prediction Service (NWPS) Climate and Past Weather Event Summaries NOAA Climate Service Drought Local Local Programs Publications Blog Decision Support / Local Hazards Snowfall Forecast Marine Forecast Todays Weather History Our Office Text Products Beach Forecasts PronÃ³sticos en EspaÃ±ol Watch, Warning, and Advisory Definitions Basic Definitions Convective Definitions Hydrology/Flooding Definitions Winter Weather Definitions Non-Precipitation Definitions Fire Weather Definitions Recent Watches/Warnings/Advisories for Southeast Michigan Fire Weather Definitions Fire Weather Watch Fire Weather Watches are issued anytime the area has been dry for substantial amount of time (or for a shorter period during spring green-up or after fall color), the National Fire Danger Rating System (NFDRS) is high to extreme, and critical weather conditions are expected within the next 48 hours. These critical elements are: sustained winds averaging 15 mph or greater relative humidity 25 percent or less temperature 75°F or greater Red Flag Warning Red Flag Warnings are issued anytime there is an ongoing wildfire, or critical weather conditions will occur within the next 24 hours. These conditions are: sustained winds averaging 15 mph or greater relative humidity 25 percent or less temperature 75°F or greater Follow us on X Follow us on Facebook Follow us on YouTube DTX RSS Feed Weather Forecasts Fire Weather Snowfall Forecast Marine Forecast Beach Forecast Aviation Digital Forecast Graphics Current Weather Conditions Local Observations Today's Weather History Observed Snowfall Regional Radar Mosaic Past Weather Records Climate records by month Additional Daily Climate Data Top 20 Lists Breakdown by Decade Largest Snowstorms Season Snowfall Maps Year To Date Plots Severe Weather Daily Plots Annual Plots Event Summaries Weather Safety Skywarn En Espanol Weather Radio Weather Ready Nation Safety/Outreach/Education StormReady Office Activities Coop Observer Our Office US Dept of Commerce National Oceanic and Atmospheric Administration National Weather Service Detroit/Pontiac, MI 9200 White Lake Road White Lake, MI 48386 248-620-9804 Comments? Questions? Please Contact Us. Disclaimer Information Quality Help Glossary Privacy Policy Freedom of Information Act (FOIA) About Us Career Opportunities Thank you for visiting a National Oceanic and Atmospheric Administration (NOAA) website. The link you have selected will take you to a non-U.S. Government website for additional information.NOAA is not responsible for the content of any linked website not operated by NOAA. This link is provided solely for your information and convenience, and does not imply any endorsement by NOAA or the U.S. Department of Commerce of the linked website or any information, products, or services contained therein.You will be redirected to: ContinueNew WindowCancel
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,109 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "crimson desert release time"
+
+Claims:
+[1] "Crimson Desert releases globally on March 19, 2026."
+[2] "Crimson Desert releases at 3:00 PM PDT on March 19, 2026."
+[3] "Crimson Desert releases at 6:00 PM EDT on March 19, 2026."
+[4] "Crimson Desert releases at 22:00 GMT on March 19, 2026."
+[5] "Crimson Desert releases across PC, PlayStation 5, and Xbox Series X|S."
+[6] "Pre-load is available for Crimson Desert for all platforms starting March 17."
+[7] "Crimson Desert is a single-player, open-world action RPG."
+[8] "Crimson Desert release time in Los Angeles is 3:00 PM PDT on March 19-20, 2026."
+[9] "Crimson Desert release time in Dallas is 5:00 PM CDT on March 19-20, 2026."
+[10] "Crimson Desert release time in New York is 6:00 PM EDT on March 19-20, 2026."
+[11] "Crimson Desert release time in São Paulo is 7:00 PM BRT on March 19-20, 2026."
+[12] "Crimson Desert release time in London is 10:00 PM GMT on March 19-20, 2026."
+[13] "Crimson Desert release time in Paris is 11:00 PM CET on March 19-20, 2026."
+[14] "Crimson Desert release time in Tokyo is 07:00 AM KST on March 20, 2026."
+[15] "Crimson Desert is a simultaneous worldwide launch."
+[16] "All players on all platforms can start Crimson Desert at the exact same moment."
+
+Cited text snippets from the AI Overview (for additional context):
+- [Notices] Launch FAQ - Crimson Desert: "Mar 12, 2026, 15:,PLATFORM & SYSTEM"
+- Crimson Desert Release Times Revealed; Preload Now Available: "Crimson Desert Release Times and,Paulo: 7:00 PM BRT"
+- Crimson Desert release times and pre-loading - GamesRadar: "How to pre-load Crimson Desert&text=Crimson Desert pre-downloading is,be pre-loading Crimson Desert."
+- Crimson Desert Global Release Time Confirmed as Preload Goes Live: "Red-letter day.,a part of the revenue.&text=Updated: March 18, 2026, 10:47 a.m.&text=Crimson Desert developer and publisher,goes live in your timezone."
+- Download time. Crimson desert 83 GB 😁 - Facebook: "Despite some early physical copies,#CrimsonDesert #GamingNews"
+Reference Sources:
+
+[R1] [Notices] Frequently Asked Questions | Crimson Desert
+(https://crimsondesert.pearlabyss.com/en-us/News/Notice/Detail?_boardNo=63)
+"""
+PLATFORM & SYSTEM What platforms are Crimson Desert available on? Crimson Desert is currently available on PlayStation®5, PlayStation®5 Pro, Xbox Series X|S, Xbox on PC, Steam (PC & Mac), Epic Games Store, Mac App Store, and GeForce NOW. What are Crimson Desert’s PC, console, and Mac performance specifications and system requirements? Information about Crimson Desert’s console, PC, and Mac performance and hardware specifications can be found in the Performance Specs notice. Please make sure your PC and Mac components meet or exceed the minimum requirements. [LINK] Does Crimson Desert support performance-enhancing technologies? Crimson Desert supports FSR 3/4 and DLSS 4/4.5 on PC, Upgraded PSSR for PS5 Pro, and FSR 3 for the PS5 base model and Xbox Series X|S. It also features support for AMD FSR Ray Regeneration and NVIDIA DLSS Ray Reconstruction on PC versions. Please note that frame generation (FSR and DLSS) is only supported on PC/Mac. Additionally, Crimson Desert supports MetalFX Upscaler, Frame Generation, and Denoiser on Mac. Should I use a specific driver version for AMD/NVIDIA graphics cards to ensure optimal performance? We recommend using AMD driver version 25.9.2 or above and NVIDIA driver version 581.29 or above for optimal performance and stability. Does Crimson Desert require an internet connection to play? Players will need an internet connection to complete the initial setup (day 1 patch) and ensure they have the latest version of the game. Once installation is complete, the game can be enjoyed offline. We’re also committed to continually improving performance and enhancing the overall experience through future updates and patches. An internet connection will be required to download these updates beyond the initial setup. Does Crimson Desert support cross-save between different platforms? No, cross-save is not available for Crimson Desert. What controllers are supported on the PC version? Crimson Desert features support for Xbox controllers and the DualSense controller (USB only). I want to stream and/or capture Crimson Desert gameplay, but the capture quality appears unstable. When using Windows duplicate display to capture gameplay, capture quality may appear reduced if DLSS MFG (Multi Frame Generation x3, x4) is enabled. DLSS MFG can be enabled even at low base rendering FPS. However, if the base FPS is too low, input responsiveness and image stability may be affected. For the best experience, we recommend using this feature when a sufficiently high rendering FPS can be maintained. And when using Multi Frame Generation, we recommend disabling vertical sync-related settings such as V-sync and G-sync. Does Crimson Desert support Intel Arc? Regarding Crimson Desert support for Intel Arc:We are currently working on compatibility and optimization support so that Crimson Desert can also be enjoyed on Intel Arc GPU systems. We are preparing to provide a smooth and stable gameplay experience, and we ask for your patience until the support update becomes available. We apologize for any confusion our previous FAQ wording regarding playability on Intel Arc GPUs may have caused. Please regard this as our latest official news on the subject. My screen looks blurry on PlayStation/Xbox. How do I fix this? Your screen might look blurry if your HDMI cable doesn't support HDMI 2.1. For the best picture quality, we highly recommend using an HDMI 2.1 cable. I cannot play Crimson Desert through the Xbox PC app. We are actively investigating a permanent solution with Xbox, but in the meantime, please use the temporary workaround detailed below: 1. Open the Microsoft Store.2. Go to 'Downloads' and click 'Check for Updates'.3. If an update is available, click 'Update' next to the Gaming Services app.Alternatively, or if you don’t see an update, press Windows logo key + R, and then paste the following into the Run box: ms-windows-store://pdp/?productid=9MWPM2CQNLHNThis opens the download in the Store directly.4. After the above are complete, run Crimson Desert. SUPPORT How do I submit issue/bug reports? If you encounter an issue or bug while playing Crimson Desert, check the Report an Issue notice. Here you’ll find a list of known issues, troubleshooting steps, and instructions on how to report an issue. [LINK] FEATURES What languages is Crimson Desert available in? The game interface and subtitles are supported in 14 languages: English, French, Italian, German, Spanish (Spain), Japanese, Korean, Polish, Russian, Simplified Chinese, Spanish (Latin America), Traditional Chinese, and Portuguese (Brazil).Full voiceover is available in English, Korean, and Simplified Chinese. To change your language settings, go to: Menu > Other > Options > Settings > Languages and Gameplay Language Support for Physical/Digital Editions Digital editions support all languages regardless of purchase regionPlayStation physical editions support different languages depending on the region and versionAsia Version: Supports Chinese (Simplified/Traditional)Korean / Japanese Versions: Do not support Chinese (Simplified/Traditional) * Please be sure to check the product version and supported languages before purchasing. GAME EDITIONS AND BONUS ITEMS What are the Crimson Desert editions? You can find all the details about available Crimson Desert packages on the official website. [LINK] Where can I find my bonus items and Twitch Drops rewards? Bonus items from the Deluxe and Ultimate Packs, Pre-order Bonus, and PlayStation 5 Exclusive Bonus as well as Twitch Drops rewards can all be found in the Add-ons menu. Go to Menu → Other → Options → Add-ons, select the item from the Receivable Items list, and click Receive to move the item to your inventory. I purchased the Standard Edition. Can I upgrade to Deluxe or Collector’s Edition? There is no dedicated upgrade option. However, if you wish to obtain the bonus items included in the Deluxe Edition, the Deluxe Pack (which includes the Balgran Shield, Kairos Plate Set, and Exclaire Horse Tack Set) will be available for separate purchase after Crimson Desert launches on March 19th. It will only be available to players who already own the full game. The Ultimate Pack included in the Collector’s Edition is not available for separate purchase. Are there any differences between the digital and physical versions of the game? There is no difference in in-game content between the digital and physical retail versions. However, physical goods and extras, such as SteelBooks, photo cards, etc., are only available with a physical edition purchase. Please refer to our official website and related notices for detailed information..
+"""
+
+[R2] Here's When Crimson Desert Goes Live in Your Timezone
+(https://nordic.ign.com/crimson-desert/105187/news/crimson-desert-global-release-time-confirmed-as-preload-goes-live)
+"""
+Crimson Desert developer and publisher Pearl Abyss has confirmed the global release time for the hotly anticipated open world action game.Preload is now available across PC, PlayStation 5, and Xbox Series X and S, having gone live on March 17. As for the release date, Crimson Desert launches simultaneously worldwide across all platforms on Thursday, March 19, at 3pm PT / 6pm ET / 10pm UK time. We have the breakdown of the global release times below so you can check when Crimson Desert goes live in your timezone.Crimson Desert Review So Far - Impressions After 110+ HoursCrimson Desert global release time:Los Angeles: 3pm, March 19Dallas: 5pm, March 19New York: 6pm, March 19Sao Paulo: 7pm, March 19London: 10pm, March 19Berlin: 11pm, March 19Paris: 11pm, March 19Cape Town: Midnight, March 19Istanbul: 1am, March 20Dubai: 2am, March 20Singapore: 6am, March 20Beijing: 6am, March 20Seoul: 7am, March 20Tokyo: 7am, March 20Sydney: 9am, March 20Crimson Desert global release time. Image credit: Pearl Abyss.In a launch FAQ, Pearl Abyss said Crimson Desert needs an internet connection to complete the initial setup (day one patch) “and ensure they have the latest version of the game.” Once installation is complete, you can play Crimson Desert offline.As for advanced graphics tech support, Crimson Desert supports FSR 3/4 and DLSS 4/4.5 on PC, Upgraded PSSR for PS5 Pro, and FSR 3 for the PS5 base model and Xbox Series X and S. It also features support for AMD FSR Ray Regeneration and Nvidia DLSS Ray Reconstruction on PC versions. Frame generation (FSR, DLSS and MetalFX) is only supported on PC/Mac, as you’d expect, and Crimson Desert supports MetalFX Upscaler, Frame Generation, and Denoiser on Mac.You can buy Crimson Desert on PlayStation 5, PlayStation 5 Pro, Xbox Series X and S, Xbox on PC, Steam (PC and Mac), Epic Games Store, Mac App Store, and GeForce NOW. Cross-save is not available. Crimson Desert on PC supports Xbox controllers and the DualSense controller (USB only).Crimson Desert - March 2026 ScreenshotsSo far, we’ve seen Crimson Desert running on PC, PlayStation 5 Pro, and, earlier this week, we finally got a look at Crimson Desert running on base PS5. However, Pearl Abyss has yet to show Crimson Desert running on any Xbox console or on the ROG Xbox Ally or ROG Xbox Ally X handhelds, despite both having official specifications from Pearl Abyss. Pearl Abyss has told IGN it won't show Crimson Desert on Xbox before launch.Full specs for Crimson Desert on PS5 and Xbox have been confirmed, with performance, balanced, and quality modes detailed for all consoles except the Xbox Series S, which lacks a balanced option. The console versions of Crimson Desert have come under intense scrutiny, with Pearl Abyss accused by some of hiding the PlayStation and Xbox versions prior to launch — something that sparked fears of a Cyberpunk 2077-style debacle, where CD Projekt's game's lesser-powered and buggy console versions were not shown at all before release.Earlier this month, Pearl Abyss marketing chief Will Powers called on fans to "let us cook" and show the console version when it was ready. "We're not hiding anything, and I'm sick of having to repeat myself," Powers said. "I've repeated 100s of times that we'll reveal things ahead of launch to give people adequate time to still preorder the game for themselves. We're saying this openly... Let us cook? Please and thank you. /rant"While you wait to play, check out IGN's Crimson Desert Review So Far, and our launch interview with Will Powers.Wesley is Director, News at IGN. Find him on Twitter at @wyp100. You can reach Wesley at wesley_yinpoole@ign.com or confidentially at wyp100@proton.me.Get IGN's Biggest Stories FIRST. Set Us as Your Source.Add Source
+"""
+
+[R3] Crimson Desert Global Release Times Revealed; Preload Now Available
+(https://mp1st.com/news/crimson-desert-release-times-revealed-preload-now-available)
+"""
+Crimson Desert, the upcoming RPG from Pearl Abyss, is almost here. If you are wondering when you can start playing in your region, here are all the details you need. The game will launch on March 19, 2026, but the exact time you can play depends on where you live. Crimson Desert Release Times and Preload Details Crimson Desert will release worldwide at the same time, which is 06:00 PM (EDT) on March 19, 2026. Because of time zone differences, some regions will be able to play earlier in the day, while others will start during the early hours of March 20. Here are the release times for different regions: Thursday, March 19, 2026: New York: 6:00 PM EDT London: 10:00 PM GMT Paris: 11:00 PM CET Los Angeles: 3:00 PM PDT Dallas: 5:00 PM CDT São Paulo: 7:00 PM BRT Friday, March 20, 2026: Istanbul: 1:00 AM TRT Dubai: 2:00 AM GST Cape Town: 12:00 AM SAST Beijing: 6:00 AM CST Singapore: 6:00 AM SST Seoul: 7:00 AM KST Tokyo: 7:00 AM JST Sydney: 9:00 AM AEDT If you have pre-ordered Crimson Desert, you can preload the game 48 hours before release. This means the download is already available. In other news, Crimson Desert is not a Soulslike, but it will not be easy and will not include microtransactions at launch, Pearl Abyss says. Stay connected to MP1st and the latest news by following us on Bluesky, X, Facebook, TikTok, YouTube, and Google News.
+"""
+
+[R4] Crimson Desert release times and pre-loading
+(https://www.gamesradar.com/games/action-rpg/crimson-desert-release-time-preload/)
+"""
+(Image credit: Pearl Abyss) The Crimson Desert release time on March 19 is very soon, with pre-loading now being live too so you can get the colossal RPG loaded onto your system for launch. Pre-loading is available for PS5, Xbox Series X and PC, but you obviously need to have pre-ordered Crimson Desert first. Otherwise, it's just a matter of waiting for the release time on March 19 – or March 20 depending on where in the world you are. Here's when Crimson Desert launches in the US, UK, and more.What time does Crimson Desert release? (Image credit: Pearl Abyss)Crimson Desert releases globally at 10PM UTC on March 19 on PS5, Xbox Series X, and PC via Steam and the Microsoft Store. That works out as the following release times for time zones around the world:US Pacific: 3PM PDT on March 19US Eastern: 6PM EDT on March 19UK: 10PM GMT on March 19Central Europe: 11PM CET on March 19South Korea and Japan: 7AM KST/JST on March 20Eastern Australia: 9AM AEDT on March 20New Zealand: 11AM NZDT on March 20A global simultaneous release for Crimson Desert means there are no chances to use things like the trusty New Zealand system clock change trick to try and play as early as possible, and you'll just have to be patient.Latest Videos From GamesRadar+How to pre-load Crimson Desert (Image credit: Pearl Abyss)Crimson Desert pre-downloading is available right now on all platforms, letting you get the game ready ahead of launch day, but only if you've pre-ordered it. Check the platform storefront you pre-ordered from, such as the PlayStation Store, Xbox Store, or Steam, and you should be able to begin installing from there – just make sure you've got plenty of storage space, with Steam recommending having 150GB free.In the case of the PS5 and Xbox Series X, you may need to find Crimson Desert in your game library ('My Games and Apps' on Xbox) and begin installing from there instead. And remember that unlike Black Desert Online, Crimson Desert is not multiplayer, so you won't be able to play with your friends who might also be pre-loading Crimson Desert.© GamesRadar+. Not to be reproduced without permission.Weekly digests, tales from the communities you love, and more Will Sawyer is a Guides Editor at GamesRadar+ with over five years of experience in writing online guides, news, and features, and has a BA (Hons) in Journalism. Starting as a freelancer, Will contributed to startmenu and Game Rant before joining the GamesRadar+ team in August 2021. Since then, he has written hundreds of guides about a huge range of games, with shooters and action games being his areas of expertise. Outside of writing about games, Will hops between multiplayer shooters with friends, such as Darktide and Helldivers 2, and delves into whatever has been on his backlog for far too long. He also tries to get through his never-ending Warhammer pile of shame of grey Tyranids, Aeldari, and Chaos Space Marines.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

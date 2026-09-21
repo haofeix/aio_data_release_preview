@@ -1,0 +1,109 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch dodgers vs colorado rockies"
+
+Claims:
+[1] "The Los Angeles Dodgers vs. Colorado Rockies game takes place on April 19, 2026."
+[2] "The Los Angeles Dodgers vs. Colorado Rockies game is on Sunday, April 19, 2026."
+[3] "The Los Angeles Dodgers vs. Colorado Rockies game is at 3:10 p.m. ET."
+[4] "The Los Angeles Dodgers vs. Colorado Rockies game is at 1:10 p.m. MT."
+[5] "The Los Angeles Dodgers vs. Colorado Rockies game takes place at Coors Field in Denver."
+[6] "Rockies.TV is the in-market TV channel."
+[7] "SportsNet LA is the Dodgers market TV channel."
+[8] "Fubo provides live stream."
+[9] "Fubo has a free trial."
+[10] "Rockies.TV is available through MLB.TV for in-market viewers."
+[11] "Tickets are available for the Los Angeles Dodgers vs. Colorado Rockies matchup at Coors Field via StubHub."
+
+Cited text snippets from the AI Overview (for additional context):
+- Where to watch Los Angeles Dodgers vs Colorado Rockies: "Matchup: LAD at COL,every MLB team here ⚾"
+- How to Watch Rockies Broadcasts | Colorado Rockies: "There are multiple ways to,the bottom of the page."
+- Rockies 9-6 Dodgers (Apr 19, 2026) Game Recap: "Game Information,Third Base Umpire - Dan Iassogna"
+- Watch Colorado Rockies vs Los Angeles Dodgers (Free Trial) - Fubo: "Watch Colorado Rockies vs Los Angeles Dodgers live with Fubo for $0 Today"
+Reference Sources:
+
+[R1] Rockies 9-6 Dodgers (Apr 19, 2026) Game Recap - ESPN
+(https://www.espn.com/mlb/recap?gameId=401815011)
+"""
+DENVER -- — Mickey Moniak hit a go-ahead two-run homer in the seventh, and the Colorado Rockies held on to beat Los Angeles 9-6 on Sunday and give the Dodgers’ their first losing streak of the season. Los Angeles won 11 of 13 before dropping the last two in Denver. Shohei Ohtani doubled twice to extend his on-base streak to 51 games and Ryan Ward had two hits and an RBI in his major league debut. Ohtani’s RBI double in the third moved him alone in third on the franchise list behind Shawn Green, who reached in 53 straight games in 2000, and Duke Snider, who had a 58-game streak in 1954. The 28-year-old Ward, who was recalled when Freddie Freeman went on the paternity list, logged 696 games in the minors before getting called up. He had a chance to tie the game against Victor Vodnik with two on and two out in the ninth but Troy Johnston made a diving catch of his blooper in right field to end the game. Ward lined an RBI single in his second at-bat that gave the Dodgers a 3-0 lead in the fourth inning. Colorado answered against Roki Sasaki with a run in the fourth and two in the fifth, including Kyle Karros’ first homer of the season. The Rockies took the lead against Blake Treinen (1-1) in the seventh after Alex Freeland’s RBI single put Los Angeles in front 4-3. Edouard Julien, who had three hits, led off with a double, Moniak homered to right-center and Hunter Goodman doubled and scored on Tyler Freeman’s single. Julien drove in two more in the Rockies' three-run eighth. Antonio Senzatela (1-0) pitched two innings in relief of starter Michael Lorenzen. Up next The Dodgers will send LHP Justin Wrobleski (2-0, 2.12 ERA) against Rockies LHP Jose Quintana (0-1, 5.63) on Monday to conclude the four-game wraparound series. ------ AP MLB: https://apnews.com/mlb
+"""
+
+[R2] Where to watch Los Angeles Dodgers vs Colorado Rockies: TV channel, start time, streaming for Apr. 19
+(https://www.usatoday.com/story/sports/mlb/2026/04/19/los-angeles-dodgers-colorado-rockies-channel-stream-time-mlb-4-19-2026/89687909007/)
+"""
+Updated April 19, 2026, 6:38 a.m. ETBaseball is back and finding what channel your favorite team is playing on has become a little bit more confusing since MLB announced plans to produce and distribute broadcasts for nearly a third of the league.We're here to help. Here's everything you need to know Sunday as the Los Angeles Dodgers visit the Colorado Rockies.See USA TODAY's sortable MLB schedule to filter by team or division.What time is Los Angeles Dodgers vs Colorado Rockies?First pitch between the Colorado Rockies and Los Angeles Dodgers is scheduled for 3:10 p.m. (ET) on Sunday, Apr. 19.How to watch Los Angeles Dodgers vs Colorado Rockies on SundayAll times Eastern and accurate as of Sunday, April 19, 2026, at 6:33 a.m.Matchup: LAD at COLDate: Sunday, Apr. 19Time: 3:10 p.m. (ET)Venue: Coors FieldLocation: Denver, ColoradoTV: Time Warner Cable SportsNet LA and Rockies.TVStreaming: MLB.TV on FuboWatch MLB all season long with FuboMLB regional blackout restrictions applyMLB scores, resultsMLB scores for Apr. 19 games are available on usatoday.com . Here's how to access today's results:See scores, results for all of today's games.Our editors independently choose our recommendations. Some content is produced with paid support from a third party, however our editorial decisions remain independent. If you buy through our links, the USA TODAY Network may earn a commission. Prices and availability may change.Information in this article was imported automatically into a template written and reviewed by a USA TODAY Sports editor. You can send feedback using this form.Gambling involves risk. Please only gamble with funds that you can comfortably afford to lose. While we do our utmost to offer good advice and information we cannot be held responsible for any loss that may be incurred as a result of gambling. We do our best to make sure all the information that we provide on this site is correct. However, from time to time mistakes will be made and we will not be held liable. Please check any stats or information if you are unsure how accurate they are. No guarantees are made with regards to results or financial gain. All forms of betting carry financial risk and it is up to the individual to make bets with or without the assistance of information provided on this site and we cannot be held responsible for any loss that may be incurred as a result of following the betting tips provided on this site. Past performances do not guarantee success in the future and betting odds fluctuate from one minute to the next. The material contained on this site is intended to inform, entertain and educate the reader and in no way represents an inducement to gamble legally or illegally or any sort of professional advice.Gannett may earn revenue from sports betting operators for audience referrals to betting services. Sports betting operators have no influence over nor are any such revenues in any way dependent on or linked to the newsrooms or news coverage. Terms apply, see operator site for Terms and Conditions. If you or someone you know has a gambling problem, help is available. Call the National Council on Problem Gambling 24/7 at 1-800-GAMBLER (NJ, OH), 1-800-522-4700 (CO), 1-800-BETS-OFF (IA), 1-800-9-WITH-IT (IN). Must be 21 or older to gamble. Sports betting and gambling are not legal in all locations. Be sure to comply with laws applicable where you reside. It is your sole responsibility to act in accordance with your local laws.
+"""
+
+[R3] Watch Colorado Rockies vs Los Angeles Dodgers (Free Trial)
+(https://www.fubo.tv/welcome/matches/00bc7960-b580-4c5d-babc-d8c45bbc20b0)
+"""
+Final: Colorado Rockies vs Los Angeles Dodgers on Tue Apr 21, 2026Watch America's pastime on its biggest stage as baseball's greatest stars swing for the fencesWatch America's pastime on its biggest stage as baseball's greatest stars swing for the fencesLive and upcoming for Colorado RockiesLive and upcoming for Los Angeles DodgersUpcomingToday, 1:30am • 3h • MLB NetworkLos Angeles Dodgers at San Francisco GiantsMLBThe Dodgers face the Giants for Game 2 of their series at Oracle Park. Tyler Mahle is the projected starter for the Giants against Yoshinobu Yamamoto for the Dodgers. The Dodgers' Mookie Betts sits this game out due to his strained right oblique.Read More +UpcomingSun Apr 26, 3:00pm UTC • 3h • FOX DeportesChicago Cubs at Los Angeles DodgersMLBTercer juego de la serie regular de la MLB 2026. Chicago Cubs visita a Los Angeles Dodgers. Desde el Dodger Stadium, en Los Ángeles, California.Read More +ScheduleDateAwayHomeTimeWed, Apr 22Milwaukee BrewersDetroit Tigers10:40 PM UTCWed, Apr 22New York YankeesBoston Red Sox10:45 PM UTCWed, Apr 22Atlanta BravesWashington Nationals10:45 PM UTCWed, Apr 22Minnesota TwinsNew York Mets11:10 PM UTCWed, Apr 22Philadelphia PhilliesChicago Cubs11:40 PM UTCThu, Apr 23Pittsburgh PiratesTexas Rangers12:05 AM UTCThu, Apr 23San Diego PadresColorado Rockies12:40 AM UTCThu, Apr 23Chicago White SoxArizona Diamondbacks1:40 AM UTCThu, Apr 23Los Angeles DodgersSan Francisco Giants1:45 AM UTCThu, Apr 23Atlanta BravesWashington Nationals5:05 PM UTCThu, Apr 23Milwaukee BrewersDetroit Tigers5:10 PM UTCThu, Apr 23Philadelphia PhilliesChicago Cubs6:20 PM UTCThu, Apr 23San Diego PadresColorado Rockies7:10 PM UTCThu, Apr 23Chicago White SoxArizona Diamondbacks7:40 PM UTCThu, Apr 23Los Angeles DodgersSan Francisco Giants7:45 PM UTCThu, Apr 23New York YankeesBoston Red Sox10:10 PM UTCThu, Apr 23Minnesota TwinsNew York Mets11:10 PM UTCFri, Apr 24Pittsburgh PiratesTexas Rangers12:05 AM UTCFri, Apr 24Detroit TigersCincinnati Reds10:40 PM UTCFri, Apr 24Boston Red SoxBaltimore Orioles11:05 PM UTCFri, Apr 24Cleveland GuardiansToronto Blue Jays11:07 PM UTCFri, Apr 24Colorado RockiesNew York Mets11:10 PM UTCFri, Apr 24Minnesota TwinsTampa Bay Rays11:10 PM UTCFri, Apr 24Philadelphia PhilliesAtlanta Braves11:15 PM UTCFri, Apr 24Washington NationalsChicago White Sox11:40 PM UTCFri, Apr 24Pittsburgh PiratesMilwaukee Brewers11:40 PM UTCFri, Apr 24Los Angeles AngelsKansas City Royals11:40 PM UTCSat, Apr 25 AthleticsTexas Rangers12:05 AM UTCSat, Apr 25New York YankeesHouston Astros12:10 AM UTCSat, Apr 25Seattle MarinersSt. Louis Cardinals12:15 AM UTCStandingsTop Colorado Rockies playersTop Los Angeles Dodgers playersOn demand for Colorado RockiesOn demand for Los Angeles DodgersPopular games on FuboOrlando Magic atDetroit PistonsPhoenix Suns atOklahoma City ThunderSan Antonio Spurs atPortland Trail BlazersDenver Nuggets atMinnesota TimberwolvesCleveland Cavaliers atToronto RaptorsPopular channels included with FuboMore matches on Fubo
+"""
+
+[R4] How to Watch Rockies Broadcasts | Colorado Rockies
+(https://www.mlb.com/rockies/schedule/programming)
+"""
+Which cable, satellite, and streaming providers carry Rockies games in the Rockies market? Can I watch if I have YouTube TV or Sling?In-market fans can watch on DIRECTV, Xfinity/Comcast, Spectrum and Fubo. YouTube TV, Hulu, and Sling do not offer Rockies games at this time but we continue working on expanding access.Can I watch Rockies games on a local Colorado TV channel?Yes! The Rockies have partnered with 9News, the local NBC affiliate, to simulcast 10 games. All 10 games will be shown on KTVD channel 20 and 5 games will also be shown on KUSA/9News. These games are available for free, over-the-air (OTA) to viewers throughout the region.How do I watch the Rockies on MLB.TV in Colorado?MLB.TV Single Team Rockies Package (Rockies.TV) subscribers can access Rockies games in Colorado. Purchase a Rockies.TV subscription and be sure to select this specific package.How do I watch Rockies baseball if I live outside of the Colorado area?Fans can watch via MLB.TV and are encouraged to learn more about MLB.TV.Can MLB.TV All Teams Subscribers Watch Rockies games on MLB.TV in the Colorado area?Only users that have specifically purchased the Rockies.TV subscription will be able to stream Rockies games in the Colorado area. MLB.TV All Teams subscribers will not have access and will need to purchase a Rockies.TV package in addition to the All Teams Package in order to stream Rockies games on MLB.TV in Colorado.If I’m a Rockies Plan Holder with MLB.TV, what does this mean for me?Rockies Plan Holders receive a free MLB.TV All Teams Subscription as a membership benefit. However, only users that specifically purchase the Rockies.TV package subscription will be able to stream Rockies games in Colorado. Rockies Plan Holders need to add-on the Rockies.TV package. Plan Holders cannot use their free MLB.TV All Teams subscription to watch Rockies home games. Instead, they need to subscribe to the new Rockies.TV package or watch through a traditional cable or satellite provider.MLB.TV Blackout PolicyBy offering a direct-to-consumer streaming option on MLB.TV in the Club’s territory, MLB is able to lift the blackout for Rockies games previously distributed on AT&T SportsNet Rocky Mountain. Due to certain Major League Baseball national exclusivities, select regular season, special event, and Postseason games are unavailable on MLB.TV domestically and internationally. Live audio of the games that are unavailable is available to customers within “At Bat,” which is included with all MLB.TV subscriptions. View a full list of unavailable games, territories, and channels.Live audio of the games is included with all Rockies.TV subscriptions.What will the programming look like on these channels?When you visit these channels, there will not be programming or content until close to game time. Some sites may have a message that there is no program prior to the game, viewers are advised to stay on the channel until the game starts – at that point broadcasting will begin when the game broadcast begins.MLB.TV Device Availability, Support and Free Trial Policy InformationFind out more information at the MLB.TV FAQ page for more information about device availability, customer support and free trial policies.
+"""
+
+[R5] How to watch Dodgers vs. Rockies: TV channel and streaming options for April 19
+(https://www.nytimes.com/athletic/7209361/2026/04/19/how-to-watch-dodgers-vs-rockies-tv-channel-and-streaming-options-for-april-19/)
+"""
+Dalton Rushing takes a two-game homer streak into the Los Angeles Dodgers’ game versus the Colorado Rockies at 3:10 p.m. ET on Sunday, at Coors Field. Roki Sasaki (0-2, 6.23 ERA) will start for the Dodgers, who are 15-5 this season and first in the NL West. Michael Lorenzen (1-2, 8.10 ERA) is starting for the Rockies, who are 8-13 and fifth in the NL West.How to watch Los Angeles Dodgers vs. Colorado Rockies Venue: Coors Field Time: 3:10 p.m. ET Streaming: Fubo (Stream now) TV: Rockies.TV and SportsNet LA Watching in person? Get tickets on StubHub. Dodgers vs. Rockies odds Favorite Moneyline: Dodgers -300 Underdog Moneyline: Rockies +240 Total: 10.5 Total Over Odds: -120 Total Under Odds: +100 Odds provided by BetMGM.Injury reportsDodgersTommy Edman: 10 Day IL (Ankle), Mookie Betts: 10 Day IL (Back), Brock Stewart: 15 Day IL (Shoulder), Brusdar Graterol: 15 Day IL (Shoulder), Blake Snell: 15 Day IL (Shoulder), Ben Casparius: 15 Day IL (Shoulder), Landon Knack: 15 Day IL (Undisclosed), Bobby Miller: 60 Day IL (Shoulder), Gavin Stone: 60 Day IL (Shoulder), Jake Cousins: 60 Day IL (Elbow), Kiké Hernández: 60 Day IL (Elbow), Evan Phillips: 60 Day IL (Elbow) RockiesKyle Freeland: 15 Day IL (Shoulder), Kris Bryant: 60 Day IL (Back), Jeff Criswell: 60 Day IL (Elbow), McCade Brown: 60 Day IL (Shoulder), RJ Petit: 60 Day IL (Elbow), Pierson Ohl: 60 Day IL (Elbow), Willi Castro: day-to-day (Hand)Stats to know Los Angeles’ Andy Pages is slashing .389/.430/.653 this season with five home runs (18th in MLB), 21 RBIs (1st in MLB) and an OPS of 1.083 (3rd in MLB). He has a 26.6% strikeout rate and a 6.3% walk rate in 79 plate appearances, and he has scored 11 total runs. Pages has recorded three steals on four attempts. In 89 plate appearances, Freddie Freeman has slashed .296/.360/.519 this season. He has hit three long balls and driven in 14 runs with a strikeout rate of 11.2% and a walk rate of 7.9%. He has come around to score nine times. Mickey Moniak has hit five home runs this season, which ranks 18th in MLB. He has also tallied nine RBIs and has scored eight runs. In 54 plate appearances, he has recorded a .260 BA, .296 OBP and .620 SLG with a 5.6% walk rate and a 25.9% strikeout rate. He has been effective on the base paths, recording one steal on one attempt. In 65 plate appearances, Troy Johnston has slashed .305/.359/.492 this season. He has hit two long balls and driven in 10 runs with a strikeout rate of 21.5% and a walk rate of 6.2%. He has stolen one base on two attempts and has scored seven runs. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Jamie Squire, Ishika Samant, Scott Taetsch, Alika Jenner / Getty Images Apr 23, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

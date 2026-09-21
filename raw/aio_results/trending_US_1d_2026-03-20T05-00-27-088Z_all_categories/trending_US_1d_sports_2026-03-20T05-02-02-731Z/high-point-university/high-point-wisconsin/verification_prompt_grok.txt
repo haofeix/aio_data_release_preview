@@ -1,0 +1,132 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "high point wisconsin"
+
+Claims:
+[1] "Timm's Hill is the highest natural point in the U.S. state of Wisconsin."
+[2] "Timm's Hill has an elevation of 1,951.5 feet (595 m)."
+[3] "Timm's Hill is located in north-central Wisconsin."
+[4] "Timm's Hill is located in Timm's Hill County Park."
+[5] "Timm's Hill County Park is in the Town of Hill in Price County."
+[6] "The summit of Timm's Hill features a five-story wooden observation tower."
+[7] "The observation tower provides 360-degree views of the surrounding Northwoods."
+[8] "Timm's Hill County Park is open year-round."
+[9] "The main park gate of Timm's Hill County Park is typically open from May through October."
+[10] "Visitors can sign a registry at Timm's Hill."
+[11] "Timm's Hill County Park includes access to Bass Lake."
+[12] "Timm's Hill County Park includes access to Timms Lake."
+[13] "Timm's Hill County Park features 9 miles of non-motorized trails."
+[14] "The non-motorized trails in Timm's Hill County Park connect to the National Ice Age Trail."
+[15] "The non-motorized trails in Timm's Hill County Park connect to Rib Lake Ski Area Trails."
+[16] "Rib Lake Ski Area Trails are groomed for skiing in the winter."
+[17] "High Point Plaza is a commercial property located at 7617 Mineral Point Road in Madison, WI."
+[18] "High Point Retreats is a lodging business located on the highest ridge-top in La Crosse County, WI."
+[19] "In March 2026, the High Point University Panthers made headlines for a basketball upset against the University of Wisconsin in the NCAA Tournament."
+
+Cited text snippets from the AI Overview (for additional context):
+- Timms Hill - Wikipedia: "Timms Hill - Wikipedia,Hill, Wisconsin, July 2014."
+- Facilities • Timm's Hill County Park: "Park Overview,during the fall color season."
+- Timms Hill, Wisconsin - U.S. Highpoint Guide: "Timms Hill, Wisconsin | U.S. Highpoint Guide&text=Timms Hill stands as the,spot for locals and visitors."
+- High Point Trail - Travel Wisconsin: "About High Point Trail,for use in the winter."
+- High Point stuns Wisconsin 83-82 in March Madness on Johnston's first 2-point basket of season: "High Point stuns Wisconsin 83,the game,” Johnston said."
+- Pavilion Rental | La Crosse County, WI | High Point Retreats: "High Point Retreats is a locally owned,**Located along a secluded, low traffic ridgeline**"
+- High Point Plaza |: "High Point Plaza is located at 7617,from West Towne Mall, many nearby restaurants"
+Reference Sources:
+
+[R1] Timm's Hill County Park
+(https://www.co.price.wi.us/facilities/facility/details/Timms-Hill-County-Park-4)
+"""
+HomeFacilities Facilities View all facilities Features Boat landing Cross-Country Skiing Electricity Fishing Grill Hiking Observation Tower Parking Picnic Shelters Playground Restrooms Snowshoeing Swimming Trails Park Overview Timm's Hill County Park is open year-round. Winter parking is available at the intersection of Ring School Rd. and County RR.The highest point in the State of Wisconsin (at an elevation of 1,951.5 feet) is located at Timm's Hill in southeastern Price County. The park gate is open 7:30 a.m. - 9:30 p.m. approximately May through October. Bass Lake is completely surrounded by park property, as well as half the shoreline on Timm's Lake. The entire area is heavily forested with northern hardwoods and provides spectacular viewing during the fall color season. Video:Wisconsin's Fall Color - Timm's Hill Rooftops of America (good video footage of the trail to the observation tower) AmenitiesBoat landingFishing pierHiking trails, including Timm's Hill National Ice Age Trail and a trail to the observation towerObservation towerOpen air shelter with electricity (for reservations, click the button above)Paved road and parking areaPicnic tables and grillsPlay equipmentPressure water (faucet and drinking fountain), mid-April through mid- to late-October, weather permittingSnowmobile / winter ATV trailsSwimming beachVaulted toilets (closed for the winter)RulesPet requirements: must be under control or on a leash at all times - not allowed near swimming area or in buildings
+"""
+
+[R2] Pavilion Rental | La Crosse County, WI | High Point Retreats
+(https://www.highpointretreats.net/about-us)
+"""
+About Welcome to High Point Retreats LLC. We invite you to share our hand built retreats perched on the highest ridge-top in all of La Crosse county. Our 20+ acre property is located in the Driftless region of southwest WI. Take in the picturesque view, the solitude of nature and immerse yourself in the tranquility that our property has to offer. Tim also recently renovated a new retreat located on Brice Prairie in Onalaska, WI for guests to enjoy close access to the Mississippi River and Great River State Trail. Prairie View Ranch Retreat is hosted by High Point Retreats LLC and is great for larger group wanting closer stays to attractions in Onalaska and La Crosse.Prior to opening in September 2020, High Point Retreats was something that owner, Tim Adamson, wanted to share with as many people as possible. From the amazing sunset view, to the restorative aspects being surrounded in nature created, it was an experience too good not to share. Tim wanted others to have the reconnection to self and their loved ones from the simple act of unplugging and connecting with nature that he has enjoyed for years. Tim’s personal touch and vintage antique collection is carefully crafted into each retreat. Don't just visit one of the highest elevations in all of La Crosse County, stay at one of the highest elevations in all of La Crosse County! High Point Retreats is located at an elevation of 1360 feet. Enjoy your private retreat with a one of a kind view. We hope to see you soon! All retreats are located along the same, secluded, low traffic ridgeline and are within walking distance from each other. Perfect for couples, multi family or friend getaways! Rent one, multiple, or all retreats. We Support Local Business We are a locally owned business, that supports other local businesses in the surrounding area. When you stay with us, you will enjoy small touches crafted by local area artisans. Some of the local businesses we support include: Driftless Skincare (Downtown La Crosse)Treklist Adventures (Holmen)La Crosse Clay Center (La Crosse)Pencil Pics by Daryl (Viroqua)Good Earth Soap (Green Bay)Larson's General (Downtown La Crosse)Wildly Authentic (Holmen) *To become one of our local area artisans, contact us at highpoint1360@gmail.com.
+"""
+
+[R3] Timms Hill, Wisconsin | U.S. Highpoint Guide
+(https://highpoint.guide/wi/)
+"""
+Last Updated 31 Jan 2026Timms Hill stands as the highest point in Wisconsin at 1,951.5 feet. Nestled in the serene Timms Hill County Park, this destination offers the satisfaction of reaching the state's pinnacle and hiking, fishing, and more. Perfect for a day trip or a weekend adventure, Timms Hill provides panoramic views of the surrounding Northwoods, which are particularly stunning during the fall foliage.Timms Hill is named after Timothy Gahan, a logger who camped near the hill in the late 1800s. Price County later purchased the land and converted it into a park in 1983. The park encompasses 220 acres, including Bass Lake and Timms Lake, offering numerous recreational opportunities. The observation tower at the summit is the main feature, providing 360-degree views of the forested landscape, making it a popular spot for locals and visitors.Access PointNavigate to W3206 Co Rd R R, Ogema, WI 54459.Finding Timms Hill can be a bit tricky due to minimal signage. The nearest main road is State Route 86, connecting to Highway 51 in Tomahawk. Visitors should turn south on County Road RR at the sign for High Point Village. A narrow, one-way road leads into the park, directing visitors to the observation tower's parking area.Recommended RouteFollow the Green Trail.The hike to the summit is relatively short and manageable, making it suitable for all skill levels. The primary route is the Tower Trail, a quarter-mile uphill hike that leads directly to the observation tower. For those looking for a longer adventure, the Timm's Hill Trail offers a 10-mile round trip that connects to the Ice Age National Scenic Trail.RegulationsTimms Hill County Park is open from 7:30 AM to 9:30 PM from May through October and accessible on foot from November through April. There is no entrance fee. Pets are welcome but must remain leashed. During winter, roads are unplowed, so visitors must park at the intersection of Ring School Road and Rustic Road and hike or ski into the park.Lodging & CampingWhile there is no camping within Timms Hill County Park, nearby options abound. Highpoint Village offers cabin rentals on the southern end of Bass Lake. Additionally, Price County features several private campgrounds and hotels. For more information on lodging, visitors can refer to the Price County tourism website.FAQsHow long does it take to hike to the top of Timms Hill?The hike to the top via the Tower Trail takes about 10-15 minutes. It's a short, uphill trek suitable for most hikers.Is there an entrance fee for Timms Hill County Park?No, the park is free to enter and enjoy.Can I bring my dog to Timms Hill?Yes, pets are allowed but must remain leashed.What activities are available at Timms Hill County Park?The park offers hiking, fishing, boating, swimming, and biking in summer. In winter, snowshoeing and cross-country skiing abound. There are also picnic areas and a pavilion available for rent.
+"""
+
+[R4] Timms Hill
+(https://en.wikipedia.org/wiki/Timms_Hill)
+"""
+From Wikipedia, the free encyclopedia Timms HillTimms Hill, Wisconsin, July 2014.Highest pointElevation1,951.5 ft (594.8 m)[1]Prominence425 ft (130 m)[2]ListingU.S. state high point 39thCoordinates45°27′03″N 90°11′43″W / 45.450884317°N 90.195397889°W[1]GeographyTimms HillWisconsinLocationPrice County, Wisconsin, USTopo mapUSGS Timms HillClimbingEasiest routeHike Timms Hill or Timm's Hill is the highest natural point in the U.S. state of Wisconsin[3] and is located in north-central Wisconsin in Timms Hill County Park in the Town of Hill in Price County. After being surveyed by Quentin Stevens of Ogema Telephone Co in 1962, Timms Hill was discovered to have an elevation of 1,951.5 ft (595 m). It is less than 1 mile (1.6 km) south of Highway 86, about midway between Ogema and Spirit and about 23 miles (37 km) west of Tomahawk.[4] Timms Hill is located in Timms Hill County Park. A public lookout tower is atop the hill. Visible to the southeast is Rib Mountain (elev. 1,924 ft, 586 m), 44 miles (71 km) away by line of sight.[5] The 10-mile (16 km) Timms Hill Trail connects to the Ice Age Trail,[6] a National Scenic Trail stretching 1,200 miles (1,900 km) across glacial terrain in Wisconsin.The tower at the top of Timms Hill. Climate data for Timms Hill 45.4497 N, 90.1974 W, Elevation: 1,837 ft (560 m) (1991–2020 normals) Month Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec Year Mean daily maximum °F (°C) 19.6(−6.9) 24.6(−4.1) 36.2(2.3) 49.5(9.7) 63.3(17.4) 72.3(22.4) 76.6(24.8) 74.3(23.5) 66.5(19.2) 52.2(11.2) 37.1(2.8) 24.7(−4.1) 49.7(9.9) Daily mean °F (°C) 10.3(−12.1) 13.5(−10.3) 24.9(−3.9) 38.4(3.6) 52.0(11.1) 61.5(16.4) 65.9(18.8) 63.7(17.6) 56.1(13.4) 42.7(5.9) 29.5(−1.4) 16.8(−8.4) 39.6(4.2) Mean daily minimum °F (°C) 1.0(−17.2) 2.5(−16.4) 13.7(−10.2) 27.3(−2.6) 40.7(4.8) 50.7(10.4) 55.2(12.9) 53.0(11.7) 45.8(7.7) 33.3(0.7) 21.8(−5.7) 8.9(−12.8) 29.5(−1.4) Average precipitation inches (mm) 1.09(28) 1.03(26) 1.58(40) 2.77(70) 3.64(92) 4.48(114) 3.88(99) 3.90(99) 3.69(94) 3.18(81) 1.85(47) 1.41(36) 32.5(826) Source: PRISM Climate Group[7] List of U.S. states by elevation ^ Jump up to: a b "Ogema". NGS Data Sheet. National Geodetic Survey, National Oceanic and Atmospheric Administration, United States Department of Commerce. Retrieved 2010-01-26. ^ "Timms Hill, Wisconsin". Peakbagger.com. Retrieved 2012-10-17. ^ "Timms Hill (Wisconsin)". Geographic Names Information System. United States Geological Survey, United States Department of the Interior. ^ Department of Transportation-Price County ^ "Timms Hill, Wisconsin's highest natural point". State Trunk Tour. 2015-12-27. Retrieved 2021-04-05. ^ Timm's Hill Trail Web Site ^ "PRISM Climate Group, Oregon State University". PRISM Climate Group, Oregon State University. Retrieved November 1, 2023. To find the table data on the PRISM website, start by clicking Coordinates (under Location); copy Latitude and Longitude figures from top of table; click Zoom to location; click Precipitation, Minimum temp, Mean temp, Maximum temp; click 30-year normals, 1991-2020; click 800m; click Retrieve Time Series button. "Timms Hill". Geographic Names Information System. United States Geological Survey, United States Department of the Interior. Retrieved 2008-12-18. "Timms Hill, WI". TopoQuest Topographic Map Viewer. Retrieved 2008-12-18. "Timms Hill". SummitPost.org. Retrieved 2008-12-18. "Timms Hill Trail, WI". website. Retrieved 2018-01-03.
+"""
+
+[R5] High Point Plaza |
+(https://www.compassproperties.com/property/high-point-plaza/)
+"""
+Properties > Madison > High Point Plaza High Point Plaza The building is strategically located on Mineral Point Road, just three blocks west of West Towne Mall. Situated on a four-lane boulevard, High Point Plaza offers its tenants excellent transportation linkages, as well as an escape from the monotony and traffic hassles of office park existence. The location is dynamic, and less than 15 minutes away from most of Madison, Verona, Middleton, Cross Plains, and Mount Horeb. For property leasing info click here 7617 Mineral Point Road, Madison, WI 53717 Features Monument and building signage available Well-lit, attractive parking lot Atrium spanning all three floors with skylight Amenities Easy access to 12/18 Beltline Highway Minutes from the super-regional West Towne Mall Many casual and fine dining restaurants nearby – – “The management is very responsive to any concerns I have and the maintenance staff is professional and prompt. Best of all I was told “people first” and they have shown me that they care.” Concorde Staff Source ←Move left→Move right↑Move up↓Move down+Zoom in-Zoom outHomeJump left by 75%EndJump right by 75%Page UpJump up by 75%Page DownJump down by 75%Keyboard shortcutsMap DataMap data ©2026 GoogleMap data ©2026 Google5 km Click to toggle between metric and imperial unitsTermsReport a map error
+"""
+
+[R6] High Point Trail | Travel Wisconsin
+(https://www.travelwisconsin.com/outdoors/biking/high-point-trail)
+"""
+Skip to main content 1 of 4 Biking • Northwest Wisconsin High Point Trail Address W3206 County Road RR - Ogema, WI 54459 Phone 715-767-5287 View Website Share About High Point Trail Located at Timm's Hill County Park near Timm’s Hill, Wisconsin’s highest geographical point, these 9 miles of non-motorized trails traverse some of the most hilly terrain in the state. The landscape viewed from the top of the observation tower on Timm’s Hill is one not to be missed. Forests of hardwood and hemlock border the full length of the trail. This is one of the finest trail systems around. It also connects to the National Ice Age Trail and the Rib Lake Ski Area Trails via the Timm's Hill Trail. In the winter the trail is groomed for both classic and skate skiing by the High Point Ski Club with lighted night skiing available for groups by appointment; snowshoeing is allowed on the ungroomed portion of the trail. The vault toilets located at the park are available for use in the winter. Read More Recreation Amenities Shelter Restrooms Winter Activity Services Shelter Restrooms Trail Grooming Classic Ski Admission Details Free Admission View All Located In Northwest Wisconsin W3206 County Road RR - Ogema, WI 54459 RoadRoadA standard road mapAerialA detailed look from aboveBird's eyeA better angle of aerial photographyStreetsideExplore at eye levelLabelsLabels© 2026 TomTom, © 2026 Microsoft CorporationTerms Get Directions Share this page Copy Link Then Share Via Within 50 Miles Discover what's nearby Timm's Hill County Park Ogema, WI Rustic Road 62 Ogema, WI Hobbles Creek Tour Ogema, WI Raab's Extra Innings Ogema, WI Yesterday House, Liberty School & The Machine Shed Brantwood, WI Knox Creek Heritage Center Brantwood, WI Rustic Road 1 Rib Lake, WI Prentice Pines Golf Course Prentice, WI Timm's Hill Tour Prentice, WI High Point Village Resort Ogema, WI Hill of Beans Coffee Shop & Restaurant Ogema, WI Raab's Extra Innings Ogema, WI The Rail Trail Cafe Ogema, WI Rail Trail Cafe Ogema, WI Sailor's Bar Prentice, WI Vintage Inspired Prentice, WI Ds' Burger & Bowl Prentice, WI Hanke’s Little Bohemia Rib Lake, WI Prentice Family Restaurant Prentice, WI High Point Village Resort Ogema, WI Timm's Hill Retreat Ogema, WI Pioneer Park & Campground Ogema, WI Ogema House Hotel Ogema, WI Spirit Lake Campground Spirit, WI Creature's Retreat Prentice, WI Lakeview Park Rib Lake, WI AmeriVu Inn & Suites Prentice, WI Camp 28 Rib Lake, WI Rib Waters Inn Rib Lake, WI Discover the Unexpected Related Stories Keep the Adventure Going Biking Madison-Area Destinations to Explore by Bike State Parks & Forests Adventure Sports in Wisconsin’s Driftless Area Biking Explore Fall Bike Trails in Scenic Green County, WI Winter Activities Embrace Winter in Wisconsin with These 5 Unique Sports Biking Explore on Two Wheels in Wisconsin's Bike-Friendly Cities Tours & Excursions 48 Hours to Explore Manitowoc and Two Rivers Biking Fantastic Fat Tire Biking in Northwest Wisconsin Biking Beginner’s Roadmap to Wisconsin Mountain Biking ; Travel inspiration right to your inbox Sign me up Don't Miss These Wisconsin Bucket List Moments Start Planning Trip Inspiration Things To Do Places To Go Outdoors Food & Drink Stay Events Order Guides Get Travel Newsletters Get Travel Guides Deals & Offers Accessible Travel Sustainable Travel Trip Inspiration Summer Vacation Ideas Wisconsin Trip Experiences View All Trip Experiences Travel Styles Wonders of Wisconsin Here's To Being Here Stories Summer Fall Winter Spring Things To Do Waterparks Spas View All Attractions Architecture Culture & Arts Farm Fresh Experiences Golf Health & Wellness Lighthouses Museums & History Native American Culture Shopping Sports Tours & Excursions Places To Go Explore Wisconsin's Regions Here's To Being Here Travel Series View All Wisconsin Regions North Central Region Northeast Region Northwest Region South Central Region Southeast Region Southwest Region Here's To Being Here Wonders of Wisconsin Bayfield Door County Eau Claire Green Bay La Crosse Lake Geneva Madison Milwaukee Wisconsin Dells Outdoors On the Water Activities Wisconsin Waterfalls View All ATV & UTV Biking Camping Downhill Skiing & Snowboarding Fishing Hiking Horseback Riding National Parks & Forests On the Water Parks & Wildlife Areas Snowmobiling State Parks & Forests Waterfalls Winter Activities Food & Drink Wisconsin Supper Clubs Find Local Wisconsin Cheese View All Bars & Taverns Breweries Cafés and Coffee Shops Culinary Experiences Distilleries Restaurants Supper Clubs Sweets & Treats Travel By Fork Wineries & Cideries Wisconsin Cheese Stay Find Your Cabin Retreat Hit The Road and Campout View All Bed & Breakfasts Cabins Campgrounds & RV Parks Hotels & Motels Luxe Resorts Unique Stays Vacation Rentals Events Events This Weekend Festivals & Fairs View All Events This Weekend Culture & Arts Festivals & Fairs Food & Drink Iconic Wisconsin Live Music & Entertainment Performing Arts Seasonal Events Sporting Events This site uses cookies to provide you with the best onsite experience. Read our privacy policy to learn more. Accept Cookies X
+"""
+
+[R7] High Point stuns Wisconsin 83-82 in March Madness on Johnston's first 2-point basket of season
+(https://nsjonline.com/article/2026/03/high-point-stuns-wisconsin-83-82-in-march-madness-on-johnstons-first-2-point-basket-of-season/)
+"""
+High Point forward Cam'ron Fletcher (11) celebrates with guard Chase Johnston (99) during the Panthers' March Madness upset of Wisconsin (Amanda Loman / AP Photo) Chase Johnston made his first 2-point basket of the season, a fast-break layup with 11.7 seconds remaining that gave No. 12 seed High Point an 83-82 victory over fifth-seeded Wisconsin on Thursday in the first round of the NCAA Tournament. Johnston finished with 14 points, including four 3-pointers for the Panthers, who were 10 1/2-point underdogs, according to BetMGM Sportsbook. He came in shooting 64 of 136 (47.1%) from 3-point range but 0 of 4 inside the arc, and he had played more minutes (406) and scored more points (196) without making a 2-point shot than any player in the country. “I wasn’t really thinking whether it was a 2 or a 3, I was just trying to put it in and win the game,” Johnston said. Rob Martin had 23 points and 10 assists for the Panthers, who will face either 13th-seeded Hawaii or No. 4 seed Arkansas in the second round of the Midwest Region on Saturday. Nick Boyd finished with 27 points and John Blackwell added 22 points and 10 rebounds for the Badgers (24-11), who have lost to a lower-seeded team in each of their last four NCAA Tournament appearances. They fell to No. 11 seed Iowa State in 2022 and No. 12 seed James Madison in 2024 and lost in the second round last year as a 3 seed to sixth-seeded BYU. This latest upset was responsible for ending the hopes of the vast majority of entrants who tried to complete a perfect 2026 bracket. “You get sent home when you don’t take care of the things you need to take care of,” Wisconsin coach Greg Gard said. After Johnston’s bucket gave High Point the lead, Owen Aquino blocked a driving layup by Boyd. The Panthers’ Cam’Ron Fletcher was fouled and missed a free throw, giving the Badgers a chance with 1 second left, but Andrew Rohde’s long pass was stolen by Terry Anderson and the celebration was on for High Point and first-year coach Flynn Clayman. High Point earned a spot in the tournament by winning the Big South title for the second straight season. This was the first March Madness win for the Panthers, who lost to Purdue in the first round last year.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

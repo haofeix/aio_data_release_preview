@@ -1,0 +1,100 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "whats the purse for the masters"
+
+Claims:
+[1] "The total purse for the 2026 Masters is $22.5 million."
+[2] "The total purse for the 2026 Masters marks a $1.5 million increase from the 2025 tournament."
+[3] "The winner of the 2026 Masters takes home $4.5 million."
+[4] "Rory McIlroy is the winner of the 2026 Masters."
+[5] "More than $17 million of the total purse for the 2026 Masters is distributed among the top 15 finishers."
+[6] "The purse for the 2022 Masters was $15 million."
+[7] "The purse for the 2026 Masters is a record."
+[8] "The top-four finishers of the 2026 Masters earn over $1 million."
+
+Cited text snippets from the AI Overview (for additional context):
+- 2026 Masters prize money, purse: Payouts, winnings for Rory McIlroy, each golfer from $22.5 million pool: "Still, along with all the,back for the 2027 Masters."
+- Masters 2026 prize money: How much did winner Rory McIlroy, other golfers earn?: "The Masters purse will total,million from last season's purse."
+- Masters prize money has never been higher, here’s what each golfer gets: "Tisha Alyn talks goal to,sharply down the leader board."
+- 2026 Masters money: How much every player made on Sunday at Augusta: "By: Jessica Marksbury,is a real estate empire."
+Reference Sources:
+
+[R1] 2026 Masters prize money, purse: Payouts, winnings for Rory McIlroy, each golfer from $22.5 million pool
+(https://www.cbssports.com/golf/news/masters-2026-prize-money-purse-payouts-winnings-augusta-national/)
+"""
+AUGUSTA, Ga. -- The 2026 Masters began with 91 players vying for the coveted title of Masters champion and the green jacket that comes with it. In the end, the man who entered Augusta National Golf Club as the reigning champion left the course as the fourth back-to-back winner in tournament history. Rory McIlroy, 36, achieved what would have been impossible to believe just two years ago, winning his second straight Masters and the grand prizes that come along with it.Most notable, of course, is the green jacket that will double up in his closet. However, he also joins the rarified air only occupied by Tiger Woods (2001-02), Nick Faldo (1989-90) and Jack Nicklaus (1965-66) by winning consecutive Masters.There is arguably no tournament where being a past champion carries so much weight, and while much of modern golf has become about escalating purses and the financial prize at the end, the Masters is one of the rare tournaments where that is truly a secondary motivation. Still, along with all the perks one receives for winning at Augusta National Golf Club -- like a lifetime invitation back each April -- the Masters champion does still take home an extremely healthy paycheck for winning the first major championship of the season. The 2026 Masters purse increased to $22.5 million with McIlroy taking home $4.5 million for his efforts. Each of the top four on the final leaderboard will earn over $1 million, while the top 12 will all receive checks for at least $517,500 -- and perhaps most importantly, an invite back for the 2027 Masters. Below you can find the full payout list for each position inside the cut line of the top 50 and ties.2026 Masters prize money, purse, payoutsTotal purse: $22.5 million 1st — $4,500,000 — Rory McIlroy2nd — $2,430,000 — Scottie Scheffler3rd — $1,530,000 — Tyrrell Hatton, Russell Henley, Justin Rose, Cameron Young ($1,080,000 each)4th — $1,080,0005th — $900,0006th — $810,0007th — $753,750 — Collin Morikawa, Sam Burns ($725,625 each)8th — $697,5009th — $652,500 — Max Homa, Xander Schauffele ($630,000 each)10th — $607,500 11th — $562,500 — Jake Knapp12th — $517,500 — Jordan Spieth, Hideki Matsuyama, Brooks Koepka, Patrick Reed, Patrick Cantlay, Jason Day ($427,500 each)13th — $472,50014th — $427,50015th — $405,00016th — $382,50017th — $360,00018th — $337,500 — Maverick McNealy, Viktor Hovland, Matt Fitzpatrick ($315,000 each)19th — $315,00020th — $292,50021st — $270,000 — Wyndham Clark, Ludvig Åberg, Keegan Bradley ($252,000 each)22nd — $252,00023rd — $234,00024th — $216,000 — Chris Gotterup, Adam Scott, Sam Stevens, Brian Campbell, Matt McCarty, Michael Brennan ($182,250 each)25th — $198,00026th — $180,00027th — $173,25028th — $166,50029th — $159,75030th — $153,000 — Alex Noren, Harris English, Shane Lowry ($146,250 each)31st — $146,25032nd — $139,50033rd — $132,750 — Tommy Fleetwood, Dustin Johnson, Brian Harman, Ben Griffin, Gary Woodland ($121,500 each)34th — $127,12535th — $121,50036th — $115,87537th — $110,25038th — $105,750 — HaoTong Li, Ryan Gerard, Jon Rahm ($101,250 each)39th — $101,25040th — $96,75041st — $92,250 — Justin Thomas, Kristoffer Reitan, Sepp Straka, Nick Taylor, Jacob Bridgeman ($83,250 each)42nd — $87,75043rd — $83,25044th — $78,75045th — $74,25046th — $69,750 — Sungjae Im47th — $65,250 — Si Woo Kim48th — $61,650 — Aaron Rai49th — $58,500 — Marco Penge, Corey Conners ($57,600 each)50th — $56,70051st — $55,350 — Kurt Kitayama52nd — $54,000 — Sergio Garcia53rd — $53,100 — Rasmus Hojgaard54th — $52,200 — Charl Schwartzel
+"""
+
+[R2] Masters prize money has never been higher, here’s what each golfer gets
+(https://www.foxbusiness.com/sports/masters-prize-money-has-never-been-higher-heres-what-each-golfer-gets)
+"""
+The iconic green jacket still defines the Masters — but the prize money has never been greater. This year’s winner will take home a record $4.5 million, a payday that separates sharply from the rest of the field.On Saturday, the Masters announced a total purse of $22.5 million—an increase of $1.5 million from last year and up $7.5 million from 2022, when American Scottie Scheffler won. More than $17 million of this year’s total will go to the top 15 finishers, with payouts dropping sharply down the leader board. RORY MCILROY'S MONSTROUS LEAD DISAPPEARS, SURPRISE CONTENDER SURGES AS MASTERS COMES DOWN TO THE FINAL DAYSecond place will earn just over $2.4 million, while third takes home a little more than $1.5 million. Even the golfer who finishes 50th will earn $56,700.Players who make the cut but finish outside the top 50 will earn at least $55,250, with payouts decreasing from there, while those who miss the cut will still take home $25,000.That scale underscores just how dramatically the Masters champion’s payday has grown: Horton Smith earned $1,500 for winning the inaugural tournament in 1934, compared to Rory McIlroy’s $4.2 million in 2025.HOW THE 3,267TH-RANKED AMATEUR GOLFER, A REAL ESTATE AGENT, GOT TO PLAY ALONGSIDE LEGENDS AT THE MASTERS Rory McIlroy victorious during the green jacket ceremony after winning the sudden death playoff round to win the tournament at Augusta National in 2025. (Erick W. Rasco/Sports Illustrated via Getty Images / Getty Images)GET FOX BUSINESS ON THE GO BY CLICKING HEREAnd in a tradition unlike any other, players at Augusta National don’t know the prize money they’re competing for when they tee off; the club waits until after the 36-hole cut to announce the payouts.
+"""
+
+[R3] Masters 2026 prize money: How much did winner Rory McIlroy, other golfers earn?
+(https://www.usatoday.com/story/sports/golf/masters/2026/04/12/masters-2026-prize-money-purse-winner-share/89573885007/)
+"""
+Updated April 12, 2026, 9:40 p.m. ETClick here for full recap and results of the final round of the 2026 Masters Tournament.Masters Sunday at Augusta National Golf Club has come and gone, and what a day of golf it was.Rory McIlroy became the first back-to-back Masters champion since Tiger Woods over two decades ago after some clutch play in the back nine in the final round Sunday, April 12. It was also the sixth major championship of McIlroy's career.McIlroy was in the driver's seat after the first two days, but an up-and-down third round had him entering Sunday's final round of golf in a tie for first place on the leaderboard with Cameron Young at 11-under par on the tournament. A double bogey (to Jack Nicklaus' dislike) on hole No. 4 and a bogey on hole No. 6 have continued dropped him out of first place for a brief moment, while other golfers like Justin Rose and Scottie Scheffler surged.But McIlroy learned last year how to stare down pressure on the final day of the Masters. The 36-year-old Northern Irishman regathered himself to regain the lead, holding on in the final hole for a one-stroke victory.The congested top of the leaderboard made for some fun golf and meant a shot or putt came in between an "extremely nice" payday and a "nice payday" from the Masters purse, which once again set a new payout record.Here's what to know about the payouts golfers went home with Sunday in the 90th Masters: Masters final leaderboardHere's a look at the top of the leaderboard for the 2026 Masters Tournament:1. Rory McIlroy -12 (F)2. Scottie Scheffler: -11 (F)T3. Tyrrell Hatton: -10 (F)T3. Russell Henley: -10 (F)T3. Justin Rose: -10 (F)T3. Cameron Young: -10 (F)How much is the Masters purse this year?The Masters purse will total $22.5 million this season. It's an increase of $1.5 million from last season's purse. Masters purse: Winner payout, full purse winningsHere's a breakdown of the winnings from the 2026 Masters Tournament purse (All competitors who failed to make the cut received $25,000):1. Rory McIlroy (-13) — $4,500,0002. Scottie Scheffler (-11) — $2,430,000T3. Tyrrell Hatton (-10) — $1,080,000T3. Russell Henley (-10) — $1,080,000T3. Justin Rose (-10) — $1,080,000T3. Cameron Young (-10) — $1,080,0007. Collin Morikawa (-9) — $725,625T7. Sam Burns (-9) — $725,6259. Max Homa (-8) — $630,000T9. Xander Schauffele (-8) — $630,00011. Jake Knapp (-7) — $562,500T12. Jordan Spieth (-5) — $427,500T12. Hideki Matsuyama (-5) — $427,500T12. Brooks Koepka (-5) — $427,500T12. Patrick Reed (-5) — $427,500T12. Patrick Cantlay (-5) — $427,500T12. Jason Day (-5) — $427,500T18. Viktor Hovland (-4) — $315,000T18. Maverick McNealy (-4) — $315,000T18. Matt Fitzpatrick (-4) — $315,000T21. Keegan Bradley (-3) — $252,000T21. Ludvig Åberg (-3) — $252,000T21. Wyndham Clark (-3) — $252,000T24. Matt McCarty (-2) — $178,071T24. Adam Scott (-2) — $178,071T24. Sam Stevens (-2) — $178,071T24. Chris Gotterup (-2) — $178,071T24. Michael Brennan (-2) — $178,071T24. Brian Campbell (-2) — $178,071T24. Shane Lowry (-2) — $178,071T31. Alex Noren (-1) — $142,875T31. Harris English (-1) — $142,875T33. Gary Woodland (Even) — $121,500T33. Dustin Johnson (Even) — $121,500T33. Brian Harman (Even) — $121,500T33. Tommy Fleetwood (Even) — $121,500T33. Ben Griffin (Even) — $121,500T38. Jon Rahm (+1) — $101,250T38. Ryan Gerard (+1) — $101,250T38. Haotong Li (+1) — $101,250T41. Justin Thomas (+2) — $83,250T41. Sepp Straka (+2) — $83,250T41. Jacob Bridgeman (+2) — $83,250T41. Kristoffer Reitan (+2) — $83,250T41. Nick Taylor (+2) — $83,250T46. Sungjae Im (+3) — $69,75047. Si Woo Kim (+4) — $65,25048. Aaron Rai (+5) — $61,650T49. Corey Conners (+6) — $57,600T49. Marco Penge (+6) — $57,60051. Kurt Kitayama (+7) — $55,35052. Sergio Garcia (+8) — $54,00053. Rasmus Hojgaard (+10) — $52,65054. Charl Schwartzel (+12) — $51,300How much does Masters winner get?The Masters announced on Saturday that the winner of the 90th edition of the major will take home $4.5 million on Sunday after finishing off the 18th hole — or winning a potential playoff.The $4.5 million winner sharing for the 2026 Masters is an increase of an increase of $300,000 from what McIlroy took home last year as the 2025 Masters champion. He's now won $8.7 million from winning the Masters in the last two years.Masters winner payout, prize money sharingsHere's how much the last five winners of the Masters have earned:2020 winner's share: $1.8 million (Dustin Johnson)2021 winner's share: $2.07 million (Hideki Matsuyama)2022 winner's share: $2.7 million (Scottie Scheffler)2023 winner's share: $3.24 million (Jon Rahm)2024 winner's share: $3.6 million (Scottie Scheffler)2025 winner's share: $4.2 million (Rory McIlroy)2026 winner's share: $4.5 million (Rory McIlroy)The USA TODAY app gets you to the heart of the news — fast. Download for award-winning coverage, crosswords, audio storytelling, the eNewspaper and more.
+"""
+
+[R4] 2026 Masters money: How much every player made on Sunday at Augusta
+(https://golf.com/news/2026-masters-money-how-much-every-player-made/)
+"""
+Rory McIlroy with the Masters trophy. Getty Images In what has become an annual recurring theme, the 2026 Masters purse is, once again, the biggest its ever been.Given the super-sized purses now up for grabs on LIV and in each PGA Tour Signature Event, it’s hard to believe that just five years ago, in 2021, the Masters purse was set at $11.5 million. The next year, in 2022, the purse increased dramatically, to $15 million. Then, the 2023 Masters purse jumped yet again to a total of $18 million.But it didn’t stop there. In 2024, an additional $2 million was added to the pot to reach an eye-popping total purse of $20 million. And last year, the bar went higher still, to an impressive $21 million.So what happened to this year’s purse? You guessed it. It went up. Again. The 2026 Masters purse now totals $22.5 million, a $1.5 million increase from last year. (The Players championship remains the richest purse in golf at a total of $25 million.)This year’s Masters champion will surpass the payout received by 2025 champion, Rory McIlroy, by $300,000, with a $4.5 million total payday. The runner-up will receive a cool $2.43 million, and third and fourth place will clear seven figures too, with a payout of $1.53 and $1.08 million, respectively.Even the players who missed the cut (of which there were 37) receive a payout of $25,000 each (the same amount as last year, which was an increase of $15,000 from years past) — but that’s for the professionals only. So how much did the rest of the players in the field come away with this year? You can find a complete list of the 2026 Masters payouts for each player below.How much money every player made at the 2026 Masters1. Rory McIlroy — $4,500,0002. Scottie Scheffler — $2,430,000T3. Tyrrell Hatton — $1,080,000T3. Russell Henley — $1,080,000T3. Justin Rose — $1,080,000T3. Cameron Young — $1,080,000T7. Collin Morikawa — $725,625T7. Sam Burns — $725,625T9. Max Homa — $630,000T9. Xander Schauffele — $630,00011. Jake Knapp — $562,500T12. Jordan Spieth — $427,500T12. Hideki Matsuyama — $427,500T12. Brooks Koepka — $427,500T12. Patrick Reed — $427,500T12. Patrick Cantlay — $427,500T12. Jason Day — $427,500T18. Viktor Hovland — $315,000T18. Maverick McNealy — $315,000T18. Matt Fitzpatrick — $315,000T21. Keegan Bradley — $252,000T21. Ludvig Aberg — $252,000T21. Wyndham Clark — $252,000T24. Matt McCarty — $178,071T24. Adam Scott — $178,071T24. Sam Stevens — $178,071T24. Chris Gotterup — $178,071T24. Michael Brennan — $178,071T24. Brian Campbell — $178,071T24. Shane Lowry — $178,071T31. Alex Noren — $142,875T31. Harris English — $142,875T33. Gary Woodland — $121,500T33. Dustin Johnson — $121,500T33. Brian Harman — $121,500T33. Tommy Fleetwood — $121,500T33. Ben Griffin — $121,500T38. Jon Rahm — $101,250T38. Ryan Gerard — $101,250T38. Haotong Li — $101,250T41. Justin Thomas — $83,250T41. Sepp Straka — $83,250T41. Jacob Bridgeman — $83,250T41. Kristoffer Reitan — $83,250T41. Nick Taylor — $83,25046. Sungjae Im — $69,75047. Si Woo Kim — $65,25048. Aaron Rai — $61,650T49. Corey Conners — $57,600T49. Marco Penge — $57,60051. Kurt Kitayama — $55,35052. Sergio Garcia — $54,00053. Rasmus Hojgaard — $52,65054. Charl Schwartzel — $51,300 Latest In News Golf.com Editor As a four-year member of Columbia’s inaugural class of female varsity golfers, Jessica can out-birdie everyone on the masthead. She can out-hustle them in the office, too, where she’s primarily responsible for producing both print and online features, and overseeing major special projects, such as GOLF’s inaugural Style Is­sue, which debuted in February 2018. Her origi­nal interview series, “A Round With,” debuted in November of 2015, and appeared in both in the magazine and in video form on GOLF.com. Related Articles
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

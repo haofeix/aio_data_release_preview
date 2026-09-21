@@ -1,0 +1,119 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "shane lowry hole in ones"
+
+Claims:
+[1] "As of April 11, 2026, Shane Lowry has recorded multiple professional holes-in-one."
+[2] "Shane Lowry is the first player in history to hit two aces at Augusta National during the Masters."
+[3] "Shane Lowry aced the 16th hole in the final round of the 2016 Masters."
+[4] "Shane Lowry used an 8-iron from 181 yards for his ace on the 16th hole in the 2016 Masters."
+[5] "Shane Lowry aced the 17th hole at TPC Sawgrass in the 2022 The Players Championship."
+[6] "Shane Lowry aced the 7th hole in the 2024 AT&T Pebble Beach Pro-Am."
+[7] "Shane Lowry aced the second hole at Memorial Park Golf Course in the 2026 Texas Children's Houston Open in March 2026."
+[8] "Shane Lowry aced the 6th hole in the third round of the 2026 Masters on April 11, 2026."
+[9] "Shane Lowry used a 1-iron from 190 yards for his ace on the 6th hole in the 2026 Masters."
+[10] "Shane Lowry's 2026 Masters ace was on Saturday."
+[11] "Shane Lowry's 2026 Masters ace moved him into contention during the third round."
+[12] "Shane Lowry is the 7th player all-time to ace the 6th hole at Augusta National"
+
+Cited text snippets from the AI Overview (for additional context):
+- HOLY SHIT SHANE LOWRY HOLE IN ONE: "Eighty-six.,-7 6 LI . . ."
+- Shane Lowry leaps into contention after first ace of 90th Masters: "Even as he joked, the,at Memorial Park Golf Course."
+- Shane Lowry makes another hole-in-one at Masters, fifth in career: "Shane Lowry has aced some,at tdangelo@pbpost.com."
+- Masters 2026: Shane Lowry erupts after hitting a hole-in-one on Saturday at Augusta National: "He still trailed leader Rory,the 16th a decade ago."
+- Shane Lowry makes a second Masters hole-in-one: "Shane Lowry makes a second Masters hole-in-one:,putting him in contention for the championship."
+- Shane Lowry sinks first Masters hole-in-one since 2022 on par-3 sixth: "The hole-in-one was,a score of 8 under.&text=Lowry has become this generation's,3 on the West Coast.&text=Just for good measure, Lowry,he birdied the second hole."
+- Lowry aces sixth hole in third round at Masters: "The ace moved the 2019,Related"
+Reference Sources:
+
+[R1] Masters 2026: Shane Lowry erupts after hitting a hole-in-one Saturday at Augusta National
+(https://sports.yahoo.com/golf/breaking-news/article/masters-2026-shane-lowry-erupts-after-hitting-a-hole-in-one-on-saturday-at-augusta-national-194703923.html)
+"""
+Shane Lowry hit the first hole-in-one at Augusta National this week on Saturday afternoon. (Katie Goodale-Imagn Images) (IMAGN IMAGES via Reuters Connect / REUTERS)AUGUSTA, Ga. — The roars were loud, and at Augusta that usually means one thing: a hole-in-one.But where?Deep within the Augusta National grounds, there is a confluence of greens — 5, 6, 15 and 16 all within a pitching wedge of each other. And when the roar came, those not at 6 wondered … what happened?AdvertisementTurns out, Shane Lowry happened.Lowry was absolutely perfect from the tee box at the par-3 sixth Saturday afternoon. His tee shot landed right in the center of the green, hopped twice and rolled right into the cup.Naturally, Lowry erupted back on the tee box.It wasn’t until Lowry’s score flipped from -6 to -8 on the boards that much of the crowd knew.That pushed Lowry into a tie for second place at the time. He still trailed leader Rory McIlroy, who started the day with a six-shot lead, by four. He ended up carding a 4-under 68, which got him to 9-under on the week. Lowry will go off in the penultimate group on Sunday alongside Sam Burns, just two shots off the lead.AdvertisementThat was the seventh hole-in-one all time at the sixth hole at Augusta National. It also marked Lowry’s second career ace at the Masters, following one he hit at the 16th a decade ago.Remarkably, that’s just the latest hole-in-one that Lowry has hit. He made one earlier this season in the final round of the Texas Children’s Houston Open earlier on the PGA Tour. He also has several aces on notable holes throughout the golf world, including at No. 7 at Pebble Beach and at the iconic island green at TPC Sawgrass.Lowry, after a 2-under opening round, posted a 3-under 69 on Friday to get to 5-under for the week. The Irishman has won three times on the PGA Tour in his career, including at the British Open in 2019, and his best Masters run came in 2022 when he finished T3. Lowry entered the week at No. 32 in the Official World Golf Rankings.AdvertisementWhile Lowry may not slip on the green jacket this week at Augusta National, considering the position McIlroy put himself in at the midway point of the major championship, he does have yet another ace to his name.
+"""
+
+[R2] Shane Lowry makes another hole-in-one at Masters, fifth in career
+(https://www.palmbeachpost.com/story/sports/pga/2026/04/11/shane-lowry-makes-a-hole-in-one-on-6th-hole-at-the-masters/89570401007/)
+"""
+Updated April 11, 2026, 8:51 p.m. ETShane Lowry made a hole-in-one during the third round of the Masters on the par-3 6th hole.This was Lowry's second career ace at Augusta National and his fifth overall.AUGUSTA, Ga. — Shane Lowry has added to his collection of iconic holes-in-one.For the second time at Augusta National, second time this year, and fifth time in his career, Lowry carded an ace. This one came during the third round of the Masters on the par-3, 190-yard 6th hole.Lowry is the only golfer with two aces in the Masters.Lowry, who lives in Jupiter, aced the hole known as Juniper. It him at 8-under and tied for second, four shots behind his close friend, Rory McIlroy. Lowry celebrated by pumping both fists.Lowry's other hole-in-one this season was during the final round of Texas Children's Houston Open on the second hole.Shane Lowry has aced some of golf's most iconic venuesLowry is known for his holes-in-one coming on some of the most iconic venues. He aced the 16th at Augusta National in 2016, the 17th at TPC Sawgrass in 2022 and the 7th at Pebble Beach in 2024.Lowry's ace in the third round was the seventh at No. 6 during the Masters, the last by Jupiter's Corey Conners in 2021.The iconic No. 12 at Augusta National has had three aces, the last in 1988 by Curtis Strange. Hole No. 4's lone ace was by Jeff Sluman in 1992.Lowry is one of 24 to have holed his tee shot at No. 16.Tom D'Angelo is a senior sports columnist and reporter for The Palm Beach Post. He can be reached at tdangelo@pbpost.com.
+"""
+
+[R3] Lowry aces sixth hole in third round at Masters
+(http://www.newstribune.com/news/2026/apr/11/lowry-aces-sixth-hole-in-third-round-at-masters/)
+"""
+AUGUSTA, Ga. -- Shane Lowry produced one of the moments of the 2026 Masters on Saturday with a hole-in-one at the par-3 sixth during the third round at Augusta National.Lowry threaded a seven-iron into the 190-yard hole known as Juniper and his ball hit the green, took a couple of bounces and curled into the left side of the cup to send the gathered patrons into raptures.The Irishman’s reaction was instant and uninhibited -- he leaned back, punched both fists skyward and then threw his arms around playing partner Tommy Fleetwood and caddie Darren Reynolds in a joyous embrace.“You don’t ever expect to make a hole-in-one. I just couldn’t believe it,” said Lowry. “Obviously, you know, you’re out there, and you’re in the hunt at the Masters and you’re making hole-in-one, it’s pretty cool.”After retrieving his ball from the cup, Lowry milked the moment further, teasing the crowd with a mock throw before pocketing the souvenir with a grin.The ace moved the 2019 British Open champion to eight-under for the week and vaulted him into in a tie for second place -- four shots behind overnight leader Rory McIlroy.He went on to post a four-under-par 68 that brought him to nine-under on the week, leaving him in fourth place and two shots behind co-leaders McIlroy and Cameron Young.Lowry is the first player to hit two aces at the Masters, having also carded a hole-in-one at the par-three 16th in 2016.His latest hole-in-one is the first at the Masters since Stewart Cink’s ace at the 16th in 2022 and the 35th in tournament history. Comments
+"""
+
+[R4] Shane Lowry in good spot before Masters final round after hole-in-one
+(https://www.palmbeachpost.com/story/sports/pga/2026/04/11/masters-2026-shane-lowry-hole-in-one/89571807007/)
+"""
+PGAShane Lowry makes a second Masters hole-in-one: 'Maybe I'm just good' Tom D'AngeloPalm Beach PostUpdated April 11, 2026, 8:39 p.m. ETAUGUSTA, Ga. — Not only does Shane Lowry have a knack for making holes-in-one — he now has five and is the only man to have two at the Masters — but he tends to record them at the most legendary venues.Augusta National. TPC Sawgrass. Pebble Beach.Lowry's latest was on the 190-yard, par-3 sixth hole during the third round of the Masters. He used a 7-iron. He made a hole-in-one at the Masters 10 years ago on No. 16.Our editors independently choose our recommendations. Some content is produced with paid support from a third party, however our editorial decisions remain independent. If you buy through our links, the USA TODAY Network may earn a commission. Prices and availability may change.
+"""
+
+[R5] Shane Lowry leaps into contention after first ace of 90th Masters - PGA TOUR
+(https://www.pgatour.com/article/news/latest/2026/04/11/shane-lowry-makes-hole-in-one-2026-masters-augusta-national-major-third-round-sixth-hole-leaderboard)
+"""
+4D AGOShane Lowry makes an ace on the par-3 sixth hole to climb into a tie for second at the Masters. (David Cannon/Getty Images)Written by Lisa AntonucciAUGUSTA, Ga. – For all the ways Shane Lowry has built a reputation as one of golf’s most steady competitors, even he couldn’t quite process what had just happened on the par-3 sixth Saturday at Augusta National.A 7-iron from 190 yards. A strike that stayed right on its line. And then, suddenly, history.“That's wild, isn't it?” Lowry said Saturday after making a hole-in-one at that sixth hole, his second at the Masters and fifth of his career. “Made one a couple of weeks ago in Houston. You don't ever expect to make a hole-in-one. I just couldn't believe it. Obviously, you know, you're out there, and you're in the hunt at the Masters and you're making hole-in-one, it's pretty cool.”In a tournament defined by patience and precision, Lowry delivered a jolt of pure electricity by becoming the first player ever to record multiple holes-in-one at Augusta, a place where even the smallest moments tend to echo through history. Lowry's ace Saturday marked the first at the Masters since 2022, made by Stewart Cink at No. 16 in the second round, and marked the 35th ace in Masters history.But it wasn’t just a highlight. It was a turning point.“Yeah, you know, it gives you obviously a huge kind of boost,” said Lowry, who finished Saturday with a 68 to put him at 9-under for the tournament, two shots behind leaders Rory McIlroy and Cameron Young. “You go from 6-under to 8-under, and then all of a sudden, you're only four back. It's getting real now.”The timing mattered as much as the feat itself: Lowry moved himself right into contention, navigating the shifting pressures of a crowded leaderboard. What followed may have been just as telling.“I felt like I did a great job of calming myself down afterwards,” he said. “Myself and Neil (Manchip, Lowry’s coach) have talked about during the week about the only shot that matters is the next one. I hit a great tee shot on seven, and I was very happy and proud of that one, because it's easy to get a bit flustered in areas like that. Your adrenaline is pumping.”That ability to reset – to move from adrenaline back to execution – is what separated a moment from a movement up the leaderboard. Lowry didn’t just ride the wave; he steadied himself within it. But he certainly enjoyed the walk that followed.“The walk down the sixth hole with everyone around 16 and the sixth was very special,” he noted. “I'll remember that for a while. Yeah, it was obviously amazing.”It’s the kind of Augusta moment people talk about for years – patrons buzzing, roars echoing across holes, the sense that something singular has just unfolded. For Lowry, it was also familiar territory in an increasingly unusual way. This marked the fifth ace of his PGA TOUR career and his second already this season, adding to a collection that spans some of the game’s most iconic par 3s.“Maybe I'm just good,” he said with a laugh when asked about his knack for aces. “I don't know. I don't know. Like, sort of my (indiscernible) plays a strength of my game, and yeah, I don't know. I don't know.”Even as he joked, the pattern is undeniable. The Irishman made his first career hole-in-one at the Masters during the final round of the 2016 tournament, accomplishing the feat on the par-3 16th hole using an 8-iron from 181 yards. He recently carded a hole-in-one last month during the final round of the Texas Children's Houston Open on the 170-yard, par-3 second hole at Memorial Park Golf Course.He’s also made an ace at two of golf’s most notable par 3s: No. 7 at the 2024 AT&T Pebble Beach Pro-Am and at the iconic Island Green – No. 17 at TPC Sawgrass – during 2022 THE PLAYERS Championship.But Augusta has a way of refocusing everything when there’s a green jacket on the line. Lowry understood that as he assessed both his position and the chaos unfolding around him.“I thought if Rory could shoot a 68 today, he might run away with the tournament,” he said. “But the thing is, it’s not easy to go out and go after it when you're at the top of the leaderboard. … When you are out there in the hunt you need to be a little bit more protective of what you are doing.”He kept one eye on the leaderboard, too.“I saw Scottie (Scheffler) was making a run,” Lowry said. “You know as probably everyone expected. He’s going to have a chance tomorrow as well. It’s pretty good leaderboard, so it’s going to be pretty hard to win this tournament tomorrow, but I'll give it my best.”That’s the quiet truth beneath the roar of an ace at Augusta: It guarantees nothing.It can vault you into contention. It can electrify a round. It can even make history. But it doesn’t close the deal.
+"""
+
+[R6] Shane Lowry sinks first Masters hole-in-one since 2022 on par-3 sixth
+(https://www.nytimes.com/athletic/7188903/2026/04/11/shane-lowry-hole-in-one-masters/)
+"""
+Shane Lowry sunk the first hole-in-one on the sixth hole at the Masters since 2021. Andrew Redington / Getty ImagesShane Lowry pulled himself into the thick of Masters contention Saturday in the most thrilling way possible: with a hole-in-one on the par-3 sixth hole, making Lowry the first golfer in Masters history to record multiple aces at the historic tournament.The hole-in-one was the first at the Masters since Stewart Cink in 2022 on the 16th hole. Lowry became the seventh golfer to ace the sixth hole in tournament history, a feat most recently accomplished by Corey Conners in 2021.Lowry’s masterful shot moved him into a tie for second place with a score of 8 under. Needing one stroke on No. 6, Shane Lowry cards an ace. #themasters pic.twitter.com/SAr9uy2KBs — The Masters (@TheMasters) April 11, 2026The Irishman celebrated the shot with a hug with his friend Tommy Fleetwood as the pair continues to chase Rory McIlroy.​Lowry has become this generation’s king of the ace, previously holing Augusta National’s iconic No. 16 in 2016 in just his second Masters. Then, he had another ace on TPC Sawgrass’ 17th hole in 2022 and repeated the feat in January 2025 at Pebble Beach, holing out on the ocean-lined No. 7, a hole that’s undoubtedly the most famous par 3 on the West Coast. Just for good measure, Lowry added another ace two weeks ago on No. 2 at Houston’s Memorial Park.But his ace Saturday truly solidifies that Lowry is the most famous hole-out king in golf. Especially considering that on Thursday, he holed out for eagle with a wedge into 13. All Lowry needs is one more ace on hole 12 to claim supremacy over all of Augusta’s par 3s and conquer every famous par 3 in golf.Lowry entered Saturday 5 under par after shooting a 70 on Thursday and a 69 on Friday. His Saturday ace came four holes after he birdied the second hole. Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

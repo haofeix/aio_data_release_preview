@@ -1,0 +1,102 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "orioles game today"
+
+Claims:
+[1] "The Baltimore Orioles play the Minnesota Twins at Oriole Park at Camden Yards on March 29, 2026."
+[2] "The game time is 1:35 PM ET."
+[3] "March 29, 2026 is Saturday."
+[4] "The matchup is Minnesota Twins at Baltimore Orioles."
+[5] "The game location is Oriole Park at Camden Yards, Baltimore."
+[6] "Game coverage is MASN."
+[7] "The game is the second game of the series."
+[8] "The Baltimore Orioles lost 4-1 to the Minnesota Twins on March 28."
+[9] "Starter Kyle Bradish struggled early in the Baltimore Orioles' loss on March 28."
+[10] "The Baltimore Orioles' broadcast partner is MASN."
+
+Cited text snippets from the AI Overview (for additional context):
+- Broadcast Affiliates | Baltimore Orioles - MLB.com: "Orioles games are televised exclusively,crystal clear, high definition format."
+- Bradish struggles, Orioles offense remains MIA in 4-1 loss to Twins: "Saturday's Orioles starting pitcher, Kyle,not continue on into today."
+- Twins 4-1 Orioles (Mar 28, 2026) Game Recap: "Game Information,Third Base Umpire - Laz Diaz"
+- Minnesota Twins at Baltimore Orioles Game Story, Scores/Highlights - 03/28/2026: "Minnesota Twins at Baltimore Orioles,Result of AB"
+Reference Sources:
+
+[R1] Minnesota Twins at Baltimore Orioles Game Story, Scores/Highlights - 03/28/2026 - MLB Stories
+(https://www.mlb.com/stories/game/824862)
+"""
+This browser does not support the video element.MLB Logo iconThis browser does not support the video element.Top 1MIN0BAL0Result of ABKyle Bradish's first strikeout of 2026AB: Kody ClemensP: Kyle BradishMarch 28, 2026Video failed to playThis browser does not support the video element.Bot 1MIN0BAL0Result of ABTaj Bradley's first strikeout of the seasonAB: Taylor WardP: Taj BradleyMarch 28, 2026This browser does not support the video element.Bot 1MIN0BAL0Result of ABPete Alonso first hit as an OrioleAB: Pete AlonsoP: Taj BradleyMarch 28, 2026This browser does not support the video element.Bot 1MIN0BAL0Result of ABTaj Bradley escapes bases-loaded jamAB: Dylan BeaversP: Taj BradleyMarch 28, 2026This browser does not support the video element.Jeremiah Jackson's RBI singleMarch 28, 2026This browser does not support the video element.Top 4MIN1BAL1Result of ABJosh Bell's sacrifice fly scores Byron BuxtonAB: Josh BellP: Kyle BradishMarch 28, 2026This browser does not support the video element.Top 5MIN3BAL1Result of ABRoyce Lewis' first homer of the 2026 seasonAB: Royce LewisP: Kyle BradishMarch 28, 2026This browser does not support the video element.Measuring the stats on Royce Lewis' home runMarch 28, 2026Royce Lewis hit the Twins' first HR of the season with 2 RBIs and a stolen baseThis browser does not support the video element.Top 5MIN3BAL1Result of ABCoby Mayo's acrobatic catchAB: Brooks LeeP: Kyle BradishMarch 28, 2026This browser does not support the video element.Top 6MIN3BAL1Result of ABGunnar Henderson's diving stop and throwAB: Ryan JeffersP: Dietrich EnnsMarch 28, 2026This browser does not support the video element.Bot 6MIN3BAL1Result of ABEric Orze escapes bases-loaded jamAB: Gunnar HendersonP: Eric OrzeMarch 28, 2026This browser does not support the video element.Top 7MIN4BAL1Result of ABKody Clemens' RBI singleAB: Kody ClemensP: Dietrich EnnsMarch 28, 2026This browser does not support the video element.Top 8MIN4BAL1Result of ABAnthony Nunez's first career strikeoutAB: Matt WallnerP: Anthony NunezMarch 28, 2026Anthony Nunez struck out 3 across 2 scoreless innings in his MLB debutRead moreThis browser does not support the video element.Bot 9MIN4BAL1Result of ABCole Sands closes out Twins' 4-1 winAB: Pete AlonsoP: Cole SandsMarch 28, 2026Lewis' highlightsThis browser does not support the video element.More MLB Game StoriesMarch 28, 2026Tampa BayRaysSt. LouisCardinalsWashingtonNationalsChicagoCubsAthleticsTorontoBlue JaysTexasRangersPhiladelphiaPhilliesBostonRed SoxCincinnatiRedsPittsburghPiratesNew YorkMetsColoradoRockiesMiamiMarlinsLos AngelesAngelsHoustonAstrosChicagoWhite SoxMilwaukeeBrewersKansas CityRoyalsAtlantaBravesNew YorkYankeesSan FranciscoGiantsDetroitTigersSan DiegoPadresArizonaDiamondbacksLos AngelesDodgersClevelandGuardiansSeattleMariners
+"""
+
+[R2] Bradish struggles, Orioles offense remains MIA in 4-1 loss to Twins
+(https://www.camdenchat.com/baltimore-orioles-scores-standings/65085/mlb-scores-orioles-twins-game-recap)
+"""
+The Orioles unveiled a 2026 slogan, to much self-paid fanfare, that says: Fly Different. Setting aside any grammatical quibbles with this particular slogan or motto, if the team is going to live up to it, they are going to have to do something better than what happened last year, whether this is to be described as different or differently. Their main problem two games into the season is that they are flying same. This continued on Saturday afternoon against the Twins as the O’s lost a 4-1 game for their first setback of 2026.The most important thing there is to say about this game is that Orioles batters struck out 16 times. That’s twice as many strikeouts as they had in their Opening Day victory over Minnesota. Despite out-hitting the Twins, 5-4, the Orioles had just one hit with runners in scoring position and they ended up leaving a total of 11 men on base. The first seven spots in the starting lineup combined for just one hit in the game. All of these things create a tough environment to get a win, since they pretty much demand that everything else will go perfectly.Saturday’s Orioles starting pitcher, Kyle Bradish, was not perfectly. We all want Bradish to be able to pick up where he left off from the 2023 season, before Tommy John surgery and rehab interrupted his career. In six starts after coming back last year, he showed that he might be able to do so. That did not continue on into today.Bradish was not able to complete five innings in his first start of the season. He lost command of his elevated fastball as the game went along and it seemed that he was losing velocity as well. Only in time can we know if these are continual trends of concern. Bradish’s struggle was encapsulated when he allowed a two-run home run to Twins #8 hitter Royce Lewis. Don’t blow it against the #8 hitter! And yet, here we are. These two runs were the decisive ones in the game, and the only earned runs allowed by Bradish on the day.There was also an unearned run against Bradish. This one was much less his fault. It started with Byron Buxton beating out a ground ball for an infield single. Jeremiah Jackson’s throw from the shortstop side of second base was initially ruled to be an out but overturned on replay. Buxton advanced to second base on a fly ball, showing the kind of disrespect a fast runner can afford to show Colton Cowser, who has not demonstrated accuracy with his arm.Buxton made it to third base when Adley Rutschman attempted a back pick at second base and ended up throwing the ball into Buxton’s helmet. That was dumb. It cost the Orioles on the very next batter, when the speedy Buxton was able to score on a not-particularly-deep flyout to left field. This was the first Twins run of the game and erased what had been a 1-0 Orioles lead. Earlier in the game, the team cashed in on back-to-back hits by Cowser and Jackson to score the game’s first run. For the Orioles offense, this proved to be the only run.When the Orioles offense largely struggled on Opening Day, that was, at least, against Joe Ryan, a guy who was pretty good a year ago. That easy excuse is not available for the Saturday loss. Minnesota’s Taj Bradley dropped a 5.05 ERA in the 2025 season and brought a 4.86 career ERA into the game. The O’s did a solid job early in the game of pushing up Bradley’s pitch count, and although they didn’t have much to show for it, and indeed struck out against him nine times, they chased him after only 4.1 innings.Often, getting the starter out before the fifth inning is step one towards a good outcome. Unfortunately, this involves successfully executing later steps by doing good things against a team’s bullpen. The Orioles could not manage to do this. They had two hits for the rest of the game after Minnesota’s bullpen got involved. That sucks.If you want to find a silver lining from the loss, that could be found in the major league debut of reliever Anthony Nunez. Acquired from the Mets last July, Nunez probably only made the Opening Day roster due to the injuries to Keegan Akin and Andrew Kittredge. Nunez looked great in the losing effort, pitching for two perfect innings while striking out three batters. I think that’s the first sign, but not the last, that he is ticketed for eventual higher-leverage innings.With the press conference announcing Shane Baz’s contract extension earlier on Saturday drawing apparently the entire Orioles roster, this could have been a great chance for a fun win to leave everybody feeling good about the direction of the franchise. Instead, the Orioles turned in the kind of loss that they have authored all too many times since around the All-Star Break in the 2024 season.It’s only one game out of 162, and it only feels so important because it is 50% of the games so far. But even in the one game that the Orioles won, the offense didn’t do much to make anybody feel like the problems have been solved.Even so, the Orioles can get a season-opening series win on Sunday afternoon starting at a scheduled 1:35 Eastern. That will depend on Baz making a strong first impression on the organization after signing his new contract extension, and probably also on the offense doing something other than stinking against Twins #3 starter Bailey Ober. At least they aren’t the Giants, who got shut out two games in a row to start the season. That doesn’t make me feel much better.74 Comments
+"""
+
+[R3] Twins 4-1 Orioles (Mar 28, 2026) Game Recap - ESPN
+(https://www.espn.com/mlb/recap/_/gameId/401814711)
+"""
+BALTIMORE -- — Royce Lewis hit a tiebreaking two-run homer in the fifth inning, and the Minnesota Twins used a strong effort from their bullpen to beat the Baltimore Orioles 4-1 Saturday. Lewis connected off Kyle Bradish (0-1) after a leadoff walk to Trevor Larnach. The drive, which soared just inside the left-field foul pole, gave Minnesota its first lead of the season following a 2-1 loss to Baltimore in the opener Thursday. Kody Clemens added an RBI single in the seventh to help the Twins earn their first win for manager Derek Shelton, who was hired to turn around a team that went 70-92 last year. Minnesota starter Taj Bradley struck out nine over 4 1/3 innings, but was yanked after throwing 92 pitches. Five relievers followed, all of them effective. Anthony Banda (1-0) finished the fifth inning, Kody Funderburk got two outs in the sixth and Eric Orze took it through the seventh. Justin Topa worked the eighth and Cole Sands got the next three outs for his first save. The Twins managed only four hits and Baltimore had five, just one for extra bases. Baltimore's lone run came in the second inning when Colton Cowser doubled and scored on a single by Jeremiah Jackson. Minnesota pulled even in the fourth when Byron Buxton hustled home on sacrifice fly by Josh Bell. Game-time temperature was a brisk 46 degrees (7.7 Celsius), down substantially from the 77 degrees (25 Celsius) for the season opener. Up next The series finale Sunday matches Twins RHP Bailey Ober against Orioles righty Shane Baz, who makes his debut with Baltimore after being traded from Tampa Bay in December. Baz signed a five-year, $68 million contract extension Friday. ------ AP MLB: MLB ' Latest News, Stats, and Scores
+"""
+
+[R4] Broadcast Affiliates | Baltimore Orioles
+(https://www.mlb.com/orioles/schedule/broadcast-affiliates)
+"""
+Find out where you can watch and listen to Orioles gamesTelevisionMASN: O's TVOrioles games are televised exclusively by MASN, the Mid-Atlantic Sports Network, throughout a seven-state region, from Harrisburg, PA to Charlotte, NC. MASN broadcasts all Orioles games in crystal clear, high definition format.MASN+: O’s direct-to-consumer streaming optionReceive 24/7 MASN content including every available Orioles games, Orioles Classics, O’s Xtra, and all other MASN programming. MASN+ allows in-market fans to catch all the action of Orioles baseball with no blackouts and no cable or satellite subscription or contract required.Fans can stream MASN+ on the MASN app, iOS and Android mobile devices, Apple TV, Amazon Fire TV, and Roku.RadioHearst's 98 Rock FM & WBAL NewsRadio AM/FM: Flagship stations of the Orioles Radio NetworkIn 2022, Hearst's 98 Rock FM & WBAL NewsRadio AM/FM were named the new flagship stations of the Orioles Radio Network. Orioles fans can hear all 162 regular season games, select Spring Training contests, and extensive Orioles programming on Hearst platforms, including 98 Rock (97.9 FM), WBAL NewsRadio AM 1090 & FM 101.5 (& FM 97.9 HD 2).Year-round programming will also feature Orioles broadcast talent and front office personnel with the latest news and behind-the-scenes coverage from Birdland.Maryland Baltimore: 98 Rock (97.9 FM) and WBAL NewsRadio AM 1090 & FM 101.5 (FLAGSHIP) Stream on 98 Rock Stream on WBAL Radio Annapolis: WNAV-AM 1430 AM Cambridge: WAAI-FM 100.9 FM Cumberland/Frostburg: WTBO-AM 1450 AM Cumberland/Frostburg: WTBO-FM 97.9 FM Frederick: WWEG-FM 106.9 FM Hagerstown: WARK-AM 1490 AM Hagerstown: WARK-FM 98.9 FM Westminster: WTTR-AM 1470 AM Westminster: WTTR-FM 102.3 FM Pennsylvania Hanover: WHVR-AM 1280 AM Hanover: WHVR-FM 95.3 FM Carlisle: WIOO-FM 1000 AM Carlisle: WIOO-FM 97.9 FM York: WSBA-AM 910 AM York: W230CQ FX 93.9 FM Delaware Millsboro, DE: WZBH-FM 93.5 FM North Carolina Greenville: WGHB-AM 1250 AM Washington: WDLX-AM 930 AM Virginia Berryville, VA: WINC-FM 105.5 FM Hopewell: WHAP-AM 1340 AM Hopewell: WHAP-FM 96.9 FM Lynchburg: WLVA-AM 580 AM Lynchburg: WLVA-FM 94.1 FM Norfolk: WVSP-FM 94.1 FM Winchester, VA: WINC-AM 1400 AM West Virginia Berkeley Springs: WCST-AM 1010 AM Martinsburg: WEPM-AM 1340 AM Washington, DC WSBN/ESPN 630 AM
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

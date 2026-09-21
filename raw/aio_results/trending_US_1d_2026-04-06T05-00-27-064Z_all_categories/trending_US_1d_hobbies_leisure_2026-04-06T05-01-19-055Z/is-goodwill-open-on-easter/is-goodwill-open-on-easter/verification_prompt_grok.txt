@@ -1,0 +1,94 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is goodwill open on easter"
+
+Claims:
+[1] "Easter Sunday is April 5, 2026."
+[2] "Most Goodwill locations are closed on Easter Sunday, April 5, 2026."
+[3] "Goodwill Easter hours are closed."
+[4] "Goodwill stores typically reopen with regular hours on Monday, April 6th."
+
+Cited text snippets from the AI Overview (for additional context):
+- stores will close early at 5 PM Sunday, April 5 (Easter) – All ...: "🐣🌸 Holiday Hours Update,Have a wonderful holiday weekend!"
+- Goodwill Stores & Donation Centers will be closed on Easter Sunday.: "Goodwill Stores & Donation Centers will be closed on Easter Sunday."
+- What stores are closed on Easter Sunday today? Is Target open on Easter? Costco? Here's a list: "Many major retailers, including Target,hours as exceptions may occur."
+- Goodwill NCW stores will be closed on Easter Sunday so that our ...: "All Goodwill retail stores will,https://buff.ly/syNWNLc"
+- Happy Easter from all of us at Goodwill! - Instagram: "us at Goodwill!-,This season is all about fresh starts, hope, and spending,💙"
+- Happy Easter from all of us at Goodwill! Our retail stores ... - Instagram: "Happy Easter weekend from our,as normal on Monday 🫶"
+- What stores are open Easter Sunday? Are Walmart, Trader Joe's open or closed today? Here's a list: "Chris Sims,t happen on Easter Sunday."
+- What stores are open on Easter Sunday 2026? Walmart, Dunkin’ and more: "Family Dollar (8 a.m. - 10,(6 a.m. - 11 p.m.)"
+Reference Sources:
+
+[R1] What stores are open on Easter Sunday 2026? Walmart, Dunkin’ and more
+(https://www.nj.com/business/2026/04/what-stores-are-open-on-easter-sunday-2026-walmart-dunkin-and-more.html)
+"""
+BusinessSeveral stores will be open on Easter 2026. However, a few may be closed on the holiday which is celebrated on Sunday, April 5.Canva/ShopRite/7-Eleven/Walgreens/Dunkin'/Walmart/Katherine RodriguezBy Katherine Rodriguez | NJ.comEaster is celebrated on Sunday, April 5, this year.Some stores will be open and operating at their usual hours to accommodate people who are shopping for last-minute purchases.Most restaurants will be open for people who are dining out to celebrate the holiday.Others, however, will operate at modified hours or remain closed to give employees time off to spend with their loved ones for the Easter holiday.Here is your complete guide to store hours for Easter 2026.Which grocery stores are open on Easter Sunday?The following major supermarket chains in New Jersey are expected to be open on Easter:ACME (6 a.m. - 10 p.m.; varies by store) BJ’s Wholesale Club (8 a.m. - 7 p.m.; varies by store)Foodtown (varies by store)Lidl (8 a.m. - 9 p.m.)ShopRite (varies by store)Stop & Shop (7 a.m. - 5 p.m.)Trader Joe’s (8 a.m. - 9 p.m.)Walmart (6 a.m. - 11 p.m.; varies by store)Wegmans (6 a.m. - 12 a.m.)Whole Foods (7:30 a.m. - 6 p.m.; varies by store)Which four grocery stores are closed on Easter Sunday?The following four major supermarket chains in New Jersey are scheduled to be closed on Easter Sunday:What stores are open on Easter Sunday? Some stores may stay open on Easter Sunday 2026, but other retailers will remain closed to give employees time with their families.Note: Shoppers should check with their local store in the event that hours vary by location.Apple (varies by store)Barnes and Noble (11 a.m. - 7 p.m.; varies by store)Bass Pro Shops (10 a.m. - 6 p.m.; varies by store)Bath & Body Works (CLOSED)Best Buy (CLOSED)BJ’s Wholesale Club (8 a.m. - 6 p.m.; varies by store)Boscov’s (CLOSED)Burlington (CLOSED)CVS (varies by store)Dick’s Sporting Goods (CLOSED)Dollar General (7 a.m. - 11 p.m.; varies by store)Dollar Tree (9 a.m. - 8 p.m.; varies by store)Family Dollar (8 a.m. - 10 p.m.)Five Below (CLOSED)GameStop (11 a.m. - 8 p.m.; varies by store)Goodwill (CLOSED)Hobby Lobby (CLOSED)Home Depot (8 a.m. - 6 p.m.)Ikea (10 a.m. - 6 p.m.)JCPenney (CLOSED)Kohl’s (CLOSED)Lowe’s (CLOSED)Macy’s (CLOSED)Marshalls (CLOSED)Nordstrom (CLOSED)Nordstrom Rack (CLOSED)Old Navy (10 a.m. - 7 p.m.; varies by store)Petco (9 a.m. - 8 p.m.)PetSmart (11 a.m. - 6 p.m.)REI (11 a.m. - 6 p.m.)Sam’s Club (CLOSED)Target (CLOSED)T.J. Maxx (CLOSED)Ulta Beauty (12 p.m. - 5 p.m.; varies by store)Walgreens (varies by store)Walmart (6 a.m. - 11 p.m.)What malls are open on Easter Sunday?The following malls in New Jersey will be open on Easter Sunday:Is Walmart open on Easter? Holiday hours for April 5Which grocery stores are open — and closed — on Easter Sunday 2026? Driving on Easter Sunday 2026? Here’s what to know about gas station hoursEaster 2026 is almost here — what will be open (and what won’t)Katherine Rodriguez is the Trending News Reporter for the Content Innovation Team at NJ.com. For 4+ years now, Katherine has covered trending topics such as travel advisories, TSA-related news, recalls (food,...
+"""
+
+[R2] What stores are closed on Easter Sunday today? Is Target open on Easter? Costco? Here's a list
+(https://www.indystar.com/story/money/2026/04/04/easter-2026-stores-closed-list-is-target-open-easter-sunday-is-costco-closed-when-easter-2027-date/89457952007/)
+"""
+April 4, 2026Updated April 5, 2026, 7:19 a.m. ETMany major retailers, including Target and Costco, will be closed on Easter Sunday.Several stores like Walmart, Kroger, and CVS are expected to remain open for the holiday.Shoppers are advised to call their local stores to confirm holiday hours as exceptions may occur.The article provides lists of stores anticipated to be open and closed for Easter 2026.Will Easter shopping be possible on Easter Sunday?Some stores are open on Easter Day, but several are also closed. Is Target open for Easter? Is Costco closed on the holiday?Here's what we know about which Easter stores are closed and open:Is Target open on Easter Sunday 2026? Is the store closed on Easter Day?Target stores are closed on Easter Sunday.Is Costco closed on Easter Sunday 2026? Is the store open on Easter Day?Costco stores are closed on Easter Sunday.List of stores closed Easter Sunday 2026: What stores are not open on tomorrow on Easter Day?Here's a list of stores expected to be closed on Easter Sunday. Each of these stores will have some location closures for Easter, or are expected to be closed based on recent holiday closures. Please call ahead to your local store, as there are always exceptions:AldiAppleBanana RepublicBath and Body WorksBest BuyBloomingdale'sBob's Discount FurnitureBurlingtonThe Container StoreCostcoCrate + BarrelDick's Sporting GoodFive BelowGapGoodwillH-E-B GroceryThe Honey Baked Ham CompanyHobby LobbyJCPenneyKohl'sHomeGoodsLowe'sMacy'sMarshallsMichael'sNordstromNordstrom RackOffice DepotPublixSam's ClubStaplesSuperCutsTargetT.J. MaxxList of stores open Easter Sunday 2026: What stores are not closed tomorrow on Easter Day?Here's a list of stores expected to be open on Easter Sunday. Each of these stores will be open at most locations on Easter, or are expected to be open based on recent holiday participation. Please call ahead to your local store, as there are always exceptions:Ace HardwareAlbertson'sBarnes & NobleBass Pro ShopsBig LotsBJs Wholesale ClubCabela'sCVSDollar GeneralFresh MarketOrder groceries with InstacartHome DepotIKEAKrogerOld NavyPetcoPetSmartRite AidSafewayStarbucksTrader Joe'sWalmartWalgreensWhole FoodsWhen is Easter 2027? What date is Easter Sunday next year?Easter 2027 will be celebrated on Sunday, March 28, 2027, for most Christians, predominantly Catholics and Protestants.Save on Easter supplies with Amazon PrimeChris Sims is a trending reporter at Midwest Connect Gannett. Follow him on Twitter: @ChrisFSims.Our editors independently choose our recommendations. Some content is produced with paid support from a third party, however our editorial decisions remain independent. If you buy through our links, the USA TODAY Network may earn a commission. Prices and availability may change.
+"""
+
+[R3] What stores are open Easter Sunday? Are Walmart, Trader Joe's open or closed today? Here's a list
+(https://www.indystar.com/story/money/2026/04/05/easter-2026-stores-open-today-list-is-walmart-open-easter-sunday-trader-joes-kroger-cvs-what-closed/89459715007/)
+"""
+Updated April 5, 2026, 7:29 a.m. ETMany stores will remain open for business on Easter Sunday, including major retailers like Walmart and Trader Joe's.Other major retailers such as Target, Costco, and Sam's Club are expected to be closed for the holiday.A number of grocery stores, pharmacies, and home improvement stores will operate on Easter.It is recommended to call your local store to confirm their holiday hours before visiting.Today may be Easter, but that doesn't mean shopping can't happen on Easter Sunday.Some stores may be closed today, but there are plenty still hoping for customers. Is Walmart open on Easter Sunday? Is Trader Joe's closed?Here's what we know about which Easter stores are closed and open:Is Walmart open today on Easter Sunday 2026? Is the store closed on Easter Day?Walmart stores are open on Easter Sunday.Is Trader Joe's open today on Easter Sunday 2026? Is the store closed on Easter Day?Trader Joe's stores are open on Easter Sunday.List of stores open on Easter Sunday 2026: What stores are not closed today?Here's a list of stores expected to be open on Easter Sunday. Each of these stores will be open at most locations on Easter, or are expected to be open based on recent holiday participation. Please call ahead to your local store, as there are always exceptions:Ace HardwareAlbertson'sBarnes & NobleBass Pro ShopsBig LotsBJs Wholesale ClubCabela'sCVSDollar GeneralFresh MarketOrder groceries with InstacartHome DepotIKEAKrogerOld NavyPetcoPetSmartRite AidSafewayStarbucksTrader Joe'sWalmartWalgreensWhole FoodsList of stores closed on Easter Sunday 2026: What stores are not open today?Here's a list of stores expected to be closed on Easter Sunday. Each of these stores will have some location closures for Easter, or are expected to be closed based on recent holiday closures. Please call ahead to your local store, as there are always exceptions:AldiAppleBanana RepublicBath and Body WorksBest BuyBloomingdale'sBob's Discount FurnitureBurlingtonThe Container StoreCostcoCrate + BarrelDick's Sporting GoodFive BelowGapGoodwillH-E-B GroceryThe Honey Baked Ham CompanyHobby LobbyJCPenneyKohl'sHomeGoodsLowe'sMacy'sMarshallsMichael'sNordstromNordstrom RackOffice DepotPublixSam's ClubStaplesSuperCutsTargetT.J. Maxx Save on Easter supplies with Amazon PrimeWhen is Easter 2027? What date is Easter Sunday next year?Easter 2027 will be celebrated on Sunday, March 28, 2027, for most Christians, predominantly Catholics and Protestants.Chris Sims is a trending reporter at Midwest Connect Gannett. Follow him on Twitter: @ChrisFSims.Our editors independently choose our recommendations. Some content is produced with paid support from a third party, however our editorial decisions remain independent. If you buy through our links, the USA TODAY Network may earn a commission. Prices and availability may change.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

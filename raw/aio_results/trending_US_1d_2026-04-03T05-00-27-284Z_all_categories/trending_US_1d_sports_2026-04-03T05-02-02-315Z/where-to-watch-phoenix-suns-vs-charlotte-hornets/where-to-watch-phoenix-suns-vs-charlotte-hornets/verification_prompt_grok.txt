@@ -1,0 +1,118 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch phoenix suns vs charlotte hornets"
+
+Claims:
+[1] "Phoenix Suns vs. Charlotte Hornets game is on April 2, 2026."
+[2] "Phoenix Suns vs. Charlotte Hornets game on April 2, 2026 is at 7:00 p.m. ET."
+[3] "Phoenix Suns vs. Charlotte Hornets game on April 2, 2026 takes place at the Spectrum Center in Charlotte, NC."
+[4] "FDSSE is the regional sports network for the Hornets."
+[5] "AZFamily/Suns+ are the regional sports networks for the Suns."
+[6] "FanDuel Sports Network Southeast is FDSSE."
+[7] "Phoenix Suns vs. Charlotte Hornets game on April 2, 2026 is broadcast on FanDuel Sports Network Southeast (FDSSE)."
+[8] "Phoenix Suns vs. Charlotte Hornets game on April 2, 2026 is broadcast on AZFamily."
+[9] "Phoenix Suns vs. Charlotte Hornets game on April 2, 2026 is broadcast on Suns+."
+[10] "Phoenix Suns vs. Charlotte Hornets game on April 2, 2026 is available for streaming on Fubo."
+[11] "Fubo offers a free trial."
+[12] "Phoenix Suns vs. Charlotte Hornets game on April 2, 2026 is available for streaming on Prime Video with a FanDuel Sports Network add-on."
+[13] "Tickets for Phoenix Suns vs. Charlotte Hornets game on April 2, 2026 are available on StubHub."
+[14] "Other recent matchups between Phoenix Suns and Charlotte Hornets have been broadcast on Peacock."
+
+Cited text snippets from the AI Overview (for additional context):
+- How to watch Suns vs. Hornets: TV channel and streaming options ...: "The Pulse Newsletter-,How to watch Suns vs. Hornets: TV channel and,streaming options for April 2&text=The Charlotte Hornets (40-36,FDSSE, AZFamily, and Suns+."
+- Watch Phoenix Suns at Charlotte Hornets (Free Trial) - Fubo: "Watch Phoenix Suns at Charlotte,Spectrum Center in Charlotte, N.C."
+- Broadcast Information | Charlotte Hornets - NBA: "Watch on Prime Video,on subscription through Prime Video."
+- Hornets Game Against Suns To Be Broadcast On Peacock - NBA: "Hornets Game Against Suns To Be Broadcast On Peacock."
+Reference Sources:
+
+[R1] Hornets Game Against Suns To Be Broadcast On Peacock | Charlotte Hornets
+(https://www.nba.com/hornets/news/hornets-game-against-suns-to-be-broadcast-on-peacock)
+"""
+Hornets Game Against Suns To Be Broadcast On PeacockTime Changed to 10:00 p.m. ET for March 8 Game at PhoenixHornets PRFebruary 20, 202610:55 PM ESTFebruary 20, 2026 – The NBA announced today that the start time for the Charlotte Hornets game at Phoenix on Sunday, March 8 has been changed to 10:00 p.m. ET and will be exclusively broadcast on Peacock. The game will also be broadcast on the team’s flagship radio station, WFNZ (92.7 FM).The contest will mark the Hornets’ fifth national television game this season, and the second nationally televised game to be added to the team’s schedule in the last seven days following the March 14 contest at San Antonio (3:30 p.m.) being rescheduled to NBA on Prime.Charlotte heads into tonight’s matchup with Cleveland winners of 10 of its last 12 games. The Hornets are tied for the second-most wins in the NBA since Jan. 1 with 15 total wins and hold the second-best net rating of +9.1 over that time. Hornets Head Coach Charles Lee is the reigning Eastern Conference Coach of the Month and rookie forward Kon Kneuppel is the three-time reigning Kia Eastern Conference Rookie of the Month.For more information regarding Hornets single-game tickets and 2026-27 season memberships, please visit hornets.com.TagsFeaturedPress Release tickets@hornets.com 704-HORNETS Chat With Us open chat Your Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I Understand
+"""
+
+[R2] How to watch Hornets vs. Suns: TV channel and streaming options for March 8
+(https://www.nytimes.com/athletic/7099561/2026/03/08/how-to-watch-hornets-vs-suns-tv-channel-and-streaming-options-for-march-8/)
+"""
+The Charlotte Hornets (32-32) will look to build on a 10-game road winning streak when they square off against the Phoenix Suns (36-27) on March 8, 2026 at PHX Arena.How to watch Charlotte Hornets vs. Phoenix Suns Venue: PHX Arena Time: 10 p.m. ET TV: Peacock Watching in person? Get tickets on StubHub. Charlotte vs. Phoenix odds Spread: Charlotte -4.5 (-115), Phoenix +4.5 (-105) Favorite Moneyline: Charlotte -190 Underdog Moneyline: Phoenix +155 Total: 219.5 Total Over Odds: -105 Total Under Odds: -115 Odds provided by BetMGM.Injury reportsHornetsTidjane Salaun: Out (Knee)SunsDillon Brooks: Out (Hand), Jordan Goodwin: Out (Calf), Mark Williams: Out (Foot)Stats to know The Hornets record 116.2 points per game. That’s five more points than the 111.2 the Suns give up. The Suns score an average of 112.1 points per game. That’s just 0.4 fewer points than the 112.5 the Hornets give up to opponents. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R3] How to watch Suns vs. Hornets: TV channel and streaming options for April 2
+(https://www.nytimes.com/athletic/7166756/2026/04/02/how-to-watch-suns-vs-hornets-tv-channel-and-streaming-options-for-april-2/)
+"""
+The Phoenix Suns (42-34) go up against the Charlotte Hornets (40-36) at Spectrum Center on April 2, 2026.How to watch Phoenix Suns vs. Charlotte Hornets Venue: Spectrum Center Time: 7 p.m. ET TV: FDSSE, AZFamily, Suns+ Watching in person? Get tickets on StubHub. Phoenix vs. Charlotte odds Spread: Charlotte -5.5 (-115), Phoenix +5.5 (-105) Favorite Moneyline: Charlotte -225 Underdog Moneyline: Phoenix +185 Total: 225.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsHornetsPJ Hall: Out (Ankle)SunsHaywood Highsmith: Out (Knee), Amir Coffey: Out (Ankle), Mark Williams: Questionable (Foot)Stats to know The Hornets score 5.0 more points per contest (116.1) than the Suns surrender (111.1). The Suns score an average of 112.9 points per game. That’s only 1.5 more points than the 111.4 the Hornets give up to opponents. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R4] How to watch Suns vs. Hornets: TV channel and streaming options for April 2
+(https://www.nytimes.com/athletic/7166756/2026/04/02/suns-vs-hornets-stream-how-to-watch-april-2/)
+"""
+The Phoenix Suns (42-34) go up against the Charlotte Hornets (40-36) at Spectrum Center on April 2, 2026.How to watch Phoenix Suns vs. Charlotte Hornets Venue: Spectrum Center Time: 7 p.m. ET TV: FDSSE, AZFamily, Suns+ Watching in person? Get tickets on StubHub. Phoenix vs. Charlotte odds Spread: Charlotte -5.5 (-115), Phoenix +5.5 (-105) Favorite Moneyline: Charlotte -225 Underdog Moneyline: Phoenix +185 Total: 225.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsHornetsPJ Hall: Out (Ankle)SunsHaywood Highsmith: Out (Knee), Amir Coffey: Out (Ankle), Mark Williams: Questionable (Foot)Stats to know The Hornets score 5.0 more points per contest (116.1) than the Suns surrender (111.1). The Suns score an average of 112.9 points per game. That’s only 1.5 more points than the 111.4 the Hornets give up to opponents. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R5] Watch Phoenix Suns at Charlotte Hornets (Free Trial)
+(https://www.fubo.tv/welcome/matches/EP051853722634)
+"""
+Final: Phoenix Suns at Charlotte Hornets on Thu Apr 2, 2026From Spectrum Center in Charlotte, N.C.From Spectrum Center in Charlotte, N.C.FinalThu, Apr 2ScheduleDateAwayHomeTimeSat, Apr 18Toronto RaptorsCleveland Cavaliers12:00 PM CDTSat, Apr 18Minnesota TimberwolvesDenver Nuggets2:30 PM CDTSat, Apr 18Atlanta HawksNew York Knicks5:00 PM CDTSat, Apr 18Houston RocketsLos Angeles Lakers7:30 PM CDTSun, Apr 19Philadelphia 76ersBoston Celtics12:00 PM CDTSun, Apr 19Team TBDOklahoma City Thunder2:30 PM CDTSun, Apr 19Team TBDDetroit Pistons5:30 PM CDTSun, Apr 19Portland Trail BlazersSan Antonio Spurs8:00 PM CDTMon, Apr 20Toronto RaptorsCleveland Cavaliers6:00 PM CDTMon, Apr 20Atlanta HawksNew York Knicks7:00 PM CDTMon, Apr 20Minnesota TimberwolvesDenver Nuggets9:30 PM CDTTue, Apr 21Philadelphia 76ersBoston Celtics6:00 PM CDTTue, Apr 21Portland Trail BlazersSan Antonio Spurs7:00 PM CDTTue, Apr 21Houston RocketsLos Angeles Lakers9:30 PM CDTWed, Apr 22Team TBDDetroit Pistons6:00 PM CDTWed, Apr 22Team TBDOklahoma City Thunder8:30 PM CDTThu, Apr 23New York KnicksAtlanta Hawks6:00 PM CDTThu, Apr 23Cleveland CavaliersToronto Raptors7:00 PM CDTThu, Apr 23Denver NuggetsMinnesota Timberwolves8:30 PM CDTFri, Apr 24Boston CelticsPhiladelphia 76ers6:00 PM CDTFri, Apr 24Los Angeles LakersHouston Rockets7:00 PM CDTFri, Apr 24San Antonio SpursPortland Trail Blazers9:30 PM CDTSat, Apr 25Detroit PistonsTeam TBD12:00 PM CDTSat, Apr 25Oklahoma City ThunderTeam TBD2:30 PM CDTSat, Apr 25New York KnicksAtlanta Hawks5:00 PM CDTSat, Apr 25Denver NuggetsMinnesota Timberwolves7:30 PM CDTSun, Apr 26Cleveland CavaliersToronto Raptors12:00 PM CDTSun, Apr 26San Antonio SpursPortland Trail Blazers2:30 PM CDTSun, Apr 26Boston CelticsPhiladelphia 76ers6:00 PM CDTSun, Apr 26Los Angeles LakersHouston Rockets8:30 PM CDTStandingsTop Charlotte Hornets playersTop Phoenix Suns playersPopular games on FuboSt. Louis Blues atUtah MammothHouston Rockets atLos Angeles LakersPhiladelphia 76ers atBoston CelticsSt. Louis Cardinals atHouston AstrosSt. Louis Cardinals atMiami MarlinsTBA atOklahoma City ThunderSeattle Kraken atColorado AvalancheMore matches on FuboBenfica at SCPSun Apr 19, 12:00pm CDT • Primeira Liga • fubo Sports Network 2
+"""
+
+[R6] Broadcast Information | Charlotte Hornets
+(https://www.nba.com/hornets/broadcast-information)
+"""
+Stream Directly with FanDuel Sports NetworkFans in North Carolina and South Carolina can subscribe directly at FanDuelSportsNetwork.com or in the FanDuel Sports Network app with a monthly or annual subscription.Watch on Prime VideoFanDuel Sports Network is available as an add-on subscription through Prime Video. To subscribe: visit Amazon.com.Through Your TV ProviderFanDuel Sports Network Southeast is carried by major cable, satellite, and streaming providers including DIRECTV (satellite and streaming), Fubo, Spectrum and U-verse. For providers in your area, visit GetMyHomeTeams.com. Fans subscribed to a TV provider can also stream games on the FanDuel Sports Network app and FanDuelSportsNetwork.com for no additional charge.Over-the-Air SimulcastsThese select games will also stream for free on Pluto TV and Prime Video.2025-26 OVER THE AIR SCHEDULELog In To Watch With TV ProviderSubscribe to FanDuel Sports NetworkFanDuel Sports Network Customer Support tickets@hornets.com 704-HORNETS Chat With Us open chat Your Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I Understand
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

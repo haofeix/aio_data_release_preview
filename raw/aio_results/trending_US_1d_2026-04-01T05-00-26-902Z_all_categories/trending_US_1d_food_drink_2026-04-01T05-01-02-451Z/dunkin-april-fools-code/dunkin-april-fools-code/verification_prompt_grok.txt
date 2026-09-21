@@ -1,0 +1,91 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "dunkin april fools code"
+
+Claims:
+[1] "April Fools' Day 2026 is April 1."
+[2] "Dunkin' Rewards members can get a free hot or iced coffee of any size by entering the code STILLNOTAJOKE in the Dunkin' App."
+[3] "The promotion is nationwide."
+[4] "The promotion is capped at 1,000,001 free coffees."
+[5] "No purchase is necessary to redeem the offer."
+[6] "The Dunkin' App offer is for a free hot or iced coffee or cold brew of any size."
+[7] "The code is STILLNOTAJOKE."
+[8] "The code is valid on 4/1/26."
+[9] "A registered Dunkin' Rewards member is required to redeem the offer."
+[10] "The offer is redeemed by entering the code in the "Offers" section of the Dunkin' app."
+[11] "The offer is available while supplies last."
+
+Cited text snippets from the AI Overview (for additional context):
+- April Fools! Starting 4/1, get a FREE Dunkin’ Coffee with code ...: "April Fools! Starting 4/1, get a FREE,app for Rewards Memberw on 4/1 until"
+- Dunkin’ is giving away free coffee for April Fools Day — yes, seriously: "Dunkin' will be giving away,1 of 6"
+- Dunkin’ will give away 1M free coffees on April Fools’ Day: "On Wednesday, April 1, Dunkin,coffees nationwide this time around."
+- April Fools! Starting 4/1, get a FREE Dunkin' Coffee with code ...: "What you get: ☕ FREE Hot or,🏷️ Use promo code: THISISNOTAJOKE in the"
+Reference Sources:
+
+[R1] Dunkin’ will give away 1M free coffees on April Fools’ Day
+(https://www.silive.com/dining/2026/03/dunkin-will-give-away-1m-free-coffees-on-april-fools-day.html)
+"""
+DiningDunkin’ brings back its April Fools’ free coffee—this time with 1,000,001 cups up for grabs.Courtesy of Dunkin' DonutsBy Pamela Silvestri | silvestri@siadvance.comSTATEN ISLAND, N.Y. — April Fools’ Day comes with a free coffee at Dunkin’, and this time, there’s no catch.On Wednesday, April 1, Dunkin’ Rewards members can score a free hot or iced coffee, while supplies last, by entering the promo code STILLNOTAJOKE in the Dunkin’ app. The giveaway marks the return of the brand’s popular April Fools’ promotion after last year’s one-million-cup giveaway, with Dunkin’ offering 1,000,001 free coffees nationwide this time around.The promotion arrives as Dunkin’ continues to rebuild momentum across Staten Island—from neighborhood store remodels in Rosebank and Woodrow to the restoration of coffee service in the Staten Island Ferry system.In early February, Dunkin’ opened a long-awaited location inside the St. George Ferry Terminal, filling the space previously occupied by Au Bon Pain. The shop operates daily from 5 a.m. to 10 p.m. and includes a walk-up window that opens directly into the terminal, making it a quick stop for commuters during peak rush hours.Cold brew with milk stays darker than regular iced coffee, usually a caramel or mocha shade.Courtesy of Dunkin' DonutsThe ferry terminal opening follows other recent Dunkin’ expansions tied to the city’s busiest commuter route. Dunkin’ first debuted at the Whitehall Terminal in Manhattan in 2018 with mobile ordering and a cold-brew tap system. The brand returned onboard in December 2024 with a café on the Staff Sgt. Michael H. Ollis ferryboat, restoring coffee service at sea after nearly four years.On Staten Island, Dunkin’ has also refreshed neighborhood storefronts, including a newly remodeled location at 1131 Bay St. in Rosebank, which reopened with the brand’s Next Generation’ design, an eight-beverage tap system and daily hours from 5 a.m. to 10 p.m. That reopening was marked by a $3,000 donation to Community Health Action of Staten Island from franchisee The Shree Group through the Dunkin’ Joy in Childhood Foundation.Dunkin’ Donuts opened in the Staten Island Ferry terminal in Feb. 2026 following a long vacancy of its now-home storefront.(Advance/SILive.com | Pamela Silvestri)The April Fools’ giveaway coincides with Dunkin’s spring menu rollout, which introduces several limited-time drinks and treats, many featuring banana and berry flavors. New items include the Banana Puddin’ Cloud Latte, Berry Acai Refresher, Blueberry Pie Matcha and Dunkin’ Zero, a zero-sugar energy drink available in six flavors. A $6 meal deal—a medium hot or iced coffee, bacon egg and cheese sandwich, and hash browns—remains available for a limited time.For Staten Island commuters and coffee regulars, April 1 offers a rare April Fools’ promise that delivers exactly what it advertises.After flood shut it down for months, bakery reopens on Staten Island1 Staten Island Applebee’s location closes after 20 yearsThere’s a seat for everyone. Wisdom is knowing when to stay home. | From the Food EditorSome Staten Island restaurants could face trouble following huge $29B dealInside Staten Island’s newest, cousin-owned, pasta shop
+"""
+
+[R2] Free Dunkin' coffee April 1: Promo code details for 2026 - syracuse.com
+(https://www.syracuse.com/food/2026/04/dunkin-is-giving-away-free-coffee-for-april-fools-day-yes-seriously.html)
+"""
+Skip to ArticleUnlimited Digital Access -Start Today for $1 - Sale Ends 5/3/26CloseDunkin’ is giving away free coffee for April Fools Day — yes, seriouslyUpdated: Apr. 01, 2026, 6:29 a.m.|Published: Mar. 31, 2026, 8:00 p.m.BURBANK, CALIFORNIA - MARCH 04: A view of a Dunkin' Donuts store on March 04, 2026 in Burbank, California. (Photo by Justin Sullivan/Getty Images)Getty ImagesBy Kelly Corbett | kcorbett@syracuse.comDunkin’ will be giving away one million free coffees on Wednesday, April 1, in honor of April Fools’ Day.Dunkin’ Rewards members can score a free hot coffee or iced coffee any size using the promo code STILLNOTAJOKE. No purchase necessary.Keep WatchingBiden puts Black man on the spot in cringe interaction during increasingly rare public appearance: ‘Doesn’t he look like Barack?'Biden puts Black man on the spot in cringe interaction during increasingly rare public appearance: ‘Doesn’t he look like Barack?'The promotion will be capped after one million redemptions, so members should enter it into the Dunkin’ app as soon as possible. Once claimed, the free coupon will then be added to one’s Dunkin’ Rewards account and can be used instantly. For those who want to save it, it will be valid until April 8.This marks the second consecutive year the Ben Affleck-approved chain has offered this April Fools’ Day perk. If you are not a Dunkin’ Rewards member, you can sign up for free here.Kelly CorbettKelly Corbett is a Trending News Reporter for syracuse.com | The Post-Standard. She covers a wide range of topics from celebrity and TV news to store closings and product recalls. In addition to syracuse.com,... more kcorbett@syracuse.comYou Might LikeMeet Divorced Women In ST LOUISInstantalksUndoNew York’s 2025-26 bear harvest reaches second-highest total on recordsyracuse.comUndoFinally: a dating site for senior menThisRomanceClick HereUndoTop returning Section III softball pitching leaders, ranked by 2025 statssyracuse.comUndo12 Things To Cut When Living On RetirementGreensproutUndoSee the Central NY schools with the biggest jumps in ELA scores in 2025syracuse.comUndoby Taboolaby TaboolaSponsored LinksSponsored LinksPromoted LinksPromoted Links Ad Unmute
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

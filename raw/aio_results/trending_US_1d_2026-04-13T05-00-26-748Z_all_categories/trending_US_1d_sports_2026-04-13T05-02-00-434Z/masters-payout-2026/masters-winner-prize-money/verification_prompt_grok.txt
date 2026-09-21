@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "masters winner prize money"
+
+Claims:
+[1] "Rory McIlroy is the 2026 Masters champion."
+[2] "The 2026 Masters champion will receive $4.5 million."
+[3] "The total purse of the 2026 Masters is $22.5 million."
+[4] "$4.5 million is the highest payout in Masters history."
+[5] "The 2026 Masters champion's share increased by $300,000 from the 2025 payout."
+[6] "Scottie Scheffler is the runner-up in the 2026 Masters."
+[7] "The runner-up in the 2026 Masters will earn $2.43 million."
+[8] "Third place in the 2026 Masters receives $1.08 million."
+[9] "Professionals who missed the cut in the 2026 Masters receive $25,000."
+[10] "The Masters is played at Augusta National Golf Club."
+[11] "The Masters has the largest prize pool among golf's four major championships."
+
+Cited text snippets from the AI Overview (for additional context):
+- Masters 2026 payouts: Final prize money distribution, full player list: "How much prize money does,T24 Michael Brennan $178,071"
+- Masters 2026: See full purse breakdown from Augusta ...: "Error Code: MEDIA_ERR_SRC_NOT_SUPPORTED,notes on this year's payouts:"
+- 2026 Masters prize money, purse: Payouts, winnings for Rory McIlroy, each golfer from $22.5 million pool: "Still, along with all the,back for the 2027 Masters."
+- The 2026 Masters featured a record $22.5 million in prize money ...: "#The 2026 Masters Tournament features a record-,top four finishers are set to earn"
+- 2026 Masters payout: Prize money breakdown and full earnings table: "That's a difference of $624,375,of the $22.5 million purse.&text=All professionals who did not,the Masters will get $25,000."
+- There was a time when Augusta National had trouble paying ...: "This year's purse has grown to a,four point five million. Up 300, 000"
+Reference Sources:
+
+[R1] 2026 Masters prize money, purse: Payouts, winnings for Rory McIlroy, each golfer from $22.5 million pool
+(https://www.cbssports.com/golf/news/masters-2026-prize-money-purse-payouts-winnings-augusta-national/)
+"""
+AUGUSTA, Ga. -- The 2026 Masters began with 91 players vying for the coveted title of Masters champion and the green jacket that comes with it. In the end, the man who entered Augusta National Golf Club as the reigning champion left the course as the fourth back-to-back winner in tournament history. Rory McIlroy, 36, achieved what would have been impossible to believe just two years ago, winning his second straight Masters and the grand prizes that come along with it.Most notable, of course, is the green jacket that will double up in his closet. However, he also joins the rarified air only occupied by Tiger Woods (2001-02), Nick Faldo (1989-90) and Jack Nicklaus (1965-66) by winning consecutive Masters.There is arguably no tournament where being a past champion carries so much weight, and while much of modern golf has become about escalating purses and the financial prize at the end, the Masters is one of the rare tournaments where that is truly a secondary motivation. Still, along with all the perks one receives for winning at Augusta National Golf Club -- like a lifetime invitation back each April -- the Masters champion does still take home an extremely healthy paycheck for winning the first major championship of the season. The 2026 Masters purse increased to $22.5 million with McIlroy taking home $4.5 million for his efforts. Each of the top four on the final leaderboard will earn over $1 million, while the top 12 will all receive checks for at least $517,500 -- and perhaps most importantly, an invite back for the 2027 Masters. Below you can find the full payout list for each position inside the cut line of the top 50 and ties.2026 Masters prize money, purse, payoutsTotal purse: $22.5 million 1st — $4,500,000 — Rory McIlroy2nd — $2,430,000 — Scottie Scheffler3rd — $1,530,000 — Tyrrell Hatton, Russell Henley, Justin Rose, Cameron Young ($1,080,000 each)4th — $1,080,0005th — $900,0006th — $810,0007th — $753,750 — Collin Morikawa, Sam Burns ($725,625 each)8th — $697,5009th — $652,500 — Max Homa, Xander Schauffele ($630,000 each)10th — $607,500 11th — $562,500 — Jake Knapp12th — $517,500 — Jordan Spieth, Hideki Matsuyama, Brooks Koepka, Patrick Reed, Patrick Cantlay, Jason Day ($427,500 each)13th — $472,50014th — $427,50015th — $405,00016th — $382,50017th — $360,00018th — $337,500 — Maverick McNealy, Viktor Hovland, Matt Fitzpatrick ($315,000 each)19th — $315,00020th — $292,50021st — $270,000 — Wyndham Clark, Ludvig Åberg, Keegan Bradley ($252,000 each)22nd — $252,00023rd — $234,00024th — $216,000 — Chris Gotterup, Adam Scott, Sam Stevens, Brian Campbell, Matt McCarty, Michael Brennan ($182,250 each)25th — $198,00026th — $180,00027th — $173,25028th — $166,50029th — $159,75030th — $153,000 — Alex Noren, Harris English, Shane Lowry ($146,250 each)31st — $146,25032nd — $139,50033rd — $132,750 — Tommy Fleetwood, Dustin Johnson, Brian Harman, Ben Griffin, Gary Woodland ($121,500 each)34th — $127,12535th — $121,50036th — $115,87537th — $110,25038th — $105,750 — HaoTong Li, Ryan Gerard, Jon Rahm ($101,250 each)39th — $101,25040th — $96,75041st — $92,250 — Justin Thomas, Kristoffer Reitan, Sepp Straka, Nick Taylor, Jacob Bridgeman ($83,250 each)42nd — $87,75043rd — $83,25044th — $78,75045th — $74,25046th — $69,750 — Sungjae Im47th — $65,250 — Si Woo Kim48th — $61,650 — Aaron Rai49th — $58,500 — Marco Penge, Corey Conners ($57,600 each)50th — $56,70051st — $55,350 — Kurt Kitayama52nd — $54,000 — Sergio Garcia53rd — $53,100 — Rasmus Hojgaard54th — $52,200 — Charl Schwartzel
+"""
+
+[R2] Masters 2026: See full purse breakdown from Augusta National - PGA TOUR
+(https://www.pgatour.com/article/news/latest/2026/04/06/what-is-the-purse-breakdown-prize-money-masters-winner-2026-augusta-national-scheffler-mcilroy)
+"""
+11D AGOVideo Player is loading.Rory McIlroy's road to the green jacketWritten by Associated PressAUGUSTA, Ga. (AP) — If Rory McIlroy is able to hang on and win his second consecutive Masters on Sunday, he’ll walk away with $4.5 million.That’s up from the $4.2 million he won last year.The Masters on Saturday announced its prize purse for this year’s championship at $22.5 million overall — the highest payout of golf’s four majors. The Masters’ prize payout was $21 million last year.Scroll below for the full purse breakdown and more notes on this year's payouts:FinishPayout1st$4,500,0002nd$2,430,0003rd$1,530,0004th$1,080,0005th$900,0006th$810,0007th$753,7508th$697,5009th$652,50010th$607,50011th$562,50012th$517,50013th$472,50014th$427,50015th$405,00016th$382,50017th$360,00018th$337,50019th$315,00020th$292,50021st$270,00022nd$252,00023rd$234,00024th$216,00025th$198,00026th$180,00027th$173,25028th$166,50029th$159,75030th$153,00031st$146,25032nd$139,50033rd$132,75034th$127,12535th$121,50036th$115,87537th$110,25038th$105,75039th$101,25040th$96,75041st$92,25042nd$87,75043rd$83,25044th$78,75045th$74,25046th$69,75047th$65,25048th$61,65049th$58,50050th$56,700The other three major tournaments have not announced prize funds for this year. In 2025, the PGA Championship's was $19 million, The Open Championship's was $17 million and the U.S. Open's was $21.5 million.Last month Cameron Young won $4.5 million for capturing THE PLAYERS Championship, which featured a $25 million overall prize purse.McIlroy entered the third round of the Masters on Saturday with a six-stroke lead over Patrick Reed and Sam Burns. He is seeking to become only the fourth player to win back-to-back championships at Augusta National and the first since Tiger Woods nearly 25 years ago (2001-02).The top four finishers at the Masters will each make at least $1 million.The runner-up is set to take home $2.43 million, while the third-place finisher will receive $1.53 million and fourth place gets $1.08 million.All professionals who did not make the cut at the Masters will get $25,000. Join PGA TOUR Pass, a free-to-join membership that unlocks personalized experiences across digital channels. Manage your favorite players, tournaments, communication preferences and more. Sign up here.
+"""
+
+[R3] 2026 Masters payout: Prize money breakdown and full earnings table - NBC Sports
+(https://www.nbcsports.com/golf/news/2026-masters-payout-prize-money)
+"""
+Rory McIlroy won the 2026 Masters Tournament on Sunday, and with his second consecutive green jacket, a $4,500,000 purse. This marks McIlroy’s sixth major title. He is the fourth man in Masters history to go back to back, joining Jack Nicklaus ('65, ’66), Nick Faldo ('89, 90) and Tiger Woods ('01, ’02).Runner-up Scottie Scheffler earned $2,430,000. The four players tied for third — Tyrrell Hatton, Russell Henley, Justin Rose and Cameron Young — each won $1,080,000.Shane Lowry started the day solo fourth at 9 under. He carded an 8-over 80 to drop to T-30 and missed out on a potential $933,750.Haotong Li saw another one of the biggest drops in potential earnings in the final round. After starting the day T-7, Li carded a quintuple bogey, triple bogey and five single bogeys to finish T-38. That’s a difference of $624,375.Here is the full breakdown of the $22.5 million purse.RankPlayerMoney Earned1Rory McIlroy$4,500,0002Scottie Scheffler$2,430,000T3Tyrrell Hatton$1,080,000T3Russell Henley$1,080,000T3Justin Rose$1,080,000T3Cameron Young$1,080,000T7Collin Morikawa$725,625T7Sam Burns$725,625T9Max Homa$630,000T9Xander Schauffele$630,00011Jake Knapp$562,500T12Jordan Spieth$427,500T12Hideki Matsuyama$427,500T12Brooks Koepka$427,500T12Patrick Reed$427,500T12Patrick Cantlay$427,500T12Jason Day$427,500T18Viktor Hovland$315,000T18Maverick McNealy$315,000T18Matt Fitzpatrick$315,000T21Keegan Bradley$252,000T21Ludvig Aberg$252,000T21Wyndham Clark$252,000T24Matt McCarty$182,250T24Adam Scott$182,250T24Sam Stevens$182,250T24Chris Gotterup$182,250T24Michael Brennan$182,250T24Brian Campbell$182,250T30Shane Lowry$146,250T30Alex Noren$146,250T30Harris English$146,250T33Gary Woodland$121,500T33Dustin Johnson$121,500T33Brian Harman$121,500T33Tommy Fleetwood$121,500T33Ben Griffin$121,500T38Jon Rahm$101,250T38Ryan Gerard$101,250T38Haotong Li$101,250T41Justin Thomas$83,250T41Sepp Straka$83,250T41Jacob Bridgeman$83,250T41Kristoffer Reitan$83,250T41Nick Taylor$83,25046Sungjae Im$69,75047Si Woo Kim$65,25048Aaron Rai$61,650T49Corey Conners$57,600T49Marco Penge$57,60051Kurt Kitayama$55,35052Sergio Garcia$54,00053Rasmus Hojgaard$52,65054Charl Schwartzel$51,300All professionals who did not make the cut at the Masters will get $25,000.
+"""
+
+[R4] Masters 2026 payouts: Final prize money distribution, full player list
+(https://www.palmbeachpost.com/story/sports/pga/2026/04/12/masters-2026-payout-final-prize-money-distribution-place-player-earnings/89573655007/)
+"""
+April 12, 2026Updated April 13, 2026, 10:03 a.m. ETRory McIlroy won the 2026 Masters, securing a $4.5 million prize from a record $22.5 million purse.The total prize money for the 2026 tournament was the largest in Masters history, increasing by $1.5 million from 2025.All professional golfers who participated received a cash prize, with those missing the cut earning $25,000.Amateur players are not eligible for prize money, and for the second consecutive year, no amateur made the cut.From the $4.5 million winner's share to payouts down the leaderboard, the 2026 Masters purse was the largest in tournament history. See how it was divided among players.Back-to-back Masters Champion Rory McIlroy secured his second green jacket after shooting 71 in the final round for a total of 12-under and the victory.The 2026 Masters purse totaled $22.5 million, the largest in tournament history and a $1.5 million increase from 2025.Winning the 2026 Masters came with a huge payday, but every player in the Masters field, except for amateurs, left Augusta with a check. Here’s the full prize money breakdown by finish.Masters players who miss cut get paidProfessional golfers who miss the cut at the Masters are paid $25,000 each.Do amateurs in the Masters get paid?Amateurs who play in the Masters Tournament do not receive monetary prizes.The amateur with the lowest score at the end of the Tournament wins a silver cup. However, for the second year in a row, no amateur made the cut at the Masters.How much prize money does the Masters 2026 winner Rory McIlroy get?2026 Masters winner Rory McIlroy will get a whopping $4.5 million check from the $22.5 million purse.Masters 2026 payout by position. Final prize money distribution for each playerThe 2026 Masters purse is $22.5 million, up from $21.5 million in 2025.Professional players who missed the cut each receive $25,000. Amateur players receive no money prizes.Here's the prize money breakdown by player and position:Pos. Player Total Payout1 Rory McIlroy $4,500,0002 Scottie Scheffler $2,430,000T3 Tyrrell Hatton $1,080,000T3 Russell Henley $1,080,000T3 Justin Rose $1,080,000T3 Cameron Young $1,080,000T7 Colin Morikawa $725,625T7 Sam Burns $725,625T9 Max Homa $630,000T9 Xander Schauffele $630,00011 Jake Knapp $562,500T12 Jordan Spieth $427,500T12 Hideki Matsuyama $427,500T12 Brooks Koepka $427,500T12 Patrick Reed $427,500T12 Patrick Cantlay $427,500T12 Jason Day $427,500T18 Viktor Hovland $315,000T18 Maverick McNealy $315,000T18 Matt Fitzpatrick $315,000T21 Keegan Bradley $252,000T21 Ludvig Åberg $252,000T21 Wyndham Clark $252,000T24 Matt McCarty $178,071T24 Adam Scott $182,250T24 Samuel Stevens $182,250T24 Chris Gotterup $182,250T24 Michael Brennan $182,250T24 Brian Campbell $182,250T30 Alex Noren $146,250T30 Harris English $146,250T30 Shane Lowry $146,250T33 Gary Woodland $121,500T33 Dustin Johnson $121,500T33 Brian Harman $121,500T33 Tommy Fleetwood $121,500T33 Ben Griffin $121,500T38 Jon Rahm $101,250T38 Ryan Gerard $101,250T38 Haotong Li $101,250T41 Justin Thomas $83,250T41 Sepp Straka $83,250T41 Jacob Bridgeman $83,250T41 Kristoffer Reitan $83,250T41 Nick Taylor $83,25046 Sungjae Im $69,75047 Si Woo Kim $65,25048 Aaron Rai $61,650T49 Corey Conners $57,600T49 Marco Penge $57,60051 Kurt Kitayama $55,35052 Sergio Garcia $54,00053 Rasmus Højgaard $53,10054 Charl Schwartzel $52,200The following players did not make the cut:CUT Danny Willett $25,000CUT Harry Hall $25,000CUT J.J. Spaun $25,000CUT Ryan Fox $25,000CUT Bubba Watson $25,000CUT Zach Johnson $25,000CUT Nicolai Højgaard $25,000CUT Akshay Bhatia $25,000CUT Bryson DeChambeau $25,000CUT Andrew Novak $25,000CUT Tom McKibbin $25,000CUT Robert MacIntyre $25,000CUT Rasmus Neergaard-Petersen $25,000CUT Cameron Smith $25,000CUT Michael Kim $25,000CUT Ethan Fang (Amateur)CUT Daniel Berger $25,000CUT Jackson Herrington (Amateur)CUT Casey Jarvis $25,000CUT Fred Couples $25,000CUT José María Olazábal $25,000CUT Mason Howell (Amateur)CUT Mike Weir $25,000CUT Vijay Singh $25,000CUT Min Woo Lee $25,000CUT Fifa Laopakdee (Amateur)CUT John Keefer $25,000CUT Carlos Ortiz $25,000CUT Sami Valimaki $25,000CUT Max Greyserman $25,000CUT Nicolas Echavarria $25,000CUT Mateo Pulcini (Amateur)CUT Naoyuki Kataoka $25,000CUT Aldrich Potgieter $25,000CUT Brandon Holtz (Amateur)CUT Angel Cabrera $25,000CUT Davis Riley $25,000Masters 2025 payout. How much did Rory McIlroy win?Here's how the then-record $21 million purse was distributed to players at the 2025 Masters Tournament:Pos. Player Total Payout1 Rory McIlroy -11 $4,200,0002 Justin Rose -11 $2,268,0003 Patrick Reed -9 $1,428,0004 Scottie Scheffler -8 $1,008,000T5 Sungjae Im -7 $798,000T5 Bryson DeChambeau -7 $798,0007 Ludvig Aberg -6 $703,500T8 Jason Day -5 $588,000T8 Corey Conners -5 $588,000T8 Xander Schauffele -5 $588,000T8 Zach Johnson -5 $588,000T12 Harris English -4 $462,000T12 Max Homa -4 $462,000T14 Bubba Watson -3 $336,000T14 Jon Rahm -3 $336,000T14 Jordan Spieth -3 $336,000T14 Tyrrell Hatton -3 $336,000T14 Matt McCarty -3 $336,000T14 Tom Hoge -3 $336,000T14 Collin Morikawa -3 $336,000T21 Hideki Matsuyama -2 $210,000T21 Davis Riley -2 $210,000T21 Tommy Fleetwood -2 $210,000T21 Daniel Berger -2 $210,000T21 Byeong Hun An -2 $210,000T21 Viktor Hovland -2 $210,000T27 Aaron Rai -1 $158,500T27 Michael Kim -1 $158,500T29 Sahith Theegala E $142,800T29 Denny McCarthy E $142,800T29 Joaquin Niemann E $142,800T32 Brian Campbell 1 $118,860T32 Maverick McNealy 1 $118,860T32 Rasmus Hojgaard 1 $118,860T32 Max Greyserman 1 $118,860T36 Justin Thomas 2 $118,860T36 Brian Harman 2 $96,600T36 Patrick Cantlay 2 $96,600T36 Charl Schwartzel 2 $96,600T40 Matt Fitzpatrick 3 $96,600T40 Nick Taylor 3 $84,000T42 Akshay Bhatia 4 $84,000T42 Danny Willett 4 $77,700T42 J.T. Poston 4 $77,700T42 Shane Lowry 4 $77,700T46 Wyndham Clark 5 $59,535T46 Sam Burns 5 $59,535T46 Davis Thompson 5 $59,53549 Min Woo Lee 6 $59,53550 J.J. Spaun 7 $52,92051 Nico Echavarria 8 $51,660T52 Stephan Jaeger 9 $51,660T52 Tom Kim 9 $51,660How much do Masters caddies make?Caddies are paid weekly wages plus a percentage of the player's tournament earnings, the Association of Professional Caddies and the Caddies Network told CBS News.(This story was updated with new information)Kim Luciani is a journalist for the USA TODAY Network-Florida's Audience team. You can get all of Florida’s best content directly in your inbox each weekday by signing up for the free newsletter, Florida TODAY, at https://palmbeachpost.com/newsletters.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,120 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "kristi noem affair"
+
+Claims:
+[1] "Kristi Noem is Homeland Security Secretary."
+[2] "Kristi Noem faced allegations of a romantic relationship with Corey Lewandowski."
+[3] "Kristi Noem denied allegations of a romantic relationship with Corey Lewandowski."
+[4] "Corey Lewandowski is a longtime aide and Republican operative."
+[5] "Rumors of a romantic relationship between Kristi Noem and Corey Lewandowski gained significant attention in early 2026."
+[6] "The rumors involved allegations of Kristi Noem and Corey Lewandowski traveling together."
+[7] "The rumors involved questions about the professional conduct of Kristi Noem and Corey Lewandowski."
+[8] "During a March 2026 House Judiciary Committee hearing, Kristi Noem was directly questioned about the alleged affair."
+[9] "Kristi Noem dismissed the alleged affair as "tabloid garbage"."
+[10] "The Atlantic described the alleged relationship as an "open secret" in Washington."
+[11] "The Wall Street Journal described the alleged relationship as an "open secret" in Washington."
+[12] "The Atlantic and The Wall Street Journal reported claims that Kristi Noem and Corey Lewandowski traveled together on a luxury jet."
+[13] "The Atlantic and The Wall Street Journal reported claims that Corey Lewandowski held significant sway within Kristi Noem's department."
+[14] "The Wall Street Journal and The Independent reported that the alleged closeness between Kristi Noem and Corey Lewandowski caused discomfort."
+[15] "The Atlantic reports that both Kristi Noem and Corey Lewandowski have denied the allegations."
+[16] "The rumors were mentioned on The Daily Show."
+[17] "The rumors were mentioned on Fox News"
+
+Cited text snippets from the AI Overview (for additional context):
+- The First Couple of a Dysfunctional DHS - The Atlantic: "Michael Scherer: The buzz in,who interacted with them regularly."
+- Noem slams question about her relationship with Lewandowski as ‘ ...: "Kamlager-Dove pressed for an,Employment & Immigration"
+- Trump official rumored to be having affair grilled about jet bedroom, ...: "Kristi Noem, rumored to be,about jet bedroom - al.com"
+- Kristi Noem faces allegations of affair with aide: "Embattled Homeland Security Secretary Christy Gnome confronted,sexual relationship with former Trump campaign manager."
+- A government affair... 😳 #TheDailyShow #KristiNoem ...: "A government affair...,CoreyLewandowski | Comedy Central UK | Facebook"
+- Kristi Noem tells hearing rumors she’s having an affair ... - YouTube: "The outlet reported that “the,.com/2s..."
+- Today’s hearing was heated - and at times salacious - as ...: "Today's hearing was heated - and at,NBC News' Ryan Nobles has the story."
+- Corey Lewandowski is expected to leave DHS with Noem ...: "Corey Lewandowski is expected to leave DHS,Kristi Noem on 'The Story.' Show More."
+- Exactly How Messy Are Kristi Noem and Corey Lewandowski?: "According to a new Wall Street Journal,may be even messier than that sounds."
+Reference Sources:
+
+[R1] The First Couple of a Dysfunctional DHS
+(https://www.theatlantic.com/politics/2026/02/dhs-couple-noem-lewandowski/686153/)
+"""
+A forthcoming book reveals new details about Kristi Noem and Corey Lewandowski.Illustration by Akshita Chandra / The Atlantic. Sources: Tom Williams / Getty; Win McNamee / Getty; Paul Sancya / AP.On a winter night last year, shortly after Donald Trump was sworn into office, senior officials at the Department of Homeland Security assembled discreetly at a private home in Washington, D.C., to discuss what they saw as a gathering crisis inside the agency: the relationship between their new boss, Kristi Noem, and Corey Lewandowski, her adviser, enforcer, and rumored boyfriend.The officials were under enormous pressure. Trump had recaptured the presidency amid a popular backlash against illegal immigration, and had promised a shock-and-awe program of mass deportations once he returned to power. Now DHS—conceived after 9/11 to protect the country from terrorist attacks—was being ordered to shift its focus and resources toward delivering on the president’s campaign pledge. This project, already controversial and logistically fraught, was being complicated by Lewandowski—a menacing, omnipresent operator who had no experience in immigration enforcement, but who was nonetheless quickly consolidating power at the agency. The officials had gathered that night to map the ways his relationship with Noem could destabilize the department. The conversation ran six hours.The secret meeting, which has not been previously reported, is described in Undue Process: The Inside Story of Trump’s Mass Deportation Program, a forthcoming book by the NBC News reporter Julia Ainsley. The book is set to be published in early May, but The Atlantic obtained portions of it early.The book, based on extensive reporting, depicts the Department of Homeland Security as a dysfunctional fiefdom in Trump’s Washington empire—tasked with carrying out the most aggressive immigration crackdown in U.S. history even as the agency’s internal culture is warped by the relationship between an ambitious, attention-thirsty secretary and her domineering right-hand man and alleged paramour. In Ainsley’s account, Lewandowski is involved in nearly every aspect of the agency: who gets heard in meetings, what information reaches Noem’s desk, which contractors get hired, and even what kind of detention facilities are built to hold arrested migrants.​When you buy a book using a link on this page, we receive a commission. Thank you for supporting The Atlantic.
+"""
+
+[R2] Corey Lewandowski is expected to leave DHS with Noem amid affair rumors | Fox News Video
+(https://www.foxnews.com/video/6390450235112)
+"""
+to top close This video is playing in picture-in-picture. On Air March 05, 2026 02:19 CLIP Corey Lewandowski is expected to leave DHS with Noem amid affair rumors Fox News senior White House correspondent Jacqui Heinrich reports on the latest developments following the firing of DHS Secretary Kristi Noem on ‘The Story.’ Tags SHOWSWHAT TO WATCH | VIDEOSLATEST NEWS | VIDEOSON AIRTHE STORYPOLITICSOKLAHOMABORDER SECURITYILLEGAL IMMIGRANTSDONALD TRUMP NOW - 8:00 PM8:00 PM8:30 PM9:00 PM9:30 PM10:00 PM Fox News Channel The Ingraham Angle 7:00 PM - 8:00 PM WatchJesse Watters Primetime 8:00 PM - 9:00 PM Hannity 9:00 PM - 10:00 PM Gutfeld! 10:00 PM - 10:30 PM Fox Business Channel Kudlow 7:00 PM - 8:00 PM WatchMaking Money with Charles Payne 8:00 PM - 9:00 PM American Built 9:00 PM - 9:30 PM American Built 9:30 PM - 10:00 PM American Built 10:00 PM - 10:30 PM Fox Weather Channel Fox Weather Live Stream Watch Fox News Radio FOX News Radio Live Channel Coverage Live Stream Watch Fox News Channel Live Fox Weather Live Stream Watch 06:36 April 14, 2026 06:13 April 14, 2026 33:44 April 14, 2026 11:05 April 14, 2026 05:52 April 14, 2026 04:12 April 14, 2026 05:44 April 15, 2026 14:31 April 15, 2026 04:38 April 14, 2026 06:38 April 14, 2026 04:45 April 14, 2026 04:44 April 15, 2026 00:37 April 15, 2026 09:02 April 14, 2026 06:49 April 14, 2026 01:04 April 15, 2026 09:01 April 14, 2026 04:38 April 14, 2026 06:39 April 14, 2026 03:19 April 15, 2026
+"""
+
+[R3] Exactly How Messy Are Kristi Noem and Corey Lewandowski?
+(https://www.thecut.com/article/exactly-how-messy-are-kristi-noem-and-corey-lewandowski.html)
+"""
+Kristi Noem and Corey Lewandowski Might Be Messier Than We Thought Photo-Illustration: by The Cut; Photos: Getty Images By now, you have probably heard about Corey Lewandowski, Kristi Noem’s top political adviser and the guy who’s reportedly in charge of carrying out the havoc she wreaks at the Department of Homeland Security. Lewandowski — who is said to have met Noem on a multimillionaire GOP donor’s fishing trip in 2019 and first began advising her while she was still governor of South Dakota — has been serving as her de facto chief of staff since at least September. They’re also rumored to be romantically involved — Intelligencer reported last year that Lewandowski and Noem, both of whom are married, are “widely understood” by the people who work with them to be attached (they have both denied this). According to a new Wall Street Journal story, however, it seems like Noem and Lewandowski may be even messier than that sounds. Lewandowski has an unusual role in the Trump administration — per the Journal, he wanted to serve as Noem’s chief of staff when she joined DHS, but Trump allegedly shot that down due to discomfort over their purportedly romantic relationship. Instead, he serves as a “special government employee,” a designation that has raised concerns over possible ethics violations. Even without the murky ethics, the ship Lewandowski and Noem are running together sounds like an absolute wreck. According to the report, they “frequently berate senior level staff” and fire employees at a staggering rate. At one point, Lewandowski allegedly fired a U.S. Coast Guard pilot after Noem had to switch planes due to a maintenance issue and Noem’s blanket got left behind on the first plane. Unfortunately, it sounds like they may have been a little too hasty — apparently no one else was available to fly Noem and Lewandowski home, so they had to rehire the pilot after telling him to book a commercial flight home. In a statement that was also sent to the Journal, the DHS told The Cut that the department “doesn’t waste time with salacious, baseless gossip” when asked about the report. A spokesperson for DHS did not confirm or deny the incident to the Journal but did say Noem has “made personnel decisions to deliver excellence.” Sounds like it. Kristi Noem’s Work Life Might Be Messier Than We Thought Your product is saved! You’ll receive emails when your saved products go on sale. Manage preferences.
+"""
+
+[R4] Trump official rumored to be having affair grilled about jet bedroom, $220 million ICE ads
+(https://www.al.com/politics/2026/03/trump-official-rumored-to-be-having-affair-grilled-about-jet-bedroom-220-million-ice-ads.html)
+"""
+PoliticsHomeland Security Secretary Kristi Noem appears for an oversight hearing before the Senate Judiciary Committee, at the Capitol in Washington, Tuesday, March 3, 2026. (AP Photo/J. Scott Applewhite)APBy Howard Koplowitz | hkoplowitz@al.comHomeland Security Secretary Kristi Noem defended her agency’s use of a luxury jet with a bedroom in it and spending $220 million on ICE ads featuring her as she faced a bipartisan grilling Tuesday during a Senate oversight hearing.Noem, who has been rumored to be having an affair with close adviser and former Trump campaign manager Corey Lewandowski, was confronted with a picture of the DHS jet by Sen. Sheldon Whitehouse, D-R.I., during the hearing. Noem and Lewandowski, who are both married, have denied the reports.“These photos are not accurate. If you’re referring to the airplanes that the Department of Homeland Security has purchased, and are purchasing, we’re using them for long-range command and control aircraft that is dictated by statute in Congress for the Department of Homeland Security,” Noem testified before the Senate Judiciary Committee.“You did not use a luxury jet with a bedroom in it?” Whitehouse asked.Noem claimed the jet saves taxpayer money.“We used a 737. I’ve been on it once. But it is being used by other administration officials, and it is used for command-and-control flights for the department. The department has found that in purchasing our aircraft that we will save the taxpayers hundreds of millions of dollars,” she said.“Does it have a bedroom in it?” Whitehouse asked.“I believe it’s being refurbished and not having a bedroom in it, so it is being refurbished,” Noem responded.The senator was skeptical.“What kind of deportee justifies being flown out of the country in a luxury jet with a bedroom and accommodations like this?” Noem said, adding that the jet is used for “executive air travel and deportations.”Noem was also challenged by a Republican senator on her agency spending $200 million on advertisements that showcase her.“How do you square that concern for waste, which I share, with the fact that you have spent $220 million running television advertisements that feature you prominently?” asked Sen. John Kennedy, R-La.Noem defended the impact of the ads, which she claimed were approved by President Donald Trump.“Sir, the president tasked me with getting the message out to the country and to other countries where we were seeing the invasion come from, with putting commercials out that told them that if they were in this country illegally that they needed to leave or we would detain them and remove them and they’d not get the chance to come back to America the right way. That has been extremely effective,” she said.Noem said the contract for the ads were selected in a competitive bidding process and that career DHS officials chose the vendor.She denied Kennedy’s claim that the bid’s winners were people who did political work for Noem when she was an elected official in South Dakota.As to the ads effectiveness, Kennedy responded: “Well, they were effective in your name recognition. To me, it puts the president in a terribly awkward spot.”The Louisiana senator said he found it “hard to believe” Trump would have agreed to the ads.“I don’t think Russ Vought at OMB would’ve agreed to that,” Kennedy said, referring to the Office of Management and Budget director who has been tasked with cutting government spending. “It’s something we have to defend – I’m on the Appropriations Committee.“My research shows that you did not bid them out,” Kennedy said. “In fact, one of the people you picked – Safe America Media – was a company formed 11 days before you picked them. And that The Strategy Group got most of the money. The head of that is married to your former spokesperson.“Look, we all have friends who are qualified. I’m not quibbling with that,” Kennedy continued, adding that the contract “troubles me. “A fifth to a quarter of a billion in taxpayer money when we’re scratching for every penny … I just can’t agree with that, Madam Secretary," he said.Howard Koplowitz is AL.com's Breaking & Trending Reporter for afternoons and nights. He has been with AL.com since 2015 and has served in a variety of roles, ranging from coverage of Donald Trump's first...
+"""
+
+[R5] Noem slams question about her relationship with Lewandowski as ‘tabloid garbage’
+(https://www.politico.com/news/2026/03/04/noem-lewandowski-relationship-tabloid-garbage-00813182)
+"""
+Noem, whose husband, Bryon, attended the hearing, reacted with noticeable anger in her voice. “I am shocked we’re peddling tabloid garbage in this committee,” she responded.Noem also said Lewandowski is a “special government employee who works for the White House. There are thousands of them in the federal government,” adding that he has no influence over decisions at DHS.Kamlager-Dove pressed for an answer, saying “it is okay for you to be offended by the question. But it is also a real question and you should be able to answer the question clearly and without hesitation … you should be wanting to answer that question.”In earlier appearances before the Senate, no lawmakers have asked Noem directly about her relationship with Lewandowski.The next Democrat to ask questions after Kamlager-Dove, Jared Moskowitz of Florida, pressed her further.“I really think you need to say the word ‘no’ into the record so that you can clear that up,” Moskowitz said.Noem, even more incensed, lashed Moskowitz as a part of the “liberal media.”“You say conservative women are stupid or sluts. I am neither,” she fired back.Previous news reports alleged that the two have engaged in a romantic relationship, though both denied the claims.Before her exchange with Kamlager-Dove and Moskowitz, Noem had largely avoided fireworks in the House Judiciary hearing, as Republicans offered her political cover and Democrats pressed her about her leadership of DHS, including the killings of two U.S. citizens in Minneapolis by federal agents.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

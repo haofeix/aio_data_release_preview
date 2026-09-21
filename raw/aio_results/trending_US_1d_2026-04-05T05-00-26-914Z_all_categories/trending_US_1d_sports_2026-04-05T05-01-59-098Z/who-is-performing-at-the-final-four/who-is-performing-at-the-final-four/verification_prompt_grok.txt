@@ -1,0 +1,107 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "who is performing at the final four"
+
+Claims:
+[1] "The 2026 March Madness Music Festival is in Indianapolis."
+[2] "The 2026 March Madness Music Festival occurs from April 3-5."
+[3] "The 2026 March Madness Music Festival is at American Legion Mall."
+[4] "Twenty One Pilots, Zac Brown Band, and Post Malone give major performances at the 2026 March Madness Music Festival."
+[5] "Megan Moroney, Keshi, Dominic Fike, Russell Dickerson, BRELAND, and Joey Valence & Brae are supporting acts at the 2026 March Madness Music Festival."
+[6] "Admission to the 2026 March Madness Music Festival events is free."
+[7] "The AT&T Block Party on Friday, April 3 at the March Madness Music Festival in Indianapolis features Twenty One Pilots, Keshi, Joey Valence & Brae."
+[8] "The Coca-Cola Live! on Saturday, April 4 at the March Madness Music Festival in Indianapolis features Zac Brown Band, Russell Dickerson, BRELAND, Ravyn Lenae."
+[9] "The Capital One JamFest on Sunday, April 5 at the March Madness Music Festival in Indianapolis features Post Malone, Dominic Fike, Megan Moroney."
+[10] "UConn track and field's Chloe Trudel will perform the National Anthem at the 2026 Men's Final Four."
+[11] "Student-athletes representing the other competing teams will perform the National Anthem at the 2026 Men's Final Four alongside Chloe Trudel."
+[12] "The Chainsmokers are scheduled to perform an in-game performance during the 2026 Men's Final Four weekend."
+
+Cited text snippets from the AI Overview (for additional context):
+- The Chainsmokers will be performing LIVE in between games at the ...: "The Chainsmokers will be performing LIVE in,Public. * Deanna Beyer and 20 others."
+Reference Sources:
+
+[R1] Meet the national anthem singers at the Men’s and Women’s Final Fours — and the DII Men’s Basketball Championship
+(https://www.ncaa.org/news/2026/4/4/media-center-meet-the-national-anthem-singers-at-the-mens-and-womens-final-fours-and-the-dii-mens-basketball-championship.aspx)
+"""
+Before tipoff at the NCAA Men's and Women's Final Fours, a handful of student-athletes traded their lanes, fields and courts for a microphone. With Indianapolis hosting four men's postseason championships in one week for the first time in college basketball history, this year's national anthem singers also included a student-athlete ahead of the Division II Men's Basketball Championship at Gainbridge Fieldhouse. Known for their achievements in their sports, these student-athletes also took the spotlight to perform the national anthem on one of college basketball's biggest stages. Learn more about each of them below. Women's Final Four singer Ava Commer, Grand Canyon swimming and diving A junior from Anthem, Arizona, Commer competes in breaststroke and freestyle events for the Lopes. She transferred to Grand Canyon after her freshman season at Barton, where she earned Freshman of the Year honors. Off the pool deck, Commer has performed the national anthem at NBA and WNBA games in Phoenix. She added the NCAA Women's Final Four to her singing resume, performing Friday before the first semifinal game. Men's Final Four singers In a long-standing Final Four tradition, four student-athletes — each representing one of the Men's Final Four teams — came together to perform the national anthem before the semifinal games Saturday night in Indianapolis. MJ Neilson, Arizona swimming and diving A sophomore freestyle and butterfly swimmer from Phoenix, Neilson attended Horizon High School and swam for the Phoenix Swim Club before arriving in Tucson. In her freshman season, she was a two-time Big 12 Championships finalist in the 100 and 200 butterfly, swimming three personal bests at the conference championships. She finished third in the 200 butterfly at the 2026 Big 12 Championships. Earlier this year, Neilson performed the national anthem at an Arizona softball game. Chloe Trudel, UConn cross country/track and field A senior captain from Amherst, New Hampshire, Trudel has run cross country and track in all four of her seasons as a Husky. She earned U.S. Track & Field and Cross Country Coaches Association Academic All-America honors in 2026. She is currently ranked No. 41 nationally in the 10,000 meters and finished fourth in that event at the 2025 Big East Conference Championships. Claire Taylor, Michigan field hockey A graduate student from West Simsbury, Connecticut, Taylor recently completed her bachelor's degree in civil engineering and is currently pursuing a master's of management at Michigan. A stalwart in the Wolverines' backfield, she has started more than 60 games and earned first-team All-Big Ten honors in 2025. She also earned Academic All-Big Ten recognition three times. Mia Zenere, Illinois women's basketball A sophomore guard from Mokena, Illinois, Zenere joined the Fighting Illini in 2024 as a walk-on and is majoring in interdisciplinary health sciences. She has played in 16 games in her first two seasons at Illinois. In high school, she was a three-time Independent High School Gold Division national champion, a team captain and a 2024 McDonald's All-American nominee. DII Men's Basketball Championship singer Indianapolis hosting four men's postseason championships in one weekend created something new: a student-athlete national anthem performer at the Division II Men's Basketball Championship. The role went to a local voice with deep Indiana ties. Addie Marshall, Monmouth women's soccer A goalkeeper from Franklin, Indiana, Marshall spent four seasons at Butler before she transferred to Monmouth for the 2026 season. She came to Butler after a standout prep career that included reaching the 2019 Elite Club National League Final Four and the 2021 ECNL Champions League National Finals with FC Pride. Addie Marshall, Monmouth women's soccer
+"""
+
+[R2] March Madness Music Festival: Dates, events, schedule
+(https://www.ncaa.com/marchmadness/musicfest)
+"""
+March Madness Music Festival: Dates, events, schedule Skip to main content March Madness Music Festival Music Fest March Madness Music Festival American Legion Mall, Indianapolis, Indiana April 3-5, 2026 Share AT&T Block Party Friday, April 3 4:30 - 10 p.m. local time (subject to change) SEE MORE Coca-Cola Live! Saturday, April 4 3:30 - 10 p.m. local time (subject to change) SEE MORE Capital One JamFest Sunday, April 5 3 - 10 p.m. local time (subject to change) SEE MORE Twenty One Pilots Zac Brown Band Post Malone Keshi Russell Dickerson Megan Moroney Joey Valence & Brae Ravyn Lenae Dominic Fike Men's Final Four Events App BRELAND TroyBoi Schedule of Events FAQs - Know Before You Go Men's Final Four Info Security Flyer Bag Policy Legal Terms and PrivacyBy clicking "Agree", you have read and agree to the Terms of Use and agree to the collection and use of your information by cookies and similar technologies as set forth in our Privacy Policy.Agree
+"""
+
+[R3] Post Malone and more play free March Madness concerts. See date, times
+(https://www.indystar.com/story/entertainment/2026/04/03/march-madness-music-festival-2026-artists-post-malone-twenty-one-pilots-date-time-lineup-schedule/89451012007/)
+"""
+April 3, 2026, 1:25 p.m. ETThose flocking to downtown Indianapolis this weekend during the grand finale of the NCAA Men's Championship Basketball games have a chance to catch some of the biggest names in music, and they can listen for free.The entry-free March Madness Music Festival begins Friday, April 3. It's part of a collection of fan events for Final Four weekend, running until April 6. Here's what to know.What musical artists are coming to Indianapolis during the Final Four?Country hip-hop heavy hitter Post Malone is slated to perform at the March Madness Music Festival at American Legion Mall on April 5.The festival also will feature alternative duo Twenty One Pilots, country group Zac Brown Band and surging pop country star Megan Moroney.When is the March Madness Music Festival? Where is it?The festival runs April 3-5 at the American Legion Mall, 700 N. Pennsylvania Street, in downtown Indianapolis.Can I see Post Malone free? Is the March Madness Music Festival free?Yes, entry into the March Madness Music Festival is free. The festival is split into three days: the AT&T Block Party April 3, Coca Cola Live April 4 and the Capital One JamFest finale April 5.Each day of the festival will feature a number of supporting acts. Here's who's playing and when.Friday, April 3 musical lineup for AT&T Block PartyLo-fi alternative artist keshi and hip-hop duo Joey Valence and Brae will join Twenty One Pilots April 3.4:30 p.m. — Event opens5:00 p.m. — Joey Valence & Brae6:45 p.m. — keshi8:30 p.m. — Twenty One Pilots10:00 p.m. — Event endsSaturday, April 4 musical lineup for Coca-Cola Live!R&B singer-songwriter Ravyn Lenae, country hip-hop fuser BRELAND and recently announced country singer Russell Dickerson will join Zac Brown Band April 4.2:30 p.m. — Event opens3:15 p.m. — Breland4:45 p.m. — Ravyn Lenae6:15 p.m. — Russell Dickerson8:10 p.m. — Zac Brown Band10:00 p.m. — Event endsLate Saturday April 4: 'Madness After Dark' event with DJ setThe NCAA has also announced a Madness After Dark with a DJ set from The Chainsmokers, the popular EDM duo behind the 2016 hit, "Closer."The free event happens 10 p.m. to 2 a.m., April 4, from at the Indiana Roof Ballroom.Sunday, April 5 musical lineup for the Capital One JamFestIndie pop artist Dominic Fike will join Malone and Moroney April 5.3:00 p.m. — Event opens4:30 p.m. — Dominic Fike6:15 p.m. — Megan Moroney8:15 p.m. — Post Malone10:30 p.m. — Event endsWhat else is happening during Final Four weekend?Other festivities during the Final Four weekend include a Final Four Fan Fest setup at the Indiana Convention Center, open practices for the competing teams at Lucas Oil Stadium during Final Four Friday April 3 and watch parties along Georgia Street for the Tailgate Tip-Off.Contact IndyStar Pop Culture Reporter Heather Bushman at hbushman@indystar.com. Follow her on X @hmb_1013.John Tufts covers trending news for IndyStar and Midwest Connect. Send him a news tip at John.Tufts@IndyStar.com. Find him on BlueSky at JohnWritesStuff.
+"""
+
+[R4] Final Four music festival taps Post Malone to perform
+(https://www.yahoo.com/entertainment/music/articles/final-four-music-festival-taps-140134251.html)
+"""
+One more superstar headliner will join the weekend-long music festival celebrating college basketball's grand finale in downtown Indianapolis.Post Malone performs at Gainbridge Fieldhouse on Oct. 2, 2022 in Indianapolis.The NCAA announced country hip-hop heavy hitter Post Malone will round out the the March Madness Music Festival at American Legion Mall and close the festivities at the Capital One Jam Fest April 5. The festival, which runs April 3-5, will also feature alternative duo Twenty One Pilots, country group Zac Brown Band and surging pop country star Megan Moroney.Malone will join fellow country singer Megan Moroney during the Sunday slot. The three-day slate of performances is part of the collection of fan events for Final Four weekend, happening April 3-6.More: Final Four weekend music festival announces lineup. See who's playingMalone's March Madness stop will not mark his first nor last time performing in central Indiana. He'll bring his co-headlining stadium tour with country star Jelly Roll to Lucas Oil Stadium June 12.Entry to the March Madness Music Festival is free. The festival is split into three days: the AT&T Block Party April 3, Coca Cola Live April 4 and the Capital One JamFest finale April 5.Other festivities during the Final Four weekend include a Final Four Fan Fest setup at the Indiana Convention Center, open practices for the competing teams at Lucas Oil Stadium during Final Four Friday April 3 and watch parties along Georgia Street for the Tailgate Tip-Off.More: 16 Indianapolis-area shows you won't want to miss this springEach day of the festival will feature a number of supporting acts. Lo-fi alternative artist keshi and hip-hop duo Joey Valence and Brae will join Twenty One Pilots April 3. R&B singer-songwriter Ravyn Lenae, country hip-hop fuser BRELAND and recently announced country singer Russell Dickerson will join Zac Brown Band April 4. Indie pop artist Dominic Fike will join Malone and Moroney April 5.The series of performances will take over the American Legion Mall at 700 N. Pennsylvania St. Here's the schedule:April 3: 4:30-10 p.m.April 4: 3:30-10 p.m.April 5: 2-10 p.m.The NCAA has also announced a Madness After Dark event with a DJ set from popular EDM duo The Chainsmokers. The free event will take place April 4 from 10 p.m. to 2 a.m. at the Indiana Roof Ballroom. Registration for the event will open March 27 at 10 a.m., with early registration for Capital One customers from March 25 at 10 a.m. to March 27 at 9:59 a.m.Contact IndyStar Pop Culture Reporter Heather Bushman at hbushman@indystar.com. Follow her on X @hmb_1013.This article originally appeared on Indianapolis Star: Post Malone to be surprise artist for the Final Four music festival
+"""
+
+[R5] Meet This Year's Final Four National Anthem Singer, Chloe Trudel
+(https://thespun.com/college-basketball/meet-this-years-final-four-national-anthem-singer-chloe-trudel)
+"""
+Key PointsUConn track captain Chloe Trudel will sing the national anthem at the 2026 Final Four.Trudel highlights both her running achievements and team bonds at UConn.UConn men's basketball advanced to the Final Four with a dramatic win over Duke. Before No. 2 seed UConn and No. 3 seed Illinois step on the hardwood for the start of the 2026 Final Four, a student-athlete will perform the national anthem at Lucas Oil Stadium. It turns out UConn track and field senior captain Chloe Trudel has been tasked with performing “The Star-Spangled Banner” in Indianapolis. She’ll have the chance to win over the crowd before the Huskies try to secure another trip to the national title game. Trudel, a New Hampshire native, has enjoyed plenty of success at UConn. During the 2025 outdoor season, she finished fourth in the 10,000m at the Big East Championships. She also ran a personal best in the 5,000m at Penn Relays. “I’m lucky to say that in my 12 years of running, my love for this sport has never faltered. My favorite aspect of XC has always been the team. When you’re all working towards a common goal, motivation becomes intrinsic and creates a sort synergy,” Trudel wrote on Instagram. “UConn XC has been the greatest experience of my life. The friendships I’ve formed with my teammates are ones I will hold onto tightly. We’ve been through it together.” Although she’s known for her skills on the track, Trudel will get to showcase her voice this evening. On Friday night, Trudel shared a photo from her Final Four rehearsal. It sure looks like she’s ready to rock. “See you tmr night at the Final Four,” the UConn track star wrote on her Instagram Story. UConn’s road to the Final Four. After narrowly defeating Furman in the opening round of the NCAA Tournament, UConn took care of business against UCLA and Michigan State to secure a spot in the Elite Eight. Despite trailing by 19 points to Duke in the East Region final, UConn stole a win thanks to a game-winning shot from Braylon Mullins. “I wanted to get the ball to Alex [Karaban], he had just hit a shot I think a minute before that, and he ended up throwing the ball back to me,” Mullins said. “I knew there was like 0.4 seconds left on the clock, so I thought that was the best opportunity we were gonna get.” We’ll see if UConn makes it to Monday’s national championship game. This page may contain affiliate links to legal sports betting or fantasy sports partners. If you sign up, The Spun and The Arena Group may be compensated at no cost to you. Read more about Sports Betting on The Spun.About the authorChris Rosvoglou is a veteran sports writer who joined The Spun in 2018. He's a leading producer of sports content with expertise in the NFL, college football, sports media, the NBA, tennis and more.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,96 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "gunnison/zuni"
+
+Claims:
+[1] "A mistaken Denver Police "All Clear" emergency alert was sent citywide on Saturday, April 18, 2026."
+[2] "The mistaken Denver Police "All Clear" emergency alert was sent instead of only to the immediate area of West Gunnison Drive and South Zuni Street."
+[3] "The Denver Police "All Clear" emergency alert followed a robbery."
+[4] "Denver7 and CBS News reported a subsequent shelter-in-place order."
+[5] "The incident occurred near the southwest Denver intersection of W. Gunnison Dr. and S. Zuni St."
+[6] "Two armed robbery suspects fled into a nearby residence."
+[7] "Two armed robbery suspects fleeing into a nearby residence prompted a localized shelter-in-place order for a one-block radius."
+[8] "After both suspects were apprehended, the "All Clear" alert was intended only for that neighborhood."
+[9] "The "All Clear" alert was sent to the entire city."
+[10] "This was the second incident this year where a localized emergency alert was accidentally sent citywide in Denver."
+[11] "Denver Police and Denver 911 are currently investigating the cause of the alert system failure."
+
+Cited text snippets from the AI Overview (for additional context):
+- DPD emergency alert intended for one-block radius mistakenly sent to entire city after armed robbery: "It's the second time an,the whole city this year."
+- "All Clear" emergency alert mistakenly sent to everyone following robbery arrest, Denver police say: "By,was sent further than intended."
+- Denver robbery triggers citywide emergency alert by mistake: "Denver Police said an all,residents of the whole city."
+Reference Sources:
+
+[R1] "All Clear" emergency alert mistakenly sent to everyone following robbery arrest, Denver police say - CBS Colorado
+(https://www.cbsnews.com/colorado/news/all-clear-emergency-alert-everyone-robbery-denver/)
+"""
+Latest News Your Investigators Politics Health Business News Team Share A News Tip Making Ends Meet Colorado 150 Elevating Black Voices Elevating Latino Voices First Alert Weather School Closings Weather Cams Share Weather Pics Dog Walk Forecast Weather School All Sports Denver Broncos Denver Nuggets Colorado Rockies Colorado Avalanche CBS Sports HQ Odds Jefferson County News Arapahoe County News Adams County News Douglas County News Northern Colorado News Aurora News Denver News Boulder & Foothills News Colorado Mountain News Contests Colorado Review Future Leaders Adopt A Pet Your Local Dish Wednesday's Child Girls & Science Advertise with Us TV Program Guide Sponsored Events Sign Up for Alerts Employment Contact Us Memorials Watch CBS News Many people across the Denver metro area were surprised to suddenly receive an "All Clear" alert on their phones on Saturday afternoon.The Denver Police Department says the alert was linked to a robbery that occurred at the intersection of Gunnison Drive and Zuni Street earlier Saturday. When officers responded, they issued a shelter-in-place order for a one-block radius around the area. CBS Police said that two suspects fled into a nearby residence and were later arrested. No one was injured during the incident.An "All Clear" alert was intended to be sent to the residents under the shelter-in-place order, but was mistakenly sent to "everyone" instead, the DPD says. The department said police are working with the Department of Safety/Denver 911 to determine why the alert was sent further than intended.A similar issue occurred in January, when Denver's Public Safety Department sent out an alert to cell phones across the city regarding a localized shelter-in-place order. More from CBS News Federal appeals court upholds decision against Denver police, city in protest case Woman bitten by rattlesnake in Palos Verdes Estates, officials say "stay alert" when in nature 1 person dead, several injured after shooting in DeSoto business parking lot, police say Ex‑Azle High special ed teacher charged in alleged student assault, police say Police seek help locating sexual assault suspect targeting women at Silver Lake Reservoir Featured Local Savings "All Clear" emergency alert mistakenly sent to everyone following robbery arrest, Denver police say "All Clear" emergency alert mistakenly sent to everyone following robbery arrest, Denver police say 00:22 "All Clear" emergency alert mistakenly sent to everyone following robbery arrest, Denver police say (00:22) Federal appeals court upholds decision against Denver police, city in protest case Woman bitten by rattlesnake in Palos Verdes Estates, officials say "stay alert" when in nature 1 person dead, several injured after shooting in DeSoto business parking lot, police say Ex‑Azle High special ed teacher charged in alleged student assault, police say Uber driver arrested after alleged sexual assault, Arvada police say Suspected impaired driver arrested in Sterling Heights hit-and-run Street racing takeover in Atlanta ends with arrests and guns recovered, police video shows Police seek help locating sexual assault suspect targeting women at Silver Lake Reservoir View CBS News In CBS News App Open Chrome Safari Continue Your Privacy Choices
+"""
+
+[R2] DPD emergency alert intended for one-block radius mistakenly sent to entire city after armed robbery
+(https://www.denver7.com/news/local-news/what-was-that-denver-police-all-clear-emergency-alert-about)
+"""
+Denver residents were left confused after phones blared with an emergency alert giving an all-clear on Saturday. "Denver Police has issued an ALL-CLEAR to threat in the area of Gunnison/Zuni," the alert pushed to residents city-wide read. That was the first alert many people received about the area. A DPD spokesperson said the all-clear alert mistakenly went out to the entire city. Police said residents in a one-block radius of W Gunnison Place and S Zuni Street in southwest Denver had received a shelter-in-place alert after two armed robbery suspects fled. After the suspects were taken into custody, police pushed out the all-clear alert intended for the same people in that one-block radius. It went to the entire city instead. "Denver Police are working with the Department of Safety/Denver 911 to identify why that happened," DPD officials said.It's the second time an emergency alert has mistakenly gone out to the whole city this year. In January, a barricaded person near the University of Denver prompted a city-wide shelter-in-place alert that was also intended for a smaller subset of residents. "Due to a configuration issue on the back-end of the vendor software that we utilize to access this system, effectively, what happened was the map that they drew around where that specific incident was happening was not taken into consideration by the software when it fired off that alert, so it defaulted to the entire city and county,” Andrew Dameron, the director of Denver’s 911 Communications Center, told Denver7 of that alert.This is a developing story that may be updated as more information becomes available. Coloradans making a difference | Denver7 featured videos Denver7 is committed to making a difference in our community by standing up for what's right, listening, lending a helping hand and following through on promises. See that work in action, in the videos above.
+"""
+
+[R3] Denver robbery triggers citywide emergency alert by mistake
+(https://www.9news.com/article/news/crime/denver-robbery-triggers-citywide-emergency-alert/73-7e51da18-6c7b-460a-9c3e-708562064d58)
+"""
+To be compensated, Stephen Martinez would have to establish "actual innocence" in the 1998 death of a 4-month-old. DENVER — Stephen Martinez – freed from prison after a judge on Tuesday vacated his murder conviction in the 1998 death of a 4-month-old girl – could be eligible for nearly $2 million in compensation for the 27-plus years he spent behind bars. But there’s a hurdle he has to cross before being eligible for the money provided under a state law passed in 2013 aimed at redressing wrongful convictions: He has to convince a judge or jury that he’s actually innocent. “Our exoneration statute provides for no compensation if it was merely a situation where the evidence was not sufficient to prove an individual guilty beyond a reasonable doubt,” said Scott Robinson, a longtime defense attorney and 9NEWS legal analyst. In cases where a previously incarcerated person can show actual innocence, the law requires payment of $70,000 for each year behind bars. In Martinez’s case, that ads up to about $1.9 million. According to court documents obtained by 9NEWS Investigates, Martinez was watching Heather Mares – his girlfriend’s infant daughter – on Oct. 17, 1998, when he called 911 and reported she was choking. Responding police officers found bloody sheets in a washing machine, and doctors diagnosed her with a skull fracture. During police questioning, Martinez said he shook the crying baby and banged her head against a crib – and prosecutors asserted that he was guilty of what was then known as shaken baby syndrome. Attorneys for the Korey Wise Innocence Project took up his case and brought in outside experts to look at records in the case. Those experts concluded that Heather Mares died of a respiratory infection, not abuse, that the skull fracture could have occurred in a fall weeks earlier, and that Martinez provided a false confession. After Denver District Attorney John Walsh undertook his own investigation, he agreed to support the motion to dismiss the case against Martinez. But outside court, when a reporter asked him if this was a “wrongful conviction,” he did not specifically respond. “It was a case in which, at the end, the evidence that we had before us and the reassessment of the underlying medical records led us to believe that had … these challenges to the cause of death been presented at the time of trial, there might have been a different result,” Walsh said. “So, to that degree we agreed that this is a situation where the criminal justice system needs to take a look at how it works and correct itself if necessary.” Walsh’s spokesman, Matt Jablow, said Wednesday he could not discuss the question of whether Martinez meets the standard of “actual innocence.” Lawrence Pacheco, spokesman for Colorado Attorney General Phil Weiser, said that office will represent the state once a compensation request is made and, as a result, no one from that office could discuss it. Robinson, the 9NEWS analyst, said the burden of proving actual innocence falls to Martinez. “A court or a jury has to determine that there really was a miscarriage of justice and that they had no role at all – entire innocence – as it relates to the crime in question,” Robinson said.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

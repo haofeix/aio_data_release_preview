@@ -1,0 +1,99 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "notre dame women's basketball coach"
+
+Claims:
+[1] "Niele Ivey is the Karen & Kevin Keyes Family Head Women's Basketball Coach at Notre Dame."
+[2] "Niele Ivey has held the position since 2020."
+[3] "Niele Ivey succeeded Hall of Fame coach Muffet McGraw."
+[4] "Niele Ivey has led the team to multiple Sweet Sixteen appearances."
+[5] "Niele Ivey was a point guard for the Irish."
+[6] "Niele Ivey was a 2001 NCAA champion."
+[7] "Niele Ivey played for Notre Dame from 1996–2001."
+[8] "Niele Ivey helped the team win its first national championship."
+[9] "Niele Ivey played in the WNBA."
+[10] "Niele Ivey served as an assistant coach at Notre Dame from 2007–2019."
+[11] "Niele Ivey served as an assistant coach in the NBA with the Memphis Grizzlies."
+[12] "A Facebook video notes fourth consecutive Sweet Sixteen appearances for the Fighting Irish under Niele Ivey."
+[13] "According to Notre Dame Athletics, Carol Owens serves as the Associate Head Coach."
+
+Cited text snippets from the AI Overview (for additional context):
+- Niele Ivey (@IrishCoachIvey) / Posts / X - Twitter: "Niele Ivey (@IrishCoachIvey) - Posts - Head,Assistant Coach for the Memphis Grizzlies No&text=| X (formerly Twitter)"
+- how Niele Ivey etched her name in history (Ep. 2) - YouTube: "Give the gift of Notre Dame: https://giveto.nd.edu/give?NDAC=10013&designation=notredamefund,recruiting in the NCAA—from faith to parenting—Niele's"
+- Ivey needs to answer for roster construction: "Niele Ivey had advanced Notre Dame to,development and roster construction remain an issue."
+- Who is Niele Ivey? Meet the former WNBA player coaching Notre ...: "Who is Niele Ivey? Meet the former,Notre Dame's top-ranked basketball team : r/wnba."
+Reference Sources:
+
+[R1] Niele Ivey's college career at Notre Dame
+(https://www.ncaa.com/news/basketball-women/article/2020-04-28/niele-iveys-college-career-notre-dame)
+"""
+Niele Ivey was named Notre Dame women's basketball coach when hall-of-famer Muffet McGraw retired after 33 seasons. Ivey becomes just the fourth head coach in the program's 43-year history. And she is no stranger to South Bend. Ivey was a point guard for the Irish from 1996-2001, and helped guide Notre Dame to its first national championship in the 2000-01 season. She also served on McGraw's staff from 2007-2019. Here's what you need to know: Niele Ivey's playing career When she graduated in 2001, Ivey appeared on 16 of the program's career top-10 lists. As of 2019, she ranks second in total steals (348), second in steals per game average (2.6), fourth in total assists (727), fourth in 3-point field-goal percentage (40.5) and seventh in 3-point field goals made (190). The former guard is one of 41 players to reach the 1,000-point milestone at Notre Dame, having finished with 1,430. During the 2000-01 national championship run, she set a school record for the most assists in a single season with 247. She averaged 16.5 points and 5.5 steals per game in the 2001 Final Four. Ivey was selected by the Indiana Fever in the second round of the 2001 WNBA draft. She played four seasons with Indiana before spending the 2005 season with the Detroit Shock and Phoenix Mercury. Ivey's coaching career In 2005, she began her post-playing career as an administrative assistant for Xavier's women's basketball team. Ivey joined the Irish coaching staff in May 2007, and in 2012 she added the title of recruiting coordinator. She was then promoted to associate coach in the summer of 2015. Most recently, she served as an assistant coach for the NBA's Memphis Grizzlies during the 2019-20 season. Became Notre Dame's new head coach in April 2020. Ivey's accolades Ivey received third-team Associated Press All-America honors in 2001, which made her the first Notre Dame point guard to earn that distinction. She won the 2001 Frances Pomeroy Naismith Award, which from 1984 to 2014 was given to the nation's most outstanding female senior player 5-foot-8 or under. A three-time All-Big East selection, Ivey earned first-team honors in 2001. She was a finalist for the 2001 Nancy Lieberman Award (given to the nation's top point guard), and was named to the 2001 NCAA Final Four All-Tournament Team. In 2016, Ivey was the first-ever recipient of the Women's Basketball Coaches Association Division I National Assistant Coach of the Year. She was also inducted into Notre Dame's Ring of Honor that same year.
+"""
+
+[R2] Close friends Kevin McGuff of Ohio State and Niele Ivey of Notre Dame in NCAA matchup
+(https://www.dispatch.com/story/sports/college/basketball/2026/03/23/ohio-state-kevin-mcguff-faces-friend-former-player-niele-ivey-notre-dame-in-ncaa-tournament/89275822007/)
+"""
+Updated March 23, 2026, 11:12 a.m. ETIn 2001, Kevin McGuff was at Notre Dame, helping mentor starting point guard Niele Ivey during the Fighting Irish's NCAA title-winning run. Now, McGuff is prepared to stand opposite Ivey as Ohio State takes on Notre Dame for a spot in the 2026 NCAA Tournament Sweet 16."It was a privilege and honor to be on that staff to coach her," McGuff said. "She was certainly one of the leaders of the team. The thing that made her such an effective leader was her ability to connect with everybody on the team. And I see that in her as a head coach."McGuff spent six seasons in South Bend working under Hall of Fame coach Muffet McGraw before securing his first head coaching job with Xavier.While McGuff first went from Xavier to Washington, he eventually landed at Ohio State in 2013, taking over the program after Jim Foster was fired. McGuff has led the Buckeyes to nine NCAA Tournament appearances, including this year's, in which Ohio State is a No. 3 seed.Ivey, after playing an instrumental role in the Fighting Irish's championship, went on to play five seasons in the WNBA before fully switching into coaching and joining McGraw's staff at Notre Dame in 2007. Five years later, Ivey was selected to become McGraw's successor.According to Ivey, taking those steps on the coaching side would have never been possible without McGuff, who brought her on at Xavier as an intern before she became an administrative assistant."I was an intern and still playing in the WNBA, and I unfortunately had a third knee surgery," Ivey said. "I was like, I think I need to transition and maybe do something differently besides playing. Kevin gave me that opportunity, brought me on staff. I learned a lot, and that's where that love started to come from."Being a part of his program, being around the players, that's where I kind of developed that itch to be able to coach."The two formed a friendship that extends beyond the court, especially because Ivey is even closer to McGuff's wife, Letitia McGuff (formerly Letitia Bowen). Letitia was an assistant coach and then the director of basketball operations at Notre Dame while Ivey was playing."She's one of my best friends," Ivey said. "We talk almost every day. I'm godmother to her second youngest, Lily. They're just an incredible family."However, there has been no basketball talk between Ivey and Letitia, as all the history between the McGuffs and Ivey will go out the window once Ohio State tips off against Notre Dame.The second-round matchup marks the first time the two are facing each other as head coaches, though Ivey was an assistant the two times McGraw coached against McGuff's Ohio State teams. McGuff was 0-2 against McGraw and is hoping to pick up his first win over his former program on March 23."We're both competitive people who take very seriously the job that we have," McGuff said. "We're both going to show up and put our best foot forward and try to win the game. After that, we'll get back to the relationship that we have."But I know that she will have her team really prepared. They're going to play extremely hard, and we're going to do the same thing. It's going to be unfortunate, because one of us isn't going to win."Muffet McGraw's influence on Kevin McGuff, Niele IveyOhio State and Notre Dame have been similar this season, with both relying heavily on defense. The teams are led by fast All-American point guards in the Buckeyes' Jaloni Cambridge and the Fighting Irish's Hanna Hidalgo.With McGraw laying the foundation for McGuff's and Ivey's coaching careers, it is no surprise that the similarities in their systems go down to the details."I absolutely credit coach McGraw," Ivey said. "The way we coach, the way we mentor is very similar. ... Even with the five-out (offense), I feel like college basketball has morphed a little bit more into the five-out, a little bit more WNBA, NBA action. You could tell our tendencies. We both run it."For McGuff, the influence that McGraw has had on both himself and Ivey is also evident in the value they both put into running their respective programs."The most successful coaches are people that run great programs," McGuff said. "I think that's what I learned most from Muffet. The organization, the attention to detail, the way she treated people. I just feel like she ran as good a program as anybody in the country when she was the head coach at Notre Dame. And then through that process of running a great program, led to amazing results."bmackay@dispatch.com@brimackay15
+"""
+
+[R3] Ivey needs to answer for roster construction
+(https://www.ndsmcobserver.com/article/2026/02/1oe8ioiyqqngbbm)
+"""
+After a very successful career as a player with Notre Dame women’s basketball, and a handful of years with the Indiana Fever, Phoenix Mercury and Detroit Shock, Niele Ivey stepped into the coaching ranks as administrative assistant at Xavier in 2005. Ivey returned to her alma mater two years later, when she began her tenure as an assistant coach, before climbing her way to the head coaching position prior to the 2020-2021 season. Her ascendancy made her the first Black woman to lead a varsity program at Notre Dame. Facing COVID-19 repercussions in the inaugural year of her tenure allowed for that 2021 season to be full of developmental priorities and helped lay a foundation. Despite not reaching the postseason, the Irish utilized that year of rebuilding and rebranding. The following two campaigns was when Notre Dame began to find their footing and found postseason success after being omitted from the Big Dance in 2021. Years two and three for Ivey both ended in the Sweet 16, where the Irish fell to North Carolina State and Maryland, respectively, but not before winning an ACC regular-season title in 2023. The 2023-2024 season was the beginning of a new reign for the Irish, spearheaded by then-freshman guard Hannah Hidalgo. Hidalgo led the team to their sixth ACC title, which helped the program earn a No. 2 seed in the NCAA Tournament. Although they once again bowed out in the Sweet 16, Hidalgo was named ACC Tournament MVP and Rookie of the Year. The season after was a similar story, with Hidalgo tacking on two new honors: ACC Player of the Year and Defensive Player of the Year. She ranked amongst collegiate basketball’s best in scoring and steals, but Notre Dame experienced a late-season slide after reaching the pinnacle of the polls, ending their season in the Sweet 16 for a fourth straight year. After many of the program’s key contributors exited to the WNBA or transfer portal last offseason, the Irish have struggled to compete with the upper echelon of the ACC in 2026. While the future of the program remains strong, it is fair to question if the final year of Hidalgo’s tenure is being wasted in a “rebuild.” Hidalgo is objectively one of the most talented athletes to wear the Irish jersey, having already eclipsed the 2,000 career-point ceiling and Skylar Diggins’ all-time steals record. Despite these accomplishments, the team is only 14-8. The lack of depth has caused the offensive strategy to revolve around Hidalgo controlling the court and creating plays. There are many examples of sequences like this throughout the season; however, one that stands out is from the Michigan matchup from November. Notre Dame was down by 20 points with two minutes left in the second quarter and 20 seconds left on the shot clock. Despite Hidalgo having other teammates open from multiple positions on the court, she decided to isolate on multiple defenders, ultimately missing the shot. Hidalgo ended that evening 4-21 from the field and 0-8 on three-pointers, which only displays how her style of play sometimes struggles against solidified defensive teams. To worsen matters, when Hidalgo doesn’t have a great game, the team goes down with her. Strong point guards have to make their teammates better; they cannot beat teams on their own. Since the Irish are a one-player oriented team, it makes it easy for the opponents to scout and come up with gameplanning strategies. In prior seasons, Notre Dame boasted talent that could recover from these matchup problems; however, Olivia Miles, Kate Koval, Emma Risch and Kylee Watson all entered the transfer portal before this season. Whether it was turnover, admissions regulations, or just the general NCAA landscape, Ivey failed to compensate for the exits, leaving Hidalgo all alone. The Irish sitting at 14-8 is not “progress,” especially when in years past, the team has held the No. 1 seed and made Final Four berths. Aside from records and rankings, the program has not made it past the Sweet 16 round under Ivey, which demonstrates the pattern of struggle against the sport’s most premier teams. In order for Ivey to bring the program back to the standard she set as a player, her coaching must not only prioritize raising one superstar, but creating a cohesive, multi-faceted team with stars left and right. It is not a miracle on the court that Notre Dame needs, it’s a coach that can prove her tenure is worth more than the stars she can recruit.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

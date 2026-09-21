@@ -1,0 +1,92 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "easter parade nyc 2026"
+
+Claims:
+[1] "The 2026 NYC Easter Parade and Bonnet Festival takes place on Easter Sunday, April 5, 2026."
+[2] "The 2026 NYC Easter Parade and Bonnet Festival takes place along Fifth Avenue in Manhattan."
+[3] "The 2026 NYC Easter Parade and Bonnet Festival takes place from 10:00 AM to 4:00 PM."
+[4] "The 2026 NYC Easter Parade and Bonnet Festival is primarily from 49th Street to 57th Street."
+[5] "The 2026 NYC Easter Parade and Bonnet Festival is often centered around St. Patrick’s Cathedral."
+[6] "St. Patrick's Cathedral is at 50th and 51st Streets."
+[7] "The 2026 NYC Easter Parade and Bonnet Festival is free."
+[8] "The 2026 NYC Easter Parade and Bonnet Festival is open to everyone."
+[9] "The tradition of the NYC Easter Parade and Bonnet Festival dates back to the 1870s."
+[10] "The 2026 NYC Easter Parade and Bonnet Festival has no traditional, organized parade route or stages"
+
+Cited text snippets from the AI Overview (for additional context):
+- Easter Parade and Bonnet Festival in NYC: "EastEvents & Festivals-,Easter Parade and Easter Bonnet Festival,you will see, check out"
+- Happy Easter Everyone 🥰💐💞 Fifth Avenue was in full ... - Instagram: "𝗘𝗔𝗦𝗧𝗘𝗥 𝗣𝗔𝗥𝗔𝗗𝗘 𝗔𝗡𝗗 𝗕𝗢𝗡𝗡𝗘𝗧 𝗙𝗘𝗦𝗧𝗜𝗩𝗔𝗟,easterbunny #easterparade #bonnetfestival #easterparadeandeasterbonnetfestival"
+- The New York City Easter Parade and Bonnet Festival 2026 on Fifth ...: "Unique NYC Traditions: Easter Parade,#nycforfree"
+- NYC's Easter Bonnet Parade turned Fifth Ave into a runway of ...: "The 2026 NYC Easter Parade and Bonnet,5, 2026, from 10:00 AM to 4:00"
+- The New York City Easter Parade and Bonnet Festival 2026 on Fifth ...: "nyclovesnyc-,The New York City Easter Parade and Bonnet Festival 2026,happyeaster #easterparadeandbonnetfestival #newyork #fifthavenue"
+- When is Easter 2026, and why does the date change year to year?: "Here are the dates when,2028: April 16"
+Reference Sources:
+
+[R1] When is Easter 2026, and why does the date change year to year?
+(https://www.king5.com/article/news/nation-world/when-is-easter-2026-what-day/507-263f996f-c188-4ada-8ef4-966f80186c8b)
+"""
+Four years into the Russia-Ukraine war, one Anacortes woman is fighting back with fundraising, humanitarian trips and a classroom full of pen pals. ANACORTES, Wash. — Four years into Russia's invasion of Ukraine, an Anacortes mother is doing everything she can to make sure the war doesn't fade from memory — or from conscience. Marketa Vorel founded the Sunflower Fund after the invasion began in February 2022. Since then, she has raised more than $800,000 that goes directly to the Ukrainian people in the form of funding for a women and children's clinic, war crime investigations and military aid. On Monday, Vorel visited Island View Elementary in Anacortes, where fourth and fifth graders wrote letters and drew pictures for Ukrainian schoolchildren as part of a pen pal project. "You do what you can," Vorel said. "It is certainly alleviating the feeling of hopelessness in a world of uncertainty." The war has claimed as many as 140,000 Ukrainian lives, with countless others wounded in what has become a grinding, seemingly endless conflict. For students at Island View, the lessons are difficult ones to comprehend. "It's like, while we're having a good life over here, and they have to be on their toes all the time in case their house gets bombed," said student Roz Guzik. The pen pal project takes on added meaning for some families in Anacortes. A squadron from nearby Naval Air Station Whidbey Island is currently deployed to the conflict in the Iran, meaning some of these children are navigating their own fears about loved ones in harm's way. "Their parents might be in the military and they could pass away in the war," said student Jamie Bratten. "So it's pretty sad." Vorel, who grew up in Czechoslovakia during the Cold War, said she knows firsthand what Russian oppression feels like — and that experience drives her work. "It's my hope that this generation will continue this connection so that in a world that feels really uncertain and dangerous, we also have some hope for peace," she said. Vorel plans to return to Ukraine in March to continue her humanitarian work.
+"""
+
+[R2] Easter Parade and Easter Bonnet Festival
+(https://www.nyctourism.com/events/easter-parade-and-easter-bonnet-festival1/)
+"""
+Skip to main contentVote for New York CityFounded By NYC is up for three Webby Awards. Cast your vote and help us bring them home. Vote NowEvents /Easter Parade and Easter Bonnet FestivalPhoto: Elizabeth BickMidtown EastEvents & FestivalsshareEaster Parade and Easter Bonnet FestivalThis event has already occurredDescriptionEach year on Easter, celebrants don festive finery and show off their very best bonnets along Fifth Avenue. Immortalized by Irving Berlin (with some help from Judy Garland and Fred Astaire), the pageant is a New York City tradition that stretches back to the 1870s. Starting at about 10am and continuing until 4pm, the parade marches north on Fifth Avenue, from 49th Street to 57th Street. The best place to watch is from the area around St. Patrick’s Cathedral; better yet, bring your bonnet and join the parade. For a taste of what you will see, check out our photos from a few years ago.Show MoreAdditional Info tab selectedAdditional InfoFeaturesCostFreeSeasonalSpringEasterTop Spring Events in NYC NowFeb 7, 2026 - Apr 26, 2026Parks & GardensThe BronxThe Orchid Show: Mr. Flower Fantastic’s Concrete JungleThe annual show returns with works from MFF, who blends forestry, sculpture and pop culture.VISIT WEBSITELearn MoreMar 26, 2026 - Sep 20, 2026SportsFlushingNew York Mets BaseballNew York City’s National League baseball franchise features superstar Juan Soto and.plays at Citi Field in Queens.VISIT WEBSITELearn MoreApr 1, 2026 - Apr 30, 2026Attractions & ToursProspect HeightsHanamiCherry blossoms take over the Brooklyn Botanic Garden, helping to usher in spring.VISIT WEBSITELearn MoreMay 16, 2026 - May 17, 2026Events & FestivalsHells KitchenNinth Avenue International Food FestivalOne of NYC’s oldest food festivals extends along Ninth Avenue for one weekend in May.VISIT WEBSITELearn MoreJun 9, 2026Museums & GalleriesUpper East SideMuseum Mile FestivalMuseums along Fifth Avenue offer free admission and extended evening hours for a night in June. Learn MoreThis website uses cookies to enhance the user experience. By continuing to use our website, you accept our Privacy Policy.Privacy PolicyI understand
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

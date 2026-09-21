@@ -1,0 +1,108 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "brooks american idol"
+
+Claims:
+[1] "Brooks Rosser is a contestant on Season 24 of American Idol (2026)."
+[2] "Brooks Rosser is a native of Bel Air, Maryland."
+[3] "Brooks Rosser works in dementia care."
+[4] "Lionel Richie, Carrie Underwood, and Luke Bryan are judges whom Brooks Rosser impressed to reach the Top 20 of American Idol."
+[5] "Brooks Rosser reached the Top 20 of American Idol."
+[6] "Brooks Rosser performed a cover of Robyn's "Dancing On My Own"."
+[7] "Brooks Rosser performed a cover of Sam Barber's "Drowning"."
+[8] "Before American Idol, Brooks Rosser had minimal professional performance experience."
+[9] "Before American Idol, Brooks Rosser worked at a dementia care facility."
+[10] "Brooks Rosser has participated in watch parties for his performances in his hometown of Bel Air, Maryland."
+[11] "As of March 16-17, 2026, the American Idol voting limit is 10 votes per contestant per method/platform."
+
+Cited text snippets from the AI Overview (for additional context):
+- Who Is Brooks Rosser? 'American Idol' Singer's Job, Injury, and More: "Brooks Rosser is one of,that they'd ever heard."
+- Who Is Brooks Rosser? Meet Season 24's Unexpected Talent: "What does Brooks Rosser do,own grandmother's struggle with dementia."
+- “One Of The Most Magical Voices”: Brooks Rosser Leaves ‘American Idol’ Judges Speechless With "Angelic" Robyn Cover: "For Rosser, that number is,ET on March 17."
+- Brooks Rosser joins American Idol watch party in Bel Air: "Prev Next,it to the top 14."
+- Brooks Rosser's Heartfelt Performance of 'Drowning': "53K Likes, 889 Comments. TikTok video from,A performance you won't forget! ❤️ #americanidol”."
+- From caring for dementia patients to chasing his own dream, Brooks ...: "6w · Public-,From caring for dementia patients to chasing his own dream,takes to win the competition?&text=He had a deep voice,(to me he did)."
+- Music Mayhem - Facebook: "1h󰞋󱟠-,Brooks Rosser closed out the night with an emotional, powerhouse,advance to the Top 14:&text=Online: AmericanIdol.com/Vote,-•"
+- VOTING IS OPEN 🙌 3 ways to vote: ⭐️ Go to the Official ... - Instagram: "IS OPEN 🙌-,3 ways to vote:,(50 total) 😭 #americanidol&text=abc American Idol DisNEy+ hulu,/#faa for more information."
+- ‘American Idol’ has revealed its top 24. Here’s who made it — and how to vote: "Vote via the “American Idol” app, which,the App Store or Google Play Store."
+Reference Sources:
+
+[R1] Brooks Rosser joins American Idol watch party in Bel Air
+(https://www.wmar2news.com/news/region/harford-county/brooks-rosser-joins-american-idol-watch-party-in-bel-air)
+"""
+Photo by: Felix Abeson Brooks Rosser joins American Idol watch party in Bel Air BEL AIR, Md. — Bel Air’s homegrown singer Brooks Rosser came back home to watch his journey to become America’s favorite singer. WATCH: Brooks Rosser joins American Idol watch party in Bel Air Brooks Rosser joins American Idol watch party in Bel Air Rosser’s journey on national TV continued Monday with his fight to make it in the top 14.This time, Rosser is getting to watch with family and friends in Bel Air at Das Bierhalle.His loved ones couldn’t hold back their excitement when seeing him perform.His best friends Derek Lloyd and Denis Burris told WMAR-2 News how proud they are to see their friend living his dream.“The amount that I believed in him and then he didn’t believe in himself all the way. It’s been nice to see him finally see what he could be," Lloyd said.“It’s one of the coolest things ever to see one of your best friends doing that, so I’m extremely proud of him, and out of anyone I know, he deserves it, so I’m really proud of him; it’s been really cool," Burris told us.There are three ways you can vote for Brooks to make it to the top 14.Head to American Idol's social media pages on Instagram, TikTok, and Facebook and comment "BROOKS" on the official voting post.You can also head to American Idol's website and text "10" to 21523.The limit is 10 votes per person, per method.Another Maryland native, Rae Boyd, will be performing next Monday.
+"""
+
+[R2] Meet 'American Idol' Contestant Brooks Rosser
+(https://www.tvinsider.com/1251084/who-is-brooks-rosser-american-idol-2026-singer/)
+"""
+Brooks Rosser is one of the Top 20 contestants on Season 24 of American Idol. Despite having minimal performance experience, Brooks immediately impressed judges Lionel Richie, Carrie Underwood, and Luke Bryan with his unique voice that was unlike anyone else’s that they’d ever heard. Throughout the three rounds of competition so far, Brooks has begun sharing his story with viewers and capturing the hearts of American Idol fans. Scroll down to learn more about the rising star. Who is Brooks Rosser? Brooks is a singer from Bel Air, Maryland, who was 22 years old at the time of his American Idol audition in the fall of 2025. Prior to performing in front of the judges at his audition, Brooks had never sung in public before. “I’ve done a couple gigs, but I’ve only just played guitar,” he revealed. What does Brooks Rosser do for a living? Although Brooks is now pursuing his music career, he also works in a dementia care facility, which he described as “extremely fulfilling.” He got into the field after dealing with his own grandmother’s struggle with dementia. “After taking care of my grandma, I realized this was my passion … to be there for people even if they don’t remember me,” Brooks explained. His grandmother’s decline also sparked his love of music. Brooks revealed during his Idol audition that he was very close to his grandmother and started playing guitar and singing with her while she was sick. “It would help her learn her words back and help me get mine out,” he shared. What is Brooks Rosser’s injury? When Brooks was a freshman in high school, he broke his back while playing soccer. Brooks started playing the sport at the age of 6 and had dreams of going pro before the injury derailed his plans. “I went for a free kick and I planted my left foot to kick it and I felt a gear switch in my lower left back,” Brooks explained on American Idol. “I couldn’t feel my legs. I snapped my back in half, and that changed everything.” Brooks was admittedly “lost for a long time” after losing soccer but eventually picked up a guitar and used music to help him through it. Is Brooks Rosser in a relationship? Brooks does not appear to be in a relationship, and joked on Instagram that he’s “in a committed relationship with my instrument.” American Idol, Season 24, Mondays, 8/7c, ABC
+"""
+
+[R3] ‘American Idol’ has revealed its top 24. Here’s who made it — and how to vote
+(https://www.yahoo.com/entertainment/american-idol-revealed-top-24-040444510.html)
+"""
+“American Idol” is now officially down to a top 24.On Monday night, the competition revealed the singers who have avoided elimination (so far) and are moving on to the top 24 round.The group includes Canaan James Hill, a 17-year-old aspiring preacher who left the judges “speechless” during his audition with a gospel music performance that earned him a coveted platinum ticket. The two other platinum ticket singers of the season, Filo and Kolbi Jordan, have also made the cut.The top 24 also includes country singer Baylee Littrell, the son of Backstreet Boy Brian Littrell who is now trying to carve out his own path in the music industry; 15-year-old Mattie Pruitt, who is the youngest singer in the competition; and Thunderstorm Artis and Victor Solomon, a pair of singers who were finalists on “The Voice” in the last few years.Here’s the full list of singers who made the top 24 — and what to expect from the next round of the competition.Who made the ‘American Idol’ 2025 top 24?Below are the top 24 singers remaining in the “American Idol” competition:Amanda BariseBaylee LittrellBreanna NixCanaan James HillChéDesmond RobertsDrew RynFiloGabby SamoneGrayson TorrenceIsaiah MisailegaluJamal RobertsJohn FosterJosh KingKolbi JordanKyana FaneneMattie PruittMKYOlivier BergeronPenny SamarSlater NalleyThunderstorm ArtisVictor SolomonZaylie WindsorWhat happens during the ‘American Idol’ 2025 top 24 round?The top 24 round — which has already been filmed at a Disney resort in Hawaii — takes place over two nights.The episode airing Sunday, April 13, will feature half of the competition performing for a shot in the next round. Contestants in this episode will be mentored by singer Ashanti, according to a TV listing.The next episode, airing Monday, April 14, will feature the other 12 singers. These contestants will be mentored by Josh Groban.Country star Jelly Roll, who is the show’s first “artist in residence,” will also be a part of this round as he continues to help the contestants navigate the competition.How to vote for the ‘American Idol’ top 24The top 24 round marks the first time in the season viewers can cast their votes and weigh in on their favorite singers.The first voting window for the top 24 round begins at the start of the East Coast broadcast of “American Idol” on April 13 and ends at 4 a.m. MDT on April 14, according to idolvote.abc.com. The second window of voting opens at the start of the East Coast broadcast of “American Idol” on April 14 and closes at 4 a.m. MDT on April 15.There are three ways to vote on “American Idol”:Vote online at idolvote.abc.com (fans must create an account to vote).Vote via text. During each “Idol” episode, a contestant will have a specific number that can be texted to “21523.”Viewers can submit up to 10 votes per voting method per contestant, according to idolvote.abc.com.
+"""
+
+[R4] “One Of The Most Magical Voices”: Brooks Rosser Leaves ‘American Idol’ Judges Speechless With "Angelic" Robyn Cover
+(https://musicmayhemmagazine.com/one-of-the-most-magical-voices-brooks-rosser-leaves-american-idol-judges-speechless-with-angelic-robyn-cover/)
+"""
+Before taking the stage on Monday, March 16, as part of American Idol Season 24’s Top 20 performances, Brooks Rosser had already blown away mentors Keke Palmer and Brad Paisley. The hopeful committed to singing “Dancing On My Own” by Robyn, giving Palmer and Paisley a taste of what was to come while receiving some advice in the process. “Unbelievable tone,” Palmer told him during rehearsals, dropping her jaw. “Oh my gosh. That voice.” Though they were floored by Rosser’s natural high falsetto, which sets him apart from many of his peers in the competition, the mentors still had a few pointers before he hit the stage. “There was a really high note in there. It’s imperative that he doesn’t miss that tonight,” Paisley noted. “I do think that could derail him.” Keke Palmer, Brad Paisley, Brooks Rosser; Photo Courtesy of American Idol via ABC When Palmer asked Rosser if he felt like he was missing anything, Rosser explained he felt he needed a bit more “confidence.” “Confidence is about doing what’s true to us. If you need to adjust, adjust, it’s your arrangement,” Palmer told him. “I think with singing, especially in a competition, we get caught up in, ‘Oh, I’ve got to hit the big note. I’ve got to do the thing.’ You just have to do what you do well. And what you have is a winning voice, your character, your tone. As long as you’re hitting each moment with confidence, man, you’ve got it in the bag.” In the bag indeed. Rosser’s performance closed out the night, which saw 10 artists take the stage for a chance to advance into the Top 14. Next week, another 10 acts will perform. For Rosser, it appears he has a real shot. He impressed the judges, families, industry experts, and tastemakers with an emotional yet effortless performance that showcased the full power and vulnerability of his voice. Sharing his reason for choosing “Dancing On My Own” before taking the stage, Rosser said, “I’ve always had trouble fitting in. I grew up keeping everything in, and I never told anyone anything. I was never vulnerable. So this whole song is just me looking back at my younger self and growing into the man I am now.” He added, “Being here, I feel like I was invited into something. I’m not alone anymore. I’ve made so many good friends here, and it’s really just beautiful.” It seems he made the right choice. “Brooks, you really do have one of the most magical voices I’ve ever heard,” Palmer said after the performance. “I mean, it’s cinematic. Its soundtrack. I’m in the movie where everything ended. I’m at the lake, and I don’t know what happened to my life type of voice. It’s really insane.” She continued, “I know this is probably all so much for you. When we were doing the mentoring and everything, you were like, ‘When I do the big notes, I get nervous.’ But you must stay in this competition. This is my call out to America, you must. I’ve got to see you grow, and I’ve got to be a part of watching you become the kind of artist that I know you will be.” Lionel Richie added, “I am so glad we know you. Now, if I could just get you to scare us all to death the next time you perform, if you took it out of the mic stand and just did that, we’d all faint. Great job. That was fantastic.” Brooks Rosser; Photo Courtesy of American Idol via ABC Carrie Underwood also praised the singer’s growth. “I need all of you to understand that he’s never done this before,” she said. “He’s played guitar in front of people, but he has not sung in front of people. I am so excited for you. We are at day one of your journey, and it’s going to be incredible. You are going to grow before us, and I can’t even fathom what you could accomplish. I’m just glad I’m here for it.” Luke Bryan echoed the sentiment. “Voices like yours don’t come along much because the uniqueness of it is so instantaneous,” Bryan said. “As you get going with this thing, stay humble, but have the confidence to stand up there and trust that people are going to react to your voice in ways you could have never imagined. Every time you start singing, I see the movie of your life playing. I see beautiful songs, and I see you captivating people because your voice is so unique.” Rosser first met fans during his American Idol audition with a performance of “Your Place at My Place” by Joshua Slone and Bob Dylan’s “Knockin’ on Heaven’s Door,” which earned praise from all of the judges, including Bryan, who said, “I just want to hear more.” Since then, Rosser has continued to showcase his talents with performances of Noah Kahan’s “Everywhere, Everything” and “Drowning” by Sam Barber. Brooks Rosser; Photo Courtesy of American Idol via ABC Over the next week, the remaining Idol hopefuls will perform for America’s votes from Disney’s Aulani Resort & Spa in Hawaii, vying for a chance to advance to the Top 14 while guided by superstar mentors Brad Paisley and Keke Palmer. Voting has changed this season, and fans have three ways to support their favorite contestants: online at AmericanIdol.com/Vote, on social media (@AmericanIdol) by commenting the contestant’s first name on the pinned post, or by texting the contestant’s number to 21523. For Rosser, that number is 10. Fans can cast up to 10 votes per contestant per method and platform. Voting opens when the contestant appears on TV and closes at 6 a.m. ET on March 17.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

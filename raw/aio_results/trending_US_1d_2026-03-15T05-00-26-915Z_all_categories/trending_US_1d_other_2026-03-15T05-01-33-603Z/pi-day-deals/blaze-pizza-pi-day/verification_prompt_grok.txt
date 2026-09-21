@@ -1,0 +1,103 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "blaze pizza pi day"
+
+Claims:
+[1] "Pi Day 2026 is March 14."
+[2] "Blaze Pizza is offering a Buy One, Get One (BOGO) deal on 11-inch pizzas at participating locations for Pi Day 2026."
+[3] "Customers can purchase one 11-inch pizza and get a second 11-inch pizza for $3.14."
+[4] "Blaze Pizza's promotion runs from March 14 to April 6, 2026."
+[5] "Blaze Pizza's promotion is primarily in-restaurant."
+[6] "Blaze Pizza's promotion allows for custom pizzas."
+[7] "Blaze Pizza's promotion is available at participating locations."
+[8] "Blaze Pizza's offer is valid on 11-inch pizzas."
+[9] "Blaze Pizza's promotion has potential upcharges for specialty crusts."
+[10] "Some locations may require the Blaze Pizza app for the promotion."
+
+Cited text snippets from the AI Overview (for additional context):
+- Pi Day 2026 includes deals, freebies at Blaze Pizza, Burger King, more: "Pizza Hut BOGO: Buy one,March 14 to April 6"
+- Get Pi Day food deals from 7-Eleven, Burger King, Blaze and more: "Participating locations of Blaze Pizza,second pizza priced at $3.14."
+- Blaze Pizza Celebrates Pi Day 2026 with Fan-Favorite $3.14 Buy One ...: "On March 14, guests can,annual tradition for its guests."
+- Happy Pi Day π Purchase one 11" pizza at regular price and receive ...: "Blaze Pizza: Buy one 11,get one for $3.14 pizza."
+- Happy Pi Day! 🥧🍕 Blaze Pizza is celebrating Pi Day with a Buy One 11: "If you love pizza go,pizza share your pictures!!"
+Reference Sources:
+
+[R1] Pi Day 2026 includes deals, freebies at Blaze Pizza, Burger King, more
+(https://www.usatoday.com/story/money/food/2026/03/13/pi-day-2026-deals-freebies/89098758007/)
+"""
+March 13, 2026, 2:00 p.m. ETWhat better way to celebrate one of mathematics' most well-known symbols than with an actual slice of pie?On Pi Day, Saturday, March 14 (3.14, get it?), restaurants across the country are getting ready to celebrate it with deals and promotions that make saving some money as easy as, well, pie.Pi is an irrational number, meaning it goes on forever and has been calculated to over a trillion digits, according to NASA. Some might know it as 3.14 (hence the date of National Pi Day), or its symbol, π. It's used in equations and math problems to find the measurements involving circles, spheres, and cylinders.Fortunately, some of the best foods, pizza pies, apple pies, chicken pot pies, cherry pies, and more, come in pie form! So, restaurants can get pretty punny with their deals.Here are some deals to look forward to on Pi Day.Pi Day 2026 deals: Adding up the deals at 7-ElevenFrom Friday, March 13, to Saturday, March 14, customers can visit participating 7-Eleven, Speedway, and Stripes locations for a variety of deals.Pi Day deals include the following, according to a 7-Eleven news release:$3.14 for a whole pizza- 7Rewards and Speedy Rewards members can purchase a one-topping pizza for $3.14 through the 7NOW Delivery app and Speedy Café locations. Options also include pizzas with customizable toppings and a three-cheese blend.$3.14 for a quesadilla- Participating locations will also sell quesadillas with melted cheese and fillings for the same price.31.4-cent Cinnamon Sugar Fried Pies- What's Pi Day without some pie? For less than a dollar, customers can purchase Cinnamon Sugar Fried Pies in apple or cherry.Finally, from March 4 to April 28, customers can also purchase 7-Select Snack Pies for $1.Pi Day 2026 deals: Buy a pie for Punch the MonkeyPerkins Restaurant and Bakery will donate a portion of the proceeds from every banana cream pie sold on March 14 to Punch the Monkey, the monkey who was rejected by his mother, according to a news release. The young monkey went viral after people began posting photos of him walking around his enclosure at the Ichikawa City Zoo in Ichikawa, Japan, carrying an orange orangutan plush."Punch's story resonated with people because it shows how powerful comfort and connection can be," Matt Carpenter, Brand President of Perkins Restaurant & Bakery, said in a statement. "At Perkins, pie has always been a comfort food. Pi Day gives us the chance to share that comfort with guests while also supporting a meaningful cause."The donations will support animal care efforts inspired by Punch.Customers can also purchase a meal that includes an Angus cheeseburger, fries, and a slice of pie for $10.99, according to the news release.Pi Day 2026 deals: DoorDash offeringsDoorDash customers can take advantage of the following promotions on Pi Day when they order through the food delivery app:Pizza Hut BOGO: Buy one medium or large ‘Create Your Own’ pizza, get one free at participating locationsSbarro: Receive $4 off eligible orders that are $20 or more from all participating Sbarro locations. DashPass members can receive $5 off eligible orders that are $25 or moreBlaze Pizza BOGO: Buy one 11-inch ‘Simple Pie’ cheese pizza, and get another for free when ordering from participating locations from March 14 to April 6Pi Day 2026 deals: Free pie at Burger KingGet a free pie at Burger King when you spend at least $3.14 on Pi Day. Customers can choose to receive a Hershey's Sundae Pie or a Cinnamon Apple Pie.Pi Day 2026 deals: Crumbl offers a surprise pie flavorThe popular cookie company Crumbl is offering a sweet deal on Pi Day, giving customers at all its locations a chance to get a bonus pie flavor, according to a new release on Crumbl's website. The flavor is a surprise and varies by location, so customers will need to check the Secret Menu section on the app.Other π Day dealsHere are some other deals filled with the Pi Day spirit:Mountain Mike's- Mountain Rewards Members can purchase any medium pizza and add a second one-topping medium pizza for $3.14 on March 14.Taco Cabana- On March 14, purchase three pies for $3.14 on International Pi Day. Customers can purchase different pies with the deal.Round Table Pizza- Royal Rewards Members can purchase a one-topping personal pizza for $3.14 at participating locations on International Pi Day (March 14).Blaze Pizza- On Saturday, March 14, buy one 11-Inch pizza, get a second one for $3.14. This deal is available in-store and separate from the Blaze Pizza deal listed above.Newk's Eatery- From Friday, March 13, to Saturday, March 14, guests can purchase a classic pie for $3.14 when they purchase an entreeJulia Gomez is a Trending reporter for USA TODAY and covers popular toys, scientific studies, natural disasters, holidays, and trending news. Connect with her on LinkedIn, X, Instagram, and TikTok: @juliamariegz, or email her at jgomez@gannett.com.
+"""
+
+[R2] Blaze Pizza Celebrates Pi Day 2026 with Fan-Favorite $3.14 Buy One, Get One Deal
+(https://finance.yahoo.com/news/blaze-pizza-celebrates-pi-day-130100570.html)
+"""
+This is a paid press release. Contact the press release distributor directly with any inquiries. Blaze Pizza Guests Can Enjoy a Buy One 11-Inch Pizza, Get a Second 11-Inch Pizza of Equal or Lesser Value for $3.14 Deal on March 14 BLAZE PIZZA CELEBRATES PI DAY 2026 WITH FAN-FAVORITE $3.14 BUY ONE, GET ONE DEAL Guests Can Enjoy a Buy One 11-Inch Pizza, Get a Second 11-Inch Pizza of Equal or Lesser Value for $3.14 Deal on March 14 · GlobeNewswire Inc. ATLANTA, March 06, 2026 (GLOBE NEWSWIRE) -- March 5, 2026 – Blaze Pizza, the nation’s leading fast-casual, artisanal pizza brand, is once again honoring its most iconic holiday, Pi Day, with a craveable deal that rewards pizza lovers with serious value. On March 14, guests can purchase one 11-inch pizza and get a second 11-inch pizza of equal or lesser value for just $3.14 at participating Blaze Pizza locations across North America. Blaze Pizza has proudly celebrated Pi Day since 2014, turning the math-inspired holiday into a beloved annual tradition for its guests. Now in its 13th year of Pi Day festivities, the brand continues to bring friends and families together over custom-built pizzas at an unbeatable price. The celebration continues after Pi Day because guests who visit on March 14 will receive a digital code for a Buy One, Get One Free 11-inch pizza. This exclusive app reward is eligible for pickup and delivery orders placed directly through the Blaze Pizza app. “Pi Day is more than a promotion for us, it’s a celebration our fans look forward to every year,” said Casey Terrell, Chief Marketing Officer at Blaze Pizza. “It’s our way of saying thank you to the guests who have made Blaze part of their traditions. Whether you're a longtime fan or visiting for the first time, this $3.14 deal is the perfect excuse to grab a friend and enjoy your favorite custom-built pizzas together.” At Blaze, guests can customize their pizza with more than 45 premium ingredients, including roasted garlic, artichokes, hand-torn basil, classic pepperoni, Italian sausage, and plant-based chorizo, all for one price. Each pizza is fast-fire’d and made-to-order, delivering the quality, flavor, and personalization that have defined the Blaze experience since day one.For more information about Blaze Pizza’s Pi Day celebration, guests can visit blazepizza.com or download the Blaze Pizza mobile app. *Valid in-restaurant only on March 14, 2026 at participating Blaze Pizza locations. ABOUT BLAZE PIZZAFounded in 2011, Blaze Pizza is the nation’s leading fast-casual pizza franchise concept with more than 250 restaurants across 30-plus states and three countries. Headquartered in Atlanta, GA, Blaze Pizza is committed to delivering a one-of-a-kind “fast-fire’d” guest experience and superior-quality products. Known for its savory artisanal pizzas and customizable made-to-order menu, Blaze leads the industry in menu innovation and customer satisfaction, and has received numerous accolades including Entrepreneur’s Franchise 500, and Fast Casual’s Top 100 Movers and Shakers. Visit www.blazepizza.com for additional information and follow Blaze Pizza on Instagram, Facebook, and LinkedIn @BlazePizza.Media ContactJoshua LevittPR for Blaze Pizza949.981.0757
+"""
+
+[R3] Blaze Pizza: Pi Day 2024
+(https://www.fire.blazepizza.com/2024-pi-day/)
+"""
+How it WorksEverything you need to know about how Pi Day will go---------------------------------How do I get my $3.14 Pizza?All you need to do is show up in-restaurant on Thursday, 3/14/24! You do not need any reward or promotion to redeem.We strongly recommend you join Blaze Rewards to receive access to all of our exclusive offers and promotions after Pi Day, however joining Blaze Rewards is not a requirement to receive your $3.14 Pizza on Pi Day. Simply head to a Blaze Pizza location near you and order any 11-inch Pizza to receive it for $3.14 at the counter! How many Pizzas can I get with the $3.14 Pi Day offer?One 11-inch Pizza per person. Any additional Pizzas ordered will be regular price. The Pi Day offer is valid for original dough only. Upcharge for specialty crusts still apply.Can I order online or through the app?While our standard online ordering will be available on March 14, to receive the Pi Day offer you must order your Pizza with us in-restaurant.Are house-made gluten-free dough, Keto and Cauliflower crust included?The Pi Day offer is valid on original dough for 11-inch Pizzas only. There will still be an upcharge for all crust upgrades.Is High-Rise dough free?There will still be an upcharge for all crust upgrades.Can I get a Large Pizza with my Pi Day offer?The Pi Day Offer is only valid on one 11-inch Pizza per person.When can I use the Pi Day offer?The Pi Day offer will be available in participating restaurants on Thursday, March 14th only.Which Blaze Pizza locations are participating in the $3.14 Pi Day offer?See below for a list of non-participating U.S. locations.I showed up at 7PM and the restaurant was closed.Please keep in mind hours vary by location. Please check your local Blaze Pizza location for hours.
+"""
+
+[R4] Get Pi Day food deals from 7-Eleven, Burger King, Blaze and more
+(https://www.northjersey.com/story/food/2026/03/14/pi-day-2026-deals-burger-king-7-eleven/89118278007/)
+"""
+March 14, 2026, 4:26 a.m. ETRestaurants and convenience stores across the United States are celebrating Pi Day on March 14 with limited-time deals centered on the mathematical constant commonly rounded to 3.14.The annual observance plays on the similarity between the word “pi” and “pie,” prompting restaurants to offer discounted pizzas, desserts and other treats priced at $3.14.Several national chains are offering promotions tied to the date.7-Eleven Pi Day dealAt 7-Eleven, rewards members can purchase any whole pizza for $3.14. The promotion begins March 13 and runs through March 14.Blaze Pizza Pi Day dealParticipating locations of Blaze Pizza are offering customers a buy-one, get-one deal on 11-inch pizzas, with the second pizza priced at $3.14.Voodoo Doughnut Pi Day dealMembers of the fan club at Voodoo Doughnut can get two Banana Cream Pie doughnuts for $3.14 as part of the promotion.BJ’s Restaurants and Brewhouse Pi Day dealAt BJ’s Restaurants and Brewhouse, customers can receive a full-size classic Pizookie, the chain’s signature cookie dessert baked in a pizza-style pan for $3.14 when they purchase a large or shareable pizza. The deal is available for dine-in and takeout on March 14.Burger King Pi Day dealBurger King is also marking the day with a dessert promotion. Customers who spend $3.14 or more on March 14 can receive a free Hershey’s Pie or Cinnamon Apple Pie.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

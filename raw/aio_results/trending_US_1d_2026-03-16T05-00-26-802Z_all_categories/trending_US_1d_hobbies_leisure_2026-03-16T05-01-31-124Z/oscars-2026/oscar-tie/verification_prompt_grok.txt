@@ -1,0 +1,82 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "oscar tie"
+
+Claims:
+[1] "The 2026 Oscars are the 98th Academy Awards."
+[2] "The 2026 Oscars occurred on March 15, 2026."
+[3] "A tie occurred at the 2026 Oscars."
+[4] "The tie at the 2026 Oscars marks the seventh time in Academy history that a category ended with two winners"
+
+Cited text snippets from the AI Overview (for additional context):
+- Live-Action Short Oscar A Tie Between The Singers, Two People ...: "There was a rare tie,three decades ago, in 1995."
+- Full List of Oscar Ties as The Singers and Two People Exchanging ...: "How Does An Oscars Tie,been updated with additional information."
+Reference Sources:
+
+[R1] It’s A Tie! ‘The Singers’ & ‘Two People Exchanging Saliva’ Share Oscar For Live-Action Short Film
+(https://deadline.com/2026/03/live-action-short-oscar-tie-the-singers-two-people-exchanging-saliva-1236755038/)
+"""
+There was a rare tie at the Oscars on Sunday night, with The Singers (Netflix) and Two People Exchanging Saliva (Canal+/The New Yorker) both taking home the award for Best Live-Action Short Film. Including this year’s, there have only been seven ties in Oscars history, the most recent being in 2013, when Skyfall and Zero Dark Thirty were both honored with Best Sound Editing. It has happened once before, though, in Live-Action Short, with the films Trevor and Franz Kafka’s It’s a Wonderful Life sharing the award a little over three decades ago, in 1995. Accepting on behalf of The Singers, director Sam A. Davis said, “Wow. I didn’t know that was a thing, a tie. But I’m happy to be up here.” Watch on Deadline Visit Advertiser websiteGO TO PAGE Davis went on to thank his parents, “who convinced a kid from Potterville, Michigan that this was a viable career avenue.” He continued, “To our entire crew, but especially to these guys standing behind me, David Breschel and Jack Piatt, my producers, who willed this thing into existence. To our incredible cast of first-timers, people who had never acted before and never really imagined themselves on the big screen. Mike Yung is here, New York City subway busker. You may have seen him. Thank you to Netflix, to my girlfriend Paris, to the La Habra Moose Lodge, and of course to the Academy. Crazy sentence, I know.” In closing, the filmmaker said “The Singers is a simple story about the power of music and art to bring us together in a moment when we live in an increasingly isolated world. May we keep looking for beauty in unexpected places, and may we all be brave enough to keep on singing.” Between speeches, presenter Kumail Nanjiani joked, “Ironic that the short film Oscar is going to take twice as long.” Filmmakers Alexandre Singh and Natalie Musteata then took to the stage to accept the other award on behalf of Two People Exchanging Saliva. “Thank you…We are so happy to be sharing this Oscar with The Singers,” Musteata said. “We love all of our fellow nominees and we’re so, so grateful to everyone who has supported our film and who made this film.” She later said, “Thank you to the Academy for supporting a film that is weird and that is queer and that is made by a majority of women.” Singh had his mic cut off, but was ultimately able to deliver most of his remarks. He thanked the Academy for “rewarding a French film made by a Franco-Indian Brit, a Romanian-American, an Argentinian, an Italian.” Singh later alluded to “a world that is dark and absurd and ridiculous and horrifying,” saying, “that is why we make films, isn’t it? Because we believe that art can change people’s souls. Maybe it takes 10 years’ time, but we can change society through art, through creativity, through theater and ballet. And also cinema.” The Singers centers on an impromptu sing-off in a bar, whereas Two People Exchanging Saliva explores a society where kissing is punishable by death, and people pay for things by receiving slaps to the face. Against this backdrop, the unhappy Angine shops compulsively in a department store and develops a fascination with a playful salesgirl. Other nominees tonight in the Live-Action short category included Meyer Levinson-Blount and Oron Caspi with Butcher’s Stain (Tel Aviv University Steve Tisch School of Film and Television), Lee Knight and James Dean with A Friend of Dorothy, and Julia Aks and Steve Pinder with Jane Austen’s Period Drama. Of the winners in the category tonight, only The Singers‘ Davis had been nominated before, for his producing of 2023’s Nai Nai & Wài Pó.
+"""
+
+[R2] Full list of Oscar ties as The Singers and Two People Exchanging Saliva win
+(https://www.newsweek.com/entertainment/full-list-oscar-ties-singers-two-people-exchanging-saliva-win-11681137)
+"""
+The Academy Awards handed the Oscar for Best Live-Action Short Film to two nominees on Sunday, marking only the seventh time the award has been shared in the academy's history. "The Singers" and "Two People Exchanging Saliva" took the award in a stunning move that host Conan O'Brien said "ruined 22 million Oscar betting pools." A tie has happened only six other times, with the first happening in 1932 and the most recent tie occurring in 1995. The categories and films that saw a tie are as follows: Best Actor in 1932 – Fredric March for Dr. Jekyll and Mr. Hyde and Wallace Beery for The ChampBest Documentary Short Subject in 1950 – A Chance to Live and So Much for So LittleBest Actress in 1969 – Katharine Hepburn for The Lion in Winter and Barbra Streisand for Funny GirlBest Documentary (Feature) in 1986 - Artie Shaw: Time is All You've Got and Down and Out in AmericaBest Live Action Short Film in 1995 – Trevor and Franz Kafka’s It’s a Wonderful LifeBest Sound Editing in 2013 – Skyfall and Zero Dark ThirtyWhen asked about the tie, The Singers producer Jack Piatt said it was "incredible." “We’ve got to know all the other filmmakers in our category, so that was really special," Piatt said, according to IndieWire. "I wish there could be a five-way tie, to be honest with you.”How Does An Oscars Tie Happen?The Academy Awards are handed out based on votes, meaning a tie can be declared if two nominees receive the same votes - making it just highly unlikely that a tie can happen. In the case of March and Beery, the Academy noted on its website that the actors did not have a "true" tie, as March had one more vote than Beery, but rules at the time stated that if nominees were within three votes of the winner, they would also receive the award. The rules have been changed since that first tie, requiring an exact match in votes to qualify as a tie. As such, even though there have been seven overall ties at the Oscars now, only six count as true ties. Update 3/15/26, 10:11 p.m. ET: This article has been updated with additional information. Pakistani-US comedian Kumail Nanjiani the Oscar for Best Live Action Short Film onstage during the 98th Annual Academy Awards at the Dolby Theatre in ...
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

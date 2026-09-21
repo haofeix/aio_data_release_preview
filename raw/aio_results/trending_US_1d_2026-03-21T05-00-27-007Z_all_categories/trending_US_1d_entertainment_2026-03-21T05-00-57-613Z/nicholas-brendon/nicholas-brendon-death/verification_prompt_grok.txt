@@ -1,0 +1,110 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "nicholas brendon death"
+
+Claims:
+[1] "Nicholas Brendon is best known as Xander Harris on Buffy the Vampire Slayer."
+[2] "Nicholas Brendon died in his sleep."
+[3] "Nicholas Brendon died at age 54."
+[4] "Nicholas Brendon died on March 20, 2026."
+[5] "Nicholas Brendon died due to natural causes."
+[6] "Nicholas Brendon's family shared that he passed away in San Francisco following recent health struggles."
+[7] "Nicholas Brendon had a heart attack in 2023."
+[8] "Nicholas Brendon had spinal surgery for cauda equina syndrome in 2021."
+[9] "Nicholas Brendon had spinal surgery for cauda equina syndrome in April 2025."
+[10] "Nicholas Brendon's family stated he died in his sleep from natural causes."
+[11] "Nicholas Brendon had a role in all seven seasons of Buffy the Vampire Slayer."
+[12] "Buffy the Vampire Slayer ran from 1997 to 2003."
+[13] "Nicholas Brendon had roles in Criminal Minds."
+[14] "Nicholas Brendon did work as an artist."
+[15] "Nicholas Brendon was an advocate for the Stuttering Foundation of America."
+[16] "Nicholas Brendon's family described him as a "passionate, sensitive, and endlessly driven to create" individual according to Instagram posts."
+[17] "Nicholas Brendon's representation stated that he was feeling optimistic about the future prior to his passing"
+
+Cited text snippets from the AI Overview (for additional context):
+- Nicholas Brendon, Beloved Sidekick on ‘Buffy the Vampire Slayer,’ Dies at 54: "He married the actor Moonda,spinal surgery in April 2025."
+- 'Buffy the Vampire Slayer' star Nicholas Brendon dies at 54: "He passed in his sleep,and endlessly driven to create.”"
+- Nicholas Brendon, who played Xander Harris in Buffy the Vampire ...: ""Most people know Nicky for,the vampire slayer's devoted companion.&text=He also appeared in films,the Vampire Slayer in 2000."
+- Nicholas Brendon, best known for his role as Xander Harris in all seven ...: "abcnews_au-,Nicholas Brendon, best known for his role as Xander Harris,sleep of "natural causes"."
+- Nicholas Brendon, 'Buffy the Vampire Slayer' star, dies at 54 - ABC7: "LOS ANGELES (KABC) -- Nicholas,his sleep of natural causes."
+Reference Sources:
+
+[R1] Nicholas Brendon, Beloved Sidekick on ‘Buffy the Vampire Slayer,’ Dies at 54
+(https://www.nytimes.com/2026/03/20/arts/television/nicholas-brendon-dead.html)
+"""
+AdvertisementSKIP ADVERTISEMENTHe played the part of Xander Harris, one of Buffy’s closest friends, on the hit television show about a teenage girl who protects the world from monsters.Listen · 5:43 min Nicholas Brendon, who played the lovable sidekick on the hit show “Buffy the Vampire Slayer,” has died.Credit...Barry Brecheisen/WireImagePublished March 20, 2026Updated March 25, 2026Nicholas Brendon, an actor who played the lovable, clownish sidekick on the hit television show “Buffy the Vampire Slayer,” died on Friday at his home in Indiana. He was 54.His family confirmed the death in a brief statement on Mr. Brendon’s Instagram page without specifying the cause, saying only that he had died in his sleep. His publicist, Rebecca Taylor, confirmed the place of death but did not say where in Indiana Mr. Brendon lived.Mr. Brendon said in 2023 that he had suffered a heart attack. He also had several surgeries for a syndrome related to nerve compression at the end of the spinal cord.“Buffy the Vampire Slayer” revolved around a teenage protagonist who was called upon to protect the world from monsters as she and her friends navigated high school life. It aired from 1997 to 2003, first on the WB network for five seasons before moving to UPN for its final two.Mr. Brendon played Xander Harris, a close friend and unrequited admirer of Buffy, played by Sarah Michelle Gellar. A New York Times review of the show’s premiere described Xander as a would-be Don Juan who had a “tragic hairstyle” — shaggy bangs falling over his eyes — and emanated a premature sense of his own attractiveness to girls.Mr. Brendon would go on to play Xander in an animated series and video game spinoffs.ImageNicholas Brendon with other cast members from “Buffy The Vampire Slayer.”Credit...Getty ImagesSubscribe to The Times to read as many articles as you like.Hannah Ziegler is a general assignment reporter for The Times, covering topics such as crime, business, weather, pop culture and online trends.AdvertisementSKIP ADVERTISEMENT
+"""
+
+[R2] Buffy The Vampire Slayer star Nicholas Brendon dies at 54
+(https://www.abc.net.au/news/2026-03-21/nicholas-brendon-xander-harris-in-buffy-dies-aged-54/106481916)
+"""
+Nicholas Brendon, who played Xander Harris in Buffy the Vampire Slayer, dies aged 54Saturday 21 MarchSat 21 Mar 2026 at 1:42amNicholas Brendon was best known for his role in all seven seasons of Buffy the Vampire Slayer. (Supplied: 20th Century Fox)Nicholas Brendon, best known for his role as Xander Harris in all seven seasons of Buffy the Vampire Slayer, has died aged 54.In a post to his Instagram page, his family posted in a slide post saying: "We are heartbroken to share the passing of our brother and son, Nicholas Brendon."It said he died in his sleep of "natural causes".A family post said Nicholas Brendon died in his sleep of "natural causes". (Supplied: Instagram)Brendon drew international attention over the years amid multiple controversies, including a drug addiction and several public arrests."Most people know Nicky for his work as an actor for the characters he brought to life over the years," the post read."In recent years, Nicky has found his passion for painting and art."Nicky loved to share his enthusiastic talent with his family, friends and fans."He was passionate, sensitive, and endlessly driven to create. Those who truly knew him understood that his art was one of the purest reflections of who he was."In a separate statement to The Hollywood Reporter, it said, "While it's no secret that Nicholas faced challenges in the past, he was on medication and receiving treatment to manage his condition, and he remained optimistic about the future at the time of his passing."Brendon, born in Los Angeles in 1971, said acting helped him cope with a stutter, and he later served as a spokesperson for the Stuttering Foundation of America.He was a regular on Buffy the Vampire Slayer, which aired from 1997 to 2003, portraying the vampire slayer's devoted companion.Nicholas Brendon was best known for his role in all seven seasons of Buffy the Vampire Slayer. (Supplied: Instagram/Disney)He also appeared in films such as Demon Island and Psycho Beach Party, as well as television series including Criminal Minds, Private Practice, and Kitchen Confidential.Brendon's death follows that of Michelle Trachtenberg, who portrayed Dawn Summers in Buffy the Vampire Slayer in 2000.
+"""
+
+[R3] Nicholas Brendon, 'Buffy the Vampire Slayer' star, dies at 54
+(https://abc7.com/post/nicholas-brendon-buffy-vampire-slayer-star-dies-54/18743480/)
+"""
+ARTS & ENTERTAINMENTSaturday, March 21, 2026 2:19AMNicholas Brendon, the actor known for his role on the TV series "Buffy the Vampire Slayer," has died. He was 54.LOS ANGELES (KABC) -- Nicholas Brendon, the actor known for his role on the TV series "Buffy the Vampire Slayer," has died. He was 54.Brendon's death was announced Friday by his family in a statement shared with The Hollywood Reporter. The statement said the actor died in his sleep of natural causes."Most people know Nicky for his work as an actor and for the characters he brought to life over the years," a statement posted on Brendon's Instagram page said. "In recent years Nicky has found his passion in painting and art. Nicky loved to share his enthusiastic talent with his family, friends and fans."He was passionate, sensitive, and endlessly driven to create. Those who truly knew him understood that his art was one of the purest reflections of who he was."In 2023, Brendon revealed he had been diagnosed with a congenital heart defect and had suffered a heart attack.Brendon rose to fame playing Xander Harris on all seven seasons of the hit series "Buffy The Vampire Slayer," opposite Sarah Michelle Gellar and Alyson Hannigan. He also had a recurring role on the crime drama "Criminal Minds."Outside of TV, he appeared in several films, including the 2000 comedy "Psycho Beach Party," which also starred Lauren Ambrose and Amy Adams, and the 2002 horror film "Demon Island."Brendon is the second member of the "Buffy The Vampire Slayer" cast to die in recent years. Michelle Trachtenberg, who played Buffy's sister, Dawn Summers, passed away in 2025.ABC News contributed to this report.Copyright © 2026 KABC Television, LLC. All rights reserved.
+"""
+
+[R4] ‘Buffy the Vampire Slayer’ star Nicholas Brendon dies at 54
+(https://www.uppermichiganssource.com/2026/03/21/buffy-vampire-slayer-star-nicholas-brendon-dies-54/)
+"""
+Skip to content(Gray News) - Nicholas Brendon, best known for his role on “Buffy the Vampire Slayer,” died Friday, loved ones said.He was 54.In a statement posted on Brendon’s official Facebook page, his family said the actor died in his sleep.“We are heartbroken to share the passing of our brother and son, Nicholas Brendon. He passed in his sleep of natural causes,” the statement read. “Nicky loved to share his enthusiastic talent with his family, friends and fans. He was passionate, sensitive, and endlessly driven to create.”Brendon was nominated for several awards during his time on the popular TV series that ran from 1997 to 2003.Following the end of the show, Variety reports that Brendon had publicly struggled with addiction and mental illness. He announced at a 2004 fan convention that he was entering rehab for alcoholism.The Los Angeles native also continued his acting career, appearing in multiple episodes of “Criminal Minds” and in movies such as “Demon Island” and “Unholy.”“Those who truly knew him understood that his art was one of the purest reflections of who he was,” his loved ones said. “Thank you to everyone who has shown love and support.”Copyright 2026 Gray Local Media, Inc. All rights reserved.‘Married at First Sight’ star Mel Schilling dies at 54, reports sayDiscoverFIRST ALERT: From rain to snow & coldDiscoverHealth Watch DailyTop U.S. Memory Loss Experts: Avoid This Drink Like It’s Poison. Do You Drink It?Read MoreSkipCommunity and creativity shine on Upper Michigan Today with “S.I.T. and B. STILL” and new novel “This Fell Sergeant”DiscoverUnusual town name costs county dozens of road signs due to souvenir thievesDiscover U.S. Neurologists Call This Drink "Bottled Cognitive Decline" — Do You Drink It ?Memory News | SponsoredSponsoredUndoBrain Doctors Connect Cognitive Decline to This Daily Food - Is It on Your Plate?Memory News | SponsoredSponsoredUndoDeclining Memory Has Been Linked to a Common Drink. Do You Drink ItHealthFrontLine | SponsoredSponsoredLearn MoreUndo9 in 10 Declining Memory Cases Linked To A Common Habit. Do You Do It?Global Update Journal | SponsoredSponsoredUndoThis Foundation is a "Face-Lift" in a BottleLuxeResearch.com | SponsoredSponsoredLearn MoreUndoCostco Shoppers Say This $35 Find Is the "Facelift" in a BottleOlavita | SponsoredSponsoredUndoMemory Loss Begins When You Can't Say This WordHealthFrontLine | SponsoredSponsoredUndoBrain Fog Has Been Linked to This Common Daily Food. Did You Eat It?Memory Loss | SponsoredSponsoredRead MoreUndoDon't Moisturize Crepe Skin! Tighten It With This Household Item InsteadSkin Tightening | SponsoredSponsoredUndoPlastic Surgeons Reveal: Forget Collagen, Use This Household Item InsteadShe stopped using her moisturizer and tried this instead — the results surprised everyoneAnti-Aging Center | SponsoredSponsoredRead MoreUndoIf You're Collecting Under $3950 In SS a Month: You're Eligible for These 10 DiscountsSilverPenny | SponsoredSponsoredUndoHow To Drain Lymph Fluid In Ankles & Legs?Hartford Review Journal | SponsoredSponsoredUndoSide Sleepers Get Achy Shoulders, Few Know This "Side Sleeper" TrickSleep Digest Publication | SponsoredSponsoredUndoHere’s The Average Price of a 6-Hour Gutter UpgradeHomeBuddy | SponsoredSponsoredLearn MoreUndoCPAP Recall Has Thousands of Sleep Apnea Sufferers Rethinking Their RoutineSleep Digest Publication | SponsoredSponsoredUndoCostco Shoppers Say This Antiwrinkle Item Is "Actually Worth It"Olavita | SponsoredSponsoredUndoHere's What A New Gutter System Should Cost You In AshburnHomeBuddy | SponsoredSponsoredUndo‘Home Improvement’ star Zachery Ty Bryan receives jail sentence for 2024 DUI arrestTV6 NewsUndoCorey Parker, ‘Will & Grace’ and ‘Friday the 13th’ actor, dies at 60, reports sayTV6 NewsUndoTop Dermatologist Begs Patients to Throw Away This Household ItemIf you have ever wondered why you look and feel your absolute worst in the mornings, then you need to read this story about how I discovered an amazing product called Blissy. Here's why:Blissy | SponsoredSponsoredLearn MoreUndoPuffy, Aged Eyes? This New Approach Is Gaining AttentionEye Revive Serum | SponsoredSponsoredUndoShe Mixed Gelatin With This - Now She Can't Stop Losing WeightFluxBurn | SponsoredSponsoredLearn MoreUndoCostco Shoppers Say This Fat-Burning Patch Triggers Weight Loss "Unlike Any Other"consumersfind | SponsoredSponsoredUndoHoney: The Greatest Enemy of Memory Loss (See How to Use It)Insight Journal Daily | SponsoredSponsoredUndoTimeshare Exit CompanyConsumer Rights Attorney On Staff. We Set The Bar Higher For Timeshare Relief.TimeshareTerminators | SponsoredSponsoredLearn MoreUndo$25 Patch Is Going Viral After Shocking Weight Loss PhotosBetterLiving | SponsoredSponsoredUndoSay Goodbye to Cakey Foundations — See the Real Difference with This OneLuxeResearch.com | SponsoredSponsoredUndo Kendra Duggar charged with husband Joseph Duggar as police announce new charges in caseTV6 NewsUndo Men Can’t Get Enough of These Cozy Linen ShortsWalkergrey | SponsoredSponsoredUndo Sylvester Stallone, Jean-Claude Van Damme and more react to the death of Chuck NorrisTV6 NewsUndo Mom of 3 who was found alive after going missing 24 years ago reveals why she left, reports sayTV6 NewsUndo ' ' ' ' ' ' Most Read MDOC closes housing unit at Chippewa Correctional FacilityBark River knife store closes its doors Vehicle fire impacts traffic near GwinnUP counties and municipalities receive $3.4M from adult-use marijuana distribution Michigan Tech men’s basketball falls to Gannon 75-49 in Elite EightPlanning commission approves rezoning of potential MTU sorority homeNew MDOC initiative works to make prisons safer, including UP facilitiesMarquette Board of Light & Power board approves dog parkLatest News Epstein files shed new light on his death and prison guard working that night 1 in 41.2 million: 8th grader is all alone with a perfect women’s NCAA bracketDemocratic lawmaker asks judge to take Trump’s name off Kennedy Center Alaska volunteer dedicates 600 hours a year to food bank after husband’s death TSA boss warns of airport shutdowns as Homeland Security funding fight drags on Savannah Guthrie apologizes to mom in first interview, blames herself for kidnapping Unsolicited package to your door could be Medicare fraud Transgender women athletes banned from Olympics by new IOC policy on female eligibility search by queryly Advanced Search Keep on readingCorey Parker, ‘Will & Grace’ and ‘Friday the 13th’ actor, dies at 60, reports sayActor Corey Parker died at age 60.TV6 NewsUndo‘Home Improvement’ star Zachery Ty Bryan receives jail sentence for 2024 DUI arrestZachery Ty Bryan, 44, was sentenced Monday.TV6 NewsUndoNewly elected mayor, 47, dies after medical emergency during town hall speechThe city’s mayor was speaking at a town hall gathering on Wednesday when he collapsed and died.TV6 NewsUndoTrump showed off a classified map during a 2022 plane trip, letter from Democratic lawmaker allegesA top House Democrat says President Donald Trump showed off a classified map on a 2022 flight to his New Jersey golf club.TV6 NewsUndo ' ' ' ' ' ' Kendra Duggar charged with husband Joseph Duggar as police announce new charges in caseArkansas authorities say Kendra Duggar is now facing criminal charges alongside her husband, Joseph Duggar.TV6 NewsUndoU.S. Neurologists Call This Drink "Bottled Cognitive Decline" — Do You Drink It ?Memory News | SponsoredSponsoredLearn MoreUndoBrain Doctors Connect Cognitive Decline to This Daily Food - Is It on Your Plate?Memory News | SponsoredSponsoredLearn MoreUndoFormer MLB pitcher sentenced to life in prison without parole for shooting his in-lawsFormer MLB pitcher Daniel Serafini was sentenced Friday to life in prison without the possibility of parole.TV6 NewsUndoMom of 3 who was found alive after going missing 24 years ago reveals why she left, reports sayA North Carolina mother who went missing 24 years ago and was later found alive revealed why she left everything, according to multiple reportsTV6 NewsUndo12-year-old girl found dead at home following 911 call, authorities sayConnecticut authorities say a young girl has been found dead at a home in the Enfield area on Wednesday morning.TV6 NewsUndoby Taboolaby TaboolaThis may be of interest to you!- | SponsoredSponsoredUndoMartin Short’s daughter Katherine dies at 42, reports sayMartin Short daughter Katherine has died.TV6 NewsUndoSylvester Stallone, Jean-Claude Van Damme and more react to the death of Chuck NorrisThe death of Chuck Norris has triggered an outpouring of memorials from fellow Hollywood tough guys and fans.TV6 NewsUndoDeclining Memory Has Been Linked to a Common Drink. Do You Drink ItHealthFrontLine | SponsoredSponsoredLearn MoreUndo9 in 10 Declining Memory Cases Linked To A Common Habit. Do You Do It?Global Update Journal | SponsoredSponsoredUndoBlue-spotted salamander migration is on schedule in Marquette, experts sayThe salamander migration is still on at Presque Isle. This year, you can join the research effort.TV6 NewsUndoChuck Norris, martial arts master and actor, dies at 86Actor Chuck Norris has died, his family confirmed on social media. He was 86.TV6 NewsUndo
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

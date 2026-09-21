@@ -1,0 +1,905 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "nyc half marathon 2026 road closures"
+
+Claims:
+[1] "The 2026 NYC Half Marathon is on Sunday, March 15, 2026."
+[2] "The 2026 NYC Half Marathon features a 30,000+ runner field."
+[3] "Road closures for the 2026 NYC Half Marathon in Brooklyn and Manhattan start around 12:00 a.m. and reopen by 2:00 p.m."
+[4] "Eastern Parkway (Flatbush Ave to Franklin Ave) in Brooklyn will be closed 12:00 a.m. – 12:30 p.m. on Sunday, March 15, 2026."
+[5] "Washington Ave (Eastern Pkwy to Carroll St) in Brooklyn will be closed 12:00 a.m. – 2:00 p.m. on Sunday, March 15, 2026."
+[6] "Flatbush Ave (Empire Blvd to Grand Army Plaza) in Brooklyn will be closed 12:00 a.m. – 1:00 p.m. on Sunday, March 15, 2026."
+[7] "Brooklyn Bridge (Manhattan-bound) will be closed 4:00 a.m. – 11:30 a.m. on Sunday, March 15, 2026."
+[8] "Manhattan-bound lanes on Brooklyn Bridge will be closed 4:00 a.m. – 11:30 a.m. on Sunday, March 15, 2026."
+[9] "Water St, parts of FDR Drive, 42nd St, Seventh Ave in Manhattan expect closures between 6:00 a.m. and 1:00 p.m. on Sunday, March 15, 2026."
+[10] "West Drive near 72nd Street in Central Park Finish Area will be closed until roughly 1:30 p.m. on Sunday, March 15, 2026."
+[11] "Prospect Park/Grand Army Plaza is an area to avoid 5:00 a.m. - 11:00 a.m. on Sunday, March 15, 2026."
+[12] "Brooklyn Bridge/Downtown Brooklyn is an area to avoid 6:00 a.m. - 12:00 p.m. on Sunday, March 15, 2026."
+[13] "Midtown Manhattan/Times Square is an area to avoid 7:00 a.m. - 1:00 p.m. on Sunday, March 15, 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- 2026 NYC Half Marathon road closures, route info, map, start time and more: "(north service road) from Underhill,Sands St. to Tillary St."
+- 2026 United Airlines NYC Half Course Cutoff Times - NYRR.org: "The United Airlines NYC Half,road re-openings to start."
+- Brooklyn street closures during annual NYC Half Marathon Sunday ...: "More than 30000 runners will take over,runners now cross the Brooklyn Bridge instead,"
+Reference Sources:
+
+[R1] NYC Half Marathon 2026: Start time, street closures and map for Sunday
+(https://www.fox5ny.com/news/nyc-half-marathon-2026-start-time-street-closures-map-sunday)
+"""
+Published March 15, 2026 9:44am EDT - News program CTV local tag2024 NYC Half Marathon kicks off Sunday 2024 NYC Half Marathon kicks off Sunday 25,000 runners are getting ready for the 2024 United Airlines NYC Half happening this Sunday. CEO of the NYRR Rob Simmelkjaer joins us to talk about this year's race. NEW YORK CITY - The New York Road Runners’ 2026 United Airlines NYC Half Marathon takes place Sunday, bringing thousands of runners and spectators to the streets of New York City. NYC Half Marathon route What we know: The first wave of runners starts around 7 a.m., with over 30,000 runners set to participate in this year's Half Marathon. The course is 13.1 miles long, and runs from Prospect Park in Brooklyn to Central Park. United Half Marathon 2026 map Participants will not only traverse the Brooklyn Bridge, but they will also run through Times Square. The finish line will close at 1:30 p.m., around 4 hours and 30 minutes after the final participant crosses the start line. New York Half Marathon 2026: Street closures Local perspective: The following streets will be closed on Sunday for the event at the discretion of the NYPD in Brooklyn/Manhattan: March 19, 2023: The start line of the 2023 United Airlines NYC Half Marathon, held in New York City. The course starts alongside Prospect Park in Brooklyn and ends in Central Park in Manhattan. (Photo by Brandon Koodish for New York Road Runners via UA NYC Half Marathon Start: Washington Avenue near Sullivan PlaceWashington Avenue between Eastern Parkway and Empire BoulevardEmpire Boulevard between Flatbush Avenue and Washington AvenueFlatbush Avenue between Empire Boulevard/Ocean Avenue and Grand Army PlazaWillink Drive between Flatbush Avenue and East DriveEast Drive between Willink Drive and Grand Army PlazaGrand Army Plaza OvalFlatbush Avenue between Grand Army Plaza and Fulton StreetFlatbush Avenue Extension between Fulton Street and Tillary StreetTillary Street between Flatbush Avenue Extension and Brooklyn Bridge Boulevard/Adams StreetBrooklyn Bridge Boulevard/Adams Street between Tillary Street and Brooklyn BridgeBrooklyn Bridge (Westbound)Starting Area: Eastern Parkway (and North Service Road) between Flatbush Avenue/Plaza Street East and Franklin AvenueClasson Avenue between Washington Avenue and Eastern ParkwayUnion Street between Classon Avenue and Franklin AvenuePresident Street between Classon Avenue and Franklin AvenueCarroll Street between Washington Avenue and Franklin AvenueCrown Street between Washington Avenue and Franklin AvenueMontgomery Street between Washington Avenue and Franklin AvenueSullivan Place between Washington Avenue and Franklin AvenueFranklin Avenue between Montgomery Street and Sullivan PlaceCenter Drive between West Drive and East DriveBrooklyn Bridge Exit 15 – FDR Entrance RampFDR Drive (Northbound) between Robert F. Wagner Sr. Place and East 42nd StreetEast 42nd Street FDR Exit Ramp42nd Street between FDR Drive and 7th Avenue7th Avenue between West 42nd Street and West 59th Street/Central Park SouthWest 59th Street / Central Park South between 7th Avenue and 5th AvenueGrand Army Plaza between 59th Street and 60th StreetEast Drive between Grand Army Plaza and Terrace DriveTerrace Drive between East Drive and West DriveFinish: West Drive (Central Park) near 68th StreetWest 59th Street / Central Park South between Columbus Circle and 5th AvenueGrand Army Plaza between 59th Street and 60th StreetEast Drive between Grand Army Plaza and 102 Street CrossingWest Drive between West 59th Street/Central Park South and 102 Street CrossingTerrace Drive between Central Park West and 5th AvenueCenter Drive between West Drive and East Drive102 Street Crossing between West Drive and East DriveWest 67th Street/Warner LeRoy Place between Central Park West and West DriveColumbus Circle (Entire Circle)Central Park West between Columbus Circle and 72nd StreetWest 72nd Street between Columbus Avenue and Central Park WestWest 69th Street between Columbus Avenue and Central Pak West NEW YORK, NEW YORK - MARCH 17: The 2024 United Airlines NYC Half Marathon is held in New York City. The course starts in Brooklyn and ends in Central Park in Manhattan. (Photo by Roy Rochlin/New York Road Runners via Getty Images) Youth Event Race West 49th Street and Broadway and 7th AvenueWest 47th Street between 7th Avenue and 6th AvenueWest 46th Street between 7th Avenue and 6th AvenueWest 45th Street between 7th Avenue and 6th AvenueWest 44th Street between 7th Avenue and 6th AvenueWest 43rd Street between 7th Avenue and 6th Avenue6th Avenue between 43rd Street and 45th Street Family Reunion West 67th Street between Columbus Avenue and Central Park WestWest 64th Street between Broadway and Central Park WestWest 63rd Street / Sesame Street between Broadway and Central Park WestWest 62nd Street between Broadway and Central Park WestWest 61st Street between Broadway and Central Park WestBroadway between West 60th Street and Columbus Circle / Central Park West More detailed information can be found HERE. The backstory: The inaugural run of the city's Half Marathon took place in 2006. Initially, the race would take place in the summer, but the event was moved to March back in 2010. The Source: This article includes information from the New York Road Runners official website, as well as the New York City DOT website. New York CityNews
+"""
+
+[R2] Brooklyn street closures during annual NYC Half Marathon Sunday 3/15 | Brooklyn Bridge Parents - News, Events and Family Services
+(https://brooklynbridgeparents.com/brooklyn-street-closures-during-annual-nyc-half-marathon-sunday-3-15/)
+"""
+More than 30,000 runners will take over the streets this Sunday for the 2026 NYC Half from Prospect Park via the Brooklyn Bridge to Times Square. While the NYC Half Marathon historically crossed the Manhattan Bridge, the route was officially changed in 2025. The runners now cross the Brooklyn Bridge instead, meaning the Manhattan Bridge remains fully open and actually serves as a primary alternate route between the boroughs during the event. Here are the street closures in Brooklyn: 12 AM (Midnight) Closures Eastern Parkway: From Grand Army Plaza to Bedford Ave (including the north service road from Underhill to Bedford and the south service road from Washington to Franklin). Reopens at 11:30 AM. Union St, President St, Carroll St, Crown St, Montgomery St, & Sullivan Pl: All blocked between Classon/Washington Ave and Franklin Ave. Reopens at 12:30 PM. Flatbush Avenue: From Grand Army Plaza to Ocean Ave/Empire Blvd, and from Grand Army Plaza to Tillary St. Reopens at 1:00 PM. Washington Avenue: From Eastern Parkway to Carroll St. Reopens at 2:00 PM. Classon Avenue: From Eastern Parkway to President St. Reopens at 3:00 PM. 4 AM Closures Empire Boulevard: From Flatbush Ave to Bedford Ave. Reopens at 10:30 AM. 5:30 AM Closures Flatbush Avenue: South side from Eastern Pkwy to Ocean Ave/Empire Blvd, and north side from Grand Army Plaza to Atlantic Ave. Reopens at 11:30 AM. Flatbush Avenue: From Atlantic Ave to Tillary St. Reopens at 11:45 AM. Park Avenue (Westbound): From Navy St to Tillary St. Reopens at 11:30 AM. Tillary Street: From Adams St/Brooklyn Bridge Blvd to Gold St, and eastbound from Cadman Plaza to Adams St. Reopens at 11:30 AM. Adams Street / Brooklyn Bridge Blvd (Northbound): From Fulton St to the Brooklyn Bridge. Reopens at 11:30 AM. Jay Street: Northbound from Willoughby St to Tillary St, and southbound from Sands St to Tillary St. Reopens at 11:30 AM. Sands Street & Jay Street (Westbound): Heading toward the Brooklyn Bridge. Reopens at 11:30 AM. Manhattan Bridge / Flatbush Ave Extension (Southbound): From Flatbush Ave to Tillary St. Reopens at 11:30 AM. Pearl Street (Southbound): From Prospect St to Sands St. Reopens at 11:30 AM. BQE Ramps: Eastbound exits at Cadman Plaza (Exit 28A), Brooklyn Bridge (Exit 28B), and Tillary St (Exit 29B); Westbound exit at Tillary St (Exit 29). Reopens at 11:30 AM. 6 AM Closures Washington Avenue: From Carroll St to Empire Blvd. Reopens at 10:30 AM. Empire Boulevard: From Washington Ave to Flatbush Ave. Reopens at 10:30 AM. Flatbush Avenue: From Empire Blvd to Grand Army Plaza. Reopens at 10:30 AM.
+"""
+
+[R3] The City of New York
+(https://www.nyc.gov/assets/bic/downloads/pdf/notices/notice-street-closures-united-airlines-nyc-half-marathon-3-15-26.pdf)
+"""
+The City of New York
+ BUSINESS INTEGRITY COMMISSION
+ 100 Church Street ∙ 20th Floor
+ New York ∙ New York 10007
+ Tel. (212) 437-0500 ∙ Fax (646) 500-7096
+ www.nyc.gov/bic
+
+Elizabeth Crotty
+Commissioner and Chair
+
+March 5, 2026
+
+ NOTICE: Street Closures for March 15, 2026
+ United Airlines NYC Half Marathon in Brooklyn and Manhattan
+To all Trade Waste Licensees and Registrants:
+
+Please be aware that on Sunday, March 15, 2026, there will be street closures in parts of Manhattan and
+Brooklyn in connection with the United Airlines NYC Half Marathon event.
+
+The NYC Department of Transportation (“DOT”) has also issued a construction embargo that is in
+effect from Friday, March 6, 2026, at 12:01 AM through Sunday, March 15, 2026 at 11:59 PM.
+See below or see the map attached to this notice for a full list of the affected locations so you can
+adjust your trade waste collection operations accordingly.
+
+Embargoed Locations:
+
+Brooklyn (Main Route)
+
+ • Start: Washington Avenue near Sullivan Place
+ • Washington Avenue between Eastern Parkway and Empire Boulevard
+ • Empire Boulevard between Flatbush Avenue and Washington Avenue
+ • Flatbush Avenue between Empire Boulevard/Ocean Avenue and Grand Army Plaza
+ • Willink Drive between Flatbush Avenue and East Drive
+ • East Drive between Willink Drive and Grand Army Plaza
+ • Grand Army Plaza Oval
+ • Flatbush Avenue between Grand Army Plaza and Fulton Street
+ • Flatbush Avenue Extension between Fulton Street and Tillary Street
+ • Tillary Street between Flatbush Avenue Extension and Brooklyn Bridge Boulevard/Adams Street
+ • Brooklyn Bridge Boulevard/Adams Street between Tillary Street and Brooklyn Bridge
+ • Brooklyn Bridge (Westbound)
+
+Additional Embargo Locations in Brooklyn
+ • Starting Area: Eastern Parkway (and North Service Road) between Flatbush Avenue/Plaza
+ Street East and Franklin Avenue
+ • Classon Avenue between Washington Avenue and Eastern Parkway
+ • Union Street between Classon Avenue and Franklin Avenue
+ • President Street between Classon Avenue and Franklin Avenue
+ • Carroll Street between Washington Avenue and Franklin Avenue
+ • Crown Street between Washington Avenue and Franklin Avenue
+ • Montgomery Street between Washington Avenue and Franklin Avenue
+ • Sullivan Place between Washington Avenue and Franklin Avenue
+ • Franklin Avenue between Montgomery Street and Sullivan Place
+ • Center Drive between West Drive and East Drive
+
+Manhattan (Main Route)
+ • Brooklyn Bridge Exit 15 – FDR Entrance Ramp
+ • FDR Drive (Northbound) between Robert F. Wagner Sr. Place and East 42nd Street
+ • East 42nd Street FDR Exit Ramp
+ • 42nd Street between FDR Drive and 7th Avenue
+ • 7th Avenue between West 42nd Street and West 59th Street/Central Park South
+ • West 59th Street / Central Park South between 7th Avenue and 5th Avenue
+ • Grand Army Plaza between 59th Street and 60th Street
+ • East Drive between Grand Army Plaza and Terrace Drive
+ • Terrace Drive between East Drive and West Drive
+ • Finish: West Drive (Central Park) near 68th Street
+
+Additional Embargo Locations in Manhattan
+ • West 59th Street / Central Park South between Columbus Circle and 5th Avenue
+ • Grand Army Plaza between 59th Street and 60th Street
+ • East Drive between Grand Army Plaza and 102 Street Crossing
+ • West Drive between West 59th Street/Central Park South and 102 Street Crossing
+ • Terrace Drive between Central Park West and 5th Avenue
+ • Center Drive between West Drive and East Drive
+ • 102 Street Crossing between West Drive and East Drive
+ • West 67th Street/Warner LeRoy Place between Central Park West and West Drive
+ • Columbus Circle (Entire Circle)
+ • Central Park West between Columbus Circle and 72nd Street
+ • West 72nd Street between Columbus Avenue and Central Park West
+ • West 69th Street between Columbus Avenue and Central Park West
+
+BIC encourages licensees and registrants to sign up to receive DOT traffic advisory email updates for
+important information on embargos and road closures throughout the city.
+
+ Page 2 of 2
+ nt ic
+ Ave son ct
+ Pl Pa
+ Gran
+At la pe
+ an S
+ t ros
+ De Ave P
+
+ d Av Crown H
+ e
+ t
+ en S
+ Berg
+
+ Van
+ Fran
+ de r b Prospect Ro
+ klin ge
+ Heights
+ ilt A
+ Bed
+ rs
+ 7 Ave Clas Ave
+ ve Av
+ son f ord
+ e
+ s Pl
+ t John
+ S ain
+ Ave Ave
+ Grand Army P
+ la z Botanic Garden
+ Plaza a S Brooklyn
+ t
+ Sain t Joh ns Pl E Museum
+
+ Linc oln Pl
+ Brooklyn
+ Museum
+ Berk eley Pl F la tbu s h
+ Av
+ e
+ Unio n St
+ Medgar Evers
+ Pres iden t St College
+
+ Nyc ta
+ Car roll St Brooklyn
+ Botanic Garden ll
+ Su
+
+ re
+ pi
+ Em
+
+ Pr os pe ct Pa rk W
+ 2n d St Prospect Park
+
+ 8th Av e
+ Zoo
+
+ Prospect Park
+
+ New York
+ Methodist Fl
+ Hospital at
+ 7th St bu
+ Park Slope sh
+ O Av
+ ce e
+ 7 Ave
+ an
+ 9th St Av
+ e
+ Prospect Park
+ 10 th St
+
+ 11 th St
+
+ 7th Av e
+ 12 th St P
+
+ 14 th St
+ 14 th St
+
+ 15 th St 15 St-Prospect
+ Park
+ 16 th St Pr
+ o
+ sp Av
+ e
+ ec
+ Wi nd so r Pl
+
+ NYC Half Marathon
+ t
+ P de
+ Wi nd so r Pl ar Prospect si
+ P rosp k rk
+ ect Av
+ Sources: Esri, TomTom, Garmin, FAO,Lake
+ NOAA, USGS, © OpenStreetMap
+ S
+ e W Pa
+ Pa
+
+ Embargo
+ Embargo Youth
+
+ Route Family
+ contributors, and the GIS User Community ra
+ de
+ Pr 17th S P
+ os t
+ pe P ros
+ ct pe c
+ Ex t
+ ro a d w a y
+ ve
+
+ P i tt St
+ t
+ R iv in g to n S East River Park
+ t
+ East River Park nS
+ncey S t
+ e
+ Av lt o
+ o n St
+ St i si Wa
+ G ra n d iv Bed Lee
+ ch
+ D f or
+ dA Av Lyn
+ Ke ve e
+ nt
+ A
+ ve e
+St
+ Lower East Av e
+ r k Av
+ y
+ Side Pa le gh
+ wa yr
+ t ou
+ a d
+ M ill
+ B ro M W
+ E Brooklyn Navy ar
+ cy
+ Yard W Av
+ Brooklyn Navy al e
+ w
+ Yard or To
+ th m
+ ckerbocker St
+ Ke
+ M ve nt Be
+ an
+ ha in gA Av
+ df
+ or
+ No
+ tt sh st
+ Flu
+ e d
+ an Vinegar Hill Av
+ ra
+ nd
+ Br e Cl e
+ g Av Av
+ rk as Pl
+ Pa
+ e
+ Ha so n
+ Bro o
+ if t
+ ll n
+ okly St e Av Cl
+ nB St Av
+ rg s
+ e
+ Fulton Ferry S a nd by
+ e gh
+ Downtown Av ou
+ yrt
+ le i ll
+ Brooklyn M W Clinton Hill Cl Fr
+ as an
+ Va so
+ kl
+ nd n in
+ er Av Av
+ bi Sa e e
+ lt in G
+ Av tJ ra
+ am nd
+ St
+ e
+ h by es Av
+ ug e
+ Brooklyn llo Pl
+ Wi
+ Heights Fort Greene
+
+ Brooklyn
+ Clas
+ Livi ngs ton St
+ Gran
+ St ate St Ave Dean
+ St son
+ At la n t i c
+ d Av
+ Ave Ave
+ Pac ific St
+ A t la n t ic
+ e
+
+ C li n to
+ Prospect Clas
+ Hoyt St
+ C o u rt S Smith St
+ Boerum Hill Heights
+ son
+ Cobble Hill n St
+ Ave
+ t
+ Butle r St
+ K an e St Sain t John s Pl Eastern
+ Dou glas s St Parkway
+ Degr aw St
+ C o lu m
+ Berk eley Pl
+
+ H ic k s
+ Unio n St
+
+ b ia S t Brooklyn
+
+ Bon d St
+ St
+ Botanic Gar
+
+ Hoyt St
+ Carroll
+ Bru nt S t
+ 1s t St
+uttermilk Gardens
+Channel
+ 7th Av e
+ 3rd St
+
+ Van C li n to
+ S m it h
+ n St
+ St Gowanus 7th St
+
+ 7th Av e
+ Park Slope
+ 9th St
+ Ha Prospect Park
+ m
+ ilt
+ on 11 th St
+ Av
+
+ C li n to
+ e
+ t
+ ver S
+
+ 4th Av e
+ Red Hook
+ Cono n St
+ G
+ Red Hook 16t h St Pr osp
+ Bear
+ ow ec
+
+ NYC Half Marathon
+ d St Recreation Area an t
+ P
+ IK Wi nd so r Pl a
+
+ us E x p y E
+ EA
+ 1 1 t h Av e
+ 1 8 th S rk
+ Do Sources: tEsri, TomTom, Garmin, FAO, NOAA, USGS, © OpenStreetMap SW
+
+ Embargo
+ Embargo Youth
+ ck
+ Route Family
+ contributors, and the GIS User Community
+ -W P rosp
+ a ll 2 0 th S ect Ex St
+ St t py W y
+ le
+ Erie Basin ee
+ NoLIta D e la n c
+
+ y th S t
+ y St
+ Bowery D e la n c e
+
+ E ld ri d g
+ St
+ B ro o m e S t
+ t G ra n d
+ G ra n d S
+ Broome St t
+ G ra n d S
+ e St
+ C lin t o n
+
+ C h r y s ti
+ St Corlears Hook
+
+ A ll e n S
+ Little Italy Park
+ e St t
+
+ B o we r y
+ M
+ He s te r S t on
+ tg Corlears
+ Lower East om S t
+ Side er
+ C a n al S t
+ E Broadway Cl er at
+ St
+
+ Bax te r St
+ in y W
+ St
+ St
+ to
+ al
+ n
+ St n
+ r gi
+ Ma
+
+ Bo we ry
+ St a y
+ io
+ n dw
+ is oa
+ Ba ya rd St Di
+ v Br
+ E
+nter Two BridgesUniversity W
+ M Neighborhood V ia
+ ar High School et
+ re
+ Chinatown ke St
+ tS S
+ St
+ t
+ h
+ ut
+ C
+ So
+ at
+ he
+ rin
+ e
+ St
+ Knickerbocker
+ ow
+ N
+ R r
+ klyn k D
+ ar R
+City Hall P FD
+
+ P M
+ an St
+ N t hn
+ Jo
+ earl St
+ r lS ha
+ D al tt
+ l t
+ -W an Vinegar H
+ ve ok Br
+ Ho S
+ e
+ g
+ ter
+ os s
+ versity F r a nk Ro ar Wa
+ f ort r le
+ St
+ no Co
+ ela
+an nD
+ St Empire-Fulton Ja
+ yS
+ kli Ferry State Park Wa
+ an Bro Pe t
+ okly sh
+ ton St St Fr nB t arl
+ rg ing
+ te rS
+ Gold
+ St
+ Wa t on
+ Fulton Ferry St xpy
+ en sE
+ John Brooklyn n Que York S
+ St South Street
+ Bridge Park o kly
+ Seaport B ro
+
+ aid Ad
+ en
+ Ln High St-Brooklyn am
+ Bridge s
+t h St St
+ M id d a g
+
+ Henry
+ P ie
+a ll S t
+
+ r 6 - Bro okl yn Bri dge Pa rk
+ H ic k s
+ St
+
+ Furma C o lu m
+ W il lo w
+ ter St
+ Wa St
+ n St
+ b ia H t
+ St Clark St
+ rS Pier 11 / Wall
+ s
+ St Landing E
+ RD
+ FD
+
+ NYC Half Marathon Sources: Esri, TomTom, Garmin, FAO, NOAA, USGS, © OpenStreetMap
+ Brooklyn
+ Embargo
+ Embargo Youth
+
+ St
+ Route Family
+ contributors, and the GIS User Community
+ h Heights
+ ut
+ So
+ Brooklyn Bridge
+ l St
+ W 46th St
+ Midtown East
+ Ave
+ e r Bl vd
+ Times Square 48th
+ Clinton
+ Ave
+ 50th
+ Cent
+
+ E 40th St P ula
+
+ ter B l v d
+ Lincol n T u nl W 39th St ski
+ 2nd B
+ Garment
+ Tudor City St
+ District W 36th St Murray Hill C en
+
+ 11t h Ave
+ W 34th St E 34 th St
+ S
+ E 32nd St e
+ gl
+ FD Ea
+ 1st A ve
+ Midtown South
+M anhat t an
+ 12t h Ave
+ Madison Ave
+ RD
+ G
+ W 29th St W 29th St r
+
+ 11th Ave
+ W 26th St W 26th St
+
+ Stuyvesant
+ W 23rd St
+ The High Line Town
+
+ 9th Ave
+ 7th Ave
+ N6
+ Chelsea Flatiron District D
+
+ 2nd Ave
+ F
+ RD th S
+ rN
+ t-I
+ Union Square ndi
+ E 15th St aS t
+ E 14th St
+ W 13th St
+
+ St
+ th
+
+ Avenue C Avenue D
+ 12 E 9th St East Village
+ W
+ E 8th St
+
+ 7t h A ve S
+ E 6th St
+
+ West Village Greenwich E 4th St
+
+ St Village
+ w
+ rro
+ Ba NoHo n St
+ yS
+ t E H o u s to
+ ro
+ Le
+ We
+ st
+ P i tt St
+ n St
+ St R iv in g to East River Park
+ Gre SoHo NoLIta
+ East River Park
+ y St
+ enw
+ D e la n c e
+ Va St
+ ich G ra n d
+ ric
+ St
+ kS Little Italy
+ t
+ lE Lower East
+ Tun
+ and ay
+ wSide
+ Holl d
+ oa
+ Br
+ E
+ Tribeca Civic Center
+
+ Chu rch St
+ Chinatown
+
+ ow
+ Knickerbocker
+ R
+ k M
+ r
+ Pa
+ an
+ P ha
+ New York earl St
+ tt
+ an
+ Br
+ Vinegar Hill
+ Battery Park g
+ City Bro
+ okly
+ nB St
+ rg
+
+ NYC Half Marathon Fulton Ferry ds
+ San
+ St Dow
+ Sources: Esri, TomTom, Garmin, FAO, NOAA, USGS, © OpenStreetMap Bro
+ W il li a m
+ Financial
+
+ Embargo
+ Embargo Youth
+ contributors, and the GIS User Community
+ Route Family
+ District
+ r St
+ ate rN
+ Ave
+ e
+
+ Riverside nhatta n Ave
+ Manhattan
+
+ 5th Ave
+ Valley Wards Island
+ Park
+ E 102 nd St
+
+ Ea s t D r
+ Henr
+ W 100th St
+ E 99th St
+
+ y Hud E 97th St
+
+ s on P k w y
+ W 96th St
+
+ Central Park W
+ Amsterdam Ave
+ S
+ Carnegie Hill
+
+ E 90th St
+Riverside Park
+ W 88th St E 88th St
+
+ F D R Dr S
+ W 86th St Central Park E 86th St
+ Yorkville
+ Upper West
+
+ Park Ave
+ W 84th St E 84th St
+ Side
+ W 82nd St E 82nd St
+
+ W 80th St 3rd Ave
+
+ 2n d Ave
+ W End Av e
+ W 77 t h St 1st Ave
+ E 76th St
+ W 75th St
+ The Lake
+ 72nd St Lenox Hill
+ Ea Upper East
+ W 72nd St
+ st Side
+ r Dr
+ Roosevelt
+ Wes t D
+ E 70th St
+ Island
+ E 68 th St E 68th St
+
+ Lincoln Square E 66th St 2nd Ave
+ Dr S
+
+ E 63rd St FDR
+ W 62nd St Sutton Place
+ E 61st St
+
+ Madison Ave
+ W 60th S t
+
+ W 58th St 5th Ave
+ W 57th St W 57th St E 57th St
+
+ W 5 5th St
+
+ B ro a d Turtle Bay
+ W 52nd St way
+
+ 11th Ave
+ 2nd Ave
+ W 50th St Midtown
+
+ Par k Ave
+ W 48th St E 48th St
+ H
+
+ W 46th St
+ Midtown East
+ d
+ Times Square
+ Clinton e r B lv
+
+ Cent
+
+ NYC Half Marathon
+ E 40th St
+
+ ter B l v d
+ Lincol n T u nl W 39th St
+
+ Garment Sources: Esri, TomTom, Garmin, FAO, NOAA, USGS, © OpenStreetMap
+
+ Embargo
+ Youth Event Family Reunion
+ Tudor Cityand the GIS User Community
+ contributors,
+ Route Embargo District C en
+ W 36th St Murray Hill
+
+ th Ave W 34th St E 34 th S t
+"""
+
+[R4] 2026 NYC Half Marathon road closures, route info, map, start time and more
+(https://www.nbcnewyork.com/new-york-city/2026-nyc-half-marathon-road-closures-route-info-map-start-time-and-more/6476331/)
+"""
+The route takes participants to some of the city's most iconic locations: Prospect Park, Brooklyn Bridge and Times Square before the finish line in Central Park. NBC Universal, Inc. As runners kickoff to race weekend for the world’s premier half marathon, many speakers, NYRR leadership members, Olympians and Paralympians express their excitement for the race. NBC News 4 New York’s John Chandler reports. Runners, take your mark. Everyone else, take note of the road closures. More than 30,000 runners are expected to take to the streets of Brooklyn and Manhattan for the 2026 United Airlines NYC Half Marathon. The route takes participants to some of the city's most iconic locations, as runners will start in Brooklyn's Prospect Park, cross the Brooklyn Bridge, go up FDR Drive, run through Times Square and finish the 13.1-mile race in Central Park. The first runners are scheduled to start at 7 a.m., with staggered waves taking off after that. Check out a map of the route below. Spectators can download the NYRR app to track runners, watch live leaderboards, see course maps and get live coverage of the professional field. For those not running and just hoping to get around in the city, here is a list and times of road closures for Brooklyn and Manhattan through Sunday: New York City news From Manhattan to Queens to Brooklyn to Staten Island and all points between, NBC New York covers New York City news, weather, traffic and more. Road Closures Brooklyn: 12:00 a.m. – 11:30 a.m. Eastern Pkwy. (south service road) from Washington Ave. to Franklin Ave. Eastern Pkwy. (north service road) from Underhill Ave. to Bedford Ave. Eastern Pkwy. from Grand Army Plaza to Bedford Ave. 12:00 a.m. – 12:30 p.m. Union St. from Classon Ave. to Franklin Ave. President St. from Classon Ave. to Franklin Ave. Carroll St. from Washington Ave. to Franklin Ave. Crown St. from Washington Ave. to Franklin Ave. Montgomery St. from Washington Ave. to Franklin Ave. Sullivan Pl. from Washington Ave. to Franklin Ave. 12:00 a.m. – 2:00 p.m. Washington Ave. from Eastern Pkwy. to Carroll St. 12:00 a.m. – 3:00 p.m. Classon Ave. from Eastern Pkwy. to President St. President ST from Classon Ave. to Franklin Ave. 4:00 a.m. – 10:30 a.m. Empire Blvd. from Flatbush Ave. to Bedford Ave. 5:30 a.m. – 11:30 a.m. Flatbush Ave. (south side) from Eastern Pkwy. to Ocean Ave./Empire Blvd. Flatbush Ave. (north side) from Grand Army Plaza to Atlantic Ave. Park Ave. (westbound) from Navy St. to Tillary St. Park Ave. (westbound) from Navy St. to Tillary St. Tillary St. from Adams St./Brooklyn Bridge Blvd. to Gold St. Tillary St. (eastbound) from Cadman Plaza to Adams St. Adams St./Brooklyn Bridge Blvd. (northbound) from Fulton St. to Brooklyn Bridge Jay St. (northbound) from Willoughby St. to Tillary St. Jay St. (southbound) from Sands St. to Tillary St. Manhattan Bridge/Flatbush Ave. Extension (southbound) from Flatbush Ave. to Tillary St. Pearl St. (southbound) from Prospect St. to Sands St. Jay St. and Sands St. (westbound) to Brooklyn Bridge Westbound BQE at Tillary St. (exit 29) – entrance/exit ramps Eastbound BQE at Tillary St. (exit 29B) – entrance/exit ramps Eastbound BQE at Cadman Plaza (both sides) (exit 28A) Eastbound BQE at Brooklyn Bridge (exit 28B) 5:30 a.m. – 11:45 a.m. Flatbush Ave. from Atlantic Ave. to Tillary St. 6:00 a.m. – 10:30 a.m. Washington Ave. from Carroll St. to Empire Blvd. Empire Blvd. from Washington Ave. to Flatbush Ave. Flatbush Ave. from Empire Blvd. to Grand Army Plaza. Manhattan: Sunday, March 15 4:30 a.m. – 1:00 p.m. 7th Ave. from 42nd St. to 56th St. 3:00 a.m. – 1:00 p.m. 43rd St. between 7th Ave. and 6th Ave. 44th St. between 7th Ave. and 6th Ave. 45th St. between 7th Ave. and 6th Ave. 46th St. between 7th Ave. and 6th Ave. 6:00 a.m. – 2:15 p.m. Central Park West from 59th St. to 72nd St. West 61st–64th St. between Broadway and Central Park West. 7:00 a.m. – 12:45 p.m. 42nd St. from 1st Ave. to 7th Ave. 7:00 a.m. – 1:00 p.m. 7th Ave. from 56th St. to Central Park South 7:15 a.m. – 1:15 p.m. Central Park South between Columbus Circle and Grand Army Plaza. FDR Drive Closures: Sunday, March 15 (5:40 a.m. – 1:30 p.m.) Brooklyn Bridge Exit to Northbound FDR Drive. Northbound FDR Drive at Exit 2 (Brooklyn Bridge/Manhattan Civic Center). Northbound FDR Drive at Montgomery St. Northbound FDR Drive at Houston St. Northbound FDR Drive at East 20th St./23rd St. (Exit 7). Northbound FDR Drive at East 34th St. (Exit 8). Northbound FDR Drive at 42nd St. Pearl Street ramps and service roads. No Parking Rules There is no parking on the following streets in Manhattan and Brooklyn into Sunday (rules in effect for Brooklyn until 1 p.m. Sunday, and until 3 p.m. for Manhattan): Brooklyn: Thursday, March 12 (6:00 a.m.) – Sunday, March 15 (12:00 p.m.) Eastern Pkwy. (south side) from Grand Army Plaza to Washington Ave. Eastern Pkwy. (south service road, both sides) from Washington Ave. to Bedford Ave. Friday, March 13 (6:00 a.m.) – Sunday, March 15 (12:00 p.m.) Eastern Pkwy. (north service road) from Underhill Ave. to Bedford Ave. Washington Ave. from Eastern Pkwy. to Empire Blvd. President St. (in front of schools) from Classon Ave. to Franklin Ave. Union St. (in front of schools) from Classon Ave. to Franklin Ave. Empire Blvd. from Washington Ave. to Flatbush Ave. Flatbush Ave. from Empire Blvd. to Grand Army Plaza. Sullivan Pl. from Washington Ave. to Zenita Thompson Pl. Empire Blvd. from Flatbush Ave. to Bedford Ave. Sunday, March 15 (12:00 AM – 1:00 PM) Flatbush Ave. from Grand Army Plaza to Ocean Ave./Empire Blvd. Flatbush Ave. from Grand Army Plaza to Tillary St. Manhattan: Saturday, March 14 (9:00 a.m.) – Sunday, March 15 (3:00 p.m.) Central Park West (west side) from 59th St. to 65th St. Sunday, March 15 42nd St. between 1st Ave. and 7th Ave. 7th Ave. between 42nd St. and 59th St. Central Park South (north side) from 7th Ave. to Columbus Circle. Memory News | U.S. Neurologists Call This Drink "Bottled Cognitive Decline" — Do You Drink It ?UndoMemory News | Brain Doctors Connect Cognitive Decline to This Daily Food - Is It on Your Plate?UndoHealthFrontLine | Declining Memory Has Been Linked to a Common Drink. Do You Drink ItUndoHealth Today Daily | They Seem Innocent: Breakfast Foods That Are Now Linked to Most of Memory Loss CasesUndoU.S Cognitive Research | Sharp Memory After 60 Has Been Linked to This Common Breakfast Food - Do You Eat It?Undo
+"""
+
+[R5] 2026 United Airlines NYC Half Course Cutoff Times
+(https://www.nyrr.org/info/2026unitedairlinesnychalf/course-cutoff-times)
+"""
+To ensure timely bridge and road re-openings and to appear in the official results as a finisher, 2026 United Airlines NYC Half participants must reach certain checkpoints along the course no later than the times outlined below: Scroll horizontally on mobile. Location Mile Mark Time Athletes must reach the Brooklyn Bridge (via Brooklyn Bridge Blvd.) 4.1-mile mark by 10:20 a.m. Athletes must reach the FDR-bound off-ramp of the Brooklyn Bridge (to access the FDR Drive) 5.4-mile mark by 10:40 a.m. Athletes must exit the FDR Drive (to access the 42nd St. exit ramp) 9.4-mile mark by 11:45 a.m. Athletes must cross the finish line (in Central Park) 13.1-mile mark by 1:30 p.m. The United Airlines NYC Half finish line will close at 1:30 p.m., approximately 4 hours and 30 minutes after the final participant crosses the start line. This timing allows the bridge and road re-openings to start. Participants who are not able will not able to complete the course on this schedule will not appear in the official results and will not be eligible for any reimbursement of event fees. Brooklyn Bridge The United Airlines NYC Half Brooklyn Bridge athlete access will close at 10:20 a.m., approximately 1 hour and 20 minutes after the final participant crosses the start line. For an athlete in Wave 4, crossing the start line at approximately 9:15 a.m., they will be required to maintain a 16:00 minute/per mile pace or faster to access the bridge. Any athlete who does not reach Brooklyn Bridge Blvd. and Tillary St. by 10:20 a.m. will be directed to the bridge’s pedestrian pathway if they would like to cross and access Lower Manhattan for MTA subway service. Athletes have the option to take the subway home or to the finish area to pick up their checked bags. Athletes can also choose to take one of our sweep buses to the finish area. NYRR staff located at the Brooklyn Bridge will provide OMNY cards upon request to any athlete who reaches Brooklyn Bridge Blvd. between 10:20 a.m. and when the sweep bus arrives at the entrance to the bridge. Athletes also have the option not to cross the Brooklyn Bridge at all and depart from Brooklyn on their own. FDR Drive Athlete access to the FDR Drive from the Brooklyn Bridge will close at 10:40 a.m. Athletes who are crossing the Brooklyn Bridge roadway but have not reached the FDR Drive exit by that time will be directed to either board one of our sweep buses or, if time permits before the re-opening of the Brooklyn Bridge, exit the Brooklyn Bridge onto Centre Street. For athletes who are on FDR Drive in the United Airlines NYC Half, access to the course will end on a rolling basis in line with our sweep procedure, which will be based on an approximately 20:00 minute/per mile pace from the start line beginning at 9:15 a.m. Scroll horizontally on mobile. Mile Mark Time Athletes must cross the 6-mile mark by 10:51 a.m. Athletes must cross the 7-mile mark by 11:07 a.m. Athletes must cross the 8-mile mark by 11:23 a.m. Athletes must cross the 9-mile mark by 11:39 a.m. Any athlete on the FDR Drive met by the sweep volunteers will be escorted onto one of our sweep buses. Athletes who are picked up on the FDR Drive have the option to ride the sweep bus to the finish or get out on 42nd St. and 1st Ave. and continue the United Airlines NYC Half on the sidewalk to the finish line. Even if these athletes then cross the finish line before 1:30 p.m. they will be considered a post-race participant and will appear in the official finisher results. Important Info Once roads begin to reopen to vehicular traffic, course infrastructure (such as timing systems, course clocks, medical stations, and water stations) will all begin to close. Runners on the course after this time should know that they will be on their own and plan accordingly. Beginning Monday, March 16, any athletes with questions, or requiring additional support, are encouraged to contact our Runner Services Department.
+"""
+
+[R6] The 2026 NYC Half Marathon Is This Sunday: Your Ultimate Guide To The Routes, Closures And How To Watch
+(https://secretnyc.co/nyc-half-marathon-guide-2026-route-closures/)
+"""
+More than 30,000 runners will take over the streets this Sunday for the 2026 NYC Half. From the Brooklyn Bridge to Times Square, here is the full route, start times, and road closure map. Source / New York Road Runners Ready, set, go! This Sunday, March 15, 2026, more than 30,000 runners will lace up and line up for the United Airlines NYC Half — one of New York City’s most electric annual traditions. From first-time finishers to seasoned marathoners, the energy at the starting line is pure NYC: determined, diverse, and full of love and pride, where New Yorkers, visitors, and runners from around the world share the same 13.1 miles. And what a 13.1 miles it is. The course kicks off in Brooklyn near Prospect Park, winds its way toward the East River, and sends runners soaring over the iconic Brooklyn Bridge with the Manhattan skyline rising ahead. From there, it’s straight through the bright lights of Times Square, briefly closed to traffic and roaring with cheers, before a triumphant finish in Central Park. It’s a route that feels like a love letter to the five boroughs (with a few unforgettable blocks stealing the spotlight). Whether you’re racing, spectating, or just navigating street closures, here’s everything you need to know about this quintessentially New York day. Shutterstock / Howard Weiss NYC Half Marathon Date and Time The 2026 United Airlines NYC Half is scheduled for Sunday, March 15, 2026. While the “professional” race starts early, the event uses a staggered wave start to manage the 30,000+ participant flow: Wheelchair Division: Starts at approximately 7 am. Professional Fields: Elite runners typically head out around 7:20 am. Wave Starts: General runners will begin in waves (1 through 5) starting from 7:20 am through roughly 9 am. Times Square Kids Run: The youth event (Stages 1, 2, and 3) kicks off at 8 am right in the heart of Manhattan. Half Marathon Route and Map Source / New York Road Runners The point-to-point course is a “Tour de New York” that spans two boroughs. The Brooklyn Start: Runners gather on Washington Avenue near the Brooklyn Museum before heading into Prospect Park to tackle the challenge of Battle Pass Hill. The Bridge: After exiting the park and passing the Barclays Center, runners take the Manhattan-bound roadway of the Brooklyn Bridge—a rare opportunity as this is the only race that utilizes this specific path. The FDR Drive: Once in Manhattan, the route follows the FDR Drive North for nearly 4 miles, offering sweeping views of the East River and the United Nations. The Midtown Surge: Runners exit the FDR at 42nd Street, passing Grand Central Terminal and the New York Public Library before the legendary turn onto 7th Avenue through a traffic-free Times Square. The Finish: The race enters Central Park at 59th Street, winding through the park’s rolling hills to finish on West Drive near 72nd Street. Shutterstock / Howard Weiss Road closures for the NYC Half Marathon Expect significant “gridlock alert” conditions across Brooklyn and Manhattan throughout the weekend. Here’s what to know, according to a report by New York Road Runners. Brooklyn Street Closures (Sunday, March 15) 12 am – 11:30 am Eastern Parkway (south service road) from Washington Ave. to Franklin Ave. Eastern Parkway (north service road) from Underhill Ave. to Bedford Ave. Eastern Parkway from Grand Army Plaza to Bedford Ave. 12 am – 12:30 pm Union St. from Classon Ave. to Franklin Ave. President St. from Classon Ave. to Franklin Ave. Carroll St. from Washington Ave. to Franklin Ave. Crown St. from Washington Ave. to Franklin Ave. Montgomery St. from Washington Ave. to Franklin Ave. Sullivan Pl. from Washington Ave. to Franklin Ave. 12 am – 2 pm Washington Ave. from Eastern Parkway to Carroll St. 12 am – 3 pm Classon Ave. from Eastern Parkway to President St. President St. from Classon Ave. to Franklin Ave. 4 am – 10:30 am Empire Blvd. from Flatbush Ave. to Bedford Ave. 5:30 am – 11:30 am Flatbush Ave. (south side) from Eastern Parkway to Ocean Ave./Empire Blvd. Flatbush Ave. (north side) from Grand Army Plaza to Atlantic Ave. Park Ave. (westbound) from Navy St. to Tillary St. Tillary St. from Adams St./Brooklyn Bridge Blvd. to Gold St. Tillary St. (eastbound) from Cadman Plaza to Adams St. Adams St./Brooklyn Bridge Blvd. (northbound) from Fulton St. to Brooklyn Bridge Jay St. (northbound) from Willoughby St. to Tillary St. Jay St. (southbound) from Sands St. to Tillary St. Manhattan Bridge/Flatbush Ave. Extension (southbound) from Flatbush Ave. to Tillary St. Pearl St. (southbound) from Prospect St. to Sands St. Jay St. & Sands St. (westbound) toward Brooklyn Bridge Westbound BQE at Tillary St. (Exit 29) – entrance/exit ramps Eastbound BQE at Tillary St. (Exit 29B) – entrance/exit ramps Eastbound BQE at Cadman Plaza (Exit 28A) Eastbound BQE at Brooklyn Bridge (Exit 28B) 5:30 am – 11:45 am Flatbush Ave. from Atlantic Ave. to Tillary St. 6 am – 10:30 am Washington Ave. from Carroll St. to Empire Blvd. Empire Blvd. from Washington Ave. to Flatbush Ave. Flatbush Ave. from Empire Blvd. to Grand Army Plaza. Brooklyn No Parking Thursday, March 12th (6 am) – Sunday, March 15th (12 pm) Eastern Parkway (south side) from Grand Army Plaza to Washington Ave. Eastern Parkway (south service road, both sides) from Washington Ave. to Bedford Ave. Friday, March 13 (6 am) – Sunday, March 15 (12 pm) Eastern Parkway (north service road) from Underhill Ave. to Bedford Ave. Washington Ave. from Eastern Parkway to Empire Blvd. President St. (in front of schools) from Classon Ave. to Franklin Ave. Union St. (in front of schools) from Classon Ave. to Franklin Ave. Empire Blvd. from Washington Ave. to Flatbush Ave. Flatbush Ave. from Empire Blvd. to Grand Army Plaza. Sullivan Pl. from Washington Ave. to Zenita Thompson Pl. Empire Blvd. from Flatbush Ave. to Bedford Ave. Sunday, March 15 (12 am – 1 pm) Flatbush Ave. from Grand Army Plaza to Ocean Ave./Empire Blvd. Flatbush Ave. from Grand Army Plaza to Tillary St. FDR Drive Closures (Sunday, March 15th | 5:40 am – 1:30 pm) Brooklyn Bridge exit to northbound FDR Drive Northbound FDR Drive at Exit 2 (Brooklyn Bridge/Manhattan Civic Center) Northbound FDR Drive at Montgomery St. Northbound FDR Drive at Houston St. Northbound FDR Drive at East 20th/23rd St. (Exit 7) Northbound FDR Drive at East 34th St. (Exit 8) Northbound FDR Drive at 42nd St. Pearl Street ramps and service roads Manhattan Street Closures (Sunday, March 15th) 3 am – 1 pm 43rd–46th Sts. between 6th Ave. and 7th Ave. 4:30 am – 1 pm 7th Ave. from 42nd St. to 56th St. 6 am – 2:15 pm Central Park West from 59th St. to 72nd St. West 61st–64th Sts. between Broadway and Central Park West 7 am – 12:45 pm 42nd St. from 1st Ave. to 7th Ave. 7 am – 1 pm 7th Ave. from 56th St. to Central Park South 7:15 am – 1:15 pm Central Park South between Columbus Circle and Grand Army Plaza Manhattan No Parking Saturday, March 14th (9 am) – Sunday, March 15th (3 pm) Central Park West (west side) from 59th St. to 65th St. Sunday, March 15th 42nd St. between 1st Ave. and 7th Ave. 7th Ave. between 42nd St. and 59th St. Central Park South (north side) from 7th Ave. to Columbus Circle. How to track a runner If someone you love is racing, you won’t want to miss seeing them go by! The most reliable way to follow your favorite athlete is via the NYRR Racing App (available on iOS and Android). Source / New York Road Runners Where to watch With 13.1 miles of energy, there isn’t a bad seat in the house, but these spots offer the best experience: Grand Army Plaza (Brooklyn): Catch the runners early as they exit Prospect Park; the energy here is high and the crowds are thick. Times Square (Manhattan): This is the “high-definition” moment of the race. Standing between 42nd and 47th Streets on 7th Avenue provides a view that is truly unique to this event. Central Park South (59th St): Watch the runners make their final turn toward the park. It’s loud, emotional, and very crowded. The Finish Line (Central Park): Located on West Drive near 72nd Street. Note that access to the actual finish line is limited; the best viewing is often along the final 400 meters inside the park. To learn more, see New York Road Runners’ official website. Whether you’re chasing a personal best or just chasing the vibes of the incredible day, there is truly no Sunday like a race Sunday in the five boroughs. To all of our New Yorkers running this weekend, we’re so proud of you, and we’ll be cheering you on from the sidelines!
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

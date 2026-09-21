@@ -1,0 +1,112 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is publix open on easter"
+
+Claims:
+[1] "All Publix stores are closed on Easter Sunday, April 5, 2026."
+[2] "Publix closes for only three holidays per year."
+[3] "Publix closes on Easter, Thanksgiving, and Christmas Day."
+[4] "Publix stores will operate with normal hours on Saturday."
+[5] "Publix stores will reopen on Monday, April 6."
+[6] "Walmart, Whole Foods, and Trader Joe's are generally open on Easter."
+[7] "Target, Aldi, and Costco are closed on Easter."
+
+Cited text snippets from the AI Overview (for additional context):
+- Is Publix Open on Easter? Details on 2026 Holiday Hours: "According to a Publix' spokesperson,a complete list right here."
+- What grocery stores are open on Easter across Tampa Bay?: "Is Publix open on Easter,will operate with modified hours."
+- Q&A - Newsroom | Publix Super Markets: "Publix stores are closed three,time with family and friends."
+- When is Easter 2026? Publix will be closed. See list of open stores: "No.,Day, Christmas Day and Easter."
+- Is Publix open on Easter 2026? Here’s what's open and closed on ...: "Which places are closed for,Miami Herald and TC Palm."
+Reference Sources:
+
+[R1] Is Publix Open or Closed on Easter Sunday? Details on 2026 Store Hours
+(https://www.today.com/life/holidays/publix-easter-hours-2026-rcna264887)
+"""
+Sunday, April 5, is Easter. The annual holiday is one of the biggest commemorations on the Christian calendar. In honor of the occasion, many people attend church service, gather with loved ones or participate in other Easter activities.However you plan to spend Easter Sunday this year, whether it be hosting brunch for friends and family or simply enjoying a bit of spring weather, a trip to the grocery store may be on your weekend agenda. If that's the case, and Publix is your go-to grocer, you might be wondering if Publix will be open on Easter. For the most up-to-date information, TODAY.com reached out to the grocery chain to find out if Publix locations will offer Easter hours in 2026 or, if like other retail giants (including Target, Lowe's and Costco), stores will be closed. See below for the latest details on whether or not Publix will be open Sunday or if you need to go elsewhere to grab any last-minute Easter essentials.Either way, given that many restaurants and retailers are closed on Easter, or operate with adjusted hours, it's a good idea to confirm local store hours for any business you're visiting this weekend, before heading out the door. Is Publix Open on Easter in 2026?Publix has more than 1,400 store locations across Alabama, Florida, Georgia, North Carolina, South Carolina, Tennessee and Virginia.If you’re planning to shop at the grocery chain this Easter, you’ll have to go elsewhere. According to a Publix' spokesperson, “Publix stores will be open normal operating hours on Saturday, April 4, the day before Easter Sunday. Our stores will be closed on Easter Sunday in observance of the holiday and to allow our associates the opportunity to spend time with family and friends.” Stores will resume regular business hours on Monday, April 6.Publix stores typically close on three holidays each year: Easter, Thanksgiving and Christmas Day. Stores Open on Easter 2026Though Publix will be closed on Sunday, see below for a sampling of stores that will remain open on Easter or find a complete list right here. BJ’s Wholesale Club: A majority of BJ’s clubs will be open on Easter Sunday from 8 a.m. to 6 p.m. BJ’s recommends confirming local hours before going. Find local hours here.Dollar General: Stores will be open during normal business hours. Find local hours here.Home Depot: Stores are open from 8 a.m. to 6 p.m. Hours may vary by location. Find local hours here.Kroger: A majority of stores will operate during normal business hours. Find local hours here.Trader Joe’s: Stores will be open during regular business hours. Find local hours here.Walmart: Stores will be open during normal business hours. Find local hours here.Whole Foods: Stores are open until 6 p.m. Find local hours here.
+"""
+
+[R2] Easter, Good Friday closings in Florida: See when Publix, Target close. Some schools open
+(https://www.floridatoday.com/story/news/2024/03/19/easter-2024-closings-publix-target-walmart-florida-schools-open-closed-good-friday/73026841007/)
+"""
+March 19, 2024, 2:18 p.m. ETThe end of March is coming up fast and with it two holidays that may affect some services and businesses.Good Friday is on March 29, followed by Easter on March 31.While most national grocery store and fast food chains will be open on Easter this year, there's one notable exception. Easter is one of the three holidays Publix is closed every year.Here's what you need to know about what is open or closed, including which Florida public schools will be in session.Is Publix open on Easter? What about other grocery stores?Publix supermarket is closed for three holidays every year: Easter, Thanksgiving and Christmas. So the chain will be closed for Easter Sunday on March 31.Aldi also will be closed.Most other national grocery store and fast food chains will be open on Easter, including Kroger, Trader Joe's, Harris Teeter, Sprouts Farmers Market, Winn-Dixie and Whole Foods, although Whole Foods will close at 6 p.m. local time.Both Sam's Club and Costco will be closed on Easter.Is Walmart open on Easter?Walmart stores will be open regular hours on Easter, the company told USA TODAY.Will Target be open on Easter?All Target stores will be closed on Sunday, March 31, a company spokesperson told USA TODAY.Is Chick-fil-A open on Easter?Easter is celebrated on a Sunday, so Chick-fil-A will be closed, as is normal on Sundays.What about other chain restaurants? Will they be open on Easter?Cracker Barrel, Golden Corral, select Applebees, Red Lobster, Texas Roadhouse and Buffalo Wild Wings will be open on Easter, although hours may vary by location so call first.Some restaurants offer a special brunch on Easter Sunday. Call to see if your favorite does and, if so, whether you need to make reservations.Good Friday occurs during spring break for 14 Florida school districtsCounties enjoying spring break the week of March 25 will have off Good Friday on March 29:Bradford: March 25-29Brevard: March 25-29Broward: March 22-29Citrus: March 25-29Escambia: March 25-29Hernando: March 22-29Hernando: March 22-29Holmes: March 25-29Indian River: March 25-29Manatee: March 25-29Miami-Dade: March 22-29Pasco: March 25-29Santa Rosa: March 25-29Volusia: March 22-29Florida schools open and closed on Good FridayWhile most Florida public school districts are either closed on Good Friday or on spring break, for students in five counties, school is in session on March 29.Alachua: No school March 29.Bay: No school March 29.Clay: No school March 29.Collier: No school March 29.Duval: No school March 29.Flagler: School in session March 29.Lake: No school March 29.Lee: No school March 29.Leon: School in session March 29.Martin: No school March 29.Nassau: School in session March 29.Okaloosa: School in session March 29, but students off March 25.Okeechobee: No school March 29.Palm Beach: No school March 29.Polk: No school March 29.Sarasota: No school March 29St. Lucie: No school March 29.St. Johns: No school March 29.Walton: Early release day March 29.Will mail be delivered on Good Friday and Easter?Yes, mail will be delivered on Good Friday, March 29. Good Friday is not one of the 11 holidays where mail is not delivered.U.S. Postal Service facilities will be closed for retail transactions and there will be no regular residential or business mail deliveries on Sunday, March 31. However, Priority Mail Express is delivered 365 days a year, including Sundays.Are banks open on Easter and Good Friday?Some branches of national banks will be closed on Easter since it falls on a Sunday.Branches of JPMorgan Chase that would typically be open on Sunday will be closed on Easter, the company told USA TODAY.All Capital One branch and café locations will be open regular hours on Good Friday and Easter.Wells Fargo has some branches that are open on Sundays and those branches will be open on Sunday, March 31, the company told USA TODAY. Bank of America financial centers are always closed on Sundays.Is the stock market open on Good Friday?No. The stock market will be closed for Good Friday, March 29.Are Good Friday and Easter federal holidays?There are 11 federal holidays in 2024. Neither Good Friday nor Easter are among them.The next federal holiday on the calendar is Memorial Day on May 27.Are Good Friday and Easter among Florida state holidays?Florida officially recognizes 21 legal holidays — which may or may not line up with the list of federal holidays — when state offices will be closed.Good Friday is recognized as a state holiday in Florida.
+"""
+
+[R3] Q&A - Newsroom | Publix Super Markets
+(https://corporate.publix.com/newsroom/q-and-a)
+"""
+This is the main content. Financial Performance Does Publix report on the financial performance of specific products, categories, departments and/or stores? Legal Does Publix comment on pending litigation? What is Publix's policy on service animals? Media requests Does Publix allow filming inside their stores? Do Publix associates participate in media interviews? Do Publix executives participate in media interviews? Does Publix provide surveillance video footage to their media partners? Pharmacy Why has Publix Pharmacy decided to sunset their free prescription program effective June 1, 2022? Will Publix be administering the COVID-19 vaccine to children younger than 5 years of age? Political support Can Publix comment on the political contributions of family members? Does Publix comment on their political contributions? Why does Publix engage in the political process? Real estate When does Publix comment on new sites? Services Why does Publix not participate in lottery stories? Solicitation What is Publix's policy on solicitation? Store operations Which holidays are Publix stores closed? Supply chain What is Publix's pricing practice? What is Publix's position on animal welfare? What is Publix's position on antibiotic stewardship? What is Publix's position on cage-free eggs? What is Publix's position on the CIW? Why are there supply shortages at retail? Sustainability What is Publix's commitment to sustainability? Why does Publix offer the use of plastic bags?
+"""
+
+[R4] What grocery stores are open on Easter across Tampa Bay?
+(https://www.wtsp.com/article/news/local/publix-open-easter-hours-walmart-costco-target-whole-foods/67-fe8d3260-a151-4a3f-b551-e62eb168ef53)
+"""
+If you're scrambling for last-minute groceries, or just need to grab something on the go, knowing which stores will be open — and which won't — can save you a trip. TAMPA, Fla. — Easter Sunday falls on April 5 this year, and if the holiday arrives and you're scrambling for last-minute groceries, or just need to grab something on the go, knowing which stores will be open — and which won't — can save you a trip. While some grocery stores across Tampa Bay will be closed, you'll still be in luck, as a handful will still keep their doors open and/or have modified hours during the holiday. Here's what you need to know before you head out the door. Is Publix open on Easter? No, all Publix stores are closed on Easter. Is Target open on Easter? Is Walmart open on Easter? Yes, Walmart stores are open on Easter Sunday for 2026. Is Costco open on Easter? No, Costco is not open on Easter 2026. Easter Sunday is one of the seven holidays that Costco closes its U.S. warehouses. Is Aldi open on Easter? No, Aldi will be closed on Easter. Is Trader Joe's open on Easter? Yes, Trader Joe's locations will be open on Easter. Is Whole Foods open on Easter? Yes, Whole Foods will be open on Easter, but many locations will operate with modified hours. TEGNA Digital's Megan Divers contributed to this story.
+"""
+
+[R5] Is Publix open on Easter 2026? Here’s what's open and closed on Easter
+(https://m.economictimes.com/news/international/us/is-publix-open-on-easter-2026-heres-whats-open-and-closed-on-easter/articleshow/130020908.cms)
+"""
+SynopsisPublix will be closed on Easter Sunday, April 5, 2026, across Florida, including its pharmacies and liquor stores. However, shoppers can find many other grocery options open, such as Walmart, Winn-Dixie, Whole Foods, Trader Joe's, and Sprouts. It is advisable to check specific store hours as some may have reduced operating times.APIs Publix open on Easter 2026? Here’s what's open and closed on EasterIf you’re planning a last-minute Easter meal run, it’s important to know which grocery stores are open before heading out. For many shoppers, the big question this holiday weekend is what stores are open on Easter.Easter 2026 will be observed by the majority of Christians, with a particular emphasis on Catholics and Protestants, on Sunday, April 5, 2026.Easter normally occurs on the first Sunday following the Paschal Full Moon, which is the first full moon following the spring equinox on the Gregorian calendar, which is employed by the majority of Christian denominations. In Christianity, Easter is the commemoration of Jesus Christ's resurrection, which marked his triumph over sin and death.Easter Sunday falls on April 5, 2026, and people are checking store hours for last-minute holiday needs. ALSO READ: Oracle Layoffs: Thousands being fired via email without warning—here's what lead to the global restructuringIs Publix open on Easter?No, Publix will be closed on Easter Sunday. This includes all regular grocery locations, as well as Publix liquor stores and pharmacies, as per reports by the Miami Herald and TC Palm.Publix traditionally closes only three times each year: Thanksgiving, Christmas, and Easter, making this one of the few days the popular Florida supermarket chain does not operate.ALSO READ: As Iran downs US jets - did they find the second pilot? Here's the latest What grocery stores are open on Easter 2026?Thankfully, several other stores remain open for Easter shopping.Stores open on Easter include Walmart, Winn-Dixie, Milam’s Markets, Sedano’s Supermarket, Presidente Supermarket, Trader Joe’s, Sprouts Farmers Market, Whole Foods Market, The Fresh Market, and BJ’s Warehouse Club.Most Whole Foods locations in South Florida are open from 8 a.m. to 8 p.m., though some stores may close earlier at 6 p.m.Other open options include Price Choice Supermarket, though some locations may shut by 2 p.m. Convenience stores and gas station mini-marts are also generally open, as per reports by the Miami Herald and TC Palm.Which places are closed for Easter?Along with Publix, several stores and restaurants will be closed, including Target, Costco, Sam’s Club, and Aldi.A number of restaurant chains are also closed for the holiday, including Arby’s, CAVA, Chipotle, Culver’s, Firehouse Subs, Mission BBQ, Raising Cane’s, and Zaxby’s, as per reports by the Miami Herald and TC Palm.FAQsIs Publix open on Easter Sunday 2026?No, all Publix stores, pharmacies, and liquor stores will be closed.Which grocery stores are open on Easter?Walmart, Winn-Dixie, Whole Foods, Trader Joe’s, Sprouts, and BJ’s are open.
+"""
+
+[R6] When is Easter 2026? Publix will be closed. See list of open stores
+(https://www.tcpalm.com/story/news/2026/03/26/when-easter-sunday-publix-closed-holidays-open-grocery-stores-florida/89282803007/)
+"""
+March 26, 2026, 6:02 a.m. ETEaster Sunday will fall on April 5 in 2026, with its date determined annually by the lunar calendar.Major retailers like Target, Costco and Publix will be closed for the Easter holiday.Several stores, including Walmart, CVS and Whole Foods, are expected to remain open on Easter Sunday.Shoppers should verify the hours of their local stores as some may operate on a reduced schedule for the holiday.There's still just under two weeks to do all of your Easter shopping. But if you happen to forget a chocolate bunny for a basket, a hostess gift to bring to Easter brunch or an ingredient for your deviled eggs, there will still be a few grocery stores open on the holiday.Although some major stores like Publix and Target will be closed on Easter Sunday, there will be a few other grocery store chains to choose from on Easter Sunday.Here's which date Easter Sunday falls on in 2026 and a list of stores that will be open and closed on the holiday.When is Easter Sunday 2026?Easter Sunday will fall on April 5 in 2026. In 2025, Easter fell much later in the month, on April 20. Eastern Orthodox Easter will fall on Sunday, April 12, 2026.Is Publix open on Easter Sunday?No. Publix is never open on Easter Sunday.There are three holidays a year that all Publix locations close for: Thanksgiving Day, Christmas Day and Easter.What stores are open, closed on Easter Sunday 2026?While many stores close for Easter Sunday every year, there are a few that will remain open.Here's a list of retailers that will be closed on Easter:TargetCostcoSam's ClubAldiLowe'sTJ MaxxMarshall'sHomeGoodsHere's a list of retailers that will be open on Easter:Home DepotCVSWalgreensWhole FoodsSproutsWinn-DixieTrader Joe'sBJ's WholesaleWalmartNote that some of these retailers may have reduced hours at all or some of their locations due to the holiday. Check your nearest location's hours before you head to the store.How is the Easter date determined each year?Easter’s date changes because it is based on the lunar calendar, much like Lunar New Year. According to The Old Farmer’s Almanac, Easter Sunday always falls on the first full moon after the spring equinox.“While Christmas is fixed to a solar calendar (and near the winter solstice), Easter is based on the lunar cycles of the Jewish calendar,” the almanac says. “In the Christian religion, the Last Supper (the final meal Jesus shared with his apostles before his crucifixion) was a Passover feast. Because Easter is based on a lunar month (which is 29.5 days), the date of Easter can vary.”Lianna Norman and Samantha Neely are trending reporters for the USA TODAY NETWORK-Florida, covering pop culture, Florida wildlife, breaking news and more. You can get all of Florida’s best content directly in your inbox each weekday by signing up for the free newsletter, Florida TODAY, at https://floridatoday.com/newsletters.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,108 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "selection show time"
+
+Claims:
+[1] "The 2026 NCAA Tournament Selection Sunday is Sunday, March 15, 2026."
+[2] "The Men's bracket reveal is at 6 p.m. ET on CBS and Paramount+."
+[3] "The Women's bracket reveal is at 8 p.m. ET on ESPN."
+[4] "The Men's Selection Show is at 6:00 p.m. ET on Sunday, March 15, 2026, on CBS/Paramount+."
+[5] "The Women's Selection Show is at 8:00 p.m. ET on Sunday, March 15, 2026, on ESPN."
+[6] "The Men's Selection Show and the Women's Selection Show will feature the unveiling of the full 68-team fields."
+[7] "The Men's Selection Show and the Women's Selection Show will feature the unveiling of bracket matchups."
+[8] "The Men's Selection Show and the Women's Selection Show are available for streaming on March Madness Live."
+[9] "The First Four games begin on March 17-18, 2026."
+[10] "The 2026 NCAA Tournament runs through April 6, 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- 2026 Selection Sunday: Date, schedule, TV times for March ...: "NCAA.com | March 15,,the men's tournament in 2026:"
+- Selection Sunday: How to watch the women's bracket reveal live tonight ...: "When is Selection Sunday for,women's at 6 p.m. ET."
+- What time is Selection Sunday for NCAA Tournament bracket ...: "When is March Madness bracket,airing of 8 p.m. ET."
+- Top 16 teams selected for the 2026 NCAA Division I women’s basketball championship: "The full 68-team field,and one on March 31."
+Reference Sources:
+
+[R1] What time is Selection Sunday for NCAA Tournament bracket reveal?
+(https://www.usatoday.com/story/sports/ncaab/2026/03/14/selection-sunday-time-ncaa-tournament-womens-mens/89099086007/)
+"""
+March 14, 2026Updated March 15, 2026, 5:56 p.m. ETFollow Selection Sunday live with USA TODAY Sports' live blog as the bracket is revealed.The anticipation is almost over.The full brackets both the Men's NCAA Tournament and Women's NCAA Tournament will be revealed Sunday. That will give fans ample time to fill out their brackets ahead of the First Four games.Most of the conference tournament games are now finished for both sides, with a few championship games scheduled for later today, Sunday, March 15, ahead of the reveal show for the men's and the women's 68-team fields.Duke, Michigan, and Arizona seem locked in as the No. 1 seeds on the men's side while Connecticut, UCLA, South Carolina and Texas seem to be the locks for the same on the women's side.For curious fans, here's what you need to know about Selection Sunday for the men's and women's NCAA tournaments, including show start times, TV channel, streaming information and more:Watch 2026 NCAA Tournament Selection Sunday shows live with Fubo (free trial)What time is Selection Sunday? When is March Madness bracket released?Men's Tournament selection show time: 6 p.m. ETWomen's Tournament selection show time: 8 p.m. ETThere will be two separate reveal shows for the men's and women's tournaments. The 68-team field for the men's side will be revealed at 6 p.m. ET on Sunday, with the assumption that no outstanding conference championship games remain.Following the men's reveal, the women's 68-team field will be announced shortly after, with a scheduled airing of 8 p.m. ET.What channel is Selection Sunday show?TV channels: CBS (men) | ESPN (women's)Streaming options: ESPN app | Fubo (free trial)The men's NCAA Tournament Selection Sunday show will be revealed live on CBS, while the women's bracket reveal will be broadcast on ESPN.Both bracket reveal shows can be streamed on Fubo, which not only carries CBS and the ESPN family of networks, but also offers a free trial to new subscribers.Watch 2026 NCAA Tournament Selection Sunday shows live with Fubo (free trial)Full men's March Madness schedule 2026Start date: Tuesday, March 17 (First Four)End date: Monday, April 7 (national championship)March Madness officially kicks off with the NCAA Tournament games, with the First Four round on Tuesday, March 17, at UD Arena in Dayton, Ohio.The Final Four will start on Saturday, April 4, at Lucas Oil Stadium in Indianapolis, with the national championship game on Monday, April 6.Here is the full schedule breakdown for the 2026 men's NCAA Tournament:First Four: Tuesday, March 17 and Wednesday, March 18First round: Thursday, March 19 and Friday, March 20Second round: Saturday, March 21 and Sunday, March 22Sweet 16: Thursday, March 26 and Friday, March 27Elite Eight: Saturday, March 28 and Sunday, March 29Final Four: Saturday, April 4National championship game: Monday, April 6Full women's March Madness schedule 2026Start date: Wednesday, March 18 (First Four)End date: Sunday, April 5 (national championship)Just like the men's side, the women's tournament begins with the First Four, with games beginning on Wednesday, March 18.The Final Four is scheduled to begin on Friday, April 3, in Phoenix at the Mortgage Matchup Center, with the national championship game two days later on Sunday, April 5.Here is the full schedule breakdown for the 2026 women's NCAA Tournament:First Four: Wednesday, March 18 andThursday, March 19Round of 64: Friday, March 20 and Saturday, March 21Round of 32: Sunday, March 22 and Monday, March 23Sweet 16: Friday, March 27 and Saturday, March 28Elite Eight: Sunday, March 29 and Monday, March 30Final Four: Friday, April 4National championship game: Sunday, April 6
+"""
+
+[R2] Top 16 teams selected for the 2026 NCAA Division I women’s basketball championship
+(https://www.ncaa.com/news/basketball-women/article/2026-03-14/top-16-teams-selected-2026-ncaa-division-i-womens-basketball-championship)
+"""
+INDIANAPOLIS – The NCAA Division I Women’s Basketball Committee announced the top 16 teams for the 2026 NCAA Division I Women’s Basketball Championship. The 16 teams, in alphabetical order, with campus hosted sites and records are as follows: • Duke – Durham, North Carolina (24-8) • Iowa – Iowa City, Iowa (26-6) • Louisville – Louisville, Kentucky (27-7) • LSU – Baton Rouge, Louisiana (27-5) • Michigan – Ann Arbor, Michigan (25-6) • Minnesota – Minneapolis, Minnesota (22-8) • North Carolina – Chapell Hill, North Carolina (26-7) • Ohio State – Columbus, Ohio (26-7) • Oklahoma – Norman, Oklahoma (24-7) • South Carolina – Columbia, South Carolina (31-3) • TCU – Fort Worth, Texas (29-5) • Texas – Austin, Texas (31-3) • UCLA – Los Angeles, California (31-1) • UConn – Storrs, Connecticut (34-0) • Vanderbilt – Nashville, Tennessee (27-4) • West Virginia – Morgantown, West Virginia (27-6)The full 68-team field, including the full seed list, and site assignments will be announced at 8 p.m. Eastern time, Sunday, March 15. The one-hour program will be shown live on ESPN. Regional play in Fort Worth, Texas (Dickies Arena) and Sacramento, California (Golden 1 Center) will take place March 27-30, with each site hosting two regional semifinal games March 27 and two March 28. In addition, each site will host a regional championship game March 29 and one on March 31. There are 31 Division I conferences that will receive an automatic berth in the field of 68, along with 37 at-large selections. The 2026 NCAA Women’s Final Four will be played April 3 and 5 at Mortgage Matchup Center in Phoenix, Arizona.
+"""
+
+[R3] Selection Sunday 2026: Where to watch March Madness bracket reveal, start time live on CBS
+(https://www.cbssports.com/college-basketball/news/selection-sunday-2026-march-madness-bracket-reveal-show/)
+"""
+College basketball's long-awaited postseason is here with Selection Sunday and the reveal of the 2026 NCAA Tournament's 68-team bracket. CBS will exclusively air the decision from the NCAA Division I Men's Basketball Committee as the first- and second-round matchups for March Madness are presented live with extensive coverage on Sunday.There are several elite teams and national championship contenders safely in the field, along with automatic qualifiers entering the final weekend as conference tournaments come to a close. However, multiple bubble teams are patiently waiting to see whether their resumes are strong enough to warrant inclusion.Follow along for LIVE reactions and analysis from CBS Sports expertsOverall, 31 teams automatically qualify for the field by winning those respective conference tournaments, but more than half the field -- 37 teams, to be exact -- are hand-selected by the selection committee.Nothing will be finalized until Sunday night when the selection committee determines the eight First Four participants along with the other 60 teams that are immediately placed in the main bracket. That is why so much hubbub is made each year about Selection Sunday when the field of 68 teams is unveiled. Bracketology: Final projections ahead of Selection Sunday showThere will be plenty of time to fill out your NCAA Tournament bracket on CBS Sports from Selection Sunday until first-round play begins Thursday afternoon. From there, you can name your group and toggle between a variety of options to set up your pool. The steps for entry are easy, but winning your pool and earning bragging rights are not.Brackets are here! Get your pools ready and enter our Bracket Challenge for your chance to win a dream trip to the 2027 Final FourⓇ.Where to watch 2026 NCAA Tournament Selection ShowDate: Sunday, March 15 | Time: 6 p.m. ETTV: CBS and Paramount+Live stream: March Madness Live Additional coverage: CBS Sports HQ will break down the bracket with game picks and analysis after the showFollow along for LIVE reactions and analysis from CBS Sports expertsBetween Selection Sunday and the first official games of the Big Dance, your time will be limited to fill out your bracket. Here's a full look ahead at what to expect over the coming weeks. DatesEventSunday, March 15Selection SundayMarch 17-18First FourMarch 19-20First RoundMarch 21-22Second RoundMarch 26-27Sweet 16March 28-29Elite EightSaturday, April 4Final FourMonday, April 6NCAA championship game2026 NCAA Tournament bracket primerApproaching Selection Sunday, Duke, Michigan, Arizona and Florida are the expected top seeds with Michigan State, UConn, Houston and Illinois battling to either level or or settle in as No. 2 seeds.There have already been postseason upsets with an unexpected loss on Thursday from Miami (Ohio) being the most notable as the nation's lone unbeaten entering conference tournament action went down, ending its perfect season. The RedHawks' (31-1) loss to UMass was their fourth consecutive game decided in the final second, and it is leaving many bracketologists questioning their placement in the field, given their lack of quality wins per selection committee metrics.After failing to win the MAC Tournament, there's a chance Miami (Ohio) could be left out of the NCAA Tournament, though most do not expect that will happen. The RedHawks were the first team to complete a perfect regular season since Gonzaga in 2021 and only the eighth in the last half-century before Thursday's setback. 2026 NCAA Tournament scheduleRoundDatesLocationVenueFirst/SecondMarch 19 , 21BuffaloKeyBank CenterFirst/SecondMarch 19, 21GreenvilleBon SecoursWellness ArenaFirst/SecondMarch 19, 21Oklahoma CityPaycom CenterFirst/SecondMarch 19, 21PortlandModa CenterFirst/SecondMarch 20, 22TampaBenchmark International ArenaFirst/SecondMarch 20, 22PhiladelphiaXfinity Mobile ArenaFirst/SecondMarch 20,22San DiegoViejas ArenaFirst/SecondMarch 20, 22St. LouisEnterprise CenterSouthRegionalMarch 26, 28HoustonToyota CenterWestRegionalMarch 26, 28San JoseSAP CenterMidwestRegionalMarch 27, 29ChicagoUnited CenterEastRegionalMarch 27, 29WashingtonCapital One ArenaFinal FourApril 4,6IndianapolisLucas Oil Stadium
+"""
+
+[R4] 2026 Selection Sunday: Date, schedule, TV times for March Madness
+(https://www.ncaa.com/news/basketball-men/article/2026-03-15/2026-selection-sunday-date-schedule-tv-times-march-madness)
+"""
+Selection Sunday for 2026 March Madness was Sunday, March 15. The 68-team brackets for the men's and women's NCAA DI basketball tournaments will be revealed during selection shows. The men's tournament bracket was announced at 6 p.m. ET on CBS. The women's bracket will be revealed at 8 p.m. ET on ESPN. Here's the schedule for the 2026 men's tournament: Selection Sunday: 6 p.m. ET Sunday, March 15 on CBS First Four: Tuesday, March 17 and Wednesday, March 18 First round: Thursday, March 19 and Friday, March 20 Second round: Saturday, March 21 and Sunday, March 22 Sweet 16: Thursday, March 26 and Friday, March 27 Elite Eight: Saturday, March 28 and Sunday, March 29 Final Four: Saturday, April 4 at Lucas Oil Stadium in Indianapolis, Ind. NCAA championship game: Monday, April 6 at Lucas Oil Stadium in Indianapolis, Ind. These are the sites for the men's tournament in 2026: ROUND CITY VENUe DATES First Four Dayton, Ohio UD Arena March 17-18 First/Second Buffalo, NY KeyBank Center March 19-21 First/Second Greenville, SC Bon Secours Wellness Arena March 19-21 First/Second Oklahoma City, OK Paycom Center March 19-21 First/Second Portland, OR Moda Center March 19-21 First/Second Tampa, FL Benchmark International Arena March 20-22 First/Second Philadelphia, PA Xfinity Mobile Arena March 20-22 First/Second San Diego, CA Viejas Arena March 20-22 First/Second St. Louis, MO Enterprise Center March 20-22 South Regional Houston, TX Toyota Center March 26-28 West Regional San Jose, CA SAP Center March 26-28 Midwest Regional Chicago, IL United Center March 27-29 East Regional Washington D.C. Capital One Arena March 27-29 Check out the 2026 women's schedule below: Selection Sunday: 8 p.m. ET Sunday, March 15 on ESPN First Four: Wednesday, March 18 and Thursday, March 19 First round: Friday, March 20 and Saturday, March 21 Second round: Sunday, March 22 and Monday, March 23 Sweet 16: Friday, March 27 and Saturday, March 28 Elite Eight: Sunday, March 29 and Monday, March 30 Final Four: Friday, April 3 at Mortgage Matchup Center in Phoenix, Ariz. NCAA championship game: Sunday, April 5 at Mortgage Matchup Center in Phoenix, Ariz. 2026 REGIONAL ROUND SITES Round City Venue Dates Sweet 16/Elite Eight Fort Worth, TX Dickies Arena March 27-30 Sweet 16/Elite Eight Sacramento, CA Golden 1 Center March 27-30
+"""
+
+[R5] Selection Sunday: How to watch the women's bracket reveal live tonight ahead of the 2026 NCAA March Madness basketball tournament
+(https://sports.yahoo.com/womens-college-basketball/article/selection-sunday-how-to-watch-the-womens-bracket-reveal-live-tonight-ahead-of-the-2026-ncaa-march-madness-basketball-tournament-121504145.html)
+"""
+It's time for March Madness. Tonight, the brackets for the 2026 NCAA tournament will be revealed. The women’s 68-team bracket reveal will air live on ESPN at 8 p.m. ET. Prior to the women's bracket reveal, the men's will air at 6 p.m. on CBS. Just like last year, the two tournaments are spread across a range of channels, so if you’re looking for how to watch March Madness — in addition to Selection Sunday — Yahoo Sports has you covered. Here’s everything you need to know about watching Selection Sunday for the women’s NCAA tournament live this weekend, plus how to watch March Madness in 2026.Date: Sunday, March 15, 2026AdvertisementTime: 8 p.m. ETTV channel: ESPNStreaming: ESPN Unlimited, DirecTV and moreWhen is Selection Sunday for March Madness?The madness begins on Selection Sunday, March 15, when the Selection Committee reveals the full NCAA tournament bracket for both the men's and women's teams. The women's bracket will be revealed at 8 p.m. ET. The men’s bracket will precede the women's at 6 p.m. ET.Selection Sunday TV channelThe women’s March Madness bracket reveal will air live on ESPN. The men’s bracket reveal will air on CBS.How to watch Selection Sunday live without cableESPN's streaming platform offers thousands of exclusive live events, original studio shows, and acclaimed series that air across ESPN's suite of seven linear channels, as well as exclusive content on ESPN+, ABC on ESPN, SEC+, ACCNX and more. The tier costs $29.99/month or $299.99/year. ESPN Select allows subscribers to access exclusive content only available on the app, and an extensive archive of on-demand content (including the entire 30 For 30 library, select ESPN films, game replays, and more). Whether you purchase a standalone plan, add-on or Disney bundle plan, the service provides access to thousands of sports events for $12.99/month or $129.99/year. DirecTV is currently offering its Choice tier (typically $115+/month with fees) for just $80 (after fees) for the first month. DirecTV's Choice tier gives you access to tons of sports channels, including ESPN, the ACC Network, the Big Ten Network, the SEC Network and plenty of local Regional Sports Networks. Plus, you'll get access to ABC, NBC, CBS and Fox. Whichever package you choose, you'll get unlimited Cloud DVR storage and access to ESPN's new streaming tier, ESPN Unlimited. The best part is that you can currently try all this out for free for 5 days. If you're interested in trying a live TV streaming service for the start of March Madness but aren't ready to commit, we recommend starting with DirecTV. When does March Madness start?Both the men’s and women’s NCAA tournament brackets will be revealed on Sunday, March 15. The men's games then tip off with the First Four on Tuesday, March 17. The women's side will tip off on Wednesday, March 18.AdvertisementWhat channel is March Madness on in 2026?Games in the men’s NCAA tournament will air across CBS, TBS, TNT and TruTV. The women’s NCAA tournament will air across the ESPN suite — ESPN, ESPN2, ESPNU, ESPNews and ABC.-Don’t have cable? Don’t worry. You can stream the men’s games easily with a subscription to Paramount+ Premium and HBO Max Standard, or a liveTV streaming service like DirecTV, Fubo or Sling. The women’s games will be accessible via an ESPN Unlimited subscription (or any live-TV streaming service that includes the ESPN suite).How to watch March Madness 2026:
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

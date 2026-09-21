@@ -1,0 +1,110 @@
+{
+  "keyword": "refinance rates",
+  "model": "grok-4-1-fast-reasoning",
+  "n_claims": 7,
+  "n_verified": 7,
+  "label_counts": {
+    "CLEAR": 1,
+    "VAGUE": 0,
+    "AMBIGUOUS": 0,
+    "INCORRECT": 6,
+    "OMITTED": 0
+  },
+  "consistent": 1,
+  "inconsistent": 6,
+  "fidelity_rate": 0.1429,
+  "verifications": [
+    {
+      "claim_id": 1,
+      "claim": "As of March 20, 2026, 30-year fixed mortgage refinance rates hovered around 6.25% to 6.79%.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R3",
+        "R9"
+      ],
+      "evidence": "R3: '30-year fixed: 6.24%' (refinance); R9: '30-Year Fixed Refinance: ... 6.79%' (March 20, 2026)",
+      "reasoning": "R3 provides 6.24% (approx 6.25%) for 30yr refi; R9 exactly 6.79% for 30yr refi on March 20; range directly supported."
+    },
+    {
+      "claim_id": 2,
+      "claim": "As of March 20, 2026, 15-year fixed mortgage refinance rates sat between 5.5% and 5.91%.",
+      "label": "INCORRECT",
+      "confidence": 0.9,
+      "matched_references": [
+        "R3",
+        "R9",
+        "R7"
+      ],
+      "evidence": "R3: '15-year fixed: 5.77%' (refi), purchase/Freddie 5.54%-5.65%; R9: '15-Year Fixed Refinance: 5.91%' (March 20); R7: '15-year fixed-mortgage rate is 5.64 percent' (purchase March 19)",
+      "reasoning": "High 5.91% matches R9 refi; low 5.5% matches purchase/Freddie rates, not refi (refi rates 5.77%+); misattributes purchase to refi."
+    },
+    {
+      "claim_id": 3,
+      "claim": "As of March 19-20, 2026, 30-year fixed refinance rates were 6.16%\u20136.79%.",
+      "label": "INCORRECT",
+      "confidence": 1.0,
+      "matched_references": [
+        "R3",
+        "R7",
+        "R9"
+      ],
+      "evidence": "R3: '30-year fixed: 6.16%' (purchase), refi '6.24%'; R7: refi '6.62 percent' (March 19); R9: '6.79%' refi (March 20)",
+      "reasoning": "Low 6.16% exactly R3 purchase, not refi (refi 6.24%); high 6.79% refi ok, but low misattributed to refi."
+    },
+    {
+      "claim_id": 4,
+      "claim": "As of March 19-20, 2026, 15-year fixed refinance rates were 5.50%\u20135.91%.",
+      "label": "INCORRECT",
+      "confidence": 0.9,
+      "matched_references": [
+        "R3",
+        "R7",
+        "R9"
+      ],
+      "evidence": "R3: refi '5.77%', purchase/Freddie '5.54%'; R7: purchase '5.64 percent' (March 19); R9: '5.91%' refi (March 20)",
+      "reasoning": "High 5.91% matches R9 refi; low 5.50% approx purchase/Freddie, not refi (refi higher at 5.77%+); misattributes."
+    },
+    {
+      "claim_id": 5,
+      "claim": "As of March 19-20, 2026, 20-year fixed refinance rates were 6.12%\u20137.75%.",
+      "label": "INCORRECT",
+      "confidence": 1.0,
+      "matched_references": [
+        "R3"
+      ],
+      "evidence": "R3: refi '20-year fixed: 6.02%', purchase '6.12%'; no mention of 7.75% or range",
+      "reasoning": "Only R3 mentions 20yr refi at 6.02% (below claimed low); 6.12% is purchase; high 7.75% unsupported/omitted; contradicts range."
+    },
+    {
+      "claim_id": 6,
+      "claim": "As of March 19-20, 2026, 5/1 ARM refinance rates were 5.49%\u20137.33%.",
+      "label": "INCORRECT",
+      "confidence": 0.9,
+      "matched_references": [
+        "R3",
+        "R7",
+        "R9"
+      ],
+      "evidence": "R3: refi '5/1 ARM: 6.33%'; R7: '5/1 ARM is 5.49 percent' (purchase March 19); R9: '5-Year Adjustable-Rate Mortgage (ARM) Refinance: 7.33%' (March 20)",
+      "reasoning": "High 7.33% matches R9 refi; low 5.49% exactly R7 purchase ARM, not refi; misattributes purchase to refi."
+    },
+    {
+      "claim_id": 7,
+      "claim": "As of March 19-20, 2026, VA/FHA 30-year refinance rates were 5.375%\u20136.22%.",
+      "label": "INCORRECT",
+      "confidence": 0.9,
+      "matched_references": [
+        "R3",
+        "R5"
+      ],
+      "evidence": "R3: '30-year VA: 5.67%' (refi); R5: '30 Year 5.625%' (VA refi, Mar 26); no 5.375% or FHA 30yr rates; 6.22% in R2 table (conventional?)",
+      "reasoning": "VA 30yr refi ~5.625-5.67% (within range) but low 5.375% unsupported (closest VA15 5.37); no FHA rates; high 6.22% not VA/FHA specific; partial mismatch."
+    }
+  ],
+  "elapsed_s": 57.0,
+  "prompt_tokens": 19951,
+  "cached_tokens": 582,
+  "completion_tokens": 1333,
+  "error": null
+}

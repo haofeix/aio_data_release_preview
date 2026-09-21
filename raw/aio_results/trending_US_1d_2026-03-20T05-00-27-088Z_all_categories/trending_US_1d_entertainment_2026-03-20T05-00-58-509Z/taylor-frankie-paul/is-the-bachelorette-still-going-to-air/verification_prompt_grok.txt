@@ -1,0 +1,112 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is the bachelorette still going to air"
+
+Claims:
+[1] "As of March 19, 2026, Disney Entertainment has announced they are not moving forward with the new season of The Bachelorette (Season 22) starring Taylor Frankie Paul."
+[2] "The premiere of Season 22 of The Bachelorette was scheduled for March 22, 2026."
+[3] "Disney Entertainment's decision follows a newly surfaced 2023 video showing an altercation with Taylor Frankie Paul's ex."
+[4] "Season 22 of The Bachelorette was meant to be a 2026 winter/spring reboot."
+[5] "Season 22 of The Bachelorette has been halted."
+[6] "Disney Entertainment's decision follows a domestic abuse investigation involving Taylor Frankie Paul."
+[7] "Season 22 of The Bachelorette was initially scheduled for March 22, 2026, as per a Facebook post and various reports."
+[8] "The initial scheduling of Season 22 of The Bachelorette occurred despite earlier news of a "domestic assault investigation"."
+[9] "The surfacing of a new video caused the reversal of the decision to premiere Season 22 of The Bachelorette."
+[10] "Some reports suggested Season 22 of The Bachelorette might be moved to Hulu."
+
+Cited text snippets from the AI Overview (for additional context):
+- ABC cancels Taylor Frankie Paul's season of The Bachelorette: "'The Bachelorette' is not airing,the veracity of the clip."
+- Is ‘The Bachelorette’ Still Going to Air? Producers “Blindsided” by ...: "Original story 3/17/2026,they are still together, below."
+- ABC Will Lose Tens of Millions of Dollars if Taylor Frankie Paul’s ‘The Bachelorette’ Doesn’t Air: "Ironically, this season of “The,of mea culpas from Paul."
+- ABC Confirms 'The Bachelorette' Season 22 Will Air Despite Taylor ...: "News-,ABC Confirms 'The Bachelorette' Season 22 Will Air,Despite Taylor Frankie Paul's Investigation&text=With headlines swirling around a,Here's what we know."
+- This season, the rules all change. #TheBachelorette ...: "The Most Dramatic Season of The Bachelorette,ABC, dramatic season of The Bachelorette, The"
+- ABC pulls new season of The Bachelorette over domestic ...: "Earlier this week, production on,air at a future date."
+- ABC has canceled the new season of “The Bachelorette” just three ...: "The Bachelorette: Before the First,The Oscars on March 15"
+- ABC will "not move forward" with the new season of "The ... - Facebook: "Key schedule and programming changes,people actually watch this one)."
+Reference Sources:
+
+[R1] ABC Loses Millions If Taylor Frankie Paul's 'Bachelorette' Doesn't Air
+(https://variety.com/2026/tv/news/abc-loses-millions-taylor-frankie-pauls-bachelorette-1236694467/)
+"""
+ABC could be out tens of millions of dollars if it can’t find a way to salvage “The Bachelorette,” according to sources familiar with the show (and the current predicament it finds itself in). That includes license fees to Warner Bros. Unscripted TV, marketing dollars and other loss of revenue. With the release of a 2023 video showing star Taylor Frankie Paul throwing chairs at her estranged partner Dakota Mortensen — and accidentally hitting her child — ABC abruptly pulled the show on Thursday, after having sworn throughout the week that it had no plans to do so. The last-minute pre-emption causes a host of problems — especially because it doesn’t own the show, with comes from Warner Bros. TV Group. Warner Bros. distributes the show internationally to outlets like Rogers’ Citytv in Canada, so it wasn’t clear on Thursday if “The Bachelorette” might still wind up on TV somewhere. While ABC had immediately scrubbed Paul and “The Bachelorette” from its website by Thursday afternoon, it still appeared on the Citytv+ website at midday. (UPDATED: Citytv has confirmed that it will air a repeat episode of “American Idol” in the timeslot, in simulcast with ABC.) Popular on Variety Visit Advertiser websiteGO TO PAGE According to insiders, Warner Bros. execs are taking a wait-and-see approach to what is happening, while staying in contact with ABC. (The studio gets paid the show’s license fee regardless of whether the show ever airs.) Sources at the studio were shocked by the video, having found out about it at the same time ABC did on Thursday morning. And yet, some can’t say they were surprised by the sudden turn of events. According to sources, Warner Bros. had concerns with casting Paul, given her well-known history of domestic violence — after all, it’s documented at the very start of “The Secret Lives of Mormon Wives.” “We’re collateral damage, to be honest,” said one source. But according to insiders, as a seller, Warner Bros. agreed to Paul as the face of “The Bachelorette” after ABC noted that Paul and “Mormon Wives” was an important franchise for the company. Warner Bros. Unscripted is also behind “Bachelor Happy Hour” podcast in a partnership with iHeart Media. Ironically, this season of “The Bachelorette” was meant to be a reboot of sorts for the franchise, which hasn’t aired since summer 2024. “The Bachelor” franchise had been in a bit of a turnaround after a shift at the top last year, when showrunners Claire Freeland and Bennett Graebner departed following reports of “toxic” workplace allegations. They were replaced by “Bachelor in Paradise” showrunner/EP Scott Teti. With all the changes to the franchise, the cycles changed somewhat, and “The Bachelorette” took summer 2025 off — hence its return, this time to winter/spring 2026. (“The Bachelor” traditionally airs in winter, but it has also moved its time of year airdate.) “The Bachelorette” scandal may now require another reboot for the franchise. In another irony, it was “The Golden Bachelor” that is seen by many as having brought a bit of heart and emotion back to “Bachelor” nation. Meanwhile, no one seems to think this is lethal to “The Bachelor” or “The Bachelorette.” If anything, insiders predict that Paul’s “The Bachelorette” will still see the light of day — perhaps just on Hulu, or maybe even in ABC’s summer schedule. But first, they expect to see plenty of mea culpas from Paul. After all, the paradox of reality TV is the public often derides it as “trash” — so when something like this comes along, it’s not totally unexpected or seen as a death sentence for a TV show in the way that it might permanently harm a professional actor or their scripted series.
+"""
+
+[R2] ABC Confirms 'The Bachelorette' Season 22 Will Air Despite Taylor Frankie Paul's Investigation
+(https://www.aol.com/articles/abc-confirms-bachelorette-season-22-173424534.html)
+"""
+(Disney&sol;Bahareh Ritter)With headlines swirling around a new domestic violence investigation involving The Bachelorette star Taylor Frankie Paul and her ex Dakota Mortensen, some fans are wondering: Is ABC going to cancel or pull The Bachelorette season 22?Here’s what we know.Related: Inside ‘Bachelorette’ Star Taylor Frankie Paul’s Life Today — From Scandal to FaithIs ‘The Bachelorette’ Canceled?No. The Bachelorette has not been canceled as of this writing. Season 22 is still scheduled to premiere Sunday, March 22, 2026, on ABC. Parade has reached out to ABC for comment and has not heard back at this time.Will Taylor Frankie Paul’s Season Still Air?Yes. Despite the ongoing investigation, there are no plans to delay or cancel the season.According to a report from Variety, the situation will not impact the release schedule or promotional plans for The Bachelorette. In fact, Taylor has been in New York this week promoting the show on Good Morning America and Live with Kelly and Mark."The investigation will not impact the release schedule or press plans for The Bachelorette," Variety reports.Related: New ‘Bachelorette’ Promo Teases Major Drama: ‘Get in the Car and Leave’ (Exclusive)Why Are Fans Asking if ‘The Bachelorette’ is Canceled?The questions come after news broke that Taylor and Dakota are involved in an ongoing domestic assault investigation.Authorities have confirmed that:there is an open caseallegations have been made “in both directions”police made contact with both parties in late FebruaryAt the same time, production on The Secret Lives of Mormon Wives—the reality series that follows Taylor’s life—has been paused while the situation unfolds. Those developments have led to widespread speculation online about whether ABC would pull or delay The Bachelorette.Related: ‘The Bachelorette’ Season 22 Cast Revealed: ‘The Book of More-Men’ is Now OpenWhat Have Taylor Frankie Paul and Dakota Mortensen Said About the Situation?In recent interviews, Taylor has acknowledged the situation but said she is focusing on the present moment ahead of the premiere.“Honestly, it’s been a heavy time to see the headlines, especially during this time of The Bachelorette being released, and it's supposed to be a really exciting time. I'm a person that will always speak my truth and that's what I'm known for and so when the time is right, I will be. But right now, just trying to be in the present moment and focus on this," said Taylor in her interview on Good Morning America.Meanwhile, a representative for Dakota told Entertainment Weekly that his focus is on their son.“His number one priority here is protecting [their son], Ever,” the rep said, adding that he wants to co-parent effectively.Related: All the Taylor Frankie Paul ‘Bachelorette’ Spoilers — Including Who Made the Final 3Could ABC Still Make Changes to the Show?At this point, there is no indication that ABC plans to cancel or alter the season. In fact, the controversy has brought significant attention to the show ahead of its premiere.Reality TV franchises like The Bachelorette often continue airing despite off-screen drama involving cast members, especially when episodes have already been filmed. In fact, ABC might not like the subject of the publicity this week, but it certainly is getting people talking about the show in the week leading up to the premiere.Season 22 premieres Sunday, March 22 at 8 p.m. ET/PT on ABC and will stream the next day on Hulu.🌹 SIGN UP for our The Bachelor newsletter to stay up to date on the latest Bachelor Nation news, exclusive interviews, episode recaps & more 🌹If you or someone you know has been a victim of domestic violence, help is available 24 hours a day through the National Domestic Violence Hotline at 800-799-7233.This story was originally published by Parade on Mar 18, 2026, where it first appeared in the TV section. Add Parade as a Preferred Source by clicking here.
+"""
+
+[R3] ABC pulls new season of The Bachelorette over domestic violence footage
+(https://www.theguardian.com/tv-and-radio/2026/mar/19/abc-bachelorette-season-cancelled-taylor-frankie-paul)
+"""
+ABC has decided to pull the new season of hit dating franchise The Bachelorette after footage of its central star physically assaulting her former partner was leaked.Taylor Frankie Paul, who gained fame on reality show The Secret Lives of Mormon Wives, had been cast as the central Bachelorette for the 22nd season, which was due to start on Sunday.The 31-year-old TikTok influencer had been embroiled in controversy over her 2023 arrest for domestic violence against her now ex Dakota Mortensen.An ongoing “domestic assault investigation” is also under way over an incident in February this year, according to the Draper City police department in Utah. A spokesperson for the police department told People magazine that “allegations have been made in both directions”, referring to Paul and Mortensen.At a press event this week, Paul said it had been “really difficult and heavy” to deal with the investigation, at which time ABC had seemed to be standing by its star and the new season even as she pulled out of an appearance on The Tonight Show on Wednesday.On Thursday, new leaked video from 2023 showed Paul kicking Mortensen and throwing chairs at him with her daughter present. “Your daughter just got hit in the head by a metal chair!” Mortensen tells her, with crying heard from the five-year-old.An indictment obtained by People showed that Paul threw “heavy, metal chairs” at Mortensen with the child also being struck.The arrest aired during the season one premiere of The Secret Lives of Mormon Wives and Paul later pleaded guilty to aggravated assault. She is still serving three years’ probation.“In light of the newly released video just surfaced today, we have made the decision to not move forward with the new season of The Bachelorette at this time, and our focus is on supporting the family,” a statement from Disney said.A statement from Paul’s team criticised Mortensen’s “never-ending, desperate, attention-seeking, destructive campaign to harm Taylor” as “a reprehensible attempt to distract from his own behaviour”.Earlier this week, production on the latest season of The Secret Lives of Mormon Wives was also reportedly on pause. The Hulu show also falls under the Disney umbrella.Last season, ABC was under fire after it was reported that the winner, Devin Strader, had a restraining order filed against him by a girlfriend in 2017 after allegations of physical assault. Strader called the accusations “simply not true” and noted that the restraining order was never granted.ABC has not announced whether the 22nd season of The Bachelorette, which was reportedly filmed in full at the end of last year, will air at a future date.
+"""
+
+[R4] ABC cancels Taylor Frankie Paul’s season of The Bachelorette
+(https://news.northeastern.edu/2026/03/19/the-bachelorette-canceled-taylor-frankie-paul/)
+"""
+Disney Entertainment announced Thursday that the company would not air the upcoming season of the reality dating show “The Bachelorette” following domestic abuse allegations against this season’s star, Taylor Frankie Paul.“In light of the newly released video just surfaced today, we have made the decision to not move forward with the new season of ‘The Bachelorette’ at this time, and our focus is on supporting the family,” a Disney Entertainment Television spokesperson said in a March 19 statement obtained by Northeastern Global News. Earlier on Thursday, the celebrity and entertainment news agency, TMZ, posted a video it said is from 2023, which purports to show Paul, 31, in an altercation with her former partner, Dakota Mortensen, 33. The video appears to show a chair being thrown at a man while a child cries in the background. NGN was not able to independently confirm the veracity of the clip. Northeastern Global News, in your inbox.Sign up for NGN’s daily newsletter for news, discovery and analysis from around the world. The video was posted after a spokesperson for the Draper City Police told media outlets that the department is investigating claims of domestic assault between Paul and Mortensen from a separate incident that allegedly occurred in February 2026. Hayat Bearat, director of Northeastern University’s Domestic Violence Institute and an associate clinical professor of law, said she found it “shocking” that ABC, a flagship property of Disney Entertainment and the production company behind “The Bachelorette” did not take action until now. “ABC waited too long to pull the season,” Bearat told NGN. “Although a welcome decision, this could have led to a very harmful outcome had that video not been leaked.” Paul was previously charged with a felony count of assault and two felony counts of domestic violence as well as misdemeanor counts of child abuse and criminal mischief for an incident involving Mortensen in 2023, according to Salt Lake City Court Records. The Salt Lake City Tribune later reported that Paul entered a plea in abeyance for the felony charge, which means a defendant will have the charges dismissed if they adhere to certain conditions after a period of time. The other charges were dismissed with prejudice, the newspaper reported. The 2023 incident was documented in the first season of “The Secret Lives of Mormon Wives,” a reality show on Hulu starring Paul and a group of other Mormon wives who found fame on TikTok earlier in the 2020s. The show’s fourth season dropped on the streaming service last week. Despite Paul’s history, ABC, the network behind “The Bachelor” franchise, in which 25 contestants compete for a chance to marry one eligible single, decided to cast her as the lead of their 22nd season. Bearat said the casting should have never happened given Paul’s widely known history. However, she said she suspects that the network knew the decision would bring in viewers. “It just goes to show they did this for a good story,” she said, suggesting Paul’s celebrity status and background would appeal to fans. Other experts echoed this sentiment when speaking with NGN prior to the announcement of the season’s cancellation. “This is the attention economy,” Amy Pei, an assistant marketing professor who researches influencers and social media, previously told NGN. “If people are already following [an influencer like Paul] and paying attention to her, they’re going to continue to follow her. You can bring in a whole new audience.”
+"""
+
+[R5] Is ‘The Bachelorette’ Still Going to Air? Producers “Blindsided” by Taylor News
+(https://www.aol.com/articles/bachelorette-still-going-air-producers-173947466.html)
+"""
+Update 3/19/2026: ABC has officially canceled Taylor Frankie Paul’s season of The Bachelorette, which was scheduled to premiere this Sunday, March 22.A Disney Entertainment Television spokesperson released a statement on Thursday, March 19, saying, “In light of the newly released video just surfaced today, we have made the decision to not move forward with the new season of The Bachelorette at this time, and our focus is on supporting the family.”Original story 3/17/2026: Taylor Frankie Paul’s upcoming and very buzzy season of The Bachelorette is scheduled to premiere in just a couple days on March 22, and suddenly the timing could not be worse. News recently broke in TMZ that Taylor and her ex, Dakota Mortensen, had a “blowup” so “intense” that production was halted on The Secret Lives of Mormon Wives season 5—which is currently filming in Utah.Meanwhile, a spokesperson from the Draper City Police Department told People that there’s an open "domestic assault investigation" regarding Taylor and Dakota, that "allegations have been made in both directions," and that "contact was made with involved parties on [Feb] 24th and 25th."So…will ABC still air The Bachelorette? According to Variety, "the investigation will not impact the release schedule or press plans for The Bachelorette." However, TMZ reports that producers were blindsided and that “ABC has hired a public relations crisis manager to handle the fallout.”Meanwhile, info on how Taylor’s season ends have been released by longtime Bachelor Nation spoiler source Reality Steve. You can read about who wins Taylor’s season, if they got engaged, and whether or not they are still together, below.You Might Also Like
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,112 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "penn university"
+
+Claims:
+[1] "The University of Pennsylvania is a private Ivy League research university in Philadelphia."
+[2] "The University of Pennsylvania was founded in 1740 by Benjamin Franklin."
+[3] "The University of Pennsylvania has the Wharton School."
+[4] "The University of Pennsylvania has the Perelman School of Medicine."
+[5] "The University of Pennsylvania has a nursing school."
+[6] "The University of Pennsylvania has a 5.4% acceptance rate for recent cycles."
+[7] "The University of Pennsylvania is ranked #7 among national universities."
+[8] "For the 2023-2024 academic year, tuition at the University of Pennsylvania was approximately $66,104."
+[9] "2023-24 averages for Reading/Writing scores of admitted students at the University of Pennsylvania are between 740-770."
+[10] "2023-24 averages for Math scores of admitted students at the University of Pennsylvania are between 770-800."
+[11] "The University of Pennsylvania has an urban campus located in West Philadelphia."
+[12] "The University of Pennsylvania campus is characterized by the historic Locust Walk."
+[13] "The University of Pennsylvania has over $800 million in research funding."
+[14] "Roughly 13% of students at the University of Pennsylvania are international students."
+
+Cited text snippets from the AI Overview (for additional context):
+- University of Pennsylvania Overall Rankings | US News Best Colleges: "University of Pennsylvania is ranked #7 out,set of widely accepted indicators of excellence."
+- Research & Innovation | University of Pennsylvania: "The University of Pennsylvania (Penn) is one,**Center for Undergraduate Research and Fellowships (CURF)**"
+- University of Pennsylvania: "The University of Pennsylvania has 165 research,large-scale, general-purpose digital computer, established in 1946"
+- Visiting Wharton: A Glimpse Into Excellence – The Blue and White: "Penn ( University of Pennsylvania ) itself,to define the university's approach to education."
+Reference Sources:
+
+[R1] University of Pennsylvania | Association of American Universities (AAU)
+(https://www.aau.edu/who-we-are/our-members/university-pennsylvania)
+"""
+University of Pennsylvania | Association of American Universities (AAU) topSkip to main content Visit the STEM Member Page The 165 research centers and institutes on campus also reflect the University’s innovative, civic-minded and pragmatic creator: More than 250 years after Ben Franklin broke new ground in founding Penn, its faculty, students, and alumni continue to make breakthroughs in research, scholarship, and education. Its many subsequent “firsts,” include the world’s first collegiate business school (Wharton, 1881), the world’s first electronic, large-scale, general-purpose digital computer (ENIAC, 1946), and the first woman president of an Ivy League institution (Judith Rodin, inaugurated in 1994) as well as the first female Ivy League president to succeed another female (Amy Gutmann, inaugurated in 2004). Visit the University of Pennsylvania website. Close
+"""
+
+[R2] Visiting Wharton: A Glimpse Into Excellence
+(https://tbaw.ca/2025/10/24/visiting-wharton-a-glimpse-into-excellence/)
+"""
+As grade 10 and 11 students are thinking about which universities they want to attend, and grade 12’s are in the application process, I think that sharing my impressions about visiting my brother at Wharton business school is timely and would benefit the UCC community. Recently, I had an opportunity to visit the University of Pennsylvania (Penn) in Philadelphia, where my brother, Dima, is currently a senior at Wharton business school. Dima graduated from UCC in 2022, and was the Editor-in-Chief of The Blue and White and a Steward. Dima so far, has loved his experience at Penn – its great community, and how academically engaging classes at Wharton business school are. Walking through the green campus sprawling in the heart of Philadelphia, I was amazed by the history and tradition of the school, a combination of old and new buildings, and vibrant student life. Among the many schools at Penn, the Wharton School Of Business stood out as a symbol of academic excellence and global influence. Founded in 1881, Wharton is the world’s first collegiate business school, setting the foundation for modern business education. It was established by Joseph Wharton, an industrialist and philanthropist who envisioned a school that would prepare future leaders in commerce and public service. Today, Wharton remains one of the most prestigious business schools in the world, renowned for its rigorous academics, influential research, and strong alumni network. Wharton undergrad acceptance rate varies between 3-4%, they accept 840 to 870 undergrad students per year. Penn itself holds a remarkable place in history. It was founded by Benjamin Franklin in 1740, making it one of the oldest universities in the United States. Franklin’s vision emphasized both intellectual exploration and practical knowledge, a philosophy that continues to define the university’s approach to education. Its Ivy League status, combined with a culture that encourages interdisciplinary learning, entrepreneurship and global engagement, has cemented Penn’s reputation as one of the most respected universities in the world. Penn’s acceptance rate is between 5-6%, they accepted 3,508 freshmen last year. When you apply to Penn as an undergraduate, you choose a college you want to attend. Colleges at Penn include – Wharton business school, College of Arts and Sciences (liberal arts school), Engineering school, and Nursing school. Overall, I think that Penn is a great school. I love how the buildings look old and “grand”, and I love how the state of art sports facilities are easily accessible, and in great condition. The community at Penn is strong, and family-like. Another important aspect of a good university is great food, that is in abundance on Penn campus, and in the 10 minute walk vicinity. Over my 4 nights at Penn, I went to countless amazing restaurants, and had some of the best food of my life. A lot of students at Penn chose to spend a semester abroad. Dima spent a semester during his junior year at St Andrews University in Scotland, and it was a great experience for him that also presented an opportunity to travel around Europe. Overall, in spite of an extremely rigorous academic program, students at Penn have every opportunity to enjoy life outside of classes. Before leaving Penn, I asked Dima if there was anything in particular that prepared him for university life and he said that the diverse community, pluralism and rigorous IB program at UCC were a wonderful spring board into college years.
+"""
+
+[R3] University of Pennsylvania Overall Rankings | US News Best Colleges
+(https://www.usnews.com/best-colleges/university-of-pennsylvania-3378/overall-rankings)
+"""
+My DashboardQuizzesMy SchoolsSchools You Might Also LikeCompare SchoolsMy ScholarshipsReading ListAdviceGet PremiumUniversity of Pennsylvania RankingsSee where this school lands in our other rankings to get a bigger picture of the institution's offerings.#7 in National Universities (tie)#13 in Best Value Schools#21 in Best Undergraduate Engineering Programs (tie)At schools whose highest degree is a doctorate#11 in BiomedicalAt schools whose highest degree is a doctorate ChemicalAt schools whose highest degree is a doctorate Electrical / Electronic / CommunicationsAt schools whose highest degree is a doctorate MaterialsAt schools whose highest degree is a doctorate MechanicalAt schools whose highest degree is a doctorate#1 in Business Programs (tie)#5 in Accounting#5 in Analytics#5 in Entrepreneurship#1 in Finance#5 in Insurance#6 in International Business#2 in Management#10 in Management Information Systems#2 in Marketing#4 in Production / Operation Management (tie)#2 in Quantitative Analysis#2 in Real Estate Supply Chain Management / Logistics Computer Science Artificial Intelligence#6 in Programming Languages (tie)#2 in Nursing (tie) Psychology Programs#8 in Economics (tie)#22 in Undergraduate Research/Creative Projects (tie)#51 in Best Undergraduate Teaching (tie)#136 in Top Performers on Social Mobility (tie)More from This SchoolCollegesGraduate SchoolsGlobal UniversitiesMy Fit ScoreMy Fit Custom College Ranking Does this school fit your college needs? Receive a personalized ranking provided by U.S. News College Compass and find out. Try it nowUniversity of Pennsylvania RankingsUniversity of Pennsylvania is ranked #7 out of 436 National Universities. Schools are ranked according to their performance across a set of widely accepted indicators of excellence. Read more about how we rank schools.U.S. News Overall ScoreScore (out of 100)93Outcomes (52%)Average 6-year graduation rate (16%)97%6-year graduation rate of students who received a Pell Grant (5.5%)93%6-year graduation rate of students who did not receive a Pell Grant (5.5%)97%Outcomes rankUNLOCK WITH COMPASS UNLOCK WITH COMPASSAverage first-year student retention rate (5%)UNLOCK WITH COMPASS UNLOCK WITH COMPASSPredicted graduation rateUNLOCK WITH COMPASS UNLOCK WITH COMPASSOverperformance(+)/Underperformance(-) (10%)UNLOCK WITH COMPASS UNLOCK WITH COMPASSMedian federal loan debt for grad borrowers (5%)UNLOCK WITH COMPASS UNLOCK WITH COMPASSCollege grads earning more than a HS grad (5%)UNLOCK WITH COMPASS UNLOCK WITH COMPASSExpert Opinion (20%)Peer assessment score (out of 5)UNLOCK WITH COMPASS UNLOCK WITH COMPASSFaculty Resources (11%)Student-Faculty Ratio (3%)8:1Faculty resources rankUNLOCK WITH COMPASS UNLOCK WITH COMPASSFaculty salaries rank (6%)UNLOCK WITH COMPASS UNLOCK WITH COMPASSPercent of faculty who are full-time (2%)UNLOCK WITH COMPASS UNLOCK WITH COMPASSFinancial Resources (8%)Financial resources rankUNLOCK WITH COMPASS UNLOCK WITH COMPASSStudent Excellence (5%)SAT/ACT 25th-75th percentileUNLOCK WITH COMPASS UNLOCK WITH COMPASSFaculty Research (4%)Bibliometric RankUNLOCK WITH COMPASS UNLOCK WITH COMPASSMore Rankings for University of PennsylvaniaGrad School RankingsExplore more than 1,900 graduate programs, including the resources and tools to help you find the best programs for you.See all Grad School Rankings for University of Pennsylvania »Global RankingsU.S. News ranked universities around the world based on their academic research & reputation.See all Global Rankings for University of Pennsylvania »Read MoreMore from This SchoolCollegesGraduate SchoolsGlobal UniversitiesMy Fit ScoreMy Fit Custom College Ranking Does this school fit your college needs? Receive a personalized ranking provided by U.S. News College Compass and find out. Try it nowMore from This SchoolCollegesGraduate SchoolsGlobal UniversitiesMy Fit ScoreMy Fit Custom College Ranking Does this school fit your college needs? Receive a personalized ranking provided by U.S. News College Compass and find out. Try it nowColleges AdviceFinding the Right SchoolLearn how to explore all of your options.Apply to CollegeGet answers about the college application process.Paying For CollegeRead tips on grants, scholarships, loans and more.Test PrepGet ahead of the curve with our SAT/ACT test prep.Studying in the U.S.Guidance for international students.Create an Account or LoginCreate a free account to save articles, sign up for newsletters and more.​Continueor sign in withAppleGoogleFacebookBy clicking "Continue", you will receive the latest updates, including emails, from U.S. News & World Report and our trusted partners and sponsors, and you agree to our Terms and Conditions & Privacy Policy. Compare CollegesAdd this school0Compare Schools Now
+"""
+
+[R4] Research & Innovation | University of Pennsylvania
+(https://www.upenn.edu/research-and-innovation)
+"""
+$1.33B 2026 research budget 209 research centers & institutes Office of the Vice Provost for Research The Vice Provost for Research is an adviser to the Provost and has oversight of the University’s vast research enterprise, encompassing a broad spectrum of research support services, regulatory bodies, multi-disciplinary campus-wide Centers and Institutes, and partnerships to further develop investigator inventions. OVPR collaborates with Penn constituents and external partners to promote meaningful scholarship, uphold research integrity, and foster new discoveries. Centers & Institutes The investigative collaborations that take place at Penn represent some of today’s most cutting-edge interdisciplinary research. Explore the centers and institutes that are generating new knowledge all over campus, and learn about the powerful impact this Penn-generated knowledge is making in all corners of the world. Compliance & Training OVPR is charged with oversight responsibility for multiple regulatory compliance areas at Penn. Given the breadth of regulations and guidelines, research compliance is a shared responsibility between numerous University offices. Funding OVPR manages a number of internal funding opportunities on behalf of the University as well as access to external funding opportunities. Research Excellence Initiative The Penn Research Excellence Initiative, spearheaded by OVPR, is a program that supports research credibility and integrity on Penn’s campus and across the Philadelphia region. Services For Researchers (Research Portal) Penn's Research Portal is a centralized compendium of University-wide research-related links. Reporting Divisions Penn Center for Innovation Environmental Health and Radiation Safety Office of Research Services Institutional Review Board Office of Animal Welfare OVPR Committees Research Integrity Office University Laboratory Animal Resources Penn Center for Innovation PCI works in partnership with Penn faculty, staff, and students to advance scientific breakthroughs and technological advances toward new products, services, and/or businesses that provide benefits back to Penn, its inventors, and society. Center for Undergraduate Research and Fellowships CURF supports students as they pursue transformative experiences through fellowships, scholars programs, and undergraduate research. CURF promotes connections between faculty and students, encourages mentorship, and educates the Penn community about opportunities. Research Digest Research at Penn: In printResearch at Penn is also a print publication that highlights some of the groundbreaking and innovative research happening across the University’s 12 schools. Featuring original and repurposed stories from Penn Today, Research at Penn is brought to you by the Office of University Communications and is printed twice a year. For more information on Penn’s research ecosystem, visit the Office of the Vice Provost for Research. To request a print copy of Research at Penn, email upnews@upenn.edu.RECENT EDITIONSFall 2025 Spring 2025
+"""
+
+[R5] University of Pennsylvania (UPenn) | Devex
+(https://www.devex.com/organizations/university-of-pennsylvania-upenn-53358)
+"""
+The University of Pennsylvania (commonly referred to as Penn or UPenn) is a private, Ivy League, research university located in Philadelphia. Incorporated as The Trustees of the University of Pennsylvania, Penn is one of 14 founding members of the Association of American Universities and one of the nine original Colonial Colleges. Anchored in the liberal arts and sciences and enriched by the integrated resources of 4 undergraduate and 12 graduate schools. Penn offers a broad range of academic departments, an extensive research enterprise and a number of community outreach and public service programs. It is particularly well known for its medical school, dental school, design school, school of business, law school, engineering school, communications school, nursing school, veterinary school, its social sciences and humanities programs, as well as its biomedical teaching and research capabilities. Penn has a long and proud tradition of intellectual rigor and pursuit of innovative knowledge, begun by Benjamin Franklin in 1740. That tradition lives today through the creativity, entrepreneurship, and engagement of our faculty, students, and staff. Research Discovery Penn is one of the world's most powerful research and teaching institutions, with a research budget last year topping $800 million and more than 4,000 active faculty members. The scale and interdisciplinary character of research and teaching sets Penn apart, and our highly ranked Perelman School of Medicine is one of the top recipients of NIH funding in the country. Community Engagement At Penn, civic engagement is an integral part of campus life. Situated near the heart of Philadelphia, one of our country's most historic and vibrant cities, Penn was named a "number one good neighbor" among universities in 2009. We are a national leader in academically based community service through our Netter Center for Community Partnerships, supporting community engagement for students and faculty alike.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

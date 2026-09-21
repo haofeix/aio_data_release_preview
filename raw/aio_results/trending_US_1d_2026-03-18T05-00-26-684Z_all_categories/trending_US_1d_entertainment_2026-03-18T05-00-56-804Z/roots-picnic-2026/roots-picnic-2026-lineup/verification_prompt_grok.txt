@@ -1,0 +1,107 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "roots picnic 2026 lineup"
+
+Claims:
+[1] "JAŸ-Z and The Roots are set to headline the 2026 Roots Picnic."
+[2] "The 2026 Roots Picnic is on May 30-31, 2026."
+[3] "The 2026 Roots Picnic is held at Belmont Plateau, Philadelphia, PA."
+[4] "The headlining performance on Saturday, May 30 will feature JAŸ-Z celebrating the 30th anniversary of his debut album Reasonable Doubt with The Roots."
+[5] "JAŸ-Z and The Roots' headlining performance marks their first joint performance in over a decade."
+[6] "Presale for Roots Picnic 2026 tickets began March 17, 2026."
+[7] "General on-sale for Roots Picnic 2026 tickets starts March 18, 2026, at 10 AM ET"
+
+Cited text snippets from the AI Overview (for additional context):
+- 2026 Roots Picnic: JAY-Z and The Roots to headline - Revolt TV: "JAY-Z and The Roots will headline 2026's Roots Picnic,in May at the Plat.”"
+- JAŸ-Z & The Roots To Headline The Roots Picnic 2026 On Saturday, May 30th: "March 17, 2026,Nation Urban Shawn Gee exclaimed."
+- Philly, It's time! Our May 30th Roots Picnic headliner is none ...: "Philly, It's time!,Belmont Plateau"
+- JAY-Z and The Roots to Headline Roots Picnic 2026: "10:23am ET-,JAY-Z and The Roots to Headline Roots Picnic 2026,2026 installment of Roots Picnic."
+- Jay-Z to Perform With the Roots as Headliner for Roots Picnic 2026: "Jay-Z is making his,Roots in over a decade."
+- JAŸ-Z will headline the Roots Picnic 2026: ‘Philly, It’s time!’ - AOL: "Rounding out the exquisitely-curated,tickets will arrive on time."
+Reference Sources:
+
+[R1] 2026 Roots Picnic: JAY-Z to headline the Philadelphia festival with The Roots
+(https://www.revolt.tv/article/jay-z-roots-picnic-2026-headliner)
+"""
+Hov will celebrate the 30th anniversary of his debut album, ‘Reasonable Doubt,’ at the festival this May.BY Malcolm Trapp / 3.17.2026Key Takeaways JAY-Z is confirmed as a headliner for the two-day festival and will close out night one. 2026 Roots Picnic will take place at Philadelphia’s Belmont Plateau from May 30 to May 31. Organizers cited support from city leadership tied to Philadelphia 250 when discussing the event’s expansion. JAY-Z and The Roots will headline 2026’s Roots Picnic, the festival’s organizers announced on Tuesday (March 17). Set to return to Philadelphia’s Belmont Plateau, the “Holy Grail” hitmaker is slated to close out the first day on May 30.As part of the two-day event, JAY-Z — who recently changed his name to JAŸ-Z, alongside “Dead Presidents” arriving on streaming — will celebrate the 30th anniversary of Reasonable Doubt. It goes without saying, but the New York legend’s debut includes classics like “Can I Live,” “D’Evils,” and the Mary J. Blige-assisted “Can’t Knock the Hustle,” among many others.“Moving the Roots Picnic to Belmont Plateau and bringing JAY-Z and The Roots together to perform are both bucket-list moments for us,” Shawn Gee, The Roots’ manager and president of Live Nation Urban, said in a press statement. “After meeting with Mayor Cherelle Parker and hearing her vision for Philadelphia 250, she truly inspired us to dream even bigger, and we’re grateful to her, Commissioner Susan Slawson, Jazelle Jones, and everyone who helped make it happen. We can’t wait to see everyone in May at the Plat.”Presale tickets are currently available through Roots Picnic’s official website, while the general on-sale begins on Wednesday (March 18) at 10 a.m. ET. In the meantime, check out the announcement below.Why fans won’t want to miss JAY-Z at 2026 Roots PicnicGiven that JAY-Z is not only one of the most successful rappers of his generation — but arguably one of the greatest ever — the Roots Picnic announcement is a huge deal, especially given how few and far between his performances have become.Most recently, he took the stage during the Atlanta stop of Beyoncé’s “Cowboy Carter Tour” last July, where he treated fans to “Drunk in Love” and “Public Service Announcement (Interlude)” from The Black Album. Before that, he made another surprise appearance during her Paris show for a live rendition of “N**gas in Paris.”As Variety noted, the last time JAY-Z actually performed at a festival was Pharrell Williams’ Something in the Water in 2019. Add in the fact that he hasn’t dropped a new album since 2017’s 4:44, it’s hard to imagine anyone passing up the chance to see him live right now.What else to expect from 2026 Roots PicnicSo far, details about the upcoming Roots Picnic are still pretty limited. However, we do know that The Roots will be joining JAY-Z for a joint performance. Considering Reasonable Doubt featured artists like Blige and Memphis Bleek, there’s a good chance they could also pop up to help celebrate the album.Per the festival’s announcement, more artists will be revealed at a later date. If previous lineup rollouts are anything to go by, fans likely won’t have to wait too long for the next update.
+"""
+
+[R2] JAŸ-Z will headline the Roots Picnic 2026: ‘Philly, It’s time!’
+(https://www.aol.com/articles/ja-z-headline-roots-picnic-172928763.html)
+"""
+The Roots Picnic announces Jay-Z as the headliner in a year when multiple major albums of his reach milestone anniversaries.Jay-Z is gearing up to join The Roots as a headliner for the 2026 Roots Picnic.Set for May 30 through May 31, the long-running Philadelphia festival will also relocate to the Belmont Plateau this year following a recent venue change, Variety reported.The hip-hop mogul will top the bill on May 30, marking a rare reunion with The Roots and their first time sharing the stage together in more than 10 years.“Moving the Roots Picnic to Belmont Plateau and bringing JAŸ-Z and The Roots together to perform are both bucket-list moments for us,” said Shawn Gee, The Roots’ manager and president of Live Nation Urban, in a statement to Billboard.The set will also mark Jay-Z’s first major live appearance since he made a surprise onstage cameo during Beyoncé’s “Cowboy Carter” tour stop in Paris in June 2025, where the couple thrilled the crowd with performances of “Crazy in Love,” “N—s in Paris,” and “Drunk in Love.”Since the start of the year, fans have speculated that something was in the works with Hov. Along with the 30th anniversary of “Reasonable Doubt” and the upcoming 25th anniversary of “The Blueprint,” the rapper has been dropping subtle hints, including briefly restoring the umlaut to his name, JAŸ-Z, in tribute to his debut album. He has also launched a new website, released select tracks on vinyl, and made the original version of “Dead Presidents” available on streaming platforms.“Philly, It’s time! Our May 30th Roots Picnic headliner is none other than JAŸ-Z,” festival organizers wrote in the caption of a post on Instagram that included a text graphic of announcing Jay-Z as the headliner.Presale tickets for the two-day Roots Picnic, taking place May 30–31, are available now. General ticket sales begin March 18 at 10 a.m. ET, with additional lineup announcements expected later this week.
+"""
+
+[R3] JAŸ-Z & The Roots To Headline Roots Picnic 2026 - ROC NATION
+(https://www.rocnation.com/news/jay-z-the-roots-to-headline-the-roots-picnic-2026-on-saturday-may-30th/)
+"""
+March 17, 2026 THE ROOTS & LIVE NATION URBAN ANNOUNCE TICKETS GO ON SALE TOMORROW, MARCH 18 AT 10AM ET EARLY ACCESS TO PRESALE TICKETS IS AVAILABLE TODAY AT 10AM AT ROOTSPICNIC.COM. MAY 30 & 31, 2026 BELMONT PLATEAU PHILADELPHIA, PA Delivering a musical and cultural experience without comparison, today, GRAMMY® Award-winning multi-platinum hip-hop luminaries The Roots and Live Nation Urban announce JAŸ-Z and The Roots will headline the Saturday, May 30th date, of the 2026 installment of Roots Picnic. The two-day festival returns on Saturday, May 30 and Sunday, May 31, 2026, at Belmont Plateau. Presale tickets are available now. General on-sale begins tomorrow, March 18, at 10AM ET, and will be available HERE. This will also mark the first year the festival will be held at the historic Belmont Plateau in Philadelphia’s Fairmount Park. Belmont Plateau is known for having one of the best views of the city and is a place where hip-hop and Black culture flourished in the 1980s and early 1990s. “Moving the Roots Picnic to Belmont Plateau and bringing JAŸ-Z and The Roots together to perform are both bucket-list moments for us,” Manager of The Roots and President of Live Nation Urban Shawn Gee exclaimed. “After meeting with Mayor Cherelle Parker and hearing her vision for Philadelphia 250, she truly inspired us to dream even bigger, and we’re grateful to her, Commissioner Susan Slawson, Jazelle Jones, and everyone who helped make it happen. We can’t wait to see everyone in May at the Plat.” Roots Picnic has continued to be one of the summer’s most highly anticipated festivals and a celebration of Philadelphia’s robust music scene. Billboard included Roots Picnic in their Top 50 Music Festivals round-up, and perhaps BET put it best: “the two-day event proves why hip-hop is such a regenerative force of nature.” Since launching in 2007, Roots Picnic has stood at the crossroads of music and culture — entertaining, engaging, and enlightening millions of fans along the way. Its dynamic lineups have included everyone from Lil Wayne, The Weeknd, Pharrell, Snoop Dogg, Phantogram, Usher, Nas, A$AP Rocky, Macklemore & Ryan Lewis, and Future to Vampire Weekend, The War on Drugs, Gary Clark, Jr., Solange, Diplo, Gnarls Barkley, and more. Roots Picnic isn’t just a cornerstone of the group’s career, but a cornerstone of the culture. JAŸ-Z & The Roots to Headline Roots Picnic 2026 on Saturday, May 30th
+"""
+
+[R4] JAY-Z and The Roots to Headline Roots Picnic 2026
+(https://consequence.net/2026/03/jay-z-the-roots-roots-picnic-2026/)
+"""
+JAY-Z is teaming up with The Roots to headline the 2026 installment of Roots Picnic. The joint performance will close out the first day of the Philadelphia festival on Saturday, May 30th. The two-day event will go down for the first time this year at Belmont Plateau in Fairmount Park. Tickets to the festival are now on sale. Get Roots Picnic Tickets Here The Brooklyn rapper and Philadelphia hip-hop band have a close collaborative history. They first shared the stage in November 2001 for JAY-Z’s intimate and unforgettable MTV Unplugged performance, and The Roots have since backed him during visits to The Tonight Show. Bandleader Questlove has also served as Jay’s musical director for shows at London’s Royal Albert Hall and New York’s Carnegie Hall. Artists’ Live Music Memories: Maren Morris, John C. Reilly, GWAR, and More“Moving the Roots Picnic to Belmont Plateau and bringing JAŸ-Z and The Roots together to perform are both bucket-list moments for us,” said Shawn Gee, The Roots’ manager and president of Live Nation Urban. “After meeting with Mayor Cherelle Parker and hearing her vision for Philadelphia 250, she truly inspired us to dream even bigger, and we’re grateful to her, Commissioner Susan Slawson, Jazelle Jones and everyone who helped make it happen. We can’t wait to see everyone in May at the Plat.” JAY-Z’s Roots Picnic appearance marks his first announced concert since a 2019 show at New York’s Webster Hall and his first live performance since joining his wife, Beyoncé, at her final “Cowboy Carter” tour date in Las Vegas in July 2025. It also comes amid rumors of a residency at Barclays Center to celebrate the 30th anniversary of Reasonable Doubt.
+"""
+
+[R5] Jay-Z to Perform With the Roots as Headliner for Roots Picnic 2026
+(https://variety.com/2026/music/news/jay-z-perform-with-the-roots-headliner-roots-picnic-2026-1236690851/)
+"""
+Jay-Z is making his grand return to the stage for the first time in nearly a year with a headlining performance alongside the Roots at the Roots Picnic 2026. The rapper, who recently changed the styling of his name to JAŸ-Z in honor of the 30th anniversary of his debut album “Reasonable Doubt,” is scheduled to headline the May 30 date of the 2026 Roots Picnic at Philadelphia’s Belmont Plateau. It marks his first performance with the Roots in over a decade. The appearance will also be his first live performance since joining his wife Beyoncé at the final “Cowboy Carter” international tour date, which took place in Paris in June 2025. During the show, he popped out to perform “Crazy in Love,” “N—s in Paris” and “Drunk in Love.” Popular on Variety Visit Advertiser websiteGO TO PAGE The last time he played a festival was in 2019 as a surprise guest at Pharrell Williams’ Something in the Water, which took place in Virginia Beach. “Moving the Roots Picnic to Belmont Plateau and bringing JAŸ-Z and The Roots together to perform are both bucket-list moments for us,” says Shawn Gee, the Roots’ manager and president of Live Nation Urban. “After meeting with Mayor Cherelle Parker and hearing her vision for Philadelphia 250, she truly inspired us to dream even bigger, and we’re grateful to her, Commissioner Susan Slawson, Jazelle Jones and everyone who helped make it happen. We can’t wait to see everyone in May at the Plat.” Presale tickets for the two-day Roots Picnic festival, taking place on May 30-31, are available now. General on-sale starts on March 18 at 10 a.m. ET. Details on the rest of the lineup are expected to be announced this week. Jay-Z has recently kicked back up the promo machine in honor of the 30th anniversary of “Reasonable Doubt,” which was released on June 25, 1996. Fans noticed that his name on streaming services changed to his original stylization of JAŸ-Z — yes, with the umlaut — and over the past few weeks, he put the original version of “Dead Presidents” on streaming and dropped the video for “Wishing on a Star” featuring Gwen Dickey on YouTube. Though Jay-Z hasn’t released an album since 2017’s “4:44,” there have been recent rumors that he’s been in the studio, according to interviews with the Alchemist, Memphis Bleek and Cash Cobain. The latter had to clarify the rumor after Jay-Z told him that he’s “absolutely not dropping an album,” according to a post on social media.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

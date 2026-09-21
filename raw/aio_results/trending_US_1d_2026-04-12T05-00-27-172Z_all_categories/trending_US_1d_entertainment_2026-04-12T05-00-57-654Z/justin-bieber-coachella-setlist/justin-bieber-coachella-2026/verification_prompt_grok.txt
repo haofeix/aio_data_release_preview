@@ -1,0 +1,112 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "justin bieber coachella 2026"
+
+Claims:
+[1] "Justin Bieber is headlining Saturday night at the 2026 Coachella Valley Music and Arts Festival."
+[2] "Justin Bieber is performing on April 11 and April 18, 2026, at 11:25 p.m. PT."
+[3] "Justin Bieber's performances at Coachella 2026 are on Saturday, April 11, and Saturday, April 18, 2026."
+[4] "Justin Bieber's set time at Coachella 2026 is 11:25 PM PDT."
+[5] "Justin Bieber's stage at Coachella 2026 is Main Stage (Coachella Stage)."
+[6] "This is Justin Bieber's first major festival headlining set since 2022."
+[7] "Reports indicate a record-breaking payment of over $10 million."
+[8] "This is Justin Bieber's debut as a billed Coachella headliner."
+[9] "Justin Bieber has been on a hiatus from large-scale performances since 2022."
+[10] "Reports suggest Justin Bieber's setlist at Coachella 2026 includes a blend of new "Swag" project songs and classics like "Sorry," "Baby," and "Where Are Ü Now," based on heard soundchecks."
+[11] "The 2026 Coachella Valley Music and Arts Festival lineup includes Sabrina Carpenter and Karol G."
+[12] "The 2026 Coachella Valley Music and Arts Festival is sold out."
+
+Cited text snippets from the AI Overview (for additional context):
+- Coachella 2026: Justin Bieber headlines day 2 after Sabrina Carpenter's star-studded 'Sabrinawood' set: "Justin Bieber takes the stage,singer is a billed performer."
+- Justin Bieber to take the stage at Coachella 2026. How to watch.: "When is Justin Bieber headlining at Coachella,on both April 11 and April 18."
+- Coachella 2026 has officially kicked off at the Empire Polo ... - Instagram: "Headliners include Sabrina Carpenter, Justin,🔥"
+- Justin Bieber's Coachella Performance: Where To Watch & Setlist: "It felt like his most,at the 2026 Grammy Awards.&text=As for what to expect,Never say never…"
+- What time does Justin Bieber perform at Coachella 2026?: "Justin Bieber will perform at,White and Nine Inch Noize."
+- Coachella 2026: Justin Bieber fans turn the festival into Bieberchella: "Beliebers were lining up bright,headliner performance Sunday, April 11.&text=Hype for Bieber's debut Coachella,Yukon” at the Grammy Awards."
+Reference Sources:
+
+[R1] When does Justin Bieber perform at Coachella? How to watch livestream.
+(https://www.usatoday.com/story/entertainment/music/2026/04/11/justin-bieber-coachella-2026-peformance-how-to-watch/89549761007/)
+"""
+April 11, 2026Updated April 12, 2026, 12:47 p.m. ETPark your "Yukon" right here because Justin Bieber is headlining this year's Coachella for the first time.In other words, "Bieber Fever" will be in the air at the popular music festival in Indio, California, this weekend. The fandom has been showing off their outfit prep on social media in anticipation of his set.His upcoming appearance follows his emotional, stripped-down performance at the 2026 Grammys and lengthy hiatus.Here's how to watch Justin Bieber's Coachella performance.When is Coachella 2026?The festival is two weekends: April 10-12 and April 17-19.When is Justin Bieber headlining at Coachella 2026?Festivalgoers can expect Bieber to headline on both April 11 and April 18.When does Justin Bieber perform at Coachella 2026 Weekend 1?Bieber will perform on the Coachella stage on April 11 at 11:25 p.m. PDT. His set will be streaming on YouTube during that time slot.Fans can watch Coachella performances on the video platform on April 10, beginning at 4 p.m. PT/ 7 p.m. ET. Through the YouTube app on your TV, you can stream multiple stages simultaneously from your couch.Coachella 2026 Weekend 1 set timesA complete list of day-by-day set times can be found on Coachella's website or in an Instagram post below:Taylor Ardrey is a news reporter for USA TODAY. You can reach her at tardrey@usatodayco.com.
+"""
+
+[R2] What time does Justin Bieber perform at Coachella 2026?
+(https://ftw.usatoday.com/story/entertainment/pop-culture/2026/04/11/justin-bieber-coachella-set-time/89568044007/)
+"""
+Updated April 11, 2026, 8:44 p.m. ETJustin Bieber will perform at 11:25 p.m. PT on Coachella's main stage on Saturday, April 11, 2026. The Coachella headliner will perform at the same time on Saturday, April 18, 2026. during the festival's second weekend.Bieber is headlining Saturday's Coachella lineup, which also includes performances from The Strokes, Addison Rae, David Byrne, Interpol, PinkPantheress, Jack White and Nine Inch Noize.How to Watch Justin Bieber at Coachella 2026Coachella is livestreaming most of Saturday's sets on YouTube. You can also watch via the Coachella Livestream app, which syncs to your time zone.Which songs will Justin Bieber perform at Coachella 2026?This is Bieber's first time headlining Coachella and his first major live set in years. While his set list is under wraps, it's expected to pull heavily from his two surprise Swag albums, along with his earlier hits.Here's Coachella's full Saturday, April 11, 2026, lineup (all times PT)Coachella StageJaqck Glam – 4:15–5:20 p.m.Addison Rae – 5:30–6:20 p.m.GIVĒON – 7:00–7:50 p.m.The Strokes – 9:00–10:10 p.m.Justin Bieber – 11:25 p.m.Outdoor TheatreBlondshell – 2:40–3:25 p.m.Los Hermanos Flores – 3:55–4:45 p.m.Alex G – 5:10–6:00 p.m.SOMBR – 7:05–7:55 p.m.Labrinth – 8:30–9:25 p.m.David Byrne – 10:20–11:20 p.m.SonoraTriste Juventud – 1:00–2:00 p.m.Die Spitz – 2:00–2:40 p.m.Freak Slug – 3:10–3:50 p.m.Ecca Vandal – 4:20–5:00 p.m.Ceremony – 5:30–6:10 p.m.rusowsky – 6:40–7:20 p.m.54 Ultra – 7:50–8:30 p.m.Mind Enterprises – 9:45–10:35 p.m.GobiNoga Erez – 2:05–2:50 p.m.WHATMORE – 4:05–4:45 p.m.Luísa Sonza – 5:10–5:50 p.m.Geese – 6:15–7:00 p.m.Davido – 7:50–8:35 p.m.BIA – 9:00–9:45 p.m.Morat – 10:10–11:00 p.m.MojaveJack White – 3:00–3:45 p.m.Fujii Kaze – 4:30–5:20 p.m.Royel Otis – 5:50–6:35 p.m.Taemin – 7:30–8:20 p.m.PinkPantheress – 8:55–9:45 p.m.Interpol – 10:15–11:15 p.m.SaharaSeek-One – 2:00–2:45 p.m.TEED – 2:50–3:50 p.m.ZULAN – 4:00–4:50 p.m.Hamdi – 5:00–5:55 p.m.¥UUK€¥UK1MATUK€ ¥UK1MAT UK€¥UK1MATU – 6 :15–7:10 p.m.Nine Inch Noize – 8:00–8:45 p.m.REZZ – 9:10–10:05 p.m.Adriatique – 10:30–11:25 p.m.Worship – 11:55 p.m.–12:55 a.m.YumaYamagucci – 1:00–2:00 p.m.GENESI – 2:00–3:00 p.m.Riordan – 3:00–4:15 p.m.Mahmut Orhan – 4:15–5:30 p.m.Ben Sterling – 5:30–6:45 p.m.SOSA – 6:45–8:15 p.m.Bedouin – 8:15–9:45 p.m.Boys Noize – 9:45–11:00 p.m.Armin van Buuren x Adam Beyer – 11:00 p.m.–12:55 a.m.QuasarJoezi – 5:00–7:00 p.m.Afrojack x Shimza – 7:00–9:00 p.m.David Guetta – 9:00–11:00 p.m.
+"""
+
+[R3] How To Watch Justin Bieber's Coachella 2026 Performance In Australia
+(https://www.elle.com.au/culture/entertainment/how-where-to-watch-justin-bieber-coachella-2026/)
+"""
+Happy Bieberchella to all who celebrate Hailey and Justin Bieber Pregnancy Announcement0 seconds of 42 secondsVolume 0% It’s been a long time coming. Justin Bieber‘s Coachella 2026 headline set is one of the biggest and most exciting concerts of his career — for both Bieber himself and his fans. It’s been years since the artist took to the stage for a large-scale concert like this and unsurprisingly, it’s become one of the most anticipated performances the festival has ever seen. There’s a reason people have coined the term “Bieberchella”… While the pop star has performed several times in recent years, including intimate sets at The Roxy and Troubadour in West Hollywood, Coachella marks his first major concert since his Justice World Tour, which he cancelled midway through in 2022 due to health issues. In the years since, Bieber largely retreated from the spotlight — until 2025, when he made a stunning comeback with a two part album release that had fans around the world (including this one), stopping everything to listen. Related: One Fan’s Brutally Honest Review Of Justin Bieber’s Coachella Performance He released Swag in July 2025 — his seventh studio album — followed by the surprise sequel Swag II just two months later. It felt like his most personal albums to date, which is unsurprising, as it’s the first he’s released since parting ways with his long-time manager Scooter Braun. Bieber was officially out on his own, and the result was a two-part album full of honesty and heart. Unsurprisingly, Swag was nominated for Album of the Year at the 2026 Grammy Awards. Justin Bieber performs onstage at the 68th GRAMMY Awards held at the Crypto.com Arena on February 01, 2026 in Los Angeles, California. (Photo by Christopher Polk/Billboard via Getty Images) As for what to expect from his set at Coachella, sources say Bieber is proud of his Swag albums and wants to spotlight them more than his back catalogue. But don’t you worry, Palm Springs locals who could hear Bieber doing his sound checks throughout the week have reportedly confirmed that he is also packing his set with old hits he hasn’t performed in years, knowing the crowd will want to hear those too. Related: 43 Celebrity Looks That (For Better Or Worse) Defined Coachella Style Leaked soundcheck footage led us all to believe that bangers like “Sorry,” “Where Are Ü Now,” “Baby,” “Favorite Girl” and “One Less Lonely Girl” may all be on the setlist, which proved to be mostly true (more on that below). Reports confirm Bieber will pocket more than $10 million for his two Coachella Saturday sets, making him the highest-paid act in the festival’s nearly three-decade history, and we can only hope the crowd is kind enough to inspire him to launch a world tour for 2027. Never say never… When Does Justin Bieber Perform At Coachella 2026? Justin Bieber will headline the Coachella main stage on Saturday, April 11, with his set starting at 11:25pm PDT. That translates to 4:25pm AEST on Sunday, Australian time. He will repeat the performance the following Saturday, April 18 (Sunday again for Australians), for Weekend 2. Australian Time ZoneState Or TerritoryJustin Bieber’s Coachella Set TimeAEST (Australian Eastern Standard Time)NSW, VIC, TAS, ACT, QLD4.25pmACST (Australian Central Standard Time)SA, NT3.55pmAWST (Australian Western Standard Time)WA2.25pm How And Where To Watch Justin Bieber At Coachella 2026 From Australia For Australians, Bieber’s set kicks off at 4:25pm AEST on Sunday, April 12 (and again on Sunday, April 19 for Weekend 2). As for where to watch his Coachella performance, the entire festival is streaming for free on the official Coachella YouTube channel, and you do not need a paid subscription to tune in. How To Watch Justin Bieber’s Coachella 2026 Set If You Missed The Live Stream If you missed the live stream on Sunday, we have both good and bad news for you. The bad news is that Coachella doesn’t typically upload the full set to catch up on after the live stream has aired, which means tracking down the complete performance will prove difficult, though you may be able to find some songs throughout the week. As for the good news, there’s always weekend two! If you’re wanting to watch Bieber perform live, tuning in for his weekend two set on 19 April (Australian time) is the best opportunity you have for watcing the complete set. What Songs Are On Justin Bieber’s Coachella 2026 Setlist? Any reported setlists for Justin Bieber’s Coachella leaked ahead of his performance on April 11 did prove to be incorrect, but now that weekend one is behind us, we of course have the full, confirmed setlist. It’s common for performers to bring out special guests during their performances, and that proved to be true on weekend one. One special guest we had hoped for though was for “One Less Lonely Girl”, which was on the rumoured set list but did not make it into the final performance. Here’s hoping his wife Hailey Bieber will be brought out to be the one less lonely girl (so sweet!) for weekend two. Here is the final set list for Justin Bieber’s Coachella 2026 performance for weekend one: “All I Can Take” “Speed Demon” “First Place” “Go Baby” “Butterflies” “Walking Away” “All The Way” “405” “Too Long” “Petting Zoo” “I Do” “Stay” with special guest the Kid Laroi “Things You Do” “Glory Voice Memo” “Zuma House” “Dotted Line” “Everything Hallelujah” “Baby” “Favorite Girl” “That Should Be Me” “Beauty and a Beat” “Never Say Never” “Confident” “All That Matters” “With You” (Chris Brown cover) “So Sick” (Ne-Yo cover) “Sorry” “Where Are U Now” “I’m The One” “Yukon” “Devotion” with special guest Dijon “I Think You’re Special” with special guest Tems “Essence” with special guests Tems and Wizkid “Daisies” with special guest Mk.gee Angela Law Digital Editor Ange is a journalist and editor with over nine years of digital media experience in both Sydney and London. She has written for publications like Vogue, Refinery29, Allure, and Harper’s Bazaar, and has spent most of her career reporting on the latest beauty and lifestyle trends, and diving deep into the sweet spot where pop culture meets social commentary. Ange is a firm believer in the transformative power of a strong-hold brow gel and she’ll never stop defending the cultural relevance of contemporary romance novels. Related stories Sign up for our newsletter Sign up for the latest news from ELLE including offers and discounts we choose to share with you By joining, you agree to our Privacy Policy & Terms of Use About your privacy
+"""
+
+[R4] Coachella 2026: Justin Bieber fans turn the festival into Bieberchella
+(https://www.dailynews.com/2026/04/11/coachella-2026-justin-bieber-fans-turn-the-festival-into-bieberchella/)
+"""
+Beliebers were lining up bright and early to be the first to enter the Coachella Valley Music and Arts Festival grounds and secure their spot at the barricade for Justin Bieber’s 11:25 p.m. headliner performance Sunday, April 11. Maile Ordaz of San Diego shows off her Justin Bieber nails during day two of the Coachella Valley Music & Arts Festival in Indio on Saturday, April 11, 2026. (Photo by Drew A. Kelley, Press-Telegram/SCNG) 1 of 5Maile Ordaz of San Diego shows off her Justin Bieber nails during day two of the Coachella Valley Music & Arts Festival in Indio on Saturday, April 11, 2026. (Photo by Drew A. Kelley, Press-Telegram/SCNG) Expand Hype for Bieber’s debut Coachella set started growing earlier in the week and residents in the Palm Desert area starting sharing clips from Bieber’s soundcheck that they could hear from their yard. It’s reported that after snippets were posted online, ticket resell prices for the sold-out event started going for $4,000. Fans were lined up for Bieber’s exclusive Coachella merchandise all day on Friday, April 10, the day before his performance, with wait time taking anywhere from 30 minutes to an hour. Bieber’s comeback performance marks the first time the pop-star has performed on this scale since 2022, where he announced he needed to cancel the rest of the Justice World Tour to prioritize his health. Earlier this year, Bieber performed a stripped down version of “Yukon” at the Grammy Awards. Things To Do: Let us help you plan your adventures with stories on events, entertainment and culture near you.By signing up, you agree to our Terms of Use, Privacy Policy, and to receive emails from Los Angeles Daily News. Jury finds that Ticketmaster and Live Nation had an anticompetitive monopoly over big concert venues Coachella 2026: Weekend 2 set times include special guest Kacey Musgraves Phil Collins, Iron Maiden, Sade, Oasis, Wu-Tang Clan and Luther Vandross get into Rock Hall Veganchella 2026: The best plant-based dishes at Coachella from SoCal vendors 2026 April 11
+"""
+
+[R5] Coachella 2026: Karol G headlines Day 3 after Justin Bieber's laptop set divides the internet
+(https://www.yahoo.com/entertainment/music/live/coachella-2026-justin-bieber-headlines-day-2-after-sabrina-carpenters-star-studded-sabrinawood-set-165257408.html)
+"""
+Justin Bieber made his long-awaited return to the festival stage Saturday night at Coachella — but not in the way anyone expected. The pop star set up a MacBook onstage and let YouTube commenters vote on his setlist in real time, streaming his own music videos on the big screen behind him.Critics called it "lazy," a "snoozefest" and "the worst in festival history," while others defended the stripped-back set as a personal moment from an artist returning to the stage after years away due to illness. Katy Perry, watching from the crowd, joked: "Thank god he has YouTube Premium, I don't wanna see no ads."Saturday marked the first time the Swag II singer performed as a billed Coachella act — and his reported $10 million payday made him the highest-paid performer in the festival's history. He was joined by musical guests including Kid Laroi, Wizkid and Tems, and closed with: "Tonight's been beautiful ,guys. It's been a dream of mine to perform here."Addison Rae also made her Coachella main stage debut Saturday afternoon, performing her "Fame & Glory Show" set at 5:30 p.m. PT in front of a packed crowd.On Friday, Sabrina Carpenter delivered a star-studded headlining debut, transforming the main stage into "Sabrinawood" with 20 songs and celebrity cameos from Susan Sarandon, Will Ferrell and Samuel L. Jackson. Sarandon appeared midway through the set in a vintage car, delivering a nearly seven-minute dramatic monologue as an older version of Carpenter — Variety called it "bizarre" while fans on social media called it "iconic." DJ Anyma canceled his midnight set due to dangerous winds.On Sunday night, Karol G made history as the first Latina artist to headline Coachella, delivering a high-energy set to close out Weekend 1.Follow along for Yahoo's full Coachella coverage, including on-the-ground intel from Yahoo's own Krista Rados and Kelsey Weekman.Live coverage is over19 updates
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

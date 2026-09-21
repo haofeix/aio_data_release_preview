@@ -1,0 +1,113 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch texas rangers vs dodgers"
+
+Claims:
+[1] "Texas Rangers vs. Los Angeles Dodgers game is on April 12, 2026."
+[2] "Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026 is at 4:10 p.m. ET."
+[3] "Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026 is at 3:10 p.m. CT."
+[4] "Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026 is at 1:10 p.m. PT."
+[5] "Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026 is played at Dodger Stadium in Los Angeles, California."
+[6] "Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026 can be watched on TV via SportsNet LA."
+[7] "Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026 can be watched on TV via Rangers Sports Network."
+[8] "SportsNet LA is the TV channel for Dodgers."
+[9] "Regional Sports Network is the TV channel for Rangers."
+[10] "FuboTV is a live streaming option for Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026."
+[11] "MLB.TV is a live streaming option for Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026."
+[12] "Victory+ is a live streaming option for Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026."
+[13] "KRLD 1080 provides radio coverage for Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026."
+[14] "KFLC 1270 provides radio coverage for Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- How to watch Rangers vs. Dodgers: TV channel and ...: "Advertisement,Odds provided by BetMGM."
+- Where to watch Texas Rangers vs Los Angeles Dodgers: "Matchup: TEX at LAD,Streaming: MLB.TV on Fubo"
+- How to Watch Rangers, Jacob deGrom Face Dodgers: "Time: 3:10 p.m. CT,Radio: KRLD 1080, KFLC 1270"
+- Rangers 5-2 Dodgers (Apr 12, 2026) Game Recap: "Game Information,Game Time:3:00"
+- Texas Rangers vs Los Angeles Dodgers Live Stream - Fubo: "Fans can tune into Rangers,on Fubo: Start watching now!"
+Reference Sources:
+
+[R1] Rangers 5-2 Dodgers (Apr 12, 2026) Game Recap - ESPN
+(https://www.espn.com/mlb/recap?gameId=401814920)
+"""
+LOS ANGELES -- — Shohei Ohtani connected off Jacob deGrom for his second straight leadoff home run, but the Texas Rangers rallied to beat the Los Angeles Dodgers 5-2 Sunday and avoid a three-game sweep. Evan Carter hit a tying home run off Roki Sasaki (0-2) and Brandon Nimmo drove in two runs for the Rangers. Sasaki allowed two runs, five hits and five walks over four innings while striking out a career-high six, lowering his ERA to 6.23. Ohtani extended his on-base streak to 46 games, fifth-longest in Dodgers history behind Duke Snider (58), Shawn Green (53), Willie Keeler (50) and Ron Cey (47). Ohtani pulled the first pitch from deGrom (1-0), a 97.9 mph fastball, to right-center for his 26th leadoff homer and fifth home run this season. That was the only run allowed in six innings by deGrom, who gave up four hits, struck out nine and walked three. He beat the Dodgers for just the second time in 13 regular-season starts. Jakob Junis pitched a hitless ninth for this third save. Carter’s homer and Josh Smith’s RBI single put the Rangers ahead for good at 2-1 in the third. Nimmo hit a run-scoring grounder in the sixth, and Kyle Tucker pulled Los Angeles to 3-2 with an RBI single off Jacob Latz in the seventh. Nimmo added an RBI single in the eighth against Will Klein, who also threw a run-scoring wild pitch. Texas catcher Danny Jansen was successful in four of five ABS challenges to overturn calls by plate umpire Charlie Ramos. Up Next Rangers: RHP Nathan Eovaldi (1-2, 7.89 ERA) starts Monday in the opener of a four-game series at the Athletics and RHP Luis Severino (0-1, 5.40) Dodgers: LHP Justin Wrobleski (1-0, 4.00) starts Monday’s series opener against the New York Mets and LHP David Peterson (0-2, 6.14) ------ AP MLB: https://apnews.com/hub/mlb
+"""
+
+[R2] Where to watch Texas Rangers vs Los Angeles Dodgers: TV channel, start time, streaming for Apr. 12
+(https://www.usatoday.com/story/sports/mlb/2026/04/12/texas-rangers-los-angeles-dodgers-channel-stream-time-mlb-4-12-2026/89577577007/)
+"""
+Updated April 12, 2026, 6:38 a.m. ETBaseball is back and finding what channel your favorite team is playing on has become a little bit more confusing since MLB announced plans to produce and distribute broadcasts for nearly a third of the league.We're here to help. Here's everything you need to know Sunday as the Texas Rangers visit the Los Angeles Dodgers.See USA TODAY's sortable MLB schedule to filter by team or division.What time is Texas Rangers vs Los Angeles Dodgers?First pitch between the Los Angeles Dodgers and Texas Rangers is scheduled for 4:10 p.m. (ET) on Sunday, Apr. 12.How to watch Texas Rangers vs Los Angeles Dodgers on SundayAll times Eastern and accurate as of Sunday, April 12, 2026, at 6:32 a.m.Matchup: TEX at LADDate: Sunday, Apr. 12Time: 4:10 p.m. (ET)Venue: Dodger StadiumLocation: Los Angeles, CaliforniaTV: Time Warner Cable SportsNet LA and Rangers Sports NetworkStreaming: MLB.TV on FuboWatch MLB all season long with FuboMLB regional blackout restrictions applyMLB scores, resultsMLB scores for Apr. 12 games are available on usatoday.com . Here's how to access today's results:See scores, results for all of today's games.Our editors independently choose our recommendations. Some content is produced with paid support from a third party, however our editorial decisions remain independent. If you buy through our links, the USA TODAY Network may earn a commission. Prices and availability may change.Information in this article was imported automatically into a template written and reviewed by a USA TODAY Sports editor. You can send feedback using this form.Gambling involves risk. Please only gamble with funds that you can comfortably afford to lose. While we do our utmost to offer good advice and information we cannot be held responsible for any loss that may be incurred as a result of gambling. We do our best to make sure all the information that we provide on this site is correct. However, from time to time mistakes will be made and we will not be held liable. Please check any stats or information if you are unsure how accurate they are. No guarantees are made with regards to results or financial gain. All forms of betting carry financial risk and it is up to the individual to make bets with or without the assistance of information provided on this site and we cannot be held responsible for any loss that may be incurred as a result of following the betting tips provided on this site. Past performances do not guarantee success in the future and betting odds fluctuate from one minute to the next. The material contained on this site is intended to inform, entertain and educate the reader and in no way represents an inducement to gamble legally or illegally or any sort of professional advice.Gannett may earn revenue from sports betting operators for audience referrals to betting services. Sports betting operators have no influence over nor are any such revenues in any way dependent on or linked to the newsrooms or news coverage. Terms apply, see operator site for Terms and Conditions. If you or someone you know has a gambling problem, help is available. Call the National Council on Problem Gambling 24/7 at 1-800-GAMBLER (NJ, OH), 1-800-522-4700 (CO), 1-800-BETS-OFF (IA), 1-800-9-WITH-IT (IN). Must be 21 or older to gamble. Sports betting and gambling are not legal in all locations. Be sure to comply with laws applicable where you reside. It is your sole responsibility to act in accordance with your local laws.
+"""
+
+[R3] Texas Rangers vs Los Angeles Dodgers Live Stream: How to Watch MLB
+(https://www.fubo.tv/news/mlb/texas-rangers-vs-los-angeles-dodgers-live-stream-how-to-watch-mlb-april-12/)
+"""
+The Texas Rangers and Los Angeles Dodgers face off on Sunday in MLB action. Dodger Stadium is set to host the exciting weekend matchup between the Texas Rangers and the Los Angeles Dodgers on Sunday in MLB regular-season action. The two teams opened the series on Friday night with a thrilling 8-7 finish in favor of the back-to-back reigning World Series champion Dodgers at home. Max Muncy ended the game in dramatic fashion and made history along the way as he became only the second Dodger in history to hit three home runs, including a walk-off, joining Don Demeter (April 21, 1959). The second three-homer game of his career also snapped a three-game winning streak for the Rangers, who were fresh off of a sweep over the Seattle Mariners in Texas to start the week. How to Watch Texas Rangers vs Los Angeles Dodgers Today: Game Date: Sunday, April 12, 2026 Game Time: 4:00 p.m. ET TV Channel: Rangers Sports Network, MLB.TV – Texas Rangers Location: Dodger Stadium Live stream Texas Rangers vs Los Angeles Dodgers on Fubo: Start watching now! Teoscar Hernández and Andy Pages also scored runs for L.A. in the win, while Brandon Nimmo, Wyatt Langford, Corey Seager, Joc Pederson, Evan Carter, Josh H. Smith and Sam Haggerty all crossed home plate for the Rangers. Tyler Glasnow lasted six innings on the mound for the Dodgers, striking out seven Rangers and giving up five hits and four runs in that time. What Time is Texas Rangers vs Los Angeles Dodgers Game On? The Texas Rangers vs Los Angeles Dodgers game will take place on Sunday, April 12, 2026, at 4:00 p.m. ET. Tune in and catch some great MLB action. What Channel Is Texas Rangers vs Los Angeles Dodgers? Looking to watch this game? Fans can tune into Rangers Sports Network, MLB.TV – Texas Rangers to see the action. Make sure you subscribe to Fubo now to watch this matchup, as well as numerous other sports leagues. Live stream Texas Rangers vs Los Angeles Dodgers on Fubo: Start watching now! Regional restrictions may apply.
+"""
+
+[R4] How to Watch Rangers, Jacob deGrom Face Dodgers: TV Channel, Live Stream, Radio
+(https://www.si.com/mlb/rangers/onsi/news/how-to-watch-rangers-jacob-degrom-dodgers-tv-channel-live-stream-radio)
+"""
+The Texas Rangers, like everyone else so far this season, are having a hard time beating the Los Angeles Dodgers.The Rangers (7-7) get a shot at avoiding a sweep when they face the Dodgers on Sunday, who had made the Rangers pay with six home runs in the first two games of this series — three of which were by third baseman Max Muncy.Texas was scrappy and nearly won the first game of this series on Friday before Muncy’s third home run of that game. On Saturday, it was Shohei Ohtani’s solo home run and Teoscar Hernandez's three-run shot that put Texas starter Jack Leiter in a hole that the Rangers couldn't crawl out of.Now, it’s up to Jacob deGrom to right the ship. Texas moves on with its road trip after the game as the Rangers go to Sacramento to face the Athletics for four games beginning on Monday. After that set, Texas moves on to Seattle to face the Mariners in a three-game series next weekend. Here is a breakdown of the game, including how to watch, the starting pitchers, injuries and other notes. How to Watch Texas Rangers vs. Los Angeles DodgersTexas Rangers manager Skip Schumaker. | Jayne Kamin-Oncea-Imagn ImagesTime: 3:10 p.m. CTWhere: Dodger Stadium, Los AngelesTV: Rangers Sports Network. Game can be streamed on Victory+Radio: KRLD 1080, KFLC 1270Pitching MatchupTexas: RHP Jacob deGrom (0-0, 3.72) vs. Los Angeles: RHP Roki Sasaki (0-1, 7.00)deGrom pitched well enough against Seattle on Monday to claim the victory. He allowed just one hit and one earned run in five innings, with that earned run coming off a home run. He struck out six and walked one. While the Rangers won the game, he came away with his second no-decision of the season. The former two-time National League Cy Young Award winner was much more effective than he was in his first start against Baltimore on March 31, when he gave up six hits and three runs in 4.2 innings.Sasaki is another star in the Dodgers’ constellation of Japanese talent, but the right-hander is off to a rough start. He allowed five hits and six earned runs in five innings against Washington in his last start, as he walked three and struck out five. In just nine innings in two starts he's given up nine hits, seven earned runs and five walks. Sunday marks just his 13th career Major League appearance and 11th career start. Texas needs to jump on his early offensively. Rangers Injuries10-Day Injured List: INF Cody Freeman (lumbar stress reaction); 15-Day Injured List: LHP Cody Bradford (left UCL surgery); RHP Carter Baumler (right intercostal strain); 60-Day Injured List: LHP Jordan Montgomery (Tommy John surgery).Add us as a preferred source on GoogleFollow
+"""
+
+[R5] How to watch Rangers vs. Dodgers: TV channel and streaming options for April 12
+(https://www.nytimes.com/athletic/7190139/2026/04/12/how-to-watch-rangers-vs-dodgers-tv-channel-and-streaming-options-for-april-12/)
+"""
+The Los Angeles Dodgers host the Texas Rangers at 4:10 p.m. ET on Sunday, a game featuring two of MLB’s most consistent hitters. Andy Pages has an average of .442 (first in league) for the Dodgers, and Brandon Nimmo ranks third at .364 for the Rangers. Roki Sasaki (0-1, 7.00 ERA) gets the start for the Dodgers, who are 11-3 this season and first in the NL West. Jacob deGrom (0-0, 3.72 ERA) is expected to start for the Rangers, who are 7-7 and second in the AL West.How to watch Texas Rangers vs. Los Angeles Dodgers Venue: Dodger Stadium Time: 4:10 p.m. ET Streaming: Fubo (Stream now) TV: SportsNet LA and RSN Watching in person? Get tickets on StubHub. Rangers vs. Dodgers odds Favorite Moneyline: Dodgers -190 Underdog Moneyline: Rangers +155 Total: 8.5 Total Over Odds: -105 Total Under Odds: -125 Odds provided by BetMGM.Injury reportsDodgersTommy Edman: 10 Day IL (Ankle), Mookie Betts: 10 Day IL (Back), Brock Stewart: 15 Day IL (Shoulder), Brusdar Graterol: 15 Day IL (Shoulder), Blake Snell: 15 Day IL (Shoulder), Landon Knack: 15 Day IL (Undisclosed), Bobby Miller: 60 Day IL (Shoulder), Gavin Stone: 60 Day IL (Shoulder), Jake Cousins: 60 Day IL (Elbow), Kiké Hernández: 60 Day IL (Elbow), Evan Phillips: 60 Day IL (Elbow) RangersCody Freeman: 10 Day IL (Back ), Cody Bradford: 15 Day IL (Elbow), Carter Baumler: 15 Day IL (Ribs), Jordan Montgomery: 60 Day IL (Elbow), Wyatt Langford: day-to-day (Quadricep)Stats to know Los Angeles’ Pages is slashing .442/.482/.750 this season with four home runs (9th in MLB), 17 RBIs (1st in MLB) and an OPS of 1.232 (3rd in MLB). He has a 25% strikeout rate and a 7.1% walk rate in 56 plate appearances, and he has scored eight total runs. Pages has recorded two steals on three attempts. In 63 plate appearances, Freddie Freeman is hitting .259/.317/.483 with a .800 OPS. He has hit three long balls, driven in 13 runs (7th in MLB) and scored seven times. Texas’ Nimmo is slashing .364/.435/.618 this season with three home runs, seven RBIs and an OPS of 1.054 (6th in MLB). He has a 19.4% strikeout rate and a 9.7% walk rate in 62 plate appearances, and he has scored 10 total runs. Nimmo has recorded one steal on one attempt. In 60 plate appearances, Corey Seager has hit four long balls (9th in MLB), tallied 10 RBIs and scored eight runs. He is batting .220/.317/.460 and has posted a 28.3% strikeout rate and a 13.3% walk rate. Seager has recorded one steal on one attempt. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Jamie Squire, Ishika Samant, Scott Taetsch, Alika Jenner / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

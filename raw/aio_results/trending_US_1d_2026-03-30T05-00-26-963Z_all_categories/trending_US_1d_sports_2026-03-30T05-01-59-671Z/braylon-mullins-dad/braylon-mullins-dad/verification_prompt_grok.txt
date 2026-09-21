@@ -1,0 +1,93 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "braylon mullins dad"
+
+Claims:
+[1] "Braylon Mullins' dad is Josh Mullins."
+[2] "Josh Mullins played college basketball at Lincoln Trail College."
+[3] "Josh Mullins played college basketball at IUPUI."
+[4] "Josh Mullins's wife is Katie."
+[5] "Josh Mullins and Katie are parents to Braylon and his two younger brothers, Cole and Clay."
+[6] "Braylon Mullins is the son of Katie and Josh Mullins."
+[7] "Braylon Mullins has two younger brothers named Cole and Clay."
+[8] "Josh Mullins is a different individual than former NBA player Jeff Mullins."
+
+Cited text snippets from the AI Overview (for additional context):
+- Braylon Mullins - Wikipedia: "Mullins is the son of,Purdue University Indianapolis (IUPUI)."
+- Braylon Mullins - Men's Basketball - University of Connecticut Athletics: "Personal: Braylon Anthony Mullins…,younger brothers, Cole and Clay."
+- Jeff Mullins (1978) - Duke Athletics Hall of Fame: "The standout of Duke's 1964,be counted on both hands."
+Reference Sources:
+
+[R1] Braylon Mullins - Men's Basketball - University of Connecticut Athletics
+(https://uconnhuskies.com/sports/mens-basketball/roster/braylon-mullins/14933)
+"""
+Braylon Mullins - Men's Basketball - University of Connecticut AthleticsSkip to main contentAll Rotators Playing University of Connecticut Athletics 2025-26 Men's Basketball RosterPosition: GuardHeight: 6-6Weight: 196Class: FreshmanHometown: Greenfield, Ind.Prev School: Greenfield-Central High School: Greenfield-CentralBefore UConn: Indiana-native who played high school basketball at Greenfield-Central…2025 McDonald’s All American…named the 2025 ‘Mr. Basketball’ in the state of Indiana, one of the most prestigious high school honors in America previously won by the likes of Kyle Guy, Gary Harris, Eric Gordon, Sean May, Greg Oden, Tyler and Cody Zeller and more…Gatorade Player of the Year in Indiana…ranked as a consensus five-star prospect, checking in at No. 12 in the 247 Sports rankings, No. 15 on the 247 Composite, No. 15 by On3 and No. 17 on the ESPN100…as a senior, led Greenfield-Central to a 23-4 record and averaged 32.9 points. 7.2 rebounds, 4.2 assists and 3.7 steals per game while shooting over 47 percent from 3-point range…scored 25.0 points with 6.2 rebounds, 3.2 steals and 3.2 assists as a junior for a 24-1 squad…shot 47 percent from three and scored 16.9 points per game as a sophomore on a 21-2 club…Greenfield-Central’s all-time leading scorer with 2,158 points…set the school-record with 52 points on Feb. 23, 2025 – topping his own record of 51 in a game set a season earlier…was named MVP of the Senior All-Star game between prep stars from Indiana and Kentucky, scoring 20 points with nine rebounds and seven assists…played with Indiana Elite 17U on the 3SSB circuit. Personal: Braylon Anthony Mullins…born April 18, 2006…son of Katie and Josh Mullins…has a pair of younger brothers, Cole and Clay.
+"""
+
+[R2] Jeff Mullins (1978) - Duke Athletics Hall of Fame - Duke University
+(https://goduke.com/honors/duke-athletics-hall-of-fame/jeff-mullins/83)
+"""
+Jeff Mullins (1978) - Duke Athletics Hall of Fame - Duke UniversitySkip to main contentAll Rotators Playing Duke University Athletics Men's SportsWomen's SportsQuick LinksSpirit SquadsQuick AccessTickets by SportPremium Access & HospitalityQuick LinksSport-Specific Game Day GuidesMore Sport-Specific GuidesExperienceWatchListenConnectRequestQuick LinksHistoryStudent-Athlete SupportInitiativesDepartment Quick Links Duke Athletics Hall of FameAlarie, MarkAlexander, SkipAllen, LouisAmaker, TommyAmbler, WayneAndresen, MattBaker, Dr. LenoxBanks, GeneBarger, JerryBarnett, BobBassett, Dr. FrankBattier, ShaneBeard, AlanaBeardmore, RogerBennett, BenBerry, JeanBishop, Ellison GoodallBlumenherst, AmandaBoozer, CarlosBrand, EltonBrill, BillBrooks, DanBrown, WernerBryan, BillyBubas, VicBuehler, AlBurrows, RobertButters, TomCaldwell, HerschelCameron, EddieCarver, GordonCassese, KevinChambers, BobChesson, WesChuasiriporn, JennyClark, GeorgeConner, JohnCoombs, JackCorrigan, GeneCouncilor, HarryCox, BobCox, BillyCrawford, FredCrowder, Howard MaxCurrie, MoniqueCurtis, MikeCurtis, AliDanowski, JohnDanowski, MattDavis, TomDawkins, JohnnyDeHart, JamesDeRogatis, AlDenton, RandyDilweg, AnthonyDinkins, MaryDriesell, LeftyErbe, Katie ChrestExum, JulieFalcone, CarmenFarley, RolandFarrar, DannyFerry, DannyFlur, MarcGantt, BobGerard, GerryGilfillan, CharlesGminski, MikeGoestenkors, GailGregory, ArtGroat, DickGrzebien Vanderlinde, AnnaHackney, ElmoreHagler, EllisHannemann, CandyHarding, LindseyHarris, BobHart, LeoHarvey, BillHeaps, JayHerbert, DickHeyman, ArtHill, GrantHill, DanHines, ClarkstonHogshead, NancyHord Jr., RoyHurley, BobbyIngram, Sarah LebrunJackson, ErnieJackson, RyanJames, CarlJanicki, BernieJeffries, MikeJohnson, AllenJohnston McGrath, AbbyJones, RandyJones, CedricJones, SteveJurgensen, SonnyKain, TomKerr, JohnKnotts, ErnestKoffenberger, EdKreis, JasonKrzyzewski, MikeLach, SteveLaettner, ChristianLewis, MikeLewis, RedMann, TedMarin, JackMatheson, BobMcAfee, GeorgeMcCracken, QuintonMcElhaney, HalMcGee, MikeMeadows, EdMoorman II, Claude T.Moreland, ChrisMullins, JeffMurray, BillNewman, EdNirapathpongporn, ViradaO'Reilly, Christine, Patricia & TheresaParker, AcePascal, BobPerry, CliffPersons, JackPort, ChrisProthro, TommyRaymond, MatRedick, JJRennie, JohnReynolds, EllenSchweitzer, GeorgiaShankle, JoelSiderowf, DickSilar, JackiSime, DaveSmith, JamesSouchak, MikeSpanarkel, JimSteinhouse, EricTipton, EricTopping, TomUlrich, JoeVacendak, SteveVerga, BobWade, WallaceWalbert Cagle, KellyWall, Jr., ArtWard, BeccaWebb, VanessaWentz, EarleWerber, BillWheeler, BobWidman, Mary AnneWilkinson, JayWilliams, SheldenWilliams, Jason Induction: 1978 Class: 1964All-America, 1964 Olympic Gold Medalist, 1964 ACC Athlete of the Year, 1964 MVP of 1964 NCAA Eastern Regionals 1963 Lewis E. Teague Award Winner Member of 1976 NBA World Champions (Golden State) The standout of Duke's 1964 NCAA runners-up, Jeff Mullins has done it all in the world of basketball. He owns an NBA World Championship ring, was three times selected all-pro. Cherishes a 1964 Olympic gold medal won in Tokyo, and has more All-America plagues than could be counted on both hands. He still ranks second on the Duke all-time scoring list and holds school records for most field goals made in a single game and season. He was the ACC's most outstanding athlete in 1964 and is one of the few athletes ever named all-conference three consecutive years. However, the performance that will stand out forever in the minds of Duke fans everywhere came against Villanova in the 1964 Eastern Regionals. In that game, he was fantastic in scoring 43 points. He played excellent defense and couldn't miss on offense capping a 28-piont first half with a 45-foot shot at the buzzer. Mullins returned to Duke in 1976 for a one year stint as assistant athletic director.© 2026 Duke Athletics.All rights reserved
+"""
+
+[R3] Braylon Mullins
+(https://en.wikipedia.org/wiki/Braylon_Mullins)
+"""
+From Wikipedia, the free encyclopedia Braylon MullinsNo. 24 – UConn HuskiesPositionShooting guardLeagueBig East ConferencePersonal informationBornApril 18, 2006 (age 19)NationalityAmericanListed height6 ft 6 in (1.98 m)Listed weight196 lb (89 kg)Career informationHigh schoolGreenfield-Central(Greenfield, Indiana)CollegeUConn (2025–present)Career highlights Big East All-Freshman Team (2026) McDonald's All-American (2025) Indiana Mr. Basketball (2025) Braylon Anthony Mullins (born April 18, 2006) is an American college basketball player for the UConn Huskies of the Big East Conference. Early life and high school[edit] Mullins grew up in Greenfield, Indiana and attended Greenfield-Central High School.[1] He averaged 16.9 points, 5.2 rebounds, and 2.6 steals per game during his sophomore season.[2] After the season, Mullins participated in the Indiana All-Star Futures Game.[3] He then averaged 25 points, 6.2 rebounds, and 3.2 steals per game.[4] During the season, he recorded a career-high 51 points in a game against Pendleton Heights High School.[5] After the season, Mullins joined the Indiana Elite, an Amateur Athletic Union team, competing on the Adidas 3SSB circuit.[6] As a senior, Braylon led Greenfield-Central to a 23–4 record and averaged 32.9 points, 7.2 rebounds, 4.2 assists and 3.7 steals per game while shooting over 47 percent from 3-point range. He was named a 2025 McDonald's All American in January 2025. He was then recognized in April as Indiana's Mr. Basketball. Mullins was ranked a consensus top-25 prospect in the 2025 recruiting class and a five-star recruit by 247Sports.com.[7][8] He committed to play college basketball at UConn over offers from Indiana and North Carolina.[9][10] Mullins enrolled at the University of Connecticut in June 2025 in order to take part in the Huskies' summer practices.[11] During UConn's Elite Eight game versus Duke in the 2026 NCAA Division I men's basketball tournament, Mullins made a game-winning three-point shot with 0.4 seconds left after Silas Demary deflected a pass from Duke's Cayden Boozer during the game's final seconds.[12] ESPN college basketball analyst Jeff Borzello called the shot "one of the greatest shots in the history of the NCAA tournament."[13] Mullins is the son of Katie and Josh Mullins, and has two younger brothers, Cole and Clay. His father played college basketball at Lincoln Trail College and Indiana University–Purdue University Indianapolis (IUPUI).[14] ^ Neddenriep, Kyle (October 9, 2023). "Get to know Braylon Mullins — Indiana high school basketball's hottest recruit". Indianapolis Star. Retrieved October 23, 2024. ^ "G-C's Mullins leads South in scoring in Futures Game". Greenfield Daily Reporter. June 13, 2023. Retrieved October 23, 2024. ^ Heath, Steve (March 22, 2023). "Mullins selected for Futures Game". Greenfield Daily Reporter. Retrieved October 24, 2024. ^ "Mr. Popular: Braylon Mullins draws crowd as college basketball recruiting period opens". Indianapolis Star. September 4, 2024. Retrieved October 23, 2024. ^ "'A special night.' Braylon Mullins scores 51 points and game-winner for Greenfield-Central". Indianapolis Star. January 26, 2024. Retrieved October 23, 2024. ^ Jordan, Jason (July 13, 2024). "Braylon Mullins focused on visits". Rivals.com. Retrieved October 24, 2024. ^ London, Dushawn (July 22, 2024). "Top 25 shooting guard Braylon Mullins breaks down final 10 schools". 247Sports.com. Retrieved October 23, 2024. ^ Black, Ryan (September 26, 2024). "Kentucky basketball: 5-star 2025 Indiana sharpshooter no longer considering Wildcats". Courier Journal. Retrieved October 24, 2024. ^ Borzello, Jeff; Biancardi, Paul (October 22, 2024). "Braylon Mullins gives UConn basketball another top-25 commitment". ESPN.com. Retrieved October 23, 2024. ^ Finkelstein, Adam (October 23, 2024). "UConn basketball recruiting: Five-star SG Braylon Mullins gives Huskies third commitment for 2025". CBS Sports. Retrieved October 24, 2024. ^ Borges, David (June 2, 2025). "UConn men's basketball: Three questions for Huskies as summer classes, workouts begin". CTInsider.com. Retrieved October 3, 2025. ^ "UConn stuns Duke on Braylon Mullins' miracle last-second triple". espn.com. March 29, 2026. Retrieved March 29, 2026. ^ "Inside UConn's stunning win over Duke in Sunday's Elite Eight". espn.com. March 29, 2026. Retrieved March 29, 2026. ^ Butterfield, Christine (October 24, 2024). "UConn men's basketball program lands top recruit Braylon Mullins: 5 things to know about Indiana guard". Connecticut Post. Retrieved October 24, 2024. UConn Huskies bio
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,100 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is purdue"
+
+Claims:
+[1] "Purdue University's main campus is located in West Lafayette, Indiana."
+[2] "Purdue University's main campus is situated along the Wabash River."
+[3] "Purdue University's main campus is roughly one hour north of Indianapolis."
+[4] "Purdue University's main campus is two hours south of Chicago."
+[5] "Purdue University has an expansion campus, Purdue University in Indianapolis."
+[6] "The address of Purdue University's main campus is West Lafayette, IN 47907."
+[7] "Purdue University is a large public land-grant university."
+[8] "Purdue University is often referred to as the home of the Boilermakers."
+[9] "Purdue University is known for its extensive engineering, agriculture, and science programs."
+
+Cited text snippets from the AI Overview (for additional context):
+- Directions, Travel and Planning - Purdue University: "Purdue West Lafayette is conveniently located near,Indianapolis and two hours south of Chicago."
+- Purdue University in Indianapolis: "The university's expansion to Indianapolis will: *,students * World-class educators, researchers, and students"
+- Home of Purdue | Explore Lafayette, West Lafayette, Indiana: "**West Lafayette** * **Purdue University campus** *,section * Get insights from local authors"
+Reference Sources:
+
+[R1] Purdue University (Ag Sciences Global)
+(https://agsci.psu.edu/global/lgu-colombia/our-members/purdue-university)
+"""
+The university main campus offers more than 200 undergraduate majors and more than 69 master and doctoral programs. Purdue is organized in 13 colleges and schools: College of Agriculture, College of Education, College of Engineering, Exploratory Studies, College of Health and Human Sciences, College of Liberal Arts, Krannert School of Management, College of Pharmacy, Purdue Polytechnic Institute, College of Science, College of Veterinary Medicine, Honors College and The Graduate School. Purdue has 18 intercollegiate sport teams and more than 900 student organizations. As of 2017, 41,573 students were enrolled at Purdue University. Undergraduate students, graduate students and students pursuing professional degrees represent 75%, 23% and 2% of the total student population, respectively. Among public universities in the United States, Purdue University has the fourth largest international student population. It ranks eighth overall. Purdue University is ranked 56th in the Academic Ranking of National Universities of 2018 (U.S. News & World Report), 8th in the engineering undergraduate programs and 12th for the most innovative schools. In agriculture, Purdue University ranked 8th out of 300 universities worldwide (2017) and 1st in undergraduate (tied) and graduate Agricultural and Biological Engineering programs in the country (2018). According to the Center for World University Rankings, Purdue University is one of the top 50 universities. Purdue University is known as the "cradle of astronauts," as 22 astronauts are alumni of Purdue. These include Neil Armstrong and Eugene Cernan, the first and the last men on the moon. Four Purdue professors have won Nobel prizes, two in chemistry and two in subjects related to climate change. Nine other professors affiliated with Purdue have won the Nobel prize. Two Purdue professors and one Purdue alumnus have won the World Food Prize. Purdue University is a top public research institution, offering higher education at its highest proven value. Committed to affordability, the University has frozen tuition and most fees at 2012-13 levels. Dedicated to student success, Purdue is changing the student experience with a greater focus on faculty-student interaction and the creative use of technology. Focused on pursuing scientific discoveries and engineered solutions, Purdue has streamlined pathways for faculty and student innovators who have a vision for moving the world forward. University research strengths/areas of expertise related to activities in Consortium Agricultural and Biological EngineeringPlant phenotypingDigital AgricultureVeterinary MedicineAnimal SciencesEnvironmental HealthClimate ChangePlant Biology and Plant HealthMolecular Biology and GeneticsPost-harvest ScienceFood ScienceAgricultural Economics Consortium subgroup projects Cacao for Peace - An Analysis of the Productive Chain of Cacao in Colombia USDA Colfuturo Cacao for Peace Fellowships University webpage and other relevant links Purdue University Colombia Purdue Initiative Colombia Student Association at Purdue Farmer to Farmer Colombia Coordinating Council Members
+"""
+
+[R2] Home of Purdue, Welcome to Lafayette-West Lafayette, Indiana
+(https://www.homeofpurdue.com/)
+"""
+Welcome to Welcome to Lafayette-West Lafayette, Indiana, home of Purdue University. Located along the scenic Wabash River, our twin cities offer a perfect blend of rich history, modern attractions, and the energy of Purdue University. Whether you're strolling through historic downtown Lafayette, enjoying local art and culture, or exploring outdoor trails along the river, there's something for everyone here. P R O P H E T S T O W N S T A T E P A R K W A B A S H R I V E R W I L D C A T C R E E K 26 231 65 52 52 38 25 WEST LAFAYETTE WEST LAFAYETTE LAFAYETTE LAFAYETTE BATTLE GROUND BATTLE GROUND DOWNTOWN DOWNTOWN Samara Celery Bog Columbian Park & Zoo Riehle Plaza Wolf Park Discover LAFAYETTE - WEST LAFAYETTE Explore the vibrant culture and community that make this region a unique destination! Click on the titles to discover the attractions and experiences our different areas have to offer. Welcome to Lafayette Immerse yourself in the local culture by visiting historic sites and engaging with our thriving arts scene, featuring galleries, theaters, and community events that celebrate creativity. Whether you're enjoying a day outdoors, exploring unique shops, or attending a local festival, the Lafayette area offers something for everyone. Experience the warmth and hospitality that make our community truly special. LEARN MORE Welcome To West Lafayette West Lafayette is a vibrant and welcoming city known for being home to Purdue University, a world-renowned institution that brings energy, innovation, and cultural diversity to the area. Nestled along the Wabash River, West Lafayette offers a blend of small-town charm and academic spirit, with scenic parks, engaging arts and entertainment, and a lively food scene. Whether you're exploring the university campus, enjoying the outdoors, or attending a local event, West Lafayette delivers a dynamic experience for residents and visitors alike. Read More Purdue University Purdue University, founded in 1869, is a top-tier research institution known for innovation in science, engineering, and beyond. With over 50,000 students, Big Ten athletics, and 1,000+ student organizations, campus life is vibrant and welcoming. Located near the Wabash River and downtown Lafayette, Purdue offers a beautiful, walkable campus full of energy and tradition. Whether visiting for a tour, a game, or an event, Purdue blends academic excellence with Midwestern charm—Boiler Up! Read More Welcome to DOWNTOWN Explore the charming Chauncey Village, known for its eclectic mix of boutiques and eateries that cater to every taste. Stroll along the picturesque Riverfront Wabash, where scenic views and recreational activities await. Don’t miss the Arts and Market district, home to local artisans, galleries, and events that celebrate creativity and innovation. Immerse yourself in the vibrant atmosphere that makes our downtown a unique destination for visitors and locals alike. LEARN MORE Welcome to BATTLE GROUND Explore Battle Ground, which seamlessly blends small-town charm with breathtaking natural beauty! At the heart of the community lies Prophetstown State Park, where you can hike scenic trails, enjoy picnics, and immerse yourself in the diverse wildlife of the area. Uncover the park’s historical exhibits that celebrate the region's rich cultural heritage. Experience the warm community spirit and picturesque landscapes that make this area a delightful destination for all. LEARN MORE
+"""
+
+[R3] Indianapolis
+(https://www.purdue.edu/campuses/indianapolis/)
+"""
+Skip to content Home About Leadership Messages from the Senior Vice Provost News Academics Undergraduate Majors Graduate Programs Research Student Experience Student Life Student Resources Academic Success Center Center for Career Opportunities (CCO) Disability Resource Center Early Start First Year Success John Martinson Honors College Office of Experiential Education Office of Undergraduate Research Orientation Programs Purdue Libraries Purdue OWL Purdue Promise (21st Century Scholars) Student Success Technologies (BoilerConnect) Study Abroad The Data Mine Veterans Success Center Career Readiness Engagement & Belonging Office of Student and Community Engagement FAQ Accept Your Offer Purdue University in Indianapolis Our Indianapolis location is preparing career-ready students for the jobs of tomorrow. Strong industry partnerships accelerate hands-on learning opportunities, internships and co-ops. Become a Student Become a Partner Take your next giant leap in Indianapolis with the Indy Scholars scholarship program! Learn More Here Most Recognized Public University in the U.S. American Caldwell, 2025 in competitive,high-demand industries in leading and emergingSTEM fields New building broadens our impact We’re expanding Purdue’s urban footprint in Indianapolis with a new Academic Success Building. This cutting-edge facility, which will include classrooms, labs, dining and housing, will add to our growing presence in the heart of the city. Focused on innovative programs, this space will bring even more hands-on learning opportunities for our career-ready students. View the live construction webcam to see our progress. Learn More Explore Giving Opportunities Watch Video Building the future Our location expands Purdue’s mission and impact with a first-of-its-kind Hard-Tech Corridor, stretching between Indianapolis and West Lafayette. We’re building the future by linking industry to our world-class educators, researchers and students. Watch Video Learn More Fueling transformational growth, Purdue University’s expansion to Indianapolis will offer unique opportunities for Boilermaker students and faculty. We will expand enrollment. We will build startups. We will create new knowledge. We will connect talents and industry. We will maximize Indy’s unique strengths such as sports and biomedical technology. Purdue’s main campus now bookends the Hard Tech Corridor: 65 miles connecting Indy and West Lafayette. We will generate talents, jobs and innovation together in America’s heartland! Mung Chiang PresidentPurdue University Top News
+"""
+
+[R4] Purdue University - Directions, Travel and Planning
+(https://admissions.purdue.edu/visit/getting-to-purdue/)
+"""
+Skip to content Home Become a Student Support Your Student Admitted Students Academics Cost & Aid Student Life Visit Contact Us Visit Menu Prospective Student Experiences Admitted Student Experiences Getting to Purdue Prospective Student Experiences Admitted Student Experiences Getting to Purdue West Lafayette Purdue West Lafayette is conveniently located near Interstate 65. We’re about one hour north of Indianapolis and two hours south of Chicago. Whether you choose to travel on your own or through commercial services, West Lafayette is easily accessible. There are many lodging options available in the surrounding area just a short drive away from Purdue, as well as options on or within walking distance of campus. Use the resources below to help you plan for your trip. Air Travel Purdue University Airport (LAF): Located on campus, offers daily service to and from Chicago O’Hare Indianapolis International Airport (IND): 65 miles south of West Lafayette Chicago O’Hare International Airport (ORD): 140 miles north of West Lafayette Chicago Midway International Airport (MDW): 130 miles north of West Lafayette Airport Shuttle Services Lafayette Limo IND to/from campus: Regular daily service, reservations recommended ORD to/from campus: Prepaid service, runs based on reservations only Reindeer Shuttle IND to/from campus: Regular daily service, reservations recommended ORD to/from campus: Regular daily service, reservations recommended Ground Travel Amtrak Greyhound FlixBus These services are available to the local area, stopping at a station in downtown Lafayette. Visitors can ride Greater Lafayette’s CityBus system or hop on a rideshare service to Purdue (about 1.5 miles away). Purdue West Lafayette is very walkable, and the Union Club Hotel in the Purdue Memorial Union is a convenient on-campus location for overnight visitors. There are a variety of other lodging options in the Greater Lafayette area — some within walking distance. Visit Lafayette-West Lafayette is a great resource to locate nearby hotels, campgrounds and vacation rentals to fit your needs. Indianapolis Primarily located in the heart of downtown, our Indianapolis expansion covers the city in its entirety with multiple facilities across Indiana’s capital. Known as the “Crossroads of America,” personal and commercial travel to Indianapolis is easy to navigate with Chicago, Louisville and Cincinnati all within a three-hour drive. When it comes to lodging, enjoy the conveniences of a major city with many options on or near our Purdue location. Use the resources below to help you plan your trip. Air Travel Indianapolis International Airport (IND): Located 15 miles from downtown Indianapolis Airport Shuttle Services IndyGo offers $4 per day passes for all fixed bus routes throughout Indianapolis as well as fixed route service from the airport to downtown for $1.75 per ride. Taxi services are available with a $15 minimum charge for all fares from the airport, regardless of distance. Uber and Lyft rideshare services are also available. Ground Travel Amtrak FlixBus Megabus Greyhound Time Zone West Lafayette and Indianapolis are in the Eastern time zone and observe daylight saving time. Travel Advisory As you plan your visit, we encourage you to monitor the most current information on detours and traffic from the Indiana Department of Transportation (INDOT): For the latest construction information on and around Purdue, visit Physical Facilities.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

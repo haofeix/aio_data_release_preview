@@ -1,0 +1,124 @@
+{
+  "keyword": "dodger game today",
+  "model": "grok-4-1-fast-reasoning",
+  "n_claims": 9,
+  "n_verified": 9,
+  "label_counts": {
+    "CLEAR": 4,
+    "VAGUE": 1,
+    "AMBIGUOUS": 1,
+    "INCORRECT": 2,
+    "OMITTED": 1
+  },
+  "consistent": 5,
+  "inconsistent": 4,
+  "fidelity_rate": 0.5556,
+  "verifications": [
+    {
+      "claim_id": 1,
+      "claim": "The Los Angeles Dodgers are playing the Cleveland Guardians at Dodger Stadium on April 1, 2026, at 5:20 PM PT.",
+      "label": "AMBIGUOUS",
+      "confidence": 0.9,
+      "matched_references": [
+        "R2",
+        "R5"
+      ],
+      "evidence": "R2: 'First pitch: 5:20 PM.' 'Venue: UNIQLO Field at Dodger Stadium.' 'April 1, 2026'; R5: 'Dodger Stadium7:20 PM, April 1, 2026'",
+      "reasoning": "R2 directly supports date, venue, and 5:20 PM time; R5 supports date and venue but lists 7:20 PM time, creating contradiction on time."
+    },
+    {
+      "claim_id": 2,
+      "claim": "Yoshinobu Yamamoto is starting for the Los Angeles Dodgers.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R2"
+      ],
+      "evidence": "R2: 'Yamamoto(L, 1-1)6.04221213.00' (pitched 6 IP as starter)",
+      "reasoning": "R2 box score shows Yamamoto as Dodgers starter with 6 IP."
+    },
+    {
+      "claim_id": 3,
+      "claim": "The Los Angeles Dodgers won 4-1 over the Cleveland Guardians on March 31, 2026.",
+      "label": "INCORRECT",
+      "confidence": 1.0,
+      "matched_references": [
+        "R5"
+      ],
+      "evidence": "R5: 'Game 23/31FinalGuardians4Dodgers1'",
+      "reasoning": "R5 shows Guardians won 4-1 over Dodgers on March 31; score and winner swapped."
+    },
+    {
+      "claim_id": 4,
+      "claim": "Shohei Ohtani earned the victory in his 2026 pitching debut.",
+      "label": "INCORRECT",
+      "confidence": 0.9,
+      "matched_references": [
+        "R1",
+        "R5"
+      ],
+      "evidence": "R1: Ohtani scheduled to pitch March 31; R5: 'Game 23/31FinalGuardians4Dodgers1' (Dodgers lost)",
+      "reasoning": "R1 confirms debut on March 31, but R5 shows Dodgers lost that game, so starter Ohtani could not earn victory."
+    },
+    {
+      "claim_id": 5,
+      "claim": "The game on March 31, 2026 was Shohei Ohtani's 2026 pitching debut.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1"
+      ],
+      "evidence": "R1: 'Shohei Ohtani is scheduled to take the mound... for the first time this season tonight, Tuesday, March 31'",
+      "reasoning": "R1 directly states March 31 as Ohtani's first pitching appearance of 2026."
+    },
+    {
+      "claim_id": 6,
+      "claim": "The Los Angeles Dodgers vs. Cleveland Guardians game date is Wednesday, April 1, 2026.",
+      "label": "OMITTED",
+      "confidence": 1.0,
+      "matched_references": [],
+      "evidence": "No relevant content found",
+      "reasoning": "Sources confirm April 1, 2026 game but do not mention or confirm it is Wednesday."
+    },
+    {
+      "claim_id": 7,
+      "claim": "The game venue is Dodger Stadium, Los Angeles, CA.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R1",
+        "R2",
+        "R5"
+      ],
+      "evidence": "R1: 'Dodger Stadium, Los Angeles'; R2: 'Venue: UNIQLO Field at Dodger Stadium'; R5: 'Dodger Stadium Los Angeles, California'",
+      "reasoning": "Multiple sources directly confirm Dodger Stadium in Los Angeles as venue."
+    },
+    {
+      "claim_id": 8,
+      "claim": "The game is available to watch on SportsNet LA, Guardians.TV, MLB.TV.",
+      "label": "VAGUE",
+      "confidence": 0.8,
+      "matched_references": [
+        "R1"
+      ],
+      "evidence": "R1: 'watch tonight's Dodgers vs. Guardians game on SportsNet LA and Guardians.TV, as well as on MLB.TV'",
+      "reasoning": "R1 lists exact channels but for March 31 game; no sources specify for April 1 game, so broader applicability."
+    },
+    {
+      "claim_id": 9,
+      "claim": "The April 1, 2026 game between the Los Angeles Dodgers and the Cleveland Guardians is the final game of the series.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R5"
+      ],
+      "evidence": "R5: 'Game 34/1Final' in 3-game series where 'CLE wins 2-1' (Game1 3/30, Game2 3/31, Game3 4/1)",
+      "reasoning": "R5 explicitly positions April 1 as Game 3, the final game of the 3-game series."
+    }
+  ],
+  "elapsed_s": 32.8,
+  "prompt_tokens": 7245,
+  "cached_tokens": 582,
+  "completion_tokens": 1181,
+  "error": null
+}

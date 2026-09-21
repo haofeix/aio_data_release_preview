@@ -1,0 +1,83 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "no kings protest near me"
+
+Claims:
+[1] "The No Kings website is nokings.org."
+[2] "Based on the latest No Kings site search, there are over 3,000 #NoKings protests planned nationwide for March 28, 2026."
+[3] "According to this Instagram post, there are over 3,000 #NoKings protests planned nationwide for March 28, 2026."
+[4] "According to this Politico article, the No Kings mobilization on March 28, 2026 is the fourth nationwide mobilization."
+
+Cited text snippets from the AI Overview (for additional context):
+- No Kings: "No Events Found Nearby,Register An Event"
+- Find a #NoKings march in your community, on March 28th, at ...: "It's official: There are now over 3,000,you at nokings.org. more. 3 days ago."
+- Third ‘No Kings’ nationwide protest planned for March: "“This lawless police force is,turnout than their earlier rallies."
+Reference Sources:
+
+[R1] Third ‘No Kings’ nationwide protest planned for March
+(https://www.politico.com/news/2026/01/28/no-kings-protest-march-00750265)
+"""
+Nationwide protests have become a staple of both of President Donald Trump’s terms. Indivisible estimated 3 million protesters turned out for its “Hands Off” rally in April 2025, while 5 million showed up in June as part of the first “No Kings” protest and 7 million for the second “No Kings” demonstration in October.Organizers said they are aiming for nearly 9 million people to turn out in March.Levin said that Indivisible had been planning the upcoming protest since before Renee Good was shot and killed by an immigration officer in Minnesota earlier this month, calling what is unfolding in the Midwestern state is “tragic and horrific.” A second person, Alex Pretti, was killed by Border Patrol agents on Saturday not far from where Good died.Still, Levin said, it is “inspiring and gives me hope that while this regime and many political leaders even outside this regime are cowards or fascist sympathizers, people on the ground aren’t putting up with it.”Trump and his GOP allies have not been fans of the demonstrations. Ahead of the October marches — which took place amid the government shutdown — Speaker Mike Johnson called them “hate America” rallies, and Trump’s “war room” account posted a mocking picture of the president wearing a crown.Levin said the organizers are taking safety precautions, including holding de-escalation training sessions. On Monday, the group held a session on non-violent documentation techniques for the public. And at the last “No Kings” protest, Levin said Indivisible trained thousands of volunteer marshals, emphasizing non-violent principles.The tactics have a proven track record, Levin argued, with major cities reporting zero arrests during the last “No Kings” demonstration.Still, Levin said, he can’t guarantee there aren’t risks to participating.“Based on how the regime is behaving, the fact of the matter is, everybody should worry about it,” he said. “I can’t guarantee that there isn’t a risk involved to show up and exercise your constitutional rights. It’s a terrible thing to have to say in 2026 in America, but it’s the truth.”
+"""
+
+[R2] No Kings
+(https://www.nokings.org/)
+"""
+In America, we have No Kings.Masked secret police terrorizing our communities. An illegal, catastrophic war putting us in danger and driving up our costs. Attacks on our freedom of speech, our civil rights, our freedom to vote. Costs pushing families to the brink. Trump wants to rule over us as a tyrant. But this is America, and power belongs to the people - not to wannabe kings or their billionaire cronies. On March 28th, we show up together, and we say, loud and clear: No Kings. Find an Event near youAs President Trump escalates his attempts to control us, it is on us, the people, to show that we will fight to protect one another and our country. If he believes we will roll over and allow him to take our freedoms, he is mistaken. We are coming together again on March 28 because we know we can overcome this repression when we unite. Upcoming Trainings Wednesday, March 25 at 8:00PM ESTLearn how to talk to your friends, family and community about No Kings. Share with confidence why they should join you at your local event, why it matters to take action together now, and the vision for America that we’re fighting for together. In this training you’ll workshop how to talk to your people with leading communications experts from No Kings. jueves, 26 de marzo at 7:00PM EDTAprende cómo hablar con tus amistades, tu familia y tu comunidad sobre No Kings, para que te sientas seguro/a de compartir el por qué deberían acompañarte en tu evento local, por qué es importante actuar juntos ahora y cuál es la visión de país por la que estamos luchando. En esta capacitación trabajarás en cómo hablar con tu gente junto a expertos en comunicación que forman parte del movimiento No Kings. Thursday, March 26 at 8:00PM EDTIt’s almost No Kings 3! Join this final preparation call for hosts to ensure that you have large, safe, and powerful events on Saturday. During this call, we will also talk about how to deepen our movement, starting with “What's Next” Organizing Meetings. Friday, April 3 at 3:00PM ESTAs hosts, you have power the fight for America. On the Friday after No Kings, over 3,000 hosts will gather together to digest and debrief the historic No Kings activations and plan how to deepen our movement, starting with “What's Next” Organizing Meetings. The Work Continues America has a long history, rooted in white supremacy, of suppressing the rights of people of color. But our history also clearly shows that people-powered movements are how we end authoritarianism.Throughout 2025, in the face of unprecedented attacks, millions of us joined together in our communities and held the largest single day of morally grounded, nonviolent direct actions by any movement in US history. Each time we show up, we disrupt President Trump’s attempts to rule through repression and remind the country, and the world, that people power is our path to a truly free America. Attendees Hosts About
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,93 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "has sean penn won an oscar"
+
+Claims:
+[1] "Sean Penn has won three Academy Awards."
+[2] "Sean Penn won Best Actor for Mystic River (2004)."
+[3] "Sean Penn won Best Actor for Milk (2009)."
+[4] "Sean Penn won Best Supporting Actor for his role in One Battle After Another at the 2026 Oscars."
+[5] "Sean Penn ties for the record of most Oscars won by a male actor."
+[6] "Sean Penn was a Best Actor nominee for Dead Man Walking (1996)."
+[7] "Sean Penn was a Best Actor nominee for Sweet and Lowdown (2000)."
+[8] "Sean Penn was a Best Actor nominee for I Am Sam (2002)."
+
+Cited text snippets from the AI Overview (for additional context):
+- #SeanPenn becomes fourth male actor to win three #Oscars ...: "#SeanPenn becomes fourth male actor to win,best supporting actor. Presenter Kieran Culkin joked:"
+- Sean Penn wins his third Oscar, tying the record for most Academy ...: "Penn won for his role,who have the most Oscars."
+- Oscars 2026: Sean Penn wins but doesn't show up - CTV News: "His character carries the weight,among the film's talented ensemble.&text=The win marks Penn's third,Jacob Elordi and Stellan Skarsgård."
+Reference Sources:
+
+[R1] Sean Penn wins his third Oscar, tying the record for most Academy Awards won by a male
+(https://www.ksbw.com/article/sean-penn-wins-his-third-oscar-one-battle-after-another/70748553)
+"""
+Sean Penn wins his third Oscar, tying the record for most Academy Awards won by a male Video Player is loading.Current Time Duration Loaded: 0%Remaining Time ✕ What do Timothy Chalamet, K-pop, and Paul Thomas Anderson all have in common? They could all be winning their first Oscar at the 98th Academy Awards. I'm Megan Campanova, the entertainment reporter for Hearst Television. Let's break down who could be taking home their first award on movie's biggest night in 2026. Paul Thomas Anderson is no stranger to the Oscars. Throughout his career, he has been nominated for 14 Academymy. Awards for Best Screenplay, Best Director, and Best Picture. However, he's never taken home an award. At the 2026 Academy Awards, he is nominated for Best Director, Best Adapted Screenplay, and Best Picture for his movie One Battle After Another. After winning at all of the precursor awards such as the Golden Globes, the BAFTAs, and the Actor Awards, it can be inferred that Paul Thomas Anderson will be finally. Taking home one of those trophies. Another no stranger to the Oscars is Timothy Chalamet. Just last year, he was nominated for Best Actor, and once again this year, he's nominated for Best Actor. Timothy Chalamet is nominated this year for his role in Marty Supreme, and after losing 3 times in the lead actor race, it seems like Timothy Chalamet might finally be taking home his first Oscar. New to the scene is Jessie Buckley. Jessie Buckley is nominated for her role in Hamlet for Best Lead Actress. After winning at all the festivals, all the precursor awards, it's pretty much Jessie Buckley's award to lose. And finally, K-pop. K-pop Demon Hunters is nominated for Best. Animated feature at the Oscars, and its song Golden from the soundtrack is nominated for Best Original Song. After K-pop Demon Hunters took over the world this year, and its wins at the Grammys and the Golden Globes, it is very likely that K-pop will be joining an elite group of you that have Oscars. Sean Penn wins his third Oscar, tying the record for most Academy Awards won by a male Updated: 5:29 PM PDT Mar 15, 2026 Editorial Standards ⓘ Sean Penn has won his third Oscar at the 98th Academy Awards, tying the record for most Oscars won by a man. Penn won for his role in “One Battle After Another” as Colonel Steven Lockjaw, a militant with a vengeance for a group of revolutionaries. Penn did not attend the ceremony to accept his award.Kieran Culkin, who was presenting the award for Best Supporting Actor, said that "Sean Penn couldn't be here tonight...or didn't want to."Penn has won Best Actor twice before for his performances in “Mystic River” and “Milk.”By winning his third Oscar, Penn joins the company of Jack Nicholson, Daniel Day-Lewis and Walter Brennan as the male actors who have the most Oscars. Sean Penn has won his third Oscar at the 98th Academy Awards, tying the record for most Oscars won by a man. Penn won for his role in “One Battle After Another” as Colonel Steven Lockjaw, a militant with a vengeance for a group of revolutionaries. Penn did not attend the ceremony to accept his award.Kieran Culkin, who was presenting the award for Best Supporting Actor, said that "Sean Penn couldn't be here tonight...or didn't want to."Penn has won Best Actor twice before for his performances in “Mystic River” and “Milk.”By winning his third Oscar, Penn joins the company of Jack Nicholson, Daniel Day-Lewis and Walter Brennan as the male actors who have the most Oscars.
+"""
+
+[R2] Sean Penn wins Oscar but ‘couldn’t be here tonight, or he didn’t want to,’ says Kieran Culkin, accepting award
+(https://www.ctvnews.ca/entertainment/article/sean-penn-wins-best-supporting-actor-oscar-for-one-battle-after-another-but-opts-not-to-attend/)
+"""
+LOS ANGELES -- Sean Penn has built one of the most decorated careers in contemporary acting, and he has added another Oscar to the list.On Sunday, Penn won the Academy Award for best supporting actor for his performance in Paul Thomas Anderson’s political drama “One Battle After Another.” He delivered a commanding portrayal of a seasoned power broker navigating the shifting loyalties and ideological battles at the centere of the film.Penn, 65, did not attend the Oscars. The win is Penn’s third Academy Award.IN PICTURES: Hottest looks on the 2026 Oscars red carpet“He couldn’t be here tonight, or he didn’t want to,” Kieran Culkin said after announcing Penn as the winner.It’s not the first time Penn has been an Oscars no-show. He’s previously skipped the show three times when he was nominated for “Dead Man Walking” in 1996, “Sweet and Lowdown” in 2000 and “I Am Sam” in 2002. Penn also bowed out from attending the BAFTAs and Actor Awards this year.Kieran Culkin presents the award for best performance by an actor in a supporting role during the Oscars on Sunday, March 15, 2026, at the Dolby Theatre in Los Angeles. (AP Photo/Chris Pizzello) Kieran Culkin presents the award for best performance by an actor in a supporting role during the Oscars on Sunday, March 15, 2026, at the Dolby Theatre in Los Angeles. (AP Photo/Chris Pizzello) Mykola Serha, founder and leader of Cultural Forces, an informal association of Ukrainian servicemen from creative professions formed to support military personnel through arts and culture, told The Associated Press on Monday that Penn is in Ukraine. Ukrainian President Volodymyr Zelenskyy posted a photo of him meeting with Penn on his social media Monday with the message “Because of you, Sean, we know what a true friend of Ukraine is. You have been with Ukraine since the first day of the full-scale war. And today as well. And we know that you will continue to stand with our country and our people.” In 2022, Penn gave one of the Oscar statuettes to Zelenskyy.In “One Battle After Another,” Penn plays a calculating strategist named Col. Steven J. Lockjaw whose decades of experience in political movements give him both influence and scars. His character carries the weight of past victories and failures, offering sharp insights while quietly pulling strings behind the scenes. The performance blends Penn’s trademark intensity with moments of restraint, delivering a standout performance among the film’s talented ensemble.Penn did attend when he previously won two Academy Awards for best actor for Clint Eastwood’s 2003 crime drama “Mystic River” and for portraying San Francisco politician and LGBTQ rights pioneer Harvey Milk in Gus Van Sant’s 2008 biopic “Milk.”READ MORE: Sean Penn, who won Oscar but skipped awards, is in Ukraine: officialREAD MORE: Latest updates on the 98th Academy AwardsThe actor first gained attention in the 1980s, with films including “Fast Times at Ridgemont High,” but quickly established himself as one of Hollywood’s most fearless dramatic actors. Over the decades he has delivered acclaimed performances in films such as “Dead Man Walking,” “Carlito’s Way,” “The Thin Red Line,” and “I Am Sam.”His performance in “One Battle After Another” adds another acclaimed role to a career defined by intense and transformative performances.Other nominees included fellow “One Battle” cast member Benicio Del Toro and Delroy Lindo for “Sinners,” Jacob Elordi for “Frankenstein” and Stellan Skarsgård for “Sentimental Value.”------By Jonathan Landrum Jr.AP journalist Vasilisa Stepanenko in Kharkiv, Ukraine, contributed to this report.
+"""
+
+[R3] Sean Penn
+(https://www.imdb.com/name/nm0000576/awards/)
+"""
+Jump to95 wins & 165 nominationsAcademy Awards, USAFilm Critics Circle of Australia AwardsBerlin International Film FestivalBodil AwardsBoston Society of Film Critics AwardsBAFTA AwardsCritics Choice AwardsCannes Film FestivalCésar Awards, FranceChicago Film Critics Association AwardsDallas-Fort Worth Film Critics Association AwardsDavid di Donatello AwardsDenver Film FestivalDirectors Guild of America, USAFlorida Film Critics Circle AwardsGolden Apple AwardsGolden Globes, USASatellite AwardsGotham AwardsGrammy AwardsHollywood Film AwardsFilm Independent Spirit AwardsIrish Film and Television AwardsItalian National Syndicate of Film JournalistsKansas City Film Critics Circle AwardsLas Vegas Film Critics Society AwardsLocarno Film FestivalLondon Critics Circle Film AwardsLos Angeles Film Critics Association AwardsMTV Movie + TV AwardsNational Board of Review, USANational Society of Film Critics Awards, USANew York Film Critics Circle AwardsNews & Documentary Emmy AwardsOnline Film Critics Society AwardsPalm Springs International Film FestivalPGA AwardsRazzie AwardsSan Diego Film Critics Society AwardsSan Francisco International Film FestivalSan Sebastián International Film FestivalSanta Barbara International Film FestivalActor AwardsSoutheastern Film Critics Association AwardsSão Paulo International Film FestivalToronto Film Critics Association AwardsUSC Scripter AwardVenice Film FestivalWriters Guild of America, USABAFTA/LA Britannia AwardsSan Francisco Film Critics CircleVancouver Film Critics CircleSant Jordi AwardsKinema Junpo AwardsPhoenix Film Critics Society AwardsChlotrudis AwardsCapri, HollywoodCentral Ohio Film Critics AssociationAustin Film Critics AssociationWashington DC Area Film Critics Association AwardsZurich Film FestivalRome Film FestDubai International Film FestivalInternational Cinephile Society AwardsNorth Texas Film Critics Association, USSt. Louis Film Critics Association, USAlliance of Women Film JournalistsDetroit Film Critics Society AwardsNew York Film Critics, OnlineIndiana Film Journalists Association, USDublin Film Critics Circle AwardsDenver Film Critics SocietyJupiter AwardCinEuphoria AwardsGeorgia Film Critics Association (GAFCA)Dorian Film AwardsSESC Film Festival, BrazilUtah Film Critics Association AwardsOklahoma Film Critics Circle AwardsHouston Film Critics Society AwardsFICE - Federazione Italiana Cinema d'EssaiOnline Film & Television AssociationVillage Voice Film PollInternational Online Film Critics' PollAwards Circuit Community AwardsItalian Online Movie Awards (IOMA)Golden Schmoes AwardsWomen Film Critics Circle AwardsInternational Online Cinema Awards (INOCA)The Stinkers Bad Movie AwardsIndiewire Critics' PollNorth Carolina Film Critics AssociationParajanov-Vartanov Institute AwardsPhoenix Critics CircleGold Derby AwardsAARP Movies for Grownups AwardsYoga Awards20/20 AwardsAACTA International AwardsDOC LAHawaii Film Critics SocietyAtlanta Film Critics CircleMusic City Film Critics' Association AwardsLatino Entertainment Journalists Association Film AwardsOnline Association of Female Film CriticsGreater Western New York Film Critics Association AwardsDiscussingFilm Critic AwardsNorth Dakota Film SocietyChicago Indie Critics Awards (CIC)Columbus Film Critics AssociationSan Francisco Bay Area Film Critics CircleSeattle Film Critics SocietyHollywood Critics Association Television AwardsPortland Critics Association AwardsCritics Association of Central Florida AwardsMinnesota Film Critics Alliance AwardsUK Film Critics Association AwardsThe Guardian's Best FilmsMichigan Movie Critics Guild AwardsAstra Film AwardsVHS AwardsInternational Catholic Film Critics AssociationNew Jersey Film Critics Circle AwardsContribute to this pageSuggest an edit or add missing contentMore from this person
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

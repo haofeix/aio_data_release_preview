@@ -1,0 +1,98 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "free fries and frosty wendys"
+
+Claims:
+[1] "Participating U.S. Wendy's offer a free Small Fry and Small Frosty (chocolate or vanilla) on Tuesday, April 7, 2026."
+[2] "No purchase is necessary for the offer."
+[3] "No app is required for the offer."
+[4] "The offer is only available in-restaurant or in the drive-thru."
+[5] "The offer is available while supplies last."
+[6] "The offer provides one free small fry and one small Frosty per person."
+[7] "The offer is available at participating U.S. Wendy's in-store and drive-thru only."
+[8] "The promotion is part of Wendy's "Free Dunks for America" campaign."
+[9] "Wendy's "Free Dunks for America" campaign celebrates the NCAA Basketball Championship."
+
+Cited text snippets from the AI Overview (for additional context):
+- Wendy’s Is Giving out Free Fries and Frostys Today. How to Get Yours: "Thanks to one NCAA shooting,7 at U.S. Wendy's locations."
+- /C O R R E C T I O N -- The Wendy's Company/: "*Offer only available in-restaurant,Wendy's National Advertising Program, Inc."
+- FREE WENDY'S TOMORROW?! On April 7, you can walk into ...: "On April 7, you can walk into,or Vanilla) — NO purchase needed ⚠️"
+- Get FREE Fries and a Frosty from Wendy's TOMORROW (April ...: "Get FREE Fries and a Frosty from,and valid during lunch and dinner hours!"
+- 4/7 FREE FROSTY & FRIES @wendys ‼️#freefrosty ...: "Frosty and Fries. To celebrate the College,giving everyone free fries and a frosty"
+- JUST COMMENT “DUNK” AND ILL DM THE L!NK TO YOU ...: "FREE WENDY'S FROSTY & FRIES TODAY Today,,grab a small Frosty + fries completely"
+- Wendy’s are handing out free frosty and fries on April 7 thanks to their iconic ‘dunk’ promotion: "TODAY, family diner Wendy's is,their restaurants across the US."
+Reference Sources:
+
+[R1] Wendy’s Is Giving out Free Fries and Frostys Today. How to Get Yours
+(https://www.today.com/food/restaurants/wendys-free-frosty-fries-dunk-promo-ncaa-championship-rcna267060)
+"""
+Thanks to one NCAA player, we all get to “dunk” today.The Michigan Wolverines defeated the Connecticut Huskies 69-63 to win their second national NCAA Tournament championship on Monday, and thanks to shooting guard Roddy Gale Jr., we all have the opportunity to eat for free at Wendy’s today.“WE HAVE A DUNK 🚨,” Wendy’s posted on X April 6. “that means all of America gets free small fry and Frosty on April 7th. Not to be dramatic, but that was the greatest moment in dunk history.”Wendy's is giving out free fries and Frostys today.Wendy'sOn April 7, Wendy’s is fulfilling its promise to offer “Free Dunks for America” once the play was made during the NCAA Division I Men’s Basketball National Championship Game.Customers across the country can ask for one free small fry, paired with a small chocolate or vanilla Frosty, to dunk to their heart’s content, at participating Wendy’s restaurants. The offer is available in-restaurant only on April 7 at U.S. Wendy’s locations.And no, you don’t have to buy anything else.The Wolverines’ championship is the college’s first win since 1989. In its four previous title game appearances, Michigan was the runner-up, losing in 1992, 1993, 2013 and 2018. But thanks to MVP Elliott Cadeau and MVD (most valuable dunker) Gale, the team took home the W.In TBS’ replay of the dunk, which has over a million views, one of the announcers says, “Gale devours it,” and you can, too — for one day only.
+"""
+
+[R2] Wendy’s are handing out free frosty and fries on April 7 thanks to their iconic ‘dunk’ promotion
+(https://www.the-sun.com/money/16187575/wendys-free-frosty-fries-dunk-promotion-ncaa-basketball/)
+"""
+TODAY, family diner Wendy’s is handing out free fries and ice cream – thanks to the first dunk of the basketball championships. Fans of fast food are in for a treat as Wendy’s is giving away one small fries and one small Frosty Classic per person at their restaurants across the US. Sign up for the Money newsletter Thank you! The offer is a slam dunk for fans of fries and ice cream – but only while stocks lastCredit: Getty The free goodies are available upon request in Wendy’s restaurants only on April 7, the date of the first dunk in the NCAA March Madness. Customers can pick a Small Hot & Crispy Fry and pair with either a Small Chocolate or Vanilla Frosty Classic. The iconic diner unlocked the nationwide offer earlier today to celebrate the first dunk in the US Basketball championships, calling it “free dunks for America”. Wendy’s are official partners with NCAA March Madness and this free fries and ice cream promotion is their off-court slam-dunk for customers. According to the US restaurant chain, the menu celebrates “the most memorable plays both on and off court”. A slam dunk in Basketball involves the player jumping up and forcing the ball through the net with one or both hands – but in Wendy’s case, the only two-handed dunk is customers seizing their fries and ice cream freebies. Fans of the fast-food diner are delighted. “My 7 year old is gonna be pumped!” posted one enthusiastic parent on X. Most read in Money “I’m game”, posted another, punning on the Basketball theme. Wendy’s Dunk Menu was unveiled on March 16, and every purchase from the Dunks Menu via the Wendy’s app earned fans a chance to win prizes from Wendy’s Dunkstakes, including custom dunk-inspired sneakers, multiple $1,000 cash prizes, and a grand cash prize of $100,000. “It’s the signature play fans have known and loved for years, and this season we’re turning up the excitement with even more crave-worthy ways to enjoy Wendy’s all tournament long”, said Lindsay Radkoski, a spokesperson for Wendy’s. Another major US retailer is offering massive savings across April. Costco’s latest rotation of bargain must-haves rolled out yesterday – and only lasts until the end of the month. Slashed price buys include men’s crew neck t-shirts, women’s sports shorts, Dyson vacuum cleaners and 6-piece sofas. Several of the items on offer have high customer reviews, with the women’s shorts nabbing a strong 4.8 out of five stars. The six-piece modular gray sofa, which is selling for less than half price, had 2,300 satisfied buyers rate it a collective 4.7 out of five stars. Comments
+"""
+
+[R3] /C O R R E C T I O N -- The Wendy's Company/
+(https://www.prnewswire.com/news-releases/wendys-is-giving-away-free-fries-and-frosty-on-tuesday-april-7-thanks-to-one-iconic-slam-dunk-302735220.html)
+"""
+In the news release, Wendy's is Giving Away Free Fries and Frosty on Tuesday, April 7 Thanks to One Iconic Slam Dunk, issued 06-Apr-2026 by The Wendy's Company over PR Newswire, we are advised by the company that changes have been made. The complete, corrected release follows, with additional details at the end: Wendy's is Giving Away Free Fries and Frosty on Tuesday, April 7 Thanks to One Iconic Slam DunkFor one day only, fans can experience Wendy's most iconic dunk for free – yes, we're talking Fries and Frosty, /PRNewswire/ --WHAT: The first dunk was made during the NCAA® Division I Men's Basketball National Championship Game, which means Wendy's is unlocking a nationwide offer: Free Dunks for America. Wendy’s is giving away free Fries and Frosty on Tuesday, April 7 thanks to one iconic slam dunk. (PRNewsfoto/The Wendy's Company) On Tuesday, April 7, fans across the U.S. can request one free Small Hot & Crispy Fry paired with a Small Chocolate or Vanilla Frosty® Classic at participating Wendy's restaurants*. March Madness® has delivered thrilling college basketball action and unforgettable upsets – but nothing can rival the most epic dunks fans will create with their free Fries and Frosty. WHERE & WHEN: The Free Small Fry and Frosty offer is available in-restaurant and drive-thru only on Tuesday, April 7 at U.S. Wendy's locations.HOW: Fans can visit their nearest Wendy's on April 7 to request one free Small Hot & Crispy Fry paired with a Small Chocolate or Vanilla Frosty Classic, no purchase necessary.WHY: As the Official Dunks partner of NCAA March Madness, Wendy's has celebrated the most memorable plays both on and off the court through the Wendy's Dunks Menu, where every Dunks Menu purchase via the Wendy's app earned fans a shot at winning prizes through the Wendy's Dunkstakes, including custom dunk-inspired sneakers, multiple $1,000 cash prizes, and a grand cash prize of $100,000.**Wendy's also built an elite roster of NIL partnerships with Wendy's Dunk Team, featuring Women's and Men's college basketball stars like Yaxel Lendeborg, Keaton Wagler, Breya Cunningham and Sarah Graves.ABOUT WENDY'SThe Wendy's Company (Nasdaq: WEN) and Wendy's® franchisees employ hundreds of thousands of people across more than 7,000 restaurants worldwide. Founded in 1969, Wendy's is committed to the promise of Fresh Famous Food, Made Right, For You, delivered to customers through its craveable menu including made-to-order square hamburgers using fresh beef***, and fan favorites like the Spicy Chicken Sandwich and nuggets, Baconator®, and the Frosty® dessert. Wendy's supports the Dave Thomas Foundation for Adoption®, established by its founder, which seeks to dramatically increase the number of adoptions of children waiting in North America's foster care system. Learn more about Wendy's at www.wendys.com. For details on franchising, visit www.wendys.com/franchising. Connect with Wendy's on X, Instagram and Facebook.ABOUT THE NCAAThe National Collegiate Athletic Association provides a world-class athletics and academic experience that fosters lifelong well-being for more than 520,000 student-athletes annually. The NCAA stages 92 championships across three divisions, and its 1,100 member schools provide nearly $4 billion in athletics scholarships every year. Visit ncaa.org and ncaa.com for more.*Offer only available in-restaurant and drive-thru upon request at participating U.S. Wendy's on April 7, 2026. No purchase necessary. Limit one (1) free Small Fry and Small Frosty Classic per person. A la carte only. While supplies last. Not valid for digital or delivery orders or with any other discount or offer. No substitutions.**NO PURCHASE NECESSARY. A purchase or payment of any kind will not increase your chances of winning. Open to legal residents of the 50 U.S./D.C. who are 18 years of age or older as of the date of entry. Void where prohibited or restricted by law. Wendy's Dunkstakes begins at 9:00 a.m. ET on March 16, 2026 & ends at 11:59 p.m. ET on April 6, 2026. App/Website entry is open only to Wendy's Rewards members. See Official Rules, including odds, alternate method of entering the sweepstakes, and prize descriptions. Sponsored by The Wendy's National Advertising Program, Inc.***Fresh beef available in the contiguous U.S. and Alaska, as well as Canada, Mexico, Puerto Rico, the UK, and other select international markets.Correction: An earlier version of this release was updated to reflect the addition of availability per drive-thru. SOURCE The Wendy's Company
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

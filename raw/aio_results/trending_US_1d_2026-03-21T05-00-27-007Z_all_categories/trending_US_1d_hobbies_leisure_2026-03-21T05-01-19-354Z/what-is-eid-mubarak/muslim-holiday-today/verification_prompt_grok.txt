@@ -1,0 +1,158 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "muslim holiday today"
+
+Claims:
+[1] "On March 20/21, 2026, Muslims are celebrating Eid al-Fitr."
+[2] "Eid al-Fitr is the "Feast of Fast-Breaking"."
+[3] "Eid al-Fitr marks the end of the holy month of Ramadan."
+[4] "Eid al-Fitr is a three-day celebration."
+[5] "Eid al-Fitr involves early morning prayers."
+[6] "Eid al-Fitr involves charity (Zakat al-Fitr)."
+[7] "Eid al-Fitr involves wearing new clothes."
+[8] "Eid al-Fitr involves sharing feasts with family and friends."
+[9] "Eid al-Fitr celebrates the completion of a month of fasting, spiritual reflection, and increased devotion."
+[10] "Eid Prayers are special communal prayers held early in the morning."
+[11] "Zakat al-Fitr (or Fitrana) is given to the poor to ensure they can participate in the celebration."
+[12] "Eid al-Fitr festivities include visiting family and friends."
+[13] "Eid al-Fitr festivities include giving gifts (often money to children)."
+[14] "Eid al-Fitr festivities include wearing new clothes."
+[15] "Eid al-Fitr is known as the "Sweet Festival" for the special desserts and treats made to celebrate."
+[16] "Greetings for Eid al-Fitr are "Eid Mubarak" (Blessed Eid) or "Eid Sa'id" (Happy Eid)."
+[17] "The exact date of Eid al-Fitr can vary slightly based on local sightings of the crescent moon."
+
+Cited text snippets from the AI Overview (for additional context):
+- Eid Mubarak! Today begins Eid al-Fitr, translated as "the feast ...: "Eid Mubarak!,Photograph by: Chester Higgins."
+- Muslims around the world are bidding farewell to the Islamic holy ...: "It is celebrate for three,in Hausa, a Nigerian language.&text=Mark Tan ► Are U Hungry 😋?"
+- A look at Eid al-Fitr and how Muslims celebrate the Islamic holiday: "Eid al-Fitr is an,customary to wear traditional clothes"
+- Muslims celebrate Eid al-Fitr today. More about the holiday: "Muslims will wake up early,fast on Eid al-Fitr."
+- Is Eid Thursday? Here's when Muslim holiday begins: "Jenna Prestininzi Mariyam Muhammad,add to the Eid atmosphere."
+- A look at Eid al-Fitr and how Muslims celebrate the Islamic holiday: "The holiday marks the end,festival, of breaking the fast."
+- What is Eid al-Fitr all about? It happens today. Learn more ...: "Muslims around the world are celebrating today Eid al- Fitr,and visiting family and friends."
+Reference Sources:
+
+[R1] Guide to Muslim Holidays, Academic Years 2022-23 through 2028-29
+(https://belonging.gsu.edu/files/2024/04/Muslim-Holidays-AY-22-23-through-AY-28-29_6222023_rev-b.pdf)
+"""
+Guide to Muslim Holidays, Academic Years 2022-23 through 2028-29
+
+Georgia State’s religious accommodation policy is outlined at https://belonging.gsu.edu/religious-observances/.
+
+All holidays begin at sundown on the first date listed.
+
+TABLE OF SELECTED HOLIDAYS, AY 2022-23 THROUGH AY 2028-29
+
+ AY 2022-23 AY 2023-24 AY 2024-25 AY 2025-26 AY 2026-27 AY 2027-28 AY 2028-29
+
+ Ramadan March 23- March 1- Feb. 18- Feb. 8-
+ March 11- Jan. 28-Feb. Jan. 16-Feb.
+ April 21, March 30, March 19, March 9,
+ April 9, 2024 26, 2028 14, 2029
+ 2023 2025 2026 2027
+
+ Eid al-Fitr April 21-22, April 9-10, March 30- March 19- March 9-10, Feb. 26-27, Feb. 14-15,
+ 2023 2024 31, 2025 20, 2026 2027 2028 2029
+
+ Eid al-Adha June 28-29, June 16-17, June 6-7, May 26-27, May 16-17, May 4-5, April 23-24,
+ 2023 2024 2025 2026 2027 2028 2029
+
+Ramadan
+
+Ramadan is the ninth month of the Islamic lunar year and is the time in which Muslims focus on faith through
+fasting and prayer, observing the fast from sunrise to sunset. The date at sundown marks the beginning of a 30-
+day observance of this important month in the Muslim calendar, with dates determined by the lunar calendar. It
+is held in the faith as when the Qur’an was first revealed to the prophet Muhammad, providing ultimate
+guidance for humankind.
+
+Muslims refrain from food and beverages during the daylight hours and smoking and sexual relations are
+forbidden. The fast is broken each night with prayer, reading of the Qu’ran, and a meal called the iftar; many
+also attend night prayers at mosques and try to give up bad habits during Ramadan.
+
+Eid al-Fitr
+
+Eid al-Fitr is the last day of Ramadan, marking the end of a month of fasting, with a celebration with friends and
+family, prayer, and often an exchange of gifts. Eid al-Fitr is a three-day celebration beginning at sundown.
+
+Eid al-Adha
+
+Eid al-Adha is a major festival with a focus on the willingness to make sacrifices in the name of one’s faith.
+Prayers and gift giving mark this holiday, beginning at sundown based on the lunar calendar.
+
+Sources: University of Missouriy, Golden Gate University and Grinnell College
+
+ Rev. B
+"""
+
+[R2] A look at Eid al-Fitr and how Muslims celebrate the Islamic holiday
+(https://abc7chicago.com/post/look-eid-al-fitr-how-muslims-celebrate-islamic-holiday/18740348/)
+"""
+CAIRO -- Muslims around the world are bidding farewell to the Islamic holy month of Ramadan and will soon start celebrating the holiday of Eid al-Fitr. Eid is typically greeted with joy and excitement and is marked with congregational prayers and festivities that usually include family visits, gatherings, outings and new clothes.But this year, Eid is approaching amid the Iran war, which has been roiling many countries in the Middle East and leading to far-reaching consequences beyond.In the United States, many Muslims observed Ramadan's religious and social traditions this year under a cloud of worrisome domestic and international events. Those include immigration crackdown fears and anti-Muslim rhetoric in the U.S. as well as the war in the Middle East, where many have loved ones.The holiday marks the end of RamadanEid al-Fitr is an Islamic holiday marking the end of Ramadan, the month when devout Muslims fast daily from dawn to sunset. Ramadan is a time for increased worship, charity and good deeds, and typically sees festive gatherings to break the fast.Eid al-Fitr means the feast, or festival, of breaking the fast.Eid al-Fitr cycles through the seasonsIslam follows a lunar calendar and so Ramadan and Eid cycle through the seasons. This year, the first day of Eid al-Fitr is expected to be on or around March 20. The actual date may vary among countries and Muslim communities.Greeting those celebrating EidTo greet someone celebrating Eid, you can say: Eid Mubarak, or Blessed Eid, and Happy Eid.Traditions and customs associated with Eid al-FitrIn Indonesia, many people embark on an exodus to their hometowns to celebrate the holiday with loved ones in a homecoming tradition. People pour out of major cities to return to villages to celebrate the holiday with prayers and family gatherings.Before the holiday, popular markets typically teem with shoppers buying clothes, shoes, cookies and sweets.In Malaysia, Muslims also have a homecoming tradition for Eid. The first day usually begins with a morning prayer in the mosque, seeking forgiveness from family and friends, and visiting loved ones' graves.There's an "open house" spirit that sees friends and families trading visits to celebrate Eid and enjoy traditional delicacies.Older Muslims give money in green packets to children and guests who visit their homes.In Egypt, families partake in Eid prayers amid a festive atmosphere. Many visit relatives, friends or neighbors and some travel to vacation spots. Children, usually wearing new Eid outfits, receive traditional cash gifts known as "eidiya."Making or buying Eid cookies dusted with powdered sugar is another fixture of marking the holiday in the country.In the United States, where Muslims make up an ethnically and racially diverse minority, many come together for Eid prayers and for festivals featuring fun activities for children and families. These often include such things as face painting and balloon twisting.___Associated Press religion coverage receives support through the AP's collaboration with The Conversation US, with funding from Lilly Endowment Inc. The AP is solely responsible for this content.Copyright © 2026 by The Associated Press. All Rights Reserved.
+"""
+
+[R3] When does Ramadan end? Eid to come on Friday
+(https://www.freep.com/story/news/local/michigan/2026/03/18/ramadan-end-eid-holiday-islam-muslim-celebration/89210878007/)
+"""
+MICHIGANIs Eid Thursday? Here's when Muslim holiday beginsJenna Prestininzi Mariyam MuhammadUSA TODAY NETWORKMarch 18, 2026Updated March 19, 2026, 7:07 a.m. ETSubscribe to hear this storyThe wait is almost over for Muslim communities across Michigan, Eid celebrations will get underway on Friday, March 20.Eid al-Fitr has been confirmed for Friday, March 20, according to Saudi Arabian moon spotters. The holiday's date depends on the crescent moon sighting according to the Islamic lunar calendar, and was expected for either Thursday, March 19 or Friday, March 20.
+"""
+
+[R4] Muslims celebrate Eid al-Fitr today. More about the holiday
+(https://www.dispatch.com/story/lifestyle/faith/2026/03/20/muslims-eid-al-fitr-details-islamic-holiday-ramadan/89239704007/)
+"""
+March 20, 2026, 6:11 a.m. ETEid al-Fitr is an Islamic holiday that commemorates the end of the holy month of Ramadan.The date for Eid al-Fitr is determined by the sighting of the crescent moon, with many Muslims relying on Saudi Arabia's confirmation.It is tradition for Muslims to give a charitable donation, known as Zakat al-Fitr, before Eid prayers to help those in need.Eid Mubarak!The Islamic holiday, Eid al-Fitr, commemorates the end of the holy month of Ramadan, the holiest month in the Islamic calendar when Muslims fast from sunrise to sunset, abstaining from food and drink while focusing on God-consciousness, self-reflection and self-improvement. Ramadan started on Feb. 18.In the Islamic calendar, the sighting of a crescent moon prompts the beginning of the next Islamic month. With moon spotters confirming Eid to be on March 20, nearly 2 billion Muslims worldwide and the roughly 1% of Ohioans who are Muslim will celebrate Eid al-Fitr.What is Eid al-Fitr? Why is it so important? Here's what to know about the holiday that marks the end of Ramadan. When did Saudi Arabia confirm the date for Eid al-Fitr?Saudi moon spotters officially confirmed Eid al-Fitr 2026's date to be on Friday, March 20, via a post on X, after the Shawwal moon was searched for but not sighted on Feb. 19.Many Muslim communities around the world rely on Saudi Arabia's trained moon spotters to confirm the date of the first day of each month, including Shawwal, the month that brings Eid al-Fitr and an end to Ramadan, according to Middle East Eye.What is Eid al-Fitr?Eid al-Fitr is celebrated on the first day of Shawwal, the 10th month in the Islamic calendar. The holiday is marked on one day, but some Muslims celebrate this festival for as long as three days. Eid in Arabic means "festival" or "feast," and Fitr means "breaking the fast." So, Eid al-Fitr literally means “festival of breaking the fast.”Eid al-Fitr is the first of two celebratory days in the Islamic calendar, both observed every year.Is Eid al-Fitr the same day every year?Eid is not on the same date every year. Like Ramadan, it follows the Islamic Hijri calendar, a lunar cycle. Each year, the start of Ramadan and both Eid holidays fall about 11 days earlier than the year before because of the lunar cycle. The sighting of the crescent moon determines the start of these holidays.How is Eid al-Fitr celebrated?Muslims will wake up early in the morning, preparing food and getting ready to attend Eid prayers at local masjids. Eating during daylight hours after a month of fasting may feel strange for Muslims, but it is actually forbidden for Muslims to fast on Eid al-Fitr. On Eid, just like every day, Muslims will follow the way of Prophet Muhammad, also known as “Sunnah” in Islam. Specific Sunnahs on Eid include:Taking a bath or showerWearing one’s best clothes and perfumeSaying “Takbeer” or praising God on the way to Eid prayersTaking a different route home from attending Eid prayerMuslims will hug their friends and family and greet them with “Eid Mubarak,” meaning “blessed festival” in Arabic. Eid traditions vary from country to country. But friends and families will commonly gather and spend time together at each other’s homes, enjoying sweets and delicious food after Eid prayers in the morning. Children will receive gifts and money, also known as “Eidi.”What is Zakat al-Fitr?Between sunset on the last day of fasting and before Eid prayer the next morning, Muslims with an income are obligated to give a charitable donation — Zakat al-Fitr. This donation is meant to cover the cost of one’s meal.Charity to those who are poor is an important value in Islam. The donations are given to the needy so they can also celebrate Eid. Mosques holding Eid prayer will also collect donations, directly giving them to those in need. Muslims can donate to nonprofits.How do you wish someone a happy Eid? What does Eid Mubarak mean?On Eid al-Fitr, Muslims will hug their friends and family and greet them with “Eid Mubarak,” meaning “blessed festival” in Arabic.Even if you're not Muslim, you can say the greeting to your Muslim friends who are celebrating Eid.How do you pronounce Eid?"Eid" can be said like the word "feed" without the "f." But here's a quick Arabic language lesson if you want to know how to really pronounce it."Eid" is "عيد" in Arabic and is actually pronounced as "'ayid." The first Arabic letter of the word, 'ع', is a consonant, which is pronounced using the back of your throat.When is Eid al-Adha, the second Eid in the Islamic calendar?The second Eid, Eid al-Adha, will fall on the 10th day in the Islamic month of Dhu al-Hijjah, which is predicted to fall on the evening of May 26, 2026, and end on the night of May 27.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,127 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is there mail on good friday 2026"
+
+Claims:
+[1] "Mail will be delivered on Good Friday, April 3, 2026."
+[2] "Post offices will be open on Good Friday, April 3, 2026."
+[3] "Good Friday is not a federal holiday."
+[4] "The U.S. Postal Service (USPS) operates normally on Good Friday, April 3, 2026."
+[5] "USPS [provides] full service on Good Friday, April 3, 2026."
+[6] "USPS [provides] regular mail delivery on Good Friday, April 3, 2026."
+[7] "UPS pickup and delivery services are available on Good Friday, April 3, 2026."
+[8] "UPS stores will be open on Good Friday, April 3, 2026."
+[9] "FedEx Office is open on Good Friday, April 3, 2026."
+[10] "Most FedEx services are open on Good Friday, April 3, 2026."
+[11] "Most banks will be open on Good Friday, April 3, 2026."
+[12] "The stock market is closed on Good Friday, April 3, 2026."
+[13] "Easter Sunday is April 5, 2026."
+[14] "Regular mail service will not occur on Easter Sunday, April 5, 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- Is Good Friday a federal holiday? Will mail get delivered? What to know before Easter 2026: "Chris Sims Marina Johnson,according to The Federal Reserve."
+- Are banks, mail closed on Good Friday? What to know: "Are banks, mail service closed,as usual on Good Friday."
+- Good Friday 2026 holiday hours: stocks, banks, stores, Walmart: "Is the post office open,having “modified service” today."
+- Are banks, post offices, UPS, FedEx open or closed Good Friday ...: "UPS pickup and delivery services are available,on Friday, according to the company's website."
+- Is there mail delivery on Good Friday? What to know about ...: "Though it's widely observed by,are open on Good Friday."
+- Will I get mail on Good Friday? USPS, UPS and FedEx delivery ...: "Meaning of Easter?-,Are Banks Open on Good Friday?,you should be in luck.&text=This story was originally published,Preferred Source by clicking here."
+- Is There Mail Over Easter Weekend? Check USPS, UPS and ...: "Is Mail Delivered on Easter,be available for urgent shipments."
+Reference Sources:
+
+[R1] Will I get mail on Good Friday? USPS, UPS and FedEx delivery schedules on Easter weekend
+(https://www.aol.com/articles/mail-good-friday-usps-ups-140000682.html)
+"""
+You won't be getting mail on Easter -Credit:Tony Anderson via Getty Images (Tony Anderson via Getty Images)Christians across the globe are preparing for their faith's most important celebration, finalizing plans to commemorate Jesus' resurrection.Good Friday occurs on Friday, April 3, and Easter lands on Sunday, April 5, bringing the Lenten period to a close. In the days leading up to this sacred event, Christians will observe Holy Thursday, Good Friday and Holy Saturday, reflecting on Christ's death on the cross.Following this, families and friends will gather to celebrate the resurrection through spring gatherings and celebrations, Easter egg hunts, and a variety of other traditions. For anyone thinking about last-minute runs for vital party essentials, it's important to remember deliveries may experience delays on Easter.• 1 'underlying issue' caused Miss Thailand's veneers to fall out on stage, dentist says• 3 US stocks Americans should buy now as war in Iran enters second monthThe post office will be open on Good Friday -Credit:GettyWill I get mail on Good Friday? Will I get mail on Easter?The post office will operate on Good Friday, and Americans should anticipate receiving their mail. Easter, though, falls on a Sunday, meaning the U.S. Postal Service will not be delivering mail.Is UPS open on Good Friday? Is UPS open on Easter?UPS pickup and delivery services will operate on Good Friday. The UPS Store locations will likewise be open to serve customers on Good Friday.There will be no UPS pickup or delivery service on Easter Sunday, though. The UPS Store locations may be closed, but it's advisable to confirm with your neighborhood store for exact operating hours.UPS Express Critical service (operated by Marken) is accessible every day of the year. Call 1-800-714-8779 or visit marken.com.UPS pickup and delivery services will operate on Good Friday -Credit:Trevor Srednick via Getty ImagesIs FedEx open on Good Friday? Is FedEx open on Easter?FedEx and FedEx Freight will operate with adjusted hours on Good Friday, while FedEx offices, FedEx Custom Critical, and FedEx Logistics will remain open.On Saturday, FedEx Freight will be closed while all other FedEx services will continue operating.On Easter Sunday, FedEx and FedEx Freight will be closed. FedEx offices will run with adjusted hours. FedEx Custom Critical and FedEx Logistics will remain open.
+"""
+
+[R2] What's open and closed on Good Friday 2026? Stock markets, banks, post office, Walmart holiday hours
+(https://www.fastcompany.com/91521168/good-friday-2026-open-stock-markets-banks-holiday-hours-post-office-walmart-stores-list)
+"""
+Today, April 3, 2026, is Good Friday. It is an important day to Christians in the United States and around the world. But unlike in many other countries, Good Friday, in many U.S. states, isn’t an official holiday.When it comes to institutions and businesses, some observe the holiday, while others don’t. That can make it confusing for people to know exactly what is open and what is closed on Good Friday. Here’s what you need to know.Is Good Friday a national holiday?No, the federal government does not recognize Good Friday as a national holiday. This means that many federal institutions that are typically closed on public holidays remain open on Good Friday, including agencies such as the Social Security Administration (SSA) and the Department of Veterans Affairs (VA).Subscribe to the Daily newsletter.Fast Company's trending stories delivered to you every dayFor those keeping track, the U.S. Office of Personnel Management notes that there are 11 federal holidays in 2026. The last one was Washington’s Birthday on February 16, and the next one will be Memorial Day on May 25.Is Good Friday a state holiday?While Good Friday isn’t a federal holiday, a number of states recognize the day as a state holiday. According to TimeandDate, 10 states observe Good Friday as a state holiday or partial holiday. Those states include: Connecticut Delaware Hawaii Indiana Louisiana North Carolina North Dakota New Jersey Tennessee Texas In these states, state agencies and institutions, such as DMVs and state licensing boards, are likely to be closed.Explore TopicsbanksholidaysmarketsRetailstocks
+"""
+
+[R3] Will your mail arrive today? How USPS, UPS, FedEx handle Good Friday
+(https://www.dispatch.com/story/entertainment/holiday/2026/04/03/is-there-mail-delivery-on-good-friday-what-to-know-about-easter-weekend/89453428007/)
+"""
+April 3, 2026, 2:19 p.m. ETGood Friday is not a federal holiday, so most services operate as usual.The U.S. Postal Service will continue to deliver mail on Good Friday.UPS and FedEx will also maintain their normal pickup and delivery schedules.If you're waiting on a package to land this weekend, you might be wondering whether Good Friday will slow things down.Easter Sunday, one of Christianity's most significant holidays, falls on April 5 this year. The religious tradition takes place over several days a part of Holy Week, which includes Palm Sunday, Maundy Thursday, Good Friday, Holy Saturday and, of course, Easter.Good Friday, which falls on April 3 this year, commemorates the crucifixion and death of Jesus Christ. Countless churches across the state hold afternoon or evening services, prayer vigils and Stations of the Cross observances.With Good Friday observed by millions of Christians, many people wonder whether everyday services like mail delivery are affected. Here's what to know.Is mail delivered on Good Friday?Yes, mail delivery still takes place on Good Friday.Though it's widely observed by Christian churches, Good Friday is not a federal holiday, which means banks, mail delivery and most government offices remain open.U.S. Postal Service facilities maintain normal operations on Good Friday, which means retail transactions and mail delivery will go on as usual, according to the USPS website.UPS and FedEx are no different. The companies' pickup and delivery services are available throughout the day, and both stores' locations will be open, according to the UPS and FedEx company websites.Similarly, while some smaller businesses may tweak their hours for the holiday, most major retailers are open on Good Friday.Reporter Emma Wozniak can be reached at ewozniak@dispatch.com or @emma_wozniak_ on X, formerly known as Twitter.
+"""
+
+[R4] Is Good Friday a federal holiday? Will mail get delivered? What to know before Easter 2026
+(https://www.courier-journal.com/story/news/local/2026/04/03/will-mail-delivery-continue-good-friday-2026-april-3-is-it-a-federal-holiday/89434386007/)
+"""
+April 3, 2026, 5:10 a.m. ETIf you’re planning to send out packages today, you’re in luck.Good Friday, a Christian religious observance, is not recognized as a federal holiday in the United States. That means many essential services, including mail delivery, continue operating as usual.Here’s a look at what’s open and closed on Good Friday from banks and the stock market to USPS mail delivery:Is Good Friday a federal holiday in the U.S.?Good Friday is not specified by law to be one of the 12 federal holidays recognized in 2026, according to opm.gov.Is USPS post office open on Good Friday? Will mail be delivered April 3, 2026?The United States Postal Service will be open, and mail will be delivered on Good Friday, April 3, 2026.Is FedEx open on Good Friday, April 3, 2026?FedEx and FedEx Freight will have modified service on Good Friday, April 3, 2026, but all other delivery options are expected to operate as normal.Is UPS open today on Good Friday, April 3, 2026?UPS Store is open and UPS delivery and pickup services are available on Good Friday, April 3, 2026.Is the stock market open on Good Friday, April 3, 2026? Is the stock market closed today?The stock markets on New York Stock Exchange and the Nasdaq are closed for trading on Good Friday, April 3, 2026. The Securities Industry and Financial Markets Association also recommended an early close at noon EST for the holiday.Will banks be closed on Good Friday, April 3, 2026? Are banks open today?Most banks will be open on Good Friday, April 3, 2026, according to The Federal Reserve.Is Good Friday a state holiday in Kentucky?Good Friday is a state holiday in Kentucky. State government offices will have a half-day.Are Kentucky schools closed today on Good Friday?Some schools may close on Good Friday, but several will remain open in the commonwealth. Be sure to check with your local school for details.Chris Sims is a trending reporter at Midwest Connect Gannett. Follow him on Twitter: @ChrisFSims. Reach Marina Johnson at Marina.Johnson@courier-journal.com.
+"""
+
+[R5] Are banks, post offices, UPS and FedEx open on Good Friday? Here's what to know
+(https://www.heraldmailmedia.com/story/news/2025/04/17/banks-post-offices-open-closed-good-friday-2025/83114892007/)
+"""
+April 17, 2025, 4:01 a.m. ETThis upcoming weekend is Easter weekend, meaning Friday, April 18 is Good Friday.Good Friday is the day in which Christian and Catholic churches across the world commemorate the crucifixion and death of Jesus Christ. "From the early days of Christianity, Good Friday was observed as a day of sorrow, penance, and fasting," Britannica notes.Easter falls on Sunday, April 20 this year, and it celebrates the resurrection of Jesus Christ and follows a 40-day period known as Lent. The date the holidays are celebrated changes depending on the year because Easter is one of several "moveable feasts" in the liturgical year, according to the History Channel. Other examples of "moveable feasts" include Ash Wednesday and Palm Sunday.Here's what to know about bank, mail and shipping operations on Good Friday in 2025.Is the post office open on Good Friday? Will mail be delivered?U.S. Postal Service facilities will have normal operations on Friday, April 18, meaning USPS facilities will be open for retail transactions and mail will be delivered as usual, the agency confirmed to USA TODAY.Are banks open on Good Friday?Bank branches will largely be open on Good Friday.Capital One, Wells Fargo, PNC, Truist, CitiBank and JPMorgan Chase, among others, confirmed to USA TODAY branches would be open on Friday.Is UPS open on Good Friday? Will packages be delivered?UPS pickup and delivery services are available and UPS Store locations will be open on Friday, according to the company's website.Is FedEx open on Good Friday? Will packages be delivered?FedEx pickup and delivery services are available and FedEx Office locations will be open on Friday, according to the company's website.Gabe Hauari is a national trending news reporter at USA TODAY. You can follow him on X @GabeHauari or email him at Gdhauari@gannett.com.
+"""
+
+[R6] Are banks, mail closed on Good Friday? What to know
+(https://www.tcpalm.com/story/news/2026/04/03/good-friday-easter-weekend-mail-banks-open-closed-grocery-stores/89432422007/)
+"""
+April 3, 2026, 8:24 a.m. ETGood Friday, which commemorates the crucifixion of Jesus, is observed on the Friday before Easter Sunday.Good Friday is not a federal holiday, so most banks, mail services, and businesses will remain open.Many major retailers, including Publix, Target, and Costco, will be closed on Easter Sunday.Easter weekend 2026 begins today, April 3, with Good Friday!Although some schools in Florida will not be in session for Good Friday, it's not a federal holiday and almost everything will stay open.Here's what to know about what's open and closed this weekend and why Good Friday is observed.What, when is Good Friday?Good Friday always falls on the Friday immediately before Easter Sunday and commemorates the day Jesus was crucified.“For Christians, Good Friday is an important day of the year because it celebrates what we believe to be the most momentous weekend in the history of the world,” Christianity.com says. “Ever since Jesus died and was raised, Christians have proclaimed the cross and resurrection of Jesus to be the decisive turning point for all creation.”Good Friday 2026 is today, Friday, April 3.What are the 7 days of Holy Week? See Holy Week 2026 calendarHoly Week began one week before Easter, with Palm Sunday on March 29.Here's the Holy Week 2026 calendar:Palm Sunday: Sunday, March 29. Commemorates Jesus' entry into Jerusalem.Holy Monday: Monday, March 30. Commemorates Jesus driving out people selling livestock and changing money in the temple, declaring it a "house of prayer."Holy Tuesday: Tuesday, March 31. Commemorates Jesus' final teachings in Jerusalem.Holy Wednesday: Wednesday, April 1. Sometimes referred to as "Spy Wednesday," Holy Wednesday commemorates Judas conspiring with local authorities to betray Jesus.Holy Thursday, Lent ends: Thursday, April 2. Sometimes referred to as "Maundy Thursday," Holy Thursday commemorates the Last Supper, where Jesus shared his last meal with his disciples before being arrested and establishes the sacrament of communion.Good Friday: Friday, April 3. Commemorates the crucifixion of Jesus.Holy Saturday: Saturday, April 4. Commemorates Jesus's burial.Easter Sunday: Sunday, April 5. Commemorates Jesus's resurrection as described in Matthew 28, Mark 16, Luke 24 and John 20 in the New Testament of the Bible.Are banks, mail service closed for Good Friday 2026?No. The U.S. Postal Service (USPS), UPS and FedEx will be open and operating as usual on Good Friday.Most bank branches will be open on Good Friday since it is not a federal holiday, but it's always best to check with your local branch to make sure.Is Publix open on Easter Sunday?No. Publix is never open on Easter Sunday.There are three holidays a year that all Publix locations close for: Thanksgiving Day, Christmas Day and Easter.What stores are open, closed on Easter Sunday 2026?While many stores close for Easter Sunday every year, there are a few that will remain open.Here's a list of retailers that will be closed on Easter:TargetCostcoSam's ClubAldiLowe'sTJ MaxxMarshall'sHomeGoodsHere's a list of retailers that will be open on Easter:Home DepotCVSWalgreensWhole FoodsSproutsWinn-DixieTrader Joe'sBJ's WholesaleWalmartNote that some of these retailers may have reduced hours at all or some of their locations due to the holiday. Check your nearest location's hours before you head to the store.Lianna Norman is a trending reporter for the USA TODAY NETWORK-Florida, covering pop culture, lotteries, rocket launches, Florida wildlife, breaking news and more. You can get all of Florida’s best content directly in your inbox each weekday by signing up for the free newsletter, Florida TODAY, at https://floridatoday.com/newsletters.
+"""
+
+[R7] Is there mail over Easter weekend?
+(https://www.newsweek.com/mail-good-friday-easter-monday-usps-fedex-2026-11771408)
+"""
+Easter Sunday falls this year on April 5. While there won't be any postal service on the day itself, many customers are wondering if mail will still be delivered on the surrounding holidays. Here’s what to know about services from the U.S. Postal Service (USPS), UPS, and FedEx during the Easter holiday period in 2026.Is Mail Delivered on Good Friday?This year, Good Friday falls on April 3. Good Friday is not an official federal holiday, so USPS mail delivery will follow its regular schedule. Letters and packages will be delivered as usual, and local post offices will remain open for normal operations.Good Friday commemorates the crucifixion of Jesus Christ and is observed by many Christians on the Friday before Easter.Regardless of their origins, UPS and FedEx are expected to operate on their typical schedules on Good Friday, with most services unaffected. FedEx may have some modifications for specific services, so checking with a local branch is advised.A United States Postal Service van and truck parked outside a USPS location in Houston, Texas, on March 31, 2026. | Aaron M. Sprecher via APIs Mail Delivered on Easter Monday?Easter Monday, which falls on April 6, 2026, is treated as a regular business day by USPS, UPS, and FedEx because it is not a federal holiday. Mail delivery and post office hours will proceed without interruption.Is the Post Office Open?Yes. Post offices are open on Good Friday (April 3) and Easter Monday (April 6), operating under standard business hours. There's no post on Sundays, and Easter is no exception: USPS post offices will be closed, and regular mail delivery will not occur. Not to fret: Priority Mail Express, the only USPS service active on Sundays, will still be available for urgent shipments. UPS and FedEx are also closed on Easter Sunday, suspending most shipping and pickup services. Their normal operations are expected to resume the following Monday. For more details about USPS holiday closures, check the official USPS holiday schedule or carrier-specific updates from UPS and FedEx.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

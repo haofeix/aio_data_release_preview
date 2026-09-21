@@ -1,0 +1,100 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "rocket launch today"
+
+Claims:
+[1] "A SpaceX Falcon 9 rocket is scheduled to launch 29 Starlink satellites on Sunday, March 29, 2026, from Cape Canaveral, FL."
+[2] "SpaceX Falcon 9 launch window opens at 5:15 p.m. ET."
+[3] "SpaceX Starlink 10-44 mission uses Falcon 9 rocket."
+[4] "SpaceX Starlink 10-44 mission is scheduled for Sunday, March 29, 2026, 5:15 p.m. – 9:15 p.m. ET."
+[5] "SpaceX Starlink 10-44 mission launch site is Cape Canaveral Space Force Station, Launch Complex 40."
+[6] "Florida Today stated that the SpaceX launch may be visible along the northeast trajectory."
+[7] "A ULA Atlas V rocket is scheduled to launch on Sunday, March 29, 2026 at 3:53 a.m. ET from Cape Canaveral, FL."
+[8] "ULA Atlas V launch is Amazon Leo."
+[9] "Rocket Lab Electron is scheduled to launch March 29/30 (NZDT) from New Zealand."
+
+Cited text snippets from the AI Overview (for additional context):
+- Doubleheader Florida rocket launches this weekend. Places to watch: "United Launch Alliance Amazon Leo,Trajectory: Northeast."
+- SpaceX rocket launch now set for Sunday from Cape Canaveral: "SpaceX is scheduled to launch,the rocket can be seen."
+- Mysterious military missile launches from Cape Canaveral Space Force Station: "That 29-minute launch window,at floridatoday.com/space."
+Reference Sources:
+
+[R1] Mysterious missile launches March 26 from Cape Canaveral, Florida
+(https://www.floridatoday.com/story/tech/science/space/2026/03/26/mysterious-missile-launches-march-26-from-cape-canaveral-space-force-station-florida/89334787007/)
+"""
+SPACEMysterious military missile launches from Cape Canaveral Space Force Station Rick NealeFlorida TodayMarch 26, 2026Updated March 27, 2026, 11:20 a.m. ETAn unidentified military missile launched and zoomed across the Atlantic Ocean Thursday, March 26, from Cape Canaveral Space Force Station, leaving a slim white contrail against the afternoon blue sky.None of the Space Coast's major rocket-launch providers had missions scheduled on Thursday. The mysterious unannounced launch occurred at roughly 12:30 p.m.“A combined team of government, academic, and industry partners conducted a test on behalf of the Department of War from a test site at Cape Canaveral Space Force Station," a Pentagon official confirmed to FLORIDA TODAY on Friday, March 27.
+"""
+
+[R2] Next Spaceflight
+(https://nextspaceflight.com/)
+"""
+Get the App Up Next Next Spaceflight Open the NextSpaceflight X/Twitter Join the NextSpaceflight discord Email [email protected] © 2025, Next Spaceflight Expendable Demo Flight Tianlong 3 | Space Pioneer Jiuquan Satellite Launch Center, China 88 00 Suborbital Demo Flight Soyuz 5 | Roscosmos Baikonur Cosmodrome, Kazakhstan Tomorrow, 05:45 Amazon Leo (LA-05) Atlas V 551 | ULA Cape Canaveral SFS, Florida, USA Watch All Launches SpaceX Rocket Lab Blue Origin ULA Arianespace ISRO Roscosmos Get the App Get the Next in Spaceflight, on the go! Previous slide Slide 1 of 0 Next slide Flight simulations Live launch timelines Notifications for upcoming launches and events Live “Next Launch” widget Next Spaceflight is making it easier than ever before to track the latest in spaceflight. While our website is designed to work on mobile devices, our Android and iOS app provide a better mobile experience. Google Play App Store Events Earth Orbit Yesterday, 23:49 Artemis II Trans-Lunar Injection The Orion Integrity will perform the Trans-Lunar Injection burn with the Artemis II mission composed of NASA astronauts commander Reid Wiseman, pilot Victor Glover and mission specialist Christina Koch, and mission specialist Jeremy Hansen of Canada's CSA, setting the mission on course for a free-return trajectory around the Moon. Watch Moon Monday, 23:58 Artemis II Moon Closest Approach The Orion Integrity will make its closest approach to the Moon with the Artemis II mission composed of NASA astronauts commander Reid Wiseman, pilot Victor Glover and mission specialist Christina Koch, and mission specialist Jeremy Hansen of Canada's CSA, bringing it within 6,513 km of the lunar far side. Watch International Space Station April 10, 05:15 Cygnus (NG-24) Capture The Cygnus (NG-24) cargo resupply spacecraft will be captured by the robotic Canadarm2 on the International Space Station. Watch Show More News Artemis II Orion performs TLI Burn — Now headed to the Moon Today | NASASpaceflight.com
+"""
+
+[R3] SpaceX Florida rocket launch coming this weekend. Places to watch
+(https://www.floridatoday.com/story/tech/science/space/2026/03/27/rocket-launch-today-florida-spacex-ula-what-time-when-liftoff-how-watch-see/89345412007/)
+"""
+March 27, 2026Updated March 28, 2026, 11:40 a.m. ETSpaceX plans to launch a Falcon 9 rocket carrying Starlink satellites on Sunday, March 29.United Launch Alliance that was also scheduled for Sunday has been postponed due to predicted weather.A so Florida thing is coming up this weekend. A rocket launch from Cape Canaveral, Florida.SpaceX plans to launch a Falcon 9 rocket carrying a batch of Starlink internet satellites into low-Earth orbit on Sunday, March 29. Sunday was expected to be a doubleheader for Florida rocket launches, but ULA's launch time put it in jeopardy of a weather scrub, so that launch was postponed until further notice.Rockets here launch from NASA's Kennedy Space Center near Merritt Island, Florida, or Cape Canaveral Space Force Station, and people in and around Brevard County usually have the best chance at seeing this phenomenon in the sky.Weather permitting and depending on cloud cover and trajectory, a rocket launch from Florida’s Space Coast is sometimes visible as far north as Jacksonville Beach and as far south as West Palm Beach.When there’s a nighttime launch window or very early morning, there’s an opportunity for unique photos — the rocket lights up the dark sky and the contrail after makes for a great photo.Below is more information on the next rocket launch from Florida and suggestions on where to watch it in person (or virtually via the USA TODAY Network’s Space Team).For questions or comments, email USA TODAY Network Space Reporters Rick Neale at rneale@floridatoday.com, Brooke Edwards at bedwards@floridatoday.com or Eric Lagatta at elagatta@usatoday.com. For more space news from the USA TODAY Network, visit floridatoday.com/space.Is there a rocket launch from Florida today? Next launch is Sunday, March 29SpaceX Starlink 10-44Mission: A SpaceX Falcon 9 rocket will launch 29 Starlink satellites into low-Earth orbit.Launch window: 5:15 p.m. to 9:15 p.m. ET on Sunday, March 29.Trajectory: Northeast.Location: Launch Complex 40 at Cape Canaveral Space Force Station.Sonic booms: No.Live FLORIDA TODAY Space Team coverage: Starts 90 minutes before liftoff at floridatoday.com/space.United Launch Alliance Amazon Leo 5 postponedMission: A ULA Atlas V rocket with five solid rocket boosters will launch the next batch of 29 Amazon Leo broadband satellites (previously called Project Kuiper).Launch postponed until further notice.Trajectory: Northeast.Location: Launch Complex 41 at Cape Canaveral Space Force Station.Sonic booms: No.Live coverage starts 90 minutes before liftoff at floridatoday.com/space: You can watch live rocket launch coverage from USA TODAY Network’s Space Team, which consists of FLORIDA TODAY space reporters Rick Neale and Brooke Edwards and visuals journalists Craig Bailey, Malcolm Denemark and Tim Shortt. Our Space Team will provide up-to-the-minute updates in a mobile-friendly live blog, complete with a countdown clock, at floridatoday.com/space, starting 90 minutes before liftoff. You can download the free FLORIDA TODAY app, which is available in the App Store or Google Play, or type floridatoday.com/space into your browser.Where to watch SpaceX rocket launches from Melbourne, Rockledge, Cocoa Beach and Merritt Island, FloridaPretty much anywhere in Brevard, you'll get a view of the rocket launch − in certain areas, you can get an amazing view of SpaceX rocket boosters returning to the pads. The best view to watch a rocket launch from the Space Coast is along the beach. However, visibility will depend on weather conditions and people should make sure not to block traffic or rights of way on bridges and to follow posted rules at beaches.If you are viewing the launch along the Indian River in Titusville from Space View Park or Parrish Park, look east directly across the river.If you are farther south along the Indian River, look northeast.Playalinda Beach or Canaveral National Seashore is the closest spot to view liftoff because it is almost parallel to Launch Pad 39A. On the beach, look south along the coastline (you can even see the pad from some spots).Some hotspots to check out:Jetty Park Beach and Pier, 400 Jetty Park Road, Port Canaveral. Note, there's a charge to park.Playalinda Beach, 1000 Playalinda Beach Road, Canaveral National Seashore. Note, there's a charge to park, and access to Canaveral National Seashore isn't always granted depending on capacity and time of day.Max Brewer Bridge and Parrish Park, 1 A. Max Brewer Memorial Parkway, Titusville. Note, parking is available on both sides of Max Brewer Bridge.Space View Park, 8 Broad St., TitusvilleSand Point Park, 10 E. Max Brewer Causeway, TitusvilleRotary Riverfront Park, 4141 S. Washington Ave., TitusvilleRiverfront Park at Cocoa Village, 401 Riveredge Blvd., Cocoa (just before State Road 520 Causeway)Cocoa Village, near the parks and shops or near the docksVarious parks on Merritt IslandRotary Park, 1899 S. Courtenay Parkway, Merritt IslandKiwanis Park on Kiwanis Island Park Road on Merritt IslandPort Canaveral, with ships from Disney Cruise Line, Carnival Cruise Line and Royal CaribbeanAlan Shepard Park, 299 E. Cocoa Beach Causeway, Cocoa Beach. Note, there could be parking costs.Cocoa Beach Pier, 401 Meade Ave. Parking fee varies.Lori Wilson Park, 1400 N. Atlantic Ave., Cocoa Beach. Lori Wilson Park has a dog park, by the way.Sidney Fischer Park, 2200 N. Atlantic Ave., Cocoa Beach. Note, there could be parking costs.Downtown Cocoa Beach, along Minutemen CausewayTables Beach, 197 SR A1A, Satellite BeachThe Tides on SR A1A in Satellite BeachVarious parks, including the Pelican Beach Clubhouse, in Satellite BeachPineda CausewayEau Gallie CausewayFront Street Park near Melbourne (U.S. 192) Causeway and U.S. 1 in MelbourneIndialantic boardwalk at Melbourne Causeway and SR A1AParadise Beach Park, aka Howard Futch Park, 2301 SR A1A, Melbourne (this is a beachside park)Sebastian Inlet Park, 9700 S. State Road A1A, Melbourne Beach (there is a cost to enter)Watch some rocket launches with NASA on Prime VideoNASA content, including some rocket launches, is available to watch through NASA+ on desktop, both from its official site and YouTube. The platform is also available to download as a mobile app on smartphones.All NASA+ content is also available to those who have Prime Video downloaded on any of their devices – whether it be a smartphone or smart TV.Watch NASA+ content with Amazon Prime VideoThe content, which does not require a Prime subscription to view, is one of Prime Video's FAST channels (free ad-supported television). Viewers can find it under Prime's Live TV section at the top of the screen when they open the app.Lianna Norman and Jennifer Sangalang are trending reporters for the USA TODAY NETWORK-Florida, covering pop culture, rocket launches, Florida wildlife, breaking news and more. You can get all of Florida’s best content directly in your inbox each weekday by signing up for the free newsletter, Florida TODAY, at https://floridatoday.com/newsletters.
+"""
+
+[R4] SpaceX rocket launch from Cape Canaveral set for Monday
+(https://www.floridatoday.com/story/tech/science/space/spacex/2026/03/26/spacex-rocket-launch-from-cape-canaveral-florida-starlink-falcon-set-for-friday/89291214007/)
+"""
+SPACEXSpaceX rocket launch now set for Monday from Cape Canaveral Brooke EdwardsFlorida TodayMarch 26, 2026Updated March 28, 2026, 9:43 p.m. ETUpdate: This SpaceX rocket launch from Florida has been postponed until the afternoon of Monday, March 30. The additional delay comes after windy conditions also delayed a ULA Atlas V launch.A week after a SpaceX rocket launch from Cape Canaveral lit up the weekend, the next Florida liftoff is now set for Monday afternoon.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

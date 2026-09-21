@@ -1,0 +1,112 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where did bill murray go to college"
+
+Claims:
+[1] "Bill Murray attended Regis University in Denver, Colorado."
+[2] "Bill Murray was a pre-med student at Regis University."
+[3] "Bill Murray dropped out of Regis University to pursue acting."
+[4] "Bill Murray did not graduate from Regis University."
+[5] "Bill Murray received an honorary degree from Regis University."
+[6] "Bill Murray was raised in Evanston, Illinois."
+[7] "Bill Murray was a lifelong fan of the University of Illinois."
+[8] "Bill Murray has a son named Luke Murray."
+[9] "Luke Murray is a college basketball coach."
+[10] "Luke Murray was an assistant at UConn."
+[11] "Luke Murray is taking over at Boston College."
+[12] "There is a distinct person named Bill Murray (1976)."
+[13] "Bill Murray (1976) was a football coach."
+[14] "Bill Murray (1976) was inducted into the Duke Athletics Hall of Fame."
+
+Cited text snippets from the AI Overview (for additional context):
+- Why we might see Bill Murray at the Michigan State-UConn Sweet 16 ...: "Where is Bill Murray from? Bill Murray,in Denver, but dropped out before graduating."
+- Is Bill Murray a UConn fan? Why actor is at Huskies' March Madness ...: "Bill Murray college Bill Murray attended Regis University in Denver, a private Jesuit school."
+- Meet Boston College's new men's basketball coach: "Luke Murray, an assistant coach at UConn,Murray, will lead the Boston College Eagles."
+- Bill Murray (1976) - Duke Athletics Hall of Fame: "Murray's coaching career included: * **Student at,President of the American Football Coaches Association"
+Reference Sources:
+
+[R1] Bill Murray supporting UConn men at NCAA Final Four
+(https://www.ctinsider.com/sports/uconn-mens-basketball/article/bill-murray-final-four-illinois-march-madness-22189371.php)
+"""
+Actor Bill Murray looks on prior to a game between the UConn Huskies and the Duke Blue Devils in the Elite Eight of the 2026 NCAA Men's Basketball Tournament at Capital One Arena on March 29, 2026 in Washington, DC. Murray, father of UConn assistant coach Luke Murray, was also at the Final Four game vs. Illinois on April 4, 2026.Patrick Smith/Getty ImagesSaturday's Final Four matchup between UConn men's basketball and Illinois places legendary actor Bill Murray at a very cinematic crossroads, forced to choose between his Illini roots and his family.Murray was born and raised in Evanston, Ill. and grew up as a fan of the Fighting Illini, although he elected to briefly attend Regis University in Denver before sparking his comedic acting career. However, his son, Luke Murray, has served as an assistant for UConn over the past five seasons, reaching his third Final Four with head coach Dan Hurley's program this weekend.Article continues below this adGet Digital Access and Stay Informed With Trusted Local News.Get Digital Access and Stay Informed With Trusted Local News.ONLY 25¢The Huskies have stolen Murray's hometown allegiances ahead of Saturday's Final Four clash, as the 75-year-old actor confirmed to the Chicago Tribune that he will be rooting for UConn. Murray's about-face is more practical than sentimental, joking that his UConn loyalty ensures him tickets to UConn NCAA Tournament games.“I only get tickets if I keep my mouth shut,” he wrote in a text to the Chicago Tribune.Illinois is making its first Final Four appearance in more than two decades after outlasting Big Ten rivals Iowa to reach the national semifinal stage. During the Illini's last run in 2005, Murray was one of the school's most prominent supporters, both for his more contemporary film success and an iconic outfit that included an orange tie.Article continues below this adLuke Murray has been hired as the Boston College head coach and is coaching his final weekend with the Huskies. The Fairfield graduate has been a crucial part of Hurley's staff at UConn as the architect of the Huskies' offense.Make CT Insider a preferred source on Google to see more of our journalism when you search.Add Preferred SourceBill Murray has been a constant presence throughout his coaching rise through the coaching ranks, attending games at Wagner, Rhode Island, Xavier and Louisville while Luke coached at those spots. He has been visible at UConn postseason games during the team's title runs.Article continues below this adGet daily updates from the UConn basketball world.
+"""
+
+[R2] Bill Murray attends UCLA basketball vs UConn game in March Madness
+(https://www.tennessean.com/story/sports/college/2026/03/22/bill-murray-uconn-ucla-basketball-march-madness-dan-hurley/89277949007/)
+"""
+COLLEGEWhy is Bill Murray at UCLA vs UConn basketball game in 2026 March Madness? Nick GrayNashville TennesseanUpdated March 22, 2026, 9:53 p.m. CTBill Murray has become a UConn basketball mainstay as fan, especially during March Madness.The actor has been a constant fixture behind the bench, cheering on his son's team throughout the Huskies' NCAA Tournament runs over the last several seasons.That continued on March 22 in Philadelphia, as UConn faced UCLA in the NCAA Tournament second round.
+"""
+
+[R3] Is Bill Murray a UConn fan? Why A-list actor is attending Huskies' March Madness game
+(https://www.usatoday.com/story/sports/ncaab/2025/03/21/bill-murray-uconn-son-college-march-madness/82604694007/)
+"""
+March 21, 2025, 10:12 p.m. ETWhy yes, that is Bill Murray on the sidelines of Oklahoma-UConn in the first round of the NCAA Tournament on Friday night.Why is he at the March Madness game?Well, the actor from the "Ghostbusters" franchise actually has quite the connection to the defending back-to-back national champion Huskies. He's also a big sports fan and was recently seen at the Chicago Cubs and Los Angeles Dodgers' Tokyo Series games.Here's why Murray is at the game, and why the 74-year-old "Saturday Night Live" alum is a UConn fan:Why is Bill Murray at UConn game?Murray has been one of the most prominent celebrity fans of the UConn men's basketball program, and the explanation is simple: His son, Luke Murray, is one of three assistant coaches on Dan Hurley's staff.Luke Murray joined UConn in 2021 and has been to four consecutive NCAA Tournaments and is a two-time national champion with the Huskies. Bill Murray has been a constant in the stands at UConn games over the years, and was prominently shown during the Huskies' national championship runs in 2023 and 2024.Luke Murray began his coaching career as the director of basketball operations at Quinnipiac in 2007-08 under current UConn assistant Tom Moore. He has also coached at Post University, Arizona, Wagner, Towson, Xavier, Rhode Island and Louisville.Bill Murray collegeBill Murray attended Regis University in Denver, a private Jesuit school.Where is Bill Murray from?Bill Murray isn't from Connecticut, nor did he go attend the University of Connecticut. He was born in Evanston, Illinois, and attended an all-boys Jesuit high school in Wilmette, Illinois.He grew up a fan of the Fighting Illini.
+"""
+
+[R4] Why we might see Bill Murray at the Michigan State-UConn Sweet 16 game
+(https://sports.yahoo.com/articles/why-might-see-bill-murray-223020174.html)
+"""
+Bill Murray tried to go incognito with a beard at a recent NCAA basketball game. But since he's one of the world's most recognizable comedic actors, it was really difficult to pull off.The actor, known for hit movie roles in "Groundhog Day," "Ghostbusters" and "Caddyshack" and TV's "Saturday Night Live," was spotted at the Connecticut-UCLA second round NCAA tournament game on Sunday, March 22, in Philadelphia. He also was at the UConn-Furman first-round game Friday, March 20.Actor Bill Murray reacts in the first half during a second round game of the men's 2026 NCAA Tournament at Xfinity Mobile Arena on Sunday, March 22, 2026 in Philadelphia.For UConn fans, this is nothing new. Murray was also present for the Huskies' back-to-back national championship runs in 2023 and 2024, on top of other postseason games. And it's a strong possibility he'll be in Washington when UConn takes on Michigan State basketball in the Sweet 16 on Friday, March 27 (9:45 p.m., CBS).AdvertisementWhy is Bill Murray a UConn fan?Murray's son, Luke, is an assistant coach at UConn, a No. 2 seed in this year's NCAA Tournament.Assistant coach Luke Murray of the Connecticut Huskies cuts down the net after beating the Purdue Boilermakers, 75-60, to win the NCAA Men's Basketball Tournament National Championship game at State Farm Stadium on April 8, 2024 in Glendale, Arizona.Luke Murray is in his fifth season on the UConn bench. Before taking the Huskies assistant job in 2021, he was an assistant at Xavier (2015-18) and Louisville (2018-21) under Chris Mack, now the College of Charleston coach. Luke Murray is in his ninth season on Hurley's staff across three different stops.This will be his last run with UConn, however; Murray was hired to run the Boston College basketball program on Thursday.Murray graduated from Fairfield University in 2007 in Connecticut and also served as an assistant coach at Post University (2008-09), Wagner (2010-11), Towson (2011-13) and Rhode Island (2013-15).AdvertisementON THE HARDWOOD: Scouting Michigan State basketball Sweet 16 matchup with UConnBill Murray eye to eye with a groundhog in a scene from the 1980 film "Caddyshack."Where is Bill Murray from?Bill Murray grew up in Evanston, Illinois and was a fan of the Illini as a child. He moved to New York City in 1974 where he joined John Belushi on The National Lampoon Radio Hour – a comedy radio show that was created, produced and written by staff from National Lampoon magazine – before landing a spot on "SNL." He attended Regis University in Denver, but dropped out before graduating.Bill Murray's 6 sonsAccording to People Magazine, Murray has six sons.Sons Homer, 43, and Luke, 40, are from his first wife Margaret Kelly, whom he was married to from 1981-96. Sons Caleb, 33, Jackson, 30, Cooper, 29, and Lincoln, 20, are with his second wife, Jennifer Butler. They split in 2008 after more than 10 years of marriage.AdvertisementFollow the Detroit Free Press on Instagram (@detroitfreepress), TikTok (@detroitfreepress), YouTube (@DetroitFreePress), Twitter/X (@freep), and LinkedIn, and like us on Facebook (@detroitfreepress).John Leuzzi of USA Today contributed to this story.Contact Amy Huschka: ahuschka@freepress.com or follow her on Twitter/X (@aetmanshuschka).Stay connected and stay informed. Become a subscriber.This article originally appeared on Detroit Free Press: Bill Murray at Michigan State-UConn game: Why we might see him
+"""
+
+[R5] Bill Murray (1976) - Duke Athletics Hall of Fame - Duke University
+(https://goduke.com/honors/duke-athletics-hall-of-fame/bill-murray/74)
+"""
+Bill Murray (1976) - Duke Athletics Hall of Fame - Duke UniversitySkip to main contentAll Rotators Playing Duke University Athletics Men's SportsWomen's SportsQuick LinksSpirit SquadsQuick AccessTickets by SportPremium Access & HospitalityQuick LinksSport-Specific Game Day GuidesMore Sport-Specific GuidesExperienceWatchListenConnectRequestQuick LinksHistoryStudent-Athlete SupportInitiativesDepartment Quick Links Duke Athletics Hall of FameAlarie, MarkAlexander, SkipAllen, LouisAmaker, TommyAmbler, WayneAndresen, MattBaker, Dr. LenoxBanks, GeneBarger, JerryBarnett, BobBassett, Dr. FrankBattier, ShaneBeard, AlanaBeardmore, RogerBennett, BenBerry, JeanBishop, Ellison GoodallBlumenherst, AmandaBoozer, CarlosBrand, EltonBrill, BillBrooks, DanBrown, WernerBryan, BillyBubas, VicBuehler, AlBurrows, RobertButters, TomCaldwell, HerschelCameron, EddieCarver, GordonCassese, KevinChambers, BobChesson, WesChuasiriporn, JennyClark, GeorgeConner, JohnCoombs, JackCorrigan, GeneCouncilor, HarryCox, BobCox, BillyCrawford, FredCrowder, Howard MaxCurrie, MoniqueCurtis, MikeCurtis, AliDanowski, JohnDanowski, MattDavis, TomDawkins, JohnnyDeHart, JamesDeRogatis, AlDenton, RandyDilweg, AnthonyDinkins, MaryDriesell, LeftyErbe, Katie ChrestExum, JulieFalcone, CarmenFarley, RolandFarrar, DannyFerry, DannyFlur, MarcGantt, BobGerard, GerryGilfillan, CharlesGminski, MikeGoestenkors, GailGregory, ArtGroat, DickGrzebien Vanderlinde, AnnaHackney, ElmoreHagler, EllisHannemann, CandyHarding, LindseyHarris, BobHart, LeoHarvey, BillHeaps, JayHerbert, DickHeyman, ArtHill, GrantHill, DanHines, ClarkstonHogshead, NancyHord Jr., RoyHurley, BobbyIngram, Sarah LebrunJackson, ErnieJackson, RyanJames, CarlJanicki, BernieJeffries, MikeJohnson, AllenJohnston McGrath, AbbyJones, RandyJones, CedricJones, SteveJurgensen, SonnyKain, TomKerr, JohnKnotts, ErnestKoffenberger, EdKreis, JasonKrzyzewski, MikeLach, SteveLaettner, ChristianLewis, MikeLewis, RedMann, TedMarin, JackMatheson, BobMcAfee, GeorgeMcCracken, QuintonMcElhaney, HalMcGee, MikeMeadows, EdMoorman II, Claude T.Moreland, ChrisMullins, JeffMurray, BillNewman, EdNirapathpongporn, ViradaO'Reilly, Christine, Patricia & TheresaParker, AcePascal, BobPerry, CliffPersons, JackPort, ChrisProthro, TommyRaymond, MatRedick, JJRennie, JohnReynolds, EllenSchweitzer, GeorgiaShankle, JoelSiderowf, DickSilar, JackiSime, DaveSmith, JamesSouchak, MikeSpanarkel, JimSteinhouse, EricTipton, EricTopping, TomUlrich, JoeVacendak, SteveVerga, BobWade, WallaceWalbert Cagle, KellyWall, Jr., ArtWard, BeccaWebb, VanessaWentz, EarleWerber, BillWheeler, BobWidman, Mary AnneWilkinson, JayWilliams, SheldenWilliams, Jason Induction: 1976 Class: 1930All-Southern Conference, 1930 Head Football Coach, 1951-65 15-Year Record 93-51-9 Orange Bowl Champions, 1955 Cotton Bowl Champions, 1961 Bill Murray was one of the most respected college football coaches in the nation. During his fifteen seasons as head coach of the Blue Devils he complied a 93-51-9 record, captured seven ACC titles, went to three bowl games, including wins in the Orange and Cotton Bowls, and was ranked in the top twenty in eight of his last thirteen seasons as head coach. Murray came to Duke as a student in 1927 and quickly made a name for himself on the football field and as a student leader. He held the single season rushing record for many years and was named to the All-Southern team in 1930. Following graduation he began his coaching career at the Winston-Salem Children's Home where he compiled a 69-9-3 record. He was then named head football coach and athletic director at the University of Delaware where he compiled a fantastic 51-17-3 mark. He was often named coach of the year in the ACC and was president of the American Football Coaches Association. In 1965, he retired to join the American Football Coaches Association as Executive Secretary. © 2026 Duke Athletics.All rights reserved
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

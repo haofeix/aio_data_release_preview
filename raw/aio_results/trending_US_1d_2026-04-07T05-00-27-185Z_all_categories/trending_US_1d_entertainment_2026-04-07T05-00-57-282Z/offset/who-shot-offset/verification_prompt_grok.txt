@@ -1,0 +1,107 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "who shot offset"
+
+Claims:
+[1] "As of April 6, 2026, rapper Offset is in stable condition."
+[2] "Rapper Offset was shot in the leg outside the Seminole Hard Rock Hotel & Casino in Hollywood, Florida."
+[3] "Two individuals were detained following the shooting around 7 p.m."
+[4] "The suspect(s) who fired the shots have not been publicly identified."
+[5] "The incident occurred at the valet area of the Seminole Hard Rock Hotel & Casino in Hollywood, Florida."
+[6] "A spokesperson confirmed Offset is "fine" and receiving medical care."
+[7] "Seminole Police immediately secured the scene."
+[8] "The investigation into the specific shooter and motive is still ongoing"
+
+Cited text snippets from the AI Overview (for additional context):
+- Cardi B’s ex, rapper Offset shot outside Hard Rock Hotel in Hollywood: report: "By Sofia Saric,to a request for comment."
+- Former Migos rapper Offset reportedly shot at Florida casino, ... - WALB: "ATLANTA (ANF/Gray News),police said in a statement.&text=Police said Offset was hospitalized,All rights reserved."
+- Offset shot in South Florida near Hard Rock Casino - CBS News: "What we do and don,All Rights Reserved."
+- TMZ: Former Migos rapper Offset shot outside Florida casino: "The details surrounding the shooting,the gunfire at the casino."
+- Rapper Offset hospitalized after being shot in Florida: "The Migos rapper is in,Seminole Hard Rock Hotel & Casino."
+Reference Sources:
+
+[R1] TMZ: Former Migos rapper Offset shot outside Florida casino
+(https://www.fox5atlanta.com/news/tmz-former-migos-rapper-offset-shot-outside-florida-casino)
+"""
+Published April 6, 2026 9:55pm EDT article Rapper Offset attends the 4th Annual Toys 4 The Nawf Christmas Charity event on December 20, 2025 in Norcross, Georgia. (Photo by Paras Griffin/Getty Images) HOLLYWOOD, Fla. - The former Migos rapper Offset was reportedly shot Monday evening near a popular casino near Hollywood, Florida, according to TMZ. Investigation begins at Florida casino What we know: TMZ reports the former Migos rapper was shot near the Seminole Hard Rock Hotel & Casino. A spokesperson told the outlet that Offset is doing "fine," but confirmed he was at the hospital following the incident. According to a statement obtained by FOX 5 Atlanta from the Seminole Police Department, two people were taken into custody. What they're saying: The full statement from police reads: "We are aware of an incident that occurred at a valet area after 7 p.m. Monday outside of Seminole Hard Rock Hollywood that resulted in non-life-threatening injuries to an individual who was transported to Memorial Regional Hospital in Hollywood. Seminole Police were on site immediately and the situation was contained quickly. Two individuals have been detained by police. The investigation is ongoing. The site is secure and there is no threat to the public. Operations continue as normal." What we don't know: The details surrounding the shooting remain unknown. Officials have not confirmed if any arrests have been made or what led to the gunfire at the casino. Roots in Atlanta The backstory: Before his solo success, Offset helped propel the trio Migos to global stardom from their home base in suburban Gwinnett County. Raised just minutes northeast of Atlanta alongside his cousin Takeoff and uncle Quavo, the group changed the landscape of hip-hop with hits like "Versace" and two No. 1 albums. In 2019, Offset released his debut solo album, Father of four, featuring the hit single "Clout." Takeoff tragedy Dig deeper: The news of the Florida shooting comes as the rapper continues to navigate the aftermath of the 2022 death of his groupmate and cousin, Takeoff. Takeoff, born Kirsnick Khari Ball, was fatally shot on Nov. 1, 2022, outside a bowling alley in downtown Houston. The 28-year-old artist was an innocent bystander to a dispute involving a "high-stakes" dice game when gunfire erupted. Since that loss, Offset has balanced his solo career with public tributes, including a high-profile reunion performance with Quavo at the 2023 BET Awards to honor Takeoff’s legacy. The Source: The information in this story was gathered from TMZ and previous FOX 5 Atlanta reports regarding the death of Takeoff. This story is being reported out of Atlanta. EntertainmentFloridaGwinnett CountyNewsTakeoff MurderInstastories
+"""
+
+[R2] Offset shot in South Florida at Hard Rock Casino; Atlanta rapper hospitalized, stable, rep says
+(https://www.cbsnews.com/atlanta/news/offset-shot-in-south-florida-near-hard-rock-casino-atlanta-rapper-hospitalized-stable/)
+"""
+Updated on: April 7, 2026 / 6:41 AM EDT / CBS Miami Add CBS News on Google Atlanta rapper Offset is hospitalized after being shot in South Florida, according to his representative and authorities.The shooting happened Monday evening at the Seminole Hard Rock Hotel & Casino in Hollywood, just outside Miami, police in Seminole, Florida, said in a statement to CBS News.His representative told CBS News late Monday that Offset "was shot and is currently at the hospital receiving medical care. He is stable and being closely monitored."Seminole police said the shooting happened after 7 p.m. at a valet area outside the hotel and casino and "resulted in non-life threatening injuries to an individual who was transported to Memorial Regional Hospital in Hollywood."Two people were detained by police and an investigation was ongoing, they said. The site was secure and there was no threat to the public, and operations continued as normal, they added. It wasn't immediately clear what led to the shooting. It's also unclear whether surveillance footage from the heavily trafficked casino area could play a role in the investigation.Atlanta ties Offset, whose real name is Kiari Cephus, rose to fame as a member of the Grammy-nominated hip-hop group Migos, which originated in metro Atlanta. His connection to the city — and continued influence on its music scene — is prompting concern among fans and artists across Georgia.The incident also underscores how ties to Atlanta's music industry continue to intersect with South Florida, a frequent destination for performances, events and nightlife.Offset's familyThe rapper is in divorce proceedings from Cardi B. They have three children.They were secretly married in September 2017 in Atlanta. Cardi B announced that she had filed for divorce in 2024. Offset's cousin Takeoff — another member of Migos — was shot and killed in 2022. The Associated Press contributed to this report. In: Shooting South Florida Miami Atlanta Crime Casino Atlanta rapper Offset recovering in South Florida hospital after being shot outside Hard Rock Casino Atlanta rapper Offset recovering in South Florida hospital after being shot outside Hard Rock Casino 01:22 Atlanta rapper Offset recovering in South Florida hospital after being shot outside Hard Rock Casino (01:22)
+"""
+
+[R3] Cardi B’s ex, rapper Offset shot outside Hard Rock Hotel near Hollywood: report
+(https://www.miamiherald.com/news/local/crime/article315322232.html)
+"""
+Rapper Offset has been admitted to hospital after he was wounded in a shooting in South Florida. Offset, the former Migos rapper and Cardi B’s ex, was shot Monday outside the Seminole Hard Rock Hotel & Casino in near Hollywood, according to TMZ.A spokesperson for Offset told TMZ that he’s stable, “fine” and receiving medical care at the hospital, TMZ reported.The Seminole Police Department couldn’t confirm whether Offset was the victim due to privacy concerns, but confirmed there was a shooting at the valet area after 7 p.m. that resulted in non-life-threatening injuries to an individual, spokesperson Gary Bitner said. The victim was taken to Memorial Regional Hospital in Hollywood.Seminole police “were on site immediately and the situation was contained quickly,” he said.Two people, who were not identified by authorities, were detained in connection with the shooting, Bitner said. The investigation is ongoing.There is no threat to the public, and operations have continued as normal. A spokesperson for Seminole Hard Rock Hollywood did not immediately respond Monday to a request for comment.Offset has three children with Bronx rapper Cardi B, who is currently touring in support of her latest album “Am I The Drama?”Takeoff, who was a fellow Migos member and Offset’s cousin, was fatally shot outside a downtown Houston bowling alley on Nov. 1, 2022.This story was originally published April 6, 2026 at 10:36 PM.
+"""
+
+[R4] Former Migos rapper Offset reportedly shot at Florida casino, representatives say
+(https://www.walb.com/2026/04/07/former-migos-rapper-offset-reportedly-shot-florida-casino-representatives-say/)
+"""
+ATLANTA (ANF/Gray News) — Former Migos rapper Offset was reportedly shot at a Florida casino Monday night, a representative for the rapper confirmed. The Lawrenceville native, whose real name is Kiari Kendrell Cephus, was reportedly shot near the Seminole Hard Rock Hotel & Casino in Hollywood, Florida.Seminole County police said a shooting happened around 7 p.m. in a valet area. Two people have been detained, police said.“Seminole Police were on site immediately and the situation was contained quickly. Two individuals have been detained by police. The investigation is ongoing. The site is secure and there is no threat to the public. Operations continue as normal,” police said in a statement. Offset arrives at the iHeartRadio Music Awards, Monday, March 17, 2025, at the Dolby Theatre in Los Angeles. (Photo by Jordan Strauss/Invision/AP)(Jordan Strauss | Jordan Strauss/Invision/AP)Police said Offset was hospitalized at Memorial Regional Hospital in Hollywood with non-life-threatening injuries.A representative for the rapper said he is “currently at the hospital receiving medical care. He is stable and being closely monitored.”Migos rapper Takeoff, whose real name was Kirsnick Khari Ball, was shot and killed in Houston in 2022. The group split after Takeoff’s death.Offset was previously married to Cardi B between 2017 and 2022. The couple have three children together.Copyright 2026 WANF via Gray Local Media, Inc. All rights reserved.
+"""
+
+[R5] 1 person charged, another detained after rapper Offset shot in Florida, officials say
+(https://abcnews.com/US/rapper-offset-hospitalized-after-shot/story?id=131786229)
+"""
+The rapper known as Lil TJay has been charged in connection with an incident involving rapper Offset, who was shot Monday outside the Seminole Hard Rock Hotel & Casino in Hollywood, Florida, according to authorities.Lil TJay, whose legal name is Tione Jayden Merritt, was taken into custody at the Broward County Jail Monday night and charged with disorderly conduct, a first-degree misdemeanor, according to the Seminole Police Department.The rapper, who will turn 25 later this month, was also charged with operating without a valid license, according to jail records.NORCROSS, GEORGIA - DECEMBER 20: Rapper Offset attends the 4th Annual Toys 4 The Nawf Christmas Charity event on December 20, 2025 in Norcross, Georgia. (Photo by Paras Griffin/Getty Images)Paras Griffin/Getty Images"The incident began with an affray, or fight," the department said in a statement Tuesday. "Merritt was booked into the Broward County Jail late last night. A second person detained at the scene has not been charged. The investigation to identify one or more additional persons involved in the incident is ongoing."Offset, whose legal name is Kiari Kendrell Cephus, is currently hospitalized with a non-life threatening injury, according to police.A spokesperson for Offset told ABC News Monday the rapper is in "stable" condition."We can confirm Offset was shot and is currently at the hospital receiving medical care. He is stable and being closely monitored," the spokesperson said.Popular ReadsThe shooting occurred after 7 p.m. in the valet area outside the Seminole Hard Rock Hotel & Casino. The incident began with a fight, according to police.An attorney for Lil TJay, Dawn Florio, issued a statement Tuesday reiterating that he has not been charged with shooting Offset."We are issuing this release in regards to false rumors that Lil Tjay was involved in a shooting which occurred at the Valet area of the Seminole Hard Rock Hollywood ...," Florio stated. "Lil Tjay has not been shot, nor has Lil Tjay been charged with any shooting. Any reporting to the contrary, is false. We encourage people to consult trusted news sources and to verify the accuracy of any reporting before reflexively sharing or repeating baseless rumors."Lil Tjay performs during the 10th Annual 2024 Rolling Loud Music Festival at Hard Rock Stadium, Dec. 14, 2024, in Miami Gardens, Fla.Ivan Apfel/Getty ImagesOffset was previously married to Cardi B and the artists share three children together.His fellow Migos rapper, Takeoff, was fatally shot in November 2022.Editor’s note: This report has been updated to note that Offset and Cardi B are the parents of three children together and to include the latest information on Lil TJay's arrest.ABC News' Monica Escobedo, Deena Zaru and Luke Barr contributed to this report.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,240 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "what happens if i file taxes late"
+
+Claims:
+[1] "The failure-to-file penalty is 5% of the unpaid taxes for each month or part of a month that a tax return is late."
+[2] "The failure-to-file penalty maxes out at 25%."
+[3] "If a tax return is filed more than 60 days late, the minimum penalty is $525 or 100% of the unpaid tax, whichever is less."
+[4] "The failure-to-pay penalty is 0.5% of the unpaid taxes for each month or partial month."
+[5] "The failure-to-pay penalty is capped at 25%."
+[6] "If both failure-to-file and failure-to-pay penalties apply, the penalties can reach up to 47.5% of the tax owed."
+[7] "The IRS charges interest on underpayments."
+[8] "Interest on underpayments accrues from the tax deadline until the date of payment."
+[9] "There is no penalty for filing late if you are owed a refund."
+[10] "You must file within three years of the original deadline to claim a refund if you are owed one."
+[11] "The failure-to-file penalty is ten times higher than the failure-to-pay penalty."
+[12] "Form 4868 provides an automatic six-month extension to file."
+[13] "Form 4868 does not extend the time to pay any taxes owed."
+
+Cited text snippets from the AI Overview (for additional context):
+(No cited text snippets available)
+Reference Sources:
+
+[R1] What happens if you don’t file taxes on time?
+(https://thehill.com/business/5832793-tax-day-filing-deadline-irs/)
+"""
+(NewsNation) — The April 15 tax deadline is here, and if you owe taxes and don’t file or pay, the Internal Revenue Service (IRS) can begin charging penalties and interest. The failure-to-file penalty is typically 5 percent of the unpaid tax for each month or partial month the return is late, up to 25 percent. Those who owe may also face a separate failure-to-pay penalty. Taxpayers who can’t file by the deadline can request an automatic extension, which gives them an extra six months — until October 15 — to submit their return without a late filing penalty. However, an extension does not extend the time to pay, and any taxes owed are still due by April 15. As of April 3, the IRS had received about 99.8 million individual returns — roughly 60 percent of the 164 million it expects by the filing deadline. Those filing electronically must submit their return or request an extension by 11:59 p.m. local time on April 15. The IRS considers a mailed return on time if it’s postmarked by the due date. What happens if you don’t file your taxes on time? Taxpayers who owe and don’t file a return or request an extension can face penalties and interest, which start accruing after the deadline. The IRS typically charges a failure-to-file penalty of 5 percent of unpaid taxes for each month or partial month a return is late, capped at 25 percent. If the return is more than 60 days late, there’s a minimum penalty of $525, or 100 percent of the tax owed, whichever is less. Interest also accrues on penalties. Those who don’t pay by the due date may also face a failure-to-pay penalty of 0.5 percent of unpaid taxes for each month or part of a month the balance remains outstanding, up to 25 percent. If you owe taxes but can’t pay in full, the IRS offers payment plans that can reduce the failure-to-pay penalty. Video Player is loading.Current Time 0:00Duration 0:54Missed the Tax Day deadline? Here's what you need to know | NewsNation Missed the Tax Day deadline? Here's what you need to know | NewsNation NOW PLAYINGMissed the Tax Day deadline? Here's what you need to know | NewsNation Is there a penalty for filing late if you don’t owe taxes? There’s no penalty for filing late if a refund is due, but taxpayers still have to file to claim it — and generally have three years to do so before the money is forfeited. Failing to file also means missing out on refundable tax credits, such as the Earned Income Tax Credit and Child Tax Credit. Not filing can leave the IRS without up-to-date income information, which may affect eligibility for financial aid or certain loans. While most U.S. workers are required to file, not everyone is — requirements vary based on income and filing status. The IRS offers a tool to help determine whether you need to file, though it generally encourages people to do so, as they may be eligible for a refund. As of April 3, the IRS has issued nearly 70 million refunds, averaging $3,462 — up 11 percent from a year earlier. What to do if you can’t file your taxes on time Taxpayers who can’t file by the deadline can request an extension, which gives them an extra six months to file and avoid a failure-to-file penalty. Any taxes owed are still due by April 15. Extension requests must be filed by April 15, and the IRS offers three ways to get one: Pay online and check the box: Taxpayers can pay what they owe online and select “extension” as the reason for payment — no additional forms required. They’ll receive a confirmation number for the extension. Request an extension online or by mail: File Form 4868 to request an automatic extension by mail. It can also be submitted electronically through an IRS e-file partner or a tax professional. Taxpayers must estimate how much tax they owe for the year on the extension form, subtract the taxes already paid, and pay the balance owed. Use IRS Free File: Taxpayers can request an automatic extension through the program for free, regardless of income or filing eligibility. Some taxpayers may qualify for additional time to file and pay without requesting an extension, including those living abroad, military members serving overseas and people in certain disaster areas. Copyright 2026 Nexstar Media Inc. All rights reserved. This material may not be published, broadcast, rewritten, or redistributed.
+"""
+
+[R2] What happens if you file taxes late?
+(https://www.empower.com/the-currency/money/what-happens-if-you-file-taxes-late)
+"""
+Key takeawaysTaxpayers owed a refund face no late-filing penalty, though refunds can be claimed only within three years.Owing taxes and filing late can trigger penalties of up to 25% of unpaid tax, plus interest that accrues monthly.Filing past-due returns quickly can reduce penalties, protect Social Security credits, and avoid loan delays.Tax Day, or the deadline for filing your 2025 federal income tax return, falls on April 15, 2026.But what happens if you are late filing taxes?Read more: Tax 101: Understanding the basicsCan you file for a tax extension?If you think there’s a chance that you might miss the tax-filing deadline, you should consider filing for a deadline extension.This will automatically give you until October 15, 2026, to file your taxes. However, you must file an extension before April 15. If you wait until after this date, it will be too late to receive an extension.1To file for an extension, complete IRS Form 4868, an application for an automatic extension. Note that while filing for an extension will give you more time to file your federal tax return, it does not give you more time to pay your taxes if payments are due. If you think you might owe taxes this year instead of receiving a refund, you should estimate how much you’ll owe and send this amount in with Form 4868.2What happens if you don’t file taxes on time?If you miss the tax-filing deadline and are due a tax refund this year, then there will be no penalty associated with filing late — even if you don’t file for an extension. Your only “penalty” would be a delay in receiving your refund. You have up to three years from the tax-filing deadline to file your return and receive your refund.The situation is different if you owe taxes and miss the tax-filing deadline. In this scenario, you will be assessed penalties for failing to file your return on time and for failing to pay your taxes on time. If a return is over 60 days late, the minimum failure-to-file penalty is 5% of the unpaid tax per month or part of a month, plus interest, with a maximum penalty of 25% of the unpaid tax.3The penalty for filing taxes late is generally 0.5% per month (or a fraction thereof) of the unpaid tax until the tax is paid in full, plus interest, also with a maximum penalty of 25%. The IRS can collect back taxes for ten years from the date the taxes were assessed.Why you should file a past-due tax return ASAPIf you were supposed to file a tax return but didn’t do so, you should go ahead and file this return as soon as possible instead of waiting. Here are the top reasons for doing so:1. To claim your tax refundIf you are owed a refund, you won’t receive it until you file the tax return corresponding to the tax year the refund is owed. The IRS holds onto tax refunds if its records show that one or more returns is past due until it receives the return or an acceptable excuse for why the return won’t be filed.2. To protect your Social Security benefitsThis applies mainly to self-employed individuals. If you’re self-employed and don’t file a tax return, your self-employment income won’t be reported to the IRS. This means you won’t receive credits for this income toward your Social Security retirement and disability benefits.3. To avoid penalties and interestThe penalty for failing to file a tax return is 5% of the unpaid tax per month, plus interest, with a maximum penalty of 25% of the unpaid tax. And the penalty for filing a tax return late is 0.5% per month (or a fraction thereof) of the unpaid tax until the tax is paid in full, plus interest, also with a maximum penalty of 25%.4. To avoid loan approval delaysWhen you apply for a home mortgage, business loan or federal higher education aid, you will have to submit a copy of your income tax return along with your loan application. So failing to file a return could delay your loan approval.Read more: 8 IRS changes that could impact your taxes in 2026What if you can’t pay?You may have several options if you can’t afford to pay the amount of tax you owe now — below are three common options to consider:1. Pay it using a credit card.The IRS accepts credit cards as payment for taxes due. Keep in mind, however, that if you can’t pay your credit card balance in full when the bill’s due date comes, you could end up paying high interest rates that significantly increase the amount that you end up paying.2. Pay it in installments.You’ll attach IRS Form 9465 to your tax return to request an installment agreement and monthly payment plan for the payment of your taxes. If you owe more than $10,000, the IRS may want to review your personal finances (such as your assets, liabilities and cash flow) before agreeing to a payment plan.4The IRS will charge fees and interest to set up payment plans.53. Ask for an “offer in compromise.”In certain situations, the IRS will accept less than the full amount of tax due. This is referred to as an offer in compromise. These situations include:If there’s doubt that the amount due is accurateIf there’s doubt that the tax could ever be paid in fullIf the IRS determines that payment would result in economic hardship or be unfairRequest Form 656 to learn more about offers in compromise.6What if you didn’t ask for an extension?If you don’t file your tax return on time and don’t ask for an extension, the consequences will depend on whether you’re getting a refund or owe money to the IRS. If you’re getting a refund, there are no consequences to filing your federal return late and not asking for an extension (the same might not be true for state taxes).But if you owe the IRS money and don’t ask for an extension, you will be subject to a late filing penalty of 5% of the unpaid tax per month, plus interest, up to a maximum of 25%.And remember that if you fail to file a tax return indefinitely, there is no statute of limitations on how far back the IRS can go to collect past-due taxes.
+"""
+
+[R3] Can you still file taxes late after April 15? Penalties, what IRS says to do
+(https://www.dispatch.com/story/news/2026/04/13/file-taxes-late-irs-penalties-extension-refund/89587888007/)
+"""
+April 13, 2026, 11:58 a.m. ETThe federal tax deadline for 2025 returns is Wednesday, April 15, 2026.Taxpayers who miss the deadline without an extension may face penalties and interest.An extension to file until October 15 can be requested, but any taxes owed are still due by April 15.There is no penalty for filing late if you are owed a refund from the IRS.With the April 15 federal tax deadline nearly here, the IRS urges taxpayers to file as soon as possible, even if the deadline passes.The IRS has processed more than 78 million individual federal income tax returns so far in 2026. The agency says it has issued 57 million refunds via direct deposit, and that the average refund has increased by more than 10 percent, with total refunds topping $202 billion.Still, some taxpayers may need more time to file after April 15. Here's what taxpayers should know about filing after the deadline.When is the last day to file taxes in 2026?Taxpayers have until Wednesday, April 15, 2026, to file their 2025 tax returns and pay any tax owed, according to the IRS.What happens if you file your taxes late?Taxpayers who don’t file and pay by April 15 could face penalties and interest, according to the IRS.The IRS adds that taxpayers who cannot file their return by April 15 should request an extension by that date to avoid a failure to file penalty. An approved extension gives taxpayers until Oct. 15 to submit their return. However, any tax owed is still due April 15, and an extension to file is not an extension to pay.What are the penalties if you file your taxes late and don't pay?Taxpayers who miss the April 15 filing deadline should submit their tax return as soon as possible, the IRS notes. Filers may face penalties, which the IRS charges monthly until the full amount owed is paid.The standard penalty for filing late is five percent of any tax due for each month the return is late, up to 25% of the unpaid balance, according to USA TODAY.If you file a return but fail to pay any taxes you owe, or if you get an extension, you may face a smaller monthly penalty of 0.5% of any unpaid amount.When is the deadline to request an extension on taxes?You must file a tax extension by the regular tax filing deadline, which is April 15. This gives six more months (October 15) to file without penalties. However, an extension to file is not an extension to pay if you owe money to the IRS.Those who can’t pay the full balance by April 15 should still pay what they can and apply for a payment plan. Most applicants receive immediate notification of approval or denial.How do you request an extension with the IRS?The IRS offers three ways to request an extension:Pay online and select "extension": Make an online payment and choose “extension” as the reason. You’ll receive a confirmation number, and no additional forms are required.Use IRS Free File: Any taxpayer can use the program to request a free, automatic extension. Income limits apply only when using Free File to submit a tax return.File Form 4868: Submit Form 4868 by mail, through an IRS e-filing partner or with a tax professional. You must estimate your total tax owed and pay any remaining balance.Where is my tax refund? How to check status with IRSThe IRS says taxpayers who are owed a refund won't have to pay penalties for filing after the April 15 deadline, but should still file as soon as possible.Those who e-filed tax returns should receive a refund about one month or less from the filing date, according to the IRS. You can typically check your refund status soon after you file using the Where's My Refund tool, downloading the free IRS2Go mobile app or calling 800-829-1954.The refund tracker displays three status types:Return received: The IRS has received and is processing your tax return.Refund approved: If the return is complete and accurate, the IRS will approve and prepare to issue a refund.Refund sent: The refund was sent to your bank or the IRS sent a check through the mail.A refund status will appear 24 hours after you e-file a current-year return, three to four days after e-filing a prior-year return, or four weeks after you file a paper return.Typically, it takes up to 21 days to process an e-filed return, or longer for amended returns and returns sent by mail. The IRS recommends direct deposits as the fastest way to get your refund, rather than a mailed paper check that can take weeks to arrive.
+"""
+
+[R4] Collection Procedural Questions 3 | Internal Revenue Service
+(https://www.irs.gov/faqs/irs-procedures/collection-procedural-questions/collection-procedural-questions-3)
+"""
+Question Will I be charged interest and penalties for filing and paying my taxes late? Answer Yes, when you file your tax return late, you'll be charged interest on any unpaid balance, and you may also be subject to failure-to-file and failure-to-pay penalties. Interest accrues on the unpaid balance and compounds daily from the due date of the return (without regard to any extension of time to file) until you pay the balance in full. The interest rate for taxpayers other than corporations is the federal short-term rate plus 3%. The federal short-term rate is determined every three months. For the current quarterly interest rate on underpayments, search "quarter interest rates" via our Newsroom Search or on IRS.gov Site Search. Failure-to-pay penalty is charged for failing to pay your tax by the due date. The late payment penalty is 0.5% of the tax owed after the due date, for each month or part of a month the tax remains unpaid, up to 25%. You won't have to pay the penalty if you can show reasonable cause for the failure to pay on time. 10 days after the IRS issues a final notice of intent to levy or seize property, the 0.5% rate increases to 1% per month. The penalty rate is 0.25% for each month or part of a month in which an installment agreement is in effect. Failure-to-file penalty is charged on returns filed after the due date or extended due date, absent a reasonable cause for filing late. The failure-to-file penalty is 5% of the unpaid taxes for each month or part of a month that a tax return is late. The penalty won't exceed 25% of your unpaid taxes. If both a failure-to-file and a failure-to-pay penalty are applicable in the same month, the combined penalty is 5% (4.5% late filing and 0.5% late payment) for each month or part of a month that your return was late, up to 25%. The late filing penalty is calculated based on the tax that remains unpaid after the due date. Unpaid tax is the total tax required to be shown on your return reduced by amounts paid through withholding, estimated tax payments, and allowed refundable credits. If after five months you still haven't paid, the failure-to-file penalty will max out, but the failure-to-pay penalty continues until the tax is paid, up to 25%. The maximum total penalty for failure to file and pay is 47.5% (22.5% late filing and 25% late payment) of the tax. If your return was over 60 days late, the minimum failure-to-file penalty is the smaller of $525 (for tax returns required to be filed in 2026) or 100% of the tax required to be shown on the return. Note: If you feel a penalty or interest has been assessed in error, you may request abatement. Refer to Publication 1, Your Rights as a Taxpayer and the Instructions for Form 843, Claim for Refund and Request for Abatement.
+"""
+
+[R5] Media Relations Office Washington, D.C. Media Contact: 202.622.4000
+(https://www.irs.gov/pub/irs-news/fs-08-12.pdf)
+"""
+Media Relations Office Washington, D.C. Media Contact: 202.622.4000
+www.IRS.gov/newsroom Public Contact: 800.829.1040
+
+ Help Yourself by Filing Past-Due Tax Returns
+FS-2008-12, January 2008
+
+WASHINGTON— Most citizens voluntarily file their tax returns and pay their taxes. Most people
+explain it by saying they want to pay their fair share. Others file to get a refund, claim a credit or
+avoid breaking the law.
+
+There are times when normally law-abiding citizens fail to file. Why? IRS research shows that
+sometimes people don’t file in years their filing status changes, such as due to the death of a
+spouse or divorce. Emotional or financial reasons may cause a person to not file. Or it could
+simply be due to procrastination.
+
+Unfortunately failing to file a return creates additional problems. This is the 20th fact sheet in the
+Tax Gap series and will help taxpayers better understand the importance of filing past-due returns.
+
+Your need to file is largely determined by your age, filing status and gross income. You can
+determine whether you needed to file in a prior year by checking the “Do You Have to File” section
+in the instructions of the Form 1040 for the year in question.
+
+Why file a tax return?
+
+Taxpayers are required by law to file an income tax return for any year in which a filing
+requirement exists.
+
+There are numerous practical reasons to file tax returns. Important programs like federal aid to
+higher education require applicants to submit copies of tax returns to qualify for loans. Lending
+institutions also may require copies of filed returns for buying a home or financing a business.
+
+And the filing of tax returns can have a tremendous impact on your future. A person’s lifetime
+earnings as reported to the IRS and the Social Security Administration are the basis for Social
+Security retirement and disability benefits as well as Medicare. Reported income is also the
+source for state benefits such as unemployment compensation and industrial insurance.
+
+What happens if you do not file?
+
+Not filing a federal tax return can be costly — whether you end up owing more or missing out on a
+refund. The IRS may also impose a wide range of civil and criminal sanctions on persons who fail
+to file returns.
+If you owe tax and your return was not filed by the due date, including extensions, you may be
+subject to the failure to file penalty, unless you have reasonable cause for not filing. If you did not
+pay your tax in full by the due date for the return, not including extensions of time to file, you also
+may be subject to the failure to pay penalty, unless you have reasonable cause for your failure to
+pay. Additionally, interest is charged on taxes not paid by the due date; even if you have an
+extension of time to file. Interest is also charged on penalties.
+
+The IRS continues to identify people who have a filing requirement but have failed to file a return.
+
+By law the IRS may file a substitute return for you if you do not voluntarily file. A series of letters is
+first sent explaining the possible action IRS may take as part of the Substitute for Return Program.
+
+If you do not file a return or otherwise indicate disagreement such as by requesting to exercise
+your appeal rights, the IRS will file a basic return for you. An IRS-prepared return will not include
+any of your additional exemptions or expenses. The IRS will compute the tax liability and send you
+a bill for the tax that will also include interest and penalties.
+
+If a substitute return has already been filed for you by the IRS, you should still file your own return
+to claim any additional items. The IRS will generally adjust your account to reflect the corrected
+figures.
+
+What are the consequences of not filing a tax return?
+
+Here are some things to consider:
+
+• Failure to file penalty. If you owe taxes, a delay in filing may result in a "failure to file" penalty,
+ also known as the “late filing” penalty, and interest charges. The longer you delay, the larger
+ these charges grow. It may result in penalty and interest charges that could increase your tax
+ bill by 25 percent or more.
+
+• Losing your refund. There is no penalty for failure to file if you are due a refund. However,
+ you cannot obtain a refund without filing a tax return. If you wait too long to file, you may risk
+ losing the refund altogether. In cases where a return is not filed, the law provides most
+ taxpayers with a three-year window of opportunity for claiming a refund.
+
+• EITC. Individuals who are entitled to the Earned Income Tax Credit must file their return to
+ claim the credit even if they are not otherwise required to file. The return must be filed within
+ three years of the due date in order to receive the credit.
+
+• Statutes of limitation. After the expiration of the refund statute, not only does the law prevent
+ the issuance of a refund check, it also prevents the application of any credits, including
+ overpayments of estimated or withholding taxes, to other tax years that are underpaid. On the
+ other hand, the statute of limitations for IRS to assess and collect any outstanding balances
+ does not start until a return has been filed. In other words, there is no statute of limitations for
+ assessing and collecting the tax if no return has been filed.
+
+What should you do?
+Regardless of your reason for not filing, file your tax return as soon as possible. You can contact a
+tax professional or the IRS for help with filing delinquent returns.
+
+If you are unable to fully pay any tax due on the late returns, do not let this prevent you from filing
+as payment options may be available. For more details, ask your tax professional or an IRS
+representative.
+
+Filing tax returns and paying the correct amount of tax is good citizenship. Conscientiously
+discharging this duty contributes to our nation’s well being and provides peace of mind. And failing
+to file returns can jeopardize a family’s financial security and future.
+
+For more information on how to file a tax return for a prior year, visit the IRS Web site at IRS.gov,
+call the IRS Tax Help Line at 1-800-829-1040 or visit your local IRS office.
+
+Additional references:
+
+Previous years tax forms and instructions
+
+Local office addresses
+
+Tax law and account questions 800-829-1040
+
+Business and specialty tax questions 800-829-4933
+
+Ordering tax forms and publications 800-829-3676
+
+ — 30 —
+"""
+
+[R6] What Happens If You Miss the Tax Deadline?
+(https://www.today.com/money/missed-tax-deadline-late-penalties-rcna331789)
+"""
+The deadline for filing taxes has arrived. If you are in panic mode because you won't be able to file your tax return on the April 15 deadline, the Internal Revenue Service has guidance on what to do next. More than 88 million tax returns had already been filed by March 27, with 63 million people receiving refunds that have averaged $3,521, according to a report from the IRS.Here are tips on how to proceed as well as possible penalties for not filing on time. What Is the Tax Deadline and What Time Do I Need to File By?The deadline to file your taxes is April 15 at midnight your local time. If filing by mail, it must be post-marked on April 15. What Can You Do If You Can't File or Pay Your Taxes By the April 15 Deadline? The IRS has tips for those who are filing late or can't pay their tax on time. Apply for an extension of time to fileIf you need more time to prepare your tax return, apply for an extension of time to file. Just note: This does not extend your time to pay, only for filing your return.You can work out a payment plan with the IRS to pay over time. Pay the tax bill that arrives in the summerThe IRS may send you a bill this summer for late taxes and any penalties and interest accrued. The agency advises you to pay it in full at that time even if it means securing a loan to pay it off, instead of paying the IRS in installments. Payments can be made with a debit or credit card, or by electronic funds transfer, check, money order, cashier’s check or cash. Get additional time to payYou could potentially be granted more time to pay your tax bill in full depending on your circumstances. You can request extra time to pay through the Online Payment Agreement application or by calling the IRS at 1-800-829-1040.Request a Payment Plan or Installment AgreementIf you can't pay your bill in full, you can request an agreement with the IRS in which you will pay the amount in installments. However, you have to first file your tax returns and be current on any estimated tax payments. If you owe $50,000 or less, including penalties and interest, you could qualify for a long-term payment plan where you pay montly, according to the IRS. If you owe $100,000 or less, you could qualify for a short-term payment plan where you pay in 180 days.Short-term payment plans do not have a set-up fee, but penalties and interest accrue until the balance is paid. Long-term payment plans are $22 to set up automatic payments (this fee is waived for low-income status) and $69 for non-direct payments ($43 for low-income status). Penalties and interest accrue for long-term plans, too.People interested can learn more here.Is There a Penalty If You Fail to File or Fail to Pay? If you haven't filed your taxes or paid your taxes by April 15 and have not been granted an extension, you can incur a failure to file penalty. For individuals and most businesses, the failure to file penalty is 5% of the tax due for every month or partial month that your return is late, according to the IRS. That penalty does multiply each month to a maximum of 25%. If the filing is more than 60 days late, the minimum penalty is 100% of the underpayment, or other minimums set by the IRS, which can be more than $500. Failure to pay penalty is 0.5% of the unpaid taxes for each month or partial month that the tax is unpaid. The penalty won't exceed 25% of unpaid taxes, according to the IRS. How Will You Know if You Owe a Penalty For Filing Late? The IRS may send you a notice or a letter informing you that you have a balance due, if it has a question about your return or if it is notifying you of other information.If you’d like to report a disagreement, the IRS instructs you to follow the instructions on the notice to dispute what it says.
+"""
+
+[R7] What happens if you file your taxes late?
+(https://www.king5.com/article/news/nation-world/tax-day-filing-tax-returns-late-penalties-internal-revenue-service/507-e2f168f4-0b89-4525-98e6-f8d251358716)
+"""
+Some see the U.S. airstrikes as liberation from a vicious dictator. Others call it another example of American imperialism. SEATTLE — There is no single consensus among Iranian Americans in western Washington following the death of Iran’s Supreme Leader Ayatollah Ali Khamenei in joint U.S.-Israeli airstrikes, with some celebrating what they call liberation while others condemning the strikes as reckless imperialism. Just hours after news broke Saturday that Khamenei had been killed, hundreds of Iranian Americans took to the streets of Bellevue in celebration. At a car rally on the interstate organized by Voice of Iran, demonstrators waved pre-revolutionary Iranian flags and chanted in support of President Donald Trump’s military action. The rally moved to a downtown Bellevue park, where celebrations continued. “Someone just showed me the phone and said, he’s dead. He’s dead,” recalled Arash, who organized the rally. “There is some video. You can find it even online — it’s me jumping up and down with megaphone and telling people he’s gone. He’s gone.” Arash spoke to KING 5 at Rose Market, an Iranian and Persian grocery store in Bellevue owned by his friend Hadi Sadghnezhd. Both men fled Iran more than a decade ago to escape religious and political persecution, and for them, Khamenei’s death represents the end of decades of brutality. “We had this regime killing people right and left for years,” Arash said Tuesday at the grocery store, where the pre-revolutionary Iranian flag hangs prominently. “It’s really meaningful for us to get rid of the dictatorship in Iran. The future is going to be bright.” The jubilation, however, has not been universal. At Pike Place Market on Saturday, protesters gathered to denounce the U.S. and Israeli airstrikes. Meanwhile, celebrations in Bellevue turned tense when police began investigating reports that someone brandished a gun at demonstrators. Saghar Amini, a demonstrator who filmed the interaction, said one man grabbed his two young children and ran for safety. “[The man] told [a demonstrator] that he intended to shoot. He told him, ‘Don’t come any closer or I’ll shoot,’” Amini said. At the University of Washington, Aria Fani, director of the Middle East Center at the Jackson School of International Studies, expressed alarm at the rapidly escalating conflict. “I’m going crazy. I cannot control my — I’m just running around impulsively,” Fani said in an interview. “I’m worried. I’m worried so much for people there.” Fani, who was born and raised in Iran and has family there, sharply criticized the military intervention, questioning why anyone would support the bombardment of civilian infrastructure. “Why would anybody favor bombardment of hospitals? Schools?” he asked. “Who would be for this? It’s total perversion.” The divide centers on fundamentally different interpretations of U.S. involvement. At Rose Market, where Iranian customers have been coming in with renewed hope since Khamenei’s death, Arash framed the military action as necessary intervention. “This is not war. This is a rescue mission,” he said. He expressed confidence in Trump’s leadership and gratitude for U.S. involvement. “Iranian community, even Iranian people inside Iran, they are thankful of President Trump,” he said. But Fani sees a dangerous pattern repeating itself. “I think the U.S. loves when brown people dance on the street, having been liberated by its military power,” he said. “We saw this on the streets of Baghdad when Saddam Hussein fell. And then what? What we didn’t know was a million people were going to lose their lives.” He compared the current situation to past U.S. interventions in the Middle East, questioning whether any have ended well. “When has this ended well? Point to an example. I’ll get on board,” Fani said. For some Iranian Americans, the uncertain succession offers hope for democratic change. Arash said he believes opposition leader Reza Pahlavi will return to Iran to help establish free elections. “Both of us and both countries are going to be friends again, just like before 1979,” he said. “Iran is going to be a very reliable ally for us.” Others worry the power vacuum will lead to more violence and instability. Fani said he hasn’t been able to reach family members in Iran. “Nobody’s OK. Nobody’s OK when bombs are falling,” he said. He added: “It’s really not courageous to celebrate from the safety of Bellevue. The real courage would be to celebrate on the streets of Tehran when the bombs are falling.”
+"""
+
+[R8] Failure to Pay Penalty | Internal Revenue Service
+(https://www.irs.gov/payments/failure-to-pay-penalty)
+"""
+The failure to pay penalty applies if you don’t pay the tax when due. The penalty you must pay is a percentage of the taxes you didn’t pay. How you know you owe the penalty We send you a notice or letter if you owe the failure to pay penalty. For more information, see Understanding your IRS notice or letter. How we calculate the penalty We calculate the failure to pay penalty based on how long your overdue taxes remain unpaid. Unpaid tax is the total tax required to be shown on your return minus amounts paid through withholding, estimated tax payments and allowed refundable credits. The failure to pay penalty will not exceed 25% of your unpaid taxes. We calculate the failure to pay penalty based on if you: Fail to pay amount shown as tax on your return Fail to pay the tax you didn’t report on your return Failure to pay amount shown as tax on your return If you don’t pay the amount shown as tax you owe on your return, we calculate the failure to pay penalty in this way: The failure to pay penalty is 0.5% of the unpaid taxes for each month or part of a month the tax remains unpaid. The penalty won’t exceed 25% of your unpaid taxes. If both a failure to pay and a failure to file penalty are applied in the same month, the failure to file penalty will be reduced by the amount of the failure to pay penalty applied in that month. For example, instead of a 5% failure to file penalty for the month, we would apply a 4.5% failure to file penalty and a 0.5% failure to pay penalty. If you filed your tax return on time as an individual and you have an approved payment plan, the failure to pay penalty is reduced to 0.25% per month (or partial month) during your approved payment plan. If you don’t pay your tax in 10 days after getting a notice from us with our intent to levy, the failure to pay penalty is 1% per month or partial month. We apply full monthly charges, even if you pay your tax in full before the month ends. Failure to pay tax you didn’t report on your return If you owe tax that you didn’t report on your return or paid on time, we calculate the failure to pay penalty in this way: If we find that you owe tax you didn’t report on your return, we’ll send you a notice or letter with the amount due and a due date to pay. Due dates are generally 21 calendar days after we send the notice or 10 business days after we send the notice if the tax amount you owe is $100,000 or more. If you don’t pay your tax by the due date in the notice or letter we send to you, the failure to pay penalty is 0.5% of the tax you didn’t pay timely for each month or partial month that you don’t pay after the due date. If you filed your tax return on time as an individual and you have an approved payment plan, the failure to pay penalty is reduced to 0.25% per month (or partial month) during your approved payment plan. If you don’t pay your tax in 10 days after getting a notice from us with our intent to levy, the failure to pay penalty is 1% per month or partial month. We apply full monthly charges, even if you pay your tax in full before the month ends. Interest on a penalty We charge interest on penalties. The date from which we begin to charge interest varies by the type of penalty. Interest increases the amount you owe until you pay your balance in full. For more information about the interest we charge on penalties, see interest. Pay a penalty Send us a payment or pay your taxes in full to stop future penalties and interest from adding up. Remove or reduce a penalty We may be able to remove or reduce some penalties if you acted in good faith and can show reasonable cause for why you weren’t able to meet your tax obligations. By law we cannot remove or reduce interest unless the penalty is removed or reduced. For more information, see penalty relief. Dispute a penalty If you disagree with the amount you owe, you may dispute the penalty. Call us at the toll-free number at the top right corner of your notice or letter or write us a letter stating why we should reconsider the penalty. Sign and send the letter along with any supporting documents to the address on your notice or letter. Have this information when you call or send your letter: The notice or letter we sent you The penalty you want us to reconsider An explanation of why you think we should remove each penalty If you didn’t receive a notice, get telephone assistance. Avoid a penalty You can avoid a penalty by filing and paying your tax by the due date. If you can’t do so, you can apply for an extension of time to file or a payment plan. Apply for an extension of time to file If you need more time to prepare your tax return, apply for an extension of time to file. This does not grant you an extension of time to pay. A payment plan can help you pay over time. Apply for a payment plan If you can't pay the full amount of your taxes on time, pay what you can now and apply for a payment plan. You may reduce future penalties when you set up a payment plan. Get help For help with a penalty, call the phone number on your notice. If you didn’t receive a notice, use telephone assistance. Law and regulations Failure to pay tax — 26 USC 6651: Failure to file tax return or to pay tax Failure to pay tax — eCFR :: 26 CFR 301.6651-1 -- Failure to file tax return or to pay tax Related
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

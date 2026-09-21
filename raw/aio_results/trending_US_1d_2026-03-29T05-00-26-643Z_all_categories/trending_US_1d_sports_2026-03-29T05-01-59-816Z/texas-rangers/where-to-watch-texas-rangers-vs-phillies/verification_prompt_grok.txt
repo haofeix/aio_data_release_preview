@@ -1,0 +1,121 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch texas rangers vs phillies"
+
+Claims:
+[1] "The Texas Rangers vs. Philadelphia Phillies game on Saturday, March 28, 2026 is at 4:05 p.m. ET."
+[2] "The Texas Rangers vs. Philadelphia Phillies game on Saturday, March 28, 2026 is at 3:05 p.m. CT."
+[3] "The Texas Rangers vs. Philadelphia Phillies game on Saturday, March 28, 2026 is at Citizens Bank Park, Philadelphia, PA."
+[4] "The Texas Rangers vs. Philadelphia Phillies game on Saturday, March 28, 2026 can be watched on NBC Sports Philadelphia+."
+[5] "The Texas Rangers vs. Philadelphia Phillies game on Saturday, March 28, 2026 can be watched on the Rangers Sports Network."
+[6] "Fubo is a streaming option."
+[7] "Fubo has a free trial available."
+[8] "MLB.TV is for out-of-market viewers."
+[9] "Victory+ is a streaming option."
+[10] "NBC Sports Philadelphia+ (NBCSP+) is the TV channel for Phillies region."
+[11] "Rangers Sports Network is the TV channel for Rangers region."
+[12] "Fubo TV includes regional sports networks."
+[13] "Victory+ is in-market for Rangers."
+[14] "Peacock is an alternative streaming option."
+[15] "In-market streaming for the Rangers is available via the Victory+ app."
+[16] "In-market streaming for the Rangers is available via Fubo."
+
+Cited text snippets from the AI Overview (for additional context):
+- How to watch Rangers vs. Phillies: TV channel and streaming options for March 28: "How to watch Texas Rangers,: 15 Day IL (Oblique)"
+- How to watch Texas Rangers Opening Day against the Phillies: "How to watch Rangers vs,is redeemable through March 30."
+- Rangers vs. Phillies: Prediction, Lineups, How to Watch (3/28 ...: "How to Watch Rangers vs,Streaming: MLB.TV"
+- Watch Rangers vs. Phillies - Peacock: "Watch Rangers vs. Phillies,TV Shows"
+- How to watch the Texas Rangers on Opening Day 2026: "Streaming options,for a subscription to watch.&text=FuboTV is another streaming option,Coyle contributed to this report.&text=Find more Rangers coverage from,up for our Rangers newsletter."
+Reference Sources:
+
+[R1] Rangers vs. Phillies: Prediction, Lineups, How to Watch (3/28/26)
+(https://globelynews.com/sports/rangers-vs-phillies-prediction-lineups-how-to-watch-3-28-26/)
+"""
+The Texas Rangers (0–1) visit the Philadelphia Phillies (1–0) this afternoon, continuing their Opening Week series at Citizens Bank Park. The Phillies took the opener 5–3, powered by a dominant performance from Cristopher Sánchez, who pitched six scoreless innings, allowing just three hits while striking out 10. Kyle Schwarber picked up where he left off after a phenomenal 2025 campaign, putting Philadelphia on board with a two-run homer in the bottom of the first. Alec Bohm provided the rest of the offense with a three-run shot in the bottom of the fifth. The Rangers rallied late, with three runs in the top of the ninth, including two off a homer by Jake Burger. But it was too little, too late. Nate Eovaldi pitched 4.2 innings for Texas, allowing five runs and eight hits — including two home runs — while striking out seven. Jacob Latz makes the start for the Rangers today after Jacob deGrom was scratched due to neck stiffness. Latz had a stellar 2025 campaign, mainly out of the bullpen, with 2.84 ERA in 33 appearances. He made four starts in September, finishing with a 2.01 ERA that month. Aaron Nola takes the mound for the Phillies, looking to rebound after posting a career-worst 6.01 ERA last season, struggling with injuries and command. He gave up 18 home runs in 17 starts. The Rangers have the edge here on the mound. Expect Latz to contain the Phillies’ bats as Nola’s struggles continue in 2026. Prediction: Texas Rangers 5, Philadelphia Phillies 3 Starting Lineups Texas Rangers Brandon Nimmo — RF Wyatt Langford — LF Corey Seager — SS Jake Burger — 1B Joc Pederson — DH Josh Smith — 2B Josh Jung — 3B Evan Carter — CF Danny Jansen — C Starting Pitcher: Jacob Latz — LHP Philadelphia Phillies Trea Turner — SS Kyle Schwarber — DH Bryce Harper — 1B Alec Bohm — 3B Bryson Stott — 2B Adolis García — RF Brandon Marsh — LF J.T. Realmuto — C Justin Crawford — CF Starting Pitcher: Aaron Nola — RHP How to Watch Rangers vs. Phillies First pitch is scheduled for 4:05 PM Eastern / 3:05 PM Central at Citizens Bank Park in Philadelphia. The game airs live on NBC Sports Philadelphia Plus and the Rangers Sports Network, and streams live for out-of-market viewers on MLB.TV. If you don’t have access to the Rangers Sports Network, it’s available in North Texas through Fubo’s main packages. You can start with a free trial to test the service — keep it if it works for you, or cancel anytime if it doesn’t fit your needs. Texas Rangers vs. Philadelphia Phillies Date: Saturday, March 28, 2026 Time: 4:05 PM Eastern / 3:05 PM Central Venue: Citizens Bank Park, Philadelphia, Pennsylvania TV: NBC Sports Philadelphia Plus, Rangers Sports Network Streaming: MLB.TV
+"""
+
+[R2] How to Watch Rangers vs Phillies: Live Stream MLB, TV Channel
+(https://www.newsweek.com/how-to-watch-rangers-vs-phillies-live-stream-mlb-tv-channel-11751070)
+"""
+The Philadelphia Phillies (1-0) look for a second straight win over the Texas Rangers (0-1) when the teams continue their three-game season-opening series on Saturday afternoon at Citizens Bank Park in Philadelphia.PHILADELPHIA, PENNSYLVANIA - MARCH 26: Alec Bohm #28 of the Philadelphia Phillies celebrates after hitting a three-run home run in the fifth inning ag...How to Watch Rangers vs PhilliesDate: Saturday, March 28, 2026Time: 3:00 PM ETChannel: MLB.TV - Philadelphia Phillies, Rangers Sports NetworkStream: Fubo (TRY FOR FREE)Cristopher Sanchez struck out 10 in six scoreless innings on Thursday while Kyle Schwarber got the offense rolling with a two-run homer in the first inning as Philadelphia picked up a 5-3 win. Alec Bohm added a three-run shot in the fifth inning and Jhoan Duran got the final two outs to thwart a Rangers rally in the ninth. Rookie Justin Crawford had two hits in his major-league debut, batting ninth and playing center field.Jake Burger got Texas on the board with a two-run homer in the ninth inning and Danny Jansen singled home a run to make it a 5-3 game before the rally died out. Nathan Eovaldi didn’t make it out of the fifth, giving up five runs on eight hits while fanning seven before the bullpen allowed only two hits the rest of the way.Veteran Aaron Nola comes off his worst season in 2025, posting a 6.01 ERA and 1.346 WHIP in 17 starts and 94.1 innings for the Phillies, and looks to start a rebound when he gets the start on Saturday. The Rangers counter with two-time Cy Young winner Jacob deGrom, who made 30 starts — the most he’s had since 2019 — while pitching to a 2.97 ERA and 0.921 WHIP in 172.2 innings with 185 strikeouts last season.Live stream Rangers vs Phillies on Fubo: Start your free trial now!With Fubo, you can watch live television without cable on your phone, TV, or tablet. Fubo carries a wide array of sports and entertainment channels, including local sports packages and top national channels like ABC, FOX, CBS, ESPN, FS1, MTV, Comedy Central, and much more. The best part is you can try it out today for free.Regional restrictions may apply. If you purchase a product or register for an account through one of the links on our site, we may receive compensation.
+"""
+
+[R3] How to watch the Texas Rangers on Opening Day 2026
+(https://www.dallasnews.com/sports/rangers/2026/03/25/how-to-watch-texas-rangers-opening-day-2026-philadelphia-phillies/)
+"""
+Play ball, Texas. MLB is back and the Rangers open the season on the road with a series against the reigning NL East champion Philadelphia Phillies. Related: Full Rangers opening-day roster breakdown: Who will take the field for Texas in 2026? Here's how you can watch Corey Seager and company on Opening Day: Rangers-Phillies opening day game details Date: Thursday, March 26, 2025 Location: Citizens Bank Park (Philadelphia) Time: First pitch is set for 3:15 p.m. TV/streaming: Rangers Sports Network, Victory+ Radio: 105.3 The Fan (KRLD-FM) Rangers' starting pitcher: Nathan Eovaldi How to watch/stream Rangers games this season The opener will be on Rangers Sports Network this year, which is also the main provider for local broadcasts this season. Here's how you can watch the Rangers on RSN: Cable and satellite providers RSN has partnered with several traditional cable providers to air Rangers' games in Dallas. Customers of DirecTV, U-Verse, Spectrum and Astound Broadband will be able to watch the RSN channel, which will air around 135 games this year. For specific channel numbers and more information about individual providers, go to rangers.com/tunein. Streaming options More digitally inclined Rangers fans will be able to watch RSN on Victory+, the same streaming platform that currently hosts Dallas Stars games. While the Stars' games air for free on the platform, the Rangers Sports Network will cost fans $100 for a subscription to watch. FuboTV is another streaming option for RSN. The streaming platform will offer Rangers Sports Network as a standalone subscription that can be locally paired with a Fubo Free plan or Latino plan. This would include the same games available to cable customers. Staff writer R.J. Coyle contributed to this report. Find more Rangers coverage from The Dallas Morning News here . Click or tap here to sign up for our Rangers newsletter.
+"""
+
+[R4] Watch Live Sports Online | Peacock
+(https://www.peacocktv.com/sports/rangers-vs.-phillies/a0812152-82a4-30a5-ae7d-063c0934955b)
+"""
+Sorry, your browser does not support embedded videosStream LIVE Sports & EventsStream live and on‑demand games, 24/7 sports channels, must‑see highlights, and documentaries featuring the teams and athletes you loveSorry, your browser does not support embedded videosStream LIVE Sports & EventsStream live and on‑demand games, 24/7 sports channels, must‑see highlights, and documentaries featuring the teams and athletes you loveNonstop Live Sports and EventsLive and UpcomingPick a Plan. Cancel Anytime.MOST POPULARPremiumWatch TV, movies, sports & more, with ads.TV Favorites from NBC, Bravo, & MoreLIVE Sports & EventsHit Films & Peacock OriginalsIf you have an annual plan, this subscription will start after your current plan ends.ANNUALGet 12 Months for the Price of 10Premium PlusWatch TV, movies, sports & more, with no ads (limited exclusions)*TV Favorites from NBC, Bravo, & MoreLIVE Sports & EventsHit Films & Peacock OriginalsDownloads & No Ads (limited exclusions)*If you have an annual plan, this subscription will start after your current plan ends.ANNUALGet 12 Months for the Price of 10*Certain pages are sponsored, and some programming will still contain ads (channels, live sports and events, and a few shows and movies). Some titles available to watch offline.More Reasons to Love PeacockStay Connected and EntertainedWith multiple ways to watch and limitless entertainment, Peacock is always on hand with new features to explore.Scroll Less, Watch MoreEffortlessly find your favorites in the all-new Channels layout with always-on news, sports, shows, movies, and live TV.Students Can Stream and SaveEligible college/university students can get 12 months of Peacock at $5.99/mo instead of the current rate of $10.99/mo.Frequently Asked QuestionsHow do I watch sports on Peacock?Sign up here to watch all of our LIVE sports, sports shows, documentaries, classic matches, and more. You'll also get tons of hit movies and TV shows, Originals, news, 24/7 channels, and current NBC & Bravo hits—Peacock is here for whatever you’re in the mood for. What else can I watch on Peacock?Here's what else you get with Peacock: New movies straight from theaters—plus hundreds of movies from major Hollywood studios such as Universal, DreamWorks Animation, and Focus Features.Thousands of hours of hit TV shows, including highly anticipated Peacock Originals and current hits from NBC & Bravo.Peacock Channels playing your favorite movies, shows, and clips 24/7. Scroll less and stream more with NBC Sports on Peacock, SNL Vault, Fallon Tonight, TODAY All Day, and True Crime.The LIVE sports you love all in one place, including Sunday Night Football and Premier League.Kids' movies and shows, including Where's Waldo? and Curious George.Hit Spanish-language TV shows and news from Telemundo.What devices does Peacock support?Lots! For instance: TV Android TV, Apple TV, COX, Fire TV, LG TV, Hisense VIDAA, Roku, Samsung, Vizio Smart TV, Xfinity Computer Chrome OS, macOS, Windows PC Mobile & TabletAndroid phones & tablets, Fire Tablet, iPhone and iPad Game ConsolesPlayStation, Xbox, Meta VR devices View the full list of supported devices here. (If you don’t see it listed, we’re probably working on it!)What if I already signed up for Peacock?If you’ve already followed the steps to create your new Peacock account, and you added a password, you can now Sign In with that email and password on all your supported devices. If you never set your password, or don’t remember it, reset it now. To upgrade to Peacock Premium Plus from a Peacock Premium plan, sign in to your account and go to Plans and Payments to select an upgrade plan.
+"""
+
+[R5] How to watch Texas Rangers Opening Day against the Phillies
+(https://nolanwritin.com/how-to-watch-texas-rangers-opening-day-against-phillies)
+"""
+Following a 31-game spring training schedule the Texas Rangers are ready to kick off the 2026 regular season and will do so on the road for just the second time in six years as they head to the Easy Coast for a matchup with a top NL East team.This season they take on lefty Cristopher Sanchez and the Philadelphia Phillies at Citizens Bank Park with a familiar face their former World Series hero Adolis Garcia. Texas kicks off their season with first pitch scheduled for 3:05 p.m. CT.Texas, who finished 81-81 in 2025, will look to get back into the postseason after missing out on October baseball for the second straight year. With Brandon Nimmo leading off for the lineup and Nathan Eovaldi getting the starting nod, fans are optimistic that these changes will be positive.How to watch Rangers vs. Phillies battle on MLB Opening Day 2026First pitch: 3:05 p.m. CTTelevision broadcasts: Rangers Sports Network (DirectTV, U-Verse, Spectrum, Astound) (Rangers), NBCSP+ and NBC 10 (PhilliesStreaming options: MLB.tv (Subscription required), Fubo TV (Subscription required), DIRECTV STREAM (Subscription Required), Victory+ (Subscription required)Radio broadcasts: 105.3 The Fan and KFLC 1270 AM (Rangers), 94 WIP (Phillies)The first game of the year kicks off the second year of Rangers Sports Network and partnership with streaming service Victory+. Last season, RSN boosted viewership 37 percent across households in the Dallas-Fort Worth Metroplex as the organization hopes to build off that success.Thursday's game will also be available on MLB.tv for fans outside the initial coverage areas of Texas, Arkansas, Oklahoma, Louisiana and the eastern most counties of New Mexico. The subscription cost is $149.99/year or $29.99/month. Fans with T-Mobile can claim a free season pass to MLB.tv simply as thank you for being a customer, that access is redeemable through March 30.On the television broadcast, fans will see some familiar with Dave Raymond returning for his 10th season as the team's play-by-play, Mike Bacsik and David Murphy providing color commentary and Laura Stickells entering her second season as the main field reporter. The radio side remains the same as well with Hall of Fame broadcaster Eric Nadel teaming up with Matt Hicks and Jared Sandler. The Spanish broadcast features Eleno Ornelas in his 25th season calling Rangers' games and Jose Guzman in year 16 with the club.
+"""
+
+[R6] How to watch Rangers vs. Phillies: TV channel and streaming options for March 28
+(https://www.nytimes.com/athletic/7153759/2026/03/28/how-to-watch-rangers-vs-phillies-tv-channel-and-streaming-options-for-march-28/)
+"""
+The Philadelphia Phillies host the Texas Rangers on Saturday at Citizens Bank Park, at 4:05 p.m. ET. Aaron Nola (0-0, 0.00 ERA) will start for the Phillies, who are 1-0 this season and fourth in the NL East. Jake Latz (0-0, 0.00 ERA) is starting for the Rangers, who are 0-1 and fourth in the AL West.How to watch Texas Rangers vs. Philadelphia Phillies Venue: Citizens Bank Park Time: 4:05 p.m. ET TV: NBCS-PH+ and RSN Watching in person? Get tickets on StubHub. Rangers vs. Phillies odds Favorite Moneyline: Phillies -150 Underdog Moneyline: Rangers +125 Total: 7.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsPhilliesOrion Kerkering: 15 Day IL (Hamstring), Zack Wheeler: 15 Day IL (Shoulder), Max Lazar: 15 Day IL (Oblique) RangersCody Freeman: 10 Day IL (Back ), Cody Bradford: 15 Day IL (Elbow), Jordan Montgomery: 60 Day IL (Elbow)Stats to know (2025 stats) Kyle Schwarber had 145 hits and an OBP of .365 a season ago. Trea Turner hit 15 homers while driving in 69 runs. Last season, Brandon Nimmo finished with 154 hits and a slugging percentage of .436. Wyatt Langford had 118 hits and an OBP of .344. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Jamie Squire, Ishika Samant, Scott Taetsch, Alika Jenner / Getty Images Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports termsSUPPORTED BY
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

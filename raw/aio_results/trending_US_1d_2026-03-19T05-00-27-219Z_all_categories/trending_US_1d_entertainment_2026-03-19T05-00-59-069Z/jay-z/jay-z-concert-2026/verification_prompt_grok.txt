@@ -1,0 +1,111 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "jay z concert 2026"
+
+Claims:
+[1] "JAY-Z will headline the 2026 Roots Picnic with The Roots on May 30, 2026 at Philadelphia's Belmont Plateau."
+[2] "The Roots will back JAY-Z at the Philadelphia performance."
+[3] "The 2026 Roots Picnic is on May 30, 2026 (Saturday)."
+[4] "The 2026 Roots Picnic is at Belmont Plateau in Fairmount Park."
+[5] "The 2026 Roots Picnic is in Philadelphia, PA."
+[6] "JAY-Z's Reasonable Doubt 30th Anniversary show is on July 10, 2026 at Yankee Stadium."
+[7] "JAY-Z's The Blueprint 25th Anniversary show is on July 11, 2026 at Yankee Stadium."
+[8] "Roots Picnic pre-sale is ongoing with code ROOTS26."
+[9] "Roots Picnic general on-sale starts Wednesday, March 18, 2026 at 10:00 a.m. ET."
+[10] "Yankee Stadium shows are announced for July 10-11, 2026 to celebrate album anniversaries."
+[11] "Ticketing details for Yankee Stadium shows to follow."
+[12] "The 2026 Roots Picnic and Yankee Stadium shows mark JAY-Z's first live shows since 2018."
+
+Cited text snippets from the AI Overview (for additional context):
+- Jay-Z Announces 2026 Yankee Stadium Shows - Stereogum: "Jay-Z's Yankee Stadium Concerts,"Dead Presidents" on streaming."
+- JAY-Z and The Roots to Headline Roots Picnic 2026: "JAY-Z is teaming up,and New York's Carnegie Hall."
+- Jay-Z Announces Anniversary Shows for 'Reasonable Doubt ...: "The two-day engagement will,a live show since 2018."
+- Jay-Z reveals 2-night-only concerts 30 years after his debut album: "KiMi Robinson,teased: "Stay Tuned.""
+- JAŸ-Z & The Roots To Headline The Roots Picnic 2026 On ... - Roc Nation: "JAŸ-Z & The Roots To,Saturday, May 30th - ROC NATION"
+Reference Sources:
+
+[R1] Jay-Z Announces Anniversary Concerts for 'Reasonable Doubt' and 'The Blueprint' at Yankee Stadium
+(https://www.complex.com/music/a/jaelaniturnerwilliams/jay-z-announces-reasonable-doubt-blueprint-concerts)
+"""
+To commemorate the anniversaries of his seminal albums Reasonable Doubt and The Blueprint, Jay-Z—or JAŸ-Z, once you add the umlaut he’s been using again—will be throwing two concerts at New York City’s Yankee Stadium in July.One day after the 25-time Grammy winner was named headliner of this year’s Roots Picnic, on Wednesday (March 18) Roc Nation announced that he will be holding concerts at Yankee Stadium for Reasonable Doubt and The Blueprint on July 10 and 11, respectively. The first show will seemingly celebrate thirty years of RD, while the second and final show will be dedicated to Blueprint, which turns 25 this year.The performances mark Hov’s second and third shows of 2026 so far, as the rapper will headline the 2026 Roots Picnic at Philadelphia’s Belmont Plateau on May 30. Jay-Z will be supported by The Roots, who contributed instrumentation on his 2001 live album, Jay-Z: Unplugged. While the remaining lineup for the music festival has not been announced, Hov’s upcoming concerts serve as a homecoming, as the rapper hasn’t performed a live show since 2018. Cody Rhodes Wants to Be WWE's Golden Boy | Complex Graps The PodcastKeep WatchingNext video in 8 seconds0 seconds of 47 minutes, 49 secondsVolume 0%“After meeting with Mayor Cherelle Parker and hearing her vision for Philadelphia 250, she truly inspired us to dream even bigger, and we’re grateful to her, Commissioner Susan Slawson, Jazelle Jones and everyone who helped make it happen,” stated Shawn Gee, Roots manager and Live Nation Urban president, in a statement provided to Complex. “We can’t wait to see everyone in May at the Plat.”In 2017, the 56-year-old released his thirteenth and most recent solo album, 4:44. The following year, Jay-Z and his wife, pop and R&B icon Beyoncé, embarked on the On the Run II Tour, which supported their debut joint album, Everything Is Love.Fans have been buzzing with speculation ever since Jay-Z began releasing archival tracks on streaming and his YouTube page with many speculating on if the flurry of activity could potentially be a sign that Jay is gearing up to drop new music.
+"""
+
+[R2] Jay-Z's Yankee Stadium Concerts Will Celebrate 'Reasonable Doubt' & 'The Blueprint'
+(https://stereogum.com/2492712/jay-z-announces-2026-yankee-stadium-shows/news)
+"""
+Skip to ContentNewsJay-Z Announces 2026 Yankee Stadium ShowsBy Chris DeVille5:08 PM EDT on March 18, 2026Share on FacebookShare on RedditShare on EmailShare on Bluesky5CommentsJay-Z's really getting out there in 2026. A day after revealing he'd perform with the Roots as the headliner of their annual Roots Picnic this May, the rap mogul has announced a pair of concerts at Yankee Stadium this summer.nextstayCCSettingsOffArabicChineseEnglishFrenchGermanHindiPortugueseSpanishFont ColorwhiteFont Opacity100%Font Size100%Font FamilyArialText ShadownoneBackground ColorblackBackground Opacity50%Window ColorblackWindow Opacity0%WhiteBlackRedGreenBlueYellowMagentaCyan100%75%50%25%200%175%150%125%100%75%50%ArialGeorgiaGaramondCourier NewTahomaTimes New RomanTrebuchet MSVerdanaNoneRaisedDepressedUniformDrop ShadowWhiteBlackRedGreenBlueYellowMagentaCyan100%75%50%25%0%WhiteBlackRedGreenBlueYellowMagentaCyan100%75%50%25%0%At the July 10 stadium show, Jay will celebrate the 30th anniversary of his debut album Reasonable Doubt. That gig will be dubbed JAŸ-Z 30. The next night, July 11, he'll be back onstage at the same venue to commemorate the 25th anniversary of The Blueprint. They're calling that one JAŸ-Z 25. No ticket info has been released yet, but Roc Nation's Instagram post announcing the concerts concludes with instructions to "stay tuned."Jay has been making moves to promote the Reasonable Doubt anniversary in recent weeks. He had his name changed to JAŸ-Z on streaming services in a nod to the formatting he used circa Reasonable Doubt and released the original version of that album's lead single "Dead Presidents" on streaming. He also put the video for the Gwen Dickey collab "Wishing On A Star" on YouTube, but that song is from Jay's second album, 1997's In My Lifetime, Vol. 1.Share on FacebookShare on RedditShare on EmailShare on BlueskyChris DeVille@chrisdevilleRead More:Jay-ZGET THE STEREOGUM DIGESTThe week's most important music stories and least important music memes.EmailSign upMore from NewsExplore NewsNewsLime Garden Cover New Order’s “Age Of Consent”March 26, 2026NewsSeal & Crofts’ Dash Crofts Dead At 85March 26, 2026NewsJ. Cole & Cam’ron End Legal Battle With Long, Revelatory Podcast InterviewMarch 26, 2026NewsSecurity Guard Who Made 11-Year-Old Cry Says He Wasn’t Working For Chappell RoanMarch 25, 2026NewsAd-Rock Joins Ad-Sandler In New Netflix Thriller Time OutMarch 25, 2026NewsFKA twigs Sues Shia LaBeouf Over NDA In Sexual Battery SettlementMarch 25, 2026✕Do not sell or share my personal information.You have chosen to opt-out of the sale or sharing of your information from this site and any of its affiliates. To opt back in please click the "Reenable Personalization" link. This site collects information through the use of cookies and other tracking tools. Cookies and these tools do not contain any information that personally identifies a user, but personal information that would be stored about you may be linked to the information stored in and obtained from them. This information would be used and shared for Analytics, Ad Serving, Interest Based Advertising, among other purposes. For more information please visit this site's Privacy Policy.CANCELCONTINUEYour Use of Our Content✕The content we make available on this website [and through our other channels] (the “Service”) was created, developed, compiled, prepared, revised, selected, and/or arranged by us, using our own methods and judgment, and through the expenditure of substantial time and effort. This Service and the content we make available are proprietary, and are protected by these Terms of Service (which is a contract between us and you), copyright laws, and other intellectual property laws and treaties. This Service is also protected as a collective work or compilation under U.S. copyright and other laws and treaties. We provide it for your personal, non-commercial use only.You may not use, and may not authorize any third party to use, this Service or any content we make available on this Service in any manner that (i) is a source of or substitute for the Service or the content; (ii) affects our ability to earn money in connection with the Service or the content; or (iii) competes with the Service we provide. These restrictions apply to any robot, spider, scraper, web crawler, or other automated means or any similar manual process, or any software used to access the Service. You further agree not to violate the restrictions in any robot exclusion headers of this Service, if any, or bypass or circumvent other measures employed to prevent or limit access to the Service by automated means.Information from your device can be used to personalize your ad experience. Do not sell or share my personal information.Terms of Content UseA Raptive Partner Site
+"""
+
+[R3] JAŸ-Z & The Roots To Headline Roots Picnic 2026
+(https://www.rocnation.com/news/jay-z-the-roots-to-headline-the-roots-picnic-2026-on-saturday-may-30th/)
+"""
+March 17, 2026 THE ROOTS & LIVE NATION URBAN ANNOUNCE TICKETS GO ON SALE TOMORROW, MARCH 18 AT 10AM ET EARLY ACCESS TO PRESALE TICKETS IS AVAILABLE TODAY AT 10AM AT ROOTSPICNIC.COM. MAY 30 & 31, 2026 BELMONT PLATEAU PHILADELPHIA, PA Delivering a musical and cultural experience without comparison, today, GRAMMY® Award-winning multi-platinum hip-hop luminaries The Roots and Live Nation Urban announce JAŸ-Z and The Roots will headline the Saturday, May 30th date, of the 2026 installment of Roots Picnic. The two-day festival returns on Saturday, May 30 and Sunday, May 31, 2026, at Belmont Plateau. Presale tickets are available now. General on-sale begins tomorrow, March 18, at 10AM ET, and will be available HERE. This will also mark the first year the festival will be held at the historic Belmont Plateau in Philadelphia’s Fairmount Park. Belmont Plateau is known for having one of the best views of the city and is a place where hip-hop and Black culture flourished in the 1980s and early 1990s. “Moving the Roots Picnic to Belmont Plateau and bringing JAŸ-Z and The Roots together to perform are both bucket-list moments for us,” Manager of The Roots and President of Live Nation Urban Shawn Gee exclaimed. “After meeting with Mayor Cherelle Parker and hearing her vision for Philadelphia 250, she truly inspired us to dream even bigger, and we’re grateful to her, Commissioner Susan Slawson, Jazelle Jones, and everyone who helped make it happen. We can’t wait to see everyone in May at the Plat.” Roots Picnic has continued to be one of the summer’s most highly anticipated festivals and a celebration of Philadelphia’s robust music scene. Billboard included Roots Picnic in their Top 50 Music Festivals round-up, and perhaps BET put it best: “the two-day event proves why hip-hop is such a regenerative force of nature.” Since launching in 2007, Roots Picnic has stood at the crossroads of music and culture — entertaining, engaging, and enlightening millions of fans along the way. Its dynamic lineups have included everyone from Lil Wayne, The Weeknd, Pharrell, Snoop Dogg, Phantogram, Usher, Nas, A$AP Rocky, Macklemore & Ryan Lewis, and Future to Vampire Weekend, The War on Drugs, Gary Clark, Jr., Solange, Diplo, Gnarls Barkley, and more. Roots Picnic isn’t just a cornerstone of the group’s career, but a cornerstone of the culture. JAŸ-Z & The Roots to Headline Roots Picnic 2026 on Saturday, May 30th
+"""
+
+[R4] JAY-Z and The Roots to Headline Roots Picnic 2026
+(https://consequence.net/2026/03/jay-z-the-roots-roots-picnic-2026/)
+"""
+JAY-Z is teaming up with The Roots to headline the 2026 installment of Roots Picnic. The joint performance will close out the first day of the Philadelphia festival on Saturday, May 30th. The two-day event will go down for the first time this year at Belmont Plateau in Fairmount Park. Tickets to the festival are now on sale. Get Roots Picnic Tickets Here The Brooklyn rapper and Philadelphia hip-hop band have a close collaborative history. They first shared the stage in November 2001 for JAY-Z’s intimate and unforgettable MTV Unplugged performance, and The Roots have since backed him during visits to The Tonight Show. Bandleader Questlove has also served as Jay’s musical director for shows at London’s Royal Albert Hall and New York’s Carnegie Hall. Video Player is loading.Current Time 0:00Duration -:-Remaining Time -:-“Moving the Roots Picnic to Belmont Plateau and bringing JAŸ-Z and The Roots together to perform are both bucket-list moments for us,” said Shawn Gee, The Roots’ manager and president of Live Nation Urban. “After meeting with Mayor Cherelle Parker and hearing her vision for Philadelphia 250, she truly inspired us to dream even bigger, and we’re grateful to her, Commissioner Susan Slawson, Jazelle Jones and everyone who helped make it happen. We can’t wait to see everyone in May at the Plat.” JAY-Z’s Roots Picnic appearance marks his first announced concert since a 2019 show at New York’s Webster Hall and his first live performance since joining his wife, Beyoncé, at her final “Cowboy Carter” tour date in Las Vegas in July 2025. It also comes amid rumors of a residency at Barclays Center to celebrate the 30th anniversary of Reasonable Doubt.
+"""
+
+[R5] Jay-Z reveals 2-night-only concerts 30 years after his debut album
+(https://www.usatoday.com/story/entertainment/music/2026/03/18/jay-z-yankee-stadium-concerts-reasonable-doubt-the-blueprint/89218429007/)
+"""
+March 18, 2026, 7:33 p.m. ETJay-Z is confirming what fans have speculated for months: He's making a major return to the stage to celebrate a pair of big anniversaries.His company, Roc Nation, on March 18 announced the music titan will perform two hometown shows at Yankee Stadium over the summer.On July 10, he will celebrate the 30th anniversary of his debut album "Reasonable Doubt." This will be followed by a 25th anniversary concert for "The Blueprint" on July 11. Instead of providing information about tickets and what the concerts entail, the social media post teased: "Stay Tuned."Released by his label Roc-A-Fella Records in June 1996 and featuring collaborations with the likes of Mary J. Blige, The Notorious B.I.G. and Jaz-O, "Reasonable Doubt" has been heralded by some critics as one of the greatest albums of all time."The Blueprint," which debuted Sept. 11, 2001, and spent three weeks on the Billboard 200, is similarly regarded as one of the best works in the rap genre. In 2018, the record (Jay-Z's sixth LP) was inducted into the Library of Congress' National Recording Registry.Since releasing "Reasonable Doubt" into the world, Jay-Z has racked up 25 Grammy wins as well as several historic firsts for a rapper, including his induction into the Songwriters Hall of Fame (in 2017) and the Rock and Roll Hall of Fame (2021).The "I Know" rapper, who recently changed the styling of his name to Jaÿ-Z to mirror his 1996 debut album "Reasonable Doubt," is set to take the stage with The Roots at the two-day Roots Picnic festival in Philadelphia on May 30 and May 31.The picnic will mark the rapper's first performance with The Roots in over a decade. In 2001, the group famously served as Jay-Z's backing band for his "MTV Unplugged" special and for his "Reasonable Doubt" 10th-anniversary concert at Radio City Music Hall in 2006.Jaÿ-Z last took the stage for surprise performances on Beyoncé's record-breaking Cowboy Carter and the Rodeo Chitlin' Circuit Tour, which wrapped July 2025 in Las Vegas.Contributing: Caché McClay, USA TODAY Network
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,81 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "best score oscars 2026"
+
+Claims:
+[1] "Ludwig Göransson won Best Original Score for Sinners at the 2026 Academy Awards."
+[2] "Ludwig Göransson's win for Sinners at the 2026 Academy Awards marked his third Oscar win."
+[3] "Ludwig Göransson beat out nominees including Alexandre Desplat (Frankenstein), Jerskin Fendrix (Bugonia), Jonny Greenwood (One Battle After Another), and Max Richter (Hamnet)."
+
+Cited text snippets from the AI Overview (for additional context):
+- 'Sinners' has won best original score at the 2026 Oscars. Composer ...: "'Sinners' has won best original,time winner in the category."
+- Oscars 2026: Ludwig Göransson Wins Best Original Score for Sinners: "Nina Corcoran, Hattie Lindert,me over to the States."
+Reference Sources:
+
+[R1] Oscars 2026: Ludwig Göransson Wins Best Original Score for Sinners
+(https://www.yahoo.com/entertainment/movies/articles/oscars-2026-ludwig-g-ransson-014428838.html)
+"""
+Ludwig Göransson, photo by Kevin Winter/Getty ImagesLudwig Göransson has won Best Original Score for Sinners at the 2026 Academy Awards. It’s his fifth nomination and third Oscar win. He beat out four other contenders in the field for this year’s trophy: Alexandre Desplat (for Frankenstein), Jerskin Fendrix (for Bugonia), Jonny Greenwood (for One Battle After ­Another), and Max Richter (for Hamnet).Göransson accepted the Oscar from the reunited cast of Bridesmaids at Hollywood’s Dolby Theatre, and went on to thank his father for introducing him to music as a child. “My dad bought his first blues album in Sweden, 1964. It was a John Lee Hooker album, and even though it was on the other side of the world in a place my dad had never been, and a place he could not relate to, the music was so powerful that it changed my dad’s life and he devoted his whole life to music. When I was about seven years old, a little boy, he put a guitar in my arms and I loved the guitar. It became everything to me. It was the guitar that opened up a lot of doors for and it was the guitar that brought me over to the States. It was the guitar that eventually led me to one of the greatest storytellers of our time: Ryan Coogler. Ryan, thank you for your vision and making a movie that resonated with the whole world. Thank you.”Sinners was nominated for 16 Academy Awards this year, including Best Picture and Best Director—breaking the record for most nominations for a single movie. It ended up winning four of those statuettes: Best Actor (Michael B. Jordan), Best Original Screenplay (Coogler), Best Cinematography (Autumn Durald Arkapaw), and Best Original Score (Göransson).In 2025, Best Original Score went to Daniel Blumberg for his work on Brady Corbet’s epic, nearly four-hour-long architectural drama The Brutalist. Blumberg previously made music in the indie rock band Yuck, who broke out during the early 2010s, and discussed his pivot into scoring in an interview with Pitchfork.Read Paul A. Thompson’s film review of Sinners and follow along with all of Pitchfork’s coverage of the 2026 Academy Awards.Originally Appeared on Pitchfork
+"""
+
+[R2] Who won Oscars for 2026? See the full winners list here
+(https://www.cbsnews.com/live-updates/oscar-winners-2026-list/)
+"""
+Updated 10:34 PM / March 15, 2026 Best Picture "One Battle After Another" — Winner"Bugonia""F1""Frankenstein""Hamnet""Marty Supreme""The Secret Agent""Sentimental Value""Sinners""Train Dreams" Updated 10:29 PM / March 15, 2026 Best Actress Jessie Buckley, "Hamnet" — WinnerRose Byrne, "If I Had Legs I'd Kick You"Kate Hudson, "Song Sung Blue"Renate Reinsve, "Sentimental Value"Emma Stone, "Bugonia" Updated 10:19 PM / March 15, 2026 Best Actor Michael B. Jordan, "Sinners" — WinnerTimothée Chalamet, "Marty Supreme"Leonardo DiCaprio, "One Battle After Another"Ethan Hawke, "Blue Moon"Wagner Moura, "The Secret Agent" Updated 10:15 PM / March 15, 2026 Best Director Paul Thomas Anderson, "One Battle After Another" — WinnerChloe Zhao, "Hamnet"Josh Safdie, "Marty Supreme"Joaquim Trier, "Sentimental Value"Ryan Coogler, "Sinners" Updated 10:09 PM / March 15, 2026 Best Original Song "Golden" from "KPop Demon Hunters" — Winner"Dear Me" from "Diane Warren: Relentless""I Lied To You" from "Sinners""Sweet Dreams of Joy" from "Viva Verdi""Train Dreams" from "Train Dreams" Updated 10:04 PM / March 15, 2026 Best International Feature "Sentimental Value," Joaquin Trier (Norway) — Winner"It Was Just an Accident," Jafar Panahi (France)"The Secret Agent," Kleber Mendonça Filho (Brazil)"Sirāt," Olivér Laxe (Spain)"The Voice of Hind Rajab," Kaouther Ben Hania (Tunisia) Updated 9:49 PM / March 15, 2026 Best Cinematography "Sinners," Autumn Durald Arkapaw — Winner"Frankenstein," Dan Laustsen"Marty Supreme," Darius Khondji"One Battle After Another," Michael Bauman"Train Dreams," Adolpho Veloso Updated 9:45 PM / March 15, 2026 Best Editing "One Battle After Another," Andy Jurgensen — Winner"F1," Stephen Mirrione"Marty Supreme," Ronald Bronstein"Sentimental Value," Olivier Bugge Coutté"Sinners," Michael P. Shawver Updated 9:35 PM / March 15, 2026 Best Sound "F1" — Winner"Frankenstein""One Battle After Another""Sinners""Sirât" Updated 9:31 PM / March 15, 2026 Best Original Score "Sinners," Ludwig Göransson — Winner"Bugonia," Jerskin Fendrix"Frankenstein," Alexandre Desplat"Hamnet," Max Richter"One Battle After Another," Jonny Greenwood Updated 9:18 PM / March 15, 2026 Best Documentary Feature "Mr. Nobody Against Putin" — Winner"The Alabama Solution""Come See Me in the Good Light""Cutting Through Rocks""The Perfect Neighbor" Updated 9:16 PM / March 15, 2026 Best Documentary Short "All the Empty Rooms" — Winner"Armed Only With a Camera: The Life and Death of Brent Renaud""Children No More: Were and Are Gone""The Devil Is Busy""Perfectly a Strangeness" Updated 9:12 PM / March 15, 2026 Best Visual Effects "Avatar: Fire and Ash" — Winner"F1""Jurassic World Rebirth""The Lost Bus""Sinners" Updated 9:09 PM / March 15, 2026 Best Production Design "Frankenstein," Tamara Deverell and Shane Vieau — Winner"Hamnet," Fiona Crombie and Alice Felton"Marty Supreme, "Jack Fisk and Adam Willis"One Battle After Another," Florencia Martin"Sinners," Hannah Beachler and Monique Champagne Updated 9:06 PM / March 15, 2026 Best Original Screenplay "Sinners," Ryan Coogler — Winner"Blue Moon," Robert Kaplow"It Was Just an Accident," Jafar Panahi"Marty Supreme," Ronald Bronstein and Josh Safdie"Sentimental Value," Joachim Trier and Eskil Vogt Updated 9:00 PM / March 15, 2026 Best Adapted Screenplay "One Battle After Another," Paul Thomas Anderson — Winner"Bugonia," Will Tracy"Frankenstein," Guillermo Del Toro"Hamnet," Maggie O'Farrell and Chloé Zhao"Train Dreams," Clint Bentley and Greg Kwedar Updated 8:55 PM / March 15, 2026 Best Supporting Actor Sean Penn, "One Battle After Another" — WinnerBenicio Del Toro, "One Battle After Another"Jacob Elordi, "Frankenstein"Delroy Lindo, "Sinners"Stellan Skarsgård, "Sentimental Value" Updated 8:50 PM / March 15, 2026 Best Live-Action Short "The Singers" and "Two People Exchanging Saliva" — Winners (tie)"Butcher's Stain""A Friend of Dorothy""Jane Austen's Period Drama" Updated 8:45 PM / March 15, 2026 Best Casting Cassandra Kulukundis, "One Battle After Another" — WinnerNina Gold, "Hamnet"Jennifer Venditti, "Marty Supreme"Gabriel Domingues, "The Secret Agent"Francine Maisler, "Sinners" Updated 8:30 PM / March 15, 2026 Best Makeup and Hairstyling "Frankenstein," Mike Hill, Jordan Samuel and Cliona Furey — Winner"Kokuho," Kyoko Toyokawa, Naomi Hibino and Tadashi Nishimatsu"Sinners," Ken Diaz, Mike Fontaine and Shunika Terry"The Smashing Machine," Kazu Hiro, Glen Griffin, and Bjoern Rehbein"The Ugly Stepsister," Thomas Foldberg and Anne Cathrine Sauerberg Updated 8:10 PM / March 15, 2026 Best Costume Design "Frankenstein," Kate Hawley — Winner"Avatar: Fire and Ash," Deborah L. Scott"Hamnet," Malgosia Turzanska"Marty Supreme," Miyako Bellizzi"Sinners," Ruth E. 8arter Updated 7:21 PM / March 15, 2026 Best Animated Short "The Girl Who Cried Pearls" — Winner"Butterfly""Forevergreen""Retirement Plan""The Three Sisters" Updated 7:21 PM / March 15, 2026 Best Animated Feature "KPop Demon Hunters" — Winner"Arco""Elio""Little Amélie or the Character of Rain""Zootopia 2" Updated 7:21 PM / March 15, 2026 Best Supporting Actress Amy Madigan, "Weapons" — WinnerElle Fanning, "Sentimental Value"Inga Ibsdotter Lilleaas, "Sentimental Value"Wunmi Mosaku, "Sinners"Teyana Taylor, "One Battle After Another"
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

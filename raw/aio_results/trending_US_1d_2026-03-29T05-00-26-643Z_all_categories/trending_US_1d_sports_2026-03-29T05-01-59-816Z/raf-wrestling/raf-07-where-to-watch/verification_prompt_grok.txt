@@ -1,0 +1,96 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "raf 07 where to watch"
+
+Claims:
+[1] "RAF 07: Road to the Rematch is streaming live on Fox Nation."
+[2] "RAF 07: Road to the Rematch is on March 28, 2026."
+[3] "RAF 07: Road to the Rematch starts at 8 p.m. ET."
+[4] "RAF 07: Road to the Rematch features Arman Tsarukyan vs. Georgio Poullas 2."
+[5] "RAF 07: Road to the Rematch is available exclusively on Fox Nation."
+[6] "The platform for RAF 07: Road to the Rematch is Fox Nation (Website & App)."
+[7] "The location of RAF 07: Road to the Rematch is Yuengling Center, Tampa, FL."
+[8] "RAF 07: Road to the Rematch includes multiple championship belts on the line, including the main event fight."
+
+Cited text snippets from the AI Overview (for additional context):
+- Watch RAF 07: Road to the Rematch - Fox Nation: "Stream full episodes of RAF 07: Road,member today for exclusive content & more!"
+- RAF 07 Tsarukyan vs. Poullas 2 live discussion, results and highlights: "RAF 07 kicks off at,and discussion throughout the evening."
+- It ends tomorrow. Arman Tsarukyan vs. Georgio Poullas Watch RAF 07 ...: "It ends tomorrow.-,Arman Tsarukyan vs. Georgio Poullas Watch RAF 07 LIVE with,https://bit.ly/3PCGmMY"
+- Four RAF Championship Belts on the line tonight! RAF 07 Live at 8 ...: "Four RAF Championship Belts on,See you there!"
+- Real American Freestyle-RAF 7 Tampa - Prime Video: "Prime Video | Watch movies, TV,shows, Live TV, and sports"
+- Real American Freestyle Wrestling | RAF07 | Tampa, FL: "RAF 07 is live now from Tampa,,event on Fox Nation, including the rematch"
+Reference Sources:
+
+[R1] Watch RAF 07: Road to the Rematch | Fox Nation
+(https://nation.foxnews.com/raf-07-road-to-the-rematch-nation/)
+"""
+Aired 3/20/26Chael Sonnen sits down with Georgio Poullas and Arman Tsarukyan to relive the chaos of their viral post-match brawl at RAF06 and to preview their explosive rematch at RAF07.Sports, Documentary, Interview TV-MA LPlayMore to WatchNEWAboutWhat started as a freestyle wrestling match ended in a viral brawl. In these must-watch sit-down interviews, Chael Sonnen visits with Georgio Poullas and Arman Tsarukyan to reflect on their controversial first match and their highly anticipated rematch. What really happened that night? Who crossed the line? And more importantly… who’s walking into the rematch with the upper hand?Fox NationRAF 07: Road to the RematchJoin Fox Nation Now with a Limited Time Offer!Fox Nation brings you original shows, documentaries and movies that celebrate America. Our stories, our values, our people – every day!Get StartedWhat is Fox Nation?1000's of HoursYour favorite personalities, Fox Nation Originals, exclusive documentaries.Watch Anytime, AnywhereWatch or listen on your phone, web, or TV streaming device.Start Watching Now. Cancel Anytime.Get Started
+"""
+
+[R2] RAF 07 Tsarukyan vs. Poullas 2 live discussion, results and highlights
+(https://sports.yahoo.com/articles/raf-07-tsarukyan-vs-poullas-212500714.html)
+"""
+Real American Freestyle (RAF) returns TONIGHT (Sat., March 28, 2026) with its seventh event, streaming live from Yuengling Center of the University of South Florida in Tampa, FloridaIn the RAF 07 main event, No. 1-ranked Ultimate Fighting Championship (UFC) Lightweight and almost-title challenger Arman Tsarukyan collides with Georgio Poullas in a heated rematch — in which a brawl broke out after their first meeting.AdvertisementThe co-main event features three-time UFC title challenger Colby Covington and former all-around troublemaker Dillon Danis in a match that should be utter chaos. In addition, four title fights are scheduled to go down on a ridiculously stacked card.RAF 07 kicks off at 8 p.m. ET and airs exclusively on FOX Nation.Below, you’ll find live results, highlights, and discussion throughout the evening.RAF 06 Results and Highlights:RAF 07 Main Event175 lbs: Arman Tsarukyan defeats Georgio Poullas 2 via points, 9-3RAF 07 Co-Main Event190 lbs: Colby Covington defeats Dillon Danis via Tech-Fall (14-4)RAF 07 Main Card190 lbs: Kyle Dake defeats Parker Keckeisen via points, 7-1 – Cruiserweight championship match215 lbs: Kyle Snyder defeats Akhmed Tazhudinov via Criteria, 3-3 – Light Heavyweight championship match150 lbs: Kennedy Blades defeats Milana Dudieva via Tech-Fall (11-0) – Middleweight championship match285 lbs: Wyatt Hendrickson defeats Trent Hillger via points, 6-2 – Heavyweight championship match145 lbs: Bo Bassett defeats Vladimer Khinchegashvili via Tech-Fall 13-3 (3rd period)190 lbs: Aeoden Sinclair defeats Khidir Saipudinov via points, 9-4175 lbs: Jason Nolf defeats Tajmuraz Salkazanov via Tech-Fall, 10-0 (1st period)215 lbs: Trent Hidlay defeats Pat Downey via Tech-Fall, 12-0 (2nd period)145 lbs: Johnni DiJulius defeats Conor Beebe via points, 9-6For the latest combat sports-related news and notes click here.
+"""
+
+[R3] RAF 07 Tsarukyan vs. Poullas 2: Preview, picks, how to watch and more
+(https://fansided.com/raf-07-tsarukyan-vs-poullas-2-preview-picks-how-to-watch-and-more)
+"""
+On March 28, the Yuengling Center in Tampa, FL will play host to RAF 07: Tsarukyan vs. Poullas 2. This is a huge event for the budding young promotion and a must-watch for any true combat sports fans.What is RAF and how does it work? The freestyle wrestling organization was founded nearly a year ago in April 2025 by Chad Bronstein, Terri Francis, and professional wrestling icons Eric Bischoff and Hulk Hogan, the latter of whom passed away last August. RAF brings together a wide range of competitors, including collegiate and Olympic wrestlers, high school wrestlers, and both retired and active MMA fighters, which forms a big part of the excitement leading into RAF 07. The RAF website explains, in what essentially amounts to a mission statement for its cause: "Real American Freestyle is designed to showcase the purity and drama of wrestling at the highest level. With clear rules, action-oriented scoring and definitive endings, every match promises intensity from start to finish." But how exactly do these matches at RAF play out? In the world of RAF, the action unfolds over three two-minute rounds, with quick 30-second breaks in between. At the end of regulation, the wrestler who boasts the higher score is declared the victor. However, in case of a tie, the winner is chosen based on criteria that emphasizes who scored the last point. Most RAF contests are decided on points, but other match outcomes include pinfalls, technical falls, disqualifications, or if a wrestler is injured and cannot continue. For more about the scoring rules and the various ways matches can end, visit the official Real American Freestyle website. RAF 07 main event and co-main event:The promotion’s seventh numbered card will feature 11 fights, four of them being title bouts, and several high-profile debuts. The headliner serves as a rematch of a tense clash from the previous RAF card, RAF 06: Cejudo vs. Faber. Also on tap at RAF 07 is a co-main event featuring two polarizing MMA personalities, who look to back up their outspoken trash talk with a showdown on the mat.Main Event (Middleweight Bout): Arman Tsarukyan vs. Georgio PoullasArman Tsarukyan is no stranger to controversy. Despite being one of the top pound-for-pound fighters in the UFC and a standout of their lightweight division, the 29-year-old Armenian fighter has injected some of that explosive personality into the RAF scene. Their initial encounter at RAF 06 saw Tsarukyan defeat Georgio Poullas by decision (5-3), but immediately afterward, a scuffle broke out involving both fighters and their teams — forcing security and RAF personnel to intervene. Echoing a principle from RAF’s CMO Eric Bischoff (and one of my all-time favorite pro wrestling personalities) — “Controversy Creates Cash.” In any sport, especially the world of combat, ignoring a rivalry or unresolved drama isn’t exactly practical. You probably don't want to 'promote' it outright, but combat sports thrive by confronting heated issues head-on or leveraging tension to develop a more intense story, and in turn — more eyes on the product. Now, with Tsarukyan vs. Poullas 2 taking center stage at RAF 07, I think it's pretty safe to say the post-fight antics drew enough buzz to warrant a second encounter. Expect tighter security and more officials on deck to maintain a professional environment. We’d prefer to keep things from boiling over again... right? Now, onto my official prediction for the rematch.Their first bout was intense, and I’m not just referencing the post-fight stuff. Tsarukyan was visibly irritated over what he believed were repeated fouls by Poullas, making for a pretty scrappy affair overall. With all due respect to Poullas and his credentials, I wouldn’t underestimate a premier athlete like Tsarukyan, whose attitude is 100% full throttle and fueled by an fiery desire to win.Are they both hot-headed? No doubt. And unless these combustible elements explode in some uncontainable way (a DQ finish would honestly be nuts), I believe Tsarukyan comes out on top once again if we're just talking pure skill. Prediction: Arman TsarukyanCo-Main Event (Cruiserweight Bout): Colby Covington vs. Dillon DanisWhile we're on the subject of combustible elements, I think Colby Covington and Dillon Danis embody that tagline perfectly. Both fighters have made a name for themselves in the combat sports scene, thanks to their bold personalities and antics both in and out of competition. Danis is probably best known for catching Khabib Nurmagomedov's post-fight fury at UFC 229, while Covington has equally drawn enemies along the way, including his former best friend turned bitter rival Jorge Masvidal, and another arguable all-time MMA rivalry (with much better fights) opposite Kamaru Usman. I wouldn’t be surprised if this all leads to another post-fight scuffle or even a heated in-fight clash. Looking at their experience and skills, Colby Covington definitely has the edge — he’s a former NCAA Division I All-American, after all. Again, not to say that Danis lacks a grappling pedigree, but he has dabbled in everything from celebrity boxing to MMA, and of course, his base in Brazilian Jiu-Jitsu. When discussing Covington, you can't ignore his wrestling skills being the bread and butter for "Chaos."To be honest, I find it hard to trust Dillon Danis, as he's way too unpredictable and more of a name than anything. Yes, Covington is very much on the same boat, but he's still a viable fighter at heart. Considering Danis’ unfamiliarity with RAF (since this is his first fight in the promotion), the overall fight-time experience and skill gap, and the fact that "Chaos" is a key face of RAF's efforts — I'm leaning the former interim UFC Welterweight Champion in this one. Prediction: Colby CovingtonRAF 07: The rest of the cardOther fights on the RAF 07: Tsarukyan vs. Poullas 2 card include (detailed rundown here): Cruiserweight Championship Bout: Kyle Dake (c) vs. Parker KeckeisenVacant Light Heavyweight Championship Bout: Akhmed Tazhudinov vs. Kyle SnyderWomen's Middleweight Championship Bout: Kennedy Blades (c) vs. Milana DudievaHeavyweight Championship Bout: Wyatt Hendrickson (c) vs. Trent HillgerFeatherweight Bout: Bo Bassett vs. Vladimer KhinchegashviliCruiserweight Bout: Khidir Saipudinov vs. Aeoden SinclairMiddleweight Bout: Tajmuraz Salkazanov vs. Jason NolfLight Heavyweight Bout: Pat Downey vs. Trent Hidlay Featherweight Bout: Johnni DiJulius vs. Conor BeebeHow to watch RAF 07?Date: March 28, 2026 Time: 8:00 p.m. ETLocation: Yeungling Center of University of South Florida; Tampa, FLTV Information: Streaming live exclusively on Fox Nation
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

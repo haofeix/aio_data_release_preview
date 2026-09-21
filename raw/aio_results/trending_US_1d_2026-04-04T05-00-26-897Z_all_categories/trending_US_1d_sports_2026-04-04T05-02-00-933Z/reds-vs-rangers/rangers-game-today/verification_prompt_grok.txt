@@ -1,0 +1,91 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "rangers game today"
+
+Claims:
+[1] "The Texas Rangers are playing the Cincinnati Reds at Globe Life Field in Arlington on April 4, 2026 at 7:05 PM."
+[2] "The Texas Rangers and the Cincinnati Reds had a previous matchup on April 3, 2026."
+[3] "The game date is Saturday, April 4, 2026."
+[4] "The game time is 7:05 PM local time."
+[5] "The game location is Globe Life Field, Arlington, TX."
+
+Cited text snippets from the AI Overview (for additional context):
+- Elly De La Cruz's third homer of the season for the Reds ...: "Reds vs. Rangers Game Highlights (4/3/26) |,80s That Would Break the Internet Today."
+- Reds 5-3 Rangers (Apr 3, 2026) Game Recap: "Game Information,Game Time:2:26"
+- Reds 5-3 Rangers (4 Apr, 2026) Game Recap - ESPN (AU): "Reds 5-3 Rangers (4,Game Recap - ESPN (AU)"
+- Texas Rangers 2026 1st Half MLB Schedule - ESPN: "ESPN has the full 2026 Texas Rangers,and ticket information for all Rangers games."
+Reference Sources:
+
+[R1] Texas Rangers 2026 1st Half MLB Schedule - ESPN
+(https://www.espn.com/mlb/team/schedule/_/name/tex)
+"""
+DATEOPPONENTRESULTW-LWINLOSSSAVEATTThu, Mar 26@ Philadelphia L5-3 0-1Sanchez 1-0Eovaldi 0-1Duran 144,610Sat, Mar 28@ Philadelphia W5-4 F/10 1-1Martin 1-0Duran 0-1Alexander 140,051Sun, Mar 29@ Philadelphia W8-3 2-1Gore 1-0Luzardo 0-138,018Mon, Mar 30@ Baltimore W5-2 3-1Leiter 1-0Bassitt 0-1Alexander 211,209Tue, Mar 31@ Baltimore W8-5 4-1Winn 1-0Cano 0-113,542Wed, Apr 1@ Baltimore L8-3 4-2Rogers 2-0Eovaldi 0-2Suarez 114,324Fri, Apr 3vs Cincinnati L5-3 4-3Santillan 1-0Martin 1-1Pagan 237,635Sat, Apr 4vs Cincinnati L2-0 4-4Lowder 1-0Rocker 0-1Pagan 336,393Sun, Apr 5vs Cincinnati L2-1 4-5Moll 1-0Garcia 0-1Burke 131,561Mon, Apr 6vs Seattle W2-1 5-5Beeks 1-0Gilbert 0-2Junis 123,901Tue, Apr 7vs Seattle W3-2 6-5Eovaldi 1-2Kirby 1-2Junis 222,411Wed, Apr 8vs Seattle W3-0 7-5Gore 2-0Woo 0-1Winn 120,997Fri, Apr 10@ Los Angeles L8-7 7-6Diaz 1-0Latz 0-153,675Sat, Apr 11@ Los Angeles L6-3 7-7Sheehan 2-0Leiter 1-1Vesia 153,617Sun, Apr 12@ Los Angeles W5-2 8-7deGrom 1-0Sasaki 0-2Junis 348,530Mon, Apr 13@ Athletics W8-1 9-7Eovaldi 2-2Severino 0-28,344Tue, Apr 14@ Athletics L2-1 9-8Springs 3-0Gore 2-1Leiter Jr. 28,031DATEOPPONENTTIMETVPITCHEROPPticketsWed, Apr 15@ Athletics LIVE Rocker Ginn Buy on Vivid Seats Thu, Apr 16@ Athletics 2:05 PM Leiter Lopez Tickets as low as $12 Fri, Apr 17@ Seattle 8:40 PM deGrom Gilbert Tickets as low as $19 Sat, Apr 18@ Seattle 6:15 PM FOXEovaldi Kirby Tickets as low as $29 Sun, Apr 19@ Seattle 3:10 PM Gore Woo Tickets as low as $16 Tue, Apr 21vs Pittsburgh 7:05 PM Rocker Mlodzinski Tickets as low as $11 Wed, Apr 22vs Pittsburgh 7:05 PM Leiter Ashcraft Tickets as low as $14 Thu, Apr 23vs Pittsburgh 7:05 PM deGrom Chandler Tickets as low as $11 Fri, Apr 24vs Athletics 7:05 PM Eovaldi Severino Tickets as low as $18 Sat, Apr 25vs Athletics 6:05 PM Gore Springs Tickets as low as $19 Sun, Apr 26vs Athletics 1:35 PM Rocker Ginn Tickets as low as $19 Mon, Apr 27vs New York 7:05 PM Tickets as low as $32 Tue, Apr 28vs New York 7:05 PM Prime VideoTickets as low as $26 Wed, Apr 29vs New York 1:35 PM Tickets as low as $23 Fri, May 1@ Detroit 5:40 PM Tickets as low as $17 Sat, May 2@ Detroit 6:15 PM FOXTickets as low as $22 Sun, May 3@ Detroit 6:20 PM PeacockTickets as low as $11 Tue, May 5@ New York 6:05 PM Tickets as low as $8 Wed, May 6@ New York 6:05 PM MLB NetPrime VideoTickets as low as $6 Thu, May 7@ New York 11:35 AM Tickets as low as $9 Fri, May 8vs Chicago 7:05 PM Tickets as low as $33 Sat, May 9vs Chicago 6:05 PM Tickets as low as $38 Sun, May 10vs Chicago 1:35 PM Tickets as low as $37 Mon, May 11vs Arizona 7:05 PM Tickets as low as $13 Tue, May 12vs Arizona 7:05 PM Tickets as low as $10 Wed, May 13vs Arizona 7:05 PM Tickets as low as $11 Fri, May 15@ Houston 7:10 PM Tickets as low as $31 Sat, May 16@ Houston 6:10 PM Tickets as low as $46 Sun, May 17@ Houston 1:10 PM Tickets as low as $23 Mon, May 18@ Colorado 7:40 PM Tickets as low as $18 Tue, May 19@ Colorado 7:40 PM Tickets as low as $15 Wed, May 20@ Colorado 2:10 PM Tickets as low as $14 Fri, May 22@ Los Angeles 8:38 PM Tickets as low as $10 Sat, May 23@ Los Angeles 9:05 PM Tickets as low as $9 Sun, May 24@ Los Angeles 6:20 PM PeacockTickets as low as $10 Mon, May 25vs Houston 6:05 PM Tickets as low as $26 Tue, May 26vs Houston 7:05 PM Tickets as low as $14 Wed, May 27vs Houston 7:05 PM Tickets as low as $14 Thu, May 28vs Houston 7:05 PM Tickets as low as $17 Fri, May 29vs Kansas City 7:05 PM Tickets as low as $51 Sat, May 30vs Kansas City 3:05 PM FS1Tickets as low as $19 Sun, May 31vs Kansas City 1:35 PM Tickets as low as $19 Mon, Jun 1@ St. Louis 6:45 PM Tickets as low as $15 Tue, Jun 2@ St. Louis 6:45 PM Tickets as low as $15 Wed, Jun 3@ St. Louis 6:45 PM Tickets as low as $16 Fri, Jun 5vs Cleveland 7:05 PM Apple TVTickets as low as $17 Sat, Jun 6vs Cleveland 6:35 PM FOXTickets as low as $23 Sun, Jun 7vs Cleveland 1:35 PM Tickets as low as $20 Tue, Jun 9@ Kansas City 6:40 PM Tickets as low as $10 Wed, Jun 10@ Kansas City 6:40 PM Tickets as low as $10 Thu, Jun 11@ Kansas City 1:10 PM Tickets as low as $11 Fri, Jun 12@ Boston 6:10 PM Tickets as low as $68 Sat, Jun 13@ Boston 3:10 PM Tickets as low as $87 Sun, Jun 14@ Boston 6:20 PM NBCPeacockTickets as low as $78 Mon, Jun 15vs Minnesota 7:05 PM Tickets as low as $14 Tue, Jun 16vs Minnesota 7:05 PM Tickets as low as $12 Thu, Jun 18vs Minnesota 1:35 PM Tickets as low as $20 Fri, Jun 19vs San Diego 7:05 PM Tickets as low as $25 Sat, Jun 20vs San Diego 3:05 PM Tickets as low as $30 Sun, Jun 21vs San Diego 1:35 PM Tickets as low as $30 Mon, Jun 22@ Miami 5:40 PM Tickets as low as $11 Tue, Jun 23@ Miami 5:40 PM Tickets as low as $10 Wed, Jun 24@ Miami 11:10 AM Tickets as low as $12 Thu, Jun 25@ Toronto 6:07 PM Tickets as low as $24 Fri, Jun 26@ Toronto 6:07 PM Tickets as low as $37 Sat, Jun 27@ Toronto 2:07 PM Tickets as low as $41 Sun, Jun 28@ Toronto 12:37 PM Tickets as low as $31 Mon, Jun 29@ Cleveland 6:10 PM Tickets as low as $28 Tue, Jun 30@ Cleveland 5:40 PM Tickets as low as $28 Wed, Jul 1@ Cleveland 12:10 PM Tickets as low as $30 Thu, Jul 2vs Detroit 7:05 PM Tickets as low as $21 Sat, Jul 4vs Detroit 3:05 PM Tickets as low as $32 Sun, Jul 5vs Detroit 2:30 PM PeacockTickets as low as $21 Tue, Jul 7vs Los Angeles 7:05 PM Tickets as low as $11 Wed, Jul 8vs Los Angeles 7:05 PM Tickets as low as $14 Thu, Jul 9vs Los Angeles 7:05 PM Tickets as low as $17 Fri, Jul 10vs Houston 7:05 PM Tickets as low as $30 Sat, Jul 11vs Houston 6:05 PM Tickets as low as $38 Sun, Jul 12vs Houston 1:35 PM Tickets as low as $22
+"""
+
+[R2] Reds 5-3 Rangers (4 Apr, 2026) Game Recap - ESPN (AU)
+(https://www.espn.com.au/mlb/recap?gameId=401814789)
+"""
+ARLINGTON, Texas -- — Tyler Stephenson hit a tiebreaking two-run homer in the ninth inning and the Cincinnati Reds won in their first road game this season, a 5-3 victory to spoil the home opener for the Texas Rangers on Friday. Spencer Steer and Elly Del La Cruz also homered for the Reds. Steer opened the ninth with a double off reliever Chris Martin (1-1) before Stephenson lined a full-count pitch into the Rangers' bullpen in right-center for his first homer. Tony Santillian (1-0), the fourth of five Reds pitchers, pitched a perfect eighth inning. Emilio Pagán worked a 1-2-3 ninth for his second save. The Rangers played their first home game for new manager Skip Schumaker after taking two of three games in series at Philadelphia and Baltimore. The last time they played six games before their home opener was 2008. Steer's two-run homer in the second and De La Cruz going deep to lead off the sixth both came off MacKenzie Gore, the All-Star left-hander that came to Texas from Washington in January in a trade for five prospects. It was the third homer, all solo shots, for De La Cruz this season. Gore struck out nine without a walk while allowing those three runs over six innings in his first home start. Texas got even at 2 in the bottom of the second on No. 9 batter Danny Jansen's double under the the glove of diving left fielder Steer off Brady Singer, the Reds starter who struck out five and walked one while pitching into the sixth. Brandon Nimmo had a one-out triple in the Texas seventh before Wyatt Langford's RBI double for a 3-3 tie. Up next Reds right-hander Rhett Lowder, still a rookie after making his MLB debut in 2024 and then missing all of 2025 because of forearm and oblique strains, makes his second start this season Saturday. Rangers right-hander Kumar Rocker, their No. 5 starter, makes his season debut. ------ AP MLB: https://apnews.com/hub/mlb
+"""
+
+[R3] Reds 5-3 Rangers (Apr 3, 2026) Game Recap - ESPN
+(https://www.espn.com/mlb/recap?gameId=401814789)
+"""
+ARLINGTON, Texas -- — Tyler Stephenson hit a tiebreaking two-run homer in the ninth inning and the Cincinnati Reds won in their first road game this season, a 5-3 victory to spoil the home opener for the Texas Rangers on Friday. Spencer Steer and Elly Del La Cruz also homered for the Reds. Steer opened the ninth with a double off reliever Chris Martin (1-1) before Stephenson lined a full-count pitch into the Rangers' bullpen in right-center for his first homer. Tony Santillian (1-0), the fourth of five Reds pitchers, pitched a perfect eighth inning. Emilio Pagán worked a 1-2-3 ninth for his second save. The Rangers played their first home game for new manager Skip Schumaker after taking two of three games in series at Philadelphia and Baltimore. The last time they played six games before their home opener was 2008. Steer's two-run homer in the second and De La Cruz going deep to lead off the sixth both came off MacKenzie Gore, the All-Star left-hander that came to Texas from Washington in January in a trade for five prospects. It was the third homer, all solo shots, for De La Cruz this season. Gore struck out nine without a walk while allowing those three runs over six innings in his first home start. Texas got even at 2 in the bottom of the second on No. 9 batter Danny Jansen's double under the the glove of diving left fielder Steer off Brady Singer, the Reds starter who struck out five and walked one while pitching into the sixth. Brandon Nimmo had a one-out triple in the Texas seventh before Wyatt Langford's RBI double for a 3-3 tie. Up next Reds right-hander Rhett Lowder, still a rookie after making his MLB debut in 2024 and then missing all of 2025 because of forearm and oblique strains, makes his second start this season Saturday. Rangers right-hander Kumar Rocker, their No. 5 starter, makes his season debut. ------ AP MLB: https://apnews.com/hub/mlb
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,111 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "one piece popeyes collab bento box"
+
+Claims:
+[1] "Popeyes x One Piece collaboration launches April 13, 2026."
+[2] "Luffy Bento Box costs $7.99."
+[3] "Luffy Bento Box includes 2 pieces of bone-in chicken (spicy or classic) and mac & cheese."
+[4] "Luffy Bento Box has custom packaging featuring Monkey D. Luffy."
+[5] "Luffy Bento Bundle costs $13.99."
+[6] "Luffy Bento Bundle includes Luffy Bento Box."
+[7] "Luffy Bento Bundle includes purple "Gum-Gum Fruit" lemonade."
+[8] ""Gum-Gum Fruit" lemonade contains pineapple, blue raspberry, and orange."
+[9] "Luffy Bento Bundle includes strawberry "Chopper's Cupcake"."
+[10] "Special anime-themed packaging available at participating locations nationwide."
+[11] "Specialized physical bento boxes limited to select cities including New York, Los Angeles, and Miami."
+[12] "Physical rigid collectible bento boxes released at select stores in New York, Los Angeles, and Miami on April 13, 2026."
+[13] "Additional merchandise scheduled for Popeyes website on April 15, 2026."
+[14] "Promotion expected to run through May 10, 2026."
+[15] "According to social media updates, rigid highly collectible bento box packaging exclusive to only a few select locations."
+[16] "According to social media updates, standard themed paper boxes available nationwide."
+
+Cited text snippets from the AI Overview (for additional context):
+- 🍗 POPEYES X ONE PIECE COLLAB IS REAL!! Time to grab a feast ...: "Set sail for the Louisiana,Here's what's inside:&text=Luffy Bento Box: Custom-designed,packaging featuring Monkey D. Luffy.&text=The"
+- Unboxing! @popeyes x one piece luffy collectible bento box # ...: "Luffy Bento Box: Custom-designed,packaging featuring Monkey D. Luffy.&text=The Main Course: 2 pieces,chicken (spicy or classic).&text=The Side: A hearty serving of Mac & Cheese.&text=Gum-Gum Fruit Lemonade: A,patterns of the Devil Fruit!&text=Chopper's Cupcake: A pink strawberry,for the custom Luffy box?"
+- Got my One Piece x Popeyes Box! : r/OnePiece - Reddit: "Sadly, the actual bento box is only,box only comes with the One Piece"
+- 'One Piece' teams up with Popeyes for meal, menu items fit for pirates: "Luffy Bento Box, $7.99- Includes,Fruit lemonade, and Chopper's Cupcake"
+- Popeyes x ONE PIECE Collab Launches with Anime-Inspired Menu, Collectibles: "Luffy Bento Bundle ($13.99,course for a legendary destination."
+- How to get the Popeyes 'One Piece' Bento Box: "The release on Monday included,T-shirts and Bento Boxes."
+- Popeyes x ONE PIECE Collab: Menu, Collectibles and How to Get ...: "Here's what's on the menu * Luffy,citrusy, and clearly designed for the 'gram."
+Reference Sources:
+
+[R1] Popeyes Just Launched ONE PIECE Collab—And Fans Are Already on the Hunt for the Limited Collectibles
+(https://www.goodhousekeeping.com/food-products/a70911144/popeyes-one-piece-collab/)
+"""
+3 min readThe collectibles are the main draw—and they’ll go fast: Limited drops and early social media buzz mean fans will need to act quickly.Fans were already hyping it before launch: ONE PIECE’s massive fanbase has been circulating leaks across TikTok, Reddit, and X.It’s more than a meal—it’s a viral moment: Themed items and collectibles turn this into a shareable, repeat-visit experience.Anime fans, prepare to set sail—because Popeyes just dropped its first-ever ONE PIECE collab, and this one isn’t just about the chicken. It’s about the loot—including limited-edition boxes and merch fans will have to move fast to score.(If you’re not familiar, ONE PIECE is the long-running, globally beloved anime about a crew of pirates searching for the ultimate treasure.)Toei AnimationLaunching April 13 in partnership with Toei Animation, the limited-time menu turns your usual Popeyes run into something closer to a Straw Hat crew pit stop—with exclusive collectibles designed to trigger full-on “Gotta catch them all” mode.More From Good HousekeepingSunscreen | Good to Know | Good HousekeepingLIVECurrent Time 0:00Total Duration 6:43And yes, the food is themed. But make no mistake: the real treasure here isn’t the biscuit—it’s what comes with it.This isn’t just a meal—it’s a full-on fandom dropCourtesy of PopeyesFast food collabs live and die by the extras, and Popeyes clearly understood the assignment.This ONE PIECE drop leans hard into fan-first details and collectible hype, the kind that gets posted, traded, and hunted down across TikTok and Reddit within hours. Think less “quick lunch” and more “limited-edition merch drop you can eat.”If you’ve ever wanted to eat like Luffy mid-adventure (or just justify a second visit for “collection purposes”), this is your moment.Here’s what’s on the menuCourtesy of PopeyesThe lineup is playful, themed, and very much built for the camera:Luffy Bento Bundle ($13.99): Two pieces of fried chicken, creamy mac & cheese, a Gum-Gum Fruit Lemonade, and Chopper’s CupcakeLuffy Bento Box ($7.99): Fried chicken + mac & cheeseGum-Gum Fruit Lemonade ($3.49): Bright, citrusy, and clearly designed for the ‘gramChopper’s Cupcake ($3.99): Cute, sweet, and almost too adorable to eat (almost)It’s giving Grand Line lunchbox energy—comfort food with just enough theming to make it feel like part of the adventure.Let’s be honest: No one is assembling the Straw Hat crew for mac and cheese alone.Before Popeyes even made it official, fans were already circulating TikToks, Reddit leaks, and X (Twitter) posts of the merch—because of course they were.This content is imported from x. You may be able to find the same content in another format, or you may be able to find more information, at their web site.The exclusive collectibles are what elevate this from a standard limited time offering into something fans will actively chase. Limited availability + built-in fandom = repeat visits, trading, and instant social buzz.If you want the limited-edition Bento Box, you’ll need to move fast—only select guests will score one, with more merch (think keychains and tees) dropping online April 15.Courtesy of PopeyesThis is the same playbook that made past collabs go viral—but with ONE PIECE, the stakes are higher. The fanbase is massive, loyal, and very online. If there’s something rare in the mix, expect it to disappear faster than Luffy clearing a meat platter.What’s actually worth orderingIf you’re going in with a strategy (as you should), here’s the move:Get the Luffy Bento Bundle: It’s the full experience—and your best shot at maximizing whatever collectible rollout Popeyes has in playDon’t skip the lemonade: The Gum-Gum Fruit tie-in is gimmicky in a fun way, and it’s easily the most on-theme itemChopper’s Cupcake = pure fan bait: It’s cute, it’s collectible-adjacent, and yes, people will post itTranslation: this is less about building the perfect meal and more about unlocking the full collab experience.Why anime fast food collabs keep getting biggerBetween ONE PIECE’s global dominance and the rise of fandom-driven drops, this collab hits a very specific sweet spot: food + collectibles + internet culture.Anime isn’t niche anymore—it’s mainstream, it’s global, and brands know fans will show up (and show out) when there’s something exclusive on the line. Just look at McDonald’s viral ‘WcDonald’s’ anime drop or Pokémon Happy Meals—fans will absolutely show up (and line up) when collectibles are on the table.So whether you’re here for the chicken, the cupcake, or the chance to score something rare, one thing’s clear:Popeyes didn’t just launch a meal—they launched a treasure hunt.Susan (she/her) is the recipe editor at Good Housekeeping, where she pitches ideas, parses words, and produces food content. In the Test Kitchen, she cooks (and samples!) recipes, working with developers to deliver the best written versions possible. A graduate of Brown University and a collaborator on several cookbooks, her previous experience includes stints at Food & Wine, Food Network, three meal kit companies, a wine shop in Brooklyn and Chez Panisse, the pioneering restaurant in Berkeley, California. She enjoys playing tennis, natural wines and reality competition shows.Read full bio
+"""
+
+[R2] How to get the Popeyes 'One Piece' Bento Box
+(https://www.abc10.com/article/news/nation-world/popeyes-one-piece-collab-bento-box/507-e3393007-7b13-40a3-8836-123cc887c7e0)
+"""
+The restaurant chain has announced a collaboration with the popular anime with a new meal lineup and merchandise. WASHINGTON — Popeyes has announced a collaboration with the popular anime "One Piece" with a limited-time menu and collectibles — but fans who missed the merchandise giveaway at six U.S. locations on Monday will have another shot. In a news release, Popeyes called the collaboration a celebration of "One Piece," a long-running Japanese manga and anime about pirates and the hunt for a legendary treasure that has gained global popularity. On Monday, the chain's locations in the U.S. and Canada added a limited-time menu featuring item names familiar to fans of the anime's Straw Hat Crew, including a Luffy Bento Box, Gum-Gum Fruit Lemonade and Chopper's Cupcake. "The story is about adventure, loyalty, and going all-in for the things you love," said Matt Rubin, Popeyes chief marketing officer. "This energy perfectly aligns with Popeyes and comes to life throughout this partnership with Toei Animation. We set out to create a collaboration that brings our bold flavors into the world of 'One Piece' and its anime fandom, the kind of meal you'd want before setting sail for the Grand Line." The release on Monday included collectible "One Piece" Bento Boxes that were part of a giveaway at select Popeyes restaurants in New York, Boston, New Jersey, Chicago, Los Angles and Miami. Videos posted to social media showed long lines outside Popeyes locations that were participating in the merch drop. For those who didn't snag a Bento Box in Monday's giveaway, Popeyes will also release merchandise on its website starting Wednesday, April 15, including keychains, T-shirts and Bento Boxes.
+"""
+
+[R3] 'One Piece' teams up with Popeyes for meal, menu items fit for pirates
+(https://www.usatoday.com/story/money/food/2026/04/13/popeyes-one-piece-collab-meal-bento-boxes/89535571007/)
+"""
+April 13, 2026Updated April 14, 2026, 1:03 p.m. ETPopeyes is teaming up with the Straw Hats to bring fans a "One Piece"-inspired menu featuring an entree, a drink, and even a dessert inspired by Tony Tony Chopper.Starting on Monday, April 13, fans of one of the most beloved anime will be able to chow down like the future King of the Pirates, as participating Popeyes restaurants across the U.S. and Canada introduce the Popeyes x One Piece menu for a limited time, according to a news release emailed to USA TODAY.On the day the menu unveils, a limited number of customers who purchase Popeyes Luffy Bento Bundle at select locations will receive official "One Piece" bento boxes for free.Here's what to know about Popeyes latest collab.What is on the Popeyes x One Piece menu?The following items are on the menu:Luffy Bento Box, $7.99- Includes two pieces of Popeyes Signature Chicken and mac and cheese.Gum-Gum Fruit Lemonade, $3.49- A lemonade inspired by the fictional "Gum-Gum Fruit," the Devil Fruit that gave Captain Monkey D. Luffy his powers.Chopper’s Cupcake, $3.99- A pink cake with pink frosting named after the Straw Hat crew's doctor, Tony Tony Chopper.Luffy Bento Bundle, $13.99- The bundle includes pieces of Popeyes Signature Chicken, mac and cheese, a Gum-Gum Fruit lemonade, and Chopper’s CupcakeWhich locations will be giving away free bento boxes?A limited number of customers who purchase a Luffy Bento Box Bundle at these locations will receive a free collectible bento box:New York City - 1530 Broadway, New YorkBoston - 304 Squire Road, Revere, MassachusettsNew Brunswick - 571 Milltown Road, New JerseyChicago - 621 Ogden Ave., Downers Grove, IllinoisLos Angeles - 7635 Winnetka Ave., CaliforniaMiami Beach- 1427 Washington Ave., FloridaFans can also get Popeyes x One Piece merchOn Wednesday, April 15, Popeyes will also release exclusive Popeyes x One Piece merchandise, which includes keychains, T-shirts, and Bento Boxes, according to the news release. The merchandise will be available for purchase online at shop.popeyes.com.What is 'One Piece'?"One Piece" is a Japanese comic book, also known as a manga, created by Eiichiro Oda in 1997. Since its publication, it has been translated into multiple languages, including English. A Japanese animated show (anime), the Netflix live-action show, and multiple movies have also been created based on the manga.On Tuesday, March 3, Crunchyroll announced that the "One Piece" comic has sold over 600 million copies, surpassing Superman and becoming the best-selling comic book of all time.Oda is the eighth best-selling author of all time, and sits behind J. K. Rowling, who sold 600 to 650 million copies of the Harry Potter novels, according to Crunchyroll. Oda is also the only Japanese author and the second non-English-language author listed in the top 10.This story has been updated to include new information.Julia Gomez is a Trending reporter for USA TODAY and covers popular toys, space phenomena, scientific studies, natural disasters, holidays, and trending news. Connect with her on LinkedIn, X, Instagram, and TikTok: @juliamariegz, or email her at jgomez@gannett.com.
+"""
+
+[R4] Anime News, Top Stories & In-Depth Anime Insights - Crunchyroll News
+(https://www.crunchyroll.com/news/latest/2026/4/13/popeyes-one-piece-collab-delivers-anime-inspired-menu-collectibles)
+"""
+LoaderOur site uses cookies and other technologies to run this site, improve its operation and to deliver ads and other marketing materials to you. To learn more about how we use cookies, please see our Privacy Policy.To manage the cookies this site uses, please click here. OKPrivacy Preference CenterWhen you visit our website, we store cookies on your browser to collect information. The information collected might relate to you, your preferences or your device, and is mostly used to make the site work as you expect it to and to provide a more personalized web experience. However, you can choose not to allow certain types of cookies, which may impact your experience of the site and the services we are able to offer. Click on the different category headings to find out more and change our default settings according to your preference. You cannot opt-out of our Strictly Necessary Cookies as they are deployed in order to ensure the proper functioning of our website (such as prompting the cookie banner and remembering your settings, to log into your account, to redirect you when you log out, etc.). For subdomains, please check your cookie preferences to ensure your selection options have not changed. For more information about the First and Third Party Cookies used please follow this link. More informationAllow All Manage Consent PreferencesStrictly Necessary CookiesAlways ActiveThese cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work. View Vendor DetailsFunctional Cookies Functional Cookies These cookies enable the website to provide enhanced functionality and personalisation. They may be set by us or by third party providers whose services we have added to our pages. If you do not allow these cookies then some or all of these services may not function properly.View Vendor DetailsPerformance Cookies Performance Cookies These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site. View Vendor DetailsTargeting Cookies Targeting Cookies These cookies may be set through our site by our partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites, limit how often you see the same ads on our sites and allow us to display and deliver content related your interests. If you do not allow these cookies, you may experience less relevant advertising and content.View Vendor DetailsBack ButtonVendors List Search IconFilter IconClear checkbox label labelApply CancelConsent Leg.Interest checkbox label label checkbox label label checkbox label label Confirm My Choices
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

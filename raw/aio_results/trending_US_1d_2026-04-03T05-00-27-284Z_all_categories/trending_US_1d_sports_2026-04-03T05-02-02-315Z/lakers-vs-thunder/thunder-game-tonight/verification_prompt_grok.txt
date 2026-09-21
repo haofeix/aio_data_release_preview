@@ -1,0 +1,116 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "thunder game tonight"
+
+Claims:
+[1] "Oklahoma City Thunder have a 60-16 record"
+[2] "Los Angeles Lakers have a 50-26 record"
+[3] "Oklahoma City Thunder host Los Angeles Lakers"
+[4] "Los Angeles Lakers play at Oklahoma City Thunder"
+[5] "The game is on Thursday, April 2, 2026"
+[6] "The game starts at 8:30 p.m. CDT"
+[7] "The game starts at 6:30 p.m. PDT"
+[8] "The game is at Paycom Center, Oklahoma City"
+[9] "The game is available to watch on Prime Video"
+[10] "Oklahoma City Thunder defeated Detroit Pistons 114-110 in overtime"
+[11] "Oklahoma City Thunder are top in the Western Conference"
+[12] "Jalen Williams has returned for Oklahoma City Thunder"
+[13] "Isaiah Hartenstein has returned for Oklahoma City Thunder"
+[14] "Alex Caruso is listed as questionable"
+[15] "Some sources indicate the game is April 2nd"
+[16] "Some sources mistakenly reference the game as April 3rd due to late-night scheduling"
+[17] "Primary reports indicate the game is Thursday night, April 2, 2026"
+
+Cited text snippets from the AI Overview (for additional context):
+- Lakers vs. Thunder: Live updates, highlights for Thursday's ...: "for Thursday's game-,Lakers vs. Thunder: Live updates, highlights for Thursday's game,of-25 on free throws."
+- Game Day: OKC vs LAL | Oklahoma City Thunder: "The Thunder faces the Los Angeles Lakers,and will air live on Prime Video"
+- Thunder vs Lakers injury report: Is Jalen Williams playing tonight?: "Thunder vs Lakers injury report, prediction,Is Jalen Williams playing tonight?&text=The OKC Thunder will be,the Cleveland Cavaliers on Tuesday.&text=[ LISTEN UP: Make the ",Apple, Spotify and YouTube. ]"
+- Thunder vs Lakers live updates: Shai Gilgeous-Alexander, OKC host Luka Doncic, Los Angeles: "End of the third quarter,Lakers trailed OKC 90-58."
+- Oklahoma City Thunder Team Schedule - Yahoo Sports: "1,All Games"
+Reference Sources:
+
+[R1] Thunder vs Lakers highlights: Shai Gilgeous-Alexander, OKC roll past Luka Doncic, LA
+(https://www.oklahoman.com/story/sports/nba/thunder/2026/04/02/thunder-vs-lakers-live-updates-game-time-tv-channel-streaming/89435883007/)
+"""
+April 2, 2026Updated April 3, 2026, 1:33 a.m. CTUPDATE: Shai Gilgeous-Alexander scored 28 points and the OKC Thunder routed the Los Angeles Lakers 139-96 at Paycom Center on Thursday.Shai Gilgeous-Alexander and the OKC Thunder will host Luka Doncic and the Los Angeles Lakers at 8:30 p.m. CT Thursday.OKC (60-16) fended off the Detroit Pistons for a 114-110 overtime home win on Monday. Los Angeles (50-26) secured a 127-113 home win over the Cleveland Cavaliers on Tuesday.Follow along for live updates throughout tonight's Thunder-Lakers game:Order new book on Thunder's run to NBA titleThunder vs Lakers score updates[ LISTEN UP: Make the "Thunder Buddies" podcast a staple of your starting lineup by following onApple,Spotify andYouTube. ]Final: Thunder 139, Lakers 96 | OKC stays two games up in loss column on Spurs in NBA playoff raceShai Gilgeous-Alexander: 28 points, 7 assists and 7 boardsIsaiah Joe: 20 points and 1 stealLu Dort: 14 points and 2 stealsOKC improves to 61-16 with a convincing victory.End of the third quarter: Thunder 112, Lakers 67 | SGA, OKC making statement as NBA playoff race heats upShai Gilgeous-Alexander: 28 points, 7 assists and 7 boardsIsaiah Joe: 17 points and 1 stealLu Dort: 14 points and 2 stealsLu Dort exits Thunder-Lakers game after hard fallOKC Thunder guard Lu Dort exited the third quarter of a home game against the Los Angeles Lakers on Thursday.Dort attempted a layup with 7:19 on the clock and took a hard fall. He eventually got on his feet but checked out of the game and went into the locker room for further evaluation.Dort has recorded 14 points and two steals in 21 minutes. He has gone 5 for 8 from the field (4 for 6 from deep).An update on Dort’s status for the rest of the game has not yet been provided. OKC holds a 90-60 lead over Los Angeles.—Justin Martinez, Staff writerLuka Donic exits Lakers-Thunder game with apparent leg injuryLuka Doncic exited the Los Angeles Lakers' game against the OKC Thunder with an apparent leg injury Thursday night at Paycom Center.Doncic appeared to tweak his left ankle or hamstring mid play before walking toward the baseline and laying down. The injury occurred with 7:39 remaining in the third quarter as the Lakers trailed OKC 90-58.Doncic previously had been grabbing at his left hamstring before Los Angeles went into the halftime break trailing by 31.Doncic went into the locker room with 12 points, seven assists and four rebounds.—Jordan Davis, Staff writerHalftime: Thunder 82, Lakers 51 | SGA extends 20-point streakShai Gilgeous-Alexander: 21 points and 5 assistsLu Dort: 14 points and 2 stealsJalen Williams: 10 points, 6 assists and 6 boardsOKC is enforcing its will on both ends of the floor.8:14 left in second quarter: Thunder 56, Lakers 24 | LeBron James, Los Angeles in big troubleOKC has a 56-24 lead over LA with 8:14 left until halftime. Still a lot of basketball to be played, but it feels like there are clear levels to championship contenders. The Lakers have looked good lately, but they aren't on the same level as the Thunder.End of the first quarter: Thunder 44, Lakers 21 | OKC routing Los Angeles early in key game for NBA playoff raceLu Dort: 14 points and 2 stealsShai Gilgeous-Alexander: 8 points and 4 assistsJaylin Williams: 6 points and 4 reboundsOKC is shooting 63% from the field and 63.6% from deep. Complete dominance against a good LA team. Lakers starting lineup tonight vs. ThunderHere are the Los Angeles Lakers' starters vs. OKC:Luka DoncicAustin ReavesJake LaRaviaLeBron JamesDeandre Ayton Thunder starting lineup tonight vs. LakersHere are OKC's starters vs. the Los Angeles Lakers:Shai Gilgeous-AlexanderJalen WilliamsLu DortChet HolmgrenIsaiah Hartenstein What time is Thunder vs Lakers game tonight?Date: Thursday, April 2Time: 8:30 p.m. CTWhere: Paycom Center in Oklahoma CityWatch Thunder vs Lakers live on FuboWhat channel is OKC Thunder vs Los Angeles Lakers on tonight?Streaming: Prime Video (how to watch)Thunder vs Lakers predictions, picksJustin Martinez: OKC 117, Los Angeles 113Los Angeles is playing great basketball right now, and its defense has seemingly turned around. But it'll be tested against an OKC offense that has plenty of weapons. Shai Gilgeous-Alexander is one of the most unguardable players in basketball. Jalen Williams is a downhill threat. Chet Holmgren is a floor-spacing five. And the Thunder's bench has spark plugs such as Ajay Mitchell, Isaiah Joe, Jaylin Williams and Jared McCain. I think it'll all be too much for Los Angeles to contain, so give me OKC at home.Thunder vs Lakers betting oddsOdds via BetMGM as of Thursday, April 2Odds: Thunder by 8.5Over/under: 227.5Moneyline: OKC -350 | Los Angeles +280Thunder vs Lakers injury updatesThunder: Alex Caruso (illness) is questionable. Thomas Sorber (right ACL surgical recovery) is out.Lakers: Kobe Bufkin (G League assignment) is out. Dalton Knecht (G League assignment) is out. Marcus Smart (right ankle contusion) is out. Adou Thiero (G League assignment) is out.Projected OKC Thunder startersShai Gilgeous-AlexanderJalen WilliamsLu DortChet HolmgrenIsaiah HartensteinProjected Los Angeles Lakers startersLuka DoncicAustin ReavesJake LaRaviaLeBron JamesDeandre AytonJustin Martinez covers the Thunder and NBA for The Oklahoman. Have a story idea for Justin? He can be reached at jmartinez@oklahoman.com or on X/Twitter at @Justintohoops. Sign up for the Thunder Sports Minute newsletter to access more NBA coverage. Support Justin's work and that of other Oklahoman journalists by purchasing a digital subscription today at subscribe.oklahoman.com.
+"""
+
+[R2] Lakers vs. Thunder: Live updates, highlights for Thursday's game
+(https://okcthunderwire.usatoday.com/story/sports/nba/thunder/2026/04/02/lakers-vs-thunder-live-updates-highlights-for-thursdays-game/89438311007/)
+"""
+Updated April 2, 2026, 10:27 p.m. CTThe Oklahoma City Thunder will host the Los Angeles Lakers on Thursday. This will be the third matchup of the season between the two squads. OKC won the first two games with its latest victory on Feb. 9.The Thunder (60-16) avoided catastrophe with a 114-110 overtime win over the Detroit Pistons on Monday. Shai Gilgeous-Alexander had a Superman-esque 47 points and went 21-of-25 on free throws.Meanwhile, the Lakers (50-26) have won four in a row. They're red-hot and firmly in third place. They had a 127-113 win over the Cleveland Cavaliers on TuesFor live updates of the Thunder's game against the Lakers, please regularly check back to this post: End 3Q: Thunder 112, Lakers 67Just an absolute blowout. The Thunder added to their lead despite the pace slowing down. Only real downside has been Dort's scary fall and injury. He at least walked to the locker room under his own power. But pretty dangerous play nonetheless. Half: Thunder 82, Lakers 51An unreal halftime score. The Thunder were by far the best team from the jump. Gilgeous-Alexander already has 21 points. Dort has 14 points. Williams has 10 points and six assists. OKC is shooting 60% from the field. Lakers have 11 turnovers. Let's see what the second half looks like. 2Q, 3:25 left: Thunder 76, Lakers 41Doncic loses the ball as it goes out of bounds. Gilgeous-Alexander goes right at the rim without any problem for the layup. Lakers call a timeout. This is a beatdown. End 1Q: Thunder 43, Lakers 21Ummm. Wow. Just pure domination from the Thunder. They created a turnover every other possession and swished in a 3-pointer every other possession. Gilgeous-Alexander has eight points and four assists. Dort has 14 points with four outside makes. Unreal opening frame. 1Q, 4:48: Thunder 25, Lakers 9Another turnover for the Lakers. Another 3-pointer for Dort. Redick finally calls a mercy timeout. Los Angeles has one made field goal and eight turnovers. Starting lineups:The Thunder will start Shai Gilgeous-Alexander, Lu Dort, Jalen Williams, Chet Holmgren and Isaiah Hartenstein. The Lakers will start Luka Doncic, Austin Reaves, LeBron James, Jake LaRavia and Deandre Ayton.What channel is Lakers vs. Thunder game on today? Time, TV scheduleTV Channel: Amazon PrimeStart time: 8:30 p.m. CTWhere to watch Lakers vs. Thunder on livestreamWatch Lakers vs. Thunder on Amazon PrimeLakers vs. Thunder injury updatesThunder: Alex Caruso (illness) is questionable. Thomas Sorber (torn ACL) is out.Lakers: Marcus Smart (ankle contusion) is out. Dalton Knecht (G League assignment) is out. Kobe Bufkin (G League assignment) is out. Adou Thiero (G League assignment) is out.Thunder 2025-26 scheduleSunday, Apr. 5 vs. JazzTuesday, Apr. 7 at LakersWednesday, Apr. 8 at Clippers
+"""
+
+[R3] Thunder vs Lakers injury report, prediction: Is Jalen Williams playing tonight?
+(https://www.oklahoman.com/story/sports/nba/thunder/2026/04/02/thunder-lakers-injury-report-jalen-williams-status-tonight-nba-okc-los-angeles-prediction/89431657007/)
+"""
+Updated April 2, 2026, 7:31 p.m. CTThe OKC Thunder will be close to full strength when it hosts the Los Angeles Lakers at 8:30 p.m. CT Thursday.Jalen Williams and Isaiah Hartenstein are back for OKC (60-16) after not playing in its 114-110 overtime home win over the Detroit Pistons on Monday due to injury management. But Alex Caruso (illness) is listed as questionable.Los Angeles (50-26) continues to be without former Oklahoma State star Marcus Smart, who has missed the last five games due to a right ankle contusion. But that didn't stop the Lakers from earning a 127-113 home win over the Cleveland Cavaliers on Tuesday.Here's everything you need to know about Thursday's game between the Thunder and Lakers:Order our new book on Thunder's run to NBA title[ LISTEN UP: Make the "Thunder Buddies" podcast a staple of your starting lineup by following on Apple, Spotify and YouTube. ]What time is Thunder vs Lakers game tonight?Date: Thursday, April 2Time: 8:30 p.m. CTWhere: Paycom Center in Oklahoma CityWatch Thunder vs Lakers live on FuboWhat channel is OKC Thunder vs Los Angeles Lakers on tonight?Streaming: Prime Video (how to watch)Thunder vs Lakers predictions, picksJustin Martinez: OKC 117, Los Angeles 113Los Angeles is playing great basketball right now, and its defense has seemingly turned around. But it'll be tested against an OKC offense that has plenty of weapons. Shai Gilgeous-Alexander is one of the most unguardable players in basketball. Jalen Williams is a downhill threat. Chet Holmgren is a floor-spacing five. And the Thunder's bench has spark plugs such as Ajay Mitchell, Isaiah Joe, Jaylin Williams and Jared McCain. I think it'll all be too much for Los Angeles to contain, so give me OKC at home.Thunder vs Lakers betting oddsOdds via BetMGM as of Thursday, April 2Odds: Thunder by 8.5Over/under: 227.5Moneyline: OKC -350 | Los Angeles +280Thunder vs Lakers injury updatesThunder: Alex Caruso (illness) is questionable. Thomas Sorber (right ACL surgical recovery) is out.Lakers: Kobe Bufkin (G League assignment) is out. Dalton Knecht (G League assignment) is out. Marcus Smart (right ankle contusion) is out. Adou Thiero (G League assignment) is out.Projected OKC Thunder startersShai Gilgeous-AlexanderJalen WilliamsLu DortChet HolmgrenIsaiah HartensteinProjected Los Angeles Lakers startersLuka DoncicAustin ReavesJake LaRaviaLeBron JamesDeandre AytonJustin Martinez covers the Thunder and NBA for The Oklahoman. Have a story idea for Justin? He can be reached at jmartinez@oklahoman.com or on X/Twitter at @Justintohoops. Sign up for the Thunder Sports Minute newsletter to access more NBA coverage. Support Justin's work and that of other Oklahoman journalists by purchasing a digital subscription today at subscribe.oklahoman.com.Our editors independently choose our recommendations. Some content is produced with paid support from a third party, however our editorial decisions remain independent. If you buy through our links, the USA TODAY Network may earn a commission. Prices and availability may change.
+"""
+
+[R4] Game Day: OKC vs LAL | Oklahoma City Thunder
+(https://www.nba.com/thunder/videos/game-day-okc-vs-lal-6)
+"""
+Video Player is loading.Current Time Duration Remaining Time Rumble's Big WeekendRumble Meets Science - Air VortexRumble Meets Science - Air Vortex1-on-1: Raymond Felton - 10/191-on-1: Steven Adams - 10/251-on-1: Andre Roberson - 11/31-on-1: Dakari Johnson - 11/151-on-1: Andre Roberson - 11/171-on-1: Patrick Patterson1-on-1: Alex Abrines - 11/221-on-1: Raymond Felton - 11/241-on-1: Andre Roberson- 11/291-on-1: Steven Adams - 12/1Walkoff Interview: Russell Westbrook - 12/3Walkoff Interview: Steven Adams - 12/11-on-1: Patrick Patterson - 12/51-on-1: Alex Abrines - 12/91-on-1: Kyle Singler - 12/111-on-1: Steven Adams - 12/131-on-1: Jerami Grant - 12/181-on-1: Andre Roberson - 12/201-on-1: Josh Huestis - 12/221-on-1: Steven Adams - 12/27Thunder Insider: Episode 1 (Part II)Thunder Insider: Episode 1 (Part I)Thunder Insider: Episode 1 (Part IV)Thunder Insider: Episode 1 (Part III)Thunder Insider: Episode 2 (Part I)Thunder Insider: Episode 2 (Part IV)Thunder Insider: Episode 2 (Part III)Thunder Insider: Episode 2 (Part II)Thunder Insider: Episode 3 (Part II)Thunder Insider: Episode 3 (Part IV)Thunder Insider: Episode 3 (Part III)Thunder Insider: Episode 3 (Part I)Thunder Insider: Episode 4 (Part IV)Thunder Insider: Episode 4 (Part III)Thunder Insider: Episode 4 (Part II)Thunder Insider: Episode 4 (Part I)Thunder Insider: Episode 5 (Part IV)Thunder Insider: Episode 5 (Part II)Thunder Insider: Episode 5 (Part I)Thunder Insider: Episode 5 (Part III)
+"""
+
+[R5] Oklahoma City Thunder Team Schedule - Yahoo Sports
+(https://sports.yahoo.com/nba/teams/oklahoma-city/schedule/)
+"""
+AdvertisementAdvertisementAdvertisementAdvertisementOklahoma City ThunderThunder1st Northwest64-185thFG% (48.4)9th3P% (36.5)5thPts (119.0)12thReb (44.1)Powered by Yahoo ScoutTeam FeedScheduleRosterStatsInjuriesTransactionsTicketsCalendarListSeason2025-262024-252023-242022-232021-222020-212019-202018-192017-182016-172015-162014-152013-14April 2026SMTWThFS12vsLALWin96-139345vsUTAWin111-14667@LALWin123-878@LACWin128-110910@DENLoss107-1271112vsPHOLoss135-10313141516171819vsTBD ABCPostseason202122vsTBD ESPNPostseason232425@TBD NBCPostseason2627@TBD Postseason2829vsTBD Postseason30All GamesPreseasonRegular SeasonPostseasonSeason2025-262024-252023-242022-232021-222020-212019-202018-192017-182016-172015-162014-152013-14PostseasonAprilTBDTBDOklahoma City ThunderOKC64-18View game ABCTBDTBDOklahoma City ThunderOKC64-18View game ESPNOklahoma City ThunderOKC64-18TBDTBDView game NBCOklahoma City ThunderOKC64-18TBDTBDView game TBDTBDOklahoma City ThunderOKC64-18View game AdvertisementAdvertisementMayOklahoma City ThunderOKC64-18TBDTBDView game TBDTBDOklahoma City ThunderOKC64-18View game Buy tickets on GameTime AdvertisementAdvertisementClippers' playoff loss is worse than you think thanks to Thunder lottery pickFTW Outdoors2026-04-16T12:18:26.000ZThunder get another scary 1st-round pick thanks to Warriors, Steph CurryThe Sporting News2026-04-16T10:58:11.000ZOKC Thunder Grab Lottery Pick with Warriors' Win over ClippersOklahoma City Thunder On SI2026-04-16T04:51:30.000ZAdvertisementAdvertisement
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

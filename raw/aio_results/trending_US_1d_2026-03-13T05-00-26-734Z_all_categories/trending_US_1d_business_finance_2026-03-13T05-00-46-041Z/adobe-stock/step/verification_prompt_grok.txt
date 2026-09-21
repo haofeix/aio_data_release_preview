@@ -1,0 +1,132 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "step"
+
+Claims:
+[1] "The Smart Traveler Enrollment Program (STEP) is a free U.S. Department of State service for citizens traveling or living abroad to receive emergency alerts and assistance."
+[2] "The Smart Traveler Enrollment Program (STEP) allows users to register trip details online to receive security updates."
+[3] "STEP eligibility includes all U.S. citizens and nationals."
+[4] "STEP enrollment is done via the STEP website."
+[5] "The Smart Traveler Enrollment Program (STEP) sends email alerts regarding safety and natural disasters."
+[6] "The Smart Traveler Enrollment Program (STEP) helps embassies contact users during emergencies."
+[7] "The Smart Traveler Enrollment Program (STEP) is open to U.S. citizens and nationals traveling or residing abroad."
+[8] "STEP enrollment takes about 20 minutes to complete on the official website."
+[9] "Step App is a banking application associated with step.com."
+[10] "Step App is designed to build credit."
+[11] "Step App offers savings."
+[12] "Step App offers cashback."
+[13] "Step App offers no-fee accounts for teens and young adults."
+[14] "State Trade Expansion Program (STEP) is an SBA-funded program."
+[15] "State Trade Expansion Program (STEP) provides grants to help small businesses export their products."
+[16] "The Smart Traveler Enrollment Program (STEP) enrollment is available online at the Smart Traveler Enrollment Program website."
+[17] "Step All-in-One Money App allows users to build credit for free."
+[18] "Step All-in-One Money App allows users to receive up to 10% cash back."
+[19] "Step All-in-One Money App allows users to access savings."
+[20] "Step All-in-One Money App is geared toward building credit without an existing credit score."
+
+Cited text snippets from the AI Overview (for additional context):
+- State Trade Expansion Program (STEP) - SBA.gov: "State Trade Expansion Program (STEP) | U.S. Small Business Administration."
+- Attention U.S. citizens: The Smart Traveler Enrollment Program (STEP ...: "All About STEP The Smart Traveler Enrollment,can better assist you in an emergency."
+- Though careful planning and common sense are two of the best ways to stay safe when traveling, security situations can rapidly change in foreign countries. That's why the U.S. Department of State's Bureau of Consular Affairs has created the Smart Traveler Enrollment Program to help keep you informed about relevant security updates from the nearest U.S. Consulate, wherever in the world you happen to be. The primary purpose of STEP is to keep American citizens safe. Here are a few reasons to consider signing up ⤵️ 👉 You're traveling to an area that's politically unstable or prone to violence 👉 You're taking an extended trip (several weeks or months) with limited Wi-Fi access 👉 You're traveling for a major event, summit or conference (like the World Cup) that might become the target of protests or attacks 👉 You're traveling to an area prone to natural disasters (like the Caribbean during hurricane season) 👉 You're a member of a minority traveling to an area where you might be targeted as an outsider 👉 You'd like an additional safety resource during your trip, no matter the destination In the event of a rapidly deteriorating situation, such as a coup or natural: "How it ( The Smart Traveler Enrollment,in an emergency ✔ Assistance during crises"
+- Smart Traveler Enrollment Program (STEP): Your 2025 Guide: "How to Enroll in STEP Create an,and local contact information for each trip."
+- STEP Grant - Small Business Programs | LED: "STEP is an SBA Program which provides,to assist small businesses with export development."
+- Re-enroll in The New Smart Traveler Enrollment Program (STEP): "Links are available on our website under,Traveler Enrollment Program (STEP).” Click here: https://mytravel.state.gov/s/step"
+Reference Sources:
+
+[R1] Re-enroll in The New Smart Traveler Enrollment Program (STEP) - U.S. Embassy & Consulates in Saudi Arabia
+(https://sa.usembassy.gov/message-for-u-s-citizens-re-enroll-in-the-new-smart-traveler-enrollment-program-step/)
+"""
+U.S. citizens in Saudi Arabia are encouraged to register for STEP. If you have not registered in the past 9 months, please re-enroll to ensure you receive the latest updates. The new STEP platform allows you to use a login.gov account to customize your subscriptions and receive country-specific email alerts during the timeframe of your choice. You can enroll multiple trips or locations at once and can modify your subscriptions or unenroll at any time. Enrolling in STEP makes it easier for the nearest U.S embassy or consulate to contact you during an emergency and send you safety and security alerts. We strongly encourage all U.S. citizens traveling or living abroad to enroll or re-enroll today to take advantage of new functionality. Actions to Take: If you have not already re-registered, visit state.gov to enroll in the updated STEP to set your preferences and continue receiving alerts and messages from the U.S. embassy. Links are available on our website under Emergency Information for American Citizens, using the link for “Enroll in the Smart Traveler Enrollment Program (STEP).” Click here: https://mytravel.state.gov/s/step Encourage friends and family traveling or living internationally to enroll in STEP. Travelers may choose to sign up for alerts for individual trips or to receive alerts long-term for specific countries where they or their loved ones are visiting or residing. Follow the State Department’s Bureau of Consular Affairs on social media (@travelgov) as well as the nearest U.S. embassy or consulate.
+"""
+
+[R2] STEP
+(https://mytravel.state.gov/s/step)
+"""
+window['adrum-start-time'] = new Date().getTime(); (function (config) { const APPD_URL = 'https://eum.state.gov'; var search_string = window.location.href.toLowerCase() if (search_string.indexOf("/scheduling") != -1) { config.appKey = 'EUM-AAB-AVT'; } else if(search_string.indexOf("/crisis-intake") != -1) { config.appKey = 'EUM-AAB-AVU'; } else if(search_string.indexOf("/step") != -1) { config.appKey = 'EUM-AAB-AVV'; } else if(search_string.indexOf("/online-passport-renewal") != -1) { config.appKey = 'EUM-AAB-AUT'; } else { config.appKey = 'EUM-AAB-AVZ'; } config.useHTTPSAlways = true; config.adrumExtUrlHttps = APPD_URL; config.beaconUrlHttps = APPD_URL; // this is url for beacon config.spa = {"spa2": true}; config.xd = {enable: true}; if (typeof userData !== 'undefined') { (function (info) { (function (page) { page.userData = userData; }) (info.PageView || (info.PageView = {})); }) (config.userEventInfo || (config.userEventInfo = {})) } })(window['adrum-config'] || (window['adrum-config'] = {})); // appd basic snippet code do not change window.dataLayer = window.dataLayer || []; window.addEventListener('pushstate', function (e) { ADRUM.setVirtualPageName(e.target.document.URL) // to send the pageview with the new SPA changed URL }, false); Loading×Sorry to interruptUncaught TypeError: Cannot read properties of null (reading 'document') throws at https://mytravel.state.gov/s/step:491:88RefreshSkip to main contentAn official website of the United States governmentHere's how you knowShow moreHere's how you knowShow lessHere's how you knowShow lessMyTravelGovMyTravelGovMenuHelp CenterSign InHomeSmart Traveler Enrollment ProgramSmart Traveler Enrollment ProgramAbout the serviceSmart Traveler Enrollment Program (STEP) is a free service to allow U.S. citizens and nationals to enroll their trip abroad so the Department of State can accurately and quickly contact them in case of emergency.BenefitsGet updates about health, weather, safety, and security for your destination.Plan ahead using information from the local U.S. embassy.Help the embassy or consulate contact you if there's an emergency like a natural disaster, civil unrest, or a family emergency.Time to complete: 20 minutesOMB Control No. 1405-0152 | Expiration Date: 06/30/2026Useful Links Get help with technical issues on STEP Search for U.S. Embassies and Consulates Learn about your destination: Travel Advisory and destination information Stay Connected: Additional ways to get safety and security information Before you go see our traveler's checklist Travelers with Special Considerations LoadingSTEP
+"""
+
+[R3] State Trade Expansion Program (STEP) | U.S. Small Business Administration
+(https://www.sba.gov/funding-programs/grants/state-trade-expansion-program-step)
+"""
+Skip to main content Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock ) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites. State Trade Expansion Program (STEP) Look into financial awards for state and territory governments that can help grow small businesses through exporting. Information for small businesses The STEP grant program has helped thousands of small businesses obtain grants and find customers in the international marketplace since 2011. Through awards to U.S. states and territories, STEP helps small businesses overcome obstacles to exporting by providing grants to cover costs associated with entering and expanding into international markets. STEP financial support helps U.S. small businesses: Learn to export Participate in foreign trade missions Design international marketing products and campaigns Support website globalization and e-commerce capabilities Pay for subscriptions to services provided by the U.S. Department of Commerce and other federal agencies Participate in export trade show exhibits and training workshops Check out the SBA Grants for Global Expansion webinar Link is external to learn more about the STEP program. Ready to apply? Contact STEP awardees in your state or territory to find out how they can help you start or expand your business to reach global customers with the help of a STEP grant. Information for state entities STEP 12 Fiscal Year 2024 Notice of Funding Opportunity (NOFO) SBA is now accepting proposals for funding from eligible state entities that want to provide assistance and guidance to small businesses interested in exporting. Applications must be received by June 6, 2024. STEP provides financial awards to state and territory governments to assist small businesses with export development. Find information on how eligible state entities can apply for STEP awards to be used to increase small business exporters and their sales in their state: CFR: Third-party in-kind contributions Link is external CFR: Cost sharing or matching Link is external STEP annual reports STEP awardee Terms and Conditions STEP awards are managed and provided at the local level by state government organizations. The program is managed at the national level by SBA’s Office of Manufacturing and Trade.
+"""
+
+[R4] Smart Traveler Enrollment Program STEP Your 2025 Guide
+(https://www.getours.com/expert-travel-advice/travel-technology/smart-traveler-enrollment-program-step-guide)
+"""
+Why Enroll in STEP? Proactive Safety: STEP provides real-time travel advisories and health/safety notices. You’ll know about emerging risks sooner and can adjust your plans accordingly. Peace of Mind: By sharing your itinerary, the nearest Embassy or Consulate knows where you are. Should a crisis occur, they can offer guidance and help. Streamlined Communication: You’ll receive direct messages or emails from the Embassy if situations change abruptly — e.g., a sudden political development or a weather-related incident. How to Enroll in STEP Create an Account: Visit the STEP official website (U.S. Department of State) to set up a free account. Add Trip Details: Enter your travel dates, destinations, and local contact information for each trip. Update as You Travel: Keep your profile updated if your itinerary changes (e.g., visiting additional countries, extending your stay). Tips for Maximizing STEP’s Benefits Enroll in Advance: Register as soon as you have finalized travel dates to ensure you receive alerts before departure. Include All Destinations: If you’re visiting multiple countries or cities, enroll each location so the Embassy can send you region-specific advisories. Keep Contact Info Current: Provide a working email address and phone number (including an international roaming number if possible). Share With Family: Consider sharing your STEP enrollment information with close family or friends so they know you’re in the system. Enrolling in the Smart Traveler Enrollment Program (STEP) is a simple yet powerful way to stay informed and prepared when traveling internationally. From real-time safety alerts to emergency assistance, the program helps protect your peace of mind—leaving you free to focus on enjoying your journey. For more information and to sign up, visit: https://mytravel.state.gov/s/step Frequently Asked Questions About STEP for U.S. Travelers Collapse All Expand All Answer: No. While STEP is invaluable in emergencies, it’s also a day-to-day resource for receiving routine security updates and local travel advisories that can help you plan activities safely. Answer: Any U.S. citizen or national traveling or living abroad can use STEP. Non-U.S. citizens generally don’t qualify, but check the website for details if you have dual citizenship or other special circumstances. Answer: No. STEP is completely free, and there are no hidden fees or subscription charges. Answer: Log in to your STEP account and update your itinerary. This ensures you continue receiving relevant alerts for your new destination. Answer: Yes. Each time you travel abroad, add your new trip details. If you frequently change locations, keep updating your itinerary to remain in the Embassy’s system. Interested in the Smart Traveler Enrollment Program (STEP)? You Might Also Like...
+"""
+
+[R5] Smart Traveler Enrollment Program | Travel.State.gov
+(https://travel.state.gov/en/international-travel/travel-advisories/smart-traveler-enrollment-program.html)
+"""
+If you are traveling outside the United States, you should enroll in our Smart Traveler Enrollment Program (STEP). It is a free service that sends you email updates and alerts from U.S. embassies and consulates abroad. When you subscribe to STEP(opens in a new tab), you get important updates and alerts from the U.S. embassy or consulate for the destination you are visiting or living in. STEP messages are sent to your email. It also helps the U.S. embassy or consulate(opens in a new tab) contact you or your emergency contact in an emergency. You’ll receive messages for emergency situations with instructions on what to do, so you can make informed travel decisions. STEP messages include: Security alerts Demonstration alerts Health alerts Weather or natural disaster alerts Travel Advisory updates Routine messages about U.S. embassy and consulate services Follow these simple instructions to start using the STEP program. Create a STEP account - set up a free, secure account online to start receiving embassy and consulate notifications. You may also choose a guest subscription if you want to receive messages but do not want to register for a Login.gov(opens in a new tab) account. Register your trip - with a Login.gov(opens in a new tab) account you can log in to STEP and register your upcoming travel details, including location and duration of your visit. Receive updates and alerts - once you sign up, you'll receive alerts and updates related to your destination for the time period of your choosing. Modify your settings – when your travel plans change, simply update your information in STEP. This ensures the embassy or consulate has the most accurate data to help you in any situation. The STEP program is ideal for anyone traveling or living abroad. Tourists - stay aware of local threats and receive alerts from the nearest U.S embassy or consulate(opens in a new tab) if any security concerns develop while on your vacation. Business travelers – stay updated on changing conditions and travel safely for work abroad. Students abroad - get direct and reliable safety and security information while studying at international schools or programs. Residents and long-term stays – count on critical safety guidance and Amercian Citizens Services information from the U.S. embassy or consulate while living abroad.
+"""
+
+[R6] STEP Grant - Small Business Programs | LED
+(https://www.opportunitylouisiana.gov/program/step-grant)
+"""
+EligibilityTo be eligible, companies must: Meet the SBA definition of a small business Have been in business for at least one year Be a for-profit business based in Louisiana Be new to export or seeking new export markets Have a plan for exporting (export strategy) Understand costs associated with exporting Be an export-ready U.S. company seeking to export goods or services of U.S. origin OR have at least 51% U.S. content Not be debarred from doing business with the Federal Government Reimbursable Expenses Eligible expenses include: Trade show exhibition/booth fees (virtual and in-person) Trade mission fees (virtual and in-person) Export training courses & workshops (virtual and in-person) U.S. Department of Commerce fee services Travel-related expenses such as airfare, lodging and meals Marketing materials and media to promote exports E-commerce and website fees (internationally-focused) Cost of compliance testing Export credit insurance fees Other approved activities and expenses Begin the Process 1Review eligibility criteria and contact LED with any questions.2Apply for the STEP Grant Program on FastLane.3LED will review your application and inform you of acceptance into the program.Federal Funding Disclosure In accordance with Section 632 of Public Law 117-328, Title VI, Division E. State Trade Expansion Program (STEP) Federal Share: 65% – $325,000 Non-Federal Share: 35% – $175,000 Total Program Cost: $500,000 This program is funded in part through a grant with the U.S. Small Business Administration.
+"""
+
+[R7] Step - The All-In-One Money App
+(https://step.com/)
+"""
+BANKING FOR THE NEXT GENERATIONStep is the all-in-one money app with unlimited cashback, ˖˖ 3.00% on savings̾ , and the Step Visa Card that builds credit ̍ with every purchase while helping you access cash when you need it most. This is financial independence at your fingertips.*Beast Industries Acquires StepAt Step, our goal has always been to improve the financial future of the next generation, and we couldn’t imagine a better partner to help us pursue that than the team at Beast Industries. Together, we are focused on closing the financial literacy gap, amplifying the Step platform and bringing more groundbreaking products to the world.Step users in their 20s increase their credit score by an average of 57 points in one year. ͆Earn 3.00% on your savingsYour money deserves better. Get a savings reward that’s over 7x ̾ ̾ the national average with Step Black.̾Turn your spending into savings with up to 10% cashback on every purchase with Step Black and no limit on your total rewards.˖˖The Step Card comes with Visa’s Zero Liability Protection Policy** and FDIC-insured up to $1,000,000***Life doesn’t wait for payday, and neither should you. Borrow up to $250 whenever you need it. See how much you qualify for in just matter of minutes and have the money instantly transfered ͐ to your Step Account.Participants may be compensated for their participation. Individual results may vary.Stephen Curry4x NBA champion, CEO at Thirtyink, Step investor“I know what a critical life skill money management is...Step helps facilitate conversations about money and makes it easy to get a taste of financial freedom with a built-in safety net and lots of teachable moments.”Better banking for allWith Step, your whole family can safely build credit history, grow their savings, and build their financial foundation at any age.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

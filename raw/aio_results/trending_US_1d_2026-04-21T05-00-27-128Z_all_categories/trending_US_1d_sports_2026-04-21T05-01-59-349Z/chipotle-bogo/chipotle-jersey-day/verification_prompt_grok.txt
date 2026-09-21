@@ -1,0 +1,100 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "chipotle jersey day"
+
+Claims:
+[1] "Chipotle is hosting its 6th annual Hockey Jersey BOGO on April 20, 2026."
+[2] "The Hockey Jersey BOGO offers a buy-one-get-one-free entrée deal to anyone wearing a hockey jersey into a U.S. or Canada restaurant after 3 p.m. local time."
+[3] "The Hockey Jersey BOGO has a limit of five free items per transaction."
+[4] "The Hockey Jersey BOGO occurs on Monday, April 20, 2026, from 3:00 PM to close."
+[5] "Entrées eligible for the Hockey Jersey BOGO include burrito, bowl, salad, or tacos."
+[6] "The Hockey Jersey BOGO requires wearing a hockey jersey of any team or level to a participating location."
+[7] "The Hockey Jersey BOGO is in-person only."
+[8] "The Hockey Jersey BOGO is not valid for online or delivery orders."
+[9] "The Hockey Jersey BOGO celebrates the start of the Stanley Cup Playoffs."
+[10] "Chipotle Rewards members can exchange 10 points for a chance to win one of 75 limited-edition "Chipper" jerseys via the Chipotle Rewards Exchange from April 18 to May 2, 2026."
+[11] "The Hockey Jersey BOGO is designed to coincide with the NHL playoffs."
+[12] "The Hockey Jersey BOGO generally applies to any hockey-related apparel, including jerseys from professional, college, or local leagues."
+
+Cited text snippets from the AI Overview (for additional context):
+- SUIT UP AND SCORE: CHIPOTLE BRINGS BACK ITS HOCKEY JERSEY BOGO FOR THE 2026 STANLEY CUP® PLAYOFFS--AND DROPS FIRST-EVER LIMITED-EDITION JERSEY: "Fans who wear a hockey,-ONE (BOGO) entrée."
+- calling all MVPs 🗣️ wear any hockey jersey TODAY 4/20 ...: "Starting at 3:00 PM,View all 4 comments"
+- hockey jersey bogo april 20 : r/Chipotle - Reddit: "official communication states that it,in with what you have."
+- Chipotle hockey jersey deal offers BOGO promo on April 20: "Chipotle hockey jersey deal offers,jersey as part of promotion"
+- Chipotle brings back popular hockey jersey BOGO deal - USA Today: "Chipotle unveils first-ever hockey,over the past few years."
+- Chipotle is offering BOGO entrées to customers who show up ...: "Chipotle is offering BOGO entrées,Dexerto's post"
+Reference Sources:
+
+[R1] Chipotle hockey jersey deal lets you score a free meal on April 20
+(https://www.usatoday.com/story/money/food/2026/04/20/chipotle-hockey-jersey-deal-bogo-promo/89696885007/)
+"""
+Updated April 20, 2026, 1:46 p.m. ETChipotle fans will get to take advantage of a popular promotion from the restaurant chain. It's a buy one, get one deal on entrées just in time for the NHL playoffs.The offer is available to any customer who wears a hockey jersey at participating restaurants in the U.S. and Canada after 3 p.m. local time on Monday, April 20. This is the sixth consecutive year the company has offered this deal.“Our Hockey Jersey BOGO has become a tradition that brings fans together around the Stanley Cup Playoffs and reflects our deep connection to the hockey community,” said Stephanie Perdue, Interim Chief Marketing Officer at Chipotle, in a news release. The chain last year announced that its years-long partnership with the National Hockey League had been extended.The NHL regular season ended on April 16 and the playoffs started on April 18.Chipotle unveils first-ever hockey jersey as part of promotionIn addition to the BOGO deal, Chipotle has unveiled its first-ever limited-edition hockey jersey and is giving Chipotle Rewards Members a chance to score a sweater.Chipotle said only 75 jerseys will be available exclusively through the Chipotle Rewards Exchange. Rewards members will be able to exchange 10 rewards points for an entry to win one jersey. Each Rewards member can enter up to 20 times. This started Saturday, April 18 and will run through Saturday, May 2.The jersey features the number 53, which Chipotle says is a nod to the 53 real ingredients on its core menu. The name on the back reads "Chipper," which the chain says is a term referring to Chipotle that has been popularized by hockey players and fans on social media over the past few years.Gabe Hauari is a national trending news reporter at USA TODAY. You can follow him on X @GabeHauari or email him at Gdhauari@gannett.com.
+"""
+
+[R2] Chipotle brings back popular hockey jersey BOGO deal
+(https://www.usatoday.com/story/money/food/2026/04/16/chipotle-hockey-jersey-bogo-deal/89639148007/)
+"""
+April 16, 2026, 8:54 a.m. ETChipotle is bringing back its popular buy one, get one deal on entrées to celebrate the start of the NHL playoffs.The offer is available to any customer who wears a hockey jersey to participating restaurants in the U.S. and Canada after 3 p.m. local time on Monday, April 20, according to the restaurant chain. This is the sixth consecutive year the company has offered this deal.“Our Hockey Jersey BOGO has become a tradition that brings fans together around the Stanley Cup Playoffs and reflects our deep connection to the hockey community,” said Stephanie Perdue, Interim Chief Marketing Officer at Chipotle, in a news release. The chain last year announced that its years-long partnership with the National Hockey League had been extended.The NHL regular season concludes on April 16 and the playoffs are scheduled to begin on April 18.Chipotle unveils first-ever hockey jersey as part of promotionIn addition to the BOGO deal, Chipotle has unveiled its first-ever limited-edition hockey jersey and is giving Chipotle Rewards Members a chance to score a sweater.Chipotle said only 75 jerseys will be available exclusively through the Chipotle Rewards Exchange. Starting Saturday, April 18 through Saturday, May 2, Rewards members will be able to exchange 10 rewards points for an entry to win one jersey. Each Rewards member can enter up to 20 times.The jersey features the number 53, which Chipotle says is a nod to the 53 real ingredients on its core menu. The name on the back reads "Chipper," which the chain says is a term referring to Chipotle that has been popularized by hockey players and fans on social media over the past few years.Gabe Hauari is a national trending news reporter at USA TODAY. You can follow him on X @GabeHauari or email him at Gdhauari@gannett.com.
+"""
+
+[R3] SUIT UP AND SCORE: CHIPOTLE BRINGS BACK ITS HOCKEY JERSEY BOGO FOR THE 2026 STANLEY CUP® PLAYOFFS--AND DROPS FIRST-EVER LIMITED-EDITION JERSEY
+(https://newsroom.chipotle.com/2026-04-16-SUIT-UP-AND-SCORE-CHIPOTLE-BRINGS-BACK-ITS-HOCKEY-JERSEY-BOGO-FOR-THE-2026-STANLEY-CUP-R-PLAYOFFS-AND-DROPS-FIRST-EVER-LIMITED-EDITION-JERSEY)
+"""
+Fans who wear a hockey jersey on April 20 can get a BUY-ONE-GET-ONE (BOGO) entrée after 3 p.m. local time1Chipotle is dropping its first-ever limited-edition hockey jersey—only 75 available via the Chipotle Rewards Exchange2, /PRNewswireOpens in new window/ -- Chipotle Mexican Grill (NYSE: CMG) is bringing back its Hockey Jersey BOGO for the sixth consecutive year as the 2026 Stanley Cup® Playoffs get underway. On Monday, April 20, after 3 p.m. local time, fans who wear a hockey jersey to participating restaurants in the U.S. and Canada can receive a BUY-ONE-GET-ONE (BOGO) entrée. Photo assets are available here: https://www.dropbox.com/scl/fo/pwjmu7dbf9d39ne08yg3z/AMLzYSakeGO8k_NeQkvVpic?rlkey=mbs2yomrvj2xis8pb3nij1la7&st=jxzu3f4y&dl=0Opens in new window. More information on the promotion can be found here: https://chipotle.com/hockey-bogoOpens in new window. CHIPOTLE MEXICAN GRILL Hockey-BOGO CHIPOTLE MEXICAN GRILL Hockey-Jersey Chipotle's First-Ever Hockey JerseyFor the first time, Chipotle is releasing a limited-edition hockey jersey inspired by past Hockey Jersey BOGO campaigns, reimagining the brand's signature look in a bold, on-ice style. Only 75 jerseys will be available exclusively through the Chipotle Rewards Exchange, giving fans a rare chance to score a one-of-a-kind piece that blends hockey culture with Chipotle's commitment to Real Food for Real Athletes."Our Hockey Jersey BOGO has become a tradition that brings fans together around the Stanley Cup Playoffs and reflects our deep connection to the hockey community," said Stephanie Perdue, Interim Chief Marketing Officer at Chipotle. "Playoff hockey is fueled by rituals—from jerseys to game-day meals—and this year, we're giving fans another reason to make Chipotle part of their pre-puck-drop routine."Chipotle's Commitment to the Hockey CommunityBeyond the rink, Chipotle continues to support hockey at the grassroots level. The brand has contributed more than $190,000 to hockey organizations across North America through hockey-related fundraisers, including more than $52,000 raised through over 300 fundraisers in 2025 alone.The Hockey Jersey BOGO extends Chipotle's ongoing partnership with the National Hockey League (NHL), reinforcing the brand's connection to players and fans across North America. As an official partner of both the NHL and the National Hockey League Players' Association (NHLPA), Chipotle engages the hockey community with unique fan experiences.1 — The BUY-ONE-GET-ONE (BOGO) promotion is limited to five free menu items per check and is subject to availability. Each free item requires purchase of an entrée item of equal or greater value and may be collected only by the jersey-wearing guest. Valid only on April 20, 2026, after 3 p.m. local time. Redeemable in-restaurant only, at participating locations in the U.S. and Canada; not valid for catering, mobile, online or delivery orders. Kids' meals do not count as an entrée purchase. Purchased entrées are eligible for Chipotle Rewards points; the promotion may not otherwise be combined with other coupons, promotions, or special offers. Additional restrictions may apply; void where prohibited. The NHL is not a sponsor of this offer.2 — NO PURCHASE NECESSARY. Open to legal residents of the 50 U.S. states and D.C., age 13+ who are Chipotle Rewards members. Promotion Period: 4/18/26 at 12:01 a.m. PT – 5/2/26 at 11:59 p.m. PT. Mail-in entries must be postmarked by 5/2/26. For Official Rules, including how to enter, free entry method, entry limitations, odds, prize descriptions, and complete details, visit chipotle.com/jersey-sweepsOpens in new window. Sponsor: CMG Strategy Co., LLC.NHL, the NHL Shield and the word mark and the image of the Stanley Cup are registered trademarks, and the Stanley Cup Playoffs logo is a trademark of the National Hockey League. © 2026 NHL. All Rights Reserved. NHLPA, National Hockey League Players' Association and the NHLPA logo are registered trademarks of the NHLPA and are used under license. © NHLPA. All Rights Reserved.ABOUT CHIPOTLE Chipotle Mexican Grill, Inc. (NYSE: CMG) is cultivating a better world by serving responsibly sourced, classically cooked, real food with wholesome ingredients and without artificial colors, flavors or preservatives. There are over 4,000 restaurants as of December 31, 2025, in the United States, Canada, the United Kingdom, France, Germany, and the Middle East, and it is the only restaurant company of its size that owns and operates all its restaurants in North America and Europe. With over 130,000 employees passionate about providing a great guest experience, Chipotle is a longtime leader and innovator in the food industry. Chipotle is committed to making its food more accessible to everyone while continuing to be a brand with a demonstrated purpose as it leads the way in digital, technology and sustainable business practices. For more information or to place an order online, visit Chipotle.comOpens in new window.ABOUT THE NHLThe National Hockey League (NHL), founded in 1917, consists of 32 Member Clubs. Each team roster reflects the League's international makeup with Players from more than 20 countries represented, all vying for the most cherished and historic trophy in professional sports — the Stanley Cup. Every year, the NHL entertains more than 670 million fans in-arena and through its partners on national television and radio; more than 191 million followers—League, team, and Player accounts combined—across Facebook, X, Instagram, Snapchat, TikTok, and YouTube; and more than 100 million fans online at NHL.com. The League broadcasts games in more than 250 countries and territories through its rightsholders, including ESPN, TNT Sports and NHL Network in the U.S.; Prime Video, Sportsnet and TVA Sports in Canada; and via SiriusXM NHL Network Radio™, Sports USA and TuneIn; and reaches fans worldwide with games available to stream in nearly 200 countries and territories (listed here) via NHL.TV on DAZN. Fans are engaged across the League's digital assets on mobile devices via the free NHL App; across nine social media platforms; on SiriusXM NHL Network Radio™; and on NHL.com, available in eight languages and featuring unprecedented access to Player and team statistics as well as every regular-season and playoff game box score dating back to the League's inception. NHL Productions develops compelling original programming featuring unprecedented access to Players, coaches and League and team personnel for distribution across the NHL's social and digital platforms. The NHL is committed to building healthy and vibrant communities using hockey to celebrate fans of every race, color, religion, national origin, gender identity, age, sexual orientation, and socio-economic status. The NHL's social impact platform, NHL Unites, reinforces that the official policy of the sport is one of inclusion on the ice, in locker rooms, boardrooms and stands. For more information, visit NHL.com.ABOUT THE NATIONAL HOCKEY LEAGUE PLAYERS' ASSOCIATION (NHLPA)The National Hockey League Players' Association, established in 1967, is a labor organization whose members are the players in the National Hockey League. The NHLPA works on behalf of the players in varied disciplines such as labor relations, product licensing, marketing, international hockey and community relations, all in furtherance of its efforts to promote its members and the game of hockey. In 1999, NHLPA Goals & Dreams was launched as a way for the players to give something back to the game they love. Over the past 26 years, tens of thousands of deserving children in 45 countries have benefited from the players' donations of hockey equipment. NHLPA Goals & Dreams has donated more than $27 million to grassroots hockey programs, making it the largest program of its kind. For more information on the NHLPA, please visit Opens in new windowwww.nhlpa.comOpens in new window. SOURCE Chipotle Mexican GrillFor further information: Erin Wolford, (949) 524-4035, MediaRelations@chipotle.com
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

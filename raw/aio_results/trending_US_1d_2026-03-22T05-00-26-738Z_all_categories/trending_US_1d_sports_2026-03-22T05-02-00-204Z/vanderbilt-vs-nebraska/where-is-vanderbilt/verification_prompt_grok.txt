@@ -1,0 +1,108 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is vanderbilt"
+
+Claims:
+[1] "Vanderbilt University is located in Nashville, Tennessee."
+[2] "Vanderbilt University is located in the West End neighborhood of midtown."
+[3] "Vanderbilt University's campus is 340 acres."
+[4] "Vanderbilt University's campus is situated approximately 1.5 miles from downtown Nashville."
+[5] "Vanderbilt University's main address is 2201 West End Ave, Nashville, TN 37235."
+[6] "Vanderbilt University is an accredited arboretum."
+[7] "Vanderbilt University is accessible from I-40 and I-65."
+[8] "Vanderbilt University is expanding with a new campus in New York City."
+[9] "Vanderbilt University has a future graduate campus planned for West Palm Beach."
+[10] "Vanderbilt University's future graduate campus in West Palm Beach is set to open around 2029"
+
+Cited text snippets from the AI Overview (for additional context):
+- About | Vanderbilt University: "The 340-acre campus--an accredited arboretum just 1.5,its motto, Crescere aude, dare to grow."
+- Vanderbilt University: "Vanderbilt offers: * **Schools and colleges** *,A vibrant community and dynamic campus life"
+- Visit Vanderbilt: "Vanderbilt University is located a mile and,parking garage** * **Terrace Place parking garage**"
+- Vanderbilt University: "2201 West End Ave is the address,distinguished medical center * Cutting edge research"
+Reference Sources:
+
+[R1] Visit Vanderbilt
+(https://www.vanderbilt.edu/about/vicinity/)
+"""
+Directions to Public Parking Directions from the airport to Wesley Place parking garage:Take I-40 West toward Nashville. Follow the signs for I-24 West/I-40 West, then I-65 South/I-40 West. Exit at Broadway. At the base of the ramp, go straight through the traffic light at McGavock Street, and turn left onto Broadway. Stay left. Continue on Broadway to 16th Avenue, where the road splits. Veer left onto Broadway. Broadway will become 21st Avenue South. As you pass the traffic light at Grand Avenue, the Vanderbilt main campus will be on your right. Turn left at Scarritt Place (first traffic light after Grand Avenue). The entrance to the Wesley Place parking garage will be on your right, 1/2 block past the intersection. Public parking spaces are 52-170.Directions from the airport to Terrace Place parking garage:Take I-40 West towards Nashville. Follow the signs for I-24 West/I-40 West, then I-65 South/I-40 West. Exit at Broadway. At the base of the ramp, go straight through the traffic light at McGavock Street, and turn left onto Broadway. Stay right. Continue on Broadway to 16th Avenue, where the road splits. Veer right onto West End Avenue. Turn left onto 21st Avenue South (a one-way street). Take the first left onto Terrace Place. Go 1/2 block. The Terrace Place garage entrance will be on your left. Public parking spaces are 41-92.Directions from the airport to Vanderbilt University Medical Center parking garages:East Garage: Take I-40 West toward Nashville. Follow the signs for I-24 West/I-40 West, then I-65 South/I-40 West. Exit at Broadway. At the base of the ramp, go straight through the traffic light at McGavock Street, and turn left onto Broadway. Stay left. Continue on Broadway to 16th Avenue, where the road splits. Veer left onto Broadway. Broadway will become 21st Avenue South. As you pass the traffic light at Grand Avenue, the Vanderbilt main campus will be on your right. Stay on 21st Avenue South through two more traffic lights: Scarritt Place and Edgehill Avenue. Turn right at the next traffic light (Medical Center Drive). Follow Medical Center Drive as it curves to the left. The East Garage entrance will be on your left, 1/2 block past the curve, immediately across from the hospital entrance. (Also see Central Garage directions to enter East Garage from 21st Avenue South.)Central Garage/East Garage: Take I-40 West toward Nashville. Follow the signs for I-24 West/I-40 West, then I-65 South/I-40 West. Exit at Broadway. At the base of the ramp, go straight through the traffic light at McGavock Street, and turn left onto Broadway. Stay left. Continue on Broadway to 16th Avenue, where the road splits. Veer left onto Broadway. Broadway will become 21st Avenue South. As you pass the traffic light at Grand Avenue, the Vanderbilt main campus will be on your right. Stay on 21st Avenue South through three more traffic lights: Scarritt Place, Edgehill Avenue, Medical Center Drive. Continue a half-block and turn right on Dixie Place to enter Central Garage or East Garage.South Garage: Take I-40 West toward Nashville. Follow the signs for I-24 West/I-40 West, then I-65 South/I-40 West. Exit at Broadway. At the base of the ramp, go straight through the traffic light at McGavock Street, and turn left onto Broadway. Stay left. Continue on Broadway to 16th Avenue, where the road splits. Veer left onto Broadway. Broadway will become 21st Avenue South. As you pass the traffic light at Grand Avenue, the Vanderbilt main campus will be on your right. Stay on 21st Avenue South through four more traffic lights: Scarritt Place, Edgehill Avenue, Medical Center Drive, Pierce Avenue. Turn right at Children’s Way and continue 2 1/2 blocks to the South Garage entrance, on the right.. Find a Building on Campus
+"""
+
+[R2] Vanderbilt University
+(https://web.nashvillechamber.com/Education/Vanderbilt-University-3907)
+"""
+Skip to content Vanderbilt University Vanderbilt University Search | Advanced Search | New Members | Coupons and Discounts | All Categories Related Categories Education Government & Education >> Education Vanderbilt University 405 Kirkland Hall - 2201 West End AveNashville, TN 37240 | map | directions Daniel Diermeier (615) 322-1813 Visit Site Today, that vision has been realized in Vanderbilt, an internationally recognized research university with strong partnerships among its 10 schools, neighboring institutions and the community. Vanderbilt offers undergraduate programs in the liberal arts and sciences, engineering, music, education and human development, as well as a full range of graduate and professional degrees. The combination of cutting edge research, liberal arts, nationally recognized schools of business and divinity and a distinguished medical center creates an invigorating atmosphere where students tailor their education to meet their goals and researchers collaborate to solve complex questions affecting our health, culture and society. Member Since: 1949 Send a message to: Vanderbilt University Your Name: Your Email: Subject: Message: (Date: 4/2/2026) If your business isn't here, contact us today to get listed!
+"""
+
+[R3] About | Vanderbilt University
+(https://www.vanderbilt.edu/about/)
+"""
+> Vanderbilt University’s core purpose is to create, preserve, and disseminate knowledge through teaching, research, and the arts. In a culture of inquiry and debate, we create a community driven by radical collaboration and unwavering commitment to academic, professional, and personal growth. Our Guiding Principles Excellence We are committed to the pursuit and recognition of excellence in all aspects of our community, including the hiring and promotion of faculty and staff, the allocation of resources, and the admission and support of students. Freedom to Teach, Learn and Conduct Research We foster an environment of bold inquiry and discovery, grounded in a commitment to open forums with a range of perspectives, institutional neutrality, and civil discourse, where our faculty and students are free to pursue their academic interests without censorship or retribution. Growth and Development We are committed to minimizing financial and other barriers to attending Vanderbilt and cultivating a vibrant campus community that supports our students’ academic and personal growth and pursuit of purposeful lives. This is Vanderbilt Quick Facts University Leadership Belonging History Contact Us A to Z This website uses cookies to personalize content and to analyze web traffic. Select a data access level to decide for which purposes your data may be used.xOnly EssentialAccept All1 month6 months12 monthsHighest level of privacy. Data accessed for necessary basic operations only. Data shared with third parties to ensure the site is secure and works on your device.Balanced experience. Data accessed for content personalisation and site optimisation. Data shared with 3rd parties may be used to track you and store your preferences for this site.Highest level of personalization. Data shared with third parties may be used to anonymously track you on this site.Consent PreferencesUse the toggles below to specify your data sharing preferences for this website.Basic OperationsThis type of sharing is necessary for us to access the data we need to make sure the website is secure and working properly.Data Accessed:Anonymous data like browser name and versionPseudonymous data like authentication tokenContent PersonalizationWhen enabled, you allow us to save your preferences and create a profile about you so we can deliver personalized content.Data Accessed:Anonymous data like device type, model and operating systemPseudonymous data like site browsing preferencesPersonal data like your IP address and locationSite OptimizationWhen enabled, you allow us to monitor your behavior so we can analyze and improve the services on our website for all visitors.Data Accessed:Anonymous data like the address of the previously visited website (HTTP Referer)Pseudonymous data like website activity identifiersPersonal data like content, search and purchase historyAd PersonalizationWhen enabled, you allow us access to share data with our advertising partners that build profiles about you across multiple websites.Data Accessed:Anonymous data like affiliate referral linksPseudonymous data like identifiers used to track and profile usersPersonal data like your age, gender and demographicsProtection & MetricsView your consent record, and the list of third parties blocked and allowed based on your settings. Consent MetricsConsent ID—Date of Consent—Data Access Level—Purpose Categories—Duration of Consent—Privacy ProtectionServices Blocked—Services AllowedCookie Compliance Google Tag Manager Facebook Hotjar Save My Preferences Customize Privacy Policy
+"""
+
+[R4] Nashville – Getting Oriented
+(https://www.vanderbilt.edu/nashville/)
+"""
+As the hub for several booming industries, the home to a global community—including the nation’s largest Kurdish population—and “America’s friendliest city” according to Travel + Leisure magazine, Nashville combines history and hospitality with diverse culture and growth.Tennessee’s capital also is an international destination for the arts, entrepreneurship and scientific research, thereby attracting world-renowned scholars to Vanderbilt and the broader community. In turn, it’s no surprise that many students choose to call Music City home, even after their time as Vanderbilt students comes to an end.Major regional industries include music and entertainment, tourism, printing and publishing, technology, higher education, automobile production and health care management. The "It" City Nashville is one of the top cities to move to or visit in the United States. It was named National Geographic’s #1 travel destination in the world in June 2022. Read the Story IndustryMajor industries include tourism, printing and publishing, technology manufacturing, music production, higher education, finance, insurance, automobile production and health care management. Nashville has been named one of the 15 best U.S. cities for work and family by Fortune magazine, was ranked as the No. 1 most popular U.S. city for corporate relocations by Expansion Management magazine, and was named by Forbes magazine as one of the 25 cities most likely to have the country’s highest job growth over the coming five years.HistorySettled in 1779 along the banks of the Cumberland River, Nashville became Tennessee’s state capital in 1843. Just 30 years later, Vanderbilt University was founded—marking the start of an enduring relationship between a dynamic Southern city and a world-class research institution. ClimateNashville’s climate is often characterized as mild, with colder winter months and high temperatures in the summer. Most of the city’s rain occurs during the spring, and if a snowfall does occur, it’s seldom heavy. Campus life at Vanderbilt benefits tremendously from the city’s temperate weather, as outdoor activities can typically occur throughout the academic year.TransportationWhile several restaurants and cultural attractions are within easy walking distance of Vanderbilt’s campus, ride-hailing services such as Uber and Lyft also are widely available throughout Nashville.For getting into and out of the city, the award-winning Nashville International Airport provides nonstop flights to 75 markets, including Atlanta, Boston, Chicago, Dallas, London, Los Angeles and Washington, D.C. Nashville is this big city, but it can have the college town feel. You can go from the heart of the city to main campus in a 5-minute walk. NeighborhoodsEach of the city’s neighborhoods carries its own identity and benefits. The Vanderbilt campus is located approximately 1.5 miles southwest of downtown in the West End neighborhood of midtown Nashville. Among the closest neighboring areas are Music Row—often considered the heart and historic center of Nashville’s recording industry—and Hillsboro Village, a pedestrian-friendly area filled with shopping, restaurants and bars. Next Arts & Culture
+"""
+
+[R5] Vanderbilt University
+(https://www.vanderbilt.edu/)
+"""
+Consent PreferencesUse the toggles below to specify your data sharing preferences for this website.Basic OperationsThis type of sharing is necessary for us to access the data we need to make sure the website is secure and working properly.Data Accessed:Anonymous data like browser name and versionPseudonymous data like authentication tokenContent PersonalizationWhen enabled, you allow us to save your preferences and create a profile about you so we can deliver personalized content.Data Accessed:Anonymous data like device type, model and operating systemPseudonymous data like site browsing preferencesPersonal data like your IP address and locationSite OptimizationWhen enabled, you allow us to monitor your behavior so we can analyze and improve the services on our website for all visitors.Data Accessed:Anonymous data like the address of the previously visited website (HTTP Referer)Pseudonymous data like website activity identifiersPersonal data like content, search and purchase historyAd PersonalizationWhen enabled, you allow us access to share data with our advertising partners that build profiles about you across multiple websites.Data Accessed:Anonymous data like affiliate referral linksPseudonymous data like identifiers used to track and profile usersPersonal data like your age, gender and demographicsProtection & MetricsView your consent record, and the list of third parties blocked and allowed based on your settings. Consent MetricsConsent ID—Date of Consent—Data Access Level—Purpose Categories—Duration of Consent—Privacy ProtectionServices AllowedCookie Compliance Google Tag Manager Facebook Hotjar
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

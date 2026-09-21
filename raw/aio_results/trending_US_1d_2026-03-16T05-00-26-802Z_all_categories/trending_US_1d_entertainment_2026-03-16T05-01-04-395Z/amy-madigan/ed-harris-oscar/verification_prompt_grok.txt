@@ -1,0 +1,90 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "ed harris oscar"
+
+Claims:
+[1] "Ed Harris is an American actor."
+[2] "Ed Harris has earned four Academy Award nominations."
+[3] "Ed Harris has not won an Oscar."
+[4] "Ed Harris received a Best Supporting Actor Oscar nomination for Apollo 13 (1995)."
+[5] "Ed Harris received a Best Supporting Actor Oscar nomination for The Truman Show (1998)."
+[6] "Ed Harris received a Best Supporting Actor Oscar nomination for The Hours (2002)."
+[7] "Ed Harris received a Best Actor Oscar nomination for Pollock (2000)."
+[8] "Ed Harris received a Best Supporting Actor Oscar nomination for Apollo 13 at the 1996 ceremony."
+[9] "Ed Harris received a Best Supporting Actor Oscar nomination for The Truman Show at the 1999 ceremony."
+[10] "Ed Harris received a Best Actor Oscar nomination for Pollock at the 2001 ceremony."
+[11] "Ed Harris received a Best Supporting Actor Oscar nomination for The Hours at the 2003 ceremony."
+[12] "Ed Harris received Emmy nominations for his television roles."
+[13] "Ed Harris received an Emmy nomination for his work on HBO's Westworld."
+
+Cited text snippets from the AI Overview (for additional context):
+- Why don't they have an Oscar? My pick, Ed Harris. Who's yours?: "Today is the 73rd birthday of 4x,favorite Ed Harris performance. What is yours?"
+Reference Sources:
+
+[R1] List of awards and nominations received by Ed Harris
+(https://en.wikipedia.org/wiki/List_of_awards_and_nominations_received_by_Ed_Harris)
+"""
+From Wikipedia, the free encyclopedia List of Ed Harris's awards Harris in 2010 Award Wins Nominations Academy Awards 0 4 Actor Awards 2 10 BAFTA Award 0 2 Emmy Awards 0 3 Golden Globe Award 2 6 Tony Award 0 1 Laurence Olivier Award 0 1 Ed Harris is an American actor and filmmaker. Harris has received various accolades including two Golden Globes, one for Best Supporting Actor – Motion Picture for The Truman Show (1998), and one for Best Supporting Actor – Series, Miniseries or Television Film for Game Change (2012). He has received two Actor Awards for Outstanding Performance by a Cast in a Motion Picture and Outstanding Performance by a Male Actor in a Supporting Role for his work on Apollo 13 (1995). Harris has also received four Academy Awards nominations for his work in film for Apollo 13 (1995), The Truman Show (1998), Pollock (2000), and The Hours (2002). For his work on television he was nominated for three Primetime Emmy Awards for Empire Falls (2005), Game Change (2012), and Westworld (2016). For his work on Broadway, he received a Tony Award nomination for Best Actor in a Play for Precious Son in 1986. He made his West End debut in Buried Child, earning a Laurence Olivier Award nomination for Best Actor. Year Category Nominated work Result Ref. 1996 Best Supporting Actor Apollo 13 Nominated [1] 1999 The Truman Show Nominated [2] 2001 Best Actor Pollock Nominated [3] 2003 Best Supporting Actor The Hours Nominated [4] Year Category Nominated work Result Ref. 1996 Outstanding Cast in a Motion Picture Nixon Nominated [5] Apollo 13 Won Outstanding Male Actor in a Supporting Role Won 1997 Outstanding Male Actor in a Miniseries or Television Movie Riders of the Purple Sage Nominated [6] 2002 Outstanding Cast in a Motion Picture A Beautiful Mind Nominated [7] 2003 The Hours Nominated [8] Outstanding Male Actor in a Supporting Role Nominated 2006 Outstanding Male Actor in a Miniseries or Television Movie Empire Falls Nominated [9] 2013 Game Change Nominated [10] 2017 Outstanding Ensemble in a Drama Series Westworld Nominated [11] Year Category Nominated work Result Ref. British Academy Film Awards 1999 Best Actor in a Supporting Role The Truman Show Nominated 2003 The Hours Nominated Year Category Nominated work Result Ref. Primetime Emmy Awards 2005 Outstanding Lead Actor in a Limited Series or Movie Empire Falls Nominated [12] 2012 Outstanding Supporting Actor in a Limited Series or Movie Game Change Nominated [13] 2018 Outstanding Lead Actor in a Drama Series Westworld Nominated [14] Golden Globe Awards[edit] Year Category Nominated work Result Ref. 1990 Best Supporting Actor Jacknife Nominated [15] 1996 Apollo 13 Nominated [16] 1999 The Truman Show Won [17] 2003 The Hours Nominated [18] 2006 Best Actor in a Miniseries or TV Movie Empire Falls Nominated [19] 2013 Best Supporting Actor - Television Game Change Won [20] Laurence Olivier Awards[edit] Year Category Nominated work Result Ref. 2017 Best Actor Buried Child Nominated [21] Year Category Nominated work Result Ref. 1986 Best Actor in a Play Precious Sons Nominated Miscellaneous awards[edit] Year Award Nominated work Result 1983 New York Film Critics Circle Award for Best Supporting Actor The Right Stuff Nominated 1984 Obie Award for Distinguished Performance by an Actor Fool for Love Won 1986 Drama Desk Award for Outstanding Actor in a Play Precious Sons Won Theatre World Award Won 1989 Saturn Award for Best Actor The Abyss Nominated 1992 Valladolid International Film Festival Award for Best Actor Glengarry Glen Ross Won 1995 Critics' Choice Movie Award for Best Supporting Actor Nixon, Apollo 13, and Just Cause Won Southeastern Film Critics Association Award for Best Supporting Actor Apollo 13 Won Dallas-Fort Worth Film Critics Association Award for Best Supporting Actor Runner-up Chicago Film Critics Association Award for Best Supporting Actor Nominated Lucille Lortel Award for Outstanding Lead Actor in a Play Simpatico Won 1996 Bronze Wrangler for Television Feature Film Riders of the Purple Sage Won 1998 Blockbuster Entertainment Award for Favorite Supporting Actor — Drama The Truman Show Won National Board of Review Award for Best Supporting Actor Won Southeastern Film Critics Association Award for Best Supporting Actor Won Online Film Critics Society Award for Best Supporting Actor Nominated Saturn Award for Best Supporting Actor Nominated 2000 Toronto Film Critics Association Award for Best Actor Pollock Won Satellite Award for Best Actor – Motion Picture Drama Nominated 2001 Satellite Award for Best Supporting Actor – Motion Picture A Beautiful Mind Nominated 2002 Critics' Choice Movie Award for Best Acting Ensemble The Hours Nominated Dallas-Fort Worth Film Critics Association Award for Best Supporting Actor 3rd Place London Film Critics Circle Award for Actor of the Year Nominated Phoenix Film Critics Society Award for Best Cast Nominated Italian Online Movie Award for Best Cast Won Italian Online Movie Award for Best Supporting Actor Won 2005 Satellite Award for Best Actor – Miniseries or Television Film Empire Falls Nominated Women's Image Network Award for Best Actor in a Made-for-TV Movie/Miniseries Won National Society of Film Critics Award for Best Supporting Actor A History of Violence Won 2007 Drama Desk Award for Outstanding Solo Performance Wrecks Nominated Outer Critics Circle Award for Outstanding Solo Performance Nominated 2008 Boston Film Festival Prize for Best Screenplay Adaptation Appaloosa Won Bronze Wrangler for Theatrical Motion Picture Won Critics' Choice Movie Award for Best Acting Ensemble Gone Baby Gone Nominated 2012 Golden Nymph Award for Best Performance by an Actor – Television Film Game Change Nominated 2014 Women Film Critics Circle - Adrienne Shelly Award Frontera Won 2016 Lucille Lortel Award for Outstanding Lead Actor in a Play Buried Child Nominated 2017 Saturn Award for Best Supporting Actor on Television Westworld Won 2019 Saturn Award for Best Supporting Actor on Television Nominated ^ "THE 68TH ACADEMY AWARDS". Oscars.org. Retrieved February 15, 2023. ^ "THE 71ST ACADEMY AWARDS". Oscars.org. Retrieved February 15, 2023. ^ "THE 73RD ACADEMY AWARDS". Oscars.org. Retrieved February 15, 2023. ^ "THE 75TH ACADEMY AWARDS". Oscars.org. Retrieved February 15, 2023. ^ "2nd Screen Actors Guild Awards". Screen Actors Guild Awards. Retrieved February 15, 2023. ^ "3rd Screen Actors Guild Awards". Screen Actors Guild Awards. Retrieved February 15, 2023. ^ "8th Screen Actors Guild Awards". Screen Actors Guild Awards. Retrieved February 15, 2023. ^ "9th Screen Actors Guild Awards". Screen Actors Guild Awards. Retrieved February 15, 2023. ^ "12th Screen Actors Guild Awards". Screen Actors Guild Awards. Retrieved February 15, 2023. ^ "19th Screen Actors Guild Awards". Screen Actors Guild Awards. Retrieved February 15, 2023. ^ "23rd Screen Actors Guild Awards". Screen Actors Guild Awards. Retrieved February 15, 2023. ^ "2005 Emmy Awards". Television Academy. Retrieved February 15, 2023. ^ "2012 Emmy Awards". Television Academy. Retrieved February 15, 2023. ^ "2018 Emmy Awards". Television Academy. Retrieved February 15, 2023. ^ "47th Golden Globe Awards". Golden Globe Awards. Retrieved February 15, 2023. ^ "53rd Golden Globe Awards". Golden Globe Awards. Retrieved February 15, 2023. ^ "56th Golden Globe Awards". Golden Globe Awards. Retrieved February 15, 2023. ^ "60th Golden Globe Awards". Golden Globe Awards. Retrieved February 15, 2023. ^ "65th Golden Globe Awards". Golden Globe Awards. Retrieved February 15, 2023. ^ "70th Golden Globe Awards". Golden Globe Awards. Retrieved February 15, 2023. ^ "Olivier Winners 2017". Olivier Awards. Retrieved February 12, 2025.
+"""
+
+[R2] Actors Amy Madigan and Ed Harris Have Been Married for Over Four Decades
+(https://www.townandcountrymag.com/leisure/arts-and-culture/a70736874/who-is-ed-harris-amy-madigan-husband/)
+"""
+2 min readAt the Oscars this evening, Best Supporting Actress nominee Amy Madigan will be supported by her husband of over four decades, fellow actor Ed Harris.“He loved it,” Madigan said of Harris’s reaction to watching her in Weapons, the film for which she’s nominated. “He’s known me a long time and he saw all the parts of myself melded into Aunt Gladys. So, I have a very supportive family, my daughter also, so I’m very lucky.”Monica Schipper//Getty ImagesAmy Madigan and Ed Harris at the 83rd Annual Golden Globe Awards.Madigan, 75, and Harris, also 75, have been married since 1983. They have one daughter, Lily, who followed her parents into acting. “We just love each other and we work really hard at that and in our work,” Madigan said about their relationship at the New York Film Critics Circle Awards in January.Advertisement - Continue Reading BelowHere, what to know about Madigan’s husband Ed Harris, a four-time Oscar nominee:He’s from New Jersey.Bob Riha Jr//Getty ImagesHarris in 1997.Harris, born in 1950, grew up in New Jersey and went on to study at Columbia University, where he was on the football team. After his family moved to New Mexico, he transferred to the University of Oklahoma, and then to the California Institute of Arts, where he graduated with a Bachelor of Fine Arts in 1975.He made his acting debut in the 70s.Harris has had a long and fruitful career in movies and television, and was nominated for Oscars for his performances in Apollo 13 (1995), The Truman Show (1998), Pollock (2000), and The Hours (2002). As the Man in Black in Westworld, which aired from 2018 to 2022, he earned an Emmy nomination. He most recently appeared in How to Make a Killing and will next feature in The Dink, a sports comedy film premiering this summer.Harris and Madigan married in 1983.Pool DENIZE/PELLETIER//Getty ImagesThe couple in 1985.The couple began dating in 1981, after she saw him in the 1980 play Cowboy. “It was like something you see in a movie or hear in a song. I just thought, ‘Well, there he is.’ It was obvious to me that I'd see him again,” she told Life in 1985.They co-starred in the 1984 film Places in the Heart, and married in 1983 while in production for the movie. “The acting thing is so intimate and personal,” Harris told the Chicago Tribune in 1985 of working with Madigan. “If we’re not working together... you can’t really talk about your day very well. When you’re working together, though, there’s so much that is shared, so much unspoken thought and emotion that goes into the work, that it really draws you closer.”Emily Burack (she/her) is the Deputy Digital Editor for Town & Country, where she covers entertainment, celebrities, the royals, and a wide range of other topics. Before joining T&C, she was the deputy managing editor at Hey Alma, a Jewish culture site. Follow her @emburack on Instagram, Twitter, and other social media platforms.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

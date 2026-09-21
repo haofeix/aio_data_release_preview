@@ -1,0 +1,112 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch golden state warriors vs dallas mavericks"
+
+Claims:
+[1] "The Golden State Warriors vs. Dallas Mavericks game is on March 23, 2026."
+[2] "The Golden State Warriors vs. Dallas Mavericks game starts at 8:30 p.m. CST."
+[3] "The Golden State Warriors vs. Dallas Mavericks game starts at 6:30 p.m. PT."
+[4] "The Golden State Warriors vs. Dallas Mavericks game can be watched on Peacock."
+[5] "The Golden State Warriors vs. Dallas Mavericks game can be watched on NBC Sports Bay Area/California."
+[6] "The Golden State Warriors vs. Dallas Mavericks game is held at the American Airlines Center in Dallas."
+[7] "The Golden State Warriors vs. Dallas Mavericks game can be streamed via a Peacock subscription."
+[8] "Peacock carries the Golden State Warriors vs. Dallas Mavericks game nationwide."
+[9] "NBC Sports Bay Area/California carries the Golden State Warriors vs. Dallas Mavericks game."
+[10] "The Golden State Warriors vs. Dallas Mavericks game is broadcast on KEGL 97.1 FM The Eagle radio."
+[11] "The Golden State Warriors vs. Dallas Mavericks game is broadcast on 99.1 FM Zona MX (Spanish) radio."
+[12] "The Dallas Mavericks are hosting the Golden State Warriors."
+[13] "The Golden State Warriors are entering the game on a three-game losing streak"
+
+Cited text snippets from the AI Overview (for additional context):
+- Watch Warriors vs. Mavericks NBA game tonight live online - AL.com: "The Golden State Warriors play,Curry tonight due to injury.&text=The Mavericks enter this matchup,monthly Peacock subscription for $10.99."
+- Dallas GSW vs DAL 6:30pm PT NBC Sports Bay Area ...: "📍Dallas 🏀 GSW vs,Golden State Warriors's post"
+- Mavericks vs Warriors Preview and Injury Update: "WHO: Dallas Mavericks vs Golden,HOW: Peacock"
+- How to watch Golden State Warriors vs. Dallas Mavericks online: "Dallas Mavericks online,Warriors take on the Mavs.&text=All products featured here are,loss to the Sacramento Kings."
+- Watch NBA live on Hulu: "With a Hulu + Live TV,on Hulu all season long."
+Reference Sources:
+
+[R1] Mavericks' birthday dreams give way to harsh reality against Warriors | Dallas Mavericks
+(https://www.nba.com/mavs/news/mavericks-birthday-dreams-give-way-to-nightmarish-end-against-warriors)
+"""
+On a day when he and Kyrie Irving each celebrated their birthdays, Jason Kidd talked about what it’s like to have what he called a “born closer” at his disposal, something that should be the case next season when Irving returns to action.Then, after the Mavericks couldn’t close the deal Monday night against the Golden State Warriors, Kidd reiterated that Irving had to go through the same sort of tough times like Cooper Flagg and the rest of the Mavericks are enduring this season.Flagg made a winning play at the end of regulation when he got the Warriors’ defense sucked in and found Naji Marshall all by his lonesome on the three-point line.The shot missed and the Warriors took advantage of the second chance by dominating overtime to beat the Mavericks 137-131 at American Airlines Center.Though it didn’t end successfully, the play was the right one. As was the play with just over a minute left in regulation when Flagg found Max Christie in the corner.Christie’s three-pointer splashed into the net and tied the game at 126. Those points ultimately got the Mavericks to the extra period.The bottom line is that learning to be a “born closer” doesn’t happen right away for any player, no matter how gifted they might be. The Mavericks have had 42 clutch games (within five points in the final five minutes). They have won just 15 of them.“I think it’s going to help everyone,” Kidd said. “Anytime you have real, live plays that come down to the last minute or two minutes, understanding how to get what you want, that’s what the great ones do.“It doesn’t happen overnight. They have to all go through the trials of failure and also success. We’re not looking at it as a fail. Cooper is doing a lot of good. It’s just the ball has not bounced our way. Naji has a wide-open look. Cooper’s making all the right plays, if it’s not for himself it’s for his teammates.”Someday, those plays might involve Flagg electing to take matters into his own hands with game-winning shots. That was an acquired taste for Dirk Nowitzki, among others.But with Irving being out for this season recovering from knee surgery, it has reminded everybody how tough it is to close out tight games successfully.The Mavericks fell to 23-49 and haven't won at AAC since Jan. 22. The Warriors are 34-38 and their win officially meant the Mavericks are eliminated from any postseason contention, although that ship sailed a long time ago, unofficially.(Nicole Malunowicz/Dallas Mavericks)Flagg finished with a monster stat line of 32 points, nine assists, four rebounds and two steals, although he also had seven of the Mavericks' 23 turnovers, which the Warriors turned into 29 points.But the execution down the stretch, regardless of whether shots went in, was impressive.“Every opposing team, especially down the stretch, knows that he’s the guy we want to go to to score, to put us in position to win," said Christie. "And I thought twice tonight he did a great job of making the right play, especially the last shot that Naji had. It was the shot we wanted. Naji’s man helped off him and he was wide-open. And that’s exactly what we wanted. We know Naji can make that and we’re going to take that shot 10 times out of 10.“Us as teammates should be grateful to have someone like that. I think it’s important to make the right play and he does that.”Flagg learning how to finish games is a slow process, but he feels he's already ahead of the curve in that regard.“Got a good switch," Flagg said of the last play of regulation. "I was able to beat him off the dribble and I saw two or three guys from that side collapsing to the rim. I think I could have probably got an OK look."But I look to my left and see Naji with nobody within 10 feet of him. I just made the right basketball play. I made the pass that I thought was best for the scenario. It’s not pre-determined. Just try to read the game at a high level as it’s happening. If I feel two guys collapse, you just try to make the simple play."The outcome put a damper on the good times that started when Kidd and Irving got serenaded at the Mavericks’ morning walk-through by the rookies on the roster and a few hours later, Kidd, who turned 53, could reflect on what a season like this has been like.In short, he has been reminded just how important somebody like Irving is, a reminder that came again against the Warriors.“I told him (Irving) we missed him a lot this year on the floor,” he said.And that moment gave Kidd a chance to dream a little.“When you talk about Kai, at the offensive end, (having him) would help in all categories, shooting, scoring and the biggest (thing) is that if you put us down for 40 clutch games, you have a closer – a born closer,” Kidd said. “I’m not going to say he’s going to win all 40 games for you, but it puts you in a better seat.“And so, having that option will definitely help us if we’re going to talk about next season. For us to not have him all year, that’s impossible to cover up by committee, just because of the things he can do at the highest level. For him to be healthy next year, hopefully that puts us in a better seat.”Indeed, the future with Irving and, hopefully, Dereck Lively II joining Flagg when the 2026-27 season opens is enticing, especially considering Flagg had one of his best games of the season on Monday.It went for naught in overtime when the Warriors scored the first seven points behind Moses Moody, Brandin Podziemski and Gary Payton II.The Mavericks never had a possession to tie or take a lead after that.The Warriors received a scary-looking blow when Moody went down as he tried to leap for a breakaway dunk, but appeared to have his knee give way.After the game, players from both teams were gathered near the X-ray room at AAC to show support for Moody.X: @ESefko
+"""
+
+[R2] Where to watch Warriors-Mavericks NBA game tonight livestream online
+(https://www.al.com/tv/2026/03/where-to-watch-warriors-mavericks-nba-game-tonight-livestream-online.html)
+"""
+Published: Mar. 23, 2026, 5:00 p.m.Dallas Mavericks forward and Maine native Cooper Flagg during an NBA basketball game, March 6, 2026, in Boston. (AP Photo/Charles Krupa)APIf you purchase a product through a link on our site, we may receive compensation.By Thomas Lagrone | tlagrone@al.comThe Golden State Warriors play against the Dallas Mavericks in an NBA game tonight. The game is scheduled to begin at 8:30 p.m. CT on Peacock. Fans can watch this game live online by purchasing a monthly Peacock subscription for $10.99. The Warriors have struggled this season, as they enter this matchup with a 33-38 record. Notably, the team has lost three consecutive games. In their most recent matchup, the Warriors lost 126-110 against the Atlanta Hawks. In order to bounce back tonight, the Warriors will need a great performance from their guard Brandin Podziemski. He averages nearly 13 points per game, making him one of the top scorers for Golden State. The Warriors will have to play without Stephen Curry tonight due to injury. The Mavericks enter this matchup with a 23-48 record, and they have lost three games in a row. In their last game, the Mavericks lost 138-131 against the Los Angeles Clippers. In order to win the NBA game tonight, the Mavericks will need to rely on their forward Cooper Flagg. He leads the team in scoring this year, as he averages more than 20 points per game. Fans can watch this NBA game live online by purchasing a monthly Peacock subscription for $10.99. Lakers-Thunder free livestream: Where to watch NBA game today, TV, timeWhere to watch Mets-Giants MLB game for free todayWhere to watch Auburn vs. Illinois State NIT Semifinal for free todayWhere to watch Timberwolves-Pistons NBA game for free todayWhere to watch March Madness Final Four games for free this weekendThomas Lagrone is an Alabama native and recent graduate from the University of Alabama at Birmingham with a bachelor's degree in sports communication. Thomas has loved participating in and watching sports...TOP STREAMING PICKSBY AL.COM
+"""
+
+[R3] Golden State Warriors vs. Dallas Mavericks 2025 livestream: Watch NBA online
+(https://mashable.com/article/golden-state-warriors-dallas-mavericks-feb-nba-2025-live-stream)
+"""
+TL;DR: Live stream Golden State Warriors vs. Dallas Mavericks in the NBA with FuboTV, Sling TV, or YouTube TV.The Golden State Warriors head to American Airlines Center to face the Dallas Mavericks in a Western Conference matchup. The Warriors are 27-26, which puts the team in 10th place. The Mavs are 28-26, which puts the team in eighth place.The Warriors have won three of their last five games, and are coming off back-to-back wins over the Milwaukee Bucks and Chicago Bulls. The Mavs have lost three of their last five games, and are coming off a loss to the Sacramento Kings. When is Golden State Warriors vs. Dallas Mavericks?Golden State Warriors vs. Dallas Mavericks in the NBA starts at 9:30 p.m. ET on Feb. 12. This game takes place at American Airlines Center in Dallas.This game will air on ESPN.How to watch Golden State Warriors vs. Dallas MavericksYou need to choose a streaming service to watch the NBA without cable or satellite TV. We've found some of the best streaming services to consider for the Warriors vs. Mavs basketball game.Best for single game: FuboTV FuboTV offers you more than 250 channels of live TV and the option to watch on 10 screens at once. You can try FuboTV with a seven-day free trial period. Mashable Top Stories FuboTV’s sports channel offerings include ABC, ACC Network, Big Ten Network, CBS, CBS Sports Network, ESPN, ESPN2, ESPNews, FOX, FS1, FS2, Golf Network, Marquee Sports Network, Monumental Sports, NBC, NFL Network, and SEC Network. Most live sports: YouTube TV $49.99/month for your first two months (save $46) YouTube TV's base plan is $49.99 per month for two months for new subscribers ($72.99 per month regularly). The base plan includes over 100 live TV channels, including ABC, CBS, FOX, NBC, ESPN, Fox Sports 1, and NBA TV.Most affordable: Sling TV Sling TV suggests the streamer's Orange Plan for the game, which costs $20 for the first month and $40 monthly after that.Sling TV’s sports channels feature ABC, ACC Network, Big Ten Network, ESPN, ESPN2, ESPN3, ESPNews, ESPNU, FOX, FS1, FS2, NBA TV, NBC, NFL Network, and SEC Network.How to watch Warriors vs. Mavs from anywhere in the worldIf you're traveling outside of the U.S. during this game, you might need to use a VPN to unblock this live stream. VPNs can hide your real IP address (digital location) and connect you to a secure server, meaning you can unblock live streams of the NBA from anywhere in the world.Live stream Golden State Warriors vs. Dallas Mavericks for free by following these simple steps:Subscribe to a streaming-friendly VPN (like ExpressVPN)Download the app to your device of choice (the best VPNs have apps for Windows, Mac, iOS, Android, Linux, and more)Open up the app and connect to a server in the U.S.Sign in to your favorite streaming app $99.95 only at ExpressVPN (with money-back guarantee) The best VPNs for streaming are not free, but leading VPNs do tend to offer free-trial periods or money-back guarantees. By leveraging these offers, you can gain access to live streams of the NBA without actually spending anything. This obviously isn't a long-term solution, but it does give you enough time to live stream Golden State Warriors vs. Dallas Mavericks before recovering your investment.What is the best VPN for the NBA?ExpressVPN is the best choice for bypassing geo-restrictions to stream live sport, for a number of reasons:Servers in 105 countriesEasy-to-use app available on all major devices including iPhone, Android, Windows, Mac, and moreStrict no-logging policy so your data is secureFast connection speeds free from throttlingUp to eight simultaneous connections30-day money-back guaranteeA one-year subscription to ExpressVPN is on sale for $99.95 and includes an extra three months for free — 49% off for a limited time. This plan includes a year of free unlimited cloud backup and a generous 30-day money-back guarantee.Live stream Golden State Warriors vs. Dallas Mavericks in the NBA with ExpressVPN.
+"""
+
+[R4] Mavericks vs Warriors Preview and Injury Update: Late game in Dallas
+(https://www.mavsmoneyball.com/mavericks-game-previews/57202/mavericks-vs-warriors-preview-start-time-tv-stream-injury-report-how-to-watch)
+"""
+The Dallas Mavericks (23-48) are still home for this Monday night nationally televised game against the Golden State Warriors (33-38). Dallas is on a three-game losing streak, falling on Saturday to the Los Angeles Clippers in overtime. The Warriors have also lost three in a row, most recently losing to the Atlanta Hawks.Here are the main things you need to know:WHO: Dallas Mavericks vs Golden State WarriorsWHAT: Welcoming the Steph Curry-less WarriorsWHERE: American Airlines Center, Dallas, TexasWHEN: 8:30 pm CSTHOW: PeacockIt’s a pretty clean injury report for the Mavericks. Brandon Williams is still out with a concussion. Caleb Martin is questionable with a heel contusion, but that’s been the case for several days. The two-way contract players are all questionable as well and will likely be a game-time decision. The Mavericks are in a good spot compared to the WarriorsJoin the conversation!Fewer adsCreate community postsComment on articles, community postsRec comments, community postsNew, improved notifications system!Golden State has a long, long injury list. Steph Curry is missing the game with whatever “Right Patellofemoral Pain Syndrome” means. Al Horford is out due to a “right soleus strain”, which also feels made up. Jimmy Butler tore his ACL a while back. Quinten Post will also miss this game with foot injury management. Seth Curry will also miss this game. De’Anthony Melton and Kristaps Porzingis are probable. Moses Moody is questionable.No idea how this one goes. Dallas has more talent, but the Warriors play a weird style of basketball and Dallas seems very capable of losing out, which is shocking even to me as someone who isn’t invested in the team winning at all.Be sure to chime in with your predictions in the comments!Consider joining Josh and me on Pod Maverick live after the game on YouTube, we should start LATE. Thanks so much for spending time with us here at Mavs Moneyball. Let’s go Mavs!29 Comments
+"""
+
+[R5] Watch NBA live on Hulu
+(https://help.hulu.com/article/hulu-nba-availability)
+"""
+Oct 01, 2025 With a Hulu + Live TV subscription, you can watch and record live NBA basketball games on Hulu all season long. Log in to Hulu on any device that supports Live TV, and you'll have instant access to the live games airing through the local and regional sports networks available in your area — as well as through national networks like ABC, ESPN, ESPN2, and TNT. Select one of the options below to learn more about watching NBA on Hulu: What do I need to watch NBA on Hulu?What NBA games are available on Hulu? How do I find NBA games on Hulu? What you’ll need to watch NBA on Hulu To get in on the NBA action, you’ll need the following: Live TV subscriptionSupported deviceHome networkLive TV network coverage * *Enter your ZIP Code to confirm the network coverage in your region. BACK TO TOP Determining NBA game availability Game day availability can vary and is subject to regional restrictions and blackouts — out-of-market games may be unavailable. These restrictions are determined by sports leagues and other rights holders. With Hulu + Live TV, you can confirm if an upcoming game is unavailable or blacked out by using the Live Guide. BACK TO TOP How to find NBA games on Hulu Hulu + Live TV subscribers can go to the NBA Games Sports collection to view live games and see what match-ups are airing next (you can also search the Hulu app for the "NBA Basketball" series page). To keep track of your favorite teams and game start times, add them to My Stuff and enable push notifications on your mobile devices. BACK TO TOP
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

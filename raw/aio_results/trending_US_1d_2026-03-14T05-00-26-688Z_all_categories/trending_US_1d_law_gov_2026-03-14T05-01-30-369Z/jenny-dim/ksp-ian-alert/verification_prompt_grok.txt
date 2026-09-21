@@ -1,0 +1,118 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "ksp ian alert"
+
+Claims:
+[1] "As of March 13, 2026, the Kentucky State Police have issued an IAN Alert for a missing 9-year-old girl in Boone County."
+[2] "An IAN Alert is a Kentucky emergency system for missing children with autism or disabilities."
+[3] "An IAN Alert acts similarly to an Amber Alert."
+[4] "The purpose of IAN Alerts is to quickly notify the public when a child with autism or a mental disability goes missing and may be in danger."
+[5] "IAN Alerts are named after Ian Sousis."
+[6] "Ian Sousis was a 9-year-old with autism."
+[7] "Ian Sousis drowned after wandering away."
+[8] "Ian Sousis's case led to a new Kentucky law in 2024."
+[9] "IAN Alerts utilize the same wireless emergency alert system as Amber Alerts."
+[10] "Children with autism are at higher risk of drowning."
+[11] "According to LEX18 and WKYT, a previous IAN alert issued on March 11, 2026, in Lexington for a 17-year-old was canceled after he was found safe."
+
+Cited text snippets from the AI Overview (for additional context):
+- Kentucky State Police Post Issues IAN Alert for Missing/Endangered Youth ...: "IAN Alerts are used when,Ian alert"
+- IAN Alert canceled after teen found safe: "IAN Alert canceled after teen found safe"
+- KSP: IAN Alert canceled, missing juvenile found safe: "UPDATE: March 11 at 1,broadcast, rewritten, or redistributed."
+- Five-year-old found dead after IAN Alert: "IAN Alerts became law in Kentucky in 2024."
+- KSP: IAN alert issued for missing Boone County 9-year-old girl: "KSP: IAN alert issued for,County 9-year-old girl"
+- What is the Ian Alert? Kentucky's new system sends ...: "An Ian Alert is a system similar,with autism or mental disabilities is missing."
+- What is an Ian Alert? Missing Kentucky child triggers first ... - WCPO: "The Ian Alert uses the,crucial gap in emergency response."
+Reference Sources:
+
+[R1] Kentucky State Police
+(https://www.kentuckystatepolice.ky.gov/news/p6-3-13-2026)
+"""
+Apply Today joinksp.comKentucky State Police Post Issues IAN Alert for Missing/Endangered Youth In Boone County FLORENCE, Ky. (March 13, 2026) – The Kentucky State Police has issued an IAN Alert for Jenny Dim, a 9-year-old female, last seen on MacIntosh Lane in Florence, Ky., on March 13 at approximately 5:00 p.m. Jenny is described as Asian, 4’4”, 53 pounds, with brown hair and eyes, wearing a mint-blue jacket, pink headphones, pierced ears, and no shoes. Anyone with information is urged to contact the Kentucky State Police Post at 859-428-1212 or call 911. Updates will be provided through social media and local media outlets. IAN Alerts are used when children under the age of 18 with autism or mental illness go missing and may be in danger. # # # Tags: Ian alertPost 6Return to News Archive HomeTIP LINE
+"""
+
+[R2] KSP: IAN Alert canceled, missing juvenile found safe
+(https://www.lex18.com/news/ksp-ian-alert-issued-for-missing-17-year-old-in-lexington)
+"""
+News Actions Facebook Tweet Email KSP: IAN Alert canceled, missing juvenile found safe Prev Next Photo by: LEX 18 By: Web Staff Posted 4:33 PM, Mar 11, 2026 and last updated 5:23 PM, Mar 11, 2026 UPDATE: March 11 at 1:20 p.m.Kentucky State Police report that the IAN Alert has been canceled, that the missing juvenile was found safe on Wednesday afternoon, and that he is being reunited with his family.Original Story: An IAN Alert has been issued for a missing juvenile who was reportedly last seen in Lexington on Wednesday morning. According to Kentucky State Police, the juvenile was last seen just before 10 a.m. on Wednesday on Conley Street. KSP says the juvenile is 5'7" tall, with brown hair and eyes, and has autism. Anyone with information on his whereabouts is asked to call 911. Report a typo Recommended For You Marketplace Sell Your Items - Free to List Visit Full Marketplace 1959 Cadillac Eldorado $249,000 Gateway C. | sellwild.com 1929 Ford Model A Pickup Gateway C. | sellwild.com 1979 Pontiac Trans Am $33,000 Gateway C. | sellwild.com 2025 Honda Accord Sedan LX $28,849 Lotlinx A. | sellwild.com Full Racing Sim Setup $470 sellwild.com 2022 HARLEY SPORTSTER 883 $3,600 sellwild.com 2024 Ford Mustang Dark Horse $55,950 Lotlinx A. | sellwild.com Powered by Positively LEX18
+"""
+
+[R3] Sheriff: Body of missing 9-year-old girl found after 25-hour search
+(https://www.wcpo.com/news/local-news/police-search-underway-for-missing-boone-county-9-year-old-girl)
+"""
+BOONE COUNTY, Ky. — After searching for more than 24 hours, the Boone County Sheriff's Office recovered the body of missing 9-year-old Jenny Dim on Saturday. Officials and volunteers began the search for the missing girl in the Florence area Friday night. Dim was last seen walking on Macintosh Lane around 5 p.m. Friday before an IAN alert was issued by Kentucky State Police just after 9 p.m. WATCH: What the sheriff's office said after Dim's body was recovered Body of 9-year-old missing girl recovered from pond in Northern Kentucky Crews searched throughout Friday night into Saturday morning before the search was suspended at 5 a.m. The search restarted Saturday afternoon with thousands of volunteers coming out to assist authorities. The sheriff's office said more than 20 different agencies were working together to locate Dim. Shortly before 9:30 p.m. Saturday, the sheriff's office announced Dim's body was recovered from a pond near her home around 7:30 p.m. Kentucky State Police also canceled the IAN alert, posting on social media saying, "Tragically, this is not the outcome we had hoped for." "The number of people, the volunteers, the professionals that came out, it really showed the sense of community and really showed the sense of care that the (Northern Kentucky) area and even Hamilton County, Cincinnati that offered their resources today, that show up for a complete stranger," Lt. Anthony Theetge with the sheriff's office said. Theetge said Saturday evening wasn't the first time crews searched the pond, but that water rescue can be very difficult, and the pond is 20 feet deep in some areas. The sheriff's office said it will continue to investigate Dim's death.
+"""
+
+[R4] Five-year-old found dead after IAN Alert
+(https://spectrumnews1.com/ky/louisville/news/2025/07/15/ian-alert-silas-chearer)
+"""
+Open in Our App Get the best experience and stay connected to your community with our Spectrum News app. Learn More Open in Spectrum News App Continue in Browser LOUISVILLE GAS PRICESStay updated on the best prices in town LOUISVILLE LENTEN FISH FRIESFind which parishes are serving and when WEATHER ALERTView full list of weather alerts NEWS Silas Chearer, 5, walked away from his home Tuesday, July 15. Kentucky State Police issued an IAN Alert—for missing or endangered people. The boy was found dead hours later. (Kentucky State Police) NEWS 5-year-old dies after wandering away from home BY Deborah Harbsmeier Kentucky UPDATED 12:38 PM ET Jul. 15, 2025 PUBLISHED 12:20 PM ET Jul. 15, 2025 PUBLISHED 12:20 PM EDT Jul. 15, 2025 SHARE CUB RUN, Ky. — A 5-year-old boy is dead after he wandered away from his home in Cub Run, Kentucky. What You Need To Know Silas Chearer, 5, was reported missing from his Hart County home at 8 a.m. Kentucky State Police issued an Immediate Alert Notification The austic boy was wearing only his pajamas KSP issued another IAN Alert when the found the boy, who was dead Kentucky State Police issued an Immediate Alert Notification, which hit cellphones across the state. Silas Chearer walked away from his house wearing his pajamas at approximately 8 a.m. The little boy was autistic. A few hours later, another IAN Alert was sounded. KSP announced they had found Chearer. A KSP release said, “Tragically, he was found deceased. KSP grieves with this family and the community.” IAN Alerts became law in Kentucky in 2024. IAN Alerts and AMBER Alerts are both emergency alert systems, but have different criteria for activation. IAN Alerts are for missing children under 18 who have intellectual disabilities or mental illness and who may be in danger. AMBER Alerts are specifically for abducted children who are believed to be in immediate danger. Related Stories Through 'IAN alert' system, her grandson can still be a superhero Deborah Harbsmeier - Executive Producer, Digital Deborah Harbsmeier is the executive producer of digital content for Spectrum News 1 Kentucky. The award-winning producer has been in television news for more than 30 years. You May Also Be Interested In OLD NATIONAL SHOOTING2:35OLD NATIONAL SHOOTINGOLD NATIONAL SHOOTINGStoryFest helps Louisville nonprofits turn pain into purposeThe event helps nonprofits refine their stories to inspire hope and deepen community support. Seven groups are participating in 2026. Kentucky6 hours ago2:35PUBLIC SAFETY2:12PUBLIC SAFETYPUBLIC SAFETYLouisville initiative supports families after violent lossWith community partners and a message of love, a new initiative is helping children and parents find support after losing a loved one to violence.Kentucky8 hours ago2:12POLITICS1:57POLITICSPOLITICSSenate passes statewide Flock regulation billIt was passed by the House last month.Kentucky1 day ago1:57POLITICS1:45POLITICSPOLITICSLawmakers push tougher rules on recyclers to curb copper theftThe bill would require recyclers to record every transaction, including who provided the material and what was sold.Kentucky1 day ago1:45NEWSNEWSNEWSEx-Lexington pastor pleads guilty in child sex abuse caseZachary King, 48, faces a recommended 13-year sentence and must register as a lifetime sex offender.Kentucky2 days agoBREONNA TAYLORBREONNA TAYLORBREONNA TAYLORFederal prosecutors seek to dismiss charges against Louisville officers in Breonna Taylor's killingProsecutors say dropping the warrant-fraud case against two ex-Louisville officers in Breonna Taylor’s raid is “in the interest of justice.”Kentucky5 days ago
+"""
+
+[R5] IAN Alert canceled after teen found safe
+(https://www.wkyt.com/2026/03/11/ian-alert-canceled-after-teen-found-safe/)
+"""
+Skip to contentLEXINGTON, Ky. (WKYT) - UPDATE: The IAN Alert has been canceled.Kentucky State Police report that Jahmari Carter has been found safe and is being reunited with his family.According to KSP’s release, the person who identified Carter, recognized him from the alert on their cellphone. ORIGINAL: An IAN Alert has been issued for a teen last seen in Lexington.Kentucky State Police says Jahmari Carter, 17, was last seen on Monday at around 10 a.m. in the 400 block of Conley Street in Lexington.He is described as 5’ 7”, with brown hair and eyes, and is autistic, according to Kentucky State Police.Jahmari Deshaun Carter, 17(WKYT)Anyone with information is urged to call 911 or local law enforcement.IAN Alerts are used when children under the age of 18 with autism or mental illness go missing and may be in danger.Copyright 2026 WKYT. All rights reserved.Leaders rework proposed zoning regulations as fight over data centers continues in Oldham Co.DiscoverOne fatality confirmed after multiple structure fire in AshlandDiscoverAdvancedBionutritionalsMIT Scientists Identify the Leading Cause of Senior FatigueRead MoreSkipKentucky lawmakers have few days left to pass budget, other billsDiscoverLexington downtown crash sparks safety concernsDiscover The Meaning Behind Your Name Might Surprise YouBeenVerified | SponsoredSponsoredThis Korean Pharmacy Foundation Erases Years Off Aging Skinsmooche.com | SponsoredSponsoredOn this island, none of this treasure is buriedAtlantis Paradise Island | SponsoredSponsoredBook NowStay Safe & Cozy: Top 5 Hotel Hacks!From outsmarting bed bugs to thwarting thieves, these simple yet brilliant hacks will help you rest easier during your next hotel stayAAA | SponsoredSponsoredCostco Shoppers Say This $35 Find Is the "Facelift" in a BottleOlavita | SponsoredSponsoredStudy Reveals: This Mineral Grows Hair Up to 12.8% Thicker in 9 MonthsNoor Hair | SponsoredSponsoredHidden Gems: Affordable Airports in the USAAA | SponsoredSponsoredby Taboolaby TaboolaYou might be interested- | SponsoredSponsoredThese Are The "Rolex" Of Hearing Aids (And Under $100)Exceptional hearing technology without the hefty cost, backed by expertsSoundbright Magazine | SponsoredSponsoredThe Cozy Linen Shorts Every Man WantsThe shorts that look effortlessly cool and feel unbelievably soft — no wonder they’re becoming every man’s favorite.Ayatai | SponsoredSponsoredShop NowLess Fear, More Facts in Gas Stove ConversationFear mongering continues about gas stoves. A focus on facts could go much further to address health and safety concerns in the kitchen.Propane Edu & Research Council | SponsoredSponsoredLearn MoreMost Read Woman pleads not guilty after allegedly driving into crowd in downtown Lexington Two missing Georgetown children found safe Preliminary autopsy results revealed for American college student found dead in water in Spain Victims describe injuries after downtown Lexington crash incident Lexington police respond to shooting with reported victim Charlie Kirk’s mentor and cheerleading pioneer Jeff Webb dies in pickleball accident, reports say Scott County High School basketball coach on leave during state investigationMan wanted on multiple warrants, Bluegrass Crime Stoppers offering cash rewardLatest NewsLIVE: City leaders give ONE Lexington update No injuries reported after Franklin Co. school bus crashFormer Gov. Matt Bevin seeks to remove judge after contempt rulingLexington police respond to shooting with reported victimMadison County Coroner’s Office responds to apparent drownings, identifies victim Former Gov. Matt Bevin seeks to remove judge after contempt rulingBeth Oleson - Triple Crown Trot Woodford Humane Society Madison County Coroner’s Office responds to apparent drownings, identifies victims search by queryly Advanced Search Keep on readingAutopsy report confirms details in Doug Harless’ shooting deathAn autopsy report is shedding more light on the death of a Kentucky man shot by police.WKYT NewsMom accused of kidnapping 11-year-old boy, forcing him to apologize to her daughter after he rejected the girlA mother in Utah is accused of kidnapping an 11-year-old boy and forcing him to apologize to her daughter after he rejected the girl.WKYT NewsMother sentenced to prison in death of teen daughter, who deputies found in skeletal stateA West Virginia mother will be spending at least 15 years behind bars for the death of her 14-year-old daughter.WKYT NewsMom of 3 who was found alive after going missing 24 years ago reveals why she left, reports sayA North Carolina mother who went missing 24 years ago and was later found alive revealed why she left everything, according to multiple reportsWKYT News ' ' ' ' ' ' Man sentenced for impregnating 12-year-old girlA man will serve decades in prison for raping a child.WKYT NewsRelated SearchesSearch for Contracts AI Software on Yahoo. View top results now.Yahoo | SponsoredSponsoredLearn moreThe Meaning Behind Your Name Might Surprise YouUnveil the Origins and Meanings of NamesBeenVerified | SponsoredSponsoredSearch NowLexington police respond to shooting with reported victimLexington police were dispatched for a shots fired call Thursday morning.WKYT NewsUS Army raises enlistment age limit, eases marijuana policiesThe U.S. Army is raising its maximum enlistment age while loosening rules for recruits with certain drug convictions.WKYT NewsTwo missing Georgetown children found safeThe Georgetown Police Department said the two missing children have been located and found safe.WKYT Newsby Taboolaby TaboolaBrought to you by- | SponsoredSponsoredCommunity rallies around teen after video surfaces showing bullying incidentVideo surfaced on social media Friday showing a teenager bullied in a high school restroom. Community members held a rally in the victim's honor Sunday.WKYT NewsUSB drive found in used car leads to arrest of man accused of secretly filming coworkersDaniel Sanchez was booked on three counts of voyeurism.WKYT NewsThis Korean Pharmacy Foundation Erases Years Off Aging SkinSeoul Dermatologist: 'Stop Using Heavy Foundation.' The Korean 'Smart Cream' That Makes Mature Skin Look Ageless.smooche.com | SponsoredSponsoredLearn MoreOn this island, none of this treasure is buriedAtlantis Paradise Island | SponsoredSponsoredBook NowPhone recovered as police continue search for American college student in SpainPolice have recovered the phone of an American college student who went missing in Spain.WKYT NewsDelta suspends travel perks for members of Congress as partial shutdown continuesDelta Air Lines announced it is temporarily suspending specialty services to House and Senate members.WKYT News
+"""
+
+[R6] What is an Ian Alert? Missing Kentucky child triggers first alert to help find children with disabilities
+(https://www.wcpo.com/news/local-news/finding-solutions/what-is-an-ian-alert-missing-kentucky-child-triggers-first-alert-to-help-find-children-with-disabilities)
+"""
+HART COUNTY, Ky. — A search for a 5-year-old who wandered away from his Hart County home Tuesday triggered Kentucky's first-ever Ian Alert, an alert system specifically designed for children who have disabilities who are in physical danger.The alert is named after Ian Sousis, an autistic child whose body was found in the Ohio River after he was reported missing from the Northern Kentucky Children's Home in Covington in 2022.Despite the quick response from authorities, Tuesday's alert ended in heartbreak after Silas Chearer was found dead shortly after the statewide alert was issued. Still, officials and advocates say the push should help in searches."It basically made people able to be aware of what to look for when looking for this child to look in your body's water, look for somebody who's not going to seek help, not going to answer, and may resist help," said Jo Grayson, Tech Manager for the Autism Society of the Bluegrass. Learn about this alert system for children with disabilities and safety tips for families: Kentucky's first-ever Ian Alert is sent out for 5-year-old child found dead hours later The Autism Society of Bluegrass emphasizes making preventive measures crucial for parents. Last year, when Ian's Law was being proposed, we spoke with Vice President Melanie Tyner-Wilson, who said she knows the fear of an autistic child eloping firsthand."It's so powerful, I can't tell you as someone who has a loved one, how much it means to me to have this specific alert available," said Melanie Tyner-Wilson, Vice President. How the Ian Alert works The Ian Alert uses the same system as Amber Alerts, involving emergency management agencies. It's designed for children under 18 with disabilities, filling a crucial gap in emergency response.Kentucky Emergency Management Director Steve Hensley explained the importance of the system."Like in the Amber Alert notification system, part of the basis for using the statewide alert system is that if someone's in a vehicle or someone is traveling on an interstate, they can cover a lot of ground very quickly, so this is the most efficient way to get out the alerts on a broader scale," said Hensley. How to receive alerts Enabling government alerts on your phone takes just three steps: Go to SettingsPress NotificationsScroll down to enable emergency alertsThe Autism Society also urges parents to connect with local law enforcement to ensure they're aware of their child's needs."Enhanced 911 — Smart 911, all those different things become incredibly important," said Tyner-Wilson.The Autism Society says the Ian Alert will help increase public awareness because it only takes a few seconds for a child to wander away. The organization also recommends several safety measures, including sound alerts for doors and windows, service dogs and eye-level stop signs for children. For more resources, families can visit autismsociety.org.This story was reported by a journalist and has been converted to this platform with the assistance of AI. Our editorial team verifies all reporting on all platforms for fairness and accuracy.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

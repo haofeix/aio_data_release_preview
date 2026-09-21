@@ -1,0 +1,78 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is conquest dead"
+
+Claims:
+[1] "Conquest is finally dead based on Invincible Season 4, Episode 6."
+[2] "Mark kills Conquest by breaking his neck."
+[3] "Some fan theories in the Reddit discussion speculated on a fake-out."
+[4] "A post-credits scene shows Conquest's grave."
+[5] "This video discusses the possibility of Conquest still being alive."
+
+Cited text snippets from the AI Overview (for additional context):
+- Conquest shouldn't have died : r/Invincible_TV - Reddit: "Conquest is dead now, but,were alone on the planet."
+- Is Conquest Really Dead? Invincible Season 4, Episode 6 Final Scene ...: "In a lengthy battle that,music playing in the background."
+- Conquest is Finally Dead | Invincible Season 4 #invincible ...: "Conquest is finally dead after Mark snaps,,planet before locking him in a chokehold."
+Reference Sources:
+
+[R1] Is Conquest Really Dead? Invincible Season 4, Episode 6 Final Scene Explained
+(https://screenrant.com/invincible-is-conquest-dead-season-4/)
+"""
+Published Apr 8, 2026, 6:30 PM EDT Nick Bythrow is a Lead Writer for ScreenRant. He has been writing for the site since September 2022. He graduated from Hampshire College in 2022, where he triple majored in Journalism, Communications, and Media Studies. When he's not writing about TV and movies for ScreenRant and his blog, Frayed Branches, Nick is penning speculative fiction and poetry on Amazon. He lives outside Boston, Massachusetts. Sign in to your ScreenRant account Warning: SPOILERS ahead for Invincible season 4, episode 6!Conquest, one of Mark's biggest enemies, has been presumed dead. But Invincible season 4, episode 6 has a curious post-credits scene, one that toys with the idea of what Conquest's true fate really is. Despite nearly getting beat to death by Mark at the end of Invincible season 3, Conquest lived, later escaping the captivity of the GDA. Rejoining the Viltrumite forces, he was a core part of the ambush against the Coalition ship, which was transporting Mark, Oliver, and Nolan to Talescria. The ensuing battle began with him nearly killing Oliver by crushing his skull. Luckily, Nolan stepped in, ordering Oliver down to a nearby planet for safety and so he could catch his breath. Even so, the end of Invincible season 4, episode 6 features a post-credits scene that zooms in on Conquest's grave, suspenseful music playing in the background. But, before anything can happen, the music goes away, and cuts to a far-off shot of the grave. The scene definitively confirms that Conquest is dead, and that Mark finally killed him. Invincible Season 4, Episode 6's Final Scene Is A Massive (But Hilarious) Trolling Moment Invincible has a habit of making it seem like characters are dead or threats have been defeated when, in fact, almost everyone has gotten a chance to return. This happened at the end of Invincible season 2 with Angstrom Levy, who Mark didn't kill, leading to the Invincible War in season 3. Other threats, like the Sequids and Flaxans, also returned in season 4. But the scene is still a hilarious trolling moment from the series, as it makes one wonder if Conquest really has been defeated or not. Thankfully, Mark and his family no longer have to worry about the powerful Viltrumite warrior being a threat to their safety. He's the first major Viltrumite to be permanently defeated, an important milestone in the series' continued development. Why Invincible Is Right To Not Bring Conquest Back Yet Again His story was also brought to a fitting end because he believed he could beat Mark a second time, especially without heroes like Eve to help him. Even though he nearly did kill Mark, ripping his guts out in a brutal fashion, his hubris got the better of him. Defeated by an enemy he underestimated makes for a fitting conclusion to his story. Conquest's death also serves as the first major casualty of the Viltrumite War, a huge win for the Coalition in the process. Without his presence, it likely made it easier for Thaedus to help coordinate with his people to help free planets under Thragg's control. This war effort would be muted if the antagonist were somehow able to return. Thankfully, Invincible keeps Conquest dead, using a tongue-in-cheek approach to season 4, episode 6's post-credits scene to showcase he's gone for good. The self-aware moment also makes it clear no one is safe anymore, and that characters will, in fact, begin to die in permanent ways again, upping the stakes as the war continues. Release Date March 26, 2021 Network Amazon Prime Video Showrunner Robert Kirkman, Simon Racioppa Cast Mark Grayson / Invincible (voice)
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

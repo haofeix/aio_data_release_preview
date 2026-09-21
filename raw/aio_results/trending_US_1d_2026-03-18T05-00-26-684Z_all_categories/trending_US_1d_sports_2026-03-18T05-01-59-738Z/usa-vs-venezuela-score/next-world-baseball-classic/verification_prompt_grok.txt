@@ -1,0 +1,111 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "next world baseball classic"
+
+Claims:
+[1] "The 2026 World Baseball Classic concluded in March 2026."
+[2] "Venezuela defeated the USA in the 2026 World Baseball Classic."
+[3] "Venezuela became champions of the 2026 World Baseball Classic."
+[4] "The next World Baseball Classic is anticipated to return to a four-year cycle."
+[5] "The seventh edition of the World Baseball Classic is expected in March 2030."
+[6] "The next World Baseball Classic tournament is projected for March 2030."
+[7] "Following 2026, the World Baseball Classic tournament is expected to maintain its traditional four-year cycle."
+[8] "The World Baseball Classic experienced a three-year gap previously."
+[9] "No locations have been officially finalized for the 2030 World Baseball Classic."
+[10] "Reports from BetMGM note that Japan and the United States are likely to host future, if not all, pools."
+[11] "Japan and the United States hosted pools in the 2026 World Baseball Classic."
+[12] "Many top players from the WBC are expected to compete in the 2028 Los Angeles Olympics."
+[13] "Miami, Houston, Tokyo, and San Juan hosted games in the 2026 World Baseball Classic"
+
+Cited text snippets from the AI Overview (for additional context):
+- When is next World Baseball Classic? WBC has four-year break, but MLB stars could play in 2028 Olympics: "The WBC has been played,mini-WBC in the summer."
+- When is next World Baseball Classic? Date, locations for 2030 ...: "When is the next World,their country in the tournament."
+- 2026 World Baseball Classic: Full schedule, all results and standings: "standings - complete list-,2026 World Baseball Classic: Full schedule, all results and standings,San Juan, Houston and Miami.&text=The 2026 World Baseball Classic,edition of the WBC below."
+- FINAL 3 OUTS: Team Venezuela is the 2026 World Baseball ...: "FINAL 3 OUTS: Team Venezuela is the 2026 World Baseball Classic CHAMPION! · Comments."
+Reference Sources:
+
+[R1] When is next World Baseball Classic? WBC has four-year break, but MLB stars could play in 2028 Olympics
+(https://www.cbssports.com/mlb/news/when-next-world-baseball-classic-wbc-2030/)
+"""
+Tuesday night at loanDepot Park in Miami, Venezuela captured its first World Baseball Classic championship, upsetting Team USA in the 2026 title game. The U.S. has now come up short in the title game in two straight WBCs. The Americans have won only one (2017) of the WBC's six titles since the event began in 2006. And they'll have to wait four more years to try to win another.With the 2026 World Baseball Classic coming to a close, let's look ahead to the next iteration of the WBC, and what will happen between now and then. Here's what you need to know about the future of the WBC.When is the next WBC?The WBC has been played in 2006, 2009, 2013, 2017, 2023, and 2026. COVID pushed the 2021 WBC back to 2023, but they've used three- and four-year cycles over the years. The next WBC will played in 2030, so we're back on a four-year cycle. That is due in part to the 2028 Olympics, which will be played in Los Angeles. MLB players could play in those Olympics for the first time. That would mean a mini-WBC in the summer.Where will the next WBC be played?It's too early to know. Miami has become a staple because the crowds are so electric, so it's a good bet at least some WBC games will be played in South Florida next time around. Houston hosted Pool B this WBC and would like to host games again in 2030. Games have been played in Asia in every WBC and there's no reason to think that will change. Whether that's Korea, Japan, and/or Taiwan remains to be seen. Mexico, Puerto Rico, and various MLB stadiums are all possibilities.Which teams have qualified?We already know 16 of the 20 teams that will play in the next WBC. The top four teams in each pool are given an automatic berth in the next WBC while the last place teams must go through a qualifying event. Here are the 2026 final pool play standings: Pool A (San Juan)Pool B (Houston)Pool C (Tokyo)Pool D (Miami)1. Canada: 3-11. Italy: 4-01. Japan: 4-01. Dominican Republic: 4-02. Puerto Rico: 3-12. USA: 3-12. Korea: 2-22. Venezuela: 3-13. Cuba: 2-23. Mexico: 2-23. Australia: 2-23. Israel: 2-24. Colombia: 1-34. Great Britain: 1-34. Chinese Taipei: 2-24. Netherlands: 1-35. Panama: 1-35. Brazil: 0-45. Czechia: 0-45. Nicaragua: 0-4Colombia beat Panama head-to-head, which is the tiebreaker, so Panama is the last place team in Pool A and must qualify for the next WBC along with Brazil, Czechia, and Nicaragua.The qualifying events are held a year before the WBC and, in 2025, they were two four-team pools that played a round robin. The top two teams in each pool qualified for the WBC. Nicaragua and Chinese Taipei beat out South Africa and Spain in Taiwan. Brazil and Colombia emerged from the Arizona pool. They beat out China and Germany.What about the 2028 Olympics?Last year commissioner Rob Manfred and then-MLBPA head Tony Clark expressed an appetite for MLB players participating in the 2028 Olympics. When the players and the league both want something, it tends to happen. They just need to work through the logistics, including pausing the MLB season for something longer than the typical All-Star break. Olympic games are scheduled for July 15-20 at Dodger Stadium. The pause would be 7-10 days, give or take. Previously, only amateurs and minor leaguers not on the 40-man roster could participate in the Olympics. The Los Angeles games present a special opportunity, given the location, and there is obviously tremendous interest in an international best-on-best tournament. The smart money is on MLB and the MLBPA sorting out the logistics and sending big leaguers to the 2028 Olympics. That would be the next international baseball tournament with MLB players, not the 2030 WBC.
+"""
+
+[R2] When is the Next World Baseball Classic?
+(https://sports.betmgm.com/en/blog/when-is-the-next-world-baseball-classic-bm23/)
+"""
+Mar 17, 2026, 1:47 PM min read AP Photo/Rebecca Blackwell The World Baseball Classic isn’t an annual event, so fans will have to wait a bit longer after a thrilling 2026 WBC. As of this writing, the next World Baseball Classic is expected to take place in March 2030. The location of the next WBC remains undecided, but there is a good chance that Japan will host at least one pool. The United States could host the rest of the tournament, as it did in 2026. As for which teams will compete in the next WBC, the top four teams from each of the four pools have already automatically qualified. The last-place finishers will need to clinch a spot via the qualifying round. Teams Slated to Compete in Next World Baseball Classic TeamAustraliaCanadaChinese TaipeiColombiaCubaDominican RepublicGreat BritainIsraelItalyJapanMexicoNetherlandsPuerto RicoSouth KoreaUnited StatesVenezuela The content provided in this blog is intended for entertainment purposes only. All views and opinions expressed are the authors and reflect their individual perspectives on sports, betting, and related topics. This content should not be considered professional betting advice or the official views of BetMGM LLC. Please gamble responsibly. If you or someone you know is experiencing issues related to gambling, seek help from a licensed health professional. This blog is not liable for any losses, damages, or consequences resulting from betting activities.
+"""
+
+[R3] 2026 World Baseball Classic: Full schedule, all results and standings - complete list
+(https://www.olympics.com/en/news/2026-world-baseball-classic-full-schedule-all-results-and-standings-complete-list)
+"""
+Find out every result from the 5-17 March tournament in Tokyo, San Juan, Houston and Miami.Picture by 2026 Getty Images2026 World Baseball Classic: Schedule, results, and standings All times local. Top two from each pool advance to quarter-finals Pool A 6 March, Friday Cuba 3-1 Panama Puerto Rico 0-5 Colombia 7 March, Saturday Colombia 2-8 Canada Panama 3-4 Puerto Rico 8 March, Sunday Colombia 4-5 Cuba Panama 4-3 Canada 9 March, Monday Colombia 4-3 Panama Cuba 1-4 Puerto Rico 10 March, Tuesday Canada 3-2 Puerto Rico 11 March, Wednesday Canada 7-2 Cuba Pool A - Hiram Bithorn Stadium, San JuanTEAMWLPCTCanada31.750Puerto Rico31.750Cuba22.500Colombia13.250Panama 13.250Pool B 6 March, Friday Mexico 8-2 Great Britain United States 15-5 Brazil 7 March, Saturday Brazil 0-8 Italy Great Britain 1-9 United States 8 March, Sunday Great Britain 4-7 Italy Brazil 16-0 Mexico 9 March, Monday Brazil 1-8 Great Britain Mexico 3-5 United States 10 March, Tuesday Italy 8-6 United States 11 March, Wednesday Italy 9-1 Mexico Pool B - Daikin Park, HoustonTEAMWLPCTItaly401.000USA31.750Mexico22.500Great Britain13.250Brazil04.000Pool C 5 March, Thursday Chinese Taipei 0-3 Australia Czechia 4-11 Republic of Korea 6 March, Friday Australia 5-1 Czechia Japan 13-0 Chinese Taipei 7 March, Saturday Chinese Taipei 14-0 Czechia Republic of Korea 6-8 Japan 8 March, Sunday Chinese Taipei 5-4 Republic of Korea Australia 3-4 Japan 9 March, Monday Republic of Korea 7-2 Australia 10 March, Tuesday Czechia 0-9 Japan Pool C - Tokyo Dome, TokyoTEAMWLPCTJapan401.000Republic of Korea22.500Australia22.500Chinese Taipei22.500Czechia04.000Pool D 6 March, Friday Netherlands 2-6 Venezuela Nicaragua 3-12 Dominican Republic 7 March, Saturday Nicaragua 3-4 Netherlands Israel 3-11 Venezuela 8 March, Sunday Netherlands 1-12 Dominican Republic Nicaragua 0-5 Israel 9 March, Monday Dominican Republic 10-1 Israel Venezuela 4-0 Nicaragua 10 March, Tuesday Israel 6-2 Netherlands 11 March, Wednesday Dominican Republic 7-5 Venezuela Pool D - LoanDepot Park, MiamiTEAMWLPCTDominican Republic401.000Venezuela31.750Israel22.500Netherlands13.250Nicaragua04.000Quarter-finals 13 March, Friday Republic of Korea 0-10 Dominican Republic @LoanDepot Park United States 5-4 Canada @Daikin Park 14 March, Saturday Puerto Rico 6-8 Italy @Daikin Park Venezuela 8-5 Japan @LoanDepot Park Semi-finals 15 March, Sunday United States 2-1 Dominican Republic @LoanDepot Park 16 March, Monday Venezuela 4-2 Italy @LoanDepot Park Final 17 March, Tuesday United States 2-3 Venezuela @LoanDepot Park
+"""
+
+[R4] When is next World Baseball Classic? Looking ahead as 2026 WBC winds down
+(https://www.usatoday.com/story/sports/mlb/wbc/2026/03/16/when-next-world-baseball-classic-date-locations/89186023007/)
+"""
+March 16, 2026, 5:31 p.m. ETThe 2026 World Baseball Classic has experienced previously unseen heights for the international tournament, with TV viewership occasionally doubling that which the 2023 tournament drew. Certainly the star power on the rosters has helped, but the games themselves have been electrifying as well, and when paired with the sense of nationalism brought on by the Olympics, it's no wonder people are enjoying the WBC.However, the tournament is nearly over. After tonight's semifinal between Italy and Venezuela, only the championship game will remain. While fans will certainly be interested to see if the United States can bring home their second-ever WBC title, they'll definitely want to see more.Unfortunately, that won't be the case for a few years. Like the Olympics, the World Baseball Classic normally runs on a four-year cycle, but after COVID-19 threw the entire world out of whack, delaying the 2021 tournament to 2023, there were exceptions made.That won't be the case next time around. Here's everything to know about when and where the next World Baseball Classic will happen.When is the next World Baseball Classic?The next World Baseball Classic is set for March 2030. The WBC is always held in March, coinciding with spring training when many of the best MLB players are preparing for the regular season. Some top players will forego spring training altogether for a chance to play for their country in the tournament.Where will the next WBC be held?The official locations for the next WBC has not yet been determined. That said, reports claim that Daikin Park in Houston is making a strong push to host the WBC championship game in 2030.Daikin Park, home of the Houston Astros, hosted Pool B play in this year's tournament, as well as two quarterfinals games. Miami's loanDepot Park got the opportunity to host both semifinal games and the championship in this year's tournament.
+"""
+
+[R5] Miami, Houston, San Juan and Tokyo to host 2026 World Baseball Classic - World Baseball Softball Confederation
+(https://www.wbsc.org/en/news/miami-houston-san-juan-and-tokyo-to-host-2026-world-baseball-classic)
+"""
+loanDepot Park (pictured above) in Miami, Florida, Minute Maid Park in Houston, Texas, Hiram Bithorn Stadium in San Juan, Puerto Rico and the Tokyo Dome in Japan will host the three stages of the sixth edition of the event. The WBSC will award the winners with the title of Baseball World Champions. World Baseball Classic Inc (WBCI) announced the venues for the sixth World Baseball Classic, scheduled for March 2026. loanDepot Park in Miami, the home of MLB's Marlins, will host games in the event's three stages, including the final, as in 2023. The other venues will be Minute Maid Park in Houston, Texas, Hiram Bithorn Stadium in San Juan, Puerto Rico, and the Tokyo Dome in Japan. "Following a record-breaking World Baseball Classic in 2023, loanDepot park showcased that it is the home of international baseball, and we are proud to once again bring the incredible tournament back to South Florida, the go-to destination for jewel global events," said Marlins Chairman and Principal Owner Bruce Sherman. "It is a tremendous honour to once again serve as host for all three rounds, including the prestigious final, and on behalf of our entire team and the greater Miami area, I would like to express our gratitude to Major League Baseball and the Major League Baseball Players Association for the recognition." Minute Maid Park will serve as a World Baseball Classic host for the first time in the event’s history. The ballpark will become the ninth different Major League ballpark to host World Baseball Classic contests, joining Chase Field in Phoenix (2006, 2013, 2023); Petco Park in San Diego (2006, 2009, 2017); Angel Stadium in Anaheim (2006); Rogers Centre in Toronto (2009); Dolphin Stadium in Miami (2009); Dodger Stadium in Los Angeles (2009, 2017); Oracle Park in San Francisco (2013); and loanDepot park in Miami (2013, 2017, 2023). "Houston is a global city with the best baseball fans, and we are proud to welcome fans from across the globe to watch international competition at Minute Maid Park," commented Astros Owner and Chairman Jim Crane. The Tokyo Dome has hosted World Baseball Classic Games in all previous editions. "The previous tournament in 2023, in which the Japan National Team became world champions, generated a great deal of excitement in Japan, and the increase in the number of children becoming interested in baseball was a great benefit to the baseball world," said Takashi Yamada, Chief Officer, Culture and Sports Projects, Yomiuri Shimbun. "We will do our utmost to bring the excitement and inspiration of the World Baseball Classic to the world once again and to ensure the success and development of the tournament." The Hiram Bithorn Stadium has hosted first-round games in the 2006, 2009 and 2013 editions. "I am profoundly honoured that our city has been chosen to host the World Baseball Classic for the fourth time," said Hon. Miguel Romero, Mayor of San Juan. "This decision reflects the world's recognition of San Juan as a premier venue for global sporting events." The WBSC sanctions the World Baseball Classic and has awarded the winners the title of Baseball World Champion since the 2013 edition. The World Baseball Classic is a 20-team tournament. The top four finishers of the 2023 first round four groups (World No. 1 Japan, No. 2 Mexico, No. 3 USA, No. 4 Korea, No. 6 Venezuela, No. 7 Netherlands, No. 8 Cuba, No. 9 Dominican Republic, No. 10 Panama, No. 11 Australia, No. 12 Puerto Rico, No. 14 Italy, No. 15 Czechia, No. 16 Canada, No. 18 Great Britain and No. 19 Israel) already qualified. The other four participants will be the winners of the 2025 qualifying tournament. For further World Baseball Classic updates, please register with the OFFICIAL WEBSITE.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

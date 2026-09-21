@@ -1,0 +1,125 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "power outages near me"
+
+Claims:
+[1] "As of March 17, 2026, power outages in Northern Virginia/DC are concentrated in Fairfax County (~1,150+ customers) and Stafford County (~5,600+ customers)."
+[2] "As of March 17, 2026, power outages in Northern Virginia/DC include smaller outages in Spotsylvania and Fredericksburg."
+[3] "Fairfax County has ~1,153 customers out of power."
+[4] "The ~1,153 customers out of power in Fairfax County are primarily served by Dominion Energy."
+[5] "Stafford County has ~5,643 customers out of power."
+[6] "Dominion Energy and NOVEC are addressing repairs."
+[7] "Power outages in Spotsylvania/Fredericksburg are often managed by Rappahannock Electric Coop."
+
+Cited text snippets from the AI Overview (for additional context):
+- Fairfax County Power Outages: "Fairfax County Outage Summary,affected at 0.28% without power."
+- Power Outage Map for Virginia, Maryland and D.C. - WTOP News: "Table_title: Customer Outages Table_content: header: | County,State: VA | Customers Out: 1,920 |"
+- Rappahannock Electric Coop Power Outages: "Table_title: Virginia Table_content: header: | County |,Tracked: 26,255 | Customers Out: 151 |"
+- Storm Center - NOVEC.com: "Crews are working to restore power from,to SmartHub, or texting “#OUT” to 85700."
+- Outage Information - NOVEC.com: "If you can't get,WINC FM 92.5"
+- Virginia Power Outage Map - WTOP News: "Table_title: Customer Outages Table_content: header: | County,State: VA | Customers Out: 142 |"
+Reference Sources:
+
+[R1] Fairfax Power Outages
+(https://poweroutage.us/area/county/596)
+"""
+PowerOutage.com Login Is your power currently out? Yes No Customers Out 56 Customers Tracked 441,752 Outages by Utility Dominion Energy 54Northern Virginia Electric Coop 2 View All Virginia Solar Potential Get Free Outage Alerts Is Your Power Out? PowerOutage.com Outage Percent % 0% 10% 30% 60% 100% Fairfax County Outage Summary Right now, 56 homes and businesses are without power in Fairfax County, Virginia. That's 0.01% of the 441,752 customers we track in the county. Last updated: 14m ago. Fairfax County currently ranks 4th for total power outages and 27th for percentage of customers affected among all 132 counties in Virginia. We track 2 utilities in Fairfax County. Dominion Energy has the most customers out with 54 power outages. See the complete utility list below. Dominion Energy has the highest percentage of customers affected at 0.01% without power. Switch to table view: Dominion Energy Updated 14m ago 54 Customers Out 414,201 Customers Tracked 0.01% Outage Percent Northern Virginia Electric Coop Updated 17m ago 2 Customers Out 27,551 Customers Tracked 0.01% Outage Percent Cities in Fairfax County, VA AnnandaleBailey's CrossroadsBurkeBurke CentreChantillyCliftonCrosspointeDifficult RunDunn LoringFair LakesFair OaksFairfaxFairfax StationFalls ChurchFlorisFort BelvoirFort HuntFranconiaFranklin FarmGeorge MasonGreat FallsGreat Falls CrossingGreenbriarGrovetonHayfieldHerndonHuntingtonHybla ValleyIdylwoodKings ParkKings Park WestKingstowneLake BarcroftLaurel HillLincolniaLong BranchLortonMantuaMerrifieldMount VernonNavyNewingtonNewington ForestNorth SpringfieldOaktonPimmit HillsRavensworthRestonSeven CornersSouth RunSpringfieldSully SquareTysonsViennaWest SpringfieldWolf TrapWoodburnWoodlawn CDP (Fairfax County)
+"""
+
+[R2] Outage Information
+(https://www.novec.com/stormcenter/Outage-Information.cfm)
+"""
+Outage Center Outage Information NOVEC Resources: NOVEC's Outage Map Frequently Asked Questions During Outages Safety Tips During Outages Preparing for an Outage Severe Storm Safety Emergency Generator Information If you can't get online, stay tuned to the radio for outage updates. Your radio is a great source of information when widespread power outages occur. NOVEC provides regular updates to various area radio stations. Stay tuned to: WTOP AM 1500 - FM 103.5 WMAL AM 630 WAGE AM 1200 WFLS FM 93.3 WINC FM 92.5 These television stations may post NOVEC's updates: WRC - Channel 4 WTTG - Channel 5 WJLA - Channel 7 W*USA - Channel 9 Emergency Assistance Organizations Virginia Emergency Management American Red Cross FEMA U.S. Department of Homeland Security Emergency Management Assistance Compact Historical Outages Historical Snowstorms in Virginia Summary My Outage My Maps Counties Select a county for a list of outages: County Affected Power On Served Clarke 0 100%25 Fauquier 1 99.986%7085 Fairfax 2 99.993%27553 Loudoun 0 100%46250 Manassas Park 0 100%6316 Prince William 0 100%88828 Stafford 1 99.983%5927 Total Customers 4 99.998%181986 Last Updated: 03/26/2026 13:23 Outage History Charts Select a county, then select Go. All Counties Clarke Fairfax Fauquier Loudoun Manassas Park Prince William Stafford My Outage on SmartHub Use My Maps to save the current map view. Enter a name for current map: Select a saved map: Select County to view: NOVEC Territory Clarke Fairfax Fauquier Loudoun Prince William Stafford Search Go to an Address (enter ZIP code or street, city, and state) NOTE: The closest icon may not include your outage. © 2026 NOVEC. All Rights Reserved. | Privacy & Legal Statement | Sitemap | Careers | NOVEC en Español
+"""
+
+[R3] Virginia Power Outage Map, March 2026
+(https://poweroutage.us/area/state/virginia)
+"""
+PowerOutage.com Login Is your power currently out? Yes No Customers Out 714 Customers Tracked 4,069,988 Outages by County Outages by Utility Portsmouth 156James City 124Richmond City 69Fairfax 56Chesterfield 45Halifax 41Albemarle 29Buchanan 17 View All Virginia Solar Potential Get Free Outage Alerts Is Your Power Out? PowerOutage.com Outage Percent % 0% 10% 30% 60% 100% Switch to table view: Dominion Energy Updated 14m ago 586 Customers Out 2,692,413 Customers Tracked 0.02% Outage Percent Appalachian Power Company Updated 14m ago 88 Customers Out 545,999 Customers Tracked 0.02% Outage Percent Rappahannock Electric Coop Updated 17m ago 18 Customers Out 184,816 Customers Tracked 0.01% Outage Percent Danville Utilities Updated 17m ago 8 Customers Out 42,000 Customers Tracked 0.02% Outage Percent A&N Electric Coop Updated 17m ago 6 Customers Out 37,487 Customers Tracked 0.02% Outage Percent Page 1 of 5 Portsmouth Updated 14m ago 156 Customers Out 45,989 Customers Tracked 0.34% Outage Percent James City Updated 14m ago 124 Customers Out 40,814 Customers Tracked 0.30% Outage Percent Richmond City Updated 14m ago 69 Customers Out 126,651 Customers Tracked 0.05% Outage Percent Fairfax Updated 14m ago 56 Customers Out 441,752 Customers Tracked 0.01% Outage Percent Chesterfield Updated 14m ago 45 Customers Out 172,904 Customers Tracked 0.03% Outage Percent Page 1 of 27 Virginia Outage Summary Right now, 714 homes and businesses are without power in Virginia. That's 0.02% of the 4,069,988 customers we track across the state. Last updated: 13m ago. Virginia currently has the 22nd most power outages in the US and ranks 36th for percentage of customers affected nationwide. Out of 132 counties in Virginia, Portsmouth has the most outages with 156 customers without power. By percentage, Portsmouth is the hardest hit at 0.34% of customers affected. We track 22 utilities in Virginia. Dominion Energy has the most customers out with 586 power outages. See the complete utility list below. Dominion Energy has the highest percentage of customers affected at 0.02% without power. Customers: 6,918 Website Coverage Area
+"""
+
+[R4] Storm Center
+(https://www.novec.com/stormcenter/index.cfm)
+"""
+Outage Center Outage Summary County Affected Power On Served Clarke 0 100%25 Fauquier 1 99.986%7085 Fairfax 2 99.993%27553 Loudoun 0 100%46250 Manassas Park 0 100%6316 Prince William 0 100%88828 Stafford 1 99.983%5927 Total Customers 4 99.998%181986 Last Updated: 03/26/2026 13:23 Report an Outage Report a Power Outage Outage FAQs Outage Texting ←Move left→Move right↑Move up↓Move down+Zoom in-Zoom outHomeJump left by 75%EndJump right by 75%Page UpJump up by 75%Page DownJump down by 75%MapTerrainSatelliteLabelsKeyboard shortcutsMap DataMap data ©2026 GoogleMap data ©2026 Google10 km Click to toggle between metric and imperial unitsTermsReport a map error Output Map Legend: Customers Affected 10 or less 11 to 100 101 to 500 501+ NOVEC service territory Crew assignment Summary My Outage My Maps Counties Select a county for a list of outages: County Affected Power On Served Clarke 0 100%25 Fauquier 1 99.986%7085 Fairfax 2 99.993%27553 Loudoun 0 100%46250 Manassas Park 0 100%6316 Prince William 0 100%88828 Stafford 1 99.983%5927 Total Customers 4 99.998%181986 Last Updated: 03/26/2026 13:23 Outage History Charts Select a county, then select Go. All Counties Clarke Fairfax Fauquier Loudoun Manassas Park Prince William Stafford My Outage on SmartHub Use My Maps to save the current map view. Enter a name for current map: Select a saved map: Choose from list Select County to view: NOVEC Territory Clarke Fairfax Fauquier Loudoun Prince William Stafford Search Go to an Address (enter ZIP code or street, city, and state) NOTE: The closest icon may not include your outage. © 2026 NOVEC. All Rights Reserved. | Privacy & Legal Statement | Sitemap | Careers | NOVEC en Español
+"""
+
+[R5] Virginia Power Outage Map - WTOP News
+(https://wtop.com/virginia-power-outage-map/)
+"""
+Opens in a new window Opens an external website Opens an external website in a new window This website utilizes technologies such as cookies to enable essential site functionality, as well as for analytics, personalization, and targeted advertising. Privacy Policy Accept Deny Non-Essential Manage Preferences Close Cookie Preferences Virginia Power Outage Map Virginia Power Outage Map The map below contains current power outages in Virginia. This map is updated every 10 minutes. Log in to your WTOP account for notifications and alerts customized for you. Sign up LOGOUT VIEW PROFILE ✕
+"""
+
+[R6] Outage Center | myrec
+(https://www.myrec.coop/outagecenter)
+"""
+Safety At REC, safety is our top priority and it should be yours as well. Do you know how to keep yourself and your family safe around a downed power line or how to safely use a generator during a power outage? Find the answers and other important safety information. It could save your life. Learn more Winter Storm Fern (Jan. 2026) - Stay warm. If you don't have an alternate, non-electric heat source, know the locations of the closest warming centers. Shop Now: Storm Preparedness Find the items you need to prepare for a major storm all in one easy-to-use online storefront. Get started today! Shop Here Reliability REC works hard every day to provide its members with safe, reliable electricity. We regularly plan projects to upgrade power lines. Upgrades can more than double the capacity compared with the old lines. They also improve service reliability. Trees are one of the major causes of power outages in areas with overhead utility lines. We work tirelessly to clear branches near and on top of overhead lines to provide safe and reliable service. Learn More REC STORIES Most "power blinks" are just a sign of the grid protecting itself. Hurricane Melissa devastated Jamaica's electric infrastructure. America's electric cooperatives answered the call for help, in part with a crew led by... Extreme cold, like we’ve had this winter, changes how both homes and the electric system operate, even when daily routines stay the same.
+"""
+
+[R7] Rappahannock Electric Coop Power Outages
+(https://poweroutage.us/area/utility/210)
+"""
+PowerOutage.com Login Is your power currently out? Yes No Customers Out 69 Customers Tracked 184,845 Outage Percentage 0.04% States Served Virginia Utility Links Website Outage Map Coverage Map Set Free Outage Alert Is Your Power Out? Service Area Map PowerOutage.com Outage Percent % 0% 10% 30% 60% 100% Rappahannock Electric Coop Outage Summary Right now, 69 homes and businesses are without power across the Rappahannock Electric Coop service area. That's 0.04% of the 184,845 customers we track that the utility serves. Last updated: 11m ago. Rappahannock Electric Coop currently ranks 80th for total power outages and 92nd for percentage of customers affected among all utilities nationwide. Of the 24 counties served by the utility, Spotsylvania, Virginia currently has the most outages, at 62 customers without power. The county with the largest percentage of customers out is Spotsylvania, Virginia, at 0.11% of customers without power. CountyCustomers TrackedCustomers OutSpotsylvania58,446 58,44662 62Clarke8,416 8,4166 6Madison8,019 8,0191 1Albemarle2,280 2,2800 0Caroline14,421 14,4210 0Culpeper14,466 14,4660 0Essex3,986 3,9860 0Fauquier6,086 6,0860 0Frederick24,829 24,8290 0Goochland1,923 1,9230 0 Show all 24 counties
+"""
+
+[R8] Power Outage Map for Virginia, Maryland and D.C. - WTOP News
+(https://wtop.com/power-outage-map-for-virginia-maryland-and-d-c/)
+"""
+Opens in a new window Opens an external website Opens an external website in a new window This website utilizes technologies such as cookies to enable essential site functionality, as well as for analytics, personalization, and targeted advertising. Privacy Policy Accept Deny Non-Essential Manage Preferences Close Cookie Preferences Power Outage Map for Virginia, Maryland and D.C. Power Outage Map for Virginia, Maryland and D.C. The map below contains current power outages in Virginia, Maryland and D.C. This map is updated every 10 minutes. Log in to your WTOP account for notifications and alerts customized for you. Sign up LOGOUT VIEW PROFILE ✕
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

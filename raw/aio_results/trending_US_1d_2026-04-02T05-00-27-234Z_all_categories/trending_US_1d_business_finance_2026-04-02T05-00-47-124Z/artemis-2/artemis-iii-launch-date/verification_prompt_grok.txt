@@ -1,0 +1,94 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "artemis iii launch date"
+
+Claims:
+[1] "NASA currently projects the Artemis III mission to launch in 2027."
+[2] "The Artemis II flight is scheduled for 2026."
+[3] "Artemis III is designed to test critical rendezvous and docking capabilities in low Earth orbit with commercial landers from SpaceX and Blue Origin."
+[4] "Artemis III is to prepare for a subsequent crewed lunar landing on Artemis IV in 2028."
+[5] "Artemis III mission goal is to test new Extravehicular Activity (xEVA) suits, integrated life support, and propulsion systems in orbit."
+[6] "Artemis III will utilize commercial landers."
+[7] "Artemis III partnerships include SpaceX (Starship HLS) and Blue Origin."
+[8] "The crew for Artemis III will launch from Kennedy Space Center, Florida, on the Space Launch System (SLS) rocket."
+[9] "The timeline for Artemis III was updated in early 2026."
+[10] "The Artemis III timeline was updated to focus on ensuring the readiness of essential technologies for long-term exploration"
+
+Cited text snippets from the AI Overview (for additional context):
+- NASA Adds Mission to Artemis Lunar Program, Updates Architecture: "As teams prepare to launch Artemis II,of the new Extravehicular Activity (xEVA) suits."
+- And.. to Space! What a perfect evening launch on a full pink moon ...: "NASA is accelerating the pace on future,2027, will be designed to test low"
+Reference Sources:
+
+[R1] NASA Adds Mission to Artemis Lunar Program, Updates Architecture   - NASA
+(https://www.nasa.gov/news-release/nasa-adds-mission-to-artemis-lunar-program-updates-architecture/)
+"""
+As part of a Golden Age of exploration and discovery, NASA announced Friday the agency is increasing its cadence of missions under the Artemis program to achieve the national objective of returning American astronauts to the Moon and establishing an enduring presence. This includes standardizing vehicle configuration, adding an additional mission in 2027, and undertaking at least one surface landing every year thereafter. As teams prepare to launch Artemis II in the weeks ahead, the Artemis III mission, now in 2027, will be designed to test out systems and operational capabilities in low Earth orbit to prepare for an Artemis IV landing in 2028. This new mission will endeavor to include a rendezvous and docking with one or both commercial landers from SpaceX and Blue Origin, in-space tests of the docked vehicles, integrated checkout of life support, communications, and propulsion systems, as well as tests of the new Extravehicular Activity (xEVA) suits. NASA will further define this test flight after completing detailed reviews between NASA and our industry partners. The agency will share the specific objectives for the updated Artemis III mission in the near future. NASA’s recently announced workforce directive is a key factor in enabling this acceleration. NASA will rebuild core competencies in the civil servant workforce including more in-house and side-by-side development work with our Artemis partners, enabling a safer, more reliable, and faster launch cadence. “NASA must standardize its approach, increase flight rate safely, and execute on the President’s national space policy. With credible competition from our greatest geopolitical adversary increasing by the day, we need to move faster, eliminate delays, and achieve our objectives,” said NASA Administrator Jared Isaacman. “Standardizing vehicle configuration, increasing flight rate and progressing through objectives in a logical, phased approach, is how we achieved the near-impossible in 1969 and it is how we will do it again.” “After successful completion of the Artemis I flight test, the upcoming Artemis II flight test, and the new, more robust test approach to Artemis III, it is needlessly complicated to alter the configuration of the SLS and Orion stack to undertake subsequent Artemis missions,” said NASA Associate Administrator Amit Kshatriya. “There is too much learning left on the table and too much development and production risk in front of us. Instead, we want to keep testing like we fly and have flown. We are looking back to the wisdom of the folks that designed Apollo. The entire sequence of Artemis flights needs to represent a step-by-step build-up of capability, with each step bringing us closer to our ability to perform the landing missions. Each step needs to be big enough to make progress, but not so big that we take unnecessary risk given previous learnings. Therefore, we want to fly the landing missions in as close to the same Earth ascent configuration as possible – this means using an upper stage and pad systems in as close to the ‘Block 1’ configuration as possible. We will work with our partners that have been developing the evolved block configuration of these systems to take proper actions to align their efforts towards this goal and announce the details of those changes once they are finalized. We will take a similar approach to in-space, landing, and surface EVA operations as well, as we evolve the mission sequence in the spirit of the Apollo mindset, which was obsessed with system reliability and crew safety as the keys to mission success.” “Boeing is a proud partner to the Artemis mission and our team is honored to contribute to NASA’s vision for American space leadership,” said Steve Parker, Boeing Defense, Space & Security president and CEO. “The SLS core stage remains the world’s most powerful rocket stage, and the only one that can carry American astronauts directly to the moon and beyond in a single launch. As NASA lays out an accelerated launch schedule, our workforce and supply chain are prepared to meet the increased production needs. With a rocket designed at NASA’s Marshall Space Flight Center in Huntsville, Alabama, built at America’s rocket factory at NASA’s Michoud Assembly Facility in New Orleans, and integrated at NASA’s Kennedy Space Center in Florida, we are ready to meet the increased demand.” The announcement came during a news conference at NASA Kennedy where leaders also discussed the status of the Artemis II mission. NASA rolled the SLS and Orion spacecraft to the Vehicle Assembly Building (VAB) on Feb. 25 for repairs ahead of the next launch opportunities for the test flight in April. Once the Artemis II hardware was back in the VAB, teams immediately began work on the helium issue discovered on the Interim Cryogenic Propulsion Stage and prepared for several actions including replacing batteries in the flight termination system, end-to-end testing for range safety requirements, and more. “I’m grateful to Administrator Isaacman for taking this bold step and moving quickly to assure we have the support and resources needed to launch Artemis astronauts to the Moon every year,” said Lori Glaze, acting associate administrator for Exploration Systems Development Mission Directorate at NASA Headquarters in Washington. “Our team is up to the challenge of a successful Artemis II mission, and soon thereafter, enabling a more frequent cadence of Moon missions.” For more about the Artemis campaign, visit: https://www.nasa.gov/artemis -end- Bethany Stevens / Cheryl WarnerHeadquarters, Washington202-358-1600bethany.c.stevens@nasa.gov / cheryl.m.warner@nasa.gov
+"""
+
+[R2] NASA's Artemis 3 mission: Practicing docking in Earth orbit
+(https://www.space.com/artemis-3-moon-landing-mission)
+"""
+NASA's Artemis 3 mission will practice rendezvous and docking operations in Earth orbit, paving the way for a planned moon landing on Artemis 4. (Image credit: NASA) Artemis 3 is the third scheduled flight of NASA's Artemis program.The mission, which is scheduled to launch in 2027, was originally supposed to land astronauts on the moon. No boots have hit lunar dirt since Apollo 17, way back in 1972.NASA's Artemis 1 mission soars beyond the moon and back in stunning animationThe Artemis I mission will "travel thousands of miles beyond the Moon," if all goes according to plan, according to NASA. Watch its flight in this amazing new animation. Credit: NASA Johnson Space Center0 seconds of 2 minutes, 54 secondsVolume 0%Artemis 3 launch dateThe Artemis 3 launch date is set for 2027 for now, after an initial target of 2024.NASA's readiness for Artemis 3 depends on two key things: the success of previous missions and the availability of an unflown human landing system, or HLS — SpaceX's Starship and/or Blue Origin's Blue Moon. Agency officials have said the mission may use either or both of those private vehicles.One Artemis mission is already in the books — Artemis 1, which launched an uncrewed Orion capsule to lunar orbit atop a Space Launch System (SLS) rocket in late 2022. Orion came back to Earth as planned about 25 days after liftoff, so the mission was a success. However, the capsule's heat shield suffered more damage than expected during the fiery return trip through our atmosphere. So NASA has tweaked the reentry profile for the next mission up — Artemis 2, which could launch as soon as April 1, 2026.Artemis 2 will send four astronauts — NASA's Reid Wiseman, Victor Glover and Christina Koch, and Jeremy Hansen of the Canadian Space Agency — on a roughly 10-day trip around the moon aboard Orion. It will be the first-ever crewed mission of the Artemis program, so all needs to go well to keep Artemis 3 on track and schedule.Breaking space news, the latest updates on rocket launches, skywatching events and more!Also required is the readiness of either Starship or Blue Moon. And both vehicles still have work to do: Starship has flown 11 times to date but has not yet reached Earth orbit, and Blue Moon has yet to leave the ground.We don't yet know who will fly on Artemis 3; NASA has not announced the crewmembers.What will Artemis 3 do?Artemis 3 will be similar to Apollo 9, which spent 10 days in Earth orbit in 1969 testing the Apollo lunar module's engines, navigation gear, life-support systems and docking operations, among other things.Artemis 3 will put Orion and one or both of the private landers through their paces as well. Orion and its unnamed astronauts will launch atop an SLS rocket, then meet up with Starship and/or Blue Moon, which will find their own way to orbit. But there are still a lot of details to work out."NASA will announce specifics on the Artemis 3 mission design and crew closer to the 2027 launch," agency officials wrote on the mission's website.What comes after Artemis 3?The planning past Artemis 3 is a bit uncertain. Currently, however, NASA wants Artemis 4 — targeted to launch in 2027 or 2028 — to be the program's first crewed landing mission."Artemis 4 astronauts will travel to lunar orbit, where two crew members will descend to the surface and spend approximately a week near the South Pole of the moon conducting new science before returning to lunar orbit to join their crew for the journey back to Earth," agency officials wrote in an Artemis 4 mission description.The south pole will also be the target of future crewed landing efforts, because the area is thought to be rich in water ice. This key resource can be used for life support and also split into its constituent hydrogen and oxygen, key components of rocket fuel.Indeed, NASA officials have said they want to build one or more bases near the lunar south pole over the next decade or so. Such outposts will help the agency learn how to live and work in deep space, allowing it to send astronauts to Mars in the 2040s, the thinking goes.Additional ResourcesYou can read more about the Artemis program on the NASA Artemis website.Bibliography European Space Agency. (2020). Artemis 3 Step-By-Step. https://www.esa.int/ESA_Multimedia/Images/2020/05/Artemis_3_step-by-stepNASA. (n.d.) Artemis. https://www.nasa.gov/specials/artemis/NASA. (2020). NASA's Plan for Sustained Lunar Exploration and Development. https://www.nasa.gov/sites/default/files/atoms/files/a_sustained_lunar_presence_nspc_report4220final.pdfNASA. (2025.) FY26 Budget Request. https://www.nasa.gov/fy-2026-budget-request/Editor's note: This page was updated on March 19 with the new plan for Artemis 3. Brett is curious about emerging aerospace technologies, alternative launch concepts, military space developments and uncrewed aircraft systems. Brett's work has appeared on Scientific American, The War Zone, Popular Science, the History Channel, Science Discovery and more. Brett has degrees from Clemson University and the University of North Carolina at Charlotte. In his free time, Brett enjoys skywatching throughout the dark skies of the Appalachian mountains.
+"""
+
+[R3] Artemis III - NASA
+(https://www.nasa.gov/mission/artemis-iii/)
+"""
+NASA's Artemis III mission in low Earth orbit will test integrated operations between the Orion spacecraft and one or both commercial landers from SpaceX and Blue Origin respectively. Spaceport The systems and facilities that assemble and launch NASA's rockets and spacecraft for NASA’s Artemis missions. Learn More about Spaceport Crew Launch The Artemis III crew will launch in Orion on the SLS (Space Launch System) rocket from NASA’s Kennedy Space Center in Florida. Learn More about Crew Launch Spacecraft The crew of Artemis III will ride to Earth orbit aboard the Orion spacecraft, where the crew will test rendezvous and docking capabilities between Orion and private commercial spacecraft needed to land astronauts on the Moon. This test will take place with one or both providers. Learn More about Spacecraft Human Landing Systems NASA's Artemis III demonstration mission in low Earth orbit will test one or both commercial landers from SpaceX and Blue Origin respectively. The mission will launch crew in the Orion spacecraft on top of the SLS (Space Launch System) rocket to test rendezvous and docking capabilities between Orion and the private commercial spacecraft needed to land astronauts on the Moon. Learn More about Human Landing Systems Learn More and Get Involved Artemis Blog Get up to speed on recent Artemis activities. Learning Resources Explore hands-on activities, interactive, lesson plans, educator guides, and other downloadable content about this topic. Keep Exploring Discover More Topics From NASA
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

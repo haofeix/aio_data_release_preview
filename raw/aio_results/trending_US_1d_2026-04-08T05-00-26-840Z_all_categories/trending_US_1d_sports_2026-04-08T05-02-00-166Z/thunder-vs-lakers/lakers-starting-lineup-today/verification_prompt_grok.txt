@@ -1,0 +1,93 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "lakers starting lineup today"
+
+Claims:
+[1] "The Los Angeles Lakers had a matchup against the Thunder on April 7, 2026."
+[2] "The Los Angeles Lakers started Luke Kennard, Jake LaRavia, Rui Hachimura, Drew Timme, and Deandre Ayton in their April 7, 2026 matchup against the Thunder."
+[3] "Luke Kennard was PG for the Los Angeles Lakers in their April 7, 2026 matchup against the Thunder."
+[4] "Jake LaRavia was SG for the Los Angeles Lakers in their April 7, 2026 matchup against the Thunder."
+[5] "Rui Hachimura was SF for the Los Angeles Lakers in their April 7, 2026 matchup against the Thunder."
+[6] "Drew Timme was PF for the Los Angeles Lakers in their April 7, 2026 matchup against the Thunder."
+[7] "Deandre Ayton was C for the Los Angeles Lakers in their April 7, 2026 matchup against the Thunder."
+[8] "The Los Angeles Lakers' starting lineup against the Thunder on April 7, 2026 represents a shift from their usual starting five due to injuries to key players like LeBron James, Luka Doncic, and Austin Reaves."
+
+Cited text snippets from the AI Overview (for additional context):
+- Lakers Announce Bold Starting Lineup Decision Vs Thunder After LeBron James News: "Regardless, the 'Lake Show',@Lakers · Follow"
+- Lakers Announce Starting Lineup Decision Vs. Mavs Without Luka Doncic, Austin Reaves: "Lakers Starting Lineup Without Luka,Lakers Injury Report"
+- Lakers projected starting lineup vs. the Thunder tonight PG: "Lakers projected starting lineup vs,lakerholicsla"
+Reference Sources:
+
+[R1] Lakers Announce Starting Lineup Decision Vs. Mavs Without Luka Doncic, Austin Reaves
+(https://heavy.com/sports/nba/los-angeles-lakers/starting-lineup-vs-mavericks-without-doncic-reaves/)
+"""
+Getty JJ Redick of the Los Angeles Lakers reacts during the second half of a game at Mortgage Matchup Center on December 14, 2025 in Phoenix, Arizona. The Los Angeles Lakers are set to play the Dallas Mavericks in a game that will be highlighted by the brutal injury updates to Luka Doncic and Austin Reaves.The two stars for the Lakers have been ruled out for the rest of the regular season with hamstring and oblique injuries, respectively, in what has been a difficult past few days for a team that was previously one of the hottest in the NBA over the past month.Regardless, the Lake Show must go on, and before the game against the Mavericks, Los Angeles’ starting lineup and final injury report for Sunday was announced.Lakers Starting Lineup Without Luka Doncic And Austin ReavesGettyHOUSTON, TEXAS – MARCH 18: LeBron James #23 of the Los Angeles Lakers reacts against the Houston Rockets during the first half at Toyota Center on March 18, 2026 in Houston, Texas. In the lead-up to the matchup, the Lakers took to social media to announce the starting lineup for the Easter game, a group that did not feature either Doncic or Reaves.Luke Kennard, Jake LaRavia, LeBron James, Rui Hachimura, and Deandre Ayton were all named as starters before the game by head coach JJ Redick.Normally, both Doncic and Reaves are in the starting lineup, but after the latest injury updates ruling them out for at least the rest of the regular season, they were not featured in that group on Sunday.It will be tough sledding for the Lakers in the final stretch of the regular season, but a starting lineup something like this is what the team will be going with until their 2025-26 campaign ends, or they get at least one of their top-two scorers back from injury.Lakers Injury ReportGettyHOUSTON, TEXAS – MARCH 18: Austin Reaves #15 of the Los Angeles Lakers celebrates with Luka Doncic #77 of the Los Angeles Lakers during the second half against the Houston Rockets at Toyota Center on March 18, 2026 in Houston, Texas. Before the game, the Lakers also announced their final injury report for Sunday against the Mavericks.Doncic and Reaves were both featured, as each suffered injuries against the Oklahoma City Thunder that have since sidelined them for the rest of the regular season, and potentially longer. “Both those guys are going to try to come back. So it’s our job to extend the season so that they can come back” – JJ Redick on the injuries to Luka Doncic and Austin Reaves “Both those guys are going to try to come back. So it’s our job to extend the season so that they can come back” Redick said of the two stars, per Dave McMenamin of ESPN.Reaves is expected to miss four to six weeks, according to recent injury updates. Doncic does not have a return timeline, but per a recent report from The Athletic, his hamstring injury could keep him out for at least a month, with the high chance of re-injury if he comes back too early.The Lakers have also ruled out Marcus Smart for the game. Redick had previously said that he thought the guard would be able to return, but that is not the case, and he remains sidelined with an ankle injury.Despite those three making up Los Angeles’ injury report against Dallas, the good news is that Jarred Vanderbilt was upgraded from questionable to available for the game. He was dealing with calf soreness, but isn’t expected to miss any time. Jarred Vanderbilt (calf) listed available to play Sunday. The Lakers are 50-27 and third in the West after a stellar March. Responsibility will fall on James, the oldest player in the league to help the team win at least one playoff round without Doncic and Reaves, but regardless of who Los Angeles matches up with in the playoffs, that will be a tall task.After what was one of the best stretches from any NBA team in March, the Lakers have gone from potential title contenders to a team that looks to be trying to just stay afloat, all in the past few days.The game against Dallas will be the first true test to see how they respond without nearly 60 points per game in the form of Doncic and Reaves. Eli Gregorski is a sports journalist covering the NBA for Heavy Sports. He has years of sports writing experience covering the NBA, NFL, college football and basketball, international soccer, and Formula One. He graduated from the University of Colorado Boulder, where he was the assistant sports editor for the award-winning CU Independent student publication. More about Eli Gregorski
+"""
+
+[R2] Los Angeles Lakers Starting Lineup for Today
+(https://www.lineups.com/nba/lineups/los-angeles-lakers)
+"""
+Basic Advanced Per Game Per 36 Minutes Starting Lineup POS NAME PG Marcus Smart M. Smart SF Jake LaRavia J. LaRavia PF LeBron James L. James PF Rui Hachimura R. Hachimura C Deandre Ayton D. Ayton POS NAME G MIN PTS TRB DRB ORB AST TOV STL BLK 3PM 3PA 3P% FGM FGA FG% FTM FTA FT% PF PG Marcus Smart M. Smart 62 28.5 9.3 2.8 2.2 0.6 3 1.5 1.4 0.4 1.6 4.7 33.1% 3 7.7 39.5% 1.7 2.1 82.2% 2.6 SF Jake LaRavia J. LaRavia 82 25.1 8.2 4 2.6 1.4 1.8 1.1 1.3 0.5 1 3 32.1% 2.9 6.4 45.9% 1.4 1.9 76.3% 2.4 PF LeBron James L. James 60 33.1 20.9 6.1 5.3 0.7 7.2 3 1.2 0.6 1.3 4 31.7% 7.9 15.3 51.5% 3.9 5.3 73.7% 1.4 PF Rui Hachimura R. Hachimura 68 28.3 11.5 3.3 2.7 0.6 0.8 0.6 0.6 0.3 1.7 3.9 44.3% 4.5 8.8 51.4% 0.7 1.1 69.4% 1.6 C Deandre Ayton D. Ayton 72 27.2 12.5 8 5.4 2.6 0.8 1.2 0.6 1 0 0 0% 5.6 8.3 67.1% 1.3 2 64.5% 2.2 Most Common Lakers Lineups 18 GAMES PG: Luka Dončić SG: Marcus Smart SF: Jake LaRavia PF: LeBron James C: Deandre Ayton 12 GAMES PG: Luka Dončić SG: Marcus Smart SF: Austin Reaves PF: LeBron James C: Deandre Ayton 8 GAMES PG: Luka Dončić SG: Austin Reaves SF: Rui Hachimura PF: LeBron James C: Deandre Ayton 6 GAMES PG: Luka Dončić SG: Marcus Smart SF: Austin Reaves PF: Rui Hachimura C: Deandre Ayton 2 GAMES PG: Luka Dončić SG: Marcus Smart SF: Jake LaRavia PF: Rui Hachimura C: Deandre Ayton 2 GAMES PG: LeBron James SG: Marcus Smart SF: Jake LaRavia PF: Rui Hachimura C: Jaxson Hayes 2025-26 Recent Lakers Lineups GAME RESULT 04/10/26 vs PHO W 101-73 SG: Luke Kennard SF: LeBron James PF: Jake LaRavia PF: Rui Hachimura C: Deandre Ayton 04/09/26 at GS W 119-103 SG: Luke Kennard SF: LeBron James PF: Rui Hachimura PF: Jake LaRavia C: Deandre Ayton 04/07/26 vs OKC L 87-123 SG: Luke Kennard PF: Jake LaRavia PF: Rui Hachimura PF: Drew Timme C: Deandre Ayton 04/05/26 at DAL L 128-134 SG: Luke Kennard SF: LeBron James PF: Jake LaRavia PF: Rui Hachimura C: Deandre Ayton 04/02/26 at OKC L 96-139 PG: Luka Dončić SG: Austin Reaves SF: LeBron James PF: Jake LaRavia C: Deandre Ayton 03/31/26 vs CLE W 127-113 PG: Luka Dončić SG: Austin Reaves SF: LeBron James PF: Jake LaRavia C: Deandre Ayton 03/30/26 vs WAS W 120-101 SG: Austin Reaves SF: LeBron James PF: Rui Hachimura PF: Jake LaRavia C: Deandre Ayton 03/27/26 vs BKN W 116-99 PG: Luka Dončić SG: Austin Reaves SF: LeBron James PF: Jake LaRavia C: Deandre Ayton 03/25/26 at IND W 137-130 PG: Luka Dončić SG: Austin Reaves SF: LeBron James PF: Jake LaRavia C: Jaxson Hayes 03/23/26 at DET L 110-113 PG: Luka Dončić SG: Austin Reaves SF: LeBron James PF: Jake LaRavia C: Deandre Ayton
+"""
+
+[R3] Lakers Announce Bold Starting Lineup Decision Vs Thunder After LeBron James News
+(https://heavy.com/sports/nba/los-angeles-lakers/starting-lineup-injury-report-vs-thunder-lebron-james-news/)
+"""
+Getty LOS ANGELES, CALIFORNIA - MARCH 30: LeBron James #23 of the Los Angeles Lakers takes a free throw against the Washington Wizards in the second half at Crypto.com Arena on March 30, 2026 in Los Angeles, California. The Los Angeles Lakers are playing the Oklahoma City Thunder in a game that will not feature four of the team’s five typical starters. Luka Doncic, Austin Reaves, LeBron James, and Marcus Smart were all ruled out for the Lakers vs. Thunder game, all dealing with injuries of vastly different severity.Regardless, the ‘Lake Show’ must go on, despite not having three of the team’s top four scorers and a majority of their typical starting lineup.Before the rematch against the Thunder, Los Angeles announced its starting lineup and final injury report for the game, coming amid recent injury updates for Doncic, Reaves, James, and Smart.Lakers Starting Lineup Decision vs. Thunder Without Doncic, Reaves, James, and SmartGettyLOS ANGELES, CA – FEBRUARY 9, 2026: Los Angeles Lakers center Deandre Ayton (5) stands alone on the court during the game against the Oklahoma City Thunder at Crypto.com Arena on February 79 2026 in Los Angeles, California.(Gina Ferazzi / Los Angeles Times via Getty Images) In a post on social media in the lead-up to the game, the Lakers revealed their starting lineup for Tuesday night.Luke Kennard, Jake LaRavia, Rui Hachimura, Drew Timme, and Deandre Ayton were all named as starters by JJ Redick and the coaching staff.That starting group could easily be considered a skeleton crew for the Lakers, as they are currently missing 80% of the typical starting lineup. Ayton is the only player who is consistently a starter who will actually play against Oklahoma City.However, Kennard is coming off a triple-double, the first of his NBA career, so the Lakers will be hopeful that he can put in another good performance, regardless of their chances against the defending champions.It is only Timme’s second career start, and his first time in the starting lineup for the Lakers, playing just 23 games on the year.Lakers Injury Report, LeBron James UpdateThe Lakers’ injury report consists of Doncic, Reaves, Smart, James, and Jaxson Hayes.The first three were always set to miss the game against the Thunder, but after being previously questionable, James was later ruled out.It’s officially left foot injury management for the 41-year-old, as he’s been dealing with the foot injury for much of the season. Additionally, Los Angeles was blown out against the Thunder in the game that saw both Doncic and Reaves get hurt, so having James sit is likely a precaution that might not impact the final score on Tuesday night. LeBron James is out tonight against the Thunder with left foot soreness, the Lakers announced. Tonight is the start of three games in four nights for LAL, followed by GSW on the road Thursday and home against PHX on Friday. “LeBron James is out tonight against the Thunder with left foot soreness, the Lakers announced. Tonight is the start of three games in four nights for LAL, followed by GSW on the road Thursday and home against PHX on Friday,” team insider Dave McMenamin wrote on X.As for Smart, there was initially hope that he would come back soon, but is now sidelined for the eighth game in a row. As McMenamin reported, Redick said Smart is ‘Trending towards playing at some point this week,’ but added that he though the guard would have returned sometime sooner.The injuries to both Doncic and Reaves have been heavily reported on.The Slovenian is in Spain for the time being getting additional recovery on a hamstring strain, while Reaves is expected to miss four to six weeks. Hayes was a late addition to the injury report, dealing with left foot soreness.Redick has maintained that the Lakers want to extent their season in order to get the stars back, but in the West playoffs, that remains a tough task. On Saturday, after Luka Doncic’s diagnosis, but before the extent of Austin Reaves’ oblique injury was known, JJ Redick said that the Lakers’ focus was to finish as the No. 3 seed. Tonight, after Reaves’ Grade 2 status and the Dallas loss, Redick said “seeding is out the window.” The Lakers are currently 50-28 and fourth in the West, and can finish anywhere from third to fifth in the playoff seeding. Eli Gregorski is a sports journalist covering the NBA for Heavy Sports. He has years of sports writing experience covering the NBA, NFL, college football and basketball, international soccer, and Formula One. He graduated from the University of Colorado Boulder, where he was the assistant sports editor for the award-winning CU Independent student publication. More about Eli Gregorski
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

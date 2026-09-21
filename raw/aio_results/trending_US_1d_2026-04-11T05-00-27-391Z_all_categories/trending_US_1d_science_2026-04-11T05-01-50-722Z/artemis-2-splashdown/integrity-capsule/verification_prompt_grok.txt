@@ -1,0 +1,94 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "integrity capsule"
+
+Claims:
+[1] ""Integrity" is the name given to the NASA Orion spacecraft used for the Artemis II mission."
+[2] "The Artemis II mission launched four astronauts around the Moon in April 2026."
+[3] "The name "Integrity" was selected by the crew to represent trust, respect, and unity."
+[4] "The capsule successfully completed a 10-day mission."
+[5] "The capsule splashed down safely in the Pacific Ocean on April 10, 2026."
+[6] "The Integrity Capsule (Artemis II) is the first crewed spacecraft to go beyond low Earth orbit since the Apollo era."
+[7] "The crew of Artemis II consisted of Commander Reid Wiseman, Pilot Victor Glover, Christina Koch, and Jeremy Hansen."
+[8] "The capsule features an AVCOAT heat shield."
+[9] "The AVCOAT heat shield is designed to withstand high-speed re-entry around Mach 33."
+[10] "The name "Integrity" symbolizes the "integrated effort" of NASA and the Canadian Space Agency to return humans to the Moon."
+[11] "Following splashdown, the capsule is recovered and returned to Johnson Space Center for study."
+[12] "In some mission communication contexts, "Integrity" is also used as the call sign for Mission Control."
+
+Cited text snippets from the AI Overview (for additional context):
+- Artemis II Crew Members Name Their Orion Spacecraft - NASA: "The name of the Orion spacecraft for,office, and the CSA (Canadian Space Agency)."
+- SPLASHDOWN! The Integrity capsule of the Artemis II mission has ...: "SPLASHDOWN!-,The Integrity capsule of the Artemis II mission has touched,Photo: NASA&text=U.S.A.!!!!!!!!!!!!&text=That was cool to watch!&text=Teresa Morgan Wasn't it?!&text=WELCOME HOME ARTEMIS!"
+- Why Artemis II’s reentry may be the moon mission’s greatest challenge yet: "Like all Orion capsules, Integrity,for Artemis II's Orion capsule."
+- Artemis II astronauts exit Orion capsule after historic moon mission: "Artemis II astronauts exit Orion,://nbcmontana.com..."
+- NASA's Orion spacecraft, Integrity, has launched on its 10-day ...: "Watching the Artemis II launch,the pieces, it all clicks."
+- Artemis II has shown the world what is possible. Welcome home!: "The Artemis 2 mission will launch 4,travel beyond low Earth orbit on a"
+Reference Sources:
+
+[R1] Why Artemis II’s reentry may be the moon mission’s greatest challenge yet
+(https://www.scientificamerican.com/article/why-artemis-iis-reentry-may-be-the-moon-missions-greatest-challenge-yet/)
+"""
+Heat shield worries resurface as the Artemis II moon mission nears reentryBefore NASA’s moon mission launched, experts sounded the alarm over the Orion capsule’s heat shield and reentry. Now splashdown is just one day away NASA/Isaac WatsonNASA has launched four astronauts on a pioneering journey around the moon—the Artemis II mission. Follow our coverage here.NASA’s Artemis II moon mission is coming to an end. On Friday at approximately 8:07 P.M. EDT, its Orion capsule, named Integrity, is due to splash down into the Pacific Ocean off the coast of San Diego, Calif., delivering astronauts Reid Wiseman, Christina Koch, Victor Glover and Jeremy Hansen back to Earth. But before that, Integrity must endure a perilous journey through our atmosphere: reentry.Reentry is hard. When an object falls from space into our planet’s atmosphere at hypersonic speed, it heats up and is engulfed in a fireball. This is caused mostly by compressed air in front of the object and atmospheric drag. It’s stressful: if the falling object is small or relatively fragile and doesn’t have protection from the heat, it typically breaks apart and burns up. In the case of crewed vehicles such as Orion, however, engineers carefully map out a reentry trajectory and build in protection such as heat shielding to minimize the risk of harm to both the spacecraft and the astronauts inside.Integrity is projected to reenter Earth’s atmosphere on Friday at approximately 7:45 P.M., when it will be traveling at nearly 24,000 miles an hour. Without a protective layer, anything inside the crew cabin could be exposed to temperatures as high as 5,000 degrees Fahrenheit.Like all Orion capsules, Integrity has a heat shield made of AVCOAT, a mixture of silica, epoxy and resins that NASA also used for the original Apollo missions to the moon. AVCOAT protects a spacecraft by charring, melting and ablating away, carrying excess heat along with it. Orion’s AVCOAT has been slightly reformulated, and the design of its heat shield is not the same as that of the Apollo missions: while in the past, the Apollo heat shields had a honeycomblike structure made up of 36,000 small cells of AVCOAT, the Orion heat shield is made up of less than 200 large tiles of the material.Before Artemis II, an uncrewed Orion capsule flew in 2022 as part of the Artemis I mission, allowing a test of its heat shield without risking anyone’s well-being. During reentry, that heat shield cracked and shed more material than NASA engineers had expected. The space agency performed an urgent investigation into the anomaly and released a report detailing its findings in 2024. Ultimately, citing the expense and time any replacement would’ve taken, NASA decided not to change the heat shield design for Artemis II’s Orion capsule. Instead mission planners adjusted the capsule’s reentry trajectory so that its heat shield would be exposed to higher temperatures for a shorter time.Orion’s heat shield has been extensively tested on the ground, and NASA officials have said that their models show the new reentry profile effectively minimizes the reentry risk for the Artemis II crew.“I am confident in the NASA approach and solution,” says Jud Ready, a materials expert and executive director of the Space Research Institute at the Georgia Institute of Technology. “It was a rigorous study using ground-based experimentation at representative pressures, temperatures and—crucially—temperature ramp rates.”But the decision to leave the heat shield as it was for Artemis I has been met with criticism by other heat shield experts and even former astronauts. “This approach doesn’t mitigate the flaws in the design and manufacture of the original heat shield itself,” says Ed Pope, a heat shield expert, who has been critical of NASA’s decision. He points out that the agency is using a different heat shield design and yet another formulation of AVCOAT for the Orion capsule on Artemis III. “That change is an acknowledgement that there's a known risk to the current design and manufacturing method, in my opinion,” he says.After Integrity bleeds off most of its speed during reentry and is deeper in Earth’s atmosphere, it will use its thrusters and, eventually, parachutes to slow down, reaching a stately 17 miles an hour. The entire process should take about 13 minutes, according to Artemis II entry flight director Rick Henfling. There will be a several-minute-long period in which the spacecraft will lose communications with mission control as it passes through Earth’s upper atmosphere, says Jordan Bimm, a space historian at the University of Chicago.“For me, this will be the most stressful part of the entire mission,” Bimm says.Presuming a nominal reentry and an on-target splashdown, U.S. ships waiting nearby will retrieve the astronauts and bring the mission to its official close.It’s Time to Stand Up for ScienceIf you enjoyed this article, I’d like to ask for your support. Scientific American has served as an advocate for science and industry for 180 years, and right now may be the most critical moment in that two-century history.I’ve been a Scientific American subscriber since I was 12 years old, and it helped shape the way I look at the world. SciAm always educates and delights me, and inspires a sense of awe for our vast, beautiful universe. I hope it does that for you, too.If you subscribe to Scientific American, you help ensure that our coverage is centered on meaningful research and discovery; that we have the resources to report on the decisions that threaten labs across the U.S.; and that we support both budding and working scientists at a time when the value of science itself too often goes unrecognized.In return, you get essential news, captivating podcasts, brilliant infographics, can't-miss newsletters, must-watch videos, challenging games, and the science world's best writing and reporting. You can even gift someone a subscription.There has never been a more important time for us to stand up and show why science matters. I hope you’ll support us in that mission.
+"""
+
+[R2] Artemis II Crew Members Name Their Orion Spacecraft - NASA
+(https://www.nasa.gov/blogs/missions/2025/09/24/artemis-ii-crew-members-name-their-orion-spacecraft/)
+"""
+Search Suggested Searches Climate Change Artemis Expedition 64 Mars perseverance SpaceX Crew-2 International Space Station View All Topics A-Z HomeMissionsHumans in SpaceEarthThe Solar SystemThe UniverseScienceAeronauticsTechnologyLearning ResourcesAbout NASAEspañol News & Events Multimedia NASA+ Featured3 min readHubble Spies an Active Spiralarticle3 days ago2 min readEarthset From the Lunar Far Sidearticle7 days ago4 min readNASA’s Northrop Grumman CRS-24 Mission Overview article1 week ago Back MissionsSearch All NASA MissionsA to Z List of MissionsUpcoming Launches and LandingsSpaceships and RocketsCommunicating with MissionsArtemisJames Webb Space TelescopeHubble Space TelescopeInternational Space StationOSIRIS-RexHumans in SpaceWhy Go to SpaceAstronautsCommercial SpaceDestinationsSpaceships and RocketsLiving in SpaceEarthExplore Earth ScienceClimate ChangeEarth, Our PlanetEarth Science in ActionEarth MultimediaEarth DataEarth Science ResearchersThe Solar SystemThe SunMercuryVenusEarthThe MoonMarsJupiterSaturnUranusNeptunePluto & Dwarf PlanetsAsteroids, Comets & MeteorsThe Kuiper BeltThe Oort CloudSkywatchingThe UniverseExoplanetsThe Search for Life in the UniverseStarsGalaxiesBlack HolesThe Big BangDark EnergyDark MatterScienceEarth SciencePlanetary ScienceAstrophysics & Space ScienceThe Sun & HeliophysicsBiological & Physical SciencesLunar ScienceCitizen ScienceAstromaterialsAeronautics ResearchHuman Space Travel ResearchAeronauticsScience in the AirNASA AircraftFlight Research InnovationSupersonic FlightAir Traffic SolutionsGreen Aviation TechDrones & YouTechnologyTechnology Transfer & SpinoffsSpace Travel TechnologyTechnology Living in SpaceManufacturing and MaterialsRoboticsScience InstrumentsComputingLearning ResourcesFor Kids and StudentsFor EducatorsFor Colleges and UniversitiesFor ProfessionalsScience for EveryoneRequests for Exhibits, Artifacts, Speakers & FlyoversSTEM Engagement at NASAAbout NASANASA's ImpactsCenters and FacilitiesDirectoratesOrganizationsPeople of NASACareersInternshipsOur HistoryDoing Business with NASAGet InvolvedContactNASA en EspañolCienciaAeronáuticaCiencias TerrestresSistema SolarUniversoNews & EventsNews ReleasesRecently PublishedVideo Series on NASA+Podcasts & AudioBlogsNewslettersSocial MediaMedia ResourcesEventsUpcoming Launches & LandingsVirtual Guest ProgramMultimediaNASA+ImagesNASA LiveNASA AppsPodcastsImage of the Daye-BooksInteractivesSTEM MultimediaNASA Brand & Usage Guidelines Featured 3 min read Hubble Spies an Active Spiral article 3 days ago 2 min read Earthset From the Lunar Far Side article 7 days ago 4 min read NASA’s Northrop Grumman CRS-24 Mission Overview article 1 week ago Highlights 12 min read NASA Answers Your Most Pressing Artemis II Questions article 2 weeks ago 1 min read Artemis II Podcast Series article 3 weeks ago 7 min read NASA Releases Artemis II Moon Mission Launch Countdown article 3 weeks ago Highlights 3 min read Eyeing the Richat Structure article 12 hours ago 2 min read Honoring Alex Goetz, a Landsat Legend article 1 day ago 3 min read Contours of the James Bay Lowlands article 2 days ago Highlights 1 min read Amendment 51: C.6 Development and Advancement of Lunar Instrumentation Not Solicited in ROSES-25 article 3 days ago 3 min read Twin NASA Control Rooms Support Artemis Safety, Success article 1 week ago 4 min read A Volcanic Medley Near Mammoth Lakes article 1 week ago Featured 6 min read ‘Interstellar Glaciers’: NASA’s SPHEREx Maps Vast Galactic Ice Regions article 1 day ago 5 min read NASA Finds Young Stars Dim in X-rays Surprisingly Quickly article 2 days ago 5 min read NASA’s Webb Redefines Dividing Line Between Planets, Stars article 2 days ago Highlights 3 min read Eyeing the Richat Structure article 12 hours ago 6 min read ‘Interstellar Glaciers’: NASA’s SPHEREx Maps Vast Galactic Ice Regions article 1 day ago 3 min read Contours of the James Bay Lowlands article 2 days ago Highlights 1 min read 2025-2026 Dream with Us Design Challenge Winners article 2 days ago 4 min read NASA Selects Finalists in Student Aircraft Maintenance Competition article 3 weeks ago 2 min read NASA’s X-59 Experimental Supersonic Aircraft Makes Second Flight article 4 weeks ago Highlights 1 min read Amendment 51: C.6 Development and Advancement of Lunar Instrumentation Not Solicited in ROSES-25 article 3 days ago 2 min read Snow in the Shadow of the Andes article 1 week ago 3 min read Fires Tear Through Nebraska Grasslands article 2 weeks ago Featured 1 min read Join the Artemis Mission to the Moon article 5 months ago Featured 3 min read Twin NASA Control Rooms Support Artemis Safety, Success article 1 week ago 5 min read Meet NASA’s New Artemis II Science Officers article 2 weeks ago 4 min read NASA Strengthens Artemis: Adds Mission, Refines Overall Architecture article 1 month ago Highlights 11 min read La NASA anuncia la cobertura de la misión lunar Artemis II article 3 weeks ago 15 min read Agenda diaria de la misión a la Luna de Artemis II de la NASA article 1 month ago 6 min read La NASA refuerza Artemis: añade una misión y perfecciona su arquitectura general article 1 month ago MissionsRachel H. KraftSeptember 24, 2025 11:37AMCategoriesAlso Featured In Artemis II Crew Members Name Their Orion Spacecraft The Artemis II crew members named their Orion spacecraft Integrity during a news conference Sept. 24. The name Integrity embodies the foundation of trust, respect, candor, and humility across the crew and the many engineers, technicians, scientists, planners, and dreamers required for mission success. The name is also a nod to the extensive integrated effort – from the more than 300,000 spacecraft components to the thousands of people across the world – that must come together to venture to the Moon and back, inspire the world, and set course for a long-term presence at the Moon. Integrity is rooted in a shared core value of NASA, the agency’s astronaut office, and the CSA (Canadian Space Agency). As part of a Golden Age of innovation and exploration, the approximately 10-day Artemis II test flight, launching no later than April 2026, is the first crewed flight under NASA’s Artemis campaign. Rachel H. KraftSeptember 24, 2025 11:37AMCategoriesAlso Featured In Was this page helpful? Δ Was this page helpful? Yes No × Notifications
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

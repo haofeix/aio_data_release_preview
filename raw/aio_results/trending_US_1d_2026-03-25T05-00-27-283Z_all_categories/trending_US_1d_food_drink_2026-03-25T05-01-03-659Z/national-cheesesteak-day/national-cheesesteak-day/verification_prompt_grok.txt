@@ -1,0 +1,94 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "national cheesesteak day"
+
+Claims:
+[1] "National Cheesesteak Day is celebrated annually on March 24."
+[2] "A cheesesteak is made with thinly sliced beef, melted cheese, and onions on a hoagie roll."
+[3] "Pat Olivieri was a hot dog vendor in the 1930s."
+[4] "Pat Olivieri opened Pat's King of Steaks."
+[5] "The origin of the cheesesteak is often attributed to Pat Olivieri."
+[6] "In cheesesteak orders, "wit or witout" refers to with or without onions."
+[7] "Cheesesteak cheese preferences include whiz, provolone, or American."
+[8] "In 2026, Philadelphia International Airport set a new Guinness World Record for the "Longest Line of Cheesesteaks"."
+
+Cited text snippets from the AI Overview (for additional context):
+- National Cheesesteak Day (March 24) is not just about a sandwich. ...: "created this deliciousness?-,It's like March Madness for cheesesteak.,founder of National Cheesesteak Day."
+- NATIONAL CHEESESTEAK DAY - March 24, 2026: "National Cheesesteak Day Activities * Eat a,cheesesteak homeland. * Try a vegan cheesesteak."
+- The best cheesesteak is the one you enjoy. Cheers! # ... - Facebook: "March 24th is National Cheesesteak,NationalCheesesteakDay #PhillyPride #CheesesteakWars #WitOrWitout"
+- Philadelphia International Airport and MarketPlace PHL Set Guinness World Record for ‘Longest Line of Cheesesteaks’ on National Cheesesteak Day: "Philadelphia International Airport and MarketPlace PHL set a Guinness World,National Cheesesteak Day, March 24."
+Reference Sources:
+
+[R1] NATIONAL CHEESESTEAK DAY - March 24
+(https://www.nationaldaycalendar.com/national-day/national-cheesesteak-day-march-24)
+"""
+NATIONAL CHEESESTEAK DAY National Cheesesteak Day on March 24th not only celebrates a fantastic sandwich but it recognizes one of this nation's greater debates; Who created this deliciousness?#NationalCheesesteakDay It's like March Madness for a cheesesteak. Pat's and Geno's square off at 10 AM followed by Chubby's and Dalessandro's at 11 AM. Then Jim's and Tony Luke's at Noon. Basketball fans know how brackets go. Someone is gonna get a by. However, the credit is given to a hot dog vendor from the 1930s, Pat Olivieri. According to Philadelphia's tourism site, Pat's King of Steaks sits on its original location and is still going strong. This writer has had a cheesesteak from there and would go back in a heartbeat. The important thing is this fabulous, juicy sandwich on a hoagie roll. The roll is filled with chipped steak, and you can order it with or without cheese and onions. If you've never had one, you can really only get an authentic one in Philly. Other places try, so go where you can. But someday, go to Philadephia. It is the real deal.HOW TO OBSERVE NATIONAL CHEESESTEAK DAYInvite your friends and head over to your favorite cheesesteak restaurant.Get it with cheese (it's cheesesteak day, not steak day) and add the onions, too.Make your own cheesesteak.Give a shout-out to the restaurant that makes your favorite cheesesteak.Use #NationalCheesesteakDay to share on social media.NATIONAL CHEESESTEAK DAY HISTORY We were unable to identify the founder of National Cheesesteak Day.Cheesesteak FAQ Q. What kind of cheese is in cheesesteak? A. For an authentic cheesesteak, many will tell you they put Cheez Whiz on their cheesesteak. Q. Who made the world's largest cheesesteak? A. In 2021, Rene Kobeitri and other Philadelphia chefs built a 510 ft. cheesesteak.
+"""
+
+[R2] Philadelphia International Airport and MarketPlace PHL Set Guinness World Record for ‘Longest Line of Cheesesteaks’ on National Cheesesteak Day
+(https://www.businesswire.com/news/home/20260324164529/en/Philadelphia-International-Airport-and-MarketPlace-PHL-Set-Guinness-World-Record-for-Longest-Line-of-Cheesesteaks-on-National-Cheesesteak-Day)
+"""
+PHILADELPHIA--(BUSINESS WIRE)--Passengers at Philadelphia International Airport (PHL) today were thrilled to see culinary history being made right before their eyes: the “Longest Line of Cheesesteaks” … achieving a new Guinness World Record for National Cheesesteak Day, March 24. The savory serpentine of sandwiches at PHL ultimately stretched to a record-setting 1,291 cheesesteaks — spanning the length of more than three football fields and occupying nearly the entire concourse between Terminals B and C. It was comprised of 225 pounds of cheese sauce, 990 pounds of shaved ribeye and over 1,200 foot-long rolls. The Philadelphia Cheesesteak is among the city’s most celebrated icons, and PHL has more restaurants serving cheesesteaks under one roof than any other single location in Philly. Multiple concessionaires from PHL Food & Shops, in partnership with the City of Philadelphia Department of Aviation, have been collaborating for months to deliver this culinary win for Philly. Today’s champion cheesesteak is a first-time category creator, according to Guinness World Records. Several local Philadelphia suppliers contributed ingredients and resources to assemble the history-making queue. Amoroso’s Baking Company provided the classic Philadelphia rolls; Cooper Sharp supplied the cheese sauce; and Philly’s Best Steak Company delivered the beef. Chickie’s & Pete’s supported the effort by supplying kitchen equipment and preparation space to assist with the large-scale production of sandwiches, and Pepsi is the official beverage partner of Cheesesteak Week at PHL. The Guinness World Record for Longest Line of Cheesesteaks kicks off what’s also expected to be a record-setting year for passenger travel at PHL. Throughout 2026, Philadelphia will host the MLB All-Star Game, FIFA World Cup 26, NCAA Men’s March Madness and the PGA Championship — in addition to celebrating Philly’s unique role in American history as part of the U.S. Semiquincentennial. Following the official measurement and confirmation by veteran Guinness World Records Adjudicator Michael Empric, cheesesteaks from the record attempt were served to passengers, participants and guests. “In 2026, Philly is on a roll literally and figuratively,” said Kate Sullivan, Chief Commercial Officer for the Department of Aviation. “Cooking and assembling the longest line of cheesesteaks ever will be among many historic moments in Philadelphia this year. Congratulations and thanks to all the cheesesteak restaurants here at PHL that collaborated on this delicious, record-setting accomplishment. And thanks to Guinness World Records for acknowledging this achievement.” Restaurants at PHL that serve cheesesteaks or cheesesteak-inspired menu items include: Bar Symon Bud & Marilyn’s Chickie’s & Pete’s Geno’s Steaks Good Luck Bar & Restaurant Independence Prime Jack Duggan’s Pub & Restaurant Jim’s South St. Famous Cheesesteaks Local Tavern LOVE Grille Mezzogiorno Oyster House Passyunk Steaks Philly Pretzel Factory Sabrina’s Cafe Subway Tony Luke’s WinKitchen Mel Hannah, Vice President and General Manager of MarketPlace PHL, added: “More than 100 team members from more than a dozen different restaurant operators, with multiple food suppliers, along with staff from the Department of Aviation and MarketPlace PHL, all worked collectively to make culinary history today. That’s how Philadelphia gets it done … together.” PHL Cheesesteak Week continues through Friday, March 27, with participating restaurants throughout the airport offering special cheesesteak-inspired dishes, exclusive meal deals and other activations celebrating the city’s signature sandwich. For more information, please visit PHLfoodandshops.com. EDITOR’S NOTE: Exclusive drone footage, high-resolution photographs and B-roll from the Guinness World Record “Longest Line of Cheesesteaks” event at Philadelphia International Airport can be found here: https://www.dropbox.com/scl/fo/fwwdk6yfs2hfcal52ciud/AF61SRQ6CwS4GhA_cbhEd7Q?rlkey=k30x0czwqaekdhvlalbslmr2g&st=ox3l9e5f&dl=0. ABOUT PEPSICO PepsiCo products are enjoyed by consumers more than one billion times a day in more than 200 countries and territories around the world. PepsiCo generated nearly $94 billion in net revenue in 2025, driven by a complementary beverage and convenient foods portfolio that includes Lay’s, Doritos, Cheetos, Gatorade, Pepsi-Cola, Mountain Dew, Quaker, and SodaStream. PepsiCo’s product portfolio includes a wide range of enjoyable foods and drinks, including many iconic brands that generate more than $1 billion each in estimated annual retail sales. Guiding PepsiCo is our vision to Be the Global Leader in Beverages and Convenient Foods by Winning with pep+ (PepsiCo Positive). pep+ is our strategic end-to-end transformation that places sustainability at the center of our business strategy, seeking to drive growth and build a stronger, more resilient future for PepsiCo and the communities where we operate. For more information, visit www.pepsico.com, and follow on X (Twitter), Instagram, Facebook, and LinkedIn @PepsiCo. ABOUT MARKETPLACE PHL MarketPlace PHL, LLC, is the private partner with the City of Philadelphia in the management of the food and retail programs throughout Philadelphia International Airport. The award-winning program offers more than 170 shops, restaurants and services. The MarketPlace PHL portfolio features local Philly favorites, as well as regional and national brands. MarketPlace PHL, LLC, is a partnership between MarketPlace Development, a Boston-based airport retail development firm, and LeJeune & Associates, a Philadelphia-based retail development, management and consulting firm. For more information, visit PHLfoodandshops.com.
+"""
+
+[R3] National Cheesesteak Day
+(https://nationaltoday.com/national-cheesesteak-day/)
+"""
+Every March 24 America pays tribute to one of the all-time classic sandwiches — the cheesesteak. Much like national liberty itself, the cheesesteak is elegant, necessary, pure, and was born in Philadelphia. The cheesesteak rose from humble beginnings in South Philly to the cultural icon it is today: safely secure in the sandwich hall of fame. “Eat (ahem, read) on to celebrate National Cheesesteak Day.” When is National Cheesesteak Day 2027? The mouth-wateringly delicious cheesesteak sandwich is celebrated on National Cheesesteak Day on March 24. Editor recommended resources History of National Cheesesteak Day The cheesesteak was created in 1930 when Pat Olivieri, owner of Pat’s King of Steak, and a hot dog vendor, grilled beef and threw in some onions to make a sandwich. This caught the attention of a nearby taxi driver, who proceeded to ask for one too. The rest, as they say, is history. There are a few disputes to this story, but Pat and Harry Olivieri are predominantly credited with the invention of the cheesesteak sandwich. The cab driver who became interested in the tempting sandwich that Pat was having, stopped to have one for himself. The sandwich was so delicious that the driver suggested that Pat stop selling hot dogs and, instead, start selling this new sandwich. Perfecting the recipe, the steak sandwich started selling like hotcakes at Olivieri’s hot dog stand near South Philadelphia’s Italian Market. The popularity of the steak sandwich led Pat to open his own eatery — Pat’s King of Steaks. The restaurant is still running successfully today. Interestingly, the original sandwich that Pat had did not have any cheese. According to Olivieri, a manager named Joe Lorenza was the first to add provolone cheese to the sandwiches at one of the restaurants located on Ridge Avenue Since then, cheesesteaks have become immensely popular at food carts and restaurants throughout the city. Most of these eateries are owned and run by families, who have their unique spin on cheesesteaks. Several fast-food restaurants also offer their variations of cheesesteaks now. Outside of Philadelphia, the sandwich is commonly known as ‘Philly cheesesteak.’ 1930's A Legend is Born The Cheesesteak is created by Pat and Harry Oliveri, hot dog vendors who just so happened to put steak on the grill. 1940 Pat's Steaks Opens The Oliveris open their now-iconic South Philly restaurant, Pat’s King of Steaks. 1950s Cheesy Condiment Kraft Food launches Cheez Whiz— which becomes the traditional choice for cheese in Philadelphia and for cheesesteak. 1966 The Beef Begins Geno’s Steaks opens right across the streets from Pat’s, fueling a friendly rivalry that rages to this day. National Cheesesteak Day FAQs What is the number one cheesesteak in the world? Charleys Philly Steaks bills itself as the home of the “World’s Number One Philly Cheesesteak.” But the company – now boasting 550 locations in 45 states and 20 countries – is based in Columbus, Ohio. Why is cheesesteak called ‘cheesesteak’? Cheesesteak, also called Philadelphia cheesesteak or Philly cheesesteak, is a sandwich made with sliced or chopped steak and melted cheese on a long sandwich roll. How big is a cheesesteak? These sandwiches are all king-sized on a loaf of bread, approximately 12 inches long and three inches thick. National Cheesesteak Day Activities Eat a cheesesteakThis seems obvious, but sometimes the obvious answer is the best. You can roll up your sleeves and craft your own sandwich, or you can pay a professional to do it for you. Just know that if the word Philly is in the name, it may not be the most authentic.Visit the cheesesteak homelandIf you have the time and money, take a pilgrimage to the magical land where it all started. There are a shocking amount of official cheesesteak tours of Philadelphia, or you can go off the beaten path your own if you’re feeling adventurous. Just be sure to stop at Pat’s and Geno’s.Try a vegan cheesesteakCheesesteaks may seem like the last thing that could be made vegan, but there are countless, easy to follow recipes online for plant-based cheesesteaks. If you’re in the mood for a kitchen adventure, try a cheesesteak made from mushrooms, vegetables, soy, wheat, nuts, or pretty much anything else imaginable. 5 Mouthwateringly Delicious Facts Abour Cheesesteak A ‘Philly taco’ A Philly taco is a cheesesteak rolled up in a slice of pizza.No cheeseThe original sandwich did not contain any cheese.The most expensive cheesesteak It is sold in Philly for $130, and it comes with champagne.Steak is not a requirementNot all cheesesteaks are made with steak.It has an odd variationThere’s a cheesesteak cheesecake. Why We Love National Cheesesteak Day Gee Whiz!Philly cheesesteaks are traditionally served with Cheez Whiz. End of discussion. You can argue this point forever, but that's the way things currently stand in the motherland: Philadelphia, Pa.Delicious food doesn't have to be fancyThere’s no denying it – cheesesteaks are downright delicious. They prove that you don’t need all kinds of fancy trimmings and trappings to make a delectable sandwich. Sometimes the only ingredients you need are the ones in the name.They’re a huge part of Philly culturePhilly loves Ben Franklin, the Eagles, and cheesesteaks — in that order. They're such an integral part of the city’s culture that they generate tourism. But, whatever you do, don’t call it a “Philly Cheesesteak.” It's just a cheesesteak. National Cheesesteak Day dates Year Date Day 2027 March 24 Wednesday 2028 March 24 Friday 2029 March 24 Saturday 2030 March 24 Sunday 2031 March 24 Monday
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

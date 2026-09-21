@@ -1,0 +1,106 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "michael j fox still alive"
+
+Claims:
+[1] "Michael J. Fox is alive and well."
+[2] "Michael J. Fox confirmed his active status via Facebook."
+[3] "CNN mistakenly published a tribute video in April 2026."
+[4] "Michael J. Fox's representatives confirmed he is doing great."
+[5] "Michael J. Fox recently appeared at events."
+[6] "Michael J. Fox is continuing to work."
+[7] "The rumor spread due to a prematurely published or erroneous "lookback" video by CNN."
+[8] "CNN immediately removed the "lookback" video."
+[9] "CNN apologized for the "lookback" video."
+[10] "As of April 2026, Michael J. Fox is actively involved in projects."
+[11] "Michael J. Fox lives with Parkinson’s disease."
+[12] "Michael J. Fox is 64 years old."
+[13] "Michael J. Fox continues to advocate for Parkinson's research."
+[14] "Michael J. Fox has spoken openly about his journey with Parkinson’s disease."
+
+Cited text snippets from the AI Overview (for additional context):
+- Michael J. Fox reacts to tribute video that sparked fear he had died: 'WTF?': "Someone else wrote that they,dealing with the same disease."
+- Michael J. Fox insists he's alive and 'doing great' after CNN blunder ...: "Celebrity News-,Michael J. Fox insists he's alive and 'doing great',led to shock death rumors&text=“Back to the Future” star,J. Fox” was published."
+- Michael J. Fox is alive, rep says after CNN posts lookback memorial: "Contrary to rumors inadvertently started,to entertainment website Gold Derby."
+- CNN Causes Mass Confusion With Post ‘Remembering’ Beloved Actor: "Sign Up for Our Obsessed,who are ill or elderly."
+Reference Sources:
+
+[R1] Michael J. Fox is alive, rep says after CNN posts lookback memorial
+(https://www.seattletimes.com/entertainment/michael-j-fox-is-alive-rep-says-after-cnn-posts-lookback-memorial/)
+"""
+Contrary to rumors inadvertently started by an unfortunate CNN headline, actor Michael J. Fox is most decidedly not dead, his rep confirmed Wednesday.“Michael is doing great,” his rep told TMZ. “He was at PaleyFest yesterday. He was on stage and was giving interviews.”Public confusion rippled across the internet after CNN published an article and accompanying video, “Remembering the life of actor Michael J. Fox,” that got people wondering if the “Back to the Future” and “Family Ties” star had died. The network took it down almost immediately, but not before at least some people saw it, to their shock. The narration talked about Fox in the past tense and looked back on his life and work over the years.“The package was published in error,” a CNN spokesperson said in a statement obtained by Entertainment Weekly. “We have removed it from our platforms and send our apologies to Michael J. Fox and his family.”Fox not only crashed Paleyfest L.A. on Tuesday night looking very much alive, but he also agreed to do a fourth season of “Shrinking,” according to entertainment website Gold Derby.He joined showrunner and co-creator Bill Lawrence, co-creator and star Jason Segel, and cast members Harrison Ford, Jessica Williams, Michael Urie, Luke Tennie, Christa Miller, Lukita Maxwell and Ted McGinley onstage as they participated in a panel after a screening of the Season 3 finale. His appearance was a surprise even to his colleagues, who stood up and applauded enthusiastically as the audience whooped and hollered. Near the end of the discussion, Lawrence asked Fox whether he’d be up for doing a fourth season, and Fox jumped at the chance.“I would love to do it; it would be my honor,” he replied.Fox, 64, has worked for decades with Parkinson’s disease, which he was diagnosed with at age 29 in the early 1990s but kept private until 1998. Two years later he established the Michael J. Fox Foundation for Parkinson’s Research, which has raised more than $2 billion to date. He opened up about his experiences in the 2023 documentary “Still: A Michael J. Fox Movie.”He has previously portrayed characters with Parkinson’s-like afflictions, as with his recurring character on CBS’s “The Good Wife” — manipulative, coldly calculating defense attorney Louis Canning, who would do anything to win and who was subject to random, involuntary movements that mimicked a Parkinson’s symptom. Fox said the role let him “prove that disabled people can be a– holes, too,” as he told The Hollywood Reporter back in 2016.In several guest appearances during season 3 of “Shrinking,” Fox played Gary, a character with Parkinson’s whose therapist, Harrison Ford’s Dr. Paul Rhoades, has it too.The role brought him out of a self-imposed five-year hiatus that began when he announced his retirement in 2020. At the time he didn’t rule out returning to acting if the right role presented itself. ©2026 New York Daily News. Visit nydailynews.com. Distributed by Tribune Content Agency, LLC. The Seattle Times does not append comment threads to stories from wire services such as the Associated Press, The New York Times, The Washington Post or Bloomberg News. Rather, we focus on discussions related to local stories by our own staff. You can read more about our community policies here.
+"""
+
+[R2] CNN Causes Mass Confusion With Post ‘Remembering’ Beloved Actor
+(https://www.thedailybeast.com/obsessed/cnn-causes-confusion-with-post-remembering-michael-j-fox/)
+"""
+Back To The Future star Michael J. Fox is alive and well, contrary to what CNN may have you think.The news outlet published an article and video titled “Remembering the Life of Actor Michael J. Fox” on Wednesday, sending the internet into a tailspin with fears that Fox, 64, had died. A CNN post sent the internet into a tailspin on Wednesday when it suggested that Michael J. Fox had passed. X/Screengrab The article even forced the actor’s representation to issue a statement confirming his health.“Michael is doing great. He was at PaleyFest yesterday. He was on stage and was giving interviews,” representatives of the actor said in a statement to TMZ. There have been no reports of the actor’s death, and CNN has since removed the article. The article appears to be either a misguided retrospective headline or a prewritten obituary mistakenly published too early. It is common practice for news outlets to outline and prewrite obituaries for celebrities who are ill or elderly. “The package was published in error; we have removed it from our platforms and send our apologies to Michael J. Fox and his family,” a CNN spokesperson said in a statement to the Daily Beast.Fox appeared alongside his "Shrinking" costars just one day before CNN mistakenly posted the video. Dan Steinberg/AppleTV Via Getty Images CNN published the article just one day after the actor made a surprise appearance at the Los Angeles PaleyFest to celebrate the just-wrapped third season of Apple TV’s Shrinking on Tuesday. In the show, Fox guest stars as Gary, a patient who commiserates with his therapist, Paul, played by Harrison Ford, over their shared Parkinson’s diagnoses. The two actors embraced onstage to loud applause from the audience. Fox ended his five-year acting hiatus to star alongside Harrison Ford, whose character on "Shrinking," Paul, suffers from Parkinson's. Courtesy Apple “We’re on the same s--tty train to sucksville,” Fox says in his first interaction with Ford on the show, which is helmed by his former Spin City collaborator Bill Lawrence.Fox first revealed his illness in 1998, seven years after he was diagnosed with the incurable condition at the age of 29. In the years since its inception in 2000, his Michael J. Fox Foundation has funded more than $2.5 billion in Parkinson’s research. Emmy-Winning Actor: I’ve Done More for Medical Research Than Trump0 seconds of 2 minutes, 17 secondsVolume 90%In 2023, he earned an honorary Oscar for his humanitarian efforts, followed a year later by the Presidential Medal of Freedom from President Joe Biden. “Michael raises more money for and has done more Parkinson’s research than almost anybody in the world," Ford, 83, said in a joint interview with Fox for Vanity Fair. Michael J. Fox received the Presidential Medal of Freedom for his contributions to Parkinson's research. Ken Cedeno/REUTERS In an interview about Shrinking, which ended Fox’s five-year acting hiatus, the actor said the show allowed him to raise more awareness of his illness.“I had no idea Parkinson’s would take as much from it as it would,” Fox said. “But I had no idea it would give as much to me as it has.”Despite what CNN wrote, Fox is as vibrant and vital as ever. His Shrinking guest role only displayed that the actor’s comedic timing and acting chops have not waned. Obsessed with pop culture and entertainment? Follow us on Substack and YouTube for even more coverage.
+"""
+
+[R3] Michael J. Fox reacts to tribute video that sparked fear he had died: 'WTF?'
+(https://ew.com/michael-j-fox-reacts-to-tribute-video-that-sparked-fear-he-had-died-11946069)
+"""
+No need to panic, Michael J. Fox fans. The 64-year-old actor, who's best known for starring in the Back to the Future movies and on the TV series Family Ties and Spin City, has not died, despite the publication of a video titled "Remembering the life of actor Michael J. Fox" on CNN and the sites where its content is distributed. A spokesperson for the network told Entertainment Weekly, "The package was published in error; we have removed it from our platforms and send our apologies to Michael J. Fox and his family." Within hours, Fox responded: "How do you react when you turn on the TV and CNN is reporting your death? Do you…A) Switch to MSNBC, or whatever they are calling themselves these days, (B) Pour scalding hot water on your lap, if it hurts you're fine, (C) Call your wife, hopefully she's concerned but reassuring, (D) Relax, they do this once every year, (E) Ask yourself wtf? I thought the world was ending, but apparently it's just me and I'm ok. Love, Mike” Get your daily dose of entertainment news, celebrity updates, and what to watch with our EW Dispatch newsletter. The video in question showed viewers clips of Fox's work over the years, as well as interview excerpts. "He came into our living rooms on the small screen each week as Alex P. Keaton [on Family Ties] and eventually onto the big screen as Marty McFly in [Back to the Future]," the narrator said. "But Michael J. Fox had a compelling third act as Parkinson's sufferer and stem cell research advocate." It noted that Fox left Spin City in 2000 after his symptoms began to affect his work. He was diagnosed with Parkinson's disease in 1991 and went public with it in 1998. "His most lasting role may have been as a tireless voice against Parkinson's, a performance the Academy of Motion Pictures Arts and Sciences honored with the Jean Hersholt Humanitarian Award in 2022," the video continued. "In the end, Fox came to understand that his battle against the disease brought out the best in him." Fans who had watched the video were naturally unhappy with what they had seen. "This hit hard," one commenter wrote. "My husband is a couple of years younger than MJF and got early onset PD at 33. this was a gasp as we are also Gen-Xers and support MJF and his foundation." Michael J. Fox on 'Family Ties'. Gary Null/NBCU Photo Bank/NBCUniversal via Getty Another added, "This verbiage very much reads like a memorial post. I'm glad to hear he's still fighting the good fight." Someone else wrote that they "almost had a heart attack" seeing the video. "He is alive right because the title of this video almost had me on my knees. He was one of my crushes as a kid and the reason I loved Back to the Future and everything else he did back then. Love him!!" Fox does act much less than he once did, but he had a recurring role on the Apple TV comedy Shrinking this season, in which he played Gerry, who was also struggling with Parkinson's. He was a patient of Harrison Ford's therapist character Paul, who's dealing with the same disease. UPDATED: This article has been updated to include Fox's response to the video.
+"""
+
+[R4] Michael J. Fox insists he's alive and 'doing great' after CNN blunder led to shock death rumors
+(https://pagesix.com/2026/04/08/celebrity-news/michael-j-fox-insists-hes-alive-and-doing-great-after-cnn-blunder-led-to-shock-death-rumors/)
+"""
+“Back to the Future” star Michael J. Fox reassured fans that he was alive and well after CNN published a misleading article about his death. “Michael is doing great,” his rep told TMZ Wednesday. “He was at PaleyFest yesterday. He was on stage and was giving interviews.” Additionally, a CNN spokesperson apologized after a video titled “Remembering the life of actor Michael J. Fox” was published. Michael J. Fox (seen here) stated he was alive after CNN published a false article about his death. Getty Images for The Michael J. Fox Foundation “Michael is doing great,” his spokesperson told TMZ on Wednesday. Seen here: The actor in April 2025. Getty Images “The package was published in error; we have removed it from our platforms and send our apologies to Michael J. Fox and his family,” the rep told the outlet. A rep for Fox, 64, wasn’t immediately available to Page Six for comment. On Tuesday, the actor stopped by the PaleyFest LA hosted at the Dolby Theatre to join the Apple TV+ series “Shrinking” for their Season 3 wrap party. The “Spin City” alum joined Jason Segel and Harrison Ford as a guest star in the forthcoming season, which was released in January and concludes on Wednesday. A CNN spokesperson also apologized after a video titled “Remembering the life of actor Michael J. Fox” was published. Seen here: Fox in April 2024. Getty Images for The Michael J. Fox Foundation “The package was published in error; we have removed it from our platforms and send our apologies to Michael J. Fox and his family,” his rep told the outlet. Seen here: Fox in 2022. Getty Images In recent years, Fox has taken a step back from larger on-camera roles after he was diagnosed with Parkinson’s disease in 1991. At the time, he was only 29 years old, and he waited until 1998 to announce his condition. Parkinson’s disease is defined as “a progressive movement disorder of the nervous system,” which ultimately leads “to symptoms that include problems with movement, tremor, stiffness, and impaired balance,” according to the National Institute of Neurological Disorders and Stroke. The actor stopped by the PaleyFest LA with the cast of “Shrinking” on Tuesday. Seen here: Luke Tennie, Jessica Williams, Lukita Maxwell, Harrison Ford, Michael J. Fox, Jason Segel, Christa Miller, Bill Lawrence, Ted McGinley, and Michael Urie. AppleTV Via Getty Images He guest stars in Season 3 of the Apple TV+ series. Seen here: Fox in April 2025. Getty Images for TIME Want more celebrity and pop culture news? Start your day with Page Six Daily. Thanks for signing up! Over the years, Fox has opened up about battling the disease and revealed how he initially ran away from it when he was first diagnosed. “Honestly, my first reaction was, ‘You’ve made a mistake — you’re not aware of who I am,’” he told Closer Weekly in 2018. “I responded by drinking too much,” he said. “I drank to obliterate it, to make it go away. [But the abuse] caused tension in my marriage, which had always been good and has been amazing since.” Fox, seen here in 1985, has taken a step back from acting amid his battle with Parkinson’s disease. Getty Images The “Back to the Future” star (seen here in 2023) was diagnosed with the condition in 1991. Getty Images for Clinton Global Initiative Fox is married to Tracy Pollan, whom he wed in 1988, and the couple shares a son, Michael, 36, twin daughters Aquinnah Kathleen and Schuyler Frances Fox, both 31, and a 24-year-old daughter, Esmé Annabelle. Additionally, Fox vulnerably shared he had accepted he would likely not make it to 80 years old, saying in a 2023 “CBS Sunday Morning” interview that his disease will “make the call” when it’s his time to die. At the time, the “Family Ties” alum admitted that it was “gettin’ tougher” every day.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

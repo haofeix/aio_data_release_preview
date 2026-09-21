@@ -1,0 +1,116 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "fleet week houston"
+
+Claims:
+[1] "The inaugural Fleet Week Houston takes place April 15–22, 2026."
+[2] "Fleet Week Houston marks the first time a Texas city has hosted this U.S. Navy event."
+[3] "Fleet Week Houston features ships like the USS Kearsarge."
+[4] "Fleet Week Houston offers free public ship tours."
+[5] "Fleet Week Houston offers a parade of ships."
+[6] "Fleet Week Houston offers community events to honor over 1,000 Sailors, Marines, and Coast Guardsmen."
+[7] "Fleet Week Houston's location is Port of Houston and Seawolf Park."
+[8] "Ship tours at Fleet Week Houston are free to the public."
+[9] "Ship tours at Fleet Week Houston are first-come-first-served."
+[10] "Ship tours at Fleet Week Houston have a queue system."
+[11] "Fleet Week Houston ship tour rules require closed-toed shoes."
+[12] "Fleet Week Houston ship tour rules prohibit large bags/backpacks."
+[13] "Fleet Week Houston ship tour rules prohibit strollers."
+[14] "Fleet Week Houston ship tour rules require visitors to be able to navigate steep ladders."
+[15] "Fleet Week Houston's parade of ships occurred April 15."
+[16] "Fleet Week Houston community events include a drone show."
+[17] "Fleet Week Houston community events include aviation exhibits."
+[18] "Fleet Week Houston community events include brewery events."
+[19] "Fleet Week Houston community events span the week."
+[20] "Fleet Week Houston includes the USS Kearsarge (LHD-3)."
+[21] "Fleet Week Houston includes the USS Minneapolis-St. Paul (LCS-21)."
+[22] "Fleet Week Houston includes the USS St. Louis (LCS-19)."
+[23] "Fleet Week Houston includes the USCGC Edgar Culbertson."
+
+Cited text snippets from the AI Overview (for additional context):
+- Fleet Week Houston is here! Here's everything you need to know.: "No reservations are required to,arriving early is strongly encouraged."
+- Fleet Week Houston bringing home a number of Navy and Marine service members: "ByBob Slovak,that flag, it's amazing.""
+- The inaugural Fleet Week Houston will bring multiple U.S. Navy ...: "One highlight will be the,at the Houston Ship Channel."
+- 👀 Navy ships are rolling into Houston for something the state ...: "Fleet Week. Crowds packed Seawolf Park to,warships as Fleet Week Houston officially began."
+- Honored to kick off Day 1 of the inaugural Houston Fleet Week ...: "even more historic.-,Get ready for a full week of events, experiences, and,right here to our city."
+Reference Sources:
+
+[R1] Advertise with KHOU | Houston, Texas | khou.com
+(https://www.khou.com/article/news/local/fleet-week-houston-guide-what-to-know/285-de91b03b-8611-4785-9006-8e4f64aca207)
+"""
+Breaking News KHOU 11 News at 5:30 live on KHOU 11+ Live radar: Storms moving across SE Texas More (1) » Advertise with KHOU | Houston, Texas Before You Leave, Check This Out ‘Do Not Sell or Share My Personal Information’ NoticeLike many content publishers, we provide online advertising services that use cookies and similar technologies to collect information about your device and online activity on our sites, apps and other online services. These services use this information to try to tailor the ads you see online to your interests. These are called interest-based ads. For more information about our collection, use and disclosure of your personal information when you visit our sites and apps, see our Privacy Policy. Under certain state laws, including, but not limited to, the California Consumer Privacy Act, California Privacy Rights Act, and the Virginia Consumer Data Protection Act (collectively, “State Privacy Laws”), this collection and use of our users’ information for interest-based advertising purposes may constitute a “sale” of personal information to other parties. Certain State Privacy Laws require that we give you the ability to opt out of the sale or sharing of your personal information or data in connection with these targeting advertising activities. Although State Privacy Laws only extend their protections to residents of their particular states, we respect consumer choice when it comes to privacy rights. Accordingly, we offer all of our users – regardless of whether you are a resident of a state that has adopted a State Privacy Law – the right to opt out of this type of sale or sharing of your personal information. You can exercise this opt-out right by using the toggle switch below. Opting out will not disable cookies or other technologies that facilitate the proper functioning of our website or collect data for purposes that do not involve targeted advertising. Opting out will not mean that you will stop seeing interest-based ads or other ads online. Specifically, opting out will not prevent you from seeing interest-based ads based on information that, for purposes of State Privacy Laws, was not sold or shared by us, was sold before you opted out, or was sold by third parties outside of our control. You can learn more about interest-based ads and additional opt-out choices here. In addition, if you are a California resident and have enabled the Global Privacy Control (GPC) signal on a supported web browser, we will treat this as a request to opt-out of the sale or sharing of your personal information for targeted advertising purposes. For more information about what the GPC is and how to enable it, please visit globalprivacycontrol.org. More informationAllow All Manage Consent PreferencesStrictly Necessary CookiesAlways Active Strictly Necessary CookiesThese cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work. These cookies do not store any personally identifiable information.Sale of Personal Data Sale of Personal Data Targeting Cookies Required CookiesThese cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. They do not store directly personal information, but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising.Performance Cookies Required CookiesThese cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site. All information these cookies collect is aggregated and therefore anonymous. If you do not allow these cookies we will not know when you have visited our site, and will not be able to monitor its performance. Confirm My ChoicesBack ButtonBack Performance CookiesVendor Search Search Icon Filter IconClear Filters Information storage and accessApplyConsent Leg.InterestAll Consent Allowed Select All Vendors Select All Vendors All Consent Allowed Confirm My Choices
+"""
+
+[R2] Ship Tours
+(https://fleetweekhouston.com/ship-tours/)
+"""
+Important: Direct public access to the ships is not permitted. Those interested in a ship tour must go to POST Houston in order to register and join the queue where you will be screened and then depart for the tour. Ship Tours: What You Need To Know Members of the public will be able to tour a Littoral Combat Ship (LCS) daily starting April 16 through April 21. Due to distance and logistical considerations, the amphibious assault ship USS Kearsarge (LHD-3) will not be available for general public tours. Tours depart from POST Houston (401 Franklin St. in Downtown) starting at 7:30 am each day; you must register on site at POST. The last tour each day will depart around 5 pm except for Tuesday April 21 when the last tour departs at 11 am. Parking is limited for this event. All available parking on POST property requires payment. Please plan ahead and arrive early. Rideshares are also encouraged. The recommended drop off is at the corner of Bagby and Franklin. More information can be found at www.posthtx.com/parking Here’s a quick list of helpful things to know when you come down to the port to see them: Go Aboard Due to overwhelming demand, we are no longer using the digital queue. Those interested in a ship tour must register onsite at POST Houston and get a wristband designating their assigned tour time. UPDATED INSTRUCTIONS: Step 1. Go to Post Houston (401 Franklin St.) Step 2. Register for tours on a first-come, first-served basis and get a wristband designating your tour time Step 3. Get in line at the appointed time to board the bus All adults must present a valid government-issued ID (state ID card, driver’s license or passport) to take Navy ship tours. Non-US citizens must show valid passports and will be subject to a brief additional screening before boarding the vessels. Photocopies of IDs will not be accepted. *You and your party will be able to tour ONE ship.Please only have 1 person from your party claim a QR code pass, space is limited.The time you have been assigned is your designated entry time to join the shuttle line for access to the Active Navy Ships. Please note: This is not the exact time of your ship tour, but your scheduled time to begin the boarding process. Arrive early enough to allow time for parking, security screening, and walking to the shuttle area. Late arrivals may result in delayed boarding or forfeited access. Restrictions: Visitors must be at least 5 years of age No strollers permitted on the ships Closed-toed shoes are required No large bags of any type are allowed on vessels, including large camera bags, backpacks, purses, diaper bags, etc. Visitors must be able to walk unassisted without the aid of supporting devices; otherwise an equivalency experience will be offered if desired Ability to navigate tight spaces and up and down steep ladders is required No public restrooms aboard (available on dock) No pets allowed No banners, flags, or political propaganda permitted NAVY SHIP TOUR SECURITY REQUIREMENTS ALL ship tour guests 18 years and older must show a government-issued ID card before boarding an active US Navy ship Requirements for US Citizens Acceptable IDs for US Citizens include a valid driver’s license, passport, or other government–issued photo identification Paper copies or pictures of ID cards or passports are not accepted Requirements for Non-U.S. Citizens Non-U.S. Citizens or anyone without legal permanent residence status must show a valid passport to board US Navy ships Non-U.S. Citizens will be fingerprinted and photographed while passing through security screening prior to boarding a US Navy ship Paper copies or pictures of ID cards or passports are not accepted Have more questions? Try our Frequently Asked Questions page.
+"""
+
+[R3] Fleet Week Houston bringing home a number of Navy and Marine service members
+(https://abc13.com/post/fleet-week-houston-bringing-home-number-navy-marine-service-members/18893586/)
+"""
+fleet weekWednesday, April 15, 2026Watch Eyewitness News and ABC13 originals around the clockHOUSTON, Texas (KTRK) -- Have you ever wanted to see how the Navy and Marines do their jobs? You can this week because Fleet Week Houston is here!HOUSTON FLEET WEEK GUIDE: Parade of ships, special tours, and free concerts: What to expect for Houston Fleet WeekClose to 1,500 Navy and Marine servicemen are in town with three Navy Assault ships docked, two at the Houston Port and one, the USS Kearsarge, in Seabrook.It takes about 1,000 Navy and Marine personnel to operate the Amphibious Assault Ship. The ship is a three-story war machine. The first floor has an amphibious deck that can be partially flooded so Marine vessels can exit the back.The second deck is where the hangar maintenance is done, and where the planes are kept out of bad weather.The third is the flight deck where the planes and helicopters take off.Many of the sailors and Marines are headed to the Astros game. Others like Sugarland's Payton Sanchez, Navy Quartermaster 1st class, are headed home."Being back home, man, I missed it," Sanchez said. "I got goosebumps coming back and raising that flag, it's amazing."Houston's Anthony Dela Espada can't wait to get to his mom's house for a home-cooked meal."I love being back, everything is different, the air, the food. I'm glad to be back home. I'm feeling good," Espada said.Sanchez, a 10-year Navy member, let his military family know what to expect."I talk up Houston a lot. I tell them there are endless things to do in Houston." Sanvhez said. "If you're not an Astros fan, you will be. If you're not a UH fan, you will be. A Rockets fan, you will be. You're going to love Houston."Copyright © 2026 KTRK-TV. All Rights Reserved.
+"""
+
+[R4] Fleet Week Houston
+(https://fleetweekhouston.com/)
+"""
+Skip to content Skip to footer APRIL 15-22 Fleet Week Houston APRIL 15-22 Photo Courtesy of: U.S. Marine Corps photo by Sgt. Fred Garcia Fleet Week Houston APRIL 15-22 Photo Courtesy of: Mass Communication Specialist Seaman Shepard Fosdyke-Jackson Fleet Week Houston APRIL 15-22 U.S. Navy photo by Mass Communication Specialist 1st Class Eric M. Butler Visitor GuidePlan youR visit With Schedule, Maps and things to do. Scheduled for April 15-22, 2026, the inaugural Fleet Week Houston will bring multiple U.S. Navy vessels and more than 1,000 Sailors, Marines and Coast Guardsmen to the city for a series of events and experiences.Fleet Week Houston is being celebrated during America 250, the official nationwide celebration of the United States’ 250th anniversary. The City of Houston is hosting Fleet Week in collaboration with partners including the Port of Houston, Houston First Corporation and others. This event marks the first time a Texas city has hosted Navy Fleet Week. Schedule & Maps Visiting Ships What to do Nearby SponsorsSupport this community Event Join Community Partners to support this event Fleet Week Houston is made possible through the support of our generous sponsors. Sponsorship registrations for 2026 are now complete. What’s in the worksupcoming Fleet Week Events Check back for more information. Frequently Asked Questions How do I get tickets to Fleet Week Houston? This event is free to the public to attend. See menu for information about events and registering for tours. do I need any special authorization to bring a group? No prior authorization is required to bring groups. We encourage groups to attend on a weekday to avoid the crowds and long lines. What volunteer opportunities are available? We invite all Houstonians and the community in the greater Houston area 16 years old+ to apply. Are reservations needed to tour an active duty ship? No reservations are required, but visitors are required to join a queue to be assigned a time. See menu for details. To top
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

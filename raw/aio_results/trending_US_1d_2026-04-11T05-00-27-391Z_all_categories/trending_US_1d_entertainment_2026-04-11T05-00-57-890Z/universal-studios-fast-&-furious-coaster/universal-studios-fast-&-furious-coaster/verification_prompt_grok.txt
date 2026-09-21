@@ -1,0 +1,110 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "universal studios fast & furious coaster"
+
+Claims:
+[1] "Hollywood Drift is a high-speed roller coaster."
+[2] "Hollywood Drift is an outdoor roller coaster."
+[3] "Hollywood Drift is a spinning roller coaster."
+[4] "Hollywood Drift is opening at Universal Studios Hollywood in Summer 2026."
+[5] "Hollywood Drift features 360-degree rotating cars."
+[6] "Hollywood Drift's 360-degree rotating cars are designed to simulate drifting at speeds up to 72 mph."
+[7] "Hollywood Drift has a 4,100-foot track."
+[8] "Hollywood Drift's track crosses over Universal Studios Hollywood's Starway escalator."
+
+Cited text snippets from the AI Overview (for additional context):
+- Universal Studios begins testing track for new ‘Fast & Furious’ coaster: "Universal Studios Hollywood has begun,date, according to park officials.&text=Guests will be launched at,has not yet been announced."
+- Fast & Furious Coaster Coming to Universal Studios Hollywood: "The Wait is Over: Fast,-turbo inline-six engine."
+- Universal Orlando Resort Reveals Its Next Blockbuster Attraction: "Universal Orlando Resort Reveals Its,the outskirts of Universal CityWalk."
+- Fast and Furious: Hollywood Drift - Official Teaser Trailer (Universal ...: "Fast and Furious: Hollywood Drift,the Upper and Lower Lots."
+- The first known sighting of actual humans riding the new Fast ...: "Fast & Furious roller coaster at Universal,@Cykrolis livestreamed the ride in full testing"
+- Fast & Furious - Hollywood Drift is testing with riders!!!! How ...: "A test run for “Fast & Furious:,the new high-speed coaster is expected to"
+- New Universal Studios roller coaster goes full throttle with real people onboard: "Because the park sits just,has not yet been announced."
+- "Most Vile" Universal Studios Attraction Set to Close Forever ...: "Others simply felt the ride,Reacting to What Comes Next"
+Reference Sources:
+
+[R1] Fast & Furious Coaster Coming to Universal Studios Hollywood
+(https://www.universalstudioshollywood.com/web/en/us/things-to-do/rides-and-attractions/fast-and-furious-hollywood-drift)
+"""
+LocationFeel the Ultimate Rush on the Fast & Furious Coaster Coming Summer 2026Feel the rush of adrenaline on Fast & Furious: Hollywood Drift, the first-ever high-speed outdoor roller coaster coming to Universal Studios Hollywood. Featuring a groundbreaking 360-degree rotation of the individual vehicles that creates a seamless sensation of drifting cars as they spin in motion at speeds up to 72 mph, this ride will let you experience the heart-pounding thrill of the Fast & Furious universe like never before.The Wait is Over: Fast & Furious: Hollywood Drift Ride Vehicles Make Their DebutUniversal Studios Hollywood unveils three new Fast & Furious: Hollywood Drift ride vehicles. Check out the Mazda RX-7, Nissan Skyline GT-R, and Toyota Supra as they join the iconic Dodge Charger on the Park’s first-ever high-speed outdoor roller coaster.Dodge ChargerThis iconic ride vehicle is inspired by Dominic Toretto’s signature car featured throughout the film franchise. With its sleek black frame, this souped-up, 900-horsepower, 1970 Dodge Charger is considered the ultimate American muscle car.Mazda RX-7This ride vehicle is inspired by the 1997 model car driven by Han Seoul-oh. Featuring 19-inch wheels, racing seats, upgraded suspension and custom interior detailing, the Mazda RX-7 is considered one of the most iconic cars in the Fast & Furious film franchise.Nissan Skyline GT-RThis ride vehicle is inspired by Brian O’Conner’s 2002 blue Nissan Skyline GT-R which was enhanced with extensive performance and styling modifications and is renowned for its unique appearance.Toyota SupraThis ride vehicle is inspired by Brian O’Conner’s orange 1994 car featuring the legendary 2JZ-GTE twin-turbo inline-six engine. O’Conner owed Toretto a “10-second car,” and this one more than delivered on that promise. It is recognized as one of the most memorable cars in the film franchise.Get Ready for an All-New High-Speed Outdoor Roller CoasterYou’ve never felt speed like this before. Ride the all-new Fast & Furious: Hollywood Drift coaster, coming to Universal Studios Hollywood Summer 2026.Be Among the First to Know What’s NextSign up for regular email updates from Universal Studios Hollywood to get the latest news and announcements about the newest attractions coming Summer 2026.
+"""
+
+[R2] "Most Vile" Universal Studios Attraction Set to Close Forever as New Mega-Coaster Announced
+(https://insidethemagic.net/2026/04/universal-studios-florida-ride-closure-ff-emd1/)
+"""
+For years, it’s been the ride that sparked debates, jokes, and even frustration among theme park fans. In a destination known for pushing boundaries and delivering immersive, cutting-edge attractions, one experience stood apart—but not necessarily in a good way.MY VIDEOS Guests walking into Universal Orlando Resort often come with high expectations. From thrilling roller coasters to groundbreaking dark rides, the resort has built a reputation on innovation. But sometimes, even the most ambitious franchises don’t land the way fans hope—and when they don’t, the community doesn’t forget. Now, fans are noticing something different. Subtle changes, quiet removals, and growing conversations online are all pointing toward a major shift. And for many longtime visitors, it feels like something they’ve been waiting for is finally happening. Credit: Inside The Magic Fans Are Noticing Quiet Changes Around a Controversial Attraction Over the past several months, guests visiting Universal Studios Florida have started to pick up on small but telling updates surrounding Fast & Furious – Supercharged. Outdoor display vehicles that once greeted guests as part of the attraction’s extended queue have quietly disappeared. All 3 cars have been removed from the the Fast & Furious: Supercharged exit. – @insideuniversal on X To casual visitors, it may not seem like much. But for longtime fans, these changes signal something bigger. Theme park enthusiasts know that when elements start vanishing, it often means the clock is ticking. Guests are already reacting online, with many calling it “the beginning of the end” for a ride that has sparked criticism since the day it opened. Credit: Universal A Ride That Never Lived Up to Its Potential When Fast & Furious – Supercharged first debuted, expectations were high. The globally recognized franchise promised high-speed thrills, explosive action, and a larger-than-life experience. And to be fair, the queue delivered on part of that promise. Fans are noticing how immersive the pre-show environment feels, placing guests directly into the world of the films. Detailed sets, familiar faces, and high production value created an exciting buildup. But once riders boarded, the experience shifted—and not in the way many had hoped. The attraction’s reliance on screen-based visuals and a party-bus-style ride system quickly became a point of contention. What was meant to feel thrilling instead felt dated. Many guests described the ride as underwhelming, especially compared to other cutting-edge attractions across the resort. Over time, the criticism only grew louder. Credit: Universal The Community Has Been Vocal for Years It’s rare for a single attraction to earn such a consistent reputation among fans—but in this case, the sentiment has remained remarkably unified. Within the theme park community, Fast & Furious – Supercharged has often been labeled as one of the weakest experiences at the resort. Some guests have even gone as far as calling it “the worst ride” at Universal. Families expecting an action-packed, PG-13-style adventure sometimes found themselves caught off guard by awkward dialogue and tonal inconsistencies. Others simply felt the ride lacked the excitement promised by its blockbuster source material. That disconnect created a lasting impression—and not the kind Universal typically aims for. Credit: Universal Universal Is Finally Moving Forward With a Major Change Now, after years of feedback and speculation, a major shift has been confirmed: Fast & Furious – Supercharged is scheduled to permanently close in 2027. The closure will make way for an entirely new experience—Fast & Furious: Hollywood Drift, a high-speed roller coaster currently under construction and set to open that same year. This isn’t just a simple update—it’s a complete reimagining of how the franchise will be represented at the park. Instead of a screen-heavy attraction, guests can expect a more physically thrilling, coaster-based experience that aligns more closely with what fans originally envisioned. It’s also worth noting that the Hollywood version of Supercharged, which operated as part of the tram tour at Universal Studios Hollywood, officially closed on March 10, 2025—marking a broader shift away from the concept altogether. Credit: Inside the Magic Guests Are Already Reacting to What Comes Next Fans are already reacting across social media, and the tone is noticeably different from previous discussions about the attraction. There’s excitement. There’s relief. And perhaps most notably, there’s optimism. For many, this change represents something bigger than just the closure of a single ride. It’s a sign that Universal is listening—acknowledging feedback and investing in experiences that better match guest expectations. The introduction of a new coaster also reflects a broader trend across the industry, where high-thrill attractions continue to dominate guest demand. Credit: Inside the Magic What This Means for Universal Orlando Resort Moving Forward This moment feels like a turning point. Universal has built its reputation on innovation, and while not every experiment succeeds, the willingness to evolve is what keeps fans coming back. Replacing a widely criticized attraction with a brand-new coaster sends a clear message about the resort’s priorities. Looking ahead to 2027, Fast & Furious: Hollywood Drift has the potential to redefine how the franchise fits into the park’s lineup. If executed well, it could transform a once-criticized area into a must-visit destination. For guests planning future trips, this is something to watch closely. Change is coming—and for many fans, it couldn’t come soon enough.
+"""
+
+[R3] Universal Orlando Resort Reveals Its Next Blockbuster Attraction - Fast & Furious: Hollywood Drift – a High-Speed Roller Coaster Coming to Universal Studios Florida in 2027 - Universal Destinations & Experiences
+(https://corporate.universaldestinationsandexperiences.com/universal-orlando-resort-reveals-its-next-blockbuster-attraction-fast-furious-hollywood-drift-a-high-speed-roller-coaster-coming-to-universal-studios-florida-in-2027/)
+"""
+Universal Orlando Resort Reveals Its Next Blockbuster Attraction – Fast & Furious: Hollywood Drift – a High-Speed Roller Coaster Coming to Universal Studios Florida in 2027 Universal Orlando Resort is revving up for its next big thrill with Fast & Furious: Hollywood Drift – a high-octane outdoor roller coaster that will join the Universal Studios Florida family in 2027. Replacing the former Hollywood Rip Ride Rockit roller coaster, Fast & Furious: Hollywood Drift will put guests in the driver seat of the high-speed thrills of Universal Pictures’ Fast & Furious universe like never before. Riders will experience the exhilarating sensation of 360-degree drifting as they speed through jaw-dropping maneuvers – including a 170-foot vertical “spike” that will send riders nearly 17 stories in the air over the outskirts of Universal CityWalk. Fast & Furious: Hollywood Drift will join an award-winning collection of coaster experiences at Universal Orlando Resort and is another exciting example of the incredible growth, momentum and world-class innovation of Universal Destinations & Experiences. Universal Studios Hollywood will also debut its own, one-of-a-kind Fast & Furious: Hollywood Drift outdoor roller coaster later this year. As Universal Studios Florida makes way for this exciting new experience, Fast & Furious – Supercharged will permanently close in 2027. More information about Fast & Furious: Hollywood Drift will be shared in the months ahead. For more information about Universal Orlando Resort and to sign-up for email updates about the new high-speed coaster, guests can visit www.UniversalOrlando.com.
+"""
+
+[R4] Universal Studios begins testing track for new ‘Fast & Furious’ coaster
+(https://ktla.com/news/theme-parks/universal-studios/universal-studios-tests-track-for-new-fast-furious-coaster/)
+"""
+by: Iman Palm Posted: Oct 16, 2025 / 02:14 PM PDT Updated: Oct 16, 2025 / 02:29 PM PDT Universal Studios Hollywood has begun testing the track for its newest roller coaster, “Fast & Furious: Hollywood Drift,” park officials announced on Thursday. The ride will be the theme park’s first high-speed outdoor coaster, featuring fully rotational cars designed to simulate the signature drifting action of the “Fast & Furious” film franchise. The state-of-the-art attraction will span 4,100 feet of track and incorporate sound-reduction technology for an immersive and quieter adrenaline rush, according to the theme park. Riders will queue inside a garage-style structure before boarding one of four cars inspired by the franchise’s iconic vehicles. Universal Studios revealed one of the ride vehicles, a model of Dominic Toretto’s 1970 Dodge Charger, this summer. The remaining ride vehicles will be revealed at a later date, according to park officials. Universal Studios Hollywood Initiates Its First Launch of “Fast & Furious: Hollywood Drift” as Preparations Continue for Its Highly ...Universal Studios Hollywood Initiates Its First Launch of “Fast & Furious: Hollywood Drift” as Preparations Continue for Its Highly Anticipated 2026 OpeningUniversal Studios Hollywood Initiates Its First Launch of “Fast & Furious: Hollywood Drift” as Preparations Continue for Its Highly Anticipated 2026 Opening Guests will be launched at speeds up to 72 miles per hour as they travel through through a series of banked turns and inversions, including a loop over the Starway Escalator that connects the park’s upper and lower lots. The coaster is set to open in 2026. The specific date has not yet been announced.
+"""
+
+[R5] New Universal Studios roller coaster goes full throttle with real people onboard
+(https://ktla.com/news/theme-parks/new-universal-studios-coaster-goes-full-throttle-with-real-people-onboard/)
+"""
+by: Marc Sternfield Posted: Apr 10, 2026 / 02:18 PM PDT Updated: Apr 11, 2026 / 06:19 AM PDT The first known instance of people, not test dummies, taking a spin on the new Fast & Furious roller coaster at Universal Studios Hollywood happened on Friday. TikTok user @Cykrolis livestreamed the ride in full testing mode, showing several people, presumably members of the development team, riding in two of the cars as it sped along the 4,100-foot track. “They look like they’re having a blast!” he said during the stream. “Those are not dummies. Those are real, breathing people.” Univeral Creative Vice President Jon Corfino was also among those who went for a “drive” on the new ride. Fast & Furious: Hollywood Drift, Universal Studios Hollywood’s first high-speed outdoor coaster, reaches speeds of up to 72 miles per hour as it races through a series of launches and inversions from the park’s upper lot to the lower lot and back again. Human riders are seen on Fast & Furious: Hollywood Drift at Universal Studios Hollywood on April 10, 2026. (TikTok: @cykrolis_) The cars spin independently, replicating the drifting action of race scenes from the Fast & Furious movie franchise. Because the park sits just a short distance from residential areas in Studio City and Toluca Lake, designers have taken steps to keep riders’ screams contained. Two half-pipe-style sound shields have been installed along the coaster’s main loops, one at the western end of the ride and another above the Starway Escalator near the finale. The coaster is slated to open this summer, though a tentative opening date has not yet been announced.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,106 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "denver nuggets game tonight"
+
+Claims:
+[1] "Denver Nuggets play the Minnesota Timberwolves in Game 2 of the Western Conference First Round on Monday, April 20, 2026, at 8:30 p.m. MDT (10:30 p.m. ET) at Ball Arena in Denver"
+[2] "The game is televised on NBC"
+[3] "The game is available to stream on Peacock"
+[4] "The game is available to stream on NBA League Pass"
+[5] "The game is on Altitude Sports Radio 92.5 FM"
+[6] "The Denver Nuggets lead the series 1-0"
+[7] "The Denver Nuggets won Game 1 116–105"
+
+Cited text snippets from the AI Overview (for additional context):
+- Schedule | Denver Nuggets - NBA: "Upcoming Past-,Playoffs,Powered By:"
+- How to Watch Minnesota Timberwolves vs. Denver Nuggets Game 2: "Anthony Edwards, #5, of,2026 in San Francisco, California.&text=The Timberwolves and the Nuggets,report on the action courtside."
+- NBA | GAME 1: Joker’s triple-double and Jamal’s 30-piece led ...: "Jokic takes over in Game,22 FGM, 16/16 FTM"
+- How to watch Timberwolves vs. Nuggets: First Round Game 2 TV channel and streaming options for April 20: "How to watch Minnesota Timberwolves,viewers): NBA League Pass"
+- Minnesota Timberwolves vs. Denver Nuggets Prediction, Betting Pick, Latest NBA Playoffs Game 2 Odds: "Denver Nuggets Date, Time, and,Peacock, NBC, NBA League Pass"
+Reference Sources:
+
+[R1] Denver Nuggets TV Schedule - Altitude Sports
+(https://www.altitudesports.com/denver-nuggets-schedule/)
+"""
+Schedule Sports Nuggets Videos Schedule Blog Avalanche Videos Schedule Blog Mammoth Videos Schedule Rapids Videos More Sports Shows Denver Athletics Air Force Academy Shows Altitude Extra Avalanche A360 Best of Moser, Lombardi + Kane Golf @ Altitude Mammoth Extra Moser, Lombardi, & Kane Nuggets A360 Buffalo Stampede Radio Altitude 2 Programming Schedule Altitude 2 Channels About Altitude 2 About About Altitude Sports Advertise With Us Community Involvement Contact Us Executive Staff FAQ Jobs/Internships On-Air Talent How To Watch Find a TV Provider Altitude+ Altitude Sports on 9News Denver Nuggets TV Schedule 2026 NBA Playoffs - Round 1 Date Matchup Home/Away Pregame Game Start Postgame Pre/Postgame Networks Live Game Networks 4/18/2026 Minnesota Timberwolves vs. Nuggets - Game 1 Home 12:30 PM 1:30 PM 4:00 PM Altitude Sports/Altitude+ Prime 4/20/2026 Minnesota Timberwolves vs. Nuggets - Game 2 Home 7:30 PM 8:30 PM 11:00 PM Altitude Sports/Altitude+ NBC/Peacock 4/23/2026 Nuggets at Minnesota Timberwolves - Game 3 Away 6:00 PM 7:30 PM 10:00 PM Altitude Sports/Altitude+ Prime 4/25/2026 Nuggets at Minnesota Timberwolves - Game 4 Away 5:30 PM 6:30 PM 9:00 PM Altitude Sports/Altitude+ ABC 4/27/2026 Minnesota Timberwolves vs. Nuggets - Game 5 Home 7:30 PM 8:30 PM 11:00 PM Altitude Sports/Altitude+ NBC/Peacock 4/30/2026 Nuggets at Minnesota Timberwolves - Game 6** Away TBD TBD TBD Altitude Sports/Altitude+ TBD 5/2/2026 Minnesota Timberwolves vs. Nuggets - Game 7** Home TBD TBD TBD Altitude Sports/Altitude+ TBD ** If necessary
+"""
+
+[R2] Schedule | Denver Nuggets
+(https://www.nba.com/nuggets/schedule)
+"""
+Denver NuggetsSchedule for 2025-26 seasonDateTime (PDT)H / AOpponentArenaTVThu, Apr 237:30 PMAwayTimberwolvesTarget CenterPrime VideoSat, Apr 256:30 PMAwayTimberwolvesTarget CenterABCMon, Apr 278:30 PMHomeTimberwolvesBall ArenaNBCThu, Apr 30TBDAwayTimberwolvesTarget CenterTBDSat, May 2TBDHomeTimberwolvesBall ArenaTBDSchedule 2025-262025-262024-252023-242022-232021-22Switch ViewAdd To CalendarPrint ScheduleFilters Event ScheduleUpcomingPastPlayoffsawayPlayoffsWest First Round ThursdayApr 237:30 PM MDTTarget CenterMinneapolis, MNMinnesotaTimberwolvesTV: Prime VideoPlayoffsWest First Round MinnesotaTimberwolvesPowered By:LockerVisionWatchawayPlayoffsWest First Round SaturdayApr 256:30 PM MDTTarget CenterMinneapolis, MNMinnesotaTimberwolvesTV: ABCPlayoffsWest First Round MinnesotaTimberwolvesPowered By:LockerVisionWatchhomePlayoffsWest First Round MondayApr 278:30 PM MDTBall ArenaDenver, COMinnesotaTimberwolvesTV: NBC, PeacockFind TicketsPlayoffsWest First Round MinnesotaTimberwolvesPowered By:LockerVisionFind TicketsWatchawayPlayoffsWest First Round ThursdayApr 30TBDTarget CenterMinneapolis, MNMinnesotaTimberwolvesTV: TBDPlayoffsWest First Round MinnesotaTimberwolvesPowered By:LockerVisionhomePlayoffsWest First Round SaturdayMay 2TBDBall ArenaDenver, COMinnesotaTimberwolvesTV: TBDFind TicketsPlayoffsWest First Round MinnesotaTimberwolvesPowered By:LockerVisionFind Tickets Your Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I Understand
+"""
+
+[R3] How to watch Timberwolves vs. Nuggets: First Round Game 2 TV channel and streaming options for April 20
+(https://www.nytimes.com/athletic/7212983/2026/04/20/how-to-watch-timberwolves-vs-nuggets-first-round-game-2-tv-channel-and-streaming-options-for-april-20/)
+"""
+The NBA Playoffs will see the Denver Nuggets and the Minnesota Timberwolves face off in the opening round, with Game 2 up next. The Nuggets are up 1-0 in the series.How to watch Minnesota Timberwolves vs. Denver Nuggets Venue: Ball Arena Time: 10:30 p.m. ET TV: NBC/Peacock Streaming (out-of-market viewers): NBA League Pass Watching in person? Get tickets on StubHub. Minnesota vs. Denver odds Spread: Denver -7.5 (-110), Minnesota +7.5 (-110) Favorite Moneyline: Denver -300 Underdog Moneyline: Minnesota +240 Total: 232.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsNuggetsPeyton Watson: Out (Hamstring)TimberwolvesNo injuries listedStats to know The 122.1 points per game the Nuggets record are 7.5 more points than the Timberwolves give up (114.6 points per game). The Timberwolves score an average of 118.0 points per game. That’s just 1.1 more points than the 116.9 the Nuggets allow to opponents. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R4] Minnesota Timberwolves vs. Denver Nuggets Prediction, Betting Pick, Latest NBA Playoffs Game 2 Odds
+(https://www.oddschecker.com/us/picks-parlays/basketball/nba/20260420-minnesota-timberwolves-vs-denver-nuggets-prediction-betting-pick-latest-nba-playoffs-game-2-odds)
+"""
+The Minnesota Timberwolves head back to Ball Arena on Monday night for Game 2, already staring at a 1-0 series deficit after Saturday's physical opener. Jamal Murray went off for 30 and Jokic did Jokic things in a grinding 116-105 Denver win. Let's check out the odds and best bet for this Minnesota Timberwolves vs. Denver Nuggets prediction on April 20, 2026.OC Staff - April 20, 2026, 9:00 PM EDT3 Minute ReadMinnesota Timberwolves vs. Denver Nuggets Prediction: Odds, Best Bet, and Best Prop for Game 2Game 1 was ugly, physical, and exactly the kind of playoff rock fight these two teams have made their trademark. Denver didn't blow Minnesota out so much as wear them down with a third-quarter run when the Wolves went cold for four straight minutes and couldn't buy a bucket. The Nuggets now carry a 13-game winning streak into Monday, and their Gordon-back, Jokic-healthy rotation is finally clicking at the right time.Now the Wolves get 48 hours to clean up the turnovers, find Ant some extra lift on that sore right knee, and figure out how to keep Jokic out of the lane without sending Denver to the stripe. The Nuggets went 30-for-33 from the free throw line in Game 1 and still couldn't pull away. Regression to the mean cuts both ways in Game 2, and that's where the betting edge lives tonight.Minnesota Timberwolves vs. Denver Nuggets Recent ResultsThe Wolves limped into the playoffs managing Edwards through knee maintenance, and it showed on the scoreboard. They went 8-6 down the stretch while their offense fell off a cliff in Ant's absences. Julius Randle shouldered the load in those games, averaging 24.0 points per game across three April appearances without his backcourt running mate. A week of rest between the regular season finale and Game 1 was supposed to get everyone fresh.Denver came in the exact opposite direction, ripping off a 12-game winning streak to close the regular season. That run included quality wins over Oklahoma City and San Antonio, two of the top teams out West. Tack Game 1 onto the pile and the streak now sits at 13 straight overall. Jokic looks as locked in as he has all year, which is saying something given the season he just put up.Minnesota Timberwolves vs. Denver Nuggets Head to HeadDenver won the regular season series 3-1, with Jokic flat-out terrorizing Minnesota in every meeting. Joker averaged a ridiculous 35.8 points per game across those four matchups while shooting nuclear percentages from everywhere on the floor. The Christmas Day game went to overtime with Jokic dropping a 56-point masterpiece. He set an NBA record that night with 18 points in the extra frame alone.Playoff-wise, these two have plenty of shared history. The Nuggets took their 2023 first-round matchup 4-1. Two years later, Minnesota answered back with a legendary 20-point road comeback in Game 7 of the semis. This is meeting number three in four years, and the Wolves know a Game 1 loss means very little if they can steal Game 2.Minnesota Timberwolves vs. Denver Nuggets Date, Time, and Where to WatchDate: Monday, April 20, 2026Time: 10:30 PM ETHow to Watch: Peacock, NBC, NBA League PassLooking for advanced AI predictions and props to enhance your basketball betting? Try out oddschecker+ now on this limited time 7-day free trial!Minnesota Timberwolves vs. Denver Nuggets OddsClick here for complete Timberwolves vs Nuggets OddsMinnesota Timberwolves vs. Denver Nuggets Team NewsAnt-Man started Game 1 on that sore right knee and looked the part in the first half. He finished with 22 points but shot the ball poorly while visibly lacking his usual burst on drives. Jaden McDaniels is back from his own knee issue, played well on defense, and promptly picked up an unsportsmanlike technical for shoving Jokic in the back. The Wolves have the pieces to make this a series, but the composure question is very real after one game.Denver got Aaron Gordon back to full strength and his fingerprints were all over Game 1 despite some early foul trouble. Peyton Watson remains out with a right hamstring strain, which thins the Denver perimeter defense behind Christian Braun. The rotation behind Jokic, Murray, Gordon, Braun, and Cameron Johnson is where this roster starts to look thin. If Gordon picks up two quick fouls again, the depth question gets exposed fast.Prediction: Denver 117, Minnesota 111The market has Minnesota at +6.5 on the spread, which feels roughly where it should sit given Game 1. The total is parked at 230.5, and that one feels a touch rich considering how both teams actually played. Game 1 landed at 221 combined points with both defenses locked in and Edwards compromised. Those numbers will positively regress for both sides, but not by 10 points combined.Playoff pace historically strips a couple of possessions per game off regular season averages, and both defenses are dialed in for this series. Edwards won't be magically healed in 48 hours, and Jokic is happy to keep passing up looks to feed open shooters who went cold on Saturday. Gobert handled Jokic straight up for stretches in Game 1, which keeps Joker in distributor mode more than scorer mode.Minnesota Timberwolves vs. Denver Nuggets Best Bet Under 230.5 (-102) Click here to get the best odds at BetMGM SportsbookNikola Jokic Over 13+ Rebounds (+303) Click here to get the best odds at DraftKings SportsbookOur FairPlay AI likes Under 230.5 for Game 2. Game 1 landed at 221 with both defenses locked in and Edwards visibly compromised on one leg. Playoff basketball historically strips possessions off regular season pace, and neither team wants to run in a half-court physical slugfest like the one we saw Saturday. Both teams shot miserably from three after halftime on Saturday, but the defensive intensity this rivalry produces cancels a lot of that positive regression. Give me the Under with confidence on Monday night.It also points to value on Nikola Jokic 13+ Rebounds. Joker has been a rebounding monster against the Wolves all year, averaging 15.0 boards per game across four regular season meetings. Gobert can bang with him physically, but Jokic's positioning and nose for the ball keep his volume elevated no matter who's defending him. At roughly -115 on most books, this line is sitting there waiting to get scooped before the market corrects.NBA ODDSClick here for the latest NBA OddsLooking for more NBA Picks? See what's new from our oddschecker teamThe Thunder are heavily favored to repeat, can anyone stop them? Check the NBA Championship odds Affiliate Disclosure. We are not a gambling or betting operator, but we receive a commission from these companies when we advertise their brands and refer customers to them (affiliate marketing). We provide information, odds information and links to websites of these companies. Some of the information made available on our site may be positioned as a result of a commission paid to us by a third party. We do not take or place bets/transactions and any information on Our Products is provided for entertainment purposes only. Join the oddschecker CommunityBet with IntelligenceSign-up for an oddschecker account to get expert picks, ai-driven betting tools and best odds across sportsbooks.
+"""
+
+[R5] How to Watch Minnesota Timberwolves vs. Denver Nuggets Game 2 - NBA Playoffs on NBC & Peacock
+(https://www.nbc.com/nbc-insider/how-to-watch-minnesota-timberwolves-vs-denver-nuggets-game-2)
+"""
+The first week of the NBA Playoffs is jam-packed, and the NBA on NBC is along for the entire ride. After a doubleheader on Sunday night, NBC Sports returns Monday night with a tripleheader of First Round Playoffs action, and it all culminates with a major Western Conference battle.How to WatchTo close out the trio of Monday night games, we're heading to Denver for a major Western Conference battle between playoff regular, as the Minnesota Timberwolves take on the Nuggets in Game 2 of their First Round series. The Nuggets lead the series 1-0 heading into Game 2. Let's take a closer look at what's ahead.RELATED: Full 2026 NBA Playoffs Round 1 Schedule: Teams, Dates & MoreThe Timberwolves and the Nuggets are set to tip off at 10:30 p.m. Eastern on Monday, April 20, live from Ball Arena in Denver. You can catch the game live on NBC or stream it simultaneously on Peacock. NBC Sports' Michael Grady will be on the play-by-play call for this matchup, with analysis from Brian Scalabrine and Austin Rivers, who played for both the Timberwolves and the Nuggets during his NBA career. Grant Liffmann will report on the action courtside.RELATED: Players to Watch in the 2026 NBA PlayoffsWhat to expect from Timberwolves vs. NuggetsA Best-of-7 series can change hands multiple times, depending on how far it goes, but as this one gets underway, the Nuggets are likely in a strong position, especially while they're at home. They've got three-time MVP Nikola Jokic playing some of the best ball of his career, to the point that he's the only player in NBA history to lead the league in both rebounds and assists in a single season, and that's far from the end of their talents. They've got the highest-performing offense in the entire league, and they're among the most efficient shooters out there. Throw in Jokic's prowess in the paint, and it's easy to see why they ended up with a 3-1 record against the Timberwolves in the regular season.But that doesn't mean you should count Minnesota out. Anthony Edwards finished third in the race for the scoring title this season, Rudy Gobert is still a ferocious rebounder, and they've got lots of talent on the squad. All they need is a couple of key breaks in Denver, solid performances when the series returns to Minneapolis, and a little bit of luck, and they could be among the Cinderella stories of this Playoffs season. Neither team has the dominance of the Thunder or the Spurs in the West, but this is one of the First Round series to watch as we head into the thick of the Playoffs.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

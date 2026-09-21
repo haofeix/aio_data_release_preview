@@ -1,0 +1,93 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "who is on the artemis 2 crew"
+
+Claims:
+[1] "The Artemis II crew consists of four astronauts."
+[2] "The Artemis II crew is scheduled for a 10-day mission around the Moon."
+[3] "Reid Wiseman is the NASA Commander on the Artemis II crew."
+[4] "Victor Glover is the NASA Pilot on the Artemis II crew."
+[5] "Christina Koch is the NASA Mission Specialist on the Artemis II crew."
+[6] "Jeremy Hansen is the Canadian Space Agency (CSA) Mission Specialist on the Artemis II crew."
+[7] "Artemis II marks the first crewed flight to the Moon since 1972."
+
+Cited text snippets from the AI Overview (for additional context):
+- Our Artemis Crew - NASA: "The Artemis II crew includes four astronauts:,* Inspire the next generation of explorers"
+- Going the farthest: Meet NASA's Artemis II astronauts - NBC News: "Four astronauts could launch toward,them swinging around the moon."
+- GOOD LUCK, ARTEMIS II CREW! 🚀 Artemis II lunar mission ...: "The Artemis II astronauts have,fb #astronomy #space #NASA"
+- Artemis II Flight Update: Apogee Raise Burn Complete, Crew Looks ...: "Artemis-,Artemis II Flight Update: Apogee Raise Burn Complete, Crew Looks,Moon and back to Earth.&text=The apogee raise burn was,the crew to resolve it."
+Reference Sources:
+
+[R1] These four astronauts could soon travel farther from Earth than anyone has gone before
+(https://www.nbcnews.com/science/space/artemis-ii-astronauts-names-who-are-nasa-moon-mission-rcna265105)
+"""
+Four astronauts could launch toward the moon on Wednesday for the first time in more than 50 years.The crew, NASA astronauts Reid Wiseman, Christina Koch and Victor Glover and Canadian astronaut Jeremy Hansen, are set to fly on NASA’s Artemis II mission, a 10-day journey that will take them swinging around the moon. Their path through space could send the group farther from Earth than any human has ever ventured, surpassing the Apollo 13 distance record of 248,655 miles set in 1970.Though the astronauts will not land on the moon’s surface, the flight is meant to kick-start a new era of lunar exploration, paving the way for a targeted moon landing in two years. The Artemis II mission will mark the first time that NASA’s Space Launch System rocket and Orion capsule carry human passengers.If that’s cause for any trepidation, the astronauts haven’t let it show.“The four of us, we are ready to go. The team is ready to go. The vehicle is ready to go,” Wiseman said Sunday in a media briefing from Kennedy Space Center in Cape Canaveral, Florida.Follow live coverage of the Artemis II launchFrom left, Reid Wiseman, Christina Koch, Victor Glover and Jeremy Hansen arrive at the Kennedy Space Center in Florida on Friday.Miguel J Rodriguez Carrillo / AFP - Getty ImagesFollowing some starts and stops over the last few months — NASA had to forego launch opportunities in February and March to make last-minute repairs to the rocket — Wiseman and the rest of the crew entered quarantine in Houston on March 18, a standard preflight procedure to ensure the astronauts remain healthy before their mission. They arrived in Florida on Friday.Wiseman will command the Artemis II mission, with Glover serving as pilot and Koch and Hansen as mission specialists. NASA announced the astronauts’ selection in 2023.“Among the crew are the first woman, first person of color, and first Canadian on a lunar mission,” Vanessa Wyche, director of NASA’s Johnson Space Center, said at the time. “And all four astronauts will represent the best of humanity as they explore for the benefit of all.”The three NASA astronauts on the mission are spaceflight veterans. Wiseman, who previously served in the Navy and became an astronaut in 2009, spent six months aboard the International Space Station in 2014.Reid Wiseman and daughters. Courtesy Reid WisemanSince losing his wife in 2020, Wiseman has been raising their two children on his own. Being an astronaut, he said, puts a lot of stress and anxiety on family members, and his excitement about the mission is often tempered by feelings of selfishness for the toll it takes on loved ones.“I’m a single father of two daughters,” he told NBC’s “TODAY” show in an interview with his fellow crew members in January. “It’d be a lot easier just to sit on my couch and watch football for the weekend, but at the same time, there’s four humans that were put in a position to be able to go explore and do something that is very unique and rare in this civilization.”Wiseman added that he hopes the outcome of the mission will justify the sacrifices his loved ones have made.“We’ve always looked at the moon and said, ‘We’ve been there.’ But for this whole generation, for our generation, for the younger generation, for the Artemis generation, they’re going to look at the moon now and go, ‘We are there,’” he said.Hansen's pendants with his family’s birth stones and the words “moon and back.”Courtesy Jeremy HansenAll four astronauts plan to bring small tokens and mementos on their flight around the moon. Wiseman and Koch said they each plan to carry letters from their families. Glover said he is bringing a Bible, his wedding rings and heirlooms for his daughters. For Hansen, it’s a moon pendant with his family’s birth stones and the words “moon and back” engraved.Such items, having flown in space, make for special keepsakes and are a way for the astronauts to include their family members in the journey.Koch is no stranger to extended stints in space, nor to historic firsts. She spent almost all of 2019 on the International Space Station — 328 days — the record for the longest single spaceflight by a woman. While there, Koch and fellow astronaut Jessica Meir performed NASA’s first all-female spacewalk.She said she visited NASA’s Kennedy Space Center with her family when she was 10 or 11 years old.“I often cite that trip as what cemented my interest in the space program,” Koch said in the Sunday briefing. “I came home with a couple posters from the gift shop, and it had been a dream of mine ever since.”Christina Koch with her husband and dog. Courtesy Christina KochShe said she isn’t bothered that another major milestone — leaving bootprints on the lunar surface — will elude her.“I will be so excited to see someone I know get assigned to be the person and people to walk on the moon, but if it isn’t in my space destiny to do that, that’s just fine with me,” Koch said. (NASA has not yet named the astronaut crew that it plans to land on the moon during a future Artemis mission in 2028.)Glover and family.Courtesy Victor GloverGlover, meanwhile, was on the first operational flight of SpaceX’s Crew Dragon capsule to the space station in 2020. A former U.S. Navy captain and test pilot, Glover was serving as a legislative fellow in the U.S. Senate when NASA recruited him. He was selected to become an astronaut in 2013. Glover and his wife have four children.“Our families have been along for this entire journey, the third quarantine of this series, and all the years of training and the travel, and they’re here now,” Glover told reporters on Sunday.Hansen, the only crew member making his spaceflight debut, will also hold the distinction of being the first Canadian to venture to the moon. Selected by the Canadian Space Agency to become an astronaut in 2009, he was previously a fighter pilot and colonel in the Canadian Armed Forces.Hansen and his wife have three children. After years of training for this flight, he said, the crew members have also become “like a family at this point.”Artemis II will be just the second outing for NASA’s Space Launch System rocket and Orion capsule. The first was the uncrewed Artemis I flight around the moon more than three years ago.Wiseman, Koch, Glover and Hansen know that their mission is a critical stepping stone for NASA’s efforts to return to the moon. During the journey, the crew members are tasked with demonstrating docking procedures in Earth’s orbit, conducting science experiments and testing various systems aboard the Orion capsule as a kind of trial run for future Artemis missions.The next one, the Artemis III mission in 2027, will conduct technology demonstrations in low-Earth orbit, including testing out how a moon lander built by SpaceX or Blue Origin will dock with the Orion capsule. NASA’s moon-landing plan calls for astronauts to transfer to that other vehicle while orbiting the moon, then use it to descend to the lunar surface.In 2028, NASA plans for the Artemis IV mission to land astronauts on the moon.Koch said her goal is to contribute to the longevity of the Artemis program, laying the foundation for a sustained human presence on the moon.“Success is Artemis 100, whenever that is,” she said. “And we really define everything off of that.”Denise Chow is a science and space reporter for NBC News.Jay BlackmanJay Blackman is an NBC News producer covering such areas as transportation, space, medical and consumer issues.Al RokerAl Roker is a co-host of NBC’s “Today Show,” a co-host of "Off The Rails" on Today Show radio on SiriusXM and the host “COLD CUTS with Al Roker” on YouTube. The CEO of Al Roker Entertainment, Inc., he also made his Broadway debut in 2019 in “Waitress” and is the author of 11 books.
+"""
+
+[R2] Artemis II Flight Update: Apogee Raise Burn Complete, Crew Looks Ahead to Proximity Operations - NASA
+(https://www.nasa.gov/blogs/missions/2026/04/01/artemis-ii-flight-update-apogee-raise-burn-complete-crew-looks-ahead-to-proximity-operations/)
+"""
+The apogee raise burn was successfully completed, continuing to fine tune the Orion spacecraft’s orbit around Earth. The ICPS (interim cryogenic propulsion stage) ignited its RL10 engine for a precisely timed burn that increased the highest point of the spacecraft’s orbit. Ahead of the burn, the Artemis II crew began setting their spacecraft up for life in space. Among the tasks is a checkout of the toilet. During this operation, the crew called down to report a blinking fault light. The team on the ground is looking into what might be causing that issue and will be working with the crew to resolve it. Proximity Operations Demonstration The Artemis II crew will now begin preparations for the proximity operations demonstration. This demonstration will test the Orion spacecraft’s ability to manually maneuver relative to another spacecraft, the ICPS, after separation, using its onboard navigation sensors and reaction control thrusters. Before the demonstration, Orion will have planned communications handover from NASA’s Near Space Network to the Deep Space Network. These two networks work in tandem to support Orion from the launch pad, around the Moon, and back to Earth. During the approximately 70-minute proximity operations demonstration, the crew will command the Orion spacecraft, named Integrity, through a series of moves using the detached upper stage of the SLS (Space Launch System) rocket as a mark. The ICPS includes an approximately two-foot target that will be used to evaluate how Orion flies with astronauts at the controls. As the spacecraft and its crew move away, the spacecraft will perform an automated backflip to turn around and face the stage. At approximately 300 feet away, Orion will stop its relative motion. The crew will take control and use the translational and rotational hand controllers and display system to make very small movements to ensure the spacecraft is responding as expected. About 30 feet from the stage, Orion will stop, and the crew will check out the spacecraft’s fine handling qualities to evaluate how it performs near another spacecraft. Small maneuvers performed very close to the ICPS will be done using the reaction control system thrusters on the spacecraft’s European Service Module. At the end of the demonstration, the spacecraft will perform an automated departure burn to move away from the ICPS before the stage then fires to re-enter Earth’s atmosphere over a remote location in the Pacific Ocean. During Orion’s departure burn, engineers will use the spacecraft’s docking camera to gather precise positioning measurements, which will help inform navigation during rendezvous activities on future missions in the lunar environment, where there is no GPS system. The spacecraft’s solar array wings are generating power, thermal conditions remain within predicted ranges, and flight controllers have verified that the crew is safely configured for the next phase of the mission.
+"""
+
+[R3] Our Artemis Crew - NASA
+(https://www.nasa.gov/feature/our-artemis-crew/)
+"""
+Featured Video Meet the Astronauts Who Will Fly Around the Moon Four astronauts have been selected for NASA’s Artemis II mission: Commander Reid Wiseman, pilot Victor Glover, and mission specialist Christina Koch from NASA, and mission specialist Jeremy Hansen from the Canadian Space Agency. Artemis II will be NASA’s first crewed flight test of the Space Launch System rocket and Orion spacecraft around the Moon to verify today’s capabilities for humans to explore deep space and pave the way for long-term exploration and science on the lunar surface. More Videos Next Generation of Explorers Artemis II is NASA’s first mission with crew aboard our foundational deep space rocket, the SLS (Space Launch System), and Orion spacecraft and will confirm all the spacecraft’s systems operate as designed with crew aboard in the actual environment of deep space. The mission will pave the way for lunar surface missions, establishing long-term lunar science and exploration capabilities, and inspire the next generation of explorers. A Bold Mission The crew of four astronauts will lift off on the approximately 10-day mission from Launch Complex 39B at NASA’s Kennedy Space Center in Florida, blazing beyond Earth’s grasp atop the agency’s mega Moon rocket. Over the course of about two days, they will check out Orion’s systems and perform a targeting demonstration test relatively close to Earth before then beginning the trek toward the Moon. Orion’s European-built service module will give the spacecraft the big push needed to break free from Earth orbit set course for the Moon. This trans-lunar injection burn will send the astronauts on an outbound trip of about four days, taking them around the far side of the Moon, where they will ultimately create a figure eight extending more than 230,000 miles from Earth. At their max distance, the crew will fly 4,600 miles beyond the Moon. During the approximate four-day return trip, the astronauts will continue to evaluate the spacecraft’s systems. Instead of requiring propulsion on the return, this fuel-efficient trajectory harnesses the Earth-Moon gravity field, ensuring that—after its trip around the far side of the Moon—Orion will be pulled back naturally by Earth’s gravity for the free return portion of the mission. The crew will endure the high-speed, high-temperature reentry through Earth’s atmosphere before splashing down in the Pacific Ocean off the coast of San Diego, where they will be met by a recovery team of NASA and Department of Defense personnel who will bring them back to shore. Posters Stylized posters created for NASA's Artemis II mission Find More
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

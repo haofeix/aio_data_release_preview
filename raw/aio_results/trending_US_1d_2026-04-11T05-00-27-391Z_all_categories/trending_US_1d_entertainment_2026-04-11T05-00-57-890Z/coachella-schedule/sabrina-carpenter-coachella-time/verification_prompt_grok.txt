@@ -1,0 +1,100 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "sabrina carpenter coachella time"
+
+Claims:
+[1] "Sabrina Carpenter is scheduled to headline the Coachella Main Stage on Friday, April 10 (Weekend 1), 2026."
+[2] "Sabrina Carpenter is scheduled to headline the Coachella Main Stage on Friday, April 17 (Weekend 2), 2026."
+[3] "Sabrina Carpenter's set begins at 9:05 p.m. PDT."
+[4] "Sabrina Carpenter's set runs for 90 minutes."
+[5] "Sabrina Carpenter's set ends at 10:35 p.m. PDT."
+[6] "Sabrina Carpenter's show is available to stream on the official Coachella YouTube channel."
+[7] "Sabrina Carpenter's performance is positioned as a primary act on the main stage."
+[8] "Sabrina Carpenter's performance leads into the late-night acts."
+
+Cited text snippets from the AI Overview (for additional context):
+- When does Sabrina Carpenter perform at Coachella? How to watch.: "When is Coachella 2026?,stages simultaneously from your couch."
+- Coachella Announces Set Times, With Jack White as Surprise Addition: "Any mystery about when Anyma,:05-10:35 p.m."
+- Coachella 2026 Lineup & Schedule: All the Set Times You Need to Know: "Friday, April 10, 2026,Nettspend, Lightning Strikes, and Superheroes"
+- What time is Sabrina Carpenter's Coachella 2026 performance?: "What time does Sabrina Carpenter,Set time, how to watch&text=Sabrina Carpenter will perform on,Cain, Sexxy Red and Devo."
+Reference Sources:
+
+[R1] Coachella 2026 Lineup & Schedule: All the Set Times You Need to Know
+(https://pitchfork.com/news/coachella-2026-lineup-and-schedule-all-the-set-times-you-need-to-know/)
+"""
+Set times for the 2026 Coachella Valley Music and Arts Festival are here; see the full weekend-one schedule below. The music kicks off at 1 p.m. PST this Friday, April 10.Joining headliners Sabrina Carpenter, Justin Bieber, and Karol G is new addition Jack White—not on the main stage but with a 3 p.m. set to open the Mojave Stage on Saturday afternoon. Whether he will return for weekend two has not yet been announced. Other notable stage times include a Friday-midnight set on the Coachella Stage from Anyma, who will play after a 9:05 p.m. show from Carpenter; and a late Saturday night on the same stage, where the Strokes will perform at 9 p.m., followed by a Bieber show that kicks off at 11:25 p.m.Follow along with all of Pitchfork’s coverage of Coachella 2026. The second weekend takes place from April 17-19.Weekend 1 Schedule(All times p.m. unless otherwise noted, listed in Pacific Daylight Time)Friday, April 10, 2026Anyma (12:00, Coachella Stage)Sabrina Carpenter (9:05, Coachella Stage)The xx (7:00, Coachella Stage)Teddy Swims (5:30, Coachella Stage)Record Safari (4:15, Coachella Stage)xaviersobased Rates TikTok, Bushwick, and Chopped CheeseDisclosure (10:35, Outdoor Theatre)Turnstile (8:05, Outdoor Theatre)Dijon (6:40, Outdoor Theatre)Lykke Li (5:20, Outdoor Theatre)Dabeull (4:00, Outdoor Theatre)Tiffany Tyson (2:50, Outdoor Theatre)Hot LinksA daily roundup of the most important stories in music, and a listening guide every FridayNot for Radio (11:50, Sonora)Hot Mulligan (10:00, Sonora)Cachirula & Loojan (8:25, Sonora)Ninajirachi (7:10, Sonora)The Two Lips (6:00, Sonora)Fleshwater (4:50, Sonora)Wednesday (3:40, Sonora)Carolina Durante (2:35, Sonora)Febuary (1:40, Sonora)Doom Dave (1:00, Sonora)Creepy Nuts (11:05, Gobi)Joost (9:50, Gobi)Holly Humberstone (8:25, Gobi)Fakemink (7:20, Gobi)Cmat (6:15, Gobi)Joyce Manor (5:10, Gobi)Newdad (4:00, Gobi)Bob Baker Marionettes (2:55, Gobi)Cahuilla Bird Singers and Dancers (2:15, Gobi)Blood Orange (11:55, Mojave)Ethel Cain (10:35, Mojave)Moby (8:10, Mojave)Devo (6:45, Mojave)Central Cee (5:30, Mojave)Bini (4:15, Mojave)Slayyyter (3:00, Mojave)Novasoul (2:00, Mojave)Sexyy Red (12:05, Sahara)Swae Lee (10:50, Sahara)Levity (9:15, Sahara)Katseye (8:00, Sahara)Marlon Hoffstadt (6:15, Sahara)Hugel (4:50, Sahara)Youna (3:45, Sahara)Massio (2:30, Sahara)Gordo (11:15, Yuma)Max Styler (9:45, Yuma)Max Dean x Luke Dean (8:30, Yuma)Prospa (7:15, Yuma)Kettama (6:00, Yuma)Rossi. x Chloé Caillet (4:45, Yuma)Groove Armada (3:45, Yuma)Arodes (2:45, Yuma)Jessica Brankka (1:45, Yuma)Sahar Z (1:00, Yuma)Pawsa (9:00, Quasar)Deep Dish (7:00, Quasar)Tiga (5:00, Quasar)Saturday, April 11, 2026Justin Bieber (11:25, Coachella Stage)The Strokes (9:00, Coachella Stage)Giveon (7:00, Coachella Stage)Addison Rae (5:30, Coachella Stage)Jaqck Glam (4:15, Coachella Stage)David Byrne (10:20, Outdoor Theatre)Labrinth (8:30, Outdoor Theatre)Sombr (7:05, Outdoor Theatre)Alex G (5:10, Outdoor Theatre)Los Hermanos Flores (3:55, Outdoor Theatre)Blondshell (2:40, Outdoor Theatre)Mind Enterprises (9:45, Sonora)54 Ultra (7:50, Sonora)Rusowsky (6:40, Sonora)Ceremony (5:30, Sonora)Ecca Vandal (4:20, Sonora)Freak Slug (3:10, Sonora)Die Spitz (2:00, Sonora)Triste Juventud (1:00, Sonora)Morat (10:10, Gobi)Bia (9:00, Gobi)Davido (7:50, Gobi)Geese (6:15, Gobi)Luísa Sonza (5:10, Gobi)Whatmore (4:05, Gobi)Noga Erez (2:05, Gobi)Interpol (10:15, Mojave)PinkPantheress (8:55, Mojave)Taemin (7:30, Mojave)Royel Otis (5:50, Mojave)Fujii Kaze (4:30, Mojave)Jack White (3:00, Mojave)Worship (11:55, Sahara)Adriatique (10:30, Sahara)Rezz (9:10, Sahara)Nine Inch Noize (8:00, Sahara)¥ØU$UK€ ¥UK1MAT$U (6:15, Sahara)Hamdi (5:00, Sahara)Zulan (4:00, Sahara)TEED (2:50, Sahara)Seek-One (2:00, Sahara)Armin Van Buuren x Adam Beyer (11:00, Yuma)Boys Noize (9:45, Yuma)Bedouin (8:15, Yuma)Sosa (6:45, Yuma)Ben Sterling (5:30, Yuma)Mahmut Orhan (4:15, Yuma)Riordan (3:00, Yuma)Genesi (2:00, Yuma)Yamagucci (1:00, Yuma)
+"""
+
+[R2] When does Sabrina Carpenter perform at Coachella? How to watch.
+(https://www.usatoday.com/story/entertainment/music/2026/04/10/sabrina-carpenter-coachella-2026-watch/89547956007/)
+"""
+Updated April 10, 2026, 1:16 p.m. ETSabrina Carpenter is ready to give it her all after months of prepping for Coachella.During a recent interview with Perfect Magazine, Carpenter, 26, spoke about her upcoming performance in conversation with fashion icon Marc Jacobs."It’s the most ambitious show I’ve ever done. It’s probably the most time I’ve ever had to actually just sit down and talk about a show as I’m building it," the "Please Please Please" singer shared."Most of the time, you’re really quickly thrust into physical rehearsals, but this time around we started this process around seven months ago. So it’s been a long journey. It will be very special," she continued.Here's what to know about how to watch Sabrina Carpenter's Coachella performance.When is Coachella 2026?The festival is two weekends: April 10- 12 and April 17-19.When is Sabrina Carpenter headlining at Coachella 2026?Festivalgoers can expect Carpenter to headline on both April 10 and April 17.When does Sabrina Carpenter perform at Coachella 2026 Weekend 1?Carpenter will hit the Coachella stage at about 9:05 p.m. PDT. Her set will be streaming on YouTube during that time slot.Fans can watch Coachella performances on the video platform on April 10 starting at 4 p.m. PT/ 7 p.m. ET. Through the YouTube app on your TV, you can stream multiple stages simultaneously from your couch.Coachella 2026 Weekend 1 set timesA complete list of day-by-day set times can be found on Coachella's website or in an Instagram post below:Taylor Ardrey is a news reporter for USA TODAY. You can reach her at tardrey@usatodayco.com.
+"""
+
+[R3] What time does Sabrina Carpenter perform at Coachella 2026? Set time, how to watch
+(https://ftw.usatoday.com/story/entertainment/pop-culture/2026/04/10/sabrina-carpenter-coachella-performance-time-date-set-list/89552833007/)
+"""
+April 10, 2026, 12:58 p.m. ETSabrina Carpenter will perform on Coachella's main stage Friday, April 10, with her set expected to run from 9:05 to 10:35 p.m. PT. The Coachella headliner will perform at the same time to kick off the festival's second weekend on Friday, April 17.Carpenter is headlining a stacked Friday Coachella lineup that includes The xx, Turnstile, Disclosure, Ethel Cain, Sexxy Red and Devo.How to Watch Sabrina Carpenter at Coachella 2026Coachella is livestreaming most of Friday's sets on YouTube. You can also watch via the Coachella Livestream app, which syncs to your time zone.What will Sabrina Carpenter perform at Coachella 2026?This is Carpenter’s first time headlining Coachella following a wildly successful few years for the Grammy-winning artist. While her set list is under wraps, it's likely to pull heavily from her most recent albums, Short n’ Sweet and Man’s Best Friend, and possibly some of her earlier hits, including "Nonsense" and "Feather."See Coachella's full Friday, April 10, 2026 lineup (all times PT)Coachella StageRecord Safari – 4:15–5:20 p.m.Teddy Swims – 5:30–6:20 p.m.The xx – 7:00–7:55 p.m.Turnstile – 8:05–9:00 p.m.Sabrina Carpenter – 9:05–10:35 p.m.Anyma – 12:00 a.m.Outdoor TheatreTiffany Tyson – 2:50–3:50 p.m.Dabeull – 4:00–4:50 p.m.Lykke Li – 5:20–6:10 p.m.Dijon – 6:40–7:30 p.m.Disclosure – 10:35–11:50 p.m.SonoraDoom Dave – 1:00–1:40 p.m.February – 1:40–2:10 p.m.Carolina Durante – 2:35–3:15 p.m.Wednesday – 3:40–4:20 p.m.Fleshwater – 4:50–5:30 p.m.The Two Lips – 6:00–6:40 p.m.Ninajirachi – 7:10–8:00 p.m.Cachirula & Loojan – 8:25–9:05 p.m.Hot Mulligan – 10:00–10:45 p.m.Not For Radio – 11:50 p.m.–12:50 a.m.GobiCahuilla Bird Singers and Dancers – 2:15–2:45 p.m.Bob Baker Marionettes – 2:55–3:35 p.m.NewDad – 4:00–4:40 p.m.Joyce Manor – 5:10–5:50 p.m.CMAT – 6:15–6:55 p.m.fakemink – 7:20–8:00 p.m.Holly Humberstone – 8:25–9:10 p.m.Joost – 9:50–10:35 p.m.Creepy Nuts – 11:05–11:55 p.m.MojaveNovasoul – 2:00–2:50 p.m.Slayyyter – 3:00–3:45 p.m.BINI – 4:15–5:00 p.m.Central Cee – 5:30–6:15 p.m.Devo – 6:45–7:40 p.m.Moby – 8:10–9:00 p.m.Ethel Cain – 10:35–11:25 p.m.Blood Orange – 11:55 p.m.–12:45 a.m.SaharaMASSIO – 2:30–3:35 p.m.Youna – 3:45–4:35 p.m.HUGEL – 4:50–5:50 p.m.Marlon Hoffstadt – 6:15–7:15 p.m.KATSEYE – 8:00–8:45 p.m.Levity – 9:15–10:20 p.m.Swae Lee – 10:50–11:40 p.m.Sexyy Red – 12:05–12:55 a.m.YumaSahar Z – 1:00–1:45 p.m.Jessica Brankka – 1:45–2:45 p.m.Arodes – 2:45–3:45 p.m.Groove Armada – 3:45–4:45 p.m.Rossi. x Chloé Caillet – 4:45–6:00 p.m.Kettama – 6:00–7:15 p.m.Prospa – 7:15–8:30 p.m.Max Dean x Luke Dean – 8:30–9:45 p.m.Max Styler – 9:45–11:15 p.m.Gordo – 11:15 p.m.–12:55 a.m.QuasarPAWSA – 9:00–11:00 p.m.Tiga – 5:00–7:00 p.m.Deep Dish – 7:00–9:00 p.m.
+"""
+
+[R4] Coachella Announces Set Times, With Jack White as Surprise Addition
+(https://variety.com/2026/music/news/coachella-announces-set-times-2026-jack-white-addition-1236710074/)
+"""
+Home Music News Coachella Announces Set Times, With Jack White as Surprise Last-Minute Addition (Photo by Aaron J. Thornton/Getty Images) Coachella-goers — and home streaming viewers — can start setting alarm times for the coming weekend on their watches now. Set times for the first weekend of performances this Friday through Sunday were finally posted late Monday night, allowing Southern California and the world to know exactly when headliner Sabrina Carpenter, Justin Bieber and Karol G will take the stage, on top of dozens of other artists. The unveiling of the itinerary revealed one surprise in the lineup: an appearance by Jack White… not in a headliner slot, or anything even close to it, but rather a 45-minute Mojave Tent performance smack in the middle of Saturday afternoon, at the not-very-rock-god hour of 3 p.m. Related Stories Any mystery about when Anyma‘s late-night quasi-headliner would take place was finally solved. The electronic artist will play Friday at midnight on the main stage. That means Friday’s true headliner, Sabrina Carpenter, will go on earlier a bit earlier than the top-billed acts performing on subsequent nights. Carpenter is set to bring the musical espresso Friday from 9:05-10:35 p.m. Popular on Variety On Saturday night, bill-topper Justin Bieber will go on stage a full two and a half hours later than Carpenter will have the night before. He’s set to perform at 11:25 p.m. on the festival’s hump night. It’s expected that he will likely play the two “Swag” albums in their 25-song entirety, based on the warmup shows he has done at the Roxy and Troubadour. On the closing night, things won’t run nearly so late. Sunday’s headliner, Karol G, will go on at 9:55 p.m. (All times are PT, of course.) In White’s last appearance at Coachella, 11 years ago, he was a headliner. The rocker’s last-minute addition in a way-down-under undercard slot follows in what has become kind of a bizarre Coachella tradition over the past few years. In 2025, Ed Sheeran and Weezer were similarly announced as near-surprise afternoon performers. Based on past experience with these late adds, there’s no guarantee that White will return to take the same slot on weekend 2, the way that all of the festival’s regularly scheduled acts are expected to. Prior to the schedule being unveiled, Coachella offered more information about a Radiohead activation that drew fans’ curiosity. An Instagram post from the festival explained that it is “the Bunker debut of Radiohead Motiion Picture House Kid A Mnesia.” Says the IG post of the Radiohead attraction, “At its center is a 75-minute large-format film made from thousands of fragments created by Thom Yorke and Stanley Donwood during the recording of ‘Kid A’ and ‘Amnesiac’: sketches, paintings, collages, audio recordings and handwritten notes. The event has a ticketed reservation system through AXS Mobile ID. To make your reservation, sign into your FanAccount. There are no costs associated with AXS Mobile ID reservations. They are purely to reserve your time slot.” Meanwhile, the schedule also reveals the timing for the only set that matters: the Bob Baker Marionettes. The most wooden performance of the festival — arguably — will take place Friday at 2:55 p.m. Arrive late enough to miss this historic appearance and you might as well just turn around and go home. Among some of the bigger or most anticipated artists’ times: Friday: Slayyyter at 3; the band Wednesday at 3:40; Teddy Swims at 5:30; CMAT at 6:15; Dijon at 6:40; Devo at 6:45; the XX at 7; Katseye at 8; Turnstile at 8:05; Moby at 8:10; Sabrina Carpenter at 9:05; Disclosure and Ethel Cain both at 10:35; Swae Lee at 10:50; Blood Orange at 11:55; Anyma at midnight; and Sexyy Red at 12:05 a.m. Saturday: Jack White at 3; Addison Rae at 5:30; Geese at 6:15; Giveon at 7; Sombr at 7:05; Nine Inch Noize (a collaboration between Trent Reznor and producer Boys Noize) at 8; Labrinth at 8:30; PinkPantheress at 8:55; the Strokes and David Guetta, both at 9; Interpol at 10:15; David Byrne at 10:20; and Bieber at 11:25. Sunday: Gigi Perez at 4; Little Simz at 4:25; Wet Leg at 4:45; Clipse at 5:15; Major Lazer at 6:10; Foster the People at 6:45; Iggy Pop at 7:10; Young Thug at 7:50; Fatboy Slim at 8; Laufey at 8:40; FKA Twigs at 8:45; the Rapture at 9:05; Karol G at 9:55; and the last scheduled start time of the weekend with Kaskade going on at 10:45.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

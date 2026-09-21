@@ -1,0 +1,103 @@
+{
+  "keyword": "oil price per barrel",
+  "model": "grok-4-1-fast-reasoning",
+  "n_claims": 7,
+  "n_verified": 7,
+  "label_counts": {
+    "CLEAR": 2,
+    "VAGUE": 0,
+    "AMBIGUOUS": 0,
+    "INCORRECT": 5,
+    "OMITTED": 0
+  },
+  "consistent": 2,
+  "inconsistent": 5,
+  "fidelity_rate": 0.2857,
+  "verifications": [
+    {
+      "claim_id": 1,
+      "claim": "As of April 9, 2026, Brent Crude is at $97.14 per barrel.",
+      "label": "INCORRECT",
+      "confidence": 0.9,
+      "matched_references": [
+        "R1",
+        "R2"
+      ],
+      "evidence": "R2: 'International benchmark Brent crude futures for June delivery rose more than 1% to settle at $95.92'; R1: 'Brent fell to 94.55 USD/Bbl on April 16, 2026'",
+      "reasoning": "Sources provide specific Brent prices on or near April 9 ($95.92 in R2, steadied above $94 on Thursday in R1) that do not match $97.14, directly contradicting the claim."
+    },
+    {
+      "claim_id": 2,
+      "claim": "As of April 9, 2026, Brent Crude has increased by 2.52%.",
+      "label": "INCORRECT",
+      "confidence": 0.8,
+      "matched_references": [
+        "R2"
+      ],
+      "evidence": "R2: 'Brent crude futures for June delivery rose more than 1% to settle at $95.92'",
+      "reasoning": "R2 specifies Brent rose more than 1% on the relevant day, contradicting the precise 2.52% increase."
+    },
+    {
+      "claim_id": 3,
+      "claim": "As of April 9, 2026, WTI Crude is at $96.96 per barrel.",
+      "label": "INCORRECT",
+      "confidence": 1.0,
+      "matched_references": [
+        "R2",
+        "R4"
+      ],
+      "evidence": "R4: '04/09/26 96.50 98.01 ...'; R2: 'West Texas Intermediate crude futures for May delivery ... close at $97.87 per barrel'",
+      "reasoning": "R4 lists WTI close at $98.01 on April 9, 2026 (open $96.50); R2 lists $97.87 close; neither matches $96.96 exactly, contradicting the specific price."
+    },
+    {
+      "claim_id": 4,
+      "claim": "As of April 9, 2026, WTI Crude has increased by 2.72%.",
+      "label": "INCORRECT",
+      "confidence": 0.8,
+      "matched_references": [
+        "R2",
+        "R4"
+      ],
+      "evidence": "R2: 'West Texas Intermediate crude futures for May delivery gained more than 3%'; R4 historical shows April 8 close ~$96.51 to April 9 close $98.01 (~1.55% increase)",
+      "reasoning": "Sources indicate >3% (R2) or ~1.55% (calculated from R4 daily prices), neither matching 2.72%."
+    },
+    {
+      "claim_id": 5,
+      "claim": "As of April 9, 2026, the 52-week range for WTI Crude is $54.98 - $119.47.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R4"
+      ],
+      "evidence": "R4: '90.97 54.98 52 Week Low 119.47 52 Week High'",
+      "reasoning": "Exact 52-week low/high range for WTI matches precisely in R4 snapshot, consistent with historical data around April 2026."
+    },
+    {
+      "claim_id": 6,
+      "claim": "Iran accused the U.S. of violating a ceasefire agreement.",
+      "label": "CLEAR",
+      "confidence": 1.0,
+      "matched_references": [
+        "R2"
+      ],
+      "evidence": "R2: 'Iran\u2019s parliamentary speaker, Mohammad Bagher Ghalibaf, accused the U.S. on Wednesday of breaching the ceasefire agreement'",
+      "reasoning": "Directly stated in R2, matching the claim exactly."
+    },
+    {
+      "claim_id": 7,
+      "claim": "Urals crude has traded in the $61\u2013$65 range recently.",
+      "label": "INCORRECT",
+      "confidence": 0.9,
+      "matched_references": [
+        "R3"
+      ],
+      "evidence": "R3: 'Urals Oil fell to 117.46 USD/Bbl on April 14, 2026 ... Previous 120.82 ... Highest 124.85'",
+      "reasoning": "Recent prices (April 14: $117.46, previous $120.82) are far above $61\u2013$65 range, contradicting recent trading in that range."
+    }
+  ],
+  "elapsed_s": 40.8,
+  "prompt_tokens": 17359,
+  "cached_tokens": 586,
+  "completion_tokens": 1021,
+  "error": null
+}

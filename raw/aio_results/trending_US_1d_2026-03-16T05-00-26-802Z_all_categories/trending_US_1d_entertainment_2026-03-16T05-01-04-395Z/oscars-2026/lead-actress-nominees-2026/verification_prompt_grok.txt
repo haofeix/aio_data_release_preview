@@ -1,0 +1,97 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "lead actress nominees 2026"
+
+Claims:
+[1] "The 98th Academy Awards were held on March 15, 2026."
+[2] "Jessie Buckley won Best Actress at the 98th Academy Awards for Hamnet."
+[3] "Rose Byrne was nominated for Best Actress at the 98th Academy Awards for If I Had Legs I'd Kick You."
+[4] "Kate Hudson was nominated for Best Actress at the 98th Academy Awards for Song Sung Blue."
+[5] "Renate Reinsve was nominated for Best Actress at the 98th Academy Awards for Sentimental Value."
+[6] "Emma Stone was nominated for Best Actress at the 98th Academy Awards for Bugonia."
+[7] "Hamnet was directed by Chloé Zhao."
+[8] "Hamnet is a Shakespearean drama."
+[9] "Kate Hudson received a previous Oscar nomination 24 years before her nomination for Song Sung Blue."
+[10] "Kate Hudson portrayed a Neil Diamond tribute singer in Song Sung Blue."
+[11] "Sentimental Value is a Norwegian drama."
+[12] "Bugonia was directed by Yorgos Lanthimos"
+
+Cited text snippets from the AI Overview (for additional context):
+- 2026 Oscars Best Actress Predictions - Variety: "Yet the conversation has effectively,hosted by Conan O'Brien."
+- Oscars 2026 Winners List: One Battle After Another Takes Best Picture as Michael B. Jordan and Jessie Buckley Soar: "Jessie Buckley - Hamnet - WINNER,Fallon / AFP via Getty"
+- Here's What Best Actress Nominees Wore to the 2026 Oscars - Yahoo: "The stars nominated for Best,and Emma Stone for Bugonia."
+Reference Sources:
+
+[R1] 2026 Oscars Best Actress Predictions
+(https://variety.com/lists/2026-oscars-best-actress-predictions/)
+"""
+Final Oscar Predictions: Best Actress — It’s Jessie Buckley, Plain and Simple ©Focus Features/Courtesy Everett Collection Variety Awards Circuit section is the home for all awards news and related content throughout the year, featuring the following: the official predictions for the upcoming Oscars, Emmys, Grammys and Tony Awards ceremonies, curated by Variety chief awards editor Clayton Davis. The prediction pages reflect the current standings in the race and do not reflect personal preferences for any individual contender. As other formal (and informal) polls suggest, competitions are fluid and subject to change based on buzz and events. Predictions are updated every Thursday. SONG SUNG BLUE, Kate Hudson as Claire Sardina ©Focus Features/Courtesy Everett Collection Oscars Best Actress Commentary (Updated March 12, 2026): The best actress race is, on paper, one of the strongest lineups in recent memory. Yet the conversation has effectively been settled for months. Jessie Buckley’s towering work in Chloé Zhao’s Shakespearean grief drama “Hamnet” has swept the major precursors and dominated the awards conversation, transforming the category into something less about suspense and more about admiration. Which leaves the real debate: who finishes second? Rose Byrne delivers a ferocious, discomfort-forward performance in “If I Had Legs I’d Kick You,” committing fully to a woman unraveling in real time. Kate Hudson offers a very different narrative with “Song Sung Blue,” returning to the Oscars 24 years after “Almost Famous” (2001). Renate Reinsve anchors “Sentimental Value” with quiet authority in Joachim Trier’s Norwegian drama. And then there’s Emma Stone, the two-time winner for “La La Land” and “Poor Things,” who once again embraces bold absurdity in Yorgos Lanthimos’s “Bugonia.” While the debate may rage over second place, Buckley is running away with the season, and rightly so. Final predictions are below. Each category will be updated throughout the week leading up to the 98th Oscars, set for Sunday, March 15, and hosted by Conan O’Brien.
+"""
+
+[R2] Here’s What Best Actress Nominees Wore to the 2026 Oscars
+(https://www.yahoo.com/entertainment/celebrity/articles/best-actress-nominees-wore-2026-211406324.html)
+"""
+With the 2026 Oscars finally here, we’re guessing it’ll be a night to remember! While some categories might be easier to decide than others, this year’s Best Actress in the Motion Picture categories are truly a clash of titans.The stars nominated for Best Actress in a Leading Role are Jessie Buckley for Hamnet, Rose Byrne for If I Had Legs I’d Kick You, Kate Hudson for Song Sung Blue, Renate Reinsve for Sentimental Value, and Emma Stone for Bugonia.As for the Best Actress in a Supporting Role nominees, there’s Elle Fanning for Sentimental Value, Inga Ibsdotter Lilleaas for Sentimental Value, Amy Madigan for Weapons, Wunmi Mosaku for Sinners, and Teyana Taylor for One Battle After Another.And we’re sure all of them will turn heads with their gorgeous looks!Check out what all the Best Actress & Supporting Actress nominees wore on the 2026 Oscars red carpet below!More from SheKnowsBest of SheKnowsSign up for SheKnows' Newsletter. For the latest news, follow us on Facebook, Twitter, and Instagram.Rose ByrneRose ByrneNominee Rose Byrne wowed in this black floral Christian Dior gown!Renate ReinsveRenate ReinsveNominee Renate Reinsve kept things simple with this strapless red Louis Vuitton gown.Jessie BuckleyJessie BuckleyJessie Buckley looked so chic in this bubblegum pink and red Chanel gown!Wunmi MosakuWunmi MosakuWunmi Mosaku made jaws drop in this glittering emerald Louis Vuitton gown!Inga Ibsdotter LilleaasInga Ibsdotter LilleaasInga Ibsdotter Lilleaas kept things simple and chic in this monochromatic gown!98th Annual Oscars – Arrivals98th Annual Oscars – ArrivalsElle Fanning’s white Givenchy ballgown proves she’s the people’s princess!Emma StoneEmma StoneEmma Stone looked simple and chic in this silver Louis Vuitton column gown.Amy MadiganAmy MadiganNominee Amy Madigan went with a unique black and gold suit!Teyana TaylorTeyana TaylorTeyana Taylor looked beyond amazing in this black-and-white Chanel gown!Kate HudsonKate HudsonKate Hudson looked sensational in this sparkling baby blue gown!
+"""
+
+[R3] Oscars 2026 Winners List: 'One Battle After Another' Takes Best Picture as Michael B. Jordan and Jessie Buckley Soar
+(https://people.com/oscars-2026-winners-list-11897872)
+"""
+NEED TO KNOW Conan O'Brien hosted the 2026 Oscars on Sunday, March 15, on ABC and HuluSinners broke the record for the most nominations for a single movie in Oscars history, 16 total, and went on to win fourA brand-new category was introduced this year, Best Casting, which went to Cassandra Kulukundis for One Battle After Another Meet the 2026 Oscar winners! Conan O'Brien hosted the 98th Academy Awards on Sunday, March 15, live from Dolby Theatre at Ovation Hollywood in Los Angeles on ABC and Hulu. When this year's nominations were announced on Jan. 22, writer-director Ryan Coogler's Sinners broke the record for the most nominations for a single movie in all of Oscars history, 16 total. Sinners went on to win four Oscars, including Best Actor for Michael B. Jordan, who played dual roles. There were 24 categories, and this year marked the addition of a brand-new one, Best Casting, which went to Cassandra Kulukundis for One Battle After Another. One Battle ultimately won six total, including Best Picture. Read on for the complete list of nominees and winners. Related Stories Best Picture BugoniaF1FrankensteinHamnetMarty SupremeOne Battle After Another - WINNERThe Secret AgentSentimental ValueSinnersTrain Dreams Best Actor Timothée Chalamet - Marty SupremeLeonardo DiCaprio - One Battle After AnotherEthan Hawke - Blue MoonMichael B. Jordan - Sinners - WINNERWagner Moura - The Secret Agent Best Actress Jessie Buckley - Hamnet - WINNERRose Byrne - If I Had Legs I’d Kick YouKate Hudson - Song Sung BlueRenate Reinsve - Sentimental ValueEmma Stone - Bugonia Jessie Buckley wins Best Actress for "Hamnet" on March 15, 2026. Patrick T. Fallon / AFP via Getty Best Supporting Actor Benicio del Toro - One Battle After AnotherJacob Elordi - FrankensteinDelroy Lindo - SinnersSean Penn - One Battle After Another - WINNERStellan Skarsgård - Sentimental Value Best Supporting Actress Elle Fanning - Sentimental ValueInga Ibsdotter Lilleaas - Sentimental ValueAmy Madigan - Weapons - WINNERWunmi Mosaku - SinnersTeyana Taylor - One Battle After Another Amy Madigan wins Best Supporting Actress for "Weapons" on March 15, 2026. Kevin Winter/Getty Best Director Chloé Zhao - HamnetJosh Safdie - Marty SupremePaul Thomas Anderson - One Battle After Another - WINNERJoachim Trier - Sentimental ValueRyan Coogler - Sinners Best Original Screenplay Blue MoonIt Was Just an AccidentMarty SupremeSentimental ValueSinners - WINNER Ryan Coogler wins Best Original Screenplay for "Sinners" on March 15, 2026. Kevin Winter/Getty Best Adapted Screenplay BugoniaFrankensteinHamnetOne Battle After Another - WINNERTrain Dreams Best Animated Feature Film ArcoElioKPop Demon Hunters - WINNERLittle Amélie or the Character of RainZootopia 2 Chris Appelhans, Maggie Kang, and Michelle Wong win Best Animated Feature Film for 'KPop Demon Hunters" on March 15, 2026. Kevin Winter/Getty Best International Feature Film The Secret Agent - BrazilIt Was Just an Accident - FranceSentimental Value - Norway - WINNERSirât - SpainThe Voice of Hind Rajab - Tunisia Best Casting HamnetMarty SupremeOne Battle After Another - WINNERThe Secret AgentSinners Best Cinematography FrankensteinMarty SupremeOne Battle After AnotherSinners - WINNERTrain Dreams Autumn Durald becomes the first woman to win Best Cinematography at the Oscars, for "Sinners," on March 15, 2026. Kevin Winter/Getty Best Production Design Frankenstein - WINNERHamnetMarty SupremeOne Battle After AnotherSinners Best Editing F1Marty SupremeOne Battle After Another - WINNERSentimental ValueSinners Best Original Score BugoniaFrankensteinHamnetOne Battle After AnotherSinners - WINNER Best Original Song "Dear Me" - Diane Warren: Relentless"Golden" - KPop Demon Hunters - WINNER"I Lied to You" - Sinners"Sweet Dreams of Joy" - Viva Verdi!"Train Dreams" - Train Dreams Best Sound F1 - WINNERFrankensteinOne Battle After AnotherSinnersSirât Best Visual Effects Avatar: Fire and Ash - WINNERF1Jurassic World RebirthThe Lost BusSinners Best Makeup and Hairstyling Frankenstein - WINNERKokuhoSinnersThe Smashing MachineThe Ugly Stepsister Best Costume Design Avatar: Fire and AshFrankenstein - WINNERHamnetMarty SupremeSinners Best Animated Short Film ButterflyForevergreenThe Girl Who Cried Pearls - WINNERRetirement PlanThe Three Sisters Best Live-Action Short Film Butcher's StainA Friend of DorothyJane Austen's Period DramaThe Singers - WINNER (TIE)Two People Exchanging Saliva - WINNER (TIE) Best Documentary Feature Film The Alabama SolutionCome See Me in the Good LightCutting Through RocksMr. Nobody Against Putin - WINNERThe Perfect Neighbor Best Documentary Short All the Empty Rooms - WINNERArmed Only with a Camera: The Life and Death of Brent RenaudChildren No More: "Were and Are Gone"The Devil Is BusyPerfectly a Strangeness
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

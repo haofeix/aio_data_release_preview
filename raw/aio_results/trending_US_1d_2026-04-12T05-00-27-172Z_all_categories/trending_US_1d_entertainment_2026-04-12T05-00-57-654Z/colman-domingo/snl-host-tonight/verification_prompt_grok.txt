@@ -1,0 +1,93 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "snl host tonight"
+
+Claims:
+[1] "Colman Domingo is hosting Saturday Night Live on April 11, 2026."
+[2] "Colman Domingo's hosting of Saturday Night Live on April 11, 2026 marks his first time hosting the show."
+[3] "Anitta serves as the musical guest on Saturday Night Live on April 11, 2026."
+[4] "Anitta's appearance on Saturday Night Live on April 11, 2026 marks her debut on SNL."
+[5] "The Saturday Night Live episode on April 11, 2026 airs live on NBC at 11:30 p.m. EST."
+[6] "The Saturday Night Live episode on April 11, 2026 is available to stream on Peacock."
+[7] "There is a 22-second promo for the Saturday Night Live episode with Colman Domingo and Anitta on YouTube by Saturday Night Live dated April 9, 2026."
+[8] "Saturday Night Live will take a break next week."
+[9] "Saturday Night Live will return for the end of Season 51."
+
+Cited text snippets from the AI Overview (for additional context):
+- Is ‘SNL’ New Tonight (April 11, 2026)? Host, Musical Guest Details: "Key Points,who is the musical guest?"
+- Is there a new SNL tonight? Who is hosting Saturday Night Live: "What time is SNL on,as the musical guest tonight."
+Reference Sources:
+
+[R1] Is ‘SNL’ New Tonight (April 11, 2026)? Host, Musical Guest Details
+(https://parade.com/tv/is-snl-new-tonight-april-11-2026-host-musical-guest-details)
+"""
+Here’s everything you need to know about this week’s ‘Saturday Night Live’ episode.Apr 11, 2026 5:00 PM EDT'SNL'Photo by NBC on Getty ImagesKey PointsColman Domingo hosts SNL tonight, with Anitta as musical guest, both first-timers.SNL will skip airing during the week of April 18.Upcoming hosts include Olivia Rodrigo, Matt Damon, and Will Ferrell for Season 51's finale. Last week’s episode of Saturday Night Live was a huge hit, thanks to official SNL five-timer Jack Black‘s hilarious antics as host (and Jack White‘s musical guest appearance). If you missed it, definitely check it out (especially the opening monologue and the “Husbands” sketch). Alas, there aren’t too many laughs left in Season 51, which ends next month. But is there a new episode of SNL tonight? Here’s everything you need to know before you tune in! Is there a new episode of ‘SNL’ tonight? Yes! Academy Award-nominated actor Colman Domingo will host Saturday Night Live for the first time tonight, April 11, ahead of his appearance in the biopic Michael, premiering on April 24. Domingo will be joined by Grammy-nominated Brazilian singer-songwriter Anitta, also making her SNL debut as musical guest. Who is hosting next week and who is the musical guest? SNL will be taking the week of April 18 off. What time does ‘SNL’ air? SNL airs at 11:30 p.m. EST / 8:30 p.m. PST. Where can I watch ‘SNL’? New episodes of SNL air live on NBC and Peacock on Saturdays (they’re available to stream later). Who else is hosting and performing on ‘SNL’ this season? The final three episodes of SNL Season 51 will kick off on May 2 when Olivia Rodrigo pulls double duty as both host and musical guest. On May 9, Matt Damon will return to SNL for his third time as host, joined by Noah Kahan as musical guest; May 16’s episode will be led by Will Ferrell as host and Paul McCartney as musical guest. About the authorJacqueline Burt Cote has been writing about entertainment (and much more) since the days when print newspapers and magazines reigned supreme, with bylines in a wide range of publications including The New York Post, Time Out New York, The Huffington Post, Salon, Details, Parents, Bon Appetit, XoJane, and many others.
+"""
+
+[R2] Is there a new SNL tonight? Who is hosting Saturday Night Live
+(https://www.yahoo.com/entertainment/tv/articles/snl-tonight-hosting-saturday-night-155638123.html)
+"""
+NEW YORK (AP) — The lights are low in Studio 8H. All eyes — and all cameras, of which there are at least half a dozen — are on Anitta. The Brazilian superstar stands in the center, flanked by dancers and a small band lining the stage. It's quiet enough to hear a pin drop. A stand-in announces, “Ladies and Gentlemen, Anitta,” before a flash of red light fills the room. And just like that, it's show time.This is the famed “Saturday Night Live” set at New York City's 30 Rockefeller Plaza, and Anitta is running through two new songs — “Choka Choka” featuring Shakira, and “Varias Quejas,” a Spanish-language version of an Olodum classic, a cultural group from Bahia, Brazil — during rehearsal last week.Both songs are standouts from her forthcoming album, “Equilibrium,” an eclectic mix of Brazilian funk, samba, bossa nova, semba, reggae, electronic pop, Portuguese, Spanish and English — the kind of release that could only be made mainstream by Brazil’s most globally popular musician since Astrud Gilberto sang “The Girl From Ipanema” over six decades ago.“I think this is the most Brazilian thing I've ever, ever done on television in America,” Anitta told The Associated Press in the NBC offices shortly thereafter.And “Equilibrium?” “100% my most Brazilian album,” the artist born Larissa de Macedo Machado says. “I really wanted to do an album honoring my roots.”An evolving sound“Equilibrium” is a sonic jump from her last release, 2024's “Funk Generation.” That was a full-on tribute to Brazilian funk — what is frequently referred to as funk carioca or baile funk and is heard in working-class neighborhoods known as favelas around Rio de Janeiro. It's a combination of Brazilian rhythms, African and electronic music and rap that has been stigmatized like hip-hop and reggaetón before it. The genre still exists on “Equilibrium,” but so does a myriad sounds — and beliefs — from her homeland.“Some of the songs are honoring some entities from Yoruba culture, from Orishas,” she says, referring to the religion that originated in West Africa and its divine spirits, like on the track “Nanã.” “One of the songs talks about God and how do I see God in life.”It should come as no surprise to Anitta fans: In 2024, she released a music video for the song “Aceita,” which featured a video depicting rituals of the Afro-Brazilian faith Candomblé, sparking controversy in a country where religious intolerance is all too common. Elevating marginalized populations, religious groups and also women, residents of favelas, LGBTQ+ and Black people has always been a core feature of Anitta's public persona.Going global by going homeNaturally, “Equilibrium” is also a full-on embrace of community. The album is stacked with Brazilian collaborators, like the rising songwriter Melly, Liniker's award-winning samba rock-and-then-some, the Brazilian reggae band Ponto de Equilíbrio and countless others. Even “Choka Choka,” the assertive single with Colombian superstar Shakira, is a love letter to Anitta's culture: The “She Wolf” singer performs in Portuguese.“Anitta wanted to create something for Brazil, but with an international touch,” said “Choka Choka” co-producer Daramola in a press statement. Its Brazilian funk percussion “has a lot of energy, a lot of intensity. And who better to represent that sound than Anitta and Shakira?”The song, like the rest of “Equilibrium,” seeks to deliver a universal message with regional sounds. Where she could've leaned into conventional, commercial music trends, she doubled down on what makes Anitta, Anitta instead. Clearly the world — and “Saturday Night Live” — are paying attention.In the past, “If I wanted to reach certain audience, I would do more English or Spanish or whatever,” she says. “And I just think … I don't know if people are accepting better. I don’t care that much as I used to.”She still sings in three languages, but Portuguese takes a front seat. That may be because this is the freest Anitta has sounded on record. Consider a song like the syrupy “Vai Dar Caô” featuring rapper Ebony and producer Papatinho, with its sample of DJ Mandrake and MC Tikão's “A Pedido,” built over a late-night-at-the-club interpolation of Art of Noise's 1984 New Age classic “Moments In Love.” Anitta's raps are earned show boasts, something that doesn't feel out of place next to the nylon-string classical guitars of a softer song, like “Ternura.”On “Equilibrium,” specificity and storytelling is key. “The last song, we also bring a mantra from the God Tara, which is a female God, from another type of religion,” she says.Anitta is referring to “Ouro,” a collaboration with the Brazilian duo Emanazul who describe their work as medicine music. She calls the song a “meditation.”“I don’t want people to think this is one type of thinking, one direction. I like to join forces," she says. "I think that’s what this album is about: honoring Brazilian roots, honoring everything that I think can make us feel elevated.”If she sounds self-actualized, that's because it is her ambition for the album. “I think the main message is, like, we are all one. We live in a planet, Mother Earth. It’s our home. We’re supposed to just live in harmony with each other, respect each other’s flavors, decisions, ways of communicating. We should be just, like, admiring our differences,” she says.It's a deep message but one delivered in a pop package. “I think the album brings a lot of fun instruments, percussions, all that, but also brings like moments for us to … find the balance, the middle term, the middle way of doing things,” she smiles. “That’s the secret.”
+"""
+
+[R3] SNL April 4 2026. Is Saturday Night Live new tonight
+(https://www.app.com/story/entertainment/television/2026/04/11/colman-domingo-anitta-snl-snl-april-11-2026-saturday-night-live-colman-domingo-anitta/89567862007/)
+"""
+TELEVISIONIs there a new SNL tonight? Who is hosting Saturday Night LiveAsbury Park PressApril 11, 2026, 11:56 a.m. ETWell, they have a lot to work with.With everything going on in the world, Saturday Night Live should be a good one tonight, as the show will be live tonight from New York.Here's everything you need to know about tonight's show.What time is SNL on Tonight?Saturday Night Live airs at 11:30 p.m. EST.Watch it here: Stream your favorite shows, the biggest blockbusters and more.What channel is SNL on?Saturday Night Live airs on NBC.Where to stream SNLSaturday Night Live streams on Peacock.Does SNL air live on Peacock?Yes, Saturday Night Live is available to watch as it airs on Peacock.Is Saturday Night Live new tonight?Yes, Saturday Night Live returns live tonight.Who is hosting SNL tonight?Colman Domingo is hosting Saturday Night Live tonight.Who is SNL musical guest?Anitta will serve as the musical guest tonight.The Link Between Sleep Apnea and Blood SugarLearn about the symptoms of sleep apnea, the impact on your glucose levels, and treatment options.Stelo | AdAdUndoThousands of Timeshare Owners Are Finally Getting Out With RefundsSee if your resort is on the cancel list.Consumer Advisory Report | AdAdLearn MoreUndoMeet Divorced Women In ST LOUISInstantalks | AdAdUndoWhy Your Rotator Cuff Isn't Healing (It’s Not Just Age)Shoulder Relief News | AdAdUndoThis Is The Richest American Idol Winner Of All Time, Ranked In OrderOutdoor Revival | AdAdUndoSeniors Above 55 Years of Age Can Now Fly Business Class For The Price of EconomySmart Travel Tips | AdAdLearn MoreUndoHe Was Once An Icon In The NBA, Here's Him NowOutdoor Revival | AdAdUndoInvestors Scrambling Before Starlink Goes PublicLearn About The Clever Way Everyday Folks Are Getting Exposure To Starlink Before It Goes PublicProfitable News | AdAdLearn MoreUndoWhat Ultra-Processed Foods Are Doing to Your BodyUltra-processed foods are not only unhealthy, but they may also affect your glucose and increase the risk of developing diabetes.Stelo | AdAdUndoNFL Stars Who Should Lose Their Hall Of Fame SpotExplored Planet | AdAdUndoby Taboolaby TaboolaWould you like to know more?- | AdAdUndoFeatured Weekly AdMore StoriesJanai Norman to leave 'GMA Weekend,' posts farewell messageentertainmentUndoWhy Trump deleted his Jesus picture post, here's what Pope Leo saidnewsUndoFind Warm Divorced Women Today [See matches]Instantalks | Sponsored LinksSponsored LinksUndo Keep on readingJanai Norman to leave 'GMA Weekend,' posts farewell message"It really breaks my heart that I don’t get to say goodbye," Norman said in a video message.Asbury Park PressUndoThe Link Between Sleep Apnea and Blood SugarLearn about the symptoms of sleep apnea, the impact on your glucose levels, and treatment options.Stelo | SponsoredSponsoredUndoThousands of Timeshare Owners Are Finally Getting Out With RefundsSee if your resort is on the cancel list.Consumer Advisory Report | SponsoredSponsoredLearn MoreUndoWhy Trump deleted his Jesus picture post, here's what Pope Leo saidWhy did Trump delete picture of himself posing as Jesus in a TruthSocial post after feuding with the Pope Leo? Here's what to know about the painting.Asbury Park PressUndoWhat stood out at April NJSIAA meeting, including basketball changesThe NJSAA will vote on implementing shot clocks for lacrosse and basketball on May 4. That, and more, from the April executive committee meeting.Asbury Park PressUndoIn-N-Out is opening new locations in 4 states. See where.The burger chain has committed to a slow but steady expansion in recent years, opening locations in new states.Asbury Park PressUndoIs a Trader Joe's opening near you? 18 new stores are coming soonTrader Joe's is set to expand its footprint across the United States, with 18 new stores expected to open in the coming months.Asbury Park PressUndoWhat does TACO Trump mean? Here's what Trump TACO acronym stands forWhy are people calling Trump a TACO? Here's what TACO Trump stands for and meaning of the acronym.Asbury Park PressUndoMeet Divorced Women In ST LOUISInstantalks | SponsoredSponsoredUndoWhy Your Rotator Cuff Isn't Healing (It’s Not Just Age)Shoulder Relief News | SponsoredSponsoredUndoHow did Melania meet trump? What did Melania say about EpsteinSaturday Night Live kicked off cold open spoof of Melania and President Trump. Here's what she said about Epstein and how Melania and Donald Trump metAsbury Park PressUndoDonald Trump attacks Bruce Springsteen and its personalPresident Donald Trump posted a highly critical, and personal, post Thursday, April 2 about the Freehold rocker on his Truth Social account.Asbury Park PressUndo
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

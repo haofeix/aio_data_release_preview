@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is costco closed on easter sunday"
+
+Claims:
+[1] "Costco is closed on Easter Sunday."
+[2] "According to Costco’s official holiday schedule, all U.S. warehouse locations are closed in observation of Easter Sunday."
+[3] "Costco’s closed date for Easter 2026 is Sunday, April 5, 2026."
+[4] "Costco fuel stations are also closed."
+[5] "Costco warehouses will reopen on Monday, April 6, 2026, for normal business hours."
+[6] "Costco closes for only seven holidays per year."
+
+Cited text snippets from the AI Overview (for additional context):
+- Are stores open on Easter Sunday 2026? Holiday hours for Walmart, Whole Foods, Costco, and more: "Easter Sunday is not the,stores may have reduced hours."
+- Is Costco open or closed on Easter? Here's what to know: "Gabe Hauari,open on Easter in 2026."
+- What stores are open on Easter? Details on Sam's Club, Costco, Walmart: "When is Easter 2026?,will close earlier than usual."
+- Is Costco Open or Closed on Easter? What to Know for 2026: "Read on for the most,a complete list right here."
+- Is Costco open or closed on Easter? Here's what to know - Facebook: "FYI - Sunday 17th April, Easter,Long Weekend 🙏🏼😊"
+Reference Sources:
+
+[R1] What stores are open on Easter? Details on Sam's Club, Costco, Walmart
+(https://www.elpasotimes.com/story/news/2026/04/05/what-stores-are-open-on-easter-details-on-sams-club-costco-walmart/89451710007/)
+"""
+NEWSWhat restaurants are open on Easter Sunday? What about stores? Natassia PalomaEl Paso TimesApril 5, 2026, 6:02 a.m. MTIf your plans involve shopping for last-minute Easter baskets or confetti-filled eggs on Easter Sunday, some stores will be closed.Easter Sunday is April 5, and while some will celebrate by attending mass and participating in Easter egg hunts, you might want to stop by a store or head out to eat after the holiday festivities. Some retail and grocery chains, like Walmart, Whole Foods and Walgreens, are open on the holiday, but others, like Sam's Club, Target and Costco, will be closed.
+"""
+
+[R2] Planning a trip to Costco this Easter? Read This First
+(https://www.today.com/life/holidays/is-costco-open-easter-2026-rcna262764)
+"""
+It's Easter. Whether you're coloring eggs, assembling Easter baskets or curating an Easter songs' playlist for friends and family, you may find yourself in need of a few last-minute essentials to ensure that this year's celebration is a success.Given that Easter Sunday is one of the biggest commemorations on the Christian calendar, many stores, businesses and restaurants are closed in observance of the April holiday. If you're wondering if Costco will be open on Easter this year, see below for all the details you need to know about store hours and whether or not the wholesale giant will be welcoming customers on Sunday, April 5.It's important to note that Costco typically closes on many major holidays throughout the year, including Thanksgiving, Christmas, New Year's Day and Independence Day. But what about Easter?Read on for the most up-to-date information on Costco's hours, how to find a Costco store near you, as well as a list of other retailers that will be open and closed on Easter Sunday. As always, it's a good idea to confirm Easter hours ahead of visiting any store since openings, closings and hours can vary among retailers.Is Costco Open on Easter 2026?On Sunday, April 5, Costco warehouses will be closed in observance of Easter. Stores will reopen on Monday, April 6, during normal business hours, which may vary by location. To confirm local Costco hours and other details, find a store locator right here. Stores Open on Easter 2026Though Costco will be closed this Easter, see below for a sampling of retailers and grocers that will remain open on Sunday or find a complete list right here. BJ’s Wholesale Club: A majority of BJ’s clubs will be open on Easter Sunday from 8 a.m. to 6 p.m. BJ’s recommends confirming local hours before going. Find local hours here.Dollar General: Stores will be open during normal business hours. Find local hours here.Home Depot: Stores will be open from 8 a.m. to 6 p.m. Hours may vary by location. Find local hours here.Kroger: A majority of stores will operate during normal business hours. Find local hours here.Trader Joe’s: Stores will be open during regular business hours. Find local hours here.Walmart: Stores will be open during normal business hours. Find local hours here.Whole Foods: Stores are open until 6 p.m. Find local hours here.Stores Closed on Easter 2026Along with Costco, these retailers and grocers will be closed on April 5.AldiBest BuyBig YH-E-BKohl’sLowe’sMacy’sMarshall'sPublixSam’s ClubTargetTJ Maxx
+"""
+
+[R3] What are Costco’s holiday closures?
+(https://customerservice.costco.com/app/answers/detail/a_id/701/~/what-are-costcos-holiday-closures%3F)
+"""
+An offer to chat is available under the i frame titled Live Chat. Skip to Main Content Please consider our self-service options such as Price Match, Return/Replace Order, Membership Renewal, In-Home Delivery and Installation Service FAQs or Cancel Order. These convenient and time-saving options can be located via the icons below. Welcome to Costco Customer Service Search by Keyword My Orders Membership Auto-Renewal Return/Replace Order Price Match Cancel Order Verify Membership Update Account Info Edit Shipping Address In-Home Delivery FAQ Find a Warehouse Contact Us Previous My Orders Membership Auto-Renewal Return/Replace Order Price Match Cancel Order Verify Membership Update Account Info Change Shipping Address In-Home Delivery FAQ Find a Warehouse Next123 Customer Service Home Page You have been directed to this answer based on an ID match. Click here to see search results of this phrase. X What are Costco’s holiday closures? Document ID Document ID CU1597 Version Version 1.0 Status Status Published Published Date Published Date 08/28/2023 Title What are Costco’s holiday closures? Body Our U.S. warehouses are closed the following days: New Year’s Day Easter Sunday Memorial Day Independence Day Labor Day Thanksgiving Day Christmas Day Print Is this answer helpful? Submitting... Thank you for your feedback! There was an error with your submission. Please try again. Related Answers Does Costco offer free shopping passes? Ubio Labs 10,000mAh Slim Portable Power Banks Recall How can I see if an item sold on Costco.com is also available at my local Costco? Is Costco the same as Cosco? Does Costco offer free or discounted memberships? Contact Us
+"""
+
+[R4] Is Costco open or closed on Easter? Here's what to know
+(https://www.usatoday.com/story/grocery/stores/warehouse-clubs/2026/04/05/costco-open-closed-easter-2026/89453883007/)
+"""
+April 5, 2026, 12:01 a.m. ETEaster is here and shoppers needing to make a last-minute trip to the grocery store are in luck, as many grocery store chains will remain open on the holiday.Some restaurant chains and retailers will also remain open on Sunday, April 5, while banks, post offices, and shipping services will be closed.Costco will not be an option for shoppers on Easter Sunday this year, as the company's website says warehouses will be closed in observation of the holiday.Here's what to know about other retail and grocery store chains and whether or not they'll be open on Easter in 2026.What grocery stores are open and closed on Easter?Here's which grocery stores are open on Easter. Hours are listed for the companies that provided them.WalmartMost stores in the Kroger family of companies will be open on Sunday (Baker’s, City Market, Dillons, Food 4 Less, Foods Co, Fred Meyer, Fry’s, Gerbes, Jay C Food Store, King Soopers, Kroger, Mariano’s, Metro Market, Pay-Less Super Markets, Pick’n Save, QFC, Ralphs, Ruler, Smith’s Food and Drug).BJ's Wholesale ClubTrader Joe'sFood LionWhole FoodsSafewayWegmansMeijer; 6 a.m. to midnightHarris TeeterA majority of Albertson's banner stores will be open on Easter (Safeway, Albertsons, Jewel-Osco, ACME, Vons and Tom Thumb).LidlGiant Eagle; Stores will close at 4 p.m.Winn-DixieHere's which grocery stores are closed on Easter. Hours are listed for the companies that provided them.CostcoSam's ClubTargetAldiPublixWhat retail stores are open and closed on Easter?Stores listed below will be open on April 5. Hours are listed for the companies that provided them.Home Depot; 8 a.m. to 6 p.m.Ace HardwareSephoraBarnes & NobleBass Pro Shop; 10 a.m. to 7 p.m.Cabela's; 10 a.m. to 7 p.m.REI; Noon to 6 p.m.IKEA; Stores will close at 6 p.m.PetcoPetSmart; 11 a.m. to 6 p.m.Tractor Supply Company; 9 a.m. to 6 p.m.Stores listed below will be closed on Easter.TargetTJ MaxxMarshall'sHomeGoodsLowe'sMacy'sKohl'sVictoria's SecretBelkOffice DepotOfficeMaxGabe Hauari is a national trending news reporter at USA TODAY. You can follow him on X @GabeHauari or email him at Gdhauari@gannett.com.
+"""
+
+[R5] Are stores open on Easter Sunday 2026? Holiday hours for Walmart, Whole Foods, Costco, and more
+(https://www.fastcompany.com/91521470/are-stores-open-on-easter-sunday-2026-holiday-hours-for-walmart-whole-foods-costco-and-more)
+"""
+For billions of Christians around the world, Easter celebrates the resurrection of Jesus Christ. While this is not an official federal holiday, federal offices are already closed because it always falls on a Sunday. Many private businesses and retail chains also choose to close their doors on this day, so even if you don’t celebrate, you may be impacted by the festivities. Here’s a look at what is open and closed on Easter Sunday, which is today, April 5, 2026:Mail, schools, and the stock marketThere will be no mail delivery from the U.S. Postal Service (USPS), because it is not typically delivered on Sundays. The only exception is Priority Mail Express. Subscribe to the Daily newsletter.Fast Company's trending stories delivered to you every daySimilarly, most UPS and FedEx deliveries are halted. The exceptions are UPS Express Critical and FedEx Custom Critical. The shipping organizations’ physical locations are also closed or have modified hours.Schools are always closed on weekends and many are even on spring break. If you’re a stock market investor, the New York Stock Exchange (NYSE) and the Nasdaq will resume regular trading hours on Monday, April 6.Grocery store closuresEaster Sunday is not the ideal day to stock up on groceries, so plan ahead. Explore TopicscostcoholidaysRetailWalmart
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

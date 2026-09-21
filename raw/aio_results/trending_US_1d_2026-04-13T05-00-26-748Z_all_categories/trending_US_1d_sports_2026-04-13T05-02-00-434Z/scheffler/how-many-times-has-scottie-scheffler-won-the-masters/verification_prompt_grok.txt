@@ -1,0 +1,97 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "how many times has scottie scheffler won the masters"
+
+Claims:
+[1] "Scottie Scheffler has won the Masters Tournament twice."
+[2] "Scottie Scheffler secured the green jacket in 2022."
+[3] "Scottie Scheffler secured the green jacket in 2024."
+[4] "Scottie Scheffler finished runner-up in the Masters Tournament in 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- Scottie Scheffler makes Masters history despite falling short in final round: "MORE: Scottie Scheffler bashes reporter's,Irishman's second straight Masters win."
+- Rory McIlroy wins second straight Masters title over Scottie Scheffler: "World No. 1 and two,at the par-3 sixth."
+- Scottie Scheffler matches 84-year-old Masters record, but finishes runner-up: "Dhani Joseph,his seven-year Masters career."
+- Skipping with two-time Masters champion Scottie Scheffler ...: "Skipping with two-time Masters,2d󰞋󱟠"
+- Scottie Scheffler flirts with Masters course record in blazing third-round ...: "Scheffler won the Masters in,a favorite to win again."
+Reference Sources:
+
+[R1] Rory McIlroy wins second straight Masters title over Scottie Scheffler - Golf Channel
+(https://www.golfchannel.com/pga-tour/news/rory-mcilroy-wins-second-straight-masters-title-over-scottie-scheffler)
+"""
+0 seconds of 26 minutes, 40 secondsVolume 0% 'Nature of what's at stake': McIlroy on why Masters creates turbulence April 12, 2026 10:23 PM Rory McIlroy spoke to the media after repeating as champion at Augusta National. He said that the tournament has seen runaway winners over the years, but it always seems to be a very tight finish Sunday given what's at stake. Rory McIlroy overcame a slow start and a suspenseful finish Sunday to win his second consecutive Masters Tournament by one shot over Scottie Scheffler.“I just can’t believe I waited 17 years to get one green jacket, and I get two in a row,” McIlroy said after the win. “It’s just sort of the way -- I don’t know. I think all of my perseverance at this golf tournament over the years has really started to pay off. It was a tough weekend. I did the bulk of my work on Thursday and Friday. But just so, so happy to hang in there and get the job done.”McIlroy joined Jack Nicklaus (1965, ‘66), Nick Faldo, (1989, ’90) and Tiger Woods (2001, ’02) as the only players to successfully defend titles at Augusta National Golf Club.A year after completing the career Grand Slam, McIlroy shot 1-under 71 to finish at 12 under. In typical McIlroy fashion, the day included doses of brilliance and bewilderment. The latter was on display on the 72nd hole, where he needed only bogey to win and sliced his tee shot right of right on the par-4 18th. Hitting 8-iron off the pine straw form 179 yards, McIlroy’s second shot sailed over the trees and into the front greenside bunker. From a slightly buried lie, McIlroy blasted out to 12 feet from the hole. Two putts later, he was STILL the reigning Masters champion. McIlroy didn’t drop to his knees this year, but he again raised his arms in triumph and yelled to the heavens with exhaustion.“Good things come to those who wait maybe,” McIlroy said. “Just keep going. I find myself in a very similar position today to where I was in the last round last year, two or three behind, but I played solid golf after that.”It was McIlroy’s sixth major victory, tying him with Nick Faldo for the most by any European in the modern era.World No. 1 and two-time Masters champion Scheffler finished alone in second place at 11 under, courtesy a 65-68, bogey-free weekend. Tyrrell Hatton (66), Russell Henley (68), Justin Rose (70) and Cameron Young (73) tied for third at 10 under.Similarly to last year, when he won in a playoff over Rose, it wasn’t an easy glide into the green jacket.McIlroy blew a record six-stroke lead at the midway point and then fell two down early in the final round thanks to a three-putt double bogey (from 10 feet) at the par-3 fourth and a bogey at the par-3 sixth.Playing competitor and Players champion Young held the outright lead on the first nine but made three bogeys in a four-hole stretch around the turn. That’s where McIlroy found his footing.McIlroy laced a drive on the par-4 seventh and made birdie. He added another at the par-5 eighth. At that point, McIlroy had trimmed a two-shot deficit to Rose – who birdied Nos. 5, 7, 8 and 9 – to just one. Here’s a look at how the record $22.5 million prize money was distributed at the 2026 Masters Rose, a three-time Masters runner-up, came unraveled in a short stretch on the second nine. His approach went wide right at the par-4 11th and he made bogey. He then missed the green long and left on the par-3 12th and stubbed his chip shot for another bogey.That dropped Rose to 10 under, one back of McIlroy.McIlroy never again shared the top spot, let alone trailed.He stuffed his tee shot on the 12th to 7 feet — the closest by anyone in the field Sunday — and made birdie. He then birdied the par-5 13th to reach 13 under, three clear of second place.“I think the tee shot on 12 and then the tee shot on 13, just to give me the option to go for the green in two. I struggled with that tee shot all week. I was up in the pine straw there one too many times, and I made a really good committed swing off the 13th tee, and that enabled me to go for the green in two. To make a birdie there following the birdie on 12, that was massive,” McIlroy said.One of those knotted at 10 under was Scheffler, who ended an 11-hole stretch of pars with a birdie at the par-5 15th. He followed that with a birdie at the par-3 16th to get within two.Likely needing a Charl Schwartzel-like finish (birdies on the final four holes to win), Scheffler had 18 feet for birdie at the par-4 17th. With a distance and camera angle reminiscent to that of Jack Nicklaus’ famous putt 40 years ago, and with the patrons rising to their feet, Scheffler’s birdie effort died on the left edge. The par kept him two back. He parred the last to finish at 11 under. Rory McIlroy has become the fourth back-to-back winner in Masters history. Scheffler, who was 12 back entering the weekend, shot 65-68 over his final 36 holes with 11 birdies and no bogeys.For McIlroy, it was a matter of showing that kind of consistency coming home. He safely parred the 14th but nearly found the water fronting the par-5 15th on his third shot, reviving memories of his wedge shot into the 13th a year ago. But this ball stayed dry and McIlroy made par.His tee shot on the par-3 16th traveled long and into the shallow valley behind the green. Using putter for his second, he navigated the slopes to perfection, allowing for a tap-in par.Two holes to go ... two-shot lead ... for two-in-a-row.McIlroy missed the green right at the par-4 17th. He didn’t chip in like he did on Friday but, again, he nestled his third up nicely for an easy par.One hole.And what a hole it was. And what a win it was. And what a legend McIlroy is. Rory McIlroy collected his 30th career PGA Tour win at the Masters Tournament. Here’s all of his Tour titles.
+"""
+
+[R2] Scottie Scheffler matches 84-year-old Masters record, but finishes runner-up
+(https://www.augustachronicle.com/story/sports/pga/2026/04/12/scottie-scheffler-runner-up-at-the-2026-masters/89583452007/)
+"""
+April 12, 2026, 7:47 p.m. ETScottie Scheffler came up just short in his pursuit for a third green jacket.The 2022 and 2024 Masters champion went from even par at the end of cut day to 7 under going into the final round of play. Scheffler kept the momentum going on Sunday with a 4-under-par 68.But when it was all said and done, he finished one stroke behind Rory McIlroy for the Masters Tournament title. It marks Scheffler’s first runner-up in his seven-year Masters career.“The first two days I played what I felt was really solid on Thursday, and then Friday with the softer greens, that round really hurt, especially mistakes I made on the back nine,” Scheffler said. “But overall over the weekend I put up a good fight, did a lot of good stuff in order to give myself a chance and ultimately came up a couple shots short.”In his last two rounds of these Masters, the 29-year-old made some history, too. Not only was his score of 133 over the weekend a personal best for him, he also became the first player in the last 84 years to go bogey-free on the final 36 holes at the Masters.In that stretch he made nine birdies and an eagle. Three of those birdies came consecutively on Nos. 14, 15 and 16 on Sunday and were his final shots to take from par.Despite his historic weekend, the results could have been even better. Numerous putts were mere inches away from being birdies. If even half of those should-have-been birdies dropped, Scheffler may be walking away from the tournament with his third Masters win.Scheffler has now finished within the top five in his last five Masters appearances. Nothing to hang his head about going forward. And even though it was McIlroy’s day this Masters, Scheffler has shown that he isn’t going anywhere as far as contending for his next green jacket."Yeah, Rory won the last two Masters and I clipped some majors last year," he said. "So yeah, I mean, I think the major championships bring out the best in me sometimes, and I had some good starts last year and I obviously had a good week this week. There's a few shots I'd like to have back, but overall put up a good fight."
+"""
+
+[R3] Scottie Scheffler flirts with Masters course record in blazing third-round charge
+(https://www.nytimes.com/athletic/7188901/2026/04/11/scottie-scheffler-masters-course-record-score/)
+"""
+Amid Scottie Scheffler’s chase for his third Masters win, the golfer flirted with another feat in the third round Saturday.Scheffler shot a 7-under 65, falling just two strokes short of the course record set by Nick Price (1986) and Greg Norman (1996) at Augusta National. The round tied tournament leader Rory McIlroy for the best round at Augusta so far this year.Scheffler had a rough second round, shooting a 2-over 74 on Friday, but bounced back to surge up the leaderboard Saturday with a blazing start. He eagled the par-5 second hole and proceeded to make par on the next four holes. The 29-year-old then finished the front nine with three straight birdies to jump into the top five and make the turn at 31.Scheffler birdied again on the par-4 11th hole but began to lose momentum as he continued with the back nine. His approach on the par-5 15th sailed long, and a subsequent birdie putt from just off the green rolled within a few inches of the cup, forcing him to settle for par. A birdie on the par-3 16th followed to put the course record within reach once again, but Scheffler’s magic ran out after that with a pair of pars to close out the round. Scheffler said he thought he was “really, really close” to an even better round.“It wasn’t maybe that bad,” he said, “but it definitely could have been lower. But like I said, I did what I needed to do. Went out and executed to give myself some opportunities, and more of that tomorrow, and I think I’ll be in a good spot.”He said starting the round earlier in the day was to his advantage.“Today definitely going out early, I was able to get some softer bounces,” he said. “… By the time we got to 10, it started to firm up, and I would imagine they would continue to get firmer as the day goes on, because the sun is out, and there’s not too much wind.”Scheffler won the Masters in 2022 and 2024 and entered this year’s tournament as a favorite to win again. However, McIlroy, the reigning champion, has been tough to keep up with after the Irishman shot a 5-under 67 on Thursday and a 7-under 65 with nine birdies Friday.Scheffler’s best round before Saturday was a 66 in 2024, and his previous best third round was a 71, which he has shot four times. Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R4] Scottie Scheffler makes Masters history despite falling short in final round
+(https://sports.yahoo.com/articles/scottie-scheffler-makes-masters-history-233954516.html)
+"""
+Rory McIlroy is the big winner of the weekend at Augusta National, but Scottie Scheffler still managed to make Masters history with his surreal performance.The world number one golfer fell just short of capturing another green jacket during the 2026 Masters. However, Scheffler can take some solace knowing that his Augusta showing puts him in rare company.AdvertisementMORE: Rory McIlroy joins rare company with back-to-back Masters titlesScheffler finished this year’s Masters without bogeying a single hole during all four rounds. That marks the first time since 1942 that a professional golfer has gone 72 holes without shooting above par on a hole.McIlroy finishes the 2026 Masters with a 12-under par victory after narrowly escaping the final hole of the tournament with a bogey. However, Scheffler’s incredible weekend of mistake-free golf still deserves major plaudits.Scheffler shows incredible fortitude at the MastersIn fact, it’s been 84 years since a player finished all four rounds without a single bogey. The world number one nearly mounted an epic comeback to win his third green jacket during his young career.AdvertisementScheffler’s amazing third round at Augusta featured a 7-under par round on Saturday. That even led to an odd question from a reporter irking Scheffler after he put up a massively impressive score.MORE: Scottie Scheffler bashes reporter’s ‘terrible question’ after stellar Masters roundOver the past five years, Scheffler has managed to win twice at Augusta during the 2022 and 2024 PGA Tour seasons. However, the 29-year-old is still looking to complete golf’s Career Grand Slam by winning the U.S. Open.Scheffler is quickly becoming one of the biggest names in golf history with his four major championships and consistent play on a week-to-week basis.AdvertisementMeanwhile, his ongoing battle with McIlroy to claim the top spot as the best golfer on the PGA Tour is going to reach new heights following the Northern Irishman’s second straight Masters win.McIlroy and Scheffler are expected to go head-to-head again in May during the PGA Championship. Scheffler won last year’s tournament and aims to win his fifth major when the event heads to Aronimink Golf Club.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

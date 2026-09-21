@@ -1,0 +1,333 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "us map"
+
+Claims:
+[1] "The United States has 50 states."
+[2] "The United States has a federal district."
+[3] "The United States has several territories."
+[4] "The United States has Atlantic coastal plains."
+[5] "The United States has the Rocky Mountains."
+[6] "USGS National Map provides 3D viewers."
+[7] "USGS National Map provides topographic maps (US Topo)."
+[8] "Geology.com Map & Satellite Image features clickable, political, and physical maps."
+[9] "Geology.com Map & Satellite Image features satellite images of major cities."
+[10] "NOAA Physical Sciences Lab offers a clickable map for accessing climate data by state."
+[11] "Bureau of Land Management (BLM) Maps provides interactive maps for public land recreation and resources."
+[12] "U.S. regions are generally divided into Northeast, Southeast, Midwest, Southwest, and West."
+[13] "U.S. territories include Puerto Rico, Guam, U.S. Virgin Islands, American Samoa, and Northern Mariana Islands."
+[14] "The U.S. capital is Washington, D.C."
+[15] "Washington, D.C. is located between Maryland and Virginia."
+
+Cited text snippets from the AI Overview (for additional context):
+- Clickable Map of US States - Physical Sciences Laboratory - NOAA: "Clickable Map of US States: NOAA Physical Sciences Laboratory."
+- General Reference Printable Map | U.S. Geological Survey - USGS.gov: "Detailed Description. The National Atlas offers hundreds,or in the classroom at no cost."
+- United States Map and Satellite Image - Geology.com: "United States Cities: Albany, Anchorage, Annapolis, Atlanta,,Tacoma, Tallahassee, Topeka, Trenton, and Washington D.C."
+- United States of America Map 🗺️ | Learn All 50 States with Capitals ...: "The video aims to teach viewers all,presented in a fun and educational manner."
+- US Blank Maps US Black and White Maps US Political Maps United States Color Maps United States Geography Maps of the United States: "May include: A set of printable United,West. The maps are black and white."
+- Regions Of The United States | PPT: "The regions covered are the Northeast, Southeast,,or cultural characteristics that define each area."
+- File:Blank map of the United States.PNG: "This map was created using this map:,Virgin Islands, and the Northern Mariana Islands."
+Reference Sources:
+
+[R1] USA Road Trip Planner
+(https://www.authentikusa.com/us-en/faq/map/road-map-usa)
+"""
+Discover our true nature! Follow us We are based in America 7680 St-Hubert street Montreal, Quebec H2R 2N6 - Canada contact-us About us Who are we? Our team Authentik Blog Careers Terms of sale Affiliate program FREE travel guide Download our travel guides written by local experts. Authentik Canada Plan your road trip in Canada. Insights from the locals Just like 127 771 travellers, subscribe to the Authentik newsletter and receive monthly advice from our local experts to help you plan your perfect road trip here in the USA. Privacy Policy Terms of Use Site Map © 2002-2026 Authentik USA. All rights reserved. Reproduction is strictly prohibited.
+"""
+
+[R2] General Reference Printable Map | U.S. Geological Survey
+(https://www.usgs.gov/media/images/general-reference-printable-map)
+"""
+Skip to main content Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock () or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites. General Reference Printable Map By Communications and Publishing Original Detailed Description The National Atlas offers hundreds of page-size, printable maps that can be downloaded at home, at the office, or in the classroom at no cost. Sources/Usage Public Domain. Photographer National Atlas U.S. Geological Survey Email atlasmail@usgs.gov Explore Search Information SystemsMaps and MappingMappingmapsUSGSNationalAtlasboundariesclimatepeopleenvironmentgovernmentUnited States of AmericaCommunications and PublishingView All Was this page helpful? A red asterisk (*) indicates a required field. Success Thank you. Your feedback has been received. Error alert message Was this page helpful? Was this page helpful? * Thumbs-up Thumbs-up Thumbs-down Thumbs-down What made the difference today? Select all that apply Easy to navigate Easy to understand Found what I needed Found what I needed quickly Found something useful I wasn't looking for Humanity and equity Employee helpfulness What could have been better? Select all that apply Hard to navigate Hard to understand Couldn't find what I need Took a long time to find what I needed Humanity and equity Employee helpfulness Other Enter other text Anything else you want to tell us? Submit Submissions are anonymous, and your feedback will be used to help improve the USGS.gov site. Feedback can also be provided by visiting answers.usgs.gov.
+"""
+
+[R3] The National Map
+(https://www.usgs.gov/programs/national-geospatial-program/national-map)
+"""
+Explore Our Topography As a cornerstone of the U.S. Geological Survey's National Geospatial Program (NGP), The National Map (TNM) is a collaborative effort among the USGS and governmental, academic, non-profit, and industry partners to improve and deliver topographic information for the Nation. The National MapApplications and Maps | Topographic Data | Learn MoreThe National Map is a suite of products, services, and applications that provide access to base geospatial information representing the topography, natural landscape, and built environment of the United States and its territories.The National Map supports digital and print versions of topographic maps, data download, web map services, and online viewing of maps and data. Government, industry, academia, as well as the general public, can use the geospatial data and maps to enhance their recreational experience, make life-saving decisions, support scientific missions, and for countless other activities. The National Geospatial Program and its partners acquire and integrate authoritative geospatial data from a variety of sources and makes the resulting nationally consistent geospatial data layers available to all through The National Map. The National Map also serves as the data source for cartographic products, such as US Topo and OnDemand Topo maps, and provides access to digital historical topographic maps. National Map product and service implementation is supported by USGS' National Geospatial Technical Operations Center and Earth Resources Observation and Science (EROS) Center, which comprise the National Geospatial Directorate. National Map Applications and MapsThe National Map is easily accessible through online applications and viewers, web services, topographic maps, and as downloadable data. National Map DataGeospatial data available as a part of The National Map includes: Foundational topographic information layers - elevation, hydrography, & geographic namesCurated layers of the built environment - structures, transportation, & boundariesSurface data layers - land cover & orthoimagery Learn MoreExplore how the National Geospatial Program helps outreach, improve, and apply National Map products and services to support the needs of the Nation.
+"""
+
+[R4] CU R R ICULU M GU IDE
+(https://www.teachingbooks.net/media/pdf/BlueSlip/50States_Guide_FINAL.pdf)
+"""
+CU R R ICULU M GU IDE
+ 50 STATES
+ Our America
+ISBN 978-1-68330-006-9 hardcover
+ Through the pages of TIME For Kids 50 States:
+ Our America students can travel to all fifty
+ states—from Alabama to Wyoming—to discover
+ the history, geography, and culture that make
+ each one great. With more than 100 kid-friendly
+
+ISBN 978-1-68330-754-9 paperback
+ maps by illustrator Aaron Meshon, full-color
+ photographs, and fun facts galore, this state-by-
+ state guide is perfect for exploring students’ home
+ states, uncovering new places, and digging into
+ the history of the United States of America.
+
+ Ready for a road trip? Get the scoop on the nifty fifty from north to south and coast to coast!
+
+ Key features of TIME For Kids 50 States: Our America include:
+ ★ Alphabetical organization for easy state-by-state look up
+ ★ Overview of U.S. territories and commonwealths
+ ★ Fact boxes for each state with state capital, admission to Union dates,
+ state nickname, population, land area, and more
+ ★ History of the tribal nations in each region
+ ★ Complete index
+
+ © 2017 Time Inc. Books. TIME FOR KIDS is a trademark of Time Inc. All rights reserved.
+
+ The Common Core State Standards addressed by the activities in this guide are noted throughout. For more
+ information on the Common Core, visit corestandards.org.
+Activities for Students
+Name Those States
+Test your state knowledge before delving into TIME For Kids 50 States: Our
+America. On a blank map of the United States of America, write the names
+of the states you know in one color. After that task is completed, study the
+map on pages 12–13 in TIME For Kids 50 States: Our America and check your answers. How
+many states did you identify correctly? Locate the names of the states you left blank and label
+them on your map with a different colored pencil. Repeat this exercise after reading the book
+and see if your score improves!
+CCSS.ELA-LITERACY.RI.3.7
+
+A Timeline of Statehood
+Our country did not start with fifty states. It grew in size over many years. Look at the fact
+box on each state’s page to locate when the state became part of our country. Make a list of
+the states and the date that each was admitted to the Union. Create a timeline to show the
+progression of states joining the Union, from the first to the fiftieth. How long did it take for
+our country to become the size it is today?
+CCSS.ELA-LITERACY.RI.2.1; CCSS.ELA-LITERACY.RI.3.1;
+CCSS.ELA-LITERACY.RI.4.1; CCSS.ELA-LITERACY.RI.5.1
+
+Our Nation’s Capital
+The United States of America is not only made up of states. Our country includes a federal
+district and several U.S. territories, commonwealths, and possessions. Our national capital
+is located in one of these unique areas of America. Read pages 64–65 to find out more
+about Washington, D.C. Use the details you read to create an informative paragraph about
+Washington, D.C. Your topic sentence could be, “Washington, D.C. is different in many ways
+from the states that make up our country.”
+CCSS.ELA-LITERACY.W.2.2; CCSS.ELA-LITERACY.W.3.2;
+CCSS.ELA-LITERACY.W.4.2; CCSS.ELA-LITERACY.W.5.2
+
+The activities in this guide were created by Leigh Courtney, Ph.D. She teaches in the Global Education program
+at a public elementary school in San Diego, California. She holds both master’s and doctoral degrees in education,
+with an emphasis on curriculum and instruction.
+
+TIME For Kids 50 STATES: OUR AMERICA Curriculum Guide
+Copyright © 2017 by Time Inc Books. Illustrations copyright © 2017 by Aaron Meshon. All rights reserved. This page may be photocopied for free distribution.
+Activities for Students
+State, Sweet State
+In the book, locate the state in which you live and read about its history and what makes it
+unique. Use this information to create a brochure welcoming visitors to your state. Think
+of how you can use both text and illustrations to persuade
+tourists to come to your home state.
+CCSS.ELA-LITERACY.W.2.1; CCSS.ELA-LITERACY.W.3.1;
+CCSS.ELA-LITERACY.W.4.1; CCSS.ELA-LITERACY.W.5.1
+
+Compare and Contrast
+TIME For Kids 50 States: Our America presents information about all of the states that make up
+our country. It also has sections on each region of the United States, including the Northeast,
+the South, the Midwest, the West, and the Pacific states. Choose one state from one region
+and another state from a different region. Read closely about your two selected states. Write
+a paragraph comparing what is similar and what is different about the two states you chose.
+CCSS.ELA-LITERACY.RI.2.9; CCSS.ELA-LITERACY.W.2.2; CCSS.ELA-LITERACY.W.3.2;
+CCSS.ELA-LITERACY.W.4.2; CCSS.ELA-LITERACY.W.5.2
+
+Native Peoples
+Long before settlers explored, colonized, and grew what became the United States of
+America, there were indigenous people who called this land home. American Indians played
+a key role in the development of the United States. Choose a tribal group from the state
+where you reside. Research how this tribe lived and interacted with others who explored,
+colonized, and settled in your home state. Organize your information into a poster report
+that includes the name of the tribe, a map of where they lived, facts about their daily life
+and how they interacted with their environment, and a description
+of what types of interactions they had with settlers.
+CCSS.ELA-LITERACY.W.2.7; CCSS.ELA-LITERACY.W.3.7;
+CCSS.ELA-LITERACY.W.4.7; CCSS.ELA-LITERACY.W.5.7
+
+Scavenger Hunt Answer Key 1. Page 63; 2. the Pelican State; 3. Idaho; 4. Hawaii; 5. meat for food; pelts for clothing and homes;
+6. White oak; 7. Scissor-tailed flycatcher; 8. Pages 8–9, 59; 9. Washington, D.C.; U.S. Territories and Commonwealths; 10. Alabama,
+Alaska, Arizona, Arkansas; 11. 5,771,300; 12. Saint Paul; 13. Can enter and leave the U.S. without restrictions; 14. Michigan, Indiana,
+Kentucky, West Virginia, Pennsylvania; 15. Washington, Oregon, California, Hawaii, and Alaska; 16. December 29, 1845; 17. NE;
+18. Brunswick, Augusta, Bangor, and Allagash; 19. North Carolina; 20. the Taino Indians
+
+TIME For Kids 50 STATES: OUR AMERICA Curriculum Guide
+Copyright © 2017 by Time Inc Books. Illustrations copyright © 2017 by Aaron Meshon. All rights reserved. This page may be photocopied for free distribution.
+A Scavenger Hunt through TIME For Kids
+50 States: Our America
+ 1. Using the index, on which page could you find information about Yellowstone
+ National Park?
+
+ 2. What is Louisiana’s nickname?
+ 3. Which state in the west was admitted to the Union on July 3, 1890 and became the 43rd state?
+ 4. Which of our states is known by its nickname, the Aloha State?
+ 5. List two facts about how the Sioux people used buffalo as a key part of their life.
+ 6. What is the state tree of Connecticut?
+ 7. What is the state bird of Oklahoma?
+ 8. Using the index, on which pages could you find information about the Jamestown settlement?
+ 9. Using the table of contents, list two topics that are covered in the section about Other U.S. Lands.
+10. Using the table of contents, list the state names that begin with the letter “A.”
+11. What is the population of the state of Wisconsin?
+12. What is the state capital of Minnesota?
+13. Read about American Samoa on page 66. Even though Samoans are not
+ American citizens, what are they allowed to do?
+
+14. Looking at the map on pages 12–13, what five states border Ohio?
+15. Find the section on the Pacific states. What five states comprise this area of the United States?
+16. When was Texas, also known as the Lone Star State, admitted to the Union?
+17. What is the postal abbreviation for Nebraska?
+18. List four cities in the state of Maine.
+19. Use the table of contents to find which state is described on page 46.
+20. Read about Puerto Rico on page 68. Who were Puerto Rico’s first inhabitants?
+
+CCSS.ELA-LITERACY.RI.2.1; CCSS.ELA-LITERACY.RI.2.5; CCSS.ELA-LITERACY.RI.3.1;
+CCSS.ELA-LITERACY.RI.3.7; CCSS.ELA-LITERACY.RI.4.1; CCSS.ELA-LITERACY.RI.5.1
+
+TIME For Kids 50 STATES: OUR AMERICA Curriculum Guide
+Copyright © 2017 by Time Inc Books. Illustrations copyright © 2017 by Aaron Meshon. All rights reserved. This page may be photocopied for free distribution.
+EXPLORE THE NIFT Y FIFT Y FROM COAST TO COAST.
+ WASHINGTON
+ NEW HAMPSHIRE
+ MAINE
+ OREGON NORTH VERMONT
+ MONTANA
+ DAKOTA
+ MINNESOTA
+ WISCONSIN TS
+ CH USET
+ MASSA
+ NEW YORK
+ IDAHO SOUTH DAKOTA
+ WYOMING
+ NEVADA RHODE ISLAND
+ MICHIGAN
+ NEBRASKA CONNECTICUT
+ PENNSYLVANIA
+ INDIANA OHIO
+ IOWA NEW JERSEY
+ DELAWARE
+ COLORADO ILLINOIS
+ CALIFORNIA
+ WEST MARYLAND
+ KANSAS
+ UTAH VIRGINIA VIRGINIA
+ KENTUCKY
+ MISSOURI
+ OKLAHOMA NORTH CAROLINA
+ TENNESSEE
+ © 2017 Time Inc. Books. TIME FOR KIDS is a trademark of Time Inc. All rights reserved.
+
+ SOUTH
+ CAROLINA
+ ARIZONA ARKANSAS GEORGIA
+ SI PPI
+ M ISSIS
+ NEW MEXICO
+ ALABAMA
+ TEXAS
+ FLORIDA
+ LOUISIANA
+ ALASKA
+HAWAII
+ 50 STATES: Our America By the Editors of TIME For Kids Illustrations by Aaron Meshon
+"""
+
+[R5] Topographic Maps
+(https://www.usgs.gov/programs/national-geospatial-program/topographic-maps)
+"""
+topoBuilder Topographic maps became a signature product of the USGS because the public found them - then and now - to be a critical and versatile tool for viewing the nation's vast landscape. Current US Topos and historical topographic maps are available as digital files or printed to order. Build a USGS topographic map with choice of format, area of interest, scale, and National Map content. The National Geospatial Program publishes a variety of geospatial data products and services via The National Map. A Brief Overview of USGS Topographic Maps USGS topographic maps fall into three primary product categories:1. The Historical Topographic Map Collection (HTMC) is the set of scanned images of USGS topographic quadrangle maps originally published as paper documents in the period 1884-2006. Visit Historical Topographic Maps - Preserving the Past for more information.2. US Topo is the current USGS topographic map series for the Nation. These are modeled on the legacy 7.5-minute maps, but are mass-produced from GIS databases of The National Map and published as digital documents. Please visit US Topo: Maps for America for full details.3. OnDemand Topos are USGS-style topographic maps created using the topoBuilder application. These maps are generated upon request using the best available data from The National Map and offer customizations such as choice of format, area of interest, and National Map content. Learn more at the topoBuilder landing page. Additional Resources Building on the success of more than 130 years of USGS topographic mapping, the US Topo series is the current generation of maps of the American landscape. Learn More topoBuilder topoBuilder The newest USGS topo map web app gives the public the opportunity to create custom topographic maps on demand. The online application is called topoBuilder and the output maps are known as OnDemand Topos. The newest USGS topo map web app gives the public the opportunity to create custom topographic maps on demand. The online application is called topoBuilder and the output maps are known as OnDemand Topos. Learn More The goal of The National Map’s Historical Topographic Map Collection (HTMC) is to provide a digital repository of USGS 1:250,000 scale and larger maps printed between 1884 and 2006. Learn More
+"""
+
+[R6] Maps | Bureau of Land Management
+(https://www.blm.gov/maps)
+"""
+Skip to main navigation Skip to main content Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( LockA locked padlock ) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Twitter YouTube Facebook Instagram Flickr LinkedIn Maps From the White Mountains in Alaska to the Jupiter Inlet Lighthouse in Florida, map and geospatial products inform our management decisions. A growing selection of those maps are available for your public lands adventures and business. Explore BLM lands with the National Data map viewer(link is external): Other featured map products: BLM Recreation Opportunities Interactive Map Georeferenced PDF Maps BLM's Web App Gallery Frequently requested maps BLM Geospatial Program BLM Geospatial Business Platform Hub(link is external) Search our downloadable map list below for more resources State - Any - National Office -Alaska -Arizona -California -Colorado -Eastern States -Idaho -Montana-Dakotas -Nevada -New Mexico -Oregon-Washington -Utah -Wyoming -Fire Center - Any - Search 2026 Coos Bay DOOregon - East Shore Campground Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Park Creek Campground Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Fawn Creek Campground Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Devil’s Staircase Wilderness Map (Georeferenced)(link is external) Oregon-WashingtonOregon - North Spit of Coos Bay Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Smith River Falls Campground Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Sixes River Campground Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Loon Lake Recreation Area Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Edson Creek Recreation Site Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Hinsdale Garden Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Doerner Fir Trail Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Dean Creek Elk Viewing Area Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Bastendorff Beach Map (Georeferenced)(link is external) Oregon-WashingtonOregon - New River Area of Critical Environmental Concern Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Blue Ridge Trail System Map (Georeferenced)(link is external) ArizonaBlack Canyon National Recreation Trail Handout(link is external) Oregon-WashingtonOregon - Wildwood Recreation Site Map (Georeferenced)(link is external) Oregon-WashingtonOregon - Virtue Flat Off-Highway Vehicle Area Map (Georeferenced)(link is external) Socorro FOJohnson (Gordy's) Hill Trails(link is external) Oregon-WashingtonOregon - North Umpqua Wild and Scenic River Map (Georeferenced)(link is external) Oregon-WashingtonWashington - Point Colville Map (Georeferenced)(link is external) Oregon-WashingtonWashington - Iceberg Point Map (Georeferenced)(link is external) Oregon-WashingtonWashington - Cattle Point Map (Georeferenced)(link is external) Oregon-WashingtonWashington - Turn Point Map (Georeferenced)(link is external) Oregon-WashingtonWashington - Patos Island Map (Georeferenced)(link is external) Oregon-WashingtonWashington - Blind Island Map (Georeferenced)(link is external) Success Thank you. Your feedback has been received. Error alert message Was this page helpful? Yes No How could we improve this page? 500 characters allowed Submit Privacy Notice
+"""
+
+[R7] Key Physical Features of the USA: Location, Climate & Resources
+(https://www.iasgyan.in/daily-current-affairs/united-states-of-america-usa)
+"""
+🔔Join APTI PLUS Prelims Mirror 2026 | All India Open Mock Test Series on 12th April, 26th April & 3rd May 2026 |Register Now! UNITED STATES OF AMERICA (USA) Description Disclaimer: Copyright infringement not intended. Context: Donald Trump has reclaimed the US presidency after a four-year absence, signalling a return to his approach of prioritising US interests and assessing alliances based on the strength and alignment of other nations. Location Located in North America, bordered by Canada (north), Mexico (south), Atlantic Ocean (east), Pacific Ocean (west). Area The third-largest country by total area in the world. Major Physical Regions 1. Appalachian Highlands (East) – Old mountains, rich in natural resources. 2. Central Plains – Agricultural heartland of the USA 3. Rocky Mountains (West) – High peaks, home to several national parks 4. Great Basin – Arid region, including the Mojave Desert and other dry areas 5. Pacific Coast – Coastal plains and mountains along the Pacific Ocean Rivers Major rivers: Mississippi, Missouri, Colorado, Ohio, Columbia, and Rio Grande. Climate 1. Tropical in Florida and southern territories. 2. Temperate in most parts. 3. Arctic/Subarctic in Alaska 4. Desert and Semi-arid in the West (e.g., Arizona, Nevada). Mountains 1. Appalachian Mountains – Old, eroded mountains in the east. 2. Rocky Mountains – Major mountain range in the west, highest point: Mount Elbert. Coastal Features Atlantic Coast (longer and with sandy beaches), Pacific Coast (rocky with cliffs and fjords in places). Natural Resources Rich in minerals, forests, water, oil, coal, natural gas, and fertile soil. States and Capitals 50 states with Washington, D.C. as the federal capital. Major states: California, Texas, New York, Florida, and Illinois. Islands and Territories 1. Hawaii – An archipelago in the Pacific. 2. Alaska – Located in the extreme northwest of North America, bordering the Arctic and Pacific Oceans. 3. Puerto Rico, Guam, and American Samoa – US territories. Land Use Major land uses: agriculture (Midwest), forestry (Pacific Northwest), industry (Northeast, Great Lakes), and services (Southern and Western states). Source: Hinduatantimes PRACTICE QUESTION Q.Consider the following: Mountains State Mount McKinley Colorado Mount Whitney Alaska Mount Rainier California How many of the above-given information is correctly matched? (a) Only One (b) Only Two (c) All Three (d) None Answer: (d) Explanation: Pair 1 is incorrect: Mount McKinley, also known as Denali, is located in south-central Alaska. Pair 2 is incorrect: Mount Whitney is in the Sierra Nevada range in eastern California, on the border of Inyo and Tulare counties. It's located at the eastern edge of Sequoia National Park, west of Lone Pine. Pair 3 is incorrect: Mount Rainier is the highest mountain in the Washington state of the United States located in southeast Pierce County and northeast Lewis County in Washington state. Related Articles Let's Get In Touch! Free access to e-paper and WhatsApp updates Let's Get In Touch! © 2026 iasgyan. All right reserved
+"""
+
+[R8] File:Blank map of the United States.PNG - Wikimedia Commons
+(https://commons.wikimedia.org/wiki/File:Blank_map_of_the_United_States.PNG)
+"""
+Jump to content From Wikimedia Commons, the free media repository File File history File usage on Commons File usage on other wikisSize of this preview: 800 × 520 pixels. Other resolutions: 320 × 208 pixels | 640 × 416 pixels | 1,024 × 665 pixels | 1,513 × 983 pixels. Original file (1,513 × 983 pixels, file size: 80 KB, MIME type: image/png) Open in Media ViewerFile informationStructured dataCaptions Captions Edit English Add a one-line explanation of what this file represents This file has been superseded by Blank map of the U.S. with territories.svg. It is recommended to use the other file. Please note that deleting superseded images requires consensus. Reason to use the other file: "A vector version is available." Summary[edit] This map was created using this map: Map of USA with county outlines. It shows the 50 states as well as Puerto Rico, American Samoa, Guam, the United States Virgin Islands, and the Northern Mariana Islands. Licensing[edit] This work is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or any later version. This work is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. See version 2 and version 3 of the GNU General Public License for more details.http://www.gnu.org/licenses/gpl.htmlGPLGNU General Public Licensetruetrue derivative works[edit] Derivative works of this file: MWC2012.png San Francisco Fed map.png WAC2012.png File history Click on a date/time to view the file as it appeared at that time. Date/TimeThumbnailDimensionsUserComment current04:29, 4 July 20061,513 × 983 (80 KB)Zntrip (talk | contribs)This map was created using this map: [http://en.wikipedia.org/wiki/Image:Map_of_USA_with_county_outlines.png Map of USA with county outlines]. It shows the 50 states as well as Puerto Rico, American Samoa, Guam, the United States Virgin Islands, and the N You cannot overwrite this file.File usage on Commons The following 6 pages use this file: National symbols of the United States of America File:MWC2012.png File:Polandball USA.png File:San Francisco Fed map.png File:United States Administrative Divisions.png File:WAC2012.png File usage on other wikis The following other wikis use this file: Usage on en.wikipedia.org American National Rugby League User:Ryanx7/sandbox/rafting Farmers' suicides in the United States Structured dataStructured data labels link to their respective Wikidata pages and will open in a new window.Dismiss Items portrayed in this file depicts Edit from Wikidata Custom valueSome valueNo valueCustom valueCustom valueSome valueNo value copyright status Edit copyrighted Mark as prominent copyright license Edit GNU General Public License, version 2.0 or later Mark as prominent GNU General Public License Mark as prominent media type Edit image/png Mark as prominent checksum Edit eb59198a1776edce63276c7f6f7499a9837e2c52 Mark as prominent determination method or standard : SHA-1 data size Edit 81,844 byte Mark as prominent height Edit 983 pixel Mark as prominent width Edit 1,513 pixel Mark as prominent Add statement Retrieved from "https://commons.wikimedia.org/w/index.php?title=File:Blank_map_of_the_United_States.PNG&oldid=994853019" Category: Blank maps of the United StatesHidden categories: Superseded by SVGGPLFiles with derivative versionsMedia missing infobox templateFiles with no machine-readable authorFiles with no machine-readable source Search Search File:Blank map of the United States.PNG Add topic Cancel Edit Delete Preview revert Text of the note (may include Wiki markup) Could not save your note (edit conflict or other problem). Please copy the text in the edit box below and insert it manually by editing this page. Upon submitting the note will be published multi-licensed under the terms of the CC BY-SA 4.0 license and of the GFDL (unversioned, with no invariant sections, front-cover texts, or back-cover texts). See our terms of use for more details. Add a note Draw a rectangle onto the image above (press the left mouse button, then drag and release). This file has annotations. Move the mouse pointer over the image to see them. To edit the notes, visit page X. Why do you want to remove this note? Save Help about image annotations To modify annotations, your browser needs to have the XMLHttpRequest object. Your browser does not have this object or does not allow it to be used (in Internet Explorer, it may be in a switched off ActiveX component), and thus you cannot modify annotations. We're sorry for the inconvenience. [[MediaWiki talk:Gadget-ImageAnnotator.js|Adding image note]]$1 [[MediaWiki talk:Gadget-ImageAnnotator.js|Changing image note]]$1 [[MediaWiki talk:Gadget-ImageAnnotator.js|Removing image note]]$1
+"""
+
+[R9] US Blank Maps US Black and White Maps US Political Maps United States Color Maps United States Geography Maps of the United States - Etsy
+(https://www.etsy.com/listing/1860475663/us-blank-maps-us-black-and-white-maps-us)
+"""
+Homepage Toys & Games Toys Learning & School Add to Favorites Report this item to Etsy Price:$3.55 Loading US Blank Maps US Black and White Maps US Political Maps United States Color Maps United States Geography Maps of the United States ProfeRecursos Star Seller Star Sellers have an outstanding track record for providing a great customer experience—they consistently earned 5-star reviews, shipped orders on time, and replied quickly to any messages they received. 5 out of 5 stars 4 payments at 0% interest with Klarna Check purchase power You can only make an offer when buying a single item Add to cart Loading Star Seller. This seller consistently earned 5-star reviews, shipped on time, and replied quickly to any messages they received. Item details Highlights Designed by ProfeRecursos Digital download Digital file type(s): 2 PDF Text in this download may be in another language Translated by Google See in original language Translate to English Sorry, we could not translate this listing to English. COLOR MAPS, BLANK MAPS AND B&W MAPSThis educational resource includes full-color maps, black-and-white maps, and blank maps, all designed to make learning U.S. geography engaging and effective. It offers various options to suit your needs, whether you're focusing on the five regions of the United States, individual states, or a combination of both.Additionally, the blank maps come with activities like coloring and labeling the names of the states, allowing students to actively participate and reinforce their learning.This pack includes:- Color map of U.S. regions.- Color map with U.S. regions clearly separated.- Color map with regions and labeled states.- Color map with clearly separated regions and labeled states.- Black-and-white map with labeled regions and states.- Black-and-white map of regions only.- Blank map of the United States.- Black-and-white map of the states only.- Black-and-white map with numbered states and a corresponding state list.- Blank map with numbered states and a blank list for students to complete. Learn more about this item Delivery Instant Download Your files will be available to download once payment is confirmed. Here's how. Instant download items don’t accept returns, exchanges or cancellations. Please contact the seller about any problems with your order. Did you know? Etsy Purchase Protection Shop confidently on Etsy knowing if something goes wrong with an order, we've got your back for all eligible purchases — see program terms Meet your seller Ari Owner of ProfeRecursos Following Follow shop Message Ari This seller usually responds within 24 hours. Be the first to review this item No reviews yet. See what customers say about other items from this shop. Read reviews for other items Ari Ari ProfeRecursos · Madrid, Spain We calculate this number using a recency-weighted average of all ratings, with a rating's value decreasing by half each year to best reflect the current experience. 4.9 (184) · 4.6k sales · 2.5 years on Etsy Following Follow shop Message seller Typically responds within 24 hours Following Follow shop Message seller Typically responds within 24 hours Speedy replies Has a history of replying to messages quickly. Rave reviews Average review rating is 4.8 or higher. All reviews from this shop (184)Show allI love it and so did my studnets!ShevyApr 19, 2026Purchased: Bee Life Cycle Learning Activity for Kids | Foldable Craft Activity | Life Cycle of a Bee | Insects Life Cycles | Bee Paper Craft TemplateOpens a new tabGood quality pictures. Would recommendelaineApr 17, 2026Purchased: Feelings & Emotions Flashcards | Autism Cards Special Education | 3-PART cards | Montessori Emotions CardsOpens a new tabLovely project one pagers. Was very pleased with the quality of images and questions asked.MarishaApr 13, 2026Purchased: Women's History Month Activity Research Project | Worksheets | Famous Women in History | Feminism Activities | Women's Day ActivityOpens a new tabThis will work for my special education students.CatherineApr 11, 2026Purchased: Water Cycle 3D Craft Activity | Science Craft ActivityOpens a new tabMy kids in school loved it!BellaApr 8, 2026Purchased: Circulatory System 3D Craft | Human Body Science Activity | Printable Anatomy Project | Hands-On Learning for KidsOpens a new tabthis was so easy to do with my ASD students - this turned out so great.CatherineApr 5, 2026Purchased: Easter Bunny Name Craft Activity | Easter & Spring Bulletin Board Ideas Craft ActivityOpens a new tabWhy are these reviews shown?All reviews are from verified buyers. Reviews are shown automatically based on factors like recency, whether they include comments, your chosen language, and whether the rating reflects the typical experience with the shop. More from this shop Visit shop Digital download Blank map of Europe | B&W Europe Map | Outlines Blank Map of Europe $1.83 Add to cart Loading Add to Favorites Digital download Human Anatomy Coloring Pages | Human Body Organs For Kids $2.32 Add to cart Loading Add to Favorites Digital download Easter Bunny Name Craft Activity | Easter & Spring Bulletin Board Ideas Craft Activity $3.55 Add to cart Loading Add to Favorites Digital download Solar System Planets Craft | Planets of the Solar System | Science Craftivity | Solar System Planets Craft Activity | Science Craft for Kids $2.32 Add to cart Loading Add to Favorites You may also like Including ads Learn more Sellers looking to grow their business and reach more interested buyers can use Etsy’s advertising platform to promote their items. You’ll see ad results based on factors like relevancy, and the amount sellers pay per click. Learn more. See more Digital download US States Map Coloring Page for Kids | Learn 50 States Geography | Printable Educational Worksheet USA | Homeschool Social Studies PDF $3.99 Add to cart Loading Add to Favorites Digital download Printable USA map United States of America political map print Travel School digital download $3.00 Add to cart Loading Add to Favorites Digital download United States Map Quiz Worksheet, 2 Pages $1.00 Add to cart Loading Add to Favorites Digital download United States Montessori maps and cards. Sale Price $4.55 $4.55 $6.50 Original Price $6.50 Add to cart Loading Add to Favorites Digital download Printable USA Maps | Learn State Capitals | Label and Identify | Geography Lesson | No Prep Worksheets $2.25 Add to cart Loading Add to Favorites Digital download The United States Map Printable Coloring USA map for Print and Procreate Digital Download Sale Price $1.69 $1.69 $2.60 Original Price $2.60 Add to cart Loading Add to Favorites Digital download United States of America Map Bundle Printable Digital Download, Social Studies, Educational, Worksheet, History, Geography Poster Homeschool $2.00 Add to cart Loading Add to Favorites Digital download USA Map Bundle. Printable United States Map Set. Political, Physical, Blank and Flag Map. Digital Download svg - jpg - png - pdf format! $8.39 Add to cart Loading Add to Favorites Digital download Map of the United States of America, Digital United States Map, Watercolor Map, Montessori Materials, Educational Posters $2.00 Add to cart Loading Add to Favorites Digital download Printable US Map and 50 State Flashcards for Geography Homeschool Studies - Rainbow Theme - Instant Digital Download - PDF $4.95 Add to cart Loading Add to Favorites Digital download United States Map Poster for Kids | Name of States in USA | Learn the States | US Map | Homeschool and Classroom décor | Learning Printable Sale Price $2.25 $2.25 $3.00 Original Price $3.00 Add to cart Loading Add to Favorites Digital download Maps of the United States of America [Montessori color-code] - Geography (Digital Download) $3.75 Add to cart Loading Add to Favorites Digital download America Map Png, USA States Png, 4th of July Png, Usa Flag Png, Digital Download Ad by Etsy seller Ad from Etsy seller Sale Price $1.99 $1.99 $3.98 Original Price $3.98 Add to cart Loading Add to Favorites MUST HAVE** Pocket Constitution Booklet - U.S.A History Gift - Patriotic Memorabilia - Know your RIGHTS! Ad by Etsy seller Ad from Etsy seller Sale Price $2.80 $2.80 $3.50 Original Price $3.50 Add to cart Loading Add to Favorites America Map Ready to Press Transfer, Retro USA DTF Heat Press Transfers, High Quality Direct to Film Prints Ad by Etsy seller Ad from Etsy seller Sale Price $2.24 $2.24 $4.49 Original Price $4.49 Add to cart Loading Add to Favorites United States Map Christian Iron On Transfer, USA Map Christian Ready To Apply, Faith Based Dtf Heat Transfer, Christian Women Gift Ad by Etsy seller Ad from Etsy seller Sale Price $1.25 $1.25 $2.50 Original Price $2.50 Add to cart Loading Add to Favorites Digital download Customizable Where I Live Activity - Early Years Homeschool Activity (Printable) Ad by Etsy seller Ad from Etsy seller $3.00 Add to cart Loading Add to Favorites Dudley's World Wallpaper Ad by Etsy seller Ad from Etsy seller $2.00 Add to cart Loading Add to Favorites Digital download 50 USA States Coloring Pages Ad by Etsy seller Ad from Etsy seller $3.99 Add to cart Loading Add to Favorites USA Map 4th Of July DTF Heat Transfer: Patriotic Design Ad by Etsy seller Ad from Etsy seller Sale Price $2.58 $2.58 $5.17 Original Price $5.17 Add to cart Loading Add to Favorites Map of USA Ad by Etsy seller Ad from Etsy seller $17.23 Add to cart Loading Add to Favorites Digital download American Countries Printable Bundle (70 pages) | Flags, Maps, Facts, Capitals(PDF) Ad by Etsy seller Ad from Etsy seller $7.00 Add to cart Loading Add to Favorites Read the full description Disclaimer: As with all children's products, adult supervision is required. Products that contain small parts may pose a choking hazard and should not be used by children under 3. Sellers are responsible for following applicable laws and regulations, including posting items with accurate labeling and warnings. Etsy assumes no responsibility for the accuracy, labeling, or content of sellers' listings and products. Always read labels, warnings, directions and other information provided with the product before using it. If you have any questions, message the seller. See Etsy's Terms of Use for more information. Explore related searches Printable United States Map Blank Map of the Usa Geography Map Digital Map Usa 13 Colonies Poster Listed on Mar 15, 2026 3 favorites Homepage Toys & Games Toys Learning & School Loading There was a problem loading the content Try again Privacy Settings Etsy uses cookies and similar technologies to give you a better experience, enabling things like: basic site functions ensuring secure, safe transactions secure account login remembering account, browser, and regional preferences remembering privacy and security settings analysing site traffic and usage personalized search, content, and recommendations helping sellers understand their audience showing relevant, targeted ads on and off Etsy Detailed information can be found in Etsy's Cookies & Similar Technologies Policy and our Privacy Policy. Required Cookies & Technologies Some of the technologies we use are necessary for critical functions like security and site integrity, account authentication, security and privacy preferences, internal site usage and maintenance data, and to make the site work correctly for browsing and transactions. Always on Personalized Advertising To enable personalized advertising (like interest-based ads), we may share your data with our marketing and advertising partners using cookies and other technologies. Those partners may have their own information they’ve collected about you. Turning off the personalized advertising setting won’t stop you from seeing Etsy ads, but it may make the ads you see less relevant or more repetitive. Personalized advertising may be considered a “sale” or “sharing” of information under California and other state privacy laws, and you may have a right to opt out. Turning off personalized advertising allows you to exercise your right to opt out. Learn more in our Privacy Policy., Help Center, and Cookies & Similar Technologies Policy. On Saved Done What’s wrong with this listing? Add more details Share more specifics to help us review this item and protect our marketplace. Choose a reason… There’s a problem with my order It uses my intellectual property without permission I don’t think it meets Etsy’s policies Choose a reason… The first thing you should do is contact the seller directly. If you’ve already done that, your item hasn’t arrived, or it’s not as described, you can report that to Etsy by opening a case. Report a problem with an order We take intellectual property concerns very seriously, but many of these problems can be resolved directly by the parties involved. We suggest contacting the seller directly to respectfully share your concerns. If you’d like to file an allegation of infringement, you’ll need to follow the process described in our Copyright and Intellectual Property Policy. Review how we define handmade, vintage and supplies See a list of prohibited items and materials Read our mature content policy Tell us why you're reporting this item It's not handmade, vintage, or craft supplies It's pornographic It's hate speech or harassment It's a threat to minor safety It promotes violence or self-harm It's dangerous or hazardous It's violating a specific law or regulation It violates a policy that's not listed here Please choose a reason Include anything else we should know about this item Make sure to add more details. Add more details, including a law or regulation name (10 characters min). By submitting this report, you confirm the information and claims in this form are accurate. Go back Next Submit report Click to zoom Update your settings Set where you live, what language you speak, and the currency you use. Learn more. Cancel Loading Save Loading Regions Etsy does business in: Australia Austria Belgium Canada Canada (French) Denmark Finland France Germany Hong Kong India Ireland Israel Italy Japan Mexico New Zealand Norway Poland Portugal Singapore Spain Sweden Sweden Switzerland The Netherlands United Kingdom United States Got it Scroll previousScroll next
+"""
+
+[R10] United States Map and Satellite Image
+(https://geology.com/world/the-united-states-of-america-satellite-image.shtml)
+"""
+List of States: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming.United States Bordering Countries: Canada, MexicoRegional Maps: Great Lakes, U.S. Territories, North America, World Where is the United States? United States Map with State Names: A basic map of the USA labeled with only the names of the states. Clear and easy to read so you can quickly locate the state you're looking for. Also shows the names of Canadian provinces that border the United States, as well as neighboring Mexico, The Bahamas, and Russia. United States Map with State Capitals: A colorful map of the USA labeled with only the names of the states and state capitals. Do you know all 50 state capitals? Brush up on your geography with this simple, easy-to-read map. Maps of the Great Lakes: Several maps showing the Great Lakes and the surrounding area, including a bathymetry map, temperature anomaly map, and winter satellite image showing ice cover. We also list some interesting geographic facts about the lakes - for example, did you know that there is enough water in the Great Lakes to flood the rest of the USA with 5 feet of water? United States Wall Map: Our United States wall maps are colorful, durable, educational, and affordable! These maps show state and country boundaries, state capitals and major cities, roads, mountain ranges, national parks, and much more. Available in two color palettes, suitable for display anywhere from the classroom to the boardroom. Get yours today! United States on a World Wall Map: The United States of America is one of nearly 200 countries illustrated on our Blue Ocean Laminated Map of the World. This map shows a combination of political and physical features. It includes country boundaries, major cities, major mountains in shaded relief, ocean depth in blue color gradient, along with many other features. This is a great map for students, schools, offices, and anywhere that a nice map of the world is needed for education, display or decor. United States On a Large Wall Map of North America: If you are interested in the United States and the geography of North America, our large laminated map of North America might be just what you need. It is a large political map of North America that also shows many of the continent's physical features in color or shaded relief. Major lakes, rivers, cities, roads, country boundaries, coastlines and surrounding islands are all shown on the map. Explore the United States Using Google Earth: Google Earth is a free program from Google that allows you to explore satellite images showing the cities and landscapes of the United States and all of North America in fantastic detail. It works on your desktop computer, tablet, or mobile phone. The images in many areas are detailed enough that you can see houses, vehicles and even people on a city street. Google Earth is free and easy-to-use. Physical Map of the United States: This map shows the terrrain of the USA in shaded relief. Higher elevations are shown in brown and tan, like the Rocky Mountains and Pacific Coast Ranges of the western United States. In the eastern U.S., the Appalachian Mountains trend from New England down to Alabama. You can see numerous rivers running across the country to the Mississippi River Basin, which drains everything from the Rockies in the west to the Appalachians in the east. Major lakes are also shown on the map, including the Great Lakes in the northeast, the Great Salt Lake of Utah, and Lake Okeechobee in Florida. United States Cities: Albany, Anchorage, Annapolis, Atlanta, Augusta, Austin, Baton Rouge, Bismarck, Boise, Boston, Carson City, Charleston, Cheyenne, Chicago, Columbia, Columbus, Concord, Denver, Des Moines, Detroit, Dover, Frankfort, Harrisburg, Hartford, Helena, Honolulu, Indianapolis, Jackson, Jefferson City, Lansing, Lincoln, Little Rock, Los Angeles, Madison, Miami, Montgomery, Montpelier, Nashville, New Orleans, New York City, Oklahoma City, Olympia, Philadelphia, Phoenix, Pierre, Providence, Raleigh, Richmond, Sacramento, Salem, Salt Lake City, San Francisco, Santa Fe, Springfield, St. Paul, Tacoma, Tallahassee, Topeka, Trenton, and Washington D.C. United States Locations: Appalachian Mountains, Atlantic Ocean, Cascade Mountain Range, Chesapeake Bay, Great Salt Lake, Gulf of America (formerly called the Gulf of Mexico), Lake Erie, Lake Huron, Lake Michigan, Lake Okeechobee, Lake Ontario, Lake Superior, Lower Red Lake, Mississippi River, Missouri River, Pacific Ocean, Rio Grande, Rocky Mountains, Salton Sea, Straits of Florida, and Upper Red Lake. United States Natural Resources: The United States has some fossil fuel deposits of coal, petroleum and natural gas. There are a number of metal and metallic resources present, including copper, lead, molybdenum, uranium, bauxite, gold, iron, mercury, nickel, silver, tungsten, and zinc. Other natural resources include potash, timber, and phosphates. United States Natural Hazards: The United States has numerous natural hazards. There are hurricanes along the Atlantic and Gulf coasts, flooding, mud slides in California, and frequent tornadoes in the midwest and southeast. Varied other occurrences include volcanoes and earthquake activity around the Pacific Basin, tsunamis, and forest fires in the western portion of the country. In northern Alaska there is permafrost, which is a major impediment to development. United States Environmental Issues: The United States is the largest single emitter of carbon dioxide from the burning of fossil fuels. There is acid rain resulting from the air pollution of both the U.S. and Canada. Much of the western part of the country has limited natural freshwater resources, which requires careful management. The U.S. has water pollution from runoff of pesticides and fertilizers. There are also land issues regarding desertification. Copyright information: The images on this page were composed by Angela King and Brad Cole and are copyright by Geology.com. These images are not available for use beyond our websites. If you would like to share them with others please link to this page. The satellite image was produced using Landsat data from NASA and the map was produced using data licensed from and copyright by Map Resources. ADVERTISEMENT
+"""
+
+[R11] Regions Of The United States
+(https://www.slideshare.net/slideshow/regions-of-the-united-states/465103)
+"""
+More Related ContentGeography of the united statesThe U.S. 50 States of AmericaU.S. Regions, States & CapitalsRegions of the United StatesGeography and Population of the USAWhat's hotGeography of the United States of AmericaUNITED STATES OF AMERICA-FULL 1080p PICSRegions of the United States: The NortheastCountry presentation - United StatesPresentation on the Trail of TearsThe United States of americaWhat Do You Know About..AmericaHistory of United States of Americalife style in America & europe presentationThe United state of AmericaViewers also likedSix Concepts of GeographyGeographic features of the western united statesSimilar to Regions Of The United StatesThe five regions from unitated states(2).pdfNORTH hshshhehehehdhhdhdhhehdhhdhAMERICA.pdfNORTH AMyshshabbavahbahahshbshshERICA.pdfWest and Midwest geography1 CUL 378 - Material about America culture .pdfAmerican studies & culture.pptxLesson 1 The United StatesRecently uploadedAdrien Matray - An Applied MacroeconomistTop Benefits of Buying Verified Apple ID Accounts for Marketing.pdfBest Places to Buy LinkedIn Accounts Online in 2026.docxTop 5 Places to Buy Aged LinkedIn Accounts and Should.pdf3 Easy Ways To Buy Verified WebMoney Accounts.pdfVedic Astrology Reading Guide Files1.pdfBest 7 Sites to Buy Gmail Accounts in 2026.pdfHow to Buy Verified Remitly Accounts for International ....docxWhy Open-Source Software is Disrupting the Enterprise Tech MarketThe Value Equation: Pricing, AI & Commercial Excellence in IndiaHealthcare Document Management System | ByepaperWelcome to Usatrustpva -Buy Google Voice Accounts – and Get 100% Verification...Scam Alerts Clarified: How V3Cube Is Committed to Customer Satisfaction and T...Investor Relations Recruitment .pdfPva Banking The Best Provider To Buy Gmail Accounts (Aged & PVA)Dr. Robert Krug - A Highly Skilled Data Scientist5 Best Website to Buy Old Gmail Accounts – Trusted & Verified Sellers 2026.pdfSolar Install Safety Measures.pptxxxxxxxEric Hannelius - Leads The Digital Payments Company Pepper Pay LLCBuild a Multi-Vendor Food Delivery App Like DeliverooRegions Of The United States1. 2. Regions of theUnited States Northeast Northeast continued Southeast Southeast continued Midwest Midwest continued Southwest Southwest continued West West continued Fifty-Nifty Video Author’s Page Resources Concept Map West Midwest Southwest Southeast Northeast Quit 3. Northeast States include:Connecticut Delaware Maine Maryland Massachusetts New Hampshire New Jersey New York Pennsylvania Rhode Island Vermont Quit New England Mid-Atlantic 4. Northeast continued Thenorthern portion of the Northeast region is commonly referred to as New England. This area is known for it’s history, culture, and natural beauty. It was the original center of America, and is home to many Ivy league colleges. The Mid-Atlantic portion, is made up of a more industrialized area. This includes New York city, which is considered a “melting-pot” of cultures. Quit 5. Southeast States include:Alabama Arkansas Florida Georgia Kentucky Louisiana Mississippi North Carolina South Carolina Tennessee Virginia West Virginia Quit 6. Southeast continued Unlikethe Northeast, this portion of the US is not as easily defined. Throughout the states there is a vast difference in all areas of the classification. Atlanta, Georgia is seen as the central metropolis of the region. The region also homes a number of prominent universities and major vacation destinations in the south. Quit 7. Midwest States includeIndiana Illinois Iowa Kansas Michigan Minnesota Missouri Nebraska North Dakota Ohio South Dakota Wisconsin Quit 8. Midwest continued Themid-western states are located in the north-central portion of the United States. This is the geographic and population center of the US. It is home to two of the largest US cities, Chicago and Detroit. Also the region is noted by the Great Lakes. Quit 9. 10. Southwest continued Thisis another hard to define region of the US. However, it is noted by its diverse ethnic cultures. It includes, European American, Mexican American, and American Indian populations. The region has a low population density, but does include 4 of the top 10 most populous cities in the US- 3 of which are in Texas alone. Quit 11. West States include:Alaska California Colorado Hawaii Idaho Montana Nevada Oregon Utah Washington Wyoming Quit 12. West continued Asthe largest region, the West covers half the land area of the United States. It is also very vast in climates, it includes the Pacific coast, the Northwest, the Rocky Mountains, the Great Plains, and the Desert. The entire western region has been strongly influenced by European, Native American, and Hispanic cultures. It encompasses the largest number of minorities in the US and has four states where all racial groups are minorities. Quit 13. 14. Author’s Page Myname is Mallory Palmer, I am a senior at GVSU. I am working towards my Group Social Studies degree and pursuing a career in Elementary education. I enjoy working with kids, arts and crafts, and being outside. Feel free to contact me with any questions. Thank You [email_address] Quit 15. 16.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,92 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "snl musical guest tonight"
+
+Claims:
+[1] "Anitta is the musical guest on Saturday Night Live on April 11, 2026."
+[2] "Colman Domingo is the host of the Saturday Night Live episode on April 11, 2026."
+[3] "The Saturday Night Live episode on April 11, 2026 airs at 11:30 p.m. ET on NBC."
+[4] "The Saturday Night Live episode on April 11, 2026 can be streamed on Peacock."
+[5] "The Saturday Night Live episode on April 11, 2026 marks the SNL debut for Anitta."
+[6] "The Saturday Night Live episode on April 11, 2026 marks the SNL debut for Colman Domingo."
+
+Cited text snippets from the AI Overview (for additional context):
+- Is ‘SNL’ New Tonight (April 11, 2026)? Host, Musical Guest Details: "Key Points,know before you tune in!"
+- Who's on 'Saturday Night Live' tonight? What to know about April 11 show: "Amaris Encinas,The Big Gay Sketch Show"."
+- Is there a new SNL tonight? Who is hosting Saturday Night Live: "What time is SNL on,as the musical guest tonight."
+- Brand. New. #SNL.⁠ Euphoria star Colman Domingo hosts ... - Instagram: "On April 11th, Colman Domingo,want to miss 🔥 ⁠"
+Reference Sources:
+
+[R1] Is ‘SNL’ New Tonight (April 11, 2026)? Host, Musical Guest Details
+(https://parade.com/tv/is-snl-new-tonight-april-11-2026-host-musical-guest-details)
+"""
+Here’s everything you need to know about this week’s ‘Saturday Night Live’ episode.Apr 11, 2026 5:00 PM EDT'SNL'Photo by NBC on Getty ImagesKey PointsColman Domingo hosts SNL tonight, with Anitta as musical guest, both first-timers.SNL will skip airing during the week of April 18.Upcoming hosts include Olivia Rodrigo, Matt Damon, and Will Ferrell for Season 51's finale. Last week’s episode of Saturday Night Live was a huge hit, thanks to official SNL five-timer Jack Black‘s hilarious antics as host (and Jack White‘s musical guest appearance). If you missed it, definitely check it out (especially the opening monologue and the “Husbands” sketch). Alas, there aren’t too many laughs left in Season 51, which ends next month. But is there a new episode of SNL tonight? Here’s everything you need to know before you tune in! Is there a new episode of ‘SNL’ tonight? Yes! Academy Award-nominated actor Colman Domingo will host Saturday Night Live for the first time tonight, April 11, ahead of his appearance in the biopic Michael, premiering on April 24. Domingo will be joined by Grammy-nominated Brazilian singer-songwriter Anitta, also making her SNL debut as musical guest. Who is hosting next week and who is the musical guest? SNL will be taking the week of April 18 off. What time does ‘SNL’ air? SNL airs at 11:30 p.m. EST / 8:30 p.m. PST. Where can I watch ‘SNL’? New episodes of SNL air live on NBC and Peacock on Saturdays (they’re available to stream later). Who else is hosting and performing on ‘SNL’ this season? The final three episodes of SNL Season 51 will kick off on May 2 when Olivia Rodrigo pulls double duty as both host and musical guest. On May 9, Matt Damon will return to SNL for his third time as host, joined by Noah Kahan as musical guest; May 16’s episode will be led by Will Ferrell as host and Paul McCartney as musical guest. About the authorJacqueline Burt Cote has been writing about entertainment (and much more) since the days when print newspapers and magazines reigned supreme, with bylines in a wide range of publications including The New York Post, Time Out New York, The Huffington Post, Salon, Details, Parents, Bon Appetit, XoJane, and many others.
+"""
+
+[R2] Who's on 'Saturday Night Live' tonight? What to know about April 11 show
+(https://www.usatoday.com/story/entertainment/tv/2026/04/11/new-snl-colman-domingo-april-11/89556540007/)
+"""
+April 11, 2026, 3:00 p.m. ETTwo Oscar nominations and one Emmy win later, Colman Domingo is ready for his "Saturday Night Live" debut.The "Euphoria" star, who knows a thing or two about cracking jokes, will be taking the 8H stage alongside Brazilian singer-songwriter Anitta. The duo will be appearing on "SNL" for the first time on April 11.In addition to starring alongside "SNL" alum Tina Fey in "The Four Seasons" and portraying Joe Jackson in the upcoming biopic "Michael", Domingo was once a performer on Logo TV's "The Big Gay Sketch Show".According to NBC Insider, his "most famous bit from 'The Big Gay Sketch Show' was an excellent Maya Angelou impression, which he wielded to read Craigslist ads.""Finally. Back to my sketch history," Domingo wrote in a March 26 X post. "We will have fun."Here's what to know about the April 11 show, including how to watch.Who's on 'SNL' tonight?"SNL" emcee Colman Domingo will be sharing the stage with Anitta, who is this week's musical guest. The "Pinterest" singer has released seven studio albums, and her eighth, EQUILIBRIVM, is due on April 16.How to watch 'SNL'?New episodes of "Saturday Night Live" air Saturday nights at 11:30 p.m. ET / 8:30 p.m. PT on NBC, with episodes streaming the next day on Peacock. Old "SNL" episodes can be streamed anytime on Peacock.
+"""
+
+[R3] SNL April 4 2026. Is Saturday Night Live new tonight
+(https://www.app.com/story/entertainment/television/2026/04/11/colman-domingo-anitta-snl-snl-april-11-2026-saturday-night-live-colman-domingo-anitta/89567862007/)
+"""
+TELEVISIONIs there a new SNL tonight? Who is hosting Saturday Night LiveAsbury Park PressApril 11, 2026, 11:56 a.m. ET0:19/0:27Keep WatchingWell, they have a lot to work with.With everything going on in the world, Saturday Night Live should be a good one tonight, as the show will be live tonight from New York.Here's everything you need to know about tonight's show.What time is SNL on Tonight?Saturday Night Live airs at 11:30 p.m. EST.Watch it here: Stream your favorite shows, the biggest blockbusters and more.What channel is SNL on?Saturday Night Live airs on NBC.Where to stream SNLSaturday Night Live streams on Peacock.Does SNL air live on Peacock?Yes, Saturday Night Live is available to watch as it airs on Peacock.Is Saturday Night Live new tonight?Yes, Saturday Night Live returns live tonight.Who is hosting SNL tonight?Colman Domingo is hosting Saturday Night Live tonight.Who is SNL musical guest?Anitta will serve as the musical guest tonight.If You're Collecting Under $3950 In SS a Month: You're Eligible for These 10 DiscountsSilverPenny | AdAdLearn moreUndoCPAP Recall Has Thousands of Sleep Apnea Sufferers Rethinking Their RoutineSleep Digest Publication | AdAdUndoSurgeon Says, "If You Have Dark Spots, Do This Tonight" (It's Genius!)Surgeon explains simple tip for dark spots on skin.The Dark Spot Experts | AdAdUndoAssisted Living Accelerates 'The Decline.' What This Son Did InsteadThe alternative that changed everything for his familyGekkoGifts | AdAdUndoSide Sleepers Get Achy Shoulders, Few Know This "Side Sleeper" TrickSleep Digest Publication | AdAdUndoThe Secret Behind My Neighbor’s Hummingbird SwarmAttract swarms of hummingbirds to your yard daily.GekkoGifts | AdAdUndoRelated SearchesSearch for AI Contract Lifecycle Tools on Yahoo. View top results now.Yahoo | AdAdLearn moreUndoNeuropathy Cases Grow as Experts Point to a Beverage Millions Drink DailyNerve Pain | AdAdLearn MoreUndoHearing aids shouldn’t cost $5,000Experience effortless hearing control at your fingertips with the easiest, simplest hearing experience to date.Audien Hearing | AdAdLearn MoreUndoHidden Hair Loss Cause Exposed: Before Thin and Weak, After Lush and Vibrant!Dermatologists Call This The New Breakthrough In Combating Hair LossNoor Hair | AdAdLearn MoreUndoDeal of the DayWhy Skechers Hands Free Slip-In Shoes Are Made For Festival SeasonUSA TODAY NETWORKUndoUse Code USATODAYCOFFEE For 20% Off Clean, Organic Life Boost CoffeeUSA TODAY NETWORKUndoRecommendations are independently chosen by our editors. Purchases you make through our links may earn us a commission.RecommendedTrump approval rating hits new low, here's what Americans are sayingnewsUndoA New Option for Choking Emergencies When 911 Is 7 Minutes AwayWhen anyone is choking and panic sets in, you need something that works instantly. This FDA-registered device cleared her father's airway in 6 seconds using simple suction technology. Even comes with child-size masks for complete family protection.Heroic Daily | AdAdLearn MoreUndoHere's Why Japanese Men in Their 90s Stay ActiveStop Guessing. Do What Japanese Men Do for "Instant" Blood FlowMojoFlow™ | AdAdLearn MoreUndoMore Local StoriesFlyers Penguins Game 2 time channel and predictionsportsUndoSen. Mark Warner announces death of 36-year-old daughternewsUndoBald eaglets euthanized after being swept from nest during stormnewsUndoRutgers football sets '27 slate, lines up former Big East foe for '28-'29sportsUndoWhen Neuropathy Strikes, Do This (It's Brilliant!)Nerve Pain | AdAdLearn MoreUndoWho Has The Cheapest Car Insurance For Retirees in Virginia? (Check Zip Code)As Low As $38/month. Fast, Easy & Free. No Agents.OTTO Insurance | AdAdLearn MoreUndoLeading Doctors Alarmed as Neuropathy Cases Surge Due to a Common Drinkglobalresearchdesk | AdAdLearn MoreUndoHousehold Item Holds The Power to “Undo” Dark Spots? (It's Genius!)Surgeon explains simple tip for dark spots on skin.The Dark Spot Experts | AdAdLearn MoreUndoMore Local StoriesTom Cruise rocks gray hair and a belly in first 'Digger' footageentertainmentUndoFormer NBC News anchor finds new home at Netflix after controversyentertainmentUndoWould you sniff dog breath for $1,000 an hour? This job is for you.pets-animalsUndoSee Yankees lineup vs Red Sox for Wednesday as Max Fried startssportsUndoSeniors Born 1939-1969 Receive 11 Benefits This Month If They AskSuper Saving Online | AdAdUndoHere's Why This Premium Massage Chair Is Dirt CheapRelaxe | AdAdLearn MoreUndoThe Link Between Sleep Apnea and Blood SugarLearn about the symptoms of sleep apnea, the impact on your glucose levels, and treatment options.Stelo | AdAdUndoForget SpaceX at $2 Trillion. This Stock Is 50x Cheaper.The Motley Fool | AdAdUndoBest Ways To Drain Lymph Fluid In Ankles & Legs (Try This and See)Hartford Review Journal | AdAdLearn moreUndoTop MD: This 1 Mineral Reduces Knee Pain "Unlike Any other"Rub this 1 mineral on and watch what happensOsteo Research | AdAdLearn MoreUndoMore Local StoriesSydney Sweeney doubles down with new American Eagle ad after controversyentertainmentUndoFormer NJ Gov. Chris Christie reportedly buys $1.5M NYC co-opnewsUndoBusch Light Apple hit BApplebee's? Here's when, where to get it in NJnewsUndoGrieving dad begs board to deny parole to mom who burned his kids alivenewsUndoRecommendedNew stimulus check coming this year? Trump dividend status, updatenewsUndoRecommendedHow close the nearest Buc-ee's is getting to New JerseynewsUndoNeuropathy Has Been Linked to a Common Habit. Do You Do It?Recent Breakthrough Combats Neuropathy NaturallyNerve Pain Cured | AdAdLearn MoreUndoFrom Bald Spots to Bouncy Volume: The Natural Formula That Transformed My Weak HairDermatologists Call This The New Breakthrough In Combating Hair LossNoor Hair | AdAdLearn MoreUndoMore Local StoriesNJ is losing its middle class to other states, new data showsnewsUndoBrick Plaza getting multiple new stores and restaurants; see them heremoneyUndoNJ's Jamie Ding wins 28th on 'Jeopardy!' Here's where he ranks nowentertainmentUndo5 Monmouth County Zip codes among high percent with a college degreenewsUndoDermatologists Say This Drugstore Gem Is All You Need To Tighten WrinklesIt Targets the #1 Cause of Wrinkles People IgnoreThe Skin Magazine | AdAdLearn MoreUndoWhy Your Rotator Cuff Isn't Healing (It’s Not Just Age)Shoulder Relief News | AdAdUndoFeatured Weekly AdMore StoriesIs a Trader Joe's opening near you? 18 new stores are coming soongroceryUndoFans love special Bruce Springsteen moment with sisters at Monmouth U.entertainmentUndoHouston #1 Spine Specialists Explain Why You Must Try This DeviceHealth Journal | Sponsored LinksSponsored LinksUndo Keep on readingIs a Trader Joe's opening near you? 18 new stores are coming soonTrader Joe's is set to expand its footprint across the United States, with 18 new stores expected to open in the coming months.Asbury Park PressUndoCPAP Recall Has Thousands of Sleep Apnea Sufferers Rethinking Their RoutineSleep Digest Publication | SponsoredSponsoredUndoRelated SearchesSearch for Heirloom Quality Wood Bed Frames USA on Yahoo. View top results now.Yahoo | SponsoredSponsoredLearn moreUndoFans love special Bruce Springsteen moment with sisters at Monmouth U.A picture of Bruce Springsteen with sisters Pam Springsteen and Virginia Shave was taken by backstage at the American Music Honors, and fans love it.Asbury Park PressUndoWould you sniff dog breath for $1,000 an hour? This job is for you.Dog food delivery company Spot & Tango recently posted two NYC-based contract jobs: Dog Kisser and Dog Breath Sniffer. Both pay $1,000 an hour.Asbury Park PressUndoFlyers Penguins Game 2 time channel and predictionThe Philadelphia Flyers won Game 2 against the Penguins and lead series 2-0. Here's what to know for Game 3 including time, TV, and a prediction.Asbury Park PressUndoSen. Mark Warner announces death of 36-year-old daughterThe Virginia senator said that his 36-year-old daughter's death came after a battle with juvenile diabetes.Asbury Park PressUndoBald eaglets euthanized after being swept from nest during stormThe Auburn University Rapture Center announced it euthanized a pair of bald eagles after the birds suffered injuries from a storm earlier this year.Asbury Park PressUndoSurgeon Says, "If You Have Dark Spots, Do This Tonight" (It's Genius!)Surgeon explains simple tip for dark spots on skin.The Dark Spot Experts | SponsoredSponsoredLearn MoreUndoAssisted Living Accelerates 'The Decline.' What This Son Did InsteadThe alternative that changed everything for his familyGekkoGifts | SponsoredSponsoredLearn MoreUndoFormer NBC News anchor finds new home at Netflix after controversyA former NBC News anchor, who left the network after a 28-year run and controversy, has found a new home at Netflix, where he'll host a new podcast.Asbury Park PressUndoTom Cruise rocks gray hair and a belly in first 'Digger' footageTom Cruise has an unfamiliar role in Alejandro Iñárritu's movie "Digger": He plays a visibly aging man. First footage was unveiled at CinemaCon.Asbury Park PressUndo
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

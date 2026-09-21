@@ -1,0 +1,1471 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "el nino forecast"
+
+Claims:
+[1] "El Niño has a 61%-62% chance of development between May and July 2026"
+[2] "Forecasters are monitoring a potential "Super El Niño" for late 2026"
+[3] "A 62% chance of El Niño conditions is expected for the May–July 2026 period"
+[4] "The likelihood of El Niño conditions is expected to increase to over 80% by the fall"
+[5] "Long-range models suggest a strong or potentially a "Super El Niño" event"
+[6] "Pacific Ocean surface temperatures possibly rising 2°C or more above average by late 2026"
+[7] "Forecasters warn that predictions made during spring (March–May) are less reliable"
+[8] "The climate is currently transitioning from a weak La Niña"
+[9] "Neutral conditions are expected to persist into early summer before El Niño dominates"
+[10] "Early forecasts predict 13 named storms for the Atlantic hurricane season"
+[11] "Early forecasts predict 6 hurricanes for the Atlantic hurricane season"
+
+Cited text snippets from the AI Overview (for additional context):
+- ENSO: Recent Evolution, Current Status and Predictions: "SST Outlook: NCEP CFS.v2 Forecast (PDF &,with a transition to El Niño thereafter."
+- El Niño likely later this year - what does that mean for Central Texas?: "Scientists say El Niño conditions,forming between June and August."
+- April 2023 ENSO update: El Niño Watch | NOAA Climate.gov: "The watch indicates that conditions are favorable,can affect global temperature and rain/snow patterns."
+- What Super El Niño Means For Hurricane Season | Weather ...: "NOAA's monthly update assigned a,April 9, 2026, update."
+- The first predictions for hurricane season are in and El Niño’s fingerprints are all over it: "They are calling for a,3 or stronger major hurricanes."
+- EXTENDED-RANGE FORECAST OF ATLANTIC HURRICANE ...: "We anticipate that the 2026 Atlantic basin,Niño for the peak of hurricane season."
+- A Super El Niño is coming. Here’s how a hotter ocean could change the weather near you: "There's still a lot of,as the spring prediction barrier."
+- Latest Forecasts Show a Super El Niño Event Developing, Bringing ...: "Severe Weather Europe-,Latest Forecasts Show a Super El Niño Event Developing, Bringing,Weather Disruption in 2026/2027&text=The global weather system is,What is this?"
+- Super El Niño? Forecasters announce major climate shift: ""The possibility of a very,boost activity in the Pacific."
+- The latest hurricane forecast was released as forecasters project a ...: "Forecasters at the National Oceanic,it will form by fall.""
+- El Niño in the Northwest: What Can We Expect? - USDA Climate Hubs: "In early June 2023, the,particularly in the winter season."
+Reference Sources:
+
+[R1] April 2023 ENSO update: El Niño Watch
+(https://www.climate.gov/news-features/blogs/enso/april-2023-enso-update-el-nino-watch)
+"""
+Well, that was quick! Just two months ago I was writing about La Niña for what seemed like the 97th month in a row, and then by March La Niña had departed. Today we’re hoisting an El Niño Watch, meaning that conditions are favorable for the development of El Niño conditions within the next 6 months. In fact, there’s a 62% chance of El Niño conditions for the May–July period. Read on for the reasoning behind the outlook, thoughts about the potential strength of El Niño, and implications for global weather and climate. Let’s run some numbers The March average sea surface temperature in the Niño-3.4 region, our primary monitoring region for ENSO (El Niño/Southern Oscillation, the whole El Niño-La Niña system), was 0.2° Celsius (~0.4˚Fahrenheit) below the long-term average, according to ERSSTv5. This is solidly in the ENSO-neutral range, that is, between -0.5 and 0.5 °C difference from average. Three-year history of sea surface temperatures in the Niño-3.4 region of the tropical Pacific for the 8 existing multi-year La Niña events (gray lines) and the current event (purple line). Of all the previous 7 events, 2 went on to La Niña in their third year (below the blue dashed line), 2 went on to be at or near El Niño levels (above the red dashed line) and three were neutral. Graph by Emily Becker based on monthly Niño-3.4 index data from CPC using ERSSTv5. The atmosphere is also looking quite neutral, overall. In March, both the Southern Oscillation Index and the Equatorial Southern Oscillation Index were close to zero. Both of these indexes measure the strength of the atmospheric component of ENSO, via the relative surface pressures in the western and central-eastern Pacific. Negative index values indicate the Walker circulation is weaker than average, an El Niño response, while positive values tells us the west-east pressure difference is greater than average, indicating a strengthened Walker circulation—a La Niña response. Near-zero, like the current values, tells us that the atmospheric patterns are near average over the tropical Pacific Ocean. Onward! That’s where we are… but where are we going?? There’s a 62% chance that El Niño will develop during the May–July period, and more than 80% chance of El Niño by the fall. NOAA Climate Prediction Center forecast for each of the three possible ENSO categories for the next 8 overlapping 3-month seasons. Blue bars show the chances of La Niña, gray bars the chances for neutral, and red bars the chances for El Niño. Graph by Michelle L'Heureux. We spend a lot of time and effort monitoring and predicting ENSO because it can give us an idea about upcoming potential weather and climate conditions (and because it is a fascinating natural system!). When El Niño or La Niña are holding court in the tropical Pacific, they can affect global temperature and rain/snow patterns in specific ways, with the strongest impacts during the winter. Since ENSO can be predicted months in advance, we can start playing the odds on what sort of climate patterns can be expected. There is a lot of variety, and no prediction is ever perfect! But it’s currently the best tool we have to anticipate upcoming seasonal conditions. I’ll get back to the potential impacts of El Niño in a minute—first, let’s discuss this confident forecast. Forecasts made during the spring are often less accurate than those made other times of the year. ENSO tends to change phase during the spring, and the tropical Pacific ocean-atmosphere system can be more susceptible to smaller pushes like short-term weather variations, contributing to the “spring predictability barrier.” So it seems the forecasters are really feeling their oats this month, to be giving El Niño such relatively high odds. What’s behind this? First, the latest runs from our computer climate models are providing very high probabilities that El Niño will develop this year. When there is a lot of agreement among the models, we tend to give more credence to their predictions. For some examples, here’re Niño-3.4 forecasts from the European multi-model ensemble, Australia’s ACCESS-S2, and the North American Multi-Model Ensemble. But it’s not just model advice supporting the forecast. We always keep an eye on the temperature of the water under the surface of the tropical Pacific. After many months cooler than average, the amount of warmer subsurface water has increased over the past month as a downwelling Kelvin wave—an area of warmer water that sloshes from the west to the east beneath the surface—traverses the tropical Pacific. Water temperatures in the top 300 meters (1,000 feet) of the tropical Pacific Ocean compared to the 1991–2020 average in February–April 2023. NOAA Climate.gov animation, based on data from NOAA's Climate Prediction Center. This warm subsurface will provide a source of warmer water to the surface over the next couple of months and helps provide confidence in the forecast. Further bolstering the chance for El Niño is a short-term forecast for the Madden-Julian Oscillation (MJO). The MJO is an area of storminess that travels west-to-east along the equator. It’s flanked by wind anomalies, as surface level winds rush toward the area of storminess. The MJO is predicted to be in a phase that will weaken the trade winds (the consistent east-to-west winds near the equator) over the next couple of weeks. Weaker trade winds allow the surface to warm and can contribute to the growth or propagation of downwelling Kelvin waves. One more observation supporting the potential development of El Niño is the currently very warm far-eastern Pacific. The Niño-1+2 index, which measures the sea surface temperature off the coast of Peru, was near-record warm in March. A coastal El Niño like this can precede a larger El Niño event, although not always. To summarize, there are several signs pointing to the development of El Niño, including model predictions and the current state of the ocean and atmosphere. It’s still possible that a developing El Niño will sputter out, and the forecast includes around a 1-in-8 chance of neutral conditions in the late fall. However, from our current vantage point, there is enough evidence to support a confident forecast for El Niño. How strong of an El Niño are we talking? That’s a lot of support for El Niño developing, but how strong it will get if it forms is a different question. Some of the models are predicting pretty extraordinary Niño-3.4 values, but we put a lot less trust in those predictions—models tend to overestimate, especially in the spring. The ENSO team has a method of predicting the strength of an El Niño or La Niña event that combines human forecasts and model predictions. This method has shown promise so far, although we’ve only been using it for a couple of years. (Lots more detail in Tom’s post on the topic.) By that method, the current chance for a strong El Niño (Niño-3.4 greater than 1.5 °C) is about 4 in 10; a clearer picture of the potential strength of El Niño will develop as we emerge from the spring barrier. What would an El Niño mean for global climate? Right, I promised to get back to impacts! El Niño influences the Atlantic and Pacific hurricane seasons, usually leading to fewer tropical storms and hurricanes in the Atlantic and more than average in the Pacific. In the case of the Atlantic, El Niño increases vertical wind shear—the change in wind direction and strength from the surface to higher in the atmosphere—which can impede a hurricane’s growth. NOAA’s hurricane outlook comes out next month, so keep your eyes peeled for that. You can check out some of the El Niño-related expected temperature and precipitation patterns during June–August and December–February here. We’ll get into more detail about these potential patterns in coming months. One last comment! ENSO has a strong relationship with the global average temperature: in general, the warmest year of any decade will be an El Niño year, and the coolest a La Niña one. Global warming means that we can’t just say “El Niño years are warmer than La Niña,” since recent La Niña years (we’re looking at you, past 3 years!) have featured much higher global averages than El Niño years from the 1990s and earlier. 2022 was the 6th warmest year since records began in 1880, and that was with a non-stop La Niña. If El Niño develops this year, it increases the odds of record-warm global temperature. Map showing the March 2023 sea surface temperature difference from the long-term average. Figure by climate.gov from NOAA Coral Reef Watch data.
+"""
+
+[R2] A Super El Niño is coming. Here’s how a hotter ocean could change the weather near you | CNN
+(https://www.cnn.com/2026/04/07/weather/super-el-nino-extreme-weather-climate-disaster)
+"""
+Get ready to hear a lot more about El Niño during the next several months — and maybe even longer — as the infamous climate cycle returns again, developing and intensifying in the Pacific Ocean near the equator. If it forms as expected, this El Niño will redraw global weather maps, sparking flooding for some and drought and wildfires for others — all while simultaneously speeding up the pace of global warming. There are increasing indications that an El Niño is not only imminent — setting in by late summer or early fall — but that it could be a significant one, too. In fact, this might even qualify as a “Super El Niño,” which would significantly increase impacts felt around the world. Such extremely intense El Niños are rare. To declare an El Niño, in general, ocean temperatures in a particular region of the tropical Pacific must clear 0.5 degrees Celsius above the long-term average. A Super El Niño, in contrast, happens when temperatures are more than 2 degrees C above the average. Some typically reliable computer models, like the European modeling suite, are projecting just such an outcome for this go-around. El Niño and La Niña, names that translate to “the Boy” and “the Girl”, are recurring climate cycles in the tropical Pacific Ocean that happen every few years and can have profound effects on global weather patterns. In the case of El Niño, the cycle can bring both flooding and drought to different parts of Africa, help pummel the U.S. West Coast with winter storms and lead to more heat extremes globally. El Niño is characterized by unusually warm waters along the equatorial tropical Pacific Ocean, and a related series of shifts in winds and precipitation patterns in the atmosphere. It is a so-called coupled phenomenon, meaning that to get an El Niño, both the ocean and the atmosphere must be responding to one another in characteristic ways. The atmosphere tends to react to the warmer waters by shifting areas of heavy precipitation closer to that hot region of the ocean. The trade winds that typically blow from east to west near the equator can slacken and then reverse direction as well. Those shifts are significant enough to affect weather around the world, like a series of dominoes toppling over. Right now, huge volumes of unusually warm water are spreading under the ocean surface from the Western to the Eastern tropical Pacific, where that water slowly rises to the surface in a clear precursor to El Niño. Periodic areas of wind blowing from the west to the east have helped transport this water, in what are appropriately known as westerly wind bursts. While El Niño and La Niña, El Niño’s cooler sibling, are fascinating from a meteorological perspective, we care about them because of the ways in which they can affect extreme weather events around the world. In fact, they can cause billions of dollars in damages, and a stronger El Niño would likely make the usual impacts more severe. Spotting an El Niño in formation and predicting its evolution “gives us an early heads up on changing risks for many weather-related phenomena, including floods, droughts, heatwaves, hurricanes and severe thunderstorms,” said Nat Johnson, a meteorologist at the National Oceanic and Atmospheric Administration’s Geophysical Fluid Dynamics Laboratory. “These weather and climate impacts modify crop yields, disease spread, coral bleaching, fisheries and many other parts of the earth system that affect our daily lives.” There’s still a lot of uncertainty around the upcoming El Niño, including a range of forecast outcomes, especially when it comes to intensity, Johnson said. To cloud matters a bit further; computer model projections made during the spring tend to have lower accuracy than projections made at other times of the year, a phenomenon known as the spring prediction barrier. Hot and hotter In the U.S., El Niño tends to have its peak effects during the winter months, when it can send a fusillade of storms into parts of California and along the southern tier of the U.S., bringing the risk of flooding. It can also speed up winds in the upper atmosphere across the tropical Atlantic Ocean during the fall. This causes wind shear to increase, and this can tear apart nascent tropical storms and hurricanes — putting a damper on the Atlantic hurricane season. In addition, strong El Niño’s have also been linked to heat waves in the U.S. and other parts of the world. Globally, El Niño is known to tilt the odds in favor of drought and heat waves in Australia, where it can also raise wildfire risks. Other areas prone to drought during El Niño include northern sections of South America (including parts of the Amazon rainforest), central and southern Africa and India. El Niño can also cause too much rain to fall, with favored areas for flooding outside of the U.S. including southeastern South America, the Horn of Africa, Iran, Afghanistan and other parts of south-central Asia. When it comes to the climate, El Niño tends to release enormous amounts of heat stored in the oceans back into the atmosphere, boosting global average surface temperatures. If a strong El Niño does form and continues through the winter, then it is almost assured that either 2026, 2027 or both years will set new records for the warmest year since instrument data began in the 19th century. The globe is already warming at an accelerating rate, and an intense El Niño would speed that up even faster, at least for a few years. If climate change is like ascending an escalator, with some years warmer than others, an El Niño year is equivalent to jumping up and down while riding on that escalator — reaching record new heights, albeit briefly. The last El Niño, which was not a Super El Niño, resulted in 2024 being the current holder of the warmest-year title. The last Super El Niño occurred in 2015-2016, with others in 1997-98, and 1982-83. Super El Niños are not a technical designation from NOAA but instead are an informal definition used by some forecasters and the media to refer to a very strong El Niño Meteorologists will be closely watching as the Pacific waters heat up to see just how strong an El Niño we get. If the European model is proven correct, it could even be the strongest El Niño on record.
+"""
+
+[R3] Latest Forecasts Show a Super El Niño Event Developing, Bringing a Global Weather Disruption in 2026/2027
+(https://www.severe-weather.eu/long-range-2/super-el-nino-2026-forecast-global-weather-shift-expected-united-states-canada-europe-fa/)
+"""
+The global weather system is currently undergoing a massive atmospheric reset as the tropical Pacific transitions from a multi-year La Niña into a potential record-breaking Super El Niño. Latest subsurface ocean analysis reveals a rapid shift below the ocean surface occurring in the western Pacific, similar to how the past Super El Niño events emerged. A Super El Niño acts as a massive planetary heat engine, releasing vast amounts of stored oceanic energy into the atmosphere and significantly altering the global jet stream. Studies have confirmed that a Super El Niño can affect global climate for several years, transforming typical seasonal patterns and altering everything from international agriculture to winter storm tracks. In this article, we will analyze the latest oceanic data and compare the current 2026 signatures to the strongest historical events of recent decades. We will also look at the latest seasonal forecasts and why this El Niño could be a record breaker. Also, we will find the first major weather impacts across the United States, Canada, and Europe, from Summer to the Atlantic Hurricane season, and into the Winter 2026/2027. ENSO Cycle: Between the Ocean and the Atmosphere ENSO is short for “El Niño Southern Oscillation”. This is a region of the equatorial Pacific Ocean that changes between warm and cold phases in about every 1-3 years. The cold ENSO phase is called La Niña, and the warm phase is called El Niño. Each ENSO phase has a major influence on the complex ocean-atmosphere feedback system. These changes gradually affect global circulation, altering weather patterns worldwide. In the image below, you can see a direct comparison between ocean temperature anomalies for each of the ENSO phases. Both examples show realistic data from the 10 strongest events for each anomaly, revealing the obvious ocean signature of the ENSO event. Some of these events can reach really strong anomalies, reaching a special “Super” class, most notably the El Niño phase. A Super El Niño is the “extreme” version of this event, officially defined by sea surface temperature anomalies sustained at +2.0°C or higher. The key difference between a normal and a “Super” event is the intensity of atmospheric connection (coupling). A normal event shifts the jet stream, but a Super El Niño can cause a strong disruption to the atmospheric circulation. Below is the combined analysis image of the last 3 Super El Niño events, showing ocean temperature anomalies. You can see a strong warm anomaly in the ENSO region in the Pacific. But also note the cooler North Atlantic and another anomaly in the Indian Ocean. El Niño events happen every few years. But Super events tend to occur once per decade or less. The last three such events were in 2015/16, 1997/98, and 1982/83. Below are graphs from NCEI, showing the monthly progression of each event, starting in spring and peaking during the Winter season, breaking the Super event threshold (+2 degrees). But how does an El Niño even reach a “Super” status? During La Niña, the trade winds pile up warm water in the western Pacific. This creates a warm oceanic layer at depth, raising ocean heat content and sea levels in the western Pacific. A Super El Niño acts as a massive “pressure release valve” for this piled-up warm water and energy. Once La Niña collapses, a trigger (usually a series of Westerly Wind Bursts) allows that ocean heat to surge eastward. If the western ocean heat content is very high before the El Niño event starts, the energy “discharge” from there is much stronger, leading to a stronger Super event. We have already detected several of these westerly wind burst anomalies, which have already started the rapid shift into an El Niño event. And given the latest forecasts, more are on the way, marking the start of a global atmospheric shift. The Power Source: How Westerly Wind Bursts Spark a Super El Niño Below is the latest trade wind analysis and forecast, which shows strong westerly wind bursts occurring across the Pacific in recent weeks. In the forecast part, you can see an unusually strong westerly wind burst, with a trend to spread the westerly trade wind anomaly fully across the ENSO regions. This was one of the main “engines” of the past Super El Niño events, so this is a clear sign of the strong El Niño potential in 2026. While the westerly wind burst is an “engine”, the true power of a forming El Niño comes from the large subsurface warm anomalies. That is monitored as the ocean heat content, which looks at the ocean down to 300m (1000ft) depth. Below is the latest analysis, which clearly shows an expanding warm anomaly across the tropical Pacific and ENSO regions, extending throughout the whole upper oceanic layer. These changes are also confirmed at the surface, which we can see in the analysis graphs below. These graphs show the anomaly data for the past 3 months in the main region (right and in the western region (left). You can see a clear and rapid temperature anomaly rise since mid-Winter, driven by the westerly wind bursts in the western Pacific and the expanding subsurface warm anomalies. The latest surface analysis below also shows the main ENSO region with disappearing cool patches, and most of the region is already in positive anomalies. What we are currently monitoring is also the western Pacific area, which is expected to undergo further westerly wind burst events and will push more of the warmer waters to the east, at the surface and below, as an oceanic Kelvin Wave. This is much better seen in the video below, which shows the last 90 days of ocean temperature changes in the ENSO region. You can see an active weak La Niña event just two months ago and how rapidly it started to dissolve in recent weeks, with a warm anomaly emerging. Super El Niño Event Starting for 2026 As mentioned, the strong temperature changes deep beneath the ocean surface are a key (invisible) dynamic in this story for 2026/2027. The image below shows the latest subsurface ocean temperature anomalies across the tropical Pacific, with a large subsurface warm pool at around 100-250m (300-800ft) depth. This is called an oceanic Kelvin wave, and is making its way east, fully eroding the subsurface cold and emerging on the surface as the eventual El Niño event. These subsurface Kelvin waves are driven by the westerly wind bursts we saw above, really emphasizing the important, strong connection between the oceans and the atmosphere. We can use this to compare the 2026 development to the past Super El Niño events, as the subsurface component is one of the key aspects of development. The Heavy Hitters: Measuring 2026 Against the Strongest Events Ever Seen When we compare the subsurface heat of 2026 to past Super events, we start to see a very familiar and powerful signature. We can look at the subsurface temperature anomalies across the tropical Pacific, in the top 300m (1000ft) of the ocean. The image shows a direct comparison of subsurface anomalies for the first week of April, between this year and the past two Super El Niño events. What it tells us is that the west Pacific is much warmer below the surface, and the main warm pool is not fully developed yet. This difference comes from the fact that, unlike the two Super El Niño events, we are just coming off a weak La Niña, so there is some catch-up to do in terms of time. But it’s remarkable how fast it’s catching up, boosted by the strong westerly wind bursts. We can also plot a direct difference between 2026 and the past two super events. And it shows the proper subsurface difference, which reveals that 2026 is only behind in time, because it has a much warmer western Pacific zone, which will push further east, with more westerly wind bursts in the next days and weeks. Otherwise, it looks overall ready for a strong El Niño event, which the latest forecasts indicate could be the strongest in decades. We can also compare it to the two Super El Niño events further back, in 1982 and 1972. In this comparison, the two years show fully monthly data, as daily data is not available for the first week of April. But we can see that we are perhaps closest in evolution to 1972/1973, especially when we take the time delay into account. The latest forecast data also reflects these massive oceanic and atmospheric changes, and shows an even stronger signal for the new El Niño event than previous runs. New data is also beginning to confirm the intensity of the new El Niño event. Latest Forecast Data: Why the 2026 Event Could Be the Strongest in Decades As we enter the long-range forecasts, a single question usually arises: Why bother with monthly trends when we are not sure of the temperatures in our city 5 days ahead? But there is a difference between forecasting backyard temperatures and forecasting a global-scale event. We can think of weather as the specific lines an actor says on stage in a play, which are very specific and can vary. But seasonal drivers like El Niño are just as the script and the scenery. It tells us if we are going to watch a drama or a comedy, so we know exactly what kind of “show” to expect for the coming months. Below is the latest ENSO multi-model forecast for the next few months from the North American forecasting system (NMME). Both graphs are for the main ENSO region, showing multiple long-range models and spread, confirming a shift into a strong El Niño event for 2026, with the mean value exceeding the +2.0 threshold. A Super El Niño is scientifically recognized when sea surface temperature anomalies in the Niño3.4 region exceed a threshold of +2.0 or higher above the long-term average. This identifies events of high intensity in which atmospheric coupling is strong enough to shift global weather patterns into a high-impact state. Below is also the latest ECMWF model forecast for the next few months. This also shows a strong El Niño developing into 2026, easily exceeding the +2 degrees threshold and pushing it into the Super event category. Most ensemble members exceed this boundary, aiming even higher for the later peak. Both leading seasonal ensemble systems indicate a high likelihood of a Super El Niño in the second half of 2026. The usual peak occurs between Fall and early Winter, so the true peak is likely not yet visible or properly defined in the current forecasts. Below is the latest ECMWF forecast for the August-October period, and it shows a significant El Niño anomaly across the tropical and northern Pacific. The values exceed +2 degrees across the whole ENSO region, consistent with the strength of a Super El Niño event. Looking also at the latest NMME multi-model forecast for early Fall, you can see a strong El Niño anomaly in the Pacific. This also shows the distribution of peak anomalies to resemble a proper Super El Niño evolution in 2026/2027. Based on all the combined forecasts and analysis, we could be looking at the strongest Super El Niño event in decades. But just having an El Niño warm signature in the ocean is not enough. For a proper impact, we have to see it starting to impact the atmosphere. That usually happens in a very specific way, as El Niño causes rising air in the eastern Pacific and sinking air in the west. This upward and downward atmospheric motion in the tropical regions is called the Walker Cell, and is especially sensitive to strong El Niño and La Niña events. The schematic below shows the outline of atmospheric motion in a normal atmosphere and during an El Niño event, and how its impact spreads into the global weather system via this atmospheric cell. We can already see this specific impact clearly in the June 2026 forecast, for the parameter known as Velocity Potential (VP). It shows rising air and sinking air, revealing the overall atmospheric circulation mode and the state of the Walker Cell. This forecast shows a strong onset of an El Niño atmospheric circulation as early as the start of Summer. Image by meteorologist Ben Noll. Going forward into early Fall, we can see this process much more amplified, with a significant El Niño circulation taking over in the atmosphere. This has profound impacts on the developing weather patterns in both the Northern and Southern Hemispheres. But also more of a direct regional impacts over North America, Australia, etc. Knowing that we are likely going to deal with a Super El Niño event in 2026/2027, we can look at the past super events to have an idea of what we might expect during the upcoming season. We will take a closer look at Summer, which is the first season with an obvious El Niño interference. The First Impact: Emerging Atmospheric Responses in Summer 2026 The El Niño is forecast to start impacting the Atmosphere by Summer, but its impact is usually not immediate or overnight. Given how the forecast patterns look, the atmosphere is already expected to show El Niño-like patterns during Summer 2026 in the Northern Hemisphere, while there is Winter in the Southern Hemisphere. Below is the meteorological Summer reanalysis for the Super El Niño years. The reanalysis of past such years shows a tendency for a low-pressure area somewhere over the eastern United States or eastern Canada, and somewhere along the west coast of Europe and the North Atlantic. A low-pressure area over the eastern U.S. or eastern Canada supports a more northerly flow, which means more controlled summer temperatures. You can also see a low-pressure tendency over the southwestern United States, which is driven by the stronger subtropical jet stream with the El Niño. If we look at the latest long-range pressure forecast for Summer (June-August), you can actually see a very similar pressure pattern to that in the Super El Niño seasons above. A low-pressure area is forecast over eastern Canada and over the Azores. This indicates that the atmosphere is likely to undergo a similar development to that in those years. But since each year has its own specific conditions, we are just looking at large-scale trends. Looking at temperatures from the past super events, you can see a below-normal trend over the northern, central, and eastern United States and eastern Canada. Warmer temperatures are found over the Pacific Northwest and over a large part of central and northern Europe. But note the below-normal trend in the western parts of Europe. If we look below at the very latest long-range Summer temperature forecast, we can actually see the normal temperature area over the northern and northeastern United States, and over much of central and eastern Canada. This coincides with the trends of the past data, indicating the presence of the background (El Niño emergent) forcing. Above-normal temperatures are forecast for Summer 2026 over the northwestern and southern United States and far western Canada, very similar to the data for past events. But across Europe, we see the whole mainland forecast with above-normal temperatures for Summer as a whole. This is normal, since Europe is not usually affected by the first direct impacts, as it’s farther from the ENSO source region. There are also local factors that affect the weather, such as the North Atlantic pressure patterns. But while we have Summer in the Northern Hemisphere, there is Winter in the Southern Hemisphere. The obvious case for El Niño impacts is Australia, seen in the image below by ARC, during its Winter-Spring season and weather impacts during an El Niño event. You can see that an El Niño event leads to a much drier season in Australia, increasing drought risk across the northern and eastern parts of the continent. Also, we can see warmer-than-normal Winter-Spring temperatures across the southern half, while below-normal temperatures prevail in the northern half. Overall, these images and data show what we can expect in the coming months, as a strong El Niño event emerges and disrupts global weather patterns. Speaking of global impacts, one that is not often discussed is crop yield. The image below shows the significant impact of El Niño on crop yields and food production, driven by its global changes in pressure and rainfall patterns. Image by NASA-Science While many areas show a strongly negative impact on food production, such as South Africa, Australia, and India, some areas do benefit from El Niño. What stands out is that a large part of the United States shows a slight to moderate positive impact on crop yields and food production. But as we go deeper into the year, El Niño will get stronger. And one of the well-known impacts of El Niño occurs during the Atlantic Hurricane season, resulting from the changes it makes to atmospheric circulation. The Atlantic Barrier: How can El Niño Suppress the 2026 Hurricane Season Based on many studies, the El Niño event is well known to reduce the number of Hurricanes and tropical systems in the Atlantic. This is because El Niño brings higher pressure over the Atlantic, stronger wind shear, and a more stable atmosphere, preventing storms from organizing and developing into large systems. This means fewer tropical storms and/or weaker systems. So, an El Niño can greatly reduce the chance of strong hurricanes impacting the United States. Below is the latest long-range precipitation forecast for the 2026 Hurricane season, and it shows drier conditions in the main development region (MDR). This indicates well below-normal tropical activity and a lower chance of a major hurricane making landfall along the southern and eastern U.S. coast. The next forecast below is interesting because it’s an analog system based on past data. It looks at predicted ocean anomalies, identifies similar past years, and generates the forecast based on the activity in those years. Overall, you can see a very quiet (below normal) Hurricane season, with some storms near the United States East Coast but staying out. Image by TropicalTidbits You can see the selected past years, and 4 out of 5 selected years are Super El Niño events. This shows that the forecasting system does recognize the ocean forecast as reaching into the Super event category. El Niño makes it much harder for storms to organize properly and grow into large systems. But even in the calmest of seasons, we still see some tropical storm activity, even during the strongest El Niños. So while the El Niño acts as a natural “shield” for the U.S. coasts, we still have to monitor every potential system. After the Hurricane season and Fall, we enter Winter, which is where the main impact of El Niño usually occurs. The 2026/2027 Predictions: A Super El Niño Winter Footprint During an average El Niño winter season, there is typically a strong and persistent low-pressure area in the North Pacific. That pushes the polar jet stream further north, bringing warmer-than-normal temperatures to the northern United States and western Canada. At the same time, the southerly Pacific jet stream gets amplified during an El Niño. That means more low-pressure systems and storms over the southern half of the United States, with more precipitation and cooler weather. An El Niño event also significantly alters snowfall patterns. Below is a snowfall analysis of all recent Super El Niño winters, combining their data to produce an average snowfall pattern for such winters. You can see increased snowfall in the western and southern United States during a Super El Niño, as well as over parts of the Southeast. We can also see increased snowfall in the belt from the central Plains up towards the upper Midwest. But there was less snowfall around the Great Lakes, over the northern U.S., and towards the Northeast. Canada shows a more sporadic pattern, with more snowfall in the southeastern and south-central parts. This is because low-pressure systems are trailing across the southern United States during an El Niño. The chances of snowfall increase in the southern half of the country and towards the east, but only if enough cold air is available. Europe also feels the impact of an El Niño in winter. But, as mentioned above, the impact here is buffered by North Atlantic pressure anomalies and patterns. Looking at the snowfall anomaly for Europe, Super El Niño years show reduced snowfall across much of the continent. More snowfall was measured in the far north and in some central areas. This is likely due to the low-pressure area near western Europe, driving a more southerly flow across the continent. We do have to consider that Europe is usually not directly under El Niño’s influence, but can still feel global changes that affect weather patterns across the whole Northern Hemisphere. Forecast and analysis images in this article are from cyclonicwx.com and WeatherBell, using a commercial license, unless specified otherwise. We will keep you updated on global weather development and long-range outlooks, so bookmark our page. Also, if you have seen this article in the Google App (Discover) feed, click the like (♥) button to see more of our forecasts and our latest articles on weather and nature in general. Don’t miss: Summer 2026 Forecast: A Super El Niño is Now Starting to Form, Impacting the Warm Season Weather Patterns
+"""
+
+[R4] El Niño in the Northwest: What Can We Expect?
+(https://www.climatehubs.usda.gov/hubs/northwest/topic/el-nino-northwest-what-can-we-expect)
+"""
+Estimated reading time: 4 minutes In early June 2023, the National Oceanic and Atmospheric Administration’s (NOAA) Climate Prediction Center declared that an El Niño pattern emerged over the Pacific. Though El Niño conditions are normally subtle in the summer months in the Northwest, NOAA predicts a 95% chance that El Niño will continue through winter 2023-24. Weather patterns throughout Alaska, Idaho, Oregon, and Washington are affected by El Niño, particularly in the winter season. What is El Niño? This video explores the causes and impacts of ENSO. Video credit: Climate.gov and NOAA. El Niño is the naturally occurring warm phase of the El Niño-Southern Oscillation (ENSO), a climate pattern in the Pacific Ocean. It is marked by warmer-than-average sea surface temperatures in the central and eastern Pacific Ocean near the equator. On average, El Niño occurs every 2-7 years, and can last from a few months to a year. La Niña, alternatively, is the cool phase of ENSO.During El Niño, the trade winds that normally blow east to west over the Pacific Ocean weaken or even reverse direction along the equator, allowing warm water to build up in the eastern Pacific. As this occurs, rainfall increases over the central and eastern Pacific and decreases over Indonesia. As El Niño heats the water and atmosphere above the central and eastern Pacific, the jet stream intensifies and shifts southward, affecting weather patterns throughout North America. For example, in an El Niño winter, an extended North Pacific jet stream tends to bring cooler temperatures and more storms across the southern U.S., and warmer, drier weather to the northern U.S. How does El Niño affect the Northwest? In the Northwest, the impacts of El Niño show up mostly in the winter and affect Alaska differently than Idaho, Oregon, and Washington. In Idaho, Oregon, and Washington, fall and winter are usually warmer and drier during El Niño events. In Alaska, the phenomenon is typically marked by drier winters and wetter falls. Alaskans are likely to see slightly higher temperatures in fall and winter, and more fall storms, especially around the Gulf of Alaska. Though El Niño increases the chance of these weather patterns occurring, many other factors affect weather and climate in the Northwest, so the typical effects are not a certainty. El Niño can also contribute to drought, wildfire, changes to marine productivity and salmon populations, and shoreline erosion. In, Idaho, Oregon, and Washington, a drier, warmer winter results in less precipitation overall and more precipitation falling as rain than snow. These impacts can lead to decreased runoff and summer water availability which can contribute to drought and increased wildfire risk. Larger waves and higher sea levels can also affect the coasts of Oregon and Washington. These impacts can lead to increased shoreline erosion, as they did during the 2015-16 El Niño event. (Left) The additional number of high-tide flooding days in the 2023-24 Outlook, relative to the year 2000 average, attributed to rising sea level trends. (Right) Additional number of high-tide flooding days above and beyond those from sea level rise, shown in the left panel. Note the increase in high-tide flood days in the Northwest. NOAA Climate.gov graphic, adapted from original by Billy Sweet. Past events have also been associated with marine heatwaves, which can affect fisheries in Oregon, Washington, and Alaska. When a marine heatwave hits, cold-water species tend to move northward or deeper to find cold water. This has implications for the marine food chain, from plankton to top predators, including commercially-important species. Marine heatwaves can also produce harmful algal blooms, which can lead to increases in paralytic shellfish poisoning, among other impacts. In one example, the 1983 El Niño affected the distribution and survival of salmon and other fish. In summer 2023, a large marine heatwave occurred off the Gulf Coast of Alaska and the coasts of Oregon and Washington. The heatwave is liable to be maintained by the present El Niño into 2024; regional oceanographers are keeping track of how it is playing out. In Oregon and Washington, less snowmelt and runoff during El Niño often adversely impact freshwater habitats and lead to salmon fishery declines. The growth and survival of juvenile salmon and steelhead are also affected by warm ocean temperatures. When marine heatwaves last into the summer season, they can also impact older salmon. In Alaska, however, salmon can sometimes benefit from the wetter falls and springs that El Niño can bring. How can climate change interact with El Niño? The NOAA seasonal precipitation outlook for January through March 2024 shows below normal precipitation probability for parts of Idaho, Oregon, Washington, and above and below normal probability for Alaska. Credit: NOAA Climate change is leading to rising temperatures and changing precipitation patterns throughout the Northwest. The interaction between climate change and El Niño is not completely understood, but El Niño could temporarily exacerbate the warming effects of climate change and contribute to events like droughts, wildfires, and marine heat waves. Moreover, it is uncertain how climate change will impact the ENSO cycle itself. The global climate models used for decadal projections are inconsistent in terms of their projections of the tendency for El Niño versus La Niña, and for strength of the ENSO cycle. As a consequence, there is the possibility of more frequent and severe events of either type, with implications for the Northwest. Time will tell how this particular ENSO cycle affects the Northwest. However, Idaho, Oregon, and Washington can expect warmer, drier conditions than a typical winter, whereas Alaska can expect a warmer, stormier fall and a warmer, drier winter. Regardless of the effects of climate change on the ENSO cycle, increases in temperature and changes in the seasonal timing of precipitation are likely to manifest in future climate and weather patterns in the Northwest.
+"""
+
+[R5] ENSO: Recent Evolution,
+(https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/lanina/enso_evolution-status-fcsts-web.pdf)
+"""
+ENSO: Recent Evolution,
+Current Status and Predictions
+
+ Update prepared by:
+ Climate Prediction Center / NCEP
+ 20 April 2026
+ Outline
+ Summary
+ Recent Evolution and Current Conditions
+ Relative Oceanic Niño Index (RONI)
+ Pacific SST Outlook
+ U.S. Seasonal Precipitation and Temperature Outlooks
+ Summary
+
+2/2/26: Tropical Pacific sea surface temperatures (SST) anomalies and Nino indices now
+reflect relative SST anomalies:
+https://www.weather.gov/media/notification/pdf_2026/pns26-05_Relative_ONI.pdf
+ Summary
+ ENSO Alert System Status: Final La Niña Advisory / El Niño Watch
+ENSO-neutral conditions are present.*
+Equatorial sea surface temperatures (SSTs) are near-to-below-average in the
+east-central Pacific Ocean.
+ENSO-neutral conditions favored through April-June 2026 (80% chance). In May-
+July 2026, El Niño is likely to emerge (61% chance) and persist through at least
+the end of 2026.*
+
+* Note: These statements are updated once a month (2nd Thursday of each month) in association
+with the ENSO Diagnostics Discussion, which can be found by clicking here.
+Recent Evolution of
+Equatorial Pacific SST
+Departures (oC)
+
+From August 2025 through early
+January 2026, below-average SSTs
+strengthened in parts of the equatorial
+Pacific Ocean.
+Since early January 2026, below-
+average SSTs have gradually weakened
+across most of the equatorial Pacific.
+Beginning in early February 2026,
+above-average SSTs emerged in the far
+eastern equatorial Pacific.
+Since March 2026, above-average SSTs
+have shifted eastward to near the Date
+Line.
+Niño Region SST
+Departures (oC) Recent
+Evolution
+
+The latest weekly
+SST departures are:
+
+ Niño 4 0.6ºC
+ Niño 3.4 0.1ºC
+ Niño 3 0.2ºC
+ Niño 1+2 1.2ºC
+ SST Departures (oC) in the Tropical Pacific During the Last
+ Four Weeks
+In the last four weeks, equatorial SSTs were near-to-below average in the east-central and far
+western Pacific Ocean, and above average just west of the Date Line and in the far eastern
+Pacific.
+
+ 30
+ 26
+ Global SST Departures (oC) During the Last Four Weeks
+ (Traditional SST Anomalies)
+During the last four weeks, above-average SSTs were prevalent over most of the global oceans. Equatorial SSTs were near-
+to-above-average in the Atlantic Ocean, and were near-to-below average north of Australia. Equatorial SST anomalies were
+warmer around the Date Line and far eastern Pacific compared to the east-central Pacific.
+
+ 30
+ 26
+ 30
+Weekly SST Departures
+during the Last Four
+Weeks
+
+During the last 4 weeks, below-average
+equatorial SSTs weakened in the east-central
+Pacific Ocean.
+
+Above-average SSTs stretched from Baja to
+near the Date Line in the tropical Pacific
+Ocean.
+
+Above-average SSTs persisted in the far
+eastern equatorial Pacific Ocean.
+Change in Weekly SST Departures over the Last Four
+Weeks
+During the last four weeks, mostly positive SST anomaly changes were observed across the
+eastern and central equatorial Pacific Ocean. Negative changes were evident in the eastern
+equatorial Indian Ocean and the far western Pacific Ocean.
+Upper-Ocean Conditions in
+the Equatorial Pacific
+
+The basin-wide equatorial upper ocean (0-300 m)
+heat content is greatest prior to and during the
+early stages of a Pacific warm (El Niño) episode
+(compare top 2 panels), and least prior to and
+during the early stages of a cold (La Niña)
+episode.
+
+ The slope of the oceanic thermocline is least
+ (greatest) during warm (cold) episodes.
+
+Recent values of the upper-ocean heat
+anomalies are above-average and the
+thermocline slope index is slightly below-
+average.
+
+The monthly thermocline slope index represents the
+difference in anomalous depth of the 20ºC isotherm
+between the western Pacific (160ºE-150ºW) and the
+eastern Pacific (90º-140ºW).
+ Central and Eastern Pacific Upper-Ocean (0-300 m)
+ Weekly Average Temperature Anomalies
+Weak positive subsurface temperature anomalies were present from mid-April through early July 2025.
+Negative anomalies emerged in mid-July 2025 and persisted through mid-December 2025. From mid-
+December 2025 through late February 2026, positive anomalies developed and increased. After a slight
+decrease, positive anomalies have increased again since early March 2026.
+ Sub-Surface Temperature Departures in the Equatorial
+ Pacific
+In the last two months, above-average subsurface
+temperatures have strengthened in the east-central
+equatorial Pacific Ocean.
+
+ Most recent pentad analysis
+ Tropical OLR and Wind
+ Anomalies During the Last
+ 30 Days
+Below-average OLR (enhanced convection and
+precipitation) was evident east of Papua New
+Guinea. Above-average OLR (suppressed
+convection and precipitation) was observed over
+parts of Indonesia, southeast Asia, the Philippines,
+and east of the Date Line along the equatorial
+Pacific.
+
+Low-level (850-hPa) wind anomalies were
+westerly over the western and central
+equatorial Pacific, and were easterly over the
+eastern Pacific.
+
+Upper-level (200-hPa) wind anomalies were
+westerly over the east-central and eastern C
+Pacific. An anomalous cyclonic couplet
+straddled the equator over the eastern Pacific
+Ocean. C
+Intraseasonal Variability
+
+Intraseasonal variability in the atmosphere (wind and pressure), which is often related
+to the Madden-Julian Oscillation (MJO), can significantly impact surface and subsurface
+conditions across the Pacific Ocean.
+
+Related to this activity:
+Significant weakening of the low-level easterly winds usually initiates an eastward-
+propagating oceanic Kelvin wave.
+ Weekly Heat Content
+ Evolution in the Equatorial
+ Pacific
+Equatorial oceanic Kelvin wave activity (dashed
+and dotted lines) has been present at times
+throughout the period shown. Upwelling Kelvin
+waves were initiated during July, August, and
+October 2025. Downwelling Kelvin waves were
+initiated in December 2025, January 2026, and
+March 2026.
+
+Below-average subsurface temperatures persisted
+in the east-central and eastern Pacific from July
+2025 to December 2025.
+
+Since late December 2025, above-average
+subsurface temperatures have persisted across
+most of the equatorial Pacific.
+ Equatorial oceanic Kelvin waves have alternating
+ warm and cold phases. The warm phase is
+ indicated by dashed lines. Down-welling and
+ warming occur in the leading portion of a Kelvin
+ wave, and up-welling and cooling occur in the
+ trailing portion.
+ Low-level (850-hPa)
+ Zonal (east-west) Wind
+ Anomalies (m s-1)
+From the beginning of the period through
+November 2025, low-level easterly wind
+anomalies dominated the central Pacific.
+During December 2025 and January
+2026, periodic westerly wind anomalies
+extended across the equatorial Pacific
+Ocean.
+Since February 2026, easterly wind
+anomalies have shifted from the central
+to the eastern equatorial Pacific.
+In March and early April 2026, westerly
+wind anomalies strengthened in the
+western Pacific and near the Date Line.
+
+Westerly Wind Anomalies (orange/red shading)
+Easterly Wind Anomalies (blue shading)
+ Upper-level (200-hPa)
+ Velocity Potential
+ Anomalies
+At times, regions of anomalous divergence
+(green shading) and convergence (brown
+shading) shifted eastward.
+
+Since the beginning of the period,
+anomalous divergence persisted over the
+western and central equatorial Pacific
+Ocean.
+
+Anomalous convergence persisted over the
+eastern Pacific Ocean.
+
+ Unfavorable for precipitation (brown shading)
+ Favorable for precipitation (green shading)
+ Note: Eastward propagation is not necessarily indicative of the Madden-Julian Oscillation (MJO).
+ Outgoing Longwave
+ Radiation (OLR) Anomalies
+
+Through mid-March 2026, negative OLR
+anomalies (enhanced convection/rainfall)
+generally persisted over Indonesia, and
+positive OLR anomalies (suppressed
+convection/rainfall) generally persisted
+near the Date Line.
+Since then, OLR anomalies have shifted
+eastward, with negative anomalies
+persisting in the far western Pacific Ocean
+and positive anomalies continuing over
+Indonesia.
+
+Drier-than-average Conditions (orange/red shading)
+Wetter-than-average Conditions (blue shading)
+Relative Oceanic Niño Index (RONI)
+
+The RONI is a principal measure for monitoring, assessing, and predicting ENSO. The
+RONI helps to place current events into a historical perspective.
+
+RONI is the SST departures from average in the Niño 3.4 region (5ºN-5ºS, 120º-170ºW)
+with the tropical mean (20ºS-20ºN) SST departures subtracted out. The variance is
+adjusted to match the variance of the original Niño 3.4 index. A three-month running-
+mean is applied to the index.
+
+The SST data are based on a set of improved homogeneous historical SST analyses
+(Extended Reconstructed SST – ERSST.v5). The SST reconstruction methodology is
+described in Huang et al., 2017)
+
+Note: a different SST dataset is used for weekly SST monitoring (slides #4-9) and is
+using OISSTv2.1 (Huang et al., 2021).
+
+https://www.weather.gov/media/notification/pdf_2026/pns26-05_Relative_ONI.pdf
+NOAA Operational Definitions for El Niño and La Niña
+
+El Niño: characterized by a positive RONI greater than or equal to +0.5ºC.
+
+La Niña: characterized by a negative RONI less than or equal to -0.5ºC.
+
+By historical standards, to be classified as a full-fledged El Niño or La Niña episode,
+these thresholds must be exceeded for a period of at least 5 consecutive overlapping
+3-month seasons.
+
+CPC considers El Niño or La Niña conditions to occur when the monthly relative Niño3.4
+departures meet or exceed +/- 0.5ºC along with consistent atmospheric features. These
+anomalies must also be forecasted to persist for 3 consecutive months.
+
+https://www.weather.gov/media/notification/pdf_2026/pns26-05_Relative_ONI.pdf
+ RONI (ºC): Evolution
+ since 1950
+
+The most recent RONI
+value (January – March
+2026) is -0.7ºC.
+
+ El Niño
+ Neutral
+ La Niña
+Historical El Niño and La Niña Episodes Based on the
+RONI computed using ERSST.v5
+ Recent Pacific warm (red) and cold (blue) periods based on a threshold of +/- 0.5 ºC for the
+Relative Oceanic Nino Index (RONI) [ERSST.v5 SST anomalies]. For historical purposes, periods of below and
+above normal SSTs are colored in blue and red when the threshold is met for a minimum of 5 consecutive over-
+lapping seasons.
+ The RONI is one measure of the El Niño-Southern Oscillation, and other indices can confirm
+whether features consistent with a coupled ocean-atmosphere phenomenon accompanied these periods. The
+complete table going back to DJF 1950 can be found here.
+
+ Year DJF JFM FMA MAM AMJ MJJ JJA JAS ASO SON OND NDJ
+ 2014 -0.5 -0.5 -0.3 0.0 0.1 0.0 -0.1 -0.1 0.1 0.4 0.5 0.6
+
+ 2015 0.5 0.4 0.5 0.6 0.8 1.0 1.3 1.6 1.9 2.2 2.3 2.4
+
+ 2016 2.2 1.8 1.3 0.5 -0.1 -0.6 -0.9 -1.0 -1.1 -1.1 -1.1 -1.0
+
+ 2017 -0.7 -0.5 -0.3 -0.1 0.1 0.1 -0.2 -0.5 -0.7 -1.0 -1.1 -1.3
+
+ 2018 -1.1 -1.0 -0.9 -0.7 -0.3 0.0 0.1 0.2 0.4 0.7 0.8 0.7
+
+ 2019 0.6 0.6 0.6 0.5 0.3 0.2 0.0 -0.1 0.0 0.1 0.2 0.2
+
+ 2020 0.1 0.1 0.0 -0.3 -0.6 -0.8 -0.8 -0.9 -1.2 -1.5 -1.5 -1.4
+
+ 2021 -1.2 -1.0 -1.0 -0.8 -0.6 -0.5 -0.6 -0.7 -0.9 -1.1 -1.2 -1.2
+
+ 2022 -1.2 -1.2 -1.3 -1.3 -1.2 -1.0 -0.9 -1.0 -1.1 -1.1 -1.0 -1.0
+
+ 2023 -0.8 -0.6 -0.4 -0.2 0.1 0.4 0.6 0.9 1.1 1.4 1.5 1.5
+
+ 2024 1.2 0.9 0.5 0.1 -0.3 -0.5 -0.5 -0.6 -0.8 -0.8 -0.9 -1.1
+
+ 2025 -1.1 -0.9 -0.7 -0.5 -0.5 0.0 -0.5 -0.6 -0.8 -0.9 -0.9 -1.0
+
+ 2026 -0.9 -0.7
+ CPC Probabilistic ENSO Outlook
+ Updated: 9 April 2026
+
+A transition from La Niña to ENSO-neutral is expected in the next month, with
+ENSO-neutral favored through May-July 2026 (55% chance). In June-August
+2026, El Niño is likely to emerge (62% chance) and persist through at least the
+end of 2026.
+ CPC Probabilistic ENSO Strength Outlook
+ Updated: 9 April 2026
+
+In November 2026- January 2027, there are nearly equal chances (25%) of a
+very strong, strong, or moderate strength El Niño. There is nearly a 1-in-10
+chance of ENSO-neutral.
+ SST Outlook: NCEP CFS.v2 Forecast (PDF & Spread Corrected)
+ Issued: 19 April 2026
+
+The CFS.v2 ensemble mean (black dashed line) favors the continuation of ENSO-
+neutral in the next month or two, with a transition to El Niño during May-July
+2026.
+Atmospheric anomalies over
+the North Pacific and North
+America During the Last 60
+Days
+
+Since mid-February, above-average heights and
+temperatures have dominated most of the
+contiguous U.S., while below-average heights and
+temperature were evident over Alaska and/or
+Canada.
+
+ 1 of 3
+Atmospheric anomalies over
+the North Pacific and North
+America During the Last 60
+Days
+
+Since mid-February, above-average heights and
+temperatures have dominated most of the
+contiguous U.S., while below-average heights and
+temperature were evident over Alaska and/or
+Canada.
+
+ 2 of 3
+Atmospheric anomalies over
+the North Pacific and North
+America During the Last 60
+Days
+
+Since mid-February, above-average heights and
+temperatures have dominated most of the
+contiguous U.S., while below-average heights and
+temperature were evident over Alaska and/or
+Canada.
+
+ 3 of 3
+U.S. Temperature and Precipitation Departures During
+the Last 30 Days
+
+End Date: 18 April 2026
+
+ Percent of Average Precipitation Temperature Departures (degree C)
+
+ 1 of 2
+U.S. Temperature and Precipitation Departures During
+the Last 90 Days
+
+End Date: 18 April 2026
+
+ Percent of Average Precipitation Temperature Departures (degree C)
+
+ 2 of 2
+U. S. Seasonal Outlooks
+May – July 2026
+
+ The seasonal outlooks combine the effects of long-term trends, soil moisture,
+ and, when appropriate, ENSO.
+
+ Precipitation Temperature
+ Summary
+ ENSO Alert System Status: Final La Niña Advisory / El Niño Watch
+ENSO-neutral conditions are present.*
+Equatorial sea surface temperatures (SSTs) are near-to-below-average in the
+east-central Pacific Ocean.
+ENSO-neutral conditions favored through April-June 2026 (80% chance). In May-
+July 2026, El Niño is likely to emerge (61% chance) and persist through at least
+the end of 2026.*
+
+* Note: These statements are updated once a month (2nd Thursday of each month) in association
+with the ENSO Diagnostics Discussion, which can be found by clicking here.
+"""
+
+[R6] A Super El Niño Is Possible Later This Year. Here's What That Could Mean For Hurricane Season And Winter
+(https://weather.com/news/climate/news/2026-04-08-super-el-nino-forecast-2026-hurricane-season-summer-winter)
+"""
+The Latest Update About The Upcoming El NiñoA super El Niño is increasingly possible later this year, and that could have significant global impacts on rainfall and temperatures from summer through winter, as well as the 2026 hurricane season.The Latest ForecastThe central and eastern equatorial Pacific waters have transitioned away from a persistent La Niña over the past month.You can see this in the animation from NOAA's Climate Prediction Center below. Note the warmer than average ocean water encroaching from the west near the equator while the cool anomalies are fading.Weather in your inboxBy signing up you agree to the Terms &amp; Privacy Policy. Unsubscribe at any time.This animation shows ocean surface temperature anomalies in degrees Celsius over the tropical Pacific Ocean from Jan. 14 - April 1, 2026. (NOAA/CPC)An El Niño is expected to develop quickly by this summer and last into the fall and winter, according to the latest computer model forecasts. NOAA calculated a 61% of that happening sometime from May through July, according to their monthly update released Thursday.(MORE: Here's Your Complete Guide To El Niño?)El Niño is a periodic warming of water in the central and eastern equatorial Pacific Ocean that can affect global weather patterns for months. There have been 27 El Niños since 1950, with one happening on average every 3 to 4 years.You can see this tongue of anomalously warm water forecast by one of the computer models in the map below, stretching from the coast of South America to the central Pacific Ocean near the equator.The forecast sea-surface temperature anomalies — in degrees Celsius — from August-October 2026. The potential super El Niño is depicted by the darkest brown contours from South America to the central equatorial Pacific Ocean. (European Centre For Medium-Range Weather Forecasts)'Super El Niño' - What Is It?This won't be your garden-variety, weak El Niño.NOAA's monthly update assigned a roughly 50% chance this El Niño would become strong, in which ocean surface temperatures are at least 1.5 degrees Celsius warmer than average.(WATCH: What Is A Super El Niño?)By fall or early winter, NOAA assigned a 1 in 4 chance it could intensify into a super El Niño, in which those warm ocean anomalies reach at least 2 degrees Celsius.These are the percent chances of weak, moderate, strong and super El Niño by three-month period through January 2027, as issued in NOAA's April 9, 2026, update. (NOAA/CPC)Computer models are also trending toward a super El Niño, as you can see below.The latest El Niño ensemble model forecasts as of the time of publish from the ECMWF (left) and from the NMME (right). Temperature anomalies are in degrees Celsius.(Left: ECMWF; Right: NOAA/CPC)These intense El Niños are more rare.There have been only five since 1950, the last occurring 11 years ago from 2015-16. They also occured in 1997-98, 1991-92, 1982-83 and 1972-73. Super El Niños have also been documented in 1888-89 and 1877-78.Why It Could Be 'Super'The trend in the various computer models shown above and the extremity of their forecast is one thing.However, model forecasts of El Niño and La Niña have historically struggled in the spring. It's what scientists call the "spring predictability barrier".Usually in spring, we're transitioning out of La Niña or El Niño, and each of those typically reaches their peak in late fall or early winter, many months down the road. Any weather forecast has more uncertainty the farther out in time you look. And forecasting a transition from one phase to another is also more difficult. Think of how hard it is for an economist to forecast a change, say from a recession to a bull market.But another reason boosting confidence in an eventual super El Niño is a surge of westerly winds near the equator in the western Pacific called a westerly wind burst."These periods of strong winds blowing west to east are pushing warm waters onto the equator and driving them eastward, contributing to rapid warming in the eastern Pacific," wrote Paul Roundy, a University of Albany professor and El Niño expert, in an email to weather.com.Previous studies have shown these bursts happen more frequently and are stronger prior to and during El Niños.Roundy said the strength of the westerly wind burst in early April "is likely to be the strongest in over 50 years, and probably in the last century." In fact, twin tropical cyclones on either side of the equator — Cyclone Maila and a soon-to-form tropical cyclone near Guam — will only give additional juice to the westerly wind burst.This may wash over the typical spring predictability barrier."The likelihood of this event (stronger El Niño) failing, especially given highly confident westerly wind forecasts over the next two weeks, must be small," Roundy added.NOAA's update did pump the brakes a little on the super potential, stressing that it depends on how persistent the anomalous westerly winds are through summer to keep pushing that warmer water eastward into the El Niño zone of the equatorial Pacific.El Niño’s Potential ImpactsFirst, some disclaimers.El Niño (and its opposite, La Niña) is only one influence on the global weather pattern. Also, every El Niño is different, much like every hurricane can have its own idiosyncrasies.But, in general, the stronger the El Niño, the more likely its typical impacts on global weather will happen.Here are some of those potential impacts.Hurricane seasonA stronger El Niño tends to produce more sinking air and stronger wind shear in parts of the Atlantic Basin, both hostile to hurricanes.(MORE: 2026 Hurricane Season Outlook)So, in general, most stronger El Niño Atlantic hurricane seasons are quieter than average. That's not always the case, as the 2023 season illustrated.Meanwhile, eastern and central Pacific hurricane seasons are typically more active during strong El Niños.WinterIn winter, the southern, or subtropical, branch of the jet stream usually is turbocharged in a stronger El Niño.That means a wetter winter usually is the result across the southern tier of states from parts of California and the Desert Southwest to Florida and the Southeast. This could also mean more snow across these areas if the air is cold enough, as we illustrated in a previous deep dive.Meanwhile, much of the northern U.S. typically has a milder and drier winter during a stronger El Niño, from the Northwest and northern Rockies to the Northern Plains and Midwest.Global PrecipitationEl Niño's impacts typically extend around the globe. Those are highlighted on the map below.For example, parts of Africa, India, Australia, the Philippines, Indonesia, the Caribbean and northern South America trend markedly drier during El Niño.On the other hand, warm water and lighter trade winds typically sets the table for heavier rain in parts of Ecuador and Peru. Parts of eastern Africa, central Asia, Chile, Uruguay and Paraguay are also usually wetter than average during El Niño.Typical global precipitation impacts during an El Niño.(NOAA)Global TemperaturesOne impact we're highly confident about is a spike in global temperatures during this El Niño. At the risk of oversimplifying, all this extra equatorial Pacific Ocean heat is released into the atmosphere, and all large swaths of drier conditions allow plentiful sunshine to heat the surface.As the graph below nicely illustrates, the large majority of El Niños have triggered temperature spikes, including the last "non-super" El Niño in 2023.The previous super El Niño crushed previous global temperature records in 2015 and 2016. Those two years remain among the top 10 warmest years for the planet, all of which have occurred since 2015.Given last year was the planet's third warmest year, it seems like a slam dunk that new heat records will be set in 2026, possibly again in 2027.From a climate change angle, this is worrisome.A December 2025 study found super El Niño events can drive sudden "climate regime shifts" in both temperatures and precipitation, and that this effect could be increasing in a warming world.Monthly global temperature anomalies in degrees Celsius from 1950 through February 2026. El Niño months are denoted in red, La Niña months are in blue, and months in a neutral phase are in gray. (NOAA/NCEI)Jonathan Erdman is a senior meteorologist at weather.com and has been covering national and international weather since 1996. Extreme and bizarre weather are his favorite topics. Reach out to him on Bluesky, X (formerly Twitter) and Facebook.
+"""
+
+[R7] EXTENDED RANGE FORECAST OF ATLANTIC SEASONAL HURRICANE
+(https://tropical.colostate.edu/Forecast/2026-04.pdf)
+"""
+EXTENDED RANGE FORECAST OF ATLANTIC SEASONAL HURRICANE
+ ACTIVITY AND LANDFALL STRIKE PROBABILITY FOR 2026
+
+We anticipate that the 2026 Atlantic basin hurricane season will have somewhat below-
+normal activity. Current weak La Niña conditions are likely to transition to El Niño in the
+next few months, with the potential for a moderate/strong El Niño for the peak of
+hurricane season. Sea surface temperatures in the western tropical Atlantic are warmer
+than normal but slightly cooler than normal in the eastern and central tropical Atlantic.
+We anticipate El Niño being the dominant factor for the upcoming hurricane season,
+driving increased levels of tropical Atlantic vertical wind shear. We are forecasting a
+below-average probability for major hurricane landfalls along the continental United
+States coastline and in the Caribbean. As with all hurricane seasons, coastal residents are
+reminded that it only takes one hurricane making landfall to make it an active season.
+Thorough preparations should be made every season, regardless of predicted activity.
+
+ (as of 9 April 2026)
+
+ By Philip J. Klotzbach 1, Michael M. Bell 2, Levi G. Silvers3, Juhyun Lee4, Delián
+ Cólon Burgos5 and Nicholas Mesa5
+ With Special Assistance from the TC-RAMS Team6 and Carl J. Schreck III7
+ In Memory of William M. Gray8
+
+Jennifer Dimas and Joshua Rhoten, Colorado State University media representatives, are
+ coordinating media inquiries in English and Spanish. They can be reached at
+ Jennifer.Dimas@colostate.edu and Joshua.Rhoten@colostate.edu, respectively.
+
+ Department of Atmospheric Science, Colorado State University, Fort Collins CO 80523
+
+ Project Sponsors:
+
+1
+ Senior Research Scientist
+2
+ Professor
+3
+ Research Scientist
+4
+ Post-Doctoral Scientist
+5
+ Graduate Research Assistant
+6
+ Team members include: Tyler Barbero, Lauren Beard, Deztynee Bryan, Ming-Han Chung, Jen DeHart,
+Chandler Jenkins, Jinhui Ju and Meghan Stell.
+7
+ Research Scholar at NC State University
+8
+ Professor Emeritus
+
+ 1
+ ATLANTIC BASIN SEASONAL HURRICANE FORECAST FOR 2026
+
+ Issue Date
+ Forecast Parameter and 1991–2020 9 April
+ Average (in parentheses) 2026
+ Named Storms (NS) (14.4) 13
+ Named Storm Days (NSD) (69.4) 55
+ Hurricanes (H) (7.2) 6
+ Hurricane Days (HD) (27.0) 20
+ Major Hurricanes (MH) (3.2) 2
+ Major Hurricane Days (MHD) (7.4) 5
+ Accumulated Cyclone Energy (ACE) (123) 90
+ ACE West of 60°W (73) 50
+ Net Tropical Cyclone Activity (NTC) (135%) 100
+
+PROBABILITIES FOR AT LEAST ONE MAJOR (CATEGORY 3-4-5)
+HURRICANE LANDFALL ON EACH OF THE FOLLOWING COASTAL
+AREAS:
+
+ 1) Entire continental U.S. coastline – 32% (average from 1880–2020 is 43%)
+
+ 2) U.S. East Coast Including Peninsula Florida (south and east of Cedar Key,
+ Florida) – 15% (average from 1880–2020 is 21%)
+
+ 3) Gulf Coast from the Florida Panhandle (west and north of Cedar Key, Florida)
+ westward to Brownsville – 20% (average from 1880–2020 is 27%)
+
+PROBABILITY FOR AT LEAST ONE MAJOR (CATEGORY 3-4-5)
+HURRICANE TRACKING THROUGH THE CARIBBEAN (10–20°N, 88–60°W)
+
+ 1) 35% (average from 1880–2020 is 47%)
+
+ 2
+ ABSTRACT
+
+ Information obtained through March indicates that the 2026 Atlantic hurricane
+season will have activity somewhat below the 1991–2020 average. We estimate that 2026
+will have 13 named storms (average is 14.4), 55 named storm days (average is 69.4), 6
+hurricanes (average is 7.2), 20 hurricane days (average is 27.0), 2 major (Category 3-4-5)
+hurricanes (average is 3.2) and 5 major hurricane days (average is 7.4). The probability of
+U.S. and Caribbean major hurricane landfall is estimated to be below its long-period
+average. We predict Atlantic basin Accumulated Cyclone Energy (ACE) and Net
+Tropical Cyclone (NTC) activity in 2026 to be approximately 75 percent of their long-
+term averages.
+
+ Coastal residents are reminded that it only takes one hurricane making landfall to
+make it an active season for them. Thorough preparations should be made for every
+season, regardless of how much activity is predicted.
+
+ This forecast is based on an extended-range early April statistical prediction
+scheme that was developed using ~40 years of past data. Analog predictors are utilized as
+well. We are also including statistical/dynamical models based on 25–40 years of past
+data from the European Centre for Medium Range Weather Forecasts, the UK Met Office
+and the Centro Euro-Mediterraneo sui Cambiamenti Climatici model. In addition, for the
+first time this year, we are incorporating forecast output from the Ai2 Climate Emulator –
+a machine learning-based climate model. Most of this model guidance points towards a
+somewhat below-normal season.
+
+ The tropical Pacific is currently characterized by weak La Niña conditions. These
+La Niña conditions are likely to transition to neutral ENSO conditions shortly, with an
+expected transition to El Niño over the next few months. However, there remains
+considerable uncertainty as to how strong this likely El Niño will be by the peak of the
+2026 Atlantic hurricane season. Sea surface temperatures in the western tropical Atlantic
+are warmer than normal, while they are slightly cooler than normal in the eastern and
+central tropical Atlantic. We currently anticipate that a robust El Niño will dominate the
+tropical circulation during the peak of the 2026 Atlantic hurricane season, likely driving
+above-normal levels of vertical wind shear across the tropical Atlantic and Caribbean.
+
+ The early April forecast is the earliest seasonal forecast issued by Colorado State
+University and has modest long-term skill when evaluated in hindcast mode. The skill of
+CSU’s forecast updates increases as the peak of the Atlantic hurricane season approaches.
+We also present probabilities of exceedance for hurricanes and Accumulated Cyclone
+Energy to give interested readers a better idea of the uncertainty associated with these
+forecasts.
+
+ 3
+Why issue extended-range forecasts for seasonal
+hurricane activity?
+ We are frequently asked this question. Our answer is that it is possible to say
+something about the probability of the coming year’s hurricane activity which is superior
+to climatology. The Atlantic basin has the largest year-to-year variability of any of the
+global tropical cyclone basins. People are curious to know how active the upcoming
+season is likely to be, particularly if you can show hindcast skill improvement over
+climatology for many past years.
+
+ Everyone should realize that it is impossible to precisely predict this season’s
+hurricane activity in early April. There is, however, much curiosity as to how global
+ocean and atmosphere features are presently arranged with respect to the probability of an
+active or inactive hurricane season for the coming year. Our early April statistical and
+statistical/dynamical hybrid models show strong evidence on ~25–40 years of data that
+significant improvement over a climatological forecast can be attained. We would never
+issue a seasonal hurricane forecast unless we had models developed over a long hindcast
+period which showed skill. We also now include probabilities of exceedance to provide a
+visualization of the uncertainty associated with these predictions.
+
+ We issue these forecasts to satisfy the curiosity of the public and to bring attention
+to the hurricane problem. There is a general interest in knowing what the odds are for an
+active or inactive season. One must remember that our forecasts are based on the premise
+that those global oceanic and atmospheric conditions which preceded comparatively
+active or inactive hurricane seasons in the past provide meaningful information about
+similar trends in future seasons.
+
+ It is also important that the reader appreciate that these seasonal forecasts are
+based on statistical and dynamical models which will fail in some years. Moreover, these
+forecasts do not specifically predict where within the Atlantic basin these storms will
+strike. The probability of landfall for any one location along the coast is very low and
+reflects the fact that, in any one season, most U.S. coastal areas will not feel the effects of
+a hurricane no matter how active the individual season is.
+
+ 4
+ Acknowledgment
+
+ These seasonal forecasts were developed by the late Dr. William Gray, who was
+lead author on these predictions for over 20 years and continued as a co-author until his
+death in 2016. In addition to pioneering seasonal Atlantic hurricane prediction, he
+conducted groundbreaking research on a wide variety of other topics including hurricane
+genesis, hurricane structure and cumulus convection that are discussed in this paper
+highlighting his research legacy. His investments in both time and energy on these
+forecasts cannot be acknowledged enough.
+
+ We are grateful for support from Commodity Weather Group, Gallagher Re, the
+Insurance Information Institute, Ironshore Insurance, and IAA. We acknowledge a grant
+from the G. Unger Vetlesen Foundation for additional financial support.
+
+ Colorado State University’s seasonal hurricane forecasts have benefited greatly
+from several individuals that were former graduate students of William Gray. Among
+these former project members are Chris Landsea, John Knaff and Eric Blake. We also
+would like to thank Jhordanne Jones and Alex DesRosiers, Ph.D. graduates from Michael
+Bell’s research group, for model development and forecast assistance over the past
+several years. Thanks also extend to current members of the TC-RAMS team who have
+provided valuable comments and feedback throughout the forecast preparation process.
+These members include: Tyler Barbero, Lauren Beard, Deztynee Bryan, Ming-Han
+Chung, Jen DeHart, Chandler Jenkins, Jinhui Ju and Meghan Stell.
+
+ We thank Louis-Philippe Caron and the data team at the Barcelona
+Supercomputing Centre for providing data and insight on the statistical/dynamical
+models. We have also benefited from meteorological discussions with Louis-Philippe
+Caron, Dan Chavas, Jason Dunion, Brian McNoldy, Paul Roundy, Carl Schreck, Mike
+Ventrice and Peng Xian over the past few years.
+
+ 5
+ DEFINITIONS AND ACRONYMS
+Accumulated Cyclone Energy (ACE) - A measure of a named storm’s potential for wind destruction defined as the sum of the square of a
+named storm’s maximum wind speed (in 104 knots2) for each 6-hour period of its existence. The 1991–2020 average value of this parameter is
+123 for the Atlantic basin.
+
+Atlantic Multi-Decadal Oscillation (AMO) – A mode of natural variability that occurs in the North Atlantic Ocean and evidencing itself in
+fluctuations in sea surface temperature and sea level pressure fields. The AMO is likely related to fluctuations in the strength of the oceanic
+thermohaline circulation. Although several definitions of the AMO are currently used in the literature, we define the AMO based on North
+Atlantic sea surface temperatures from 50–60°N, 50–10°W and sea level pressure from 0–50°N, 70–10°W.
+
+Atlantic Basin – The area including the entire North Atlantic Ocean, the Caribbean Sea, and the Gulf of Mexico.
+
+El Niño – A 12-18 month period during which anomalously warm sea surface temperatures occur in the eastern half of the equatorial Pacific.
+Moderate or strong El Niño events occur irregularly, about once every 3–7 years on average.
+
+ENSO Longitude Index (ELI) – An index defining ENSO that estimates the average longitude of deep convection associated with the Walker
+Circulation.
+
+Hurricane (H) - A tropical cyclone with sustained low-level winds of 74 miles per hour (33 ms-1 or 64 knots) or greater.
+
+Hurricane Day (HD) - A measure of hurricane activity, one unit of which occurs as four 6-hour periods during which a tropical cyclone is
+observed or is estimated to have hurricane-force winds.
+
+Indian Ocean Dipole (IOD) - An irregular oscillation of sea surface temperatures between the western and eastern tropical Indian Ocean. A
+positive phase of the IOD occurs when the western Indian Ocean is anomalously warm compared with the eastern Indian Ocean.
+
+Madden Julian Oscillation (MJO) – A globally propagating mode of tropical atmospheric intra-seasonal variability. The wave tends to
+propagate eastward at approximately 5 ms-1, circling the globe in roughly 30-60 days.
+
+Major Hurricane (MH) - A hurricane which reaches a sustained low-level wind of at least 111 mph (96 knots or 50 ms-1) at some point in its
+lifetime. This constitutes a category 3 or higher on the Saffir/Simpson scale.
+
+Major Hurricane Day (MHD) - Four 6-hour periods during which a hurricane has an intensity of Saffir/Simpson category 3 or higher.
+
+Named Storm (NS) - A hurricane, a tropical storm or a sub-tropical storm.
+
+Named Storm Day (NSD) - As in HD but for four 6-hour periods during which a tropical or sub-tropical cyclone is observed (or is estimated)
+to have attained tropical storm-force winds.
+
+Net Tropical Cyclone (NTC) Activity –Average seasonal percentage mean of NS, NSD, H, HD, MH, MHD. Gives overall indication of
+Atlantic basin seasonal hurricane activity. The 1991-2020 average value of this parameter is 135.
+
+Oceanic Nino Index (ONI) – Three-month running mean of SST anomalies in the Nino 3.4 region (5°S–5°N, 170–120°W) based on centered
+30-year base periods.
+
+Relative Oceanic Nino Index (RONI) – Three-month running mean of SST anomalies in the Nino 3.4 region (5°S–5°N, 170–120°W) minus
+tropically-averaged (20°S–20°N) SST anomalies multiplied by a scaling factor.
+
+Saffir/Simpson Hurricane Wind Scale – A measurement scale ranging from 1 to 5 of hurricane wind intensity. One is a weak hurricane;
+whereas, five is the most intense hurricane.
+
+Southern Oscillation Index (SOI) – A normalized measure of the surface pressure difference between Tahiti and Darwin. Low values typically
+indicate El Niño conditions.
+
+Standard Deviation (SD) – A measure used to quantify the variation in a dataset.
+
+Sea Surface Temperature Anomaly (SSTA) – Observed sea surface temperature differenced from a long-period average, typically 1991–2020.
+
+Thermohaline Circulation (THC) – A large-scale circulation in the Atlantic Ocean that is driven by fluctuations in salinity and temperature.
+When the THC is stronger than normal, the AMO tends to be in its warm (or positive) phase, and more Atlantic hurricanes typically form.
+
+Tropical Cyclone (TC) - A large-scale circular flow occurring within the tropics and subtropics which has its strongest winds at low levels;
+including hurricanes, tropical storms and other weaker rotating vortices.
+
+Tropical Storm (TS) - A tropical cyclone with maximum sustained winds between 39 mph (18 ms-1 or 34 knots) and 73 mph (32 ms-1 or 63
+knots).
+
+Vertical Wind Shear – The difference in horizontal wind between 200 hPa (approximately 40000 feet or 12 km) and 850 hPa (approximately
+5000 feet or 1.6 km).
+
+1 knot = 1.15 miles per hour = 0.515 meters per second
+
+ 6
+1 Introduction
+
+ This is the 43rd year in which the CSU Tropical Meteorology Project has made
+forecasts of the upcoming season’s Atlantic basin hurricane activity. Our research team
+has shown that a sizable portion of the year-to-year variability of Atlantic tropical
+cyclone (TC) activity can be forecast with skill exceeding climatology. Five components
+are used to produce our April forecast. These components are a statistical regression
+model, a combined statistical/dynamical model, a machine learning-based climate model,
+a selection of analog seasons, and lastly, qualitative adjustments to accommodate
+additional processes which may not be explicitly represented by these analyses. The
+statistical/dynamical models are from the European Centre for Medium-Range Weather
+Forecasts (ECMWF), the UK Met Office, and the Centro Euro-Mediterraneo sui
+Cambiamenti Climatici (CMCC). All of these models show skill at predicting TC activity
+based on ~25–40 years of historical data. For the first time this year, we are also
+incorporating forecasts from the Ai2 Climate Emulator (ACE2) – a machine learning-
+based climate model. These evolving forecast techniques are based on a variety of
+climate-related global and regional predictors previously shown to be related to the
+forthcoming seasonal Atlantic basin TC activity and landfall probability. We believe that
+seasonal forecasts must be based on methods that show significant hindcast skill in
+application to long periods of prior data. It is only through hindcast skill that one can
+demonstrate that seasonal forecast skill is possible. This is a valid methodology provided
+that the atmosphere continues to behave in the future as it has in the past.
+
+ The best predictors do not necessarily have the best individual correlations with
+hurricane activity. The best forecast parameters are those that explain the portion of the
+variance of seasonal hurricane activity that are not associated with the other forecast
+variables. It is possible for an important hurricane forecast parameter to show little direct
+relationship to a predictand by itself but to have an important influence when included
+with a set of 2–3 other predictors.
+
+2 April Forecast Methodology
+
+2.1 April Statistical Forecast Scheme
+
+ Our current April statistical forecast model uses ECMWF Reanalysis 5 (ERA5;
+Hersbach et al. 2020). This approach was developed on data from 1979–2020, was
+independently tested on data for 2021 and 2022 and was used for real-time forecasts in
+2023–2025. This model shows significant skill in cross-validated hindcasts of
+Accumulated Cyclone Energy (ACE) (r = 0.67) over the period from 1979–2025 (Figure
+1). Cross-validation entails that for each year being forecast, the equation is developed on
+all other years in the hindcast but excluding the year being forecast. So a forecast for
+1979 would be based on a hindcast equation developed on 1980–2020, a forecast for
+1980 would be based on a hindcast equation developed on 1979 and 1981–2020, etc. The
+model performed quite well in 2023 and 2025 but was a significant over-forecast in 2024,
+due largely to the pronounced lull that occurred during the climatological peak of the
+2024 season.
+
+ 7
+ Figure 2 displays the locations of each predictor, while Table 1 displays the
+individual linear correlations between each predictor and ACE over the 1979–2025
+hindcast/forecast period. All predictors correlate significantly at the 5% level using a
+two-tailed Student’s t-test, and each year is assumed to represent an individual degree of
+freedom. Table 2 displays the 2026 observed values for each of the three predictors in the
+statistical forecast scheme. Standard deviations are given relative to a 1991–2020 base
+period – the current 30-year NOAA climatological period. Table 3 displays the statistical
+model output for the 2026 hurricane season. The two SST predictors call for a somewhat
+above-normal Atlantic hurricane season, while the 200 hPa zonal wind predictor calls for
+a below-average season. The three predictors in combination call for a slightly above-
+normal season.
+
+Figure 1: Observed versus early April cross-validated hindcast values of ACE for the
+statistical model from 1979–2025.
+
+ 8
+ Figure 2: Location of predictors for our early April extended-range statistical prediction
+ for the 2026 hurricane season.
+
+ Table 1: Linear correlation between early April predictors and ACE over the period from
+ 1979–2025.
+
+ Predictor Correlation w/ ACE
+ 1) January–March SST (30°S–50°N, 40°W–10°W) (+) 0.52
+ 2) January–March 200 hPa U (17.5°N–27.5°N, 60°W–20°W) (+) 0.39
+ 3) February–March SST (30°S–15°N, 140°E–170°E) (+) 0.52
+
+ Table 2: Listing of early April 2026 predictors for the 2026 hurricane season. A plus (+)
+ means that positive deviations of the parameter are associated with increased hurricane
+ activity. SD stands for standard deviation.
+
+Predictor 2026 Forecast Impact on 2026 TC
+ Value Activity
+1) January–March SST (30°S–50°N, 40°W–10°W) (+) +0.5 SD Enhance
+2) January–March 200 hPa U (17.5°N–27.5°N, 60°W–20°W) (+) –1.5 SD Strongly Suppress
+3) February-March SST (30°S–15°N, 140°E–170°E) (+) +1.9 SD Strongly Enhance
+
+ 9
+Table 3: Statistical model output for the 2026 Atlantic hurricane season and the final
+adjusted forecast.
+
+ Forecast Parameter and 1991–2020 Statistical Final
+ Average (in parentheses) Forecast Forecast
+ Named Storms (NS) (14.4) 16.6 13
+ Named Storm Days (NSD) (69.4) 74.6 55
+ Hurricanes (H) (7.2) 7.7 6
+ Hurricane Days (HD) (27.0) 29.8 20
+ Major Hurricanes (MH) (3.2) 3.5 2
+ Major Hurricane Days (MHD) (7.4) 8.4 5
+ Accumulated Cyclone Energy (ACE) (123) 135 90
+ Net Tropical Cyclone Activity (NTC) (135%) 150 100
+
+The locations and brief descriptions of the predictors for our early April statistical
+forecast are now discussed. It should be noted that all predictors correlate positively with
+physical features during August through October that are known to be favorable for
+elevated levels of hurricane activity. These factors are all generally related to August–
+October vertical wind shear in the Atlantic Main Development Region (MDR) from 10–
+20°N, 85–20°W as shown in Figure 3.
+
+Figure 3: Vertical wind profile in the MDR typically associated with (a) inactive Atlantic
+basin hurricane seasons and (b) active Atlantic basin hurricane seasons. Note that (a)
+gives an example of increased vertical wind shear and (b) an example of reduced levels
+of vertical wind shear.
+
+ 10
+For each of these predictors, we display a four-panel figure showing linear correlations
+between values of each predictor and August–October values of SST, sea level pressure
+(SLP), 200 hPa zonal wind, and 850 hPa zonal wind. In general, higher values of tropical
+Atlantic SSTs, lower values of tropical Atlantic SLP, anomalous tropical Atlantic
+westerlies at 850 hPa, and anomalous tropical Atlantic easterlies at 200 hPa are
+associated with active Atlantic basin hurricane seasons. All correlations are displayed
+using ERA5.
+
+ Predictor 1. January–March SST in the tropical and subtropical eastern Atlantic (+)
+
+ (30°S–50°N, 40°W–10°W)
+
+Warmer-than-normal SSTs in the tropical and subtropical Atlantic during January–March
+are associated with a weaker-than-normal subtropical high and reduced trade wind
+strength during the boreal spring (Knaff 1997). Anomalously warm SSTs in January–
+March are correlated with weaker trade winds and weaker upper tropospheric westerly
+winds, lower-than-normal sea level pressures, and above-normal SSTs in the tropical
+Atlantic during the following August–October (Figure 4). All three of these August–
+October features are commonly associated with active Atlantic basin hurricane seasons,
+through reductions in vertical wind shear, increased vertical instability and increased
+mid-tropospheric moisture, respectively. Predictor 1 correlates quite strongly (r =0.52)
+with ACE from 1979–2025. Predictor 1 also strongly correlates (r = 0.60) with August–
+October values of the SST component of the Atlantic Meridional Mode (AMM) (Kossin
+and Vimont 2007) from 1979–2025. The AMM has been shown to impact Atlantic
+hurricane activity through alterations in the position and intensity of the Atlantic Inter-
+Tropical Convergence Zone (ITCZ). Changes in the Atlantic ITCZ bring about changes
+in tropical Atlantic vertical and horizontal wind shear patterns and in tropical Atlantic
+SST patterns.
+
+ Predictor 2. January–March 200 hPa U in the subtropical North Atlantic (+)
+
+ (17.5°N–27.5°N, 60°W–20°W)
+
+Anomalously strong winds at upper-levels in the subtropical North Atlantic are
+associated with anomalously low pressure in the tropical and subtropical Atlantic during
+January–March. Stronger-than-normal westerly winds at upper levels in the subtropics
+are also associated with reduced anticyclonic wavebreaking (and associated reduced
+vertical wind shear) during the peak of the Atlantic hurricane season (Jones et al. 2022).
+As has been shown in prior work (Knaff 1997), when the Azores High is weaker than
+normal, Atlantic trade winds are also weaker than normal. These weaker trades inhibit
+ocean mixing and upwelling, thereby causing anomalous warming of tropical Atlantic
+SSTs. These warmer SSTs are then associated with lower-than-normal sea level pressures
+which can create a self-enhancing feedback that relates to lower pressure, weaker trades
+and warmer SSTs during the hurricane season (Figure 5) (Knaff 1998). All three of these
+factors are associated with active hurricane seasons. This predictor is also negatively
+correlated with tropical central Pacific SSTs during August–October, indicating that La
+
+ 11
+Niña-like conditions are favored during the boreal summer when anomalously strong
+upper-level winds predominate over the Atlantic during January–March.
+
+ Predictor 3. February–March SST in the western tropical/subtropical Pacific (+)
+
+ (30°S–15°N, 140°E–170°E)
+
+Anomalous warmth in the western tropical/subtropical Pacific is associated with lower
+pressure in the western tropical Pacific and higher pressure in the eastern tropical Pacific,
+thereby driving stronger trade winds across the tropical Pacific that inhibit El Niño
+development. The development of anomalously high pressure in the eastern tropical
+Pacific then drives anomalously weak trade winds in the tropical Atlantic, feeding back
+into both reduced shear and anomalously warm SSTs in the tropical Atlantic by the peak
+of the Atlantic hurricane season (August–October) (Figure 6).
+
+ 12
+Figure 4: Rank correlations between January–March SST in the tropical and subtropical
+Atlantic (Predictor 1) and (panel a) August–October sea surface temperature, (panel b)
+August–October sea level pressure, (panel c) August–October 850 hPa zonal wind and
+(panel d) August–October 200 hPa zonal wind. All four of these parameter deviations in
+the tropical Atlantic are known to be favorable for enhanced hurricane activity.
+
+ 13
+Figure 5: As in Figure 4 but for January–March 200 hPa zonal wind in the subtropical
+North Atlantic.
+
+ 14
+Figure 6: As in Figure 4 but for February–March SST in the western tropical/subtropical
+Pacific.
+
+2.2 April Statistical/Dynamical Forecast Schemes
+
+ a) Statistical/Dynamical Model Predictor Ensemble Mean Output
+
+ We developed a statistical/dynamical hybrid forecast model scheme that we used
+for the first time in 2019. This model, developed in partnership with Louis-Philippe
+Caron and the data team at the Barcelona Supercomputing Centre, originally used output
+from the ECMWF SEAS5 model to forecast the input to our early August statistical
+forecast model. We currently use three different models, namely, ECMWF, UK Met, and
+CMCC, to forecast August SSTs in the eastern/central equatorial Pacific and in the
+eastern/central North Atlantic. We formerly also included JMA model data, but the
+output is currently unavailable from our download source
+(https://cds.climate.copernicus.eu/), due to JMA’s recent upgrade to a new modeling
+system. We do anticipate JMA model data becoming available again in the next few
+months.
+
+ We then use the forecasts of these individual models to forecast ACE for the 2026
+season. ECMWF hindcasts/forecasts are available from 1981–2025, while all other
+models have data available spanning the period from 1993–2016. All other predictands
+(e.g., named storms, major hurricanes) are calculated based on their historical
+relationships with ACE. These model forecasts extend out six months on the Copernicus
+
+ 15
+website, which is why all forecasts here examine August data. All standard deviations are
+given relative to a 1993–2016 base period – the period for which all three different
+models have hindcasts.
+
+ Figure 7 displays the locations of the two forecast parameters, while Table 4
+displays the various statistical/dynamical model forecasts for each of these parameters.
+All models are calling for a moderate to strong El Niño but also a relatively warm
+subtropical and tropical Atlantic. Table 5 displays the seasonal TC forecast output for the
+various statistical/dynamical models. These forecasts call for a somewhat below normal
+2026 season. Figure 8 displays hindcasts for ECMWF forecasts of ACE from 1981–2025,
+while Figure 9 displays forecasts of ACE from all three statistical/dynamical models from
+1993–2016 – the joint period where all three models have hindcasts available. Figure 10
+displays the ECMWF ensemble average August SST forecast for 45°S–60°N, while
+Figure 11 displays the ECMWF ensemble average August 200 minus 850 hPa wind shear
+forecast for the North Atlantic. As would be expected given the very strong El Niño that
+is being forecast by the ECMWF ensemble, vertical wind shear across the Main
+Development Region is forecast to be extremely high – the second highest in the
+ECMWF hindcast/forecast period since 1981 (trailing only 2015).
+
+Figure 7: Location of predictors for our early April statistical/dynamical extended-range
+statistical prediction for the 2026 hurricane season. This forecast uses dynamical model
+predictions from ECMWF, the UK Met Office, and CMCC to predict August SSTs in the
+two boxes displayed and then uses those predictors to forecast ACE.
+
+ 16
+Table 4: Listing of predictions of August large-scale conditions from our
+statistical/dynamical model output, initialized on 1 March. A plus (+) means that positive
+deviations of the parameter are associated with increased hurricane activity, while a
+minus (-) means that negative deviations of the parameter are associated with increased
+hurricane activity.
+
+ ECMWF UK Met CMCC
+ Predictor Forecast Forecast Forecast
+ 1) August SST (10–45°N, 60–20°W) (+) +1.3 SD +2.9 SD +2.0 SD
+ 2) August SST (5°S–5°N, 180–90°W) (-) +2.8 SD +2.2 SD +2.0 SD
+
+Table 5: Summary of our statistical/dynamical forecasts.
+
+Forecast Parameter and 1991–2020 Average ECMWF Met Office CMCC Adjusted Final
+ (in parentheses) Scheme Scheme Scheme Forecast
+ Named Storms (14.4) 13.7 13.1 13.9 13
+ Named Storm Days (69.4) 55.3 51.5 57.0 55
+ Hurricanes (7.2) 5.7 5.3 5.9 6
+ Hurricane Days (27.0) 19.3 17.3 20.2 20
+ Major Hurricanes (3.2) 2.3 2.1 2.4 2
+ Major Hurricane Days (7.4) 4.6 3.8 4.9 5
+ Accumulated Cyclone Energy Index (123) 89 80 93 90
+ Net Tropical Cyclone Activity (135%) 104 95 108 100
+
+Figure 8: Observed versus statistical/dynamical hindcast values of ACE for 1981–2025
+from ECMWF.
+
+ 17
+Figure 9: Observed versus statistical/dynamical hindcast values for all four
+statistical/dynamical models from 1993–2016.
+
+Figure 10: ECMWF ensemble average SST anomaly forecast for August 2026.
+
+ 18
+Figure 11: ECMWF ensemble average 200 minus 850 hPa anomalous wind shear forecast
+for August 2026. The vectors denote the shear direction. The blue rectangle denotes the
+Main Development Region.
+
+2.3 April Artificial Intelligence Model Scheme
+
+ We are debuting a new input to our seasonal forecasts in 2026. We now use the
+Ai2 Climate Emulator (ACE2) – an artificial intelligence-based climate model – as an
+additional guidance tool for our outlooks. We force the model with the ECMWF
+ensemble prediction of SSTs through August 2026. Figure 12 displays the August 2026
+SST forcing based on the ECMWF ensemble prediction, while Figure 13 shows the
+August 2026 upper-level wind response. August 250 hPa zonal winds show strong
+increases across most of the tropical and subtropical Atlantic. While this response is not a
+perfect match to what is being forecast directly from the ECMWF forecasting system, the
+general increase in upper-level westerlies indicates a strong increase in vertical wind
+shear across most of the tropical and subtropical Atlantic, making for conditions which
+are less favorable for Atlantic TCs.
+
+ 19
+Figure 12: ACE2 model SST anomaly forcing field for August 2026 (from the ECMWF
+ensemble average).
+
+Figure 13: ACE2 forecast 250 mb zonal wind anomalies for August 2026.
+
+2.4 April Analog Forecast Scheme
+
+ Certain years in the historical record have global oceanic and atmospheric trends
+which are similar to 2026. These years also provide useful clues as to likely levels of
+activity that the forthcoming 2026 hurricane season may bring. For this early April
+extended range forecast, we determine which of the prior years in our database have
+distinct trends in key environmental conditions which are similar to current March 2026
+
+ 20
+conditions and, more importantly, projected August–October 2026 conditions. Table 7
+lists our analog selections, while Figure 14 shows the composite August–October SST in
+our four analog years.
+
+ We searched for years that had moderate to strong El Niño conditions but also had
+relatively warm conditions across the MDR. We anticipate that the 2026 hurricane season
+will have activity near the average of our four analog years for most parameters.
+
+Table 7: Analog years for 2026 with the associated hurricane activity listed for each year.
+
+ Year NS NSD H HD MH MHD ACE NTC
+ 2006 10 58.00 5 21.25 2 2.00 83.3 86.8
+ 2009 9 30.00 3 12.00 2 3.50 52.6 68.6
+ 2015 11 43.50 4 12.00 2 4.00 62.7 81.2
+ 2023 20 100.50 7 31.50 3 7.25 148.2 155.9
+ Average 12.5 58.0 4.8 19.2 2.3 4.2 86.7 98.1
+ 2026 Forecast 13 55 6 20 2 5 90 100
+
+Figure 14: Average August–October SST anomalies in our four analog years.
+
+2.3 ACE West of 60°W Forecast
+
+ We now explicitly forecast ACE occurring west of 60°W. While there is a
+relatively robust relationship between basinwide ACE and North Atlantic landfalling
+hurricanes (defined as hurricanes making landfall west of 60°W), there is an improved
+relationship between North Atlantic landfalling hurricanes and ACE west of 60°W
+(Figures 15 and 16) since 1979. In this analysis, we only count one landfall per storm,
+regardless of whether the storm made multiple landfalls at hurricane strength (e.g., Irma–
+2017).
+
+ 21
+Figure 15: Scatterplot showing relationship between basinwide ACE and North Atlantic
+landfalling hurricanes.
+
+ 22
+Figure 16: Scatterplot showing relationship between ACE west of 60°W and North
+Atlantic landfalling hurricanes.
+
+ In general, years characterized by El Niño conditions tend to have slightly less
+ACE west of 60°W than La Niña seasons, likely due to both more conducive conditions
+in the western Atlantic in La Niña seasons, as well as an increased chance of recurvature
+for TCs in El Niño seasons (Colbert and Soden 2012). This has certainly been the case in
+2023, 2024 and 2025. In 2023, a strong El Niño occurred, the subtropical high was quite
+weak, and many of the TCs that occurred recurved east of 60°W. In 2024, the western
+Atlantic was much busier for TC formations, and 8 of the 11 hurricanes that formed
+made landfall west of 60°W. While there was considerable ACE generated west of 60°W
+in 2025, only one hurricane (Melissa), albeit one of the strongest hurricanes on record,
+made landfall. 48%, 61% and 74% of basinwide ACE occurred west of 60°W in 2023,
+2024 and 2025, respectively.
+
+ We use data from 1979–2025 and base ENSO classifications on the August–
+October-averaged Relative Oceanic Nino Index (RONI). Years with a RONI >= 0.5°C
+are classified as El Niño, years with an RONI <= -0.5°C are classified as La Niña, while
+all other seasons are classified as neutral ENSO. The RONI index is calculated by
+differencing SSTs in the Nino 3.4 region (5°S–5°N, 170–120°W) from tropical mean
+SST (20°S–20°N, 0°–360°) and scaling the time series to match the variability of the
+observed SST in the Nino 3.4 region. The RONI has recently been adopted by NOAA as
+its official ENSO classification index.
+
+ 23
+ We find that 54% of basinwide ACE occurs west of 60°W in El Niño years, while
+63% of basinwide ACE occurs west of 60°W in La Niña years (Figure 17). In neutral
+ENSO years, 56% of basinwide ACE occurs west of 60°W. Given that we are expecting
+El Niño conditions with this outlook, we are estimating ~55% of basinwide ACE to occur
+west of 60°W in 2026.
+
+Figure 17: Percentage of ACE generated west of 60°W by ENSO phase.
+
+2.5 April Forecast Summary and Final Adjusted Forecast
+
+ Table 8 shows our final adjusted early April forecast for the 2026 season which is
+a combination of our statistical scheme, statistical/dynamical schemes, machine learning
+scheme and analog scheme as well as qualitative adjustments for other factors not
+explicitly contained in any of these schemes. We favor our statistical/dynamical, machine
+learning and analog guidance over our statistical guidance due to the relatively high
+chance for a moderate to strong El Niño (discussed in section 4). While most of our
+model guidance calls for a slightly to somewhat below-normal season, there remains
+considerable uncertainty with this outlook given uncertainty in the large-scale
+environmental conditions that will be present during the peak of the upcoming season
+(August–October).
+
+ 24
+ Table 8: Summary of our early April statistical forecast, our statistical/dynamical
+ forecasts, our analog forecast, the average of these five schemes and our adjusted final
+ forecast for the 2026 hurricane season.
+
+ Forecast Parameter and 1991–2020 Statistical ECMWF Met Office CMCC Analog 5-Scheme Adjusted Final
+ Average Scheme Scheme Scheme Scheme Scheme Average Forecast
+ (in parentheses)
+ Named Storms (14.4) 16.6 13.7 13.1 13.9 12.5 14.0 13
+ Named Storm Days (69.4) 74.6 55.3 51.5 57 58 59.3 55
+ Hurricanes (7.2) 7.7 5.7 5.3 5.9 4.8 5.9 6
+ Hurricane Days (27.0) 29.8 19.3 17.3 20.2 19.2 21.2 20
+ Major Hurricanes (3.2) 3.5 2.3 2.1 2.4 2.3 2.5 2
+ Major Hurricane Days (7.4) 8.4 4.6 3.8 4.9 4.2 5.2 5
+Accumulated Cyclone Energy Index (123) 135 89 80 93 87 97 90
+ Net Tropical Cyclone Activity (135%) 150 104 95 108 98 111 100
+
+ 3 Forecast Uncertainty
+
+ This season we continue to use probability of exceedance curves as discussed in
+ Saunders et al. (2020) to quantify forecast uncertainty. In that paper, we outlined an
+ approach that uses statistical modeling and historical skill of various forecast models to
+ arrive at a probability that the particular values of hurricane numbers and ACE would be
+ exceeded. Here we display probability of exceedance curves for hurricanes and ACE
+ (Figures 18 and 19), using the error distributions calculated from both normalized cross-
+ validated statistical as well as the cross-validated statistical/dynamical hindcasts from
+ SEAS5. Hurricane numbers are fit to a Poisson distribution, while ACE is fit to a Weibull
+ distribution. Table 9 displays one standard deviation uncertainty ranges (~68% of all
+ forecasts within this range). This uncertainty estimate is also very similar to the 70%
+ uncertainty range that NOAA provides with its forecasts. We use Poisson distributions
+ for all storm parameters (e.g., named storms, hurricanes and major hurricanes) while we
+ use a Weibull distribution for all integrated parameters except for major hurricane days
+ (e.g., named storm days, ACE, etc.). We use a Laplace distribution for major hurricane
+ days.
+
+ 25
+Figure 18: Probability of exceedance plot for hurricane numbers for the 2026 Atlantic
+hurricane season. The values on the x-axis indicate that the number of hurricanes exceeds
+that specific number. For example, 97% of Atlantic hurricane seasons from 1950–2020
+have had more than two hurricanes.
+
+ 26
+Figure 19: As in Figure 18 but for ACE.
+
+Table 9: Forecast ranges for each parameter. Note that the forecast spread may not be
+symmetric around the mean value, given the historical distribution of tropical cyclone
+activity.
+
+ Parameter 2026 Uncertainty Range (68% of Forecasts
+ Forecast Likely to Fall in This Range)
+ Named Storms (NS) 13 10 – 16
+ Named Storm Days (NSD) 55 35 – 78
+ Hurricanes (H) 6 4–8
+ Hurricane Days (HD) 20 10 – 33
+ Major Hurricanes (MH) 2 1–4
+ Major Hurricane Days (MHD) 5 1–8
+ Accumulated Cyclone Energy (ACE) 90 49 – 141
+ ACE West of 60°W 50 25 – 85
+ Net Tropical Cyclone (NTC) Activity 100 58 – 151
+
+4 ENSO
+
+ Over the past several months, La Niña conditions in the tropical Pacific have
+gradually weakened (Figure 20), with anomalously warm SSTs now predominating in the
+eastern part of the basin. SST anomalies have increased across the entire tropical Pacific,
+with the strongest anomalous warming taking place in the far eastern tropical Pacific.
+
+ 27
+Figure 21 displays the locations of the various Nino regions displayed in Figure 20.
+Please note that all SST anomalies in the various Nino regions now are calculated as
+relative SST anomalies, that is, all SST anomalies are calculated relative to the tropical
+average SST (20°S–20°N, 0–360°). These relative SST anomalies have been adopted as
+part of NOAA’s shift in February 2026 to the Relative Oceanic Nino Index.
+
+Figure 20: SST anomalies for several ENSO regions over the past year. Figure courtesy
+of the Climate Prediction Center.
+
+ 28
+Figure 21: Location of ENSO SST regions used in Figure 20. Figure courtesy of the
+National Centers for Environmental Information.
+
+ Upper-ocean heat content anomalies in the eastern and central tropical Pacific
+have increased rapidly over the past several weeks and now exceed 1°C when averaged
+from 180°–100°W (Figure 22). Sea surface temperature anomalies are currently slightly
+below normal across portions of the central tropical Pacific but are warmer than normal
+off the west coast of South America (Figure 23).
+
+ 29
+Figure 22: Central and eastern equatorial Pacific upper ocean (0–300 meters) heat content
+anomalies over the past year. Figure courtesy of Climate Prediction Center.
+
+Figure 23: Current SST anomalies across the tropical and subtropical Pacific.
+
+ Table 10 displays January and March relative SST anomalies for several Nino
+regions. As noted earlier, over the past two months, relative SST anomalies across the
+entire eastern and central tropical Pacific have warmed, with more pronounced warming
+taking place in the eastern part of the basin.
+
+ 30
+Table 10: January and March relative SST anomalies for Nino 1+2, Nino 3, Nino 3.4, and
+Nino 4, respectively. March-January relative SST anomaly differences are also provided.
+
+ Region January Relative SST March Relative March – January
+ Anomaly (°C) SST Anomaly (°C) Relative SST Anomaly (°C)
+ Nino 1+2 -0.5 +1.0 +1.5
+ Nino 3 -0.9 -0.2 +0.7
+ Nino 3.4 -1.0 -0.5 +0.5
+ Nino 4 -0.4 -0.l +0.3
+
+ Several robust upwelling (cooling) oceanic Kelvin waves occurred in the central
+and eastern tropical Pacific late last year (Figure 24). Since that time, two pronounced
+downwelling (warming) oceanic Kelvin waves have traversed the tropical Pacific,
+leading to anomalous warming. Another downwelling Kelvin wave has recently
+developed in the central tropical Pacific, likely providing the final impetus to dissipate
+the remaining weak La Niña signal. While there is still some shallow anomalously cool
+water in the central tropical Pacific, anomalous temperatures in the top 300 meters of the
+ocean now exceed 1°C across the entire Pacific. This indicates prime conditions for El
+Niño to develop.
+
+ Pronounced westerly wind bursts across the western and central tropical Pacific
+have likely been the primary trigger for the downwelling oceanic Kelvin waves over the
+past several months (Figure 25). Westerly wind anomalies have predominated across the
+central tropical Pacific in recent days.
+
+ 31
+Figure 24: Upper-ocean (0–300 meter) heat content anomalies in the tropical Pacific
+since April 2025. Long dashed lines indicate downwelling Kelvin waves, while short
+dashed lines indicate upwelling Kelvin waves. Downwelling Kelvin waves result in
+upper-ocean heat content increases, while upwelling Kelvin waves result in upper-ocean
+heat content decreases.
+
+ 32
+Figure 25: Anomalous equatorial low-level winds spanning from 120°E to 80°W. Figure
+courtesy of Climate Prediction Center.
+
+ Anomalously weak trade winds (e.g., a westerly wind burst) have occurred across
+the central tropical Pacific over the past few weeks and are forecast by ECMWF (as well
+as other models) to persist for the next couple of weeks (Figure 26). We anticipate that
+this robust westerly wind burst should help transition the tropical Pacific from La Niña to
+El Niño relatively quickly.
+
+ 33
+Figure 27: ECMWF observed and forecast 850-hPa zonal equatorial winds for the next
+46 days. Figure courtesy of Nick Novella (NOAA/Climate Prediction Center).
+
+ There is always considerable uncertainty with the future state of El Niño during
+the Northern Hemisphere spring. The latest plume of ENSO predictions from several
+statistical and dynamical models shows considerable spread by the peak of the Atlantic
+hurricane season in August–October (Figure 28). However, most models are forecasting
+El Niño for the peak of the Atlantic hurricane season.
+
+ 34
+Figure 28: ENSO forecasts from various statistical and dynamical models for Nino 3.4
+SST anomalies based on late February to early March initial conditions. Most models call
+for either El Niño conditions for August–October. The black arrow delineates the peak of
+the Atlantic hurricane season (August–October). Figure courtesy of the International
+Research Institute (IRI).
+
+ The latest official forecast from NOAA strongly favors El Niño for August–
+October. NOAA is currently predicting an 80% chance of El Niño, a 19% chance of
+ENSO neutral, and a nominal 1% chance of La Niña (Figure 29).
+
+ 35
+Figure 29: Official probabilistic ENSO forecast from NOAA. The black arrow delineates
+the peak of the Atlantic hurricane season (August–October).
+
+ Based on the above information, our best estimate is that we will have El Niño
+this summer and fall, with a fairly high chance that we have a moderate to strong El Niño
+by the peak of the Atlantic hurricane season. While the odds of El Niño appear quite
+high, there remains considerable uncertainty as to how this event develops. We will have
+more to say about El Niño and its potential magnitude with our next update on 10 June.
+
+5 Current Atlantic Basin Conditions
+
+ Currently, SSTs are warmer than normal in the western tropical Atlantic, while
+they are slightly below-normal in the central and eastern tropical Atlantic (Figure 30).
+Over the past several weeks, trade winds across the eastern tropical Atlantic have been
+stronger than normal (Figure 31). These stronger trade winds have likely been the
+primary driver of these anomalously cool waters, due to the enhanced evaporation and
+mixing that occurs with strong trade winds.
+
+ Overall, the current SST anomaly pattern across the North Atlantic presents
+mixed signals relative to Atlantic hurricane activity. While warm SSTs in the western
+tropical Atlantic correlate well with what is typically observed in April prior to busy
+hurricane seasons (Figure 32), cool SSTs in the eastern tropical and subtropical Atlantic
+are typically associated with quieter hurricane seasons.
+
+ 36
+Figure 30: Late March 2026 North Atlantic SST anomalies.
+
+ 37
+Figure 31: 850 hPa zonal wind anomalies across the North Atlantic Ocean from 1 February
+through 31 March 2026.
+
+Figure 32: Correlations between April sea surface temperatures in the North Atlantic and
+annual Atlantic ACE from 1979–2025. Areas within a dashed contour are significant at
+the 5% level.
+
+6 Tropical Cyclone Impact Probabilities for 2026
+
+ 38
+ In addition to our basin-side forecast, we calculate the impacts of tropical
+cyclones for each state and county/parish along the Gulf and East Coasts, tropical
+cyclone-prone provinces of Canada, states in Mexico, islands in the Caribbean and
+countries in Central America. We have used NOAA’s Historical Hurricane Tracks
+website and selected all named storms, hurricanes and major hurricanes that have tracked
+within 50 miles of each landmass from 1880–2020. This approach allows for tropical
+cyclones that may have made landfall in an immediately adjacent region to be counted for
+all regions that were in close proximity to the landfall location of the storm. We then fit
+the observed frequency of storms within 50 miles of each landmass using a Poisson
+distribution to calculate the climatological odds of one or more events within 50 miles.
+
+ Net landfall probability is shown to be linked to overall Atlantic basin ACE.
+Long-term statistics show that, on average, the more active the overall Atlantic basin
+hurricane season is, the greater the probability of hurricane landfalls for various
+landmasses in the basin. We adjust landfall probabilities based on the ratio of predicted
+ACE west of 60°W to the average ACE west of 60°W, as almost all landmasses that we
+are issuing probabilities for are west of 60°W.
+
+ Table 11 displays the climatological odds of storms tracking within 50 miles of
+each state along the Gulf and East Coasts along with the odds in 2026. Landfall
+probabilities are below their long-term averages. Probabilities for other Atlantic basin
+landmasses are available on our website.
+
+ Given that landfall rates between 1880–2020 and 1991–2020 are similar for the
+continental US, we adjust all landfall rates relative to the 1991–2020 Atlantic west of
+60°W ACE climatology. We prefer to use 1880–2020 for landfall statistics to increase the
+robustness of the historical landfall dataset. Also, storms near landfall are likely better
+observed than those farther east in the basin prior to the satellite era (e.g., mid-1960s).
+Slight differences in ACE west of 60°W between the two periods (73 for 1991–2020 vs.
+66 for 1880–2020) are likely mostly due to improved observational technology in the
+more recent period.
+
+ 39
+Table 11: Probability of >=1 named storm, hurricane and major hurricane tracking within
+50 miles of each coastal state from Texas to Maine. Probabilities are provided for both
+the 1880–2020 climatological average as well as the probability for 2026, based on the
+latest CSU seasonal hurricane forecast.
+
+7 Summary
+
+ An analysis of a variety of different atmosphere and ocean measurements
+(through March) which are known to have long-period statistical relationships with the
+upcoming season's Atlantic tropical cyclone activity, as well as output from dynamical
+models, indicate that 2026 will have somewhat below-average activity. The big question
+mark with this season's predictions is how strong a likely El Niño will be.
+
+8 Forthcoming Updated Forecasts of 2026 Hurricane Activity
+
+ We will be issuing seasonal updates of our 2026 Atlantic basin hurricane forecasts
+on Wednesday 10 June, Wednesday 8 July, and Wednesday 5 August. We will also
+be issuing two-week forecasts for Atlantic TC activity during the climatological peak of
+the season from August–October. A verification and discussion of all 2026 forecasts will
+be issued on Tuesday, 24 November. All of these forecasts will be available on our
+website.
+
+ 40
+9 Verification of Previous Forecasts
+CSU’s seasonal hurricane forecasts have shown considerable improvement in recent
+years, likely due to a combination of improved physical understanding, adoption of
+statistical/dynamical models and more reliable reanalysis products. Figure 33 displays
+correlations between observed and predicted Atlantic hurricanes from 1984–2025, from
+1984–2013 and from 2014–2025, respectively. Correlation skill has improved at all lead
+times in recent years, with the most noticeable improvements at longer lead times. While
+twelve years is a relatively short sample size, improvements in both modeling and
+physical understanding should continue to result in future improvements in seasonal
+Atlantic hurricane forecast skill. More detailed verification statistics are also available at:
+https://tropical.colostate.edu/archive.html#verification
+
+Figure 33: CSU’s real-time forecast skill for Atlantic hurricanes using correlation as the
+skill metric. Correlation skills are displayed for three separate time periods: 1984–2013,
+2014–2025 and 1984–2025, respectively.
+
+ 41
+"""
+
+[R8] The first predictions for hurricane season are in and El Niño’s fingerprints are all over it | CNN
+(https://www.cnn.com/2026/04/09/weather/hurricane-season-forecast-climate)
+"""
+Spring is finally in full bloom, but some weather forecasters are already fast-forwarding a few months to hurricane season. The Atlantic season spans from June through November, and because of a burgeoning El Niño, this year’s could diverge from the active seasons of much of the past decade, according to a new forecast from hurricane researchers at Colorado State University. They are calling for a slightly below-average season consisting of 13 named storms — that means tropical storms and hurricanes. They expect six of those will become hurricanes and two will strengthen into Category 3 or stronger major hurricanes. Only one Atlantic hurricane season since 2016 ended with a below-average number of storms: 2025. Last year saw 13 named storms, including five hurricanes, most notably Category 5 Melissa, which devastated Jamaica. CSU’s initial forecast of 17 storms overshot the mark, as did the official National Oceanic and Atmospheric Administration forecast. The CSU experts last predicted a slightly below-average season in their initial forecast in 2023. But tropical activity that year, fueled by record warm oceans, ended up above-normal, defying almost all early forecasts. Predicting the future so far in advance has pitfalls, especially in a world warming due to fossil fuel pollution, but CSU isn’t consulting a Magic 8 Ball. They consult forecast models they’ve been fine-tuning for years that have been better at predictions than seasonal averages alone. There are also some other significant signals — including the impending return of El Niño — that have given the forecasters slightly more confidence than normal that there will be less tropical activity overall, according to Phil Klotzbach, a senior research scientist and lead author of CSU’s forecast. The CSU forecast pinpoints El Niño as the “dominant factor” for the upcoming hurricane season. The La Niña that’s been in place since the fall ended this month, giving way to so-called neutral conditions. El Niño is expected to build later this spring and officially commence mid-summer, according to NOAA’s latest forecast. That means El Niño will be in place for the peak of hurricane season, which spans mid-August to mid-October. As a refresher: El Niño is a natural climate pattern marked by warmer than average water temperatures in the equatorial Pacific that also leads to changes in upper atmosphere patterns. Together, these factors influence weather globally. Forecasters closely monitor El Niño and its cooler counterpart La Niña because they affect weather in a way that’s largely consistent and predictable well in advance — especially when the patterns are strong. El Niño conditions typically lead to an increased amount of wind shear — a change in wind speed or direction with height — in the upper atmosphere over parts of the Atlantic basin. High amounts of wind shear can weaken storms by blowing apart their spin or prevent them from forming in the first place. Even so, El Niño conditions do not guarantee a quieter hurricane season. They were in place during the peak of 2023’s season, but extremely warm ocean temperatures acted like rocket fuel, allowing systems to develop and thrive despite increased wind shear. The exact timing and strength of El Niño will ultimately determine how much of an influence the pattern has on the season. There are early signs that El Niño could become quite strong, but it’s still too early to say that with any certainty. While El Niño signals the potential for a slightly below-average season, current ocean temperature trends are sending more of a mixed message. Ocean temperatures are warmer than normal in the western tropical Atlantic, the part of the ocean closest to the Caribbean. In April, these temperatures typically “correlate well” to “busy” hurricane seasons, according to CSU. But ocean temperatures are currently a bit cooler than normal in parts of the central and eastern tropical Atlantic, which is normally associated with “quieter” hurricane seasons, according to CSU. Sea surface temperatures will warm through the spring and summer and eventually hit a peak around early September. The timing of the warmest water matters because it is every tropical system’s source of fuel. Planet-warming fossil fuel pollution is tipping the scales toward hotter oceans that power more dangerous storms. Scientists say unusually warm oceans will likely lead to more instances of storms rapidly intensifying, like four of last year’s hurricanes did. Three of the four hurricanes that underwent this explosive intensification ultimately became Category 5 monsters: Erin, Humberto and Melissa. If ocean temperatures get hotter than expected, they could once again chip away at El Niño’s influence and leave the door open for a busier season. “There is still a lot that can change between now and the peak of the season,” Klotzbach cautioned.
+"""
+
+[R9] Super El Niño? Forecasters announce major climate shift
+(https://www.usatoday.com/story/news/weather/2026/04/09/el-nino-climate-shift-la-nina/89514873007/)
+"""
+Updated April 9, 2026, 11:27 a.m. ETFederal scientists from the National Oceanic and Atmospheric Administration announced a long-anticipated shift in a powerful global climate pattern on Thursday, April 9, as worry grows about global heat patterns.NOAA says the La Niña climate pattern has officially come to an end, and that an El Niño is expected to develop later this year. This has major implications for weather worldwide, and could impact the hurricane season in both the Atlantic and Pacific Oceans.Some computer models that scientists use to forecast climate patterns said that the oncoming El Niño could be unusually strong, and have dubbed it a potential "Super El Niño," though federal scientists don't use that term.El Niño, a natural warming of Pacific Ocean water that affects weather around the world, often leads to some of the hottest years on record, such as the record-breaking worldwide average temperature in 2024. The prospect of a strong El Niño has rattled forecasters, who fear an unprecedented wave of global heat into 2027.In the meantime, the planet is in an intermediate stage of the cycle, known as "ENSO-neutral."La Niña comes to an endAccording to NOAA, the just-ended La Niña started in December 2024, when Pacific Ocean water temperatures reached the La Niña threshold.This La Niña shifted rainfall patterns, which included increasing dryness in the southern U.S. It also slightly cooled global temperatures, when compared with El Niño years, without affecting long‑term global warming. La Niña also favored a more active Atlantic hurricane pattern and colder winters across portions of the northern U.S.What is El Niño?El Niño is a natural climate pattern in which surface sea water temperatures in the central and eastern tropical Pacific Ocean are warmer than average.Its name means the Little Boy, or Christ Child in Spanish. El Niño was originally recognized by fishermen off the coast of South America in the 1600s with the appearance of unusually warm water in the Pacific Ocean around Christmas.The entire natural climate cycle is officially known as El Niño – Southern Oscillation, called ENSO by scientists. The cycle swings between warmer and cooler seawater in a region along the equator in the tropical Pacific. La Niña is marked by cooler-than-average ocean water in the region.'Super' El Niño?Although there’s no formal NOAA El Niño category called "Super," the term is often used when sea-surface temperatures in the tropical Pacific Ocean are up to 2 degrees (Celsius) above average for several months — similar to what happened during the El Niños of 1997–98 or 2015–16."Right now, there's about a 15% chance of a Super El Niño by the end of this hurricane season [Nov. 30], which we've only seen once since the year 2000," said AccuWeather meteorologist Alex DaSilva, in an email to USA TODAY.Although a "Super El Niño" is possible, federal scientists from the Climate Prediction Center are more cautious:"The possible outcomes range from ENSO-neutral to a very strong El Niño during the upcoming Northern Hemisphere winter," NOAA scientists said in a report released Thursday, April 9. "The possibility of a very strong El Niño largely depends on the continuation of westerly wind anomalies across the equatorial Pacific throughout the Northern Hemisphere summer months, which is not assured."In the report, NOAA scientists said that by May-July 2026, El Niño is likely to emerge (61% chance) and persist through at least the end of 2026.Spring predictability barrierA known weakness in climate forecasting, the so-called "spring predictability barrier" occurs when El Niño and La Niña forecasts made in spring (roughly March–May) are significantly less reliable than forecasts made during other times of year, according to NOAA."During this time of year, forecast models can be untrustworthy when predicting timing and strength," said AccuWeather meteorologist Paul Pastelok in an email to USA TODAY. "So we still need to be cautious. But it looks more and more that an El Niño is coming."How does El Niño influence hurricanes?El Niño can have a huge impact on the severity of the hurricane season in both the Atlantic and the Pacific: It tends to reduce activity in the Atlantic and boost activity in the Pacific."Typically, El Niño leads to more rising air over the tropical Pacific, which then leads to stronger upper-level wind shear and sinking air across the tropical Atlantic," said associate scientist Andy Hazelton of the University of Miami in an email to USA TODAY. "This usually reduces the number of hurricanes in the Atlantic, especially in the Caribbean and Gulf."Conversely, "El Niño years are typically associated with more activity in the eastern Pacific," said NOAA's lead hurricane seasonal forecaster Matthew Rosencrans.Winter impacts of El NiñoDuring an El Niño winter, the southern third of the United States typically experiences wetter-than-average conditions, while the northern third sees enhanced chances of below-normal precipitation, according to the Climate Prediction Center.Additionally, Pastelok said that a strong to super El Niño can bring big storms to the West Coast, and a strong southern storm track, rich with moisture from the Gulf and Atlantic, to produce powerful East Coast storms.Why do we care about El Niño?The ENSO cycle is the primary factor government scientists consider when announcing their winter weather forecast because it mainly influences our weather in the colder months. Except for its impact on hurricanes, El Niño doesn’t have a strong summer climate impact for most of the country, NOAA said.And as the World Meteorological Organization says, "seasonal forecasts for El Niño and La Niña help us avert millions of dollars in economic losses and are essential planning tools for climate-sensitive sectors like agriculture, health, energy and water management.""They are also a key part of the climate intelligence provided by WMO to support humanitarian operations and disaster risk management, and thus save lives," said WMO Secretary-General Celeste Saulo, in a statement.
+"""
+
+[R10] ENSO neutral conditions expected as La Niña fades, but El Niño chances rise
+(https://wmo.int/news/media-centre/enso-neutral-conditions-expected-la-nina-fades-el-nino-chances-rise)
+"""
+El Niño refers to the periodic large-scale warming of the ocean surface temperatures in the central and eastern equatorial Pacific Ocean, coupled with changes in the tropical atmospheric circulation, including changes in winds, pressure and rainfall patterns. It usually has the opposite effects of La Niña on weather and rainfall patterns.WMO Global Producing Centres forecasts indicate a 60% chance of ENSO (El Niño-Southern Oscillation) neutral conditions – neither El Niño or La Niña during March–May 2026, rising to a 70% chance during April-June.During May-July, the chance of neutral conditions is 60%, whilst the chance of an El Niño increases steadily to around 40%. However, forecast uncertainty increases at longer lead times. Predictions issued at this time of year are typically less reliable due to the so-called boreal spring predictability barrier, a well-known limitation affecting ENSO outlook skill.“The WMO community will be carefully monitoring conditions in the coming months to inform decision-making. The most recent El Niño, in 2023-24, was one of the five strongest on record and it played a role in the record global temperatures we saw in 2024,” said WMO Secretary-General Celeste Saulo.“Seasonal forecasts for El Niño and La Niña help us avert millions of dollars in economic losses and are essential planning tools for climate-sensitive sectors like agriculture, health, energy and water management. They are also a key part of the climate intelligence provided by WMO to support humanitarian operations and disaster risk management, and thus save lives,” she said.Naturally occurring large-scale climate events such as El Niño and La Niña are taking place in the broader context of human-induced climate change, which is increasing global temperatures in the long-term, exacerbating extreme weather and climate events, and impacting seasonal rainfall and temperature patterns.To provide a more comprehensive climate outlook, WMO also issues regular Global Seasonal Climate Updates (GSCU). These take into account the influence of key climate variability patterns, such as the North Atlantic Oscillation, the Southern Annular Mode or the Indian Ocean Dipole. The updates also monitor the global and regional anomalies of surface temperature and precipitation and their evolution over the upcoming season.The latest Update says that for March to May 2026, there is a widespread global signal for above-average land surface temperatures. Rainfall predictions in the equatorial Pacific show a lingering La Niña-like pattern, but in other parts of the world the signal is more mixed. Probabilistic forecasts of surface air temperature and rainfall for the season March-May 2026. The tercile category with the highest forecast probability is indicated by shaded areas. The most likely category for below-normal, above-normal, and near-normal is depicted in blue, red, and grey shadings respectively for temperature, and orange, green and grey shadings respectively for rainfall. The baseline period is 1993–2009. The World Meteorological Organization is the United Nations System’s authoritative voice on Weather, Climate and Water. For further information, please contact: Clare Nullis WMO media officer cnullis@wmo.int +41 79 709 13 97 Global Communication and Engagement Media Contact media@wmo.int
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

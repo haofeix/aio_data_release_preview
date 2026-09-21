@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "south africa vs new zealand"
+
+Claims:
+[1] "New Zealand defeated South Africa by eight wickets in the third T20I on March 20, 2026, in Auckland."
+[2] "New Zealand took a 2-1 lead in their five-match series against South Africa."
+[3] "South Africa scored 136/9."
+[4] "New Zealand chased the target in 16.2 overs."
+[5] "New Zealand won the third T20I by 8 wickets."
+[6] "New Zealand leads 2-1 in the series."
+[7] "Lockie Ferguson took 1/9 in 4 overs for New Zealand."
+[8] "Mitchell Santner took 2/21 for New Zealand."
+[9] "Kyle Jamieson took 2/42 for New Zealand."
+[10] "Ben Sears took 2/27 for New Zealand."
+[11] "Nqobani Mokoena scored 26* for South Africa."
+[12] "George Linde scored 23 for South Africa."
+[13] "South Africa was put in to bat."
+
+Cited text snippets from the AI Overview (for additional context):
+- Recent Match Report - New Zealand vs South Africa 3rd T20I 2026: "Ferguson, Santner, Latham help New,take 2-1 series lead&text=New Zealand's men's team,in another one-sided affair."
+- NZ vs SA, 3rd T20I: New Zealand crush South Africa by eight wickets, lead series 2-1: "With this win, New Zealand,overs, losing just two wickets."
+- Ferguson, Santner, Latham help New Zealand take 2-1 series lead: "South Africa were 41 for,was pulled again, for four."
+- New Zealand dominates South Africa for 2-1 T20 series lead: "A miserly bowling display helped give New,Africa were restricted to 136-9 from their…"
+Reference Sources:
+
+[R1] NZ vs SA, 3rd T20I: New Zealand crush South Africa by eight wickets, lead series 2-1
+(https://www.wionews.com/sports/nz-vs-sa-3rd-t20i-new-zealand-crush-south-africa-by-eight-wickets-lead-series-2-1-1773999764514)
+"""
+Story highlightsWith this win, New Zealand will aim to continue their momentum in the upcoming matches, while South Africa will look to bounce back and level the series.New Zealand won the third T20I against South Africa by eight wickets at Eden Park in Auckland on Friday (Mar 20), taking a 2-1 lead in the five-match series. After choosing to bowl first, New Zealand captain Mitchell Santner led a strong effort to restrict South Africa to 136 for nine in 20 overs. Nqobani Mokoena was the top scorer for visitors with an unbeaten 26 from 20 balls, hitting three sixes and one four. George Linde (23), Dian Forrester (17) and Gerald Coetzee (16) also contributed some runs, but the top order failed badly and could not build a solid total.For New Zealand, Kyle Jamieson (2/42), Mitchell Santner (2/21) and Ben Sears (2/27) took two wickets each. Lockie Ferguson, James Neesham (1/22) and Cole McConchie (1/14) picked up one wicket each.Lockie Ferguson was named Player of the Match for his excellent bowling, giving away only nine runs in four overs and taking one wicket.Add WION as a Preferred SourceChasing 137, New Zealand reached the target comfortably in 16.2 overs, losing just two wickets. Tom Latham scored an unbeaten 63 off 55 balls, with seven fours and two sixes. Devon Conway supported him well with 39 runs off 26 balls, including two sixes and four fours. Tim Robinson also added 17 runs and their combined effort helped New Zealand win the match easily.Trending Stories'Big guns': Why Iran’s weapons cannot easily damage the USS Abraham LincolnMiddle East: Rare Rains Lash UAE, Oman as West Asia Braces for Extreme Weather | WIONFootball World Cup 2026 | FIFA cancels thousands of hotel rooms in US host city of Philadelphia'While sailing in regional waters...': CENTCOM issues first response after Iran claims strikes on USS Abraham LincolnInternational critics slam Ranveer Singh's Dhurandhar: The Revenge, call it 'sociopathic'Who is Palm Beach Pete? Jeffrey Epstein look-alike who used to party with himWATCH | Iran claims it has shot down US F18 fighter jet, shares videoPay and pass? Will Iran’s plan to ‘absolutely’ keep charging ships turn the Strait of Hormuz into a cash cow?'Iran War - The Movie': On social media platforms near you, playing now. Watch viral video!New OTT Releases this week (March 23-29, 2026): O'Romeo, Kaattaan, BTS: The Return- 6 new movies and TV shows coming on Netflix, Prime Video and moreWATCH: Iran 'strikes' USS Abraham Lincoln after Navy commander’s ‘under constant surveillance’ warning. Details inside‘For the first time in my life, no one is against India’: Chair of top Sri Lankan Parliament panel S M MarikkarWho controls world’s natural gas reserves? Top 7 countries revealed: Check where India ranksHMS Anson in Arabian Sea: Royal Navy submarine within striking distance of IranDubai to reset amid war? Big changes coming to banks, schools & flights from April: Complete details inside‘Every single one knocked down’: The secret behind the USS Abraham Lincoln’s flawless missile shield'Big guns': Why Iran’s weapons cannot easily damage the USS Abraham LincolnMiddle East: Rare Rains Lash UAE, Oman as West Asia Braces for Extreme Weather | WIONFootball World Cup 2026 | FIFA cancels thousands of hotel rooms in US host city of Philadelphia'While sailing in regional waters...': CENTCOM issues first response after Iran claims strikes on USS Abraham LincolnInternational critics slam Ranveer Singh's Dhurandhar: The Revenge, call it 'sociopathic'Who is Palm Beach Pete? Jeffrey Epstein look-alike who used to party with himWATCH | Iran claims it has shot down US F18 fighter jet, shares videoPay and pass? Will Iran’s plan to ‘absolutely’ keep charging ships turn the Strait of Hormuz into a cash cow?For South Africa, Lutho Sipamla (1/26) and captain Keshav Maharaj (1/30) took one wicket each, but the rest of the bowlers could not make an impact.With this win, New Zealand will look to keep their momentum going in the remaining matches, while South Africa will try to bounce back and level the series.
+"""
+
+[R2] New Zealand dominates South Africa for 2-1 T20 series lead
+(https://japantoday.com/category/sports/new-zealand-dominate-south-africa-for-2-1-t20-series-lead)
+"""
+A miserly bowling display helped give New Zealand a 2-1 lead in their T20 series against South Africa with an eight-wicket win on Friday in Auckland. Speedster Lockie Ferguson conceded just nine runs from his four overs in the first innings as South Africa were restricted to 136-9 from their alloted overs at a postage stamp Eden Park ground renowned for 200-plus scores. Tom Latham guided the hosts to victory with 22 balls remaining, making 63. New Zealand captain Mitchell Santner won the toss and elected to field, putting South Africa in on a wicket sporting more grass than usual. The decision was vindicated during a fruitful powerplay for the hosts as they snared three wickets for just 41 runs at a ground that usually sees teams scoring at more than 10 an over. Ferguson bowled with pace and accuracy to get Wiaan Mulder for a duck, before Santner removed Connor Esterhuizen and Ben Sears had Tony de Zorzi. Two more wickets fell in the three overs after the powerplay as South Africa added just nine further runs, Jason Smith and Rubin Hermann departing tamely. Teenage fast bowler Nqobani Mokoena was the pick of the visiting batters with 26 from 20 balls, hitting three massive sixes in the closing overs including dispatching Kyle Jamieson to the longest boundary from the first ball he faced. Sears, Santner and Jamieson took two wickets each, while Ferguson had one wicket from his stingy spell. New Zealand started slowly in response, with Devon Conway and Latham playing with caution as South Africa's openers found swing and seam with the new ball. Both batters cut loose in the fourth over, hitting Lutho Sipamla for 21 runs in the over as the batting pair both hit sixes. The pair combined for a 96-run opening stand before Conway fell for a 26-ball 39 at the end of the 11th over. The fourth T20 is in Wellington on Sunday. © 2026 AFP
+"""
+
+[R3] Recent Match Report - New Zealand vs South Africa 3rd T20I 2026 | ESPNcricinfo.com
+(https://africa.espn.com/cricket/series/23720/report/1491737/new-zealand-vs-south-africa-3rd-t20i-23720)
+"""
+New Zealand 137 for 2 (Latham 63*, Conway 39) beat South Africa 136 for 9 (Santner 2-21, Sears 2-27, Jamieson 2-42) by eight wicketsNew Zealand's men's team joined their women took a 2-1 lead in the five-match T20I series against South Africa, in another one-sided affair.Despite talk of a batter-friendly surface, South Africa struggled to a score of 136 for 9 and were tied down by New Zealand's spinners and a spectacular effort from Lockie Ferguson. His return of 4-0-9-1 was the second-fewest runs conceded in a men's T20I at Eden Park.Only two South African batters, Nqobani Mokoena (at No.10) and George Linde scored more than 20 as their improvised batting line-up struggled to set the tone.New Zealand were untroubled in the chase. Devon Conway, who will not play again in the series, and Tom Latham put on an opening stand of 96 inside 11 overs which shaved off the bulk of the target. Though Gerald Coetzee (0 for 23 in four overs) was economical, South Africa barely posed a threat to New Zealand, who reached the target with 22 balls to spare.Santner leaves South Africa in tatters In his final match of this series, Mitchell Santner made sure he had a big say with an incisive opening spell. With Wiaan Mulder dismissed for a duck and South Africa in early trouble, Santner brought himself on in the fourth over and struck either side of the powerplay to put New Zealand at a massive advantage. Santner had success with his second ball when Connor Esterhuizen, in a new role at No.3 tried to hit a short ball down the ground, but sliced it to Nick Kelly at mid-on. Ben Sears got rid of de Zorzi in the fifth over before Santner delivered one that turned away from Jason Smith, who tried to cut, and handed Conway a catch at point. That made it the third time in three matches that Santner has dismissed Smith, who has scored just 32 runs in the series so far.Mokoena shines with bat The nineteen-year old has already established himself as a bowler who can keep his head in pressure situations but today, he showed he can do it with the bat too. Mokoena came in with South Africa 109 for 8 in the 15th over and in danger of not batting out their overs. A No.10 may usually approach things cautiously but Mokoena thumped the first ball he faced, off Kyle Jamieson, for six and brought up his first international runs with that shot too. After a quiet next three overs - South Africa scored just eighth runs between the 16th and 18th - Mokoena took matters into his own hands again. He sent a Sears slower ball over cover for six more and then ended the innings by flicking Kyle Jamieson fine for four and pulling the final ball for six. Mokoena's 26 not out was South Africa's top-score. New Zealand own the powerplay South Africa were 41 for 3 in the powerplay and 46 for 5 two overs later and New Zealand's reply could not have been more different. They stormed to 48 without loss in the first six overs and the contest was all but over. Lutho Sipamla, playing in his first match on the tour, took particular punishment as his second over cost 21 runs and nothing he tried worked. Latham sent his lower ball for six, then flicked him off his pads for four. Sipamla tried a wider line to Conway, who pulled him in front of square for six, and then held length back and was pulled again, for four.Latham goes large He had not played a T20 in nearly three years before being selected for this series but Latham showed what he could do with his fourth half-century in the format. He reached fifty off the 45th ball he faced when he swept Maharaj past square leg and emphasised his favourite scoring area. Latham scored 44 of his runs behind square, including five fours and a six. He will take over the captaincy from Santner for the remaining two matches.
+"""
+
+[R4] Ferguson, Santner, Latham help New Zealand take 2-1 series lead
+(https://www.espncricinfo.com/series/south-africa-in-new-zealand-2025-26-1491685/new-zealand-vs-south-africa-3rd-t20i-1491737/match-report)
+"""
+New Zealand 137 for 2 (Latham 63*, Conway 39) beat South Africa 136 for 9 (Santner 2-21, Sears 2-27, Jamieson 2-42) by eight wicketsNew Zealand's men's team joined their women took a 2-1 lead in the five-match T20I series against South Africa, in another one-sided affair.Despite talk of a batter-friendly surface, South Africa struggled to a score of 136 for 9 and were tied down by New Zealand's spinners and a spectacular effort from Lockie Ferguson. His return of 4-0-9-1 was the second-fewest runs conceded in a men's T20I at Eden Park.Only two South African batters, Nqobani Mokoena (at No.10) and George Linde scored more than 20 as their improvised batting line-up struggled to set the tone.'I probably do lean towards the NZ20,' says Devine as New Zealand braces for winds of changeNew Zealand were untroubled in the chase. Devon Conway, who will not play again in the series, and Tom Latham put on an opening stand of 96 inside 11 overs which shaved off the bulk of the target. Though Gerald Coetzee (0 for 23 in four overs) was economical, South Africa barely posed a threat to New Zealand, who reached the target with 22 balls to spare.Santner leaves South Africa in tatters In his final match of this series, Mitchell Santner made sure he had a big say with an incisive opening spell. With Wiaan Mulder dismissed for a duck and South Africa in early trouble, Santner brought himself on in the fourth over and struck either side of the powerplay to put New Zealand at a massive advantage. Santner had success with his second ball when Connor Esterhuizen, in a new role at No.3 tried to hit a short ball down the ground, but sliced it to Nick Kelly at mid-on. Ben Sears got rid of de Zorzi in the fifth over before Santner delivered one that turned away from Jason Smith, who tried to cut, and handed Conway a catch at point. That made it the third time in three matches that Santner has dismissed Smith, who has scored just 32 runs in the series so far.Mokoena shines with bat The nineteen-year old has already established himself as a bowler who can keep his head in pressure situations but today, he showed he can do it with the bat too. Mokoena came in with South Africa 109 for 8 in the 15th over and in danger of not batting out their overs. A No.10 may usually approach things cautiously but Mokoena thumped the first ball he faced, off Kyle Jamieson, for six and brought up his first international runs with that shot too. After a quiet next three overs - South Africa scored just eighth runs between the 16th and 18th - Mokoena took matters into his own hands again. He sent a Sears slower ball over cover for six more and then ended the innings by flicking Kyle Jamieson fine for four and pulling the final ball for six. Mokoena's 26 not out was South Africa's top-score. New Zealand own the powerplay South Africa were 41 for 3 in the powerplay and 46 for 5 two overs later and New Zealand's reply could not have been more different. They stormed to 48 without loss in the first six overs and the contest was all but over. Lutho Sipamla, playing in his first match on the tour, took particular punishment as his second over cost 21 runs and nothing he tried worked. Latham sent his lower ball for six, then flicked him off his pads for four. Sipamla tried a wider line to Conway, who pulled him in front of square for six, and then held length back and was pulled again, for four.Latham goes large He had not played a T20 in nearly three years before being selected for this series but Latham showed what he could do with his fourth half-century in the format. He reached fifty off the 45th ball he faced when he swept Maharaj past square leg and emphasised his favourite scoring area. Latham scored 44 of his runs behind square, including five fours and a six. He will take over the captaincy from Santner for the remaining two matches.Firdose Moonda is ESPNcricinfo's correspondent for South Africa and women's cricket
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

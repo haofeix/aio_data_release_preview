@@ -1,0 +1,82 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "anthony davis prank show"
+
+Claims:
+[1] "Foul Play with Anthony Davis is a TBS prank show."
+[2] "Foul Play with Anthony Davis premieres April 6, 2026."
+[3] "In Foul Play with Anthony Davis, NBA star Anthony Davis pranks fellow athletes and celebrities."
+[4] "Foul Play with Anthony Davis is executive produced by the team behind Impractical Jokers."
+[5] "The premiere episode of Foul Play with Anthony Davis features Anthony Davis and LeBron James targeting Draymond Green with a fake $100M investment."
+[6] "The premiere episode of Foul Play with Anthony Davis features Jordan Chiles pranking Rickea Jackson."
+
+Cited text snippets from the AI Overview (for additional context):
+- ‘Foul Play with Anthony Davis’ premieres tonight - How to watch for free: "In “Foul Play With Anthony,and promotional offers are available."
+- TONIGHT! The premiere of our new prank series FOUL PLAY ...: "TONIGHT!-,The premiere of our new prank series FOUL PLAY starring,#foulplaytbs&text=🔥🔥🔥 hi james!!!&text=What's up guys?,after NCAA coverage on TBS."
+- Executive produced by the Impractical Jokers comes a show where ...: "The TBS team tried to,Anthony Davis on April 6th!"
+- The wait is almost over! Foul Play with Anthony Davis is coming to TBS on ...: "Executive produced by the Impractical,on TBS, TNT and truTV."
+- Watch Anthony Davis Prank Your Favorite Athletes (Trailer ...: "prank celebrities and other athletes on TBS',you hope to see on the show"
+- Foul Play with Anthony Davis premieres MONDAY on TBS, TNT ...: "Foul Play with Anthony Davis,TBS, TNT, and truTV!"
+Reference Sources:
+
+[R1] ‘Foul Play with Anthony Davis’ premieres tonight - How to watch for free
+(https://www.masslive.com/tv/2026/04/foul-play-with-anthony-davis-premieres-tonight-how-to-watch-for-free.html)
+"""
+"Foul Play with Anthony Davis" premieres on Monday, April 6 on TBS (photo courtesy of TBS).TBSIf you purchase a product through a link on our site, we may receive compensation.By Ariana Tourangeau | atourangeau@masslive.comAthletes from all sports pull pranks on their oblivious teammates and sports-world friends in the new series “Foul Play with Anthony Davis,” premiering on Monday, April 6. The series premieres at 11:30 p.m. ET on TBS following the NCAA Men’s Basketball Championship. Those without cable can watch the show for free through DIRECTV, which offers a free trial to new users. Sling and HBO Max are other options for streaming the show and promotional offers are available.In “Foul Play With Anthony Davis,” athletes pull pranks on their teammates and friends with an assist from the creative team behind “Impractical Jokers” and an ensemble cast of writers/performers who help them see the prank through from the opening tip-off to the final buzzer.In the series premiere, “LeBron James and super agent Rich Paul team up with Anthony Davis to prank NBA star Draymond Green with an ultra-exclusive investment opportunity, while Olympic gymnast Jordan Chiles traps WNBA star Rickea Jackson in a parking-lot nightmare.”Below is a look at the series from Entertainment Tonight’s YouTube Channel:Watch TBS’s “Foul Play with Anthony Davis” on DirecTV with a 5-day free trialStreaming ServiceStarting Monthly PriceFree TrialFree Trial LengthMax DiscountDIRECTV$89.99Yes5 days$40 off first monthHBO Max$10.99NoN/AN/ASling TV$45.99NoN/A$30 off first monthHow can I watch “Foul Play with Anthony Davis” without cable?Those without cable can watch the show for free through DIRECTV, which offers a free trial to new users. Sling and HBO Max are other options for streaming the show and promotional offers are available.What is DIRECTV?The streaming platform offers a vast array of content, including the best of live and on-demand streaming, with over 75 live TV channels to get started.What is Sling?Sling TV is the first app-based TV service, letting you stream live television and on-demand content over the internet. With Sling TV, you get to choose the television option that’s right for you, including Channel Add-ons, Premium Add-ons, DVR Plus and more.Watch ‘Survivor’ season 50 episode 8 tonight for free here‘MasterChef’ season 25 premieres tonight - How to watch for free‘Scrubs’ Revival season finale premieres tonight - Here’s how to watch freeSombr announces first arena tour - Where to buy tickets before they sell out‘Welcome to Plathville’ season 8 airs new episode tonight - Here’s how to watch freeAriana is the Commerce Reporter at MassLive.com where she primarily focuses on global concert ticket deals and how to watch popular TV shows on various streaming services. She joined MassLive in 2022 and has...
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

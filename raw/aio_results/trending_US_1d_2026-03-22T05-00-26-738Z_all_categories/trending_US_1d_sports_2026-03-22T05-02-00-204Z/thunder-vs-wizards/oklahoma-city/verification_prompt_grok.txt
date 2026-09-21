@@ -1,0 +1,841 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "oklahoma city"
+
+Claims:
+[1] "Oklahoma City is the capital of Oklahoma."
+[2] "Oklahoma City is the largest city of Oklahoma."
+[3] "Oklahoma City has a population of approximately 630,000 residents, according to Visit The USA."
+[4] "Oklahoma City's living expenses are 18% lower than the national average."
+[5] "Oklahoma City's housing is 41.3% lower than the national average."
+[6] "The Oklahoma City National Memorial honors victims of the 1995 bombing."
+[7] "Bricktown is a former warehouse district turned into a vibrant entertainment district."
+[8] "RIVERSPORT Rapids is a whitewater rafting and adventure center."
+[9] "Oklahoma City has a 3.1% unemployment rate."
+[10] "Oklahoma City is home to the OKC Thunder NBA team."
+[11] "Oklahoma City was founded during the Land Run of 1889."
+
+Cited text snippets from the AI Overview (for additional context):
+- Oklahoma City: "Oklahoma City, also known as OKC, is,Fine dining * Museums * Performing arts"
+- Home | Oklahoma City - A Better Life: "Oklahoma City is a thriving metropolis with,* **International grocery stores** * **Religious centers**"
+- 16 Things to Know About Living in Oklahoma City: "Summary: Oklahoma City, known as,sectors like energy and healthcare."
+- Oklahoma City | TravelOK.com - Oklahoma's Official Travel & Tourism Site: "Oklahoma City, also known as the Modern,**Devon Park** Softball Capital of the World"
+- Oklahoma City, OK - Tripadvisor: "Oklahoma City, Oklahoma&text=With over 50 legendary attractions,weekend of fun and reflection."
+- Cost of Living in Oklahoma City OK - Apartments.com: "The cost of living in,and 13.4% less for transportation."
+- Oklahoma City: "Oklahoma City (OKC) is a dynamic metropolis,A photo lover's paradise with an amphitheater"
+Reference Sources:
+
+[R1] Home | Oklahoma City - A Better Life
+(https://www.abetterlifeokc.com/)
+"""
+Greater Oklahoma City A Better Living.A Better Life. Greater Oklahoma City A Better Living.A Better Life. Oklahoma City is a thriving metropolis with a low cost of living, short commute times, big-league quality of life and a diversified economy. Through multiple resident-led tax initiatives called MAPS, Oklahoma City is bursting with new development, bettering its infrastructure and schools and creating new quality-of-life additions to the city that are wowing longtime citizens and drawing attention and visitors from around the country. With thrilling sports action, world-class museums, entertainment, shopping and dining at more than a dozen different districts, the energy to continue to grow, build and create is pumping all around town. Featured Jobs Did you know Oklahoma City has one of the most diversified economies in the United States? A quick look at our job boards will show you that no matter your expertise, our community has a place for you. You can search by job type or simply view all jobs to see what opportunities await you in OKC. View All Jobs Software and Cybersecurity Health Care Aerospace A place for all Whether in an international grocery store that carries that hard to find item that reminds you of home or a religious center that gives you a sense of community, Oklahoma City is surprisingly diverse when it comes to its cultural options. Entertainment options galore Whether it is whitewater rafting in the heart of downtown, world-class art exhibits or big-league action with the Thunder, Oklahoma City has diverse entertainment options for all ages. And people are noticing—in fact, Time Magazine recognized Oklahoma City as a “Best Place to Go” last year. Oklahoma boasts diverse terrain Most people who have never visited our great state picture nothing but flat plains as far as the eye can see. However, with 11 different ecoregions, Oklahoma actually sports the nation’s most diverse terrain. That is right, the Sooner State is home to mountains, swamps, prairies, forests and more. Oklahoma City’s population has grown twice as fast as the national average One thing that always surprises newcomers to Oklahoma City is just how big it is. OKC is a major metropolitan city with more than 1.4 million people calling it home. In fact, Oklahoma City is one of only 14 cities in the U.S. to gain more than 100,000 new residents over the last decade. Providing excellence in education Five high schools in the Oklahoma City school district received gold or silver badge awards in the most recent U.S. News & World Report Best High Schools Ranking. In fact, 11 of the top 15 schools in Oklahoma are located in the metro area, making excellence in learning more accessible than ever. Sunshine central While severe weather in Oklahoma City gets the headlines, the metro actually has an average of 235 sunny days a year. In fact, U.S. News and World Reports ranked OKC as a top-eight location for “Best Places to Live in the U.S. for Weather.” Resource Links View All Resources See our Welcome Guide Sign Up for the Better Life Watch our Relocation Video View All Resources Feb 12, 2026 Oklahoma City’s culinary momentum earns national attention Jan 29, 2026 AAR expansion brings new jobs and added capacity to OKC aviation Jan 23, 2026 2025 by the Numbers: Measurable Momentum for Oklahoma City See All News Why I love OKC The ease with which I have been able to find my niche in OKC, both in my professional endeavors and my community work. Having left behind an established professional and community network, I was worried about reestablishing that in OKC. However, what I found was that people were willing to help connect me to opportunities at every turn. The community wanted to help plug me in and find my niche. Monica Ybarra - Oklahoma City Resident Receive More Information Contact ABETTERLIFE@OKCCHAMBER.COM 123 PARK AVENUE OKLAHOMA CITY, OK 73102 405-297-8900 Our Affiliates Greater OKC Chamber VeloCity OKC Media Resources Economic Development Resources Visit Oklahoma City OKC Retail © 2026 Copyright | Oklahoma City, OK. | Privacy Policy
+"""
+
+[R2] Oklahoma City
+(https://www.oc.edu/about/oklahoma-city)
+"""
+Home About Oklahoma City From the heart of campus, let your gaze sweep across the captivating skyline of OKC. This dynamic metropolis, where urban energy mingles with quaint charm, presents a wealth of experiences to enhance your college journey. OKC beckons you to become an integral part of its vibrant tapestry, where boundless opportunities await your exploration. Experience the energy of the NBA's Oklahoma City Thunder. Immerse yourself in the atmosphere of Chickasaw Bricktown Ballpark, home to the OKC Dodgers. Witness professional soccer at Taft Stadium, where Energy FC plays. Feel the adrenaline rush of roller derby at Oklahoma City Roller Derby's bouts. And for ice hockey aficionados, the Blazers Ice Centre awaits. --- OKC isn't just a place to watch sports; it's a place to live the passion. OKC is your ultimate destination for thrilling NBA, baseball, soccer, roller derby and ice hockey action. Kickstart your career in a city at the forefront of innovation and opportunity Discover Rewarding Jobs & Internships OKC is consistently ranked among the top for incoming investments, young entrepreneurs, professional work-life balance, ease of doing business, millennial job seekers, and millennial income. This thriving metropolis is a hotbed for growth and a haven for ambitious individuals seeking to make their mark in the world. And at OC, you'll have access to a wealth of resources to help you land your dream internship and secure a successful career. Career Services Embrace the spirit of adventure and discover endless outdoor opportunities. Whether you're an experienced hiker, an avid cyclist or simply looking to relax in nature, OKC's diverse landscape has something for everyone. Myriad Botanical Gardens Capture memories at Myriad Botanical Gardens, a photo lover's paradise with a stunning amphitheater for unforgettable performances. Wichita Mountains Embark on a wildlife adventure at Wichita Mountains Wildlife Refuge, home to diverse species, hiking trails and majestic mountains. Boathouse District Unleash your inner kayaker at the Oklahoma River Boathouse District and conquer the rapids of the Oklahoma City Riversport. Parks Unwind, picnic, exercise or play at OKC's parks. Our pick: Scissortail Park, a scenic space with a vibrant atmosphere for community and fun. Uncover Hidden Gems and Enriching Experiences Explore the Endless Adventures Awaiting in OKC Stay connected to the vibrant energy of OKC by following #OKC and local accounts on social media. Discover exciting events, festivals and exclusive discounts to your favorite spots. OKC Zoo okczoo.org Oklahoma City Museum of Art okcmoa.com Science Museum Oklahoma sciencemuseumok.org The Paseo Arts District thepaseo.org Plaza District plazadistrict.org Oklahoma History Center okhistory.org
+"""
+
+[R3] Oklahoma City: Route 66, Cowboys and Culture
+(https://www.visittheusa.com/destination/oklahoma-city)
+"""
+A Modern City with an Open Spirit Oklahoma City, Oklahoma, blends big-city energy with Western heritage. Follow Route 66, connect with cowboy roots and explore revitalized districts shaped by arts, entertainment and outdoor adventure. Route 66 nostalgia Find retro roadside stops, murals and classic Americana along OKC’s stretch of the Mother Road. Iconic attractions Museums, memorials and Western heritage pair with pro sports, arts and family fun. Distinct neighborhoods offer dining, shopping and nightlife to explore. Explore Oklahoma City Must-See Museums Explore immersive exhibits on cowboy history, Western art and Native American cultures. Learn about Indigenous heritage through curated exhibitions and cultural programs. Reflect at this somber site honoring the victims, survivors and rescuers of the 1995 bombing of the Alfred P. Murrah Federal Building. Vibrant Districts Pop into repurposed industrial spaces now home to restaurants, piano lounges and festive bars all situated along a canal. Wander this colorful corridor home to art galleries, studios, cafes and independent boutiques, plus cool events. Find the perfect pair of boots, then see real cowboys at work in the National Stockyards. City in Action Stop for photos along OKC’s stretch of the historic Mother Road. Walk, cycle, fish or sail around this scenic city lake. Ride a water taxi through this downtown entertainment district. Experiences Trip Ideas & Itineraries Browse articles featuring the best of Oklahoma City, from Route 66 road trips to cowboy culture and downtown adventures. Visit Oklahoma City
+"""
+
+[R4] Oklahoma City | TravelOK.com - Oklahoma's Official Travel & Tourism Site
+(https://www.travelok.com/oklahoma_city)
+"""
+Western charm goes metropolitan in Oklahoma's capital city. Oklahoma City, also known as the Modern Frontier, offers plenty of interesting things to do and boasts big-league attractions, including the Oklahoma City Thunder NBA Basketball team. Guests can also explore the revitalized downtown area, starring the Bricktown Entertainment District, Paycom Center and top-notch museums, including the Oklahoma City National Memorial & Museum and the Oklahoma City Museum of Art. Rope up some fun at the National Cowboy & Western Heritage Museum and other Oklahoma City's Adventure District destinations. Learn Oklahoma's story at the Oklahoma State Capitol and nearby Oklahoma History Center. Go kid-friendly at the Oklahoma City Zoo & Botanical Garden, Science Museum Oklahoma, Frontier City Theme Park and Hurricane Harbor. Immerse yourself in captivating storytelling and interactive exhibits that bring to life the rich heritage of Oklahoma’s 39 distinct First American Nations at First Americans Museum. Escape to the outdoors at the Oklahoma River & Regatta Park, Myriad Botanical Gardens & Crystal Bridge Tropical Conservatory, Scissortail Park and Lake Hefner. Go whitewater rafting AND surfing in the heart of downtown Oklahoma City at RIVERSPORT Rapids & Adventures! The facility has outdoor thrills for all age levels. Oklahoma City offers a thriving nightlife scene with concentrations of popular spots for music, dancing and drinks in the Bricktown Entertainment District, the Paseo Arts District, Plaza District and 39th Street District. The arts abound, and culture flourishes with options such as the Oklahoma City Philharmonic orchestra, the Oklahoma City Ballet, vibrant art districts and plentiful galleries, a diverse music scene that produces national stars in multiple genres, bountiful drama productions and an acclaimed arts festival that draws nearly 1 million visitors each year. No matter what time of year it is, there's always something exciting happening in Oklahoma City! The Oklahoma City Memorial Marathon is a signature OKC event bringing together athletes and spectators from all over the world to honor those who were killed, those who survived and those changed forever by the tragic events of the 1995 Oklahoma City bombing. Home to more national and international equine championship events than any other city in the world, OKC has earned the title Horse Show Capital of the World. The Modern Frontier is also home to the Softball Capital of the World, Devon Park, and has played host to the best softball competition in the world, including the World Cup of Softball, the NCAA Women’s College World Series, the Big 12 Conference Softball Championships, and the Oklahoma Hall of Fame Classic. Listings Related Articles Celebrate Hispanic Heritage Month in Oklahoma Every year from September 15th to October 15th, the nation celebrates Hispanic Heritage Month. Oklahoma is full of unique Latin American culture with no shortage of events, attractions and ways to celebrate. Whether you’re looking to grab a bite to eat, attend a concert, or do some shopping at local stops, there are a variety of ways to celebrate Hispanic Heritage Month in Oklahoma. Eat Well with Oklahoma's Farm-to-Table Fare Oklahoma's rich agricultural tradition has inspired restaurants across the state to highlight local, seasonal ingredients proudly produced by Oklahoma farmers and ranchers. Take a tour of some of the best options for healthy, local and farm-to-table cuisine in Oklahoma. Endless Skyway: The Early Days of Aviation in Oklahoma From the first days of mechanical aviation to Wiley Post’s escapades around the globe, Oklahoma played a crucial role in the early evolution of flight. Discover some key moments in the first 25 years of the state's rich aviation history, along with destinations that let you relive this innovative era. Oklahoma City Resources Greater Oklahoma City Hispanic Chamber of Commerce Historic Capitol Hill Oklahoma City Chamber of Commerce & Visitors Center - South OKC Oklahoma City Chamber of Commerce-Greater OKC Stockyards City Main Street Visit Oklahoma City
+"""
+
+[R5] Oklahoma City, OK: All You Must Know Before You Go (2026) - Tripadvisor
+(https://www.tripadvisor.com/Tourism-g51560-Oklahoma_City_Oklahoma-Vacations.html)
+"""
+Skip to main contentUnited StatesOklahoma (OK)Oklahoma CityOklahoma CityOklahoma City TourismOklahoma City HotelsOklahoma City Bed and BreakfastOklahoma City RestaurantsThings to Do in Oklahoma CityOklahoma City Travel ForumOklahoma City PhotosOklahoma City MapHotelsAll Oklahoma City HotelsOklahoma City Hotel DealsLast Minute Hotels in Oklahoma CityHotels Near MeBy Hotel TypeOklahoma City MotelsOklahoma City CampgroundsOklahoma City Business HotelsOklahoma City Family HotelsOklahoma City Spa ResortsOklahoma City ResortsOklahoma City Green HotelsOklahoma City Luxury HotelsOklahoma City CasinosOklahoma City Beach HotelsRomantic Hotels in Oklahoma CityBy Hotel Class4-Star Hotels in Oklahoma City3-Star Hotels in Oklahoma CityBy Hotel BrandHilton Hotels in Oklahoma CityMarriott Hotels in Oklahoma CityRadisson Hotels in Oklahoma CityInterContinental (IHG) Hotels in Oklahoma CitySpringHill Suites (Marriott Bonvoy) in Oklahoma CityFairfield (Marriott Bonvoy) Hotels in Oklahoma CityLa Quinta Inns & Suites in Oklahoma CityHoliday Inns in Oklahoma CityRenaissance Hotels (Marriott Bonvoy) in Oklahoma CityResidence Inns (Marriott Bonvoy) in Oklahoma CityAutograph Collection (Marriott Bonvoy) Hotels in Oklahoma CityOYO Hotels in Oklahoma CityHilton Garden Inns in Oklahoma CityHome2 Suites by Hilton in Oklahoma CityMotel 6 Hotels in Oklahoma CityPopular AmenitiesPet Friendly Hotels in Oklahoma CityOklahoma City Hotels with PoolsOklahoma City Hotels with Free ParkingPopular NeighborhoodsHotels near Denniston ParkHotels near Medical CommunityHotels near RiversideHotels near South West 60thHotels near KingsridgeHotels near JacksonHotels near Fox RunHotels near GlenbrookHotels near Capitol HillHotels near Grand PortlandPopular Oklahoma City CategoriesOklahoma City City Center HotelsOklahoma City Hotels with Hot TubsHotels with Shuttle in Oklahoma CitySuite Hotels in Oklahoma CityOklahoma City Hotels with Smoking RoomsLuxury Spa Hotels in Oklahoma CityLuxury Beach Hotels in Oklahoma CityHotels With Entertainment in Oklahoma CityHotels With Babysitting in Oklahoma CityHistoric Oklahoma City Bed and BreakfastNear LandmarksHotels near Oklahoma City National Memorial & MuseumHotels near BricktownHotels near National Cowboy & Western Heritage MuseumHotels near Oklahoma City Zoo and Botanical GardenHotels near SKELETONS: Museum of OsteologyHotels near Science Museum OklahomaHotels near Myriad Botanical GardensHotels near Oklahoma City Museum of ArtHotels near Centennial Land Run MonumentHotels near Paycom CenterNear AirportsHotels near Will Rogers Airport (OKC)Motels near Will Rogers Airport (OKC)Near CollegesHotels near University of Oklahoma Health Sciences CenterHotels near Metro Technology CentersHotels near Mid-Del Technology CenterHotels near Rose State CollegeHotels near Heritage College - Oklahoma City, OKHotels near Oklahoma School of PhotographyHotels near American Broadcasting SchoolHotels near Platt College - Moore, OKHotels near ITT Technical Institute - Oklahoma City CampusHotels near Oklahoma Baptist UniversityPopular Hotel CategoriesPopular Beach ResortsPopular Golf ResortsPopular Spa HotelsPopular Luxury ResortsPopular Bed and BreakfastsPopular All-Inclusive HotelsPopular Honeymoon ResortsPopular Family ResortsPopular Apartment HotelsPopular Adults Only All-Inclusive ResortsThings to DoRestaurantsTravel StoriesCruisesMoreToursAdd a PlaceTravel ForumAirlinesTravelers' ChoiceHelp CenterTrip PlannerPlan Your Trip to Oklahoma City: Best of Oklahoma City TourismBy VisitOKC40,000Oklahoma City, Oklahoma SaveSave this place to a Trip, where you can track your faves and get personalized picks as you plan.With over 50 legendary attractions including the National Cowboy and Western Museum and the Myriad Botanical Gardens, plus world-class shopping, restaurants and hotels OKC, as it is affectionately known, is the ideal spot for a weekend of fun and reflection. Discover the sights and sounds of the Old West in Stockyards City, watch horse races at Remington Park, then have dinner and see a show in historic Bricktown. Designed to duplicate an 1800s frontier town, families will love the Frontier City Theme Park where visitors see an reenactment of the gun fight at the OK corral and ride thrilling roller coasters. The remarkable Oklahoma City National Memorial & Museum occupies the now-sacred soil where 168 Americans were killed. Learn how tragedy united a nation and come away with a new sense of strength, peace and resolve.Read moreDiscover your perfect Oklahoma CityLooking for places to stay, eat, or explore?Family-friendly activities near downtown Oklahoma CityLuxury hotels with river views in Oklahoma CityFood tours for couples in Oklahoma CityEssential Oklahoma CityPick a category to filter your recsEssentialsTravelers' ChoiceFamily friendlyHidden gemsMuseumsOutdoorsArts & theaterNightlifeThings to doSee all Oklahoma City National Memorial & Museum4.94.9 of 5 bubbles(5,358)Monuments & Statues, History MuseumsBricktown4.44.4 of 5 bubbles(2,623)NeighborhoodsMyriad Botanical Gardens4.54.5 of 5 bubbles(1,003)GardensOklahoma City Zoo and Botanical Garden4.54.5 of 5 bubbles(1,961)Gardens, ZoosScience Museum Oklahoma4.64.6 of 5 bubbles(1,066)Children's Museums, Science Museums45th Infantry Division Museum4.74.7 of 5 bubbles(366)Military MuseumsPlaces to staySee all Skirvin Oklahoma City, a Hilton Hotel5.05 of 5 bubbles(131)from $303/nightRenaissance Oklahoma City Downtown Bricktown Hotel4.84.8 of 5 bubbles(152)from $323/nightHilton Garden Inn Oklahoma City Bricktown4.54.5 of 5 bubbles(1,061)from $223/nightAmbassador Hotel Oklahoma City, Autograph Collection4.74.7 of 5 bubbles(399)from $379/nightColcord Hotel Oklahoma City, Curio Collection by Hilton4.64.6 of 5 bubbles(1,344)from $376/nightEmbassy Suites by Hilton Oklahoma City Will Rogers Airport4.34.3 of 5 bubbles(1,834)from $179/nightFood & drinkSee all Cheever's Cafe4.64.6 of 5 bubbles(1,069)$$ - $$$ • American, Southwestern, ContemporaryNic's Grill4.74.7 of 5 bubbles(502)$ • American, DinerCharleston's Restaurant4.54.5 of 5 bubbles(531)$$ - $$$ • American, Steakhouse, GrillKitchen No. 3244.54.5 of 5 bubbles(778)$$ - $$$ • American, Vegetarian friendly, Vegan optionsRedrock Canyon Grill4.54.5 of 5 bubbles(720)$$ - $$$ • American, Vegetarian friendly, Vegan optionsPaseo Grill4.64.6 of 5 bubbles(452)$$ - $$$ • American, Vegetarian friendly, Gluten free optionsWhen to visitJanuary38 ºFColdest month3 days of rainModerately busyFebruary43 ºF4 days of rainModerately busyMarch52 ºF6 days of rainVery busyBusiest monthApril61 ºF8 days of rainModerately busyMay69 ºF11 days of rainWettest monthVery busyJune78 ºF11 days of rainVery busyJuly83 ºFHottest month7 days of rainVery busyAugust82 ºF8 days of rainModerately busySeptember74 ºF8 days of rainLess busyOctober62 ºF7 days of rainLess busyNovember50 ºF5 days of rainLess busyLeast busy monthDecember40 ºF4 days of rainLess busyRelated StoriesBy Sarah Kuta11 incredible places to visit in November around the worldTrending in the forumsSee allParking advice for OKCBy JKabo6 repliesWorst Time to Drive Through OKC?By Amanda N1 replyOKC in November - first timeBy V3100RKamyb3 repliesOklahoma City Is Great ForSelf-guided ToursA Spectacular Oklahoma City Scavenger Hunt: Wild Western Art4.74.7 of 5 bubbles(3)from $15 per adultOklahoma City Scavenger Hunt by 3Quest Challenge5.05 of 5 bubbles(1)from $10 per adultOutdoor Escape Room Oklahoma City - Bricktown5.05 of 5 bubbles(1)from $75 per groupOklahoma City Scavenger Hunt by Zombie ScavengersNo reviews yet(0)from $20 per groupCelebrate with a Holiday Scavenger Hunt in Oklahoma City with Holly Jolly Hunt5.05 of 5 bubbles(2)from $20 per groupA Spectacular Scavenger Hunt: Bricktown Oklahoma CityNo reviews yet(0)from $15 per adultOklahoma City Scavenger Hunt AdventureNo reviews yet(0)from $40 per groupAdventurous Scavenger Hunt in Oklahoma City by Crazy DashNo reviews yet(0)from $10 per adultCrazy OKC Scavenger HuntNo reviews yet(0)from $29 per adultFun City Scavenger Hunt in Oklahoma City by Operation City QuestNo reviews yet(0)from $10 per adultBarsThe Garage4.54.5 of 5 bubbles(117)$$ - $$$ • American, Bar, Brew PubThe Jones Assembly4.44.4 of 5 bubbles(138)$$ - $$$ • French, American, GastropubDeep Deuce Grill4.34.3 of 5 bubbles(84)$$ - $$$ • American, Bar, PubFassler Hall4.04 of 5 bubbles(100)$$ - $$$ • German, Bar, PubGuyutes4.34.3 of 5 bubbles(48)$$ - $$$ • American, Bar, PubLouie's Grill & Bar4.14.1 of 5 bubbles(91)$$ - $$$ • American, Bar, Vegetarian friendlyToby Keith's Bar and Grill3.93.9 of 5 bubbles(87)$$ - $$$ • American, BarWSKY Lounge4.44.4 of 5 bubbles(34)$$ - $$$ • BarParlor4.44.4 of 5 bubbles(26)$$ - $$$ • American, Pizza, BarbecueS&B's Burger Joint4.14.1 of 5 bubbles(56)$$ - $$$ • American, BarTheme parksFrontier City3.53.5 of 5 bubbles(468)Amusement & Theme Parks, Water ParksThe Sanctuary Escape4.94.9 of 5 bubbles(33)Escape GamesDust Bowl Lanes & Lounge4.54.5 of 5 bubbles(11)Bowling AlleysRevolutions by HeyDay - Lower Bricktown4.64.6 of 5 bubbles(9)Bars & Clubs, Game & Entertainment CentersSixth Sense Escape Games4.94.9 of 5 bubbles(105)Escape GamesTemporarily closedTrapped OKC3.83.8 of 5 bubbles(45)Escape GamesThe Escape OKC4.84.8 of 5 bubbles(271)Escape GamesOklahoma City Zoo and Botanical Garden4.54.5 of 5 bubbles(1,961)Gardens, ZoosRed Door Escape Room Chisholm Creek5.05 of 5 bubbles(5)Escape GamesFactory Obscura Mix-Tape3.53.5 of 5 bubbles(22)Art Museums, Children's MuseumsEat & drinkMetro Wine Bar & Bistro4.74.7 of 5 bubbles(228)$$$$ • American, Contemporary, Wine BarPaseo Grill4.64.6 of 5 bubbles(452)$$ - $$$ • American, Vegetarian friendly, Gluten free optionsFlint4.44.4 of 5 bubbles(921)$$ - $$$ • American, Bar, ContemporaryRedrock Canyon Grill4.54.5 of 5 bubbles(720)$$ - $$$ • American, Vegetarian friendly, Vegan optionsCheever's Cafe4.64.6 of 5 bubbles(1,069)$$ - $$$ • American, Southwestern, ContemporaryKitchen No. 3244.54.5 of 5 bubbles(778)$$ - $$$ • American, Vegetarian friendly, Vegan optionsRed PrimeSteak4.34.3 of 5 bubbles(326)$$$$ • Steakhouse, Seafood, Gluten free optionsCattlemen's4.44.4 of 5 bubbles(3,173)$$ - $$$ • American, Steakhouse, Gluten free optionsVast4.34.3 of 5 bubbles(751)$$$$ • American, Contemporary, Vegetarian friendlyBricktown Brewery Restaurant4.24.2 of 5 bubbles(821)$$ - $$$ • American, Bar, PubAfter darkGuyutes4.34.3 of 5 bubbles(48)$$ - $$$ • American, Bar, PubLouie's Grill & Bar4.14.1 of 5 bubbles(91)$$ - $$$ • American, Bar, Vegetarian friendlyToby Keith's Bar and Grill3.93.9 of 5 bubbles(87)$$ - $$$ • American, BarWSKY Lounge4.44.4 of 5 bubbles(34)$$ - $$$ • BarParlor4.44.4 of 5 bubbles(26)$$ - $$$ • American, Pizza, BarbecueS&B's Burger Joint4.14.1 of 5 bubbles(56)$$ - $$$ • American, BarExplore more from our sponsorsFrequently Asked Questions about Oklahoma CityWhere should I stay in Oklahoma City?We recommend staying at one of the most popular hotels in Oklahoma City, which include: Okana Resort & Indoor WaterparkSkirvin Oklahoma City, a Hilton HotelWyndham Grand Oklahoma City DowntownEmbassy Suites by Hilton Oklahoma City Will Rogers AirportHampton Inn & Suites Oklahoma City-BricktownWhat are the best places to eat in Oklahoma City?Some of the most popular restaurants in Oklahoma City include: Cattlemen'sRedrock Canyon GrillCheever's CafeNic's GrillKitchen No. 324What is Oklahoma City known for?Oklahoma City is known for some of its popular attractions, which include: BricktownOklahoma City National Memorial & MuseumNational Cowboy & Western Heritage MuseumMyriad Botanical GardensSKELETONS: Museum of OsteologyWhat is there to do in Oklahoma City?We recommend checking out these popular tours when looking for something to do in Oklahoma City: Guided Streetcar Tour visit the Memorial, Downtown & Bricktown Oklahoma City Indoor Skydiving with 2 Flights & Personalized CertificateDinner Detective True Crime Murder Mystery - Oklahoma City, OKBikes & Brews TourA Spectacular Oklahoma City Scavenger Hunt: Wild Western ArtWhen is the cheapest time to visit Oklahoma City?If you're a more budget-conscious traveler, then you may want to consider traveling to Oklahoma City between December and February, when hotel prices are generally the lowest. Peak hotel prices generally start between June and August.
+"""
+
+[R6] 16 Things to Know About Living in Oklahoma City
+(https://www.extraspace.com/blog/city-guides/things-to-know-about-living-in-oklahoma-city/)
+"""
+Considering a move to Oklahoma City? The Big Friendly is growing rapidly thanks to its affordable cost of living, family-friendly activities, top business opportunities, and more. Here are 16 things you need to know about living in Oklahoma City!
+
+Live in a Big City with Small-City Costs
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Braden Jarvis (@jarvisphoto)
+
+
+
+Looking for an affordable big city to live in? Despite being one of the most populated cities in the U.S., Oklahoma City&#8217;s cost of living is 9% lower than the national average. Low prices for groceries, utilities, and transportation all contribute to this affordability, allowing you to have a big-city experience without the hefty price tag. But the biggest savings come from OKC&#8217;s housing costs, which are 12% below the national average. This means that whether you&#8217;re buying a house or renting an apartment, Oklahoma City is one of the most affordable places to live in the U.S. Rentals in Oklahoma City are around $884 per month, while the median home purchase price is $161,800—making OKC one of the best big cities for first-time homebuyers, too!
+Discover the cost of living in Oklahoma City compared to your current city with our free cost of living calculator.
+
+Take Advantage of Great Jobs in OKC
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Jeanne Kay (@juana1)
+
+
+
+The unemployment rate in Oklahoma City is lower than the national average at 3.1%, making the city ideal for job seekers. There are a variety of career opportunities in OKC, spanning industries like energy, aviation, biotechnology, and more. Some major employers in Oklahoma City include INTEGRIS Health, Fortune 500 company Devon Energy, the Mike Monroney Aeronautical Center, and even retailers like Hobby Lobby. Additionally, with Tinker Air Force Base in the area, Oklahoma City is one of the best cities for veterans and military personnel. Want to work for yourself instead? With low business costs, The Big Friendly is also one of the least risky cities to start a business!
+
+Attend Oklahoma City Colleges &amp; Universities
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Oklahoma City University (@oklahomacityuniversity)
+
+
+
+If you’re moving to Oklahoma City to earn a degree, the city has plenty of colleges and universities to choose from. Further your education at Oklahoma State University-Oklahoma City, which offers a renowned dance school, leading online statistics program, and more. Choose from more than 70 undergraduate majors and 20 graduate degrees at private liberal arts and sciences college, Oklahoma City University. Attend Oklahoma City Community College—a top-value institution in Oklahoma—for highly-regarded courses spanning from nursing to film. Pursue a career in healthcare at The University Of Oklahoma College of Medicine, one of the few comprehensive medical centers in the nation and one of the top medical schools for primary care. Or check out private education options like Mid-America Christian University, accredited by the Higher Learning Commission, or Oklahoma Christian University, another great school in OKC.
+
+
+  Search Form
+    Find an Extra Space Storage facility near you
+	
+    
+        Search by Zip
+        
+        
+    
+    Search
+
+
+Save Time with OKC Transportation
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Ride OKC (@rideokc)
+
+
+
+Like many other Midwestern cities, driving in OKC is the most common way to get around. You won’t have to worry about dense traffic in Oklahoma City, as Interstate 35 provides quick access to many parts of the area—plus, the average commute time in OKC is notably shorter than the national average. But if you don’t own a car, there are lots of OKC public transportation options, too. Find affordable and reliable transit with the OKC Streetcar, or utilize one of the 22 established bus lines in OKC via the EMBARK bus network. Rent a bike from the Spokies bike-share service and journey along the interconnected bike paths in OKC—or explore the city through a guided bike tour with Ride OKC. Or, if you need to travel further, catch a flight at the Will Rogers International Airport!
+
+Free Resources for a Smooth Oklahoma City Move
+
+Figure out your average moving costs
+Estimate the number of boxes for your move with our free calculator
+Find the best places to get free &amp; cheap moving boxes in Oklahoma City
+
+
+Spend More Time Outdoors
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Jennifer Gurtz (@hikewithjennifer)
+
+
+
+The mild seasons are another perk of moving to OKC. Locals typically experience an average of more than 230 sunny days per year and winters that seldom drop below freezing. And though Tornado Alley is prone to strong winds between March and June, you can stay prepared for storms while still enjoying outdoor recreation in Oklahoma City. Zipline across the Oklahoma River or attempt whitewater rafting in OKC at Riversport—a U.S. Olympic and Paralympic training site. Cool off at the Scissortail Sprayground or browse the Farmers Market at Scissortail Park. Hit the half-pipe on your skateboard, do tricks on your bike, or roller skate at Mat Hoffman Action Sports Park. Test out your aim with a group of friends at Epic Paintball Park. Pitch a tent, reel in fish, or boat across Lake Stanley Draper. Kayak through the still waters of Stinchcomb Wildlife Refuge. Or witness the stunning water views and city skyline while wandering the Oklahoma River trails on foot, bike, or by horseback.
+
+Explore OKC&#8217;s Distinct Districts
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Deep Deuce District (@deepdeuceokc)
+
+
+
+With 21 unique districts, you&#8217;ll always be able to find something to do in OKC. Shop small at locally-owned businesses like Plant People, Commonplace Books, and Heritage Bespoke in Midtown. Get a taste of Oklahoma City&#8217;s past in the Deep Deuce District, a neighborhood with deep ties to the Black community since the rise of blues and jazz in the 1940s. Roam through Automobile Alley—the former home of over 50 car dealerships, now filled with shops and restaurants. Catch film and arts festivals, or explore galleries in West Village District&#8217;s Film Row. Make a day out of all the family-friendly attractions in the Adventure District. Embrace Oklahoma City&#8217;s cowboy culture in Stockyards City. And find tons of restaurants, bars, and nightlife attractions in Downtown OKC and Bricktown!
+Experience Pride in Oklahoma City
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Nick Marek Photography (@nickmphotography)
+
+
+
+OKC is home to a spirited and supportive LGBTQ community, offering a wide array of resources, events, and more. For example, LGBTQ youth can mingle with one another at OKC Pride Alliance youth programs, while LGBTQ couples can connect with affirming wedding vendors via the Rainbow Collective. Alongside these organizations that foster connection among the LGBTQ community, Freedom Oklahoma also plays a crucial role in providing educational resources and advocacy across the state. Celebrate Pride Month in OKC with a visit to Oklahoma City&#8217;s 39th Street District, lovingly referred to as “The Strip,” and attend the Pride on 39th Street festival and parade. Or stop by The Boom or Tramps for some of the best gay bars and nightclubs in OKC!
+Find Family Fun in The Big Friendly
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Nicole Wilson (@nicolenaturetherapy)
+
+
+
+On the hunt for Oklahoma City attractions for families? Whether your family likes to explore, learn, or chase thrills, OKC lets all of those possibilities come to life. Feed giraffes, ride camels, and take a VR journey through gorilla jungles at the Oklahoma City Zoo. Stroll through the breathtaking greenery and flora or ride Mo&#8217;s Carousel at Myriad Botanical Gardens. Take a deep dive into Western and Indigenous art, culture, and history at the National Cowboy &amp; Western Heritage Museum or First Americans Museum. Visit one of Oklahoma’s only theme parks, Frontier City—a Six Flags Theme Park—for everything from roller coasters and thrilling water rides to kid-friendly attractions. Sign the kids up for hockey lessons or bring the whole family out to skate across the rink at Arctic Edge Ice Arena. And enjoy kid-friendly seasonal events—like the Strawberry Fest, Fall Festival, and more—at Orr Family Farm!
+Appreciate Art in OKC
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Pyramid Guy (@pyramidguy)
+
+
+
+For those keen on art, moving to Oklahoma City opens a world of opportunities. Just by walking through the streets of OKC, you’ll experience one of the top U.S. cities for street art. Gaze at outstanding murals in Oklahoma City at the Plaza Walls Expo in the Plaza District, which is transformed by over 40 artists annually. Wander through Downtown OKC&#8217;s vibrant tunnels brightened by Abstract Passages. Enjoy diverse art collections and traveling exhibits from around the world at the Oklahoma City Museum of Art. Sign up for a creative workshop, take a guided tour, and browse through Campbell Art Park at the Oklahoma Contemporary Arts Center. Experience First American art at Exhibit C Gallery. Or engage with the immersive art exhibits at Factory Obscura.
+Support the Performing Arts
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Jana Carson (@janacarson)
+
+
+
+If you’re moving to OKC and love the performing arts, the Civic Center Music Hall in OKC’s Arts District is your one-stop-shop for a wide variety of shows and performances. Hear some of the metro’s finest musicians in the Canterbury Voices. Catch shows like Oklahoma! and Joseph and the Amazing Technicolor Dreamcoat at Lyric Theatre of Oklahoma. Grab tickets to touring shows like &amp; Juliet or The Wiz with live theatre in OKC from OKC Broadway. Listen to classical and modern music or celebrate the holidays at one of the OKC Philharmonic Orchestra recitals. Or see the Oklahoma City Ballet perform shows like Dracula, The Nutcracker, and more!
+Spend a Day Exploring OKC Museums
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by American Banjo Musuem (@banjomuseum)
+
+
+
+While living in Oklahoma City, you can find interactive fun in plenty of museums! Browse artifacts from the London Fire Brigade and other tokens dating back to the 1700s at the Oklahoma State Firefighters Museum. See more than 450 animal skeletons from all over the world, check out exhibits like Flightless Birds, or attend Forensic and Pathology Night at Skeletons: Museum of Osteology. Explore exhibits like CurioCity, Light Minded, and smART Space at the Science Museum Oklahoma. Discover the people that make OKC unique with exhibits like Oklahoma Sports Heroes, Inaugural Impressions, and more at the Oklahoma History Center. Learn the history of “America’s instrument” and listen to live music at events like the Celtic Jam at the American Banjo Museum. Or honor those we lost and experience an authentic, interactive understanding of the Oklahoma City Bombing at the OKC National Memorial &amp; Museum.
+Discover Fun at Festivals &amp; Events
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Oklahoma State Fair (@okstatefair)
+
+
+
+There are plenty of events in Oklahoma City held throughout the year for you to enjoy! Find 11 days of family-friendly entertainment at the Oklahoma State Fair, offering everything from delicious food, rodeos, and live music to thrilling rides like the Mega Drop at the Midway Carnival. Enjoy &#8220;traditional cowboy cooking,&#8221; live music, Western reenactments, and more at the Annual Chuck Wagon Festival. Team up with friends to complete a relay at the Oklahoma City Memorial Marathon, the biggest marathon in OKC. Catch locally-made films at the deadCenter Film Festival. Encounter visual, performing, and culinary arts during the Festival of the Arts in OKC’s Bicentennial Park. See jewelry, paintings, sculptures, and other creations from over 90 artists from across the U.S. at the Paseo Arts Festival. And celebrate the holidays with outdoor ice skating, live performances, and more during the Downtown in December festival.
+Celebrate Sports in Oklahoma City
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Oklahoma City Thunder (@okcthunder)
+
+
+
+College football is a big deal in Oklahoma City, and avid fans are more than welcome. In the past, residents had to choose between rooting for the Oklahoma State Cowboys and the Oklahoma University Sooners in the iconic Bedlam Rivalry. Today, you can experience the electric college football atmosphere during OU game days, when OKC seemingly shuts down as everyone is glued to the game. You&#8217;ll also want to learn the “Beat Texas!” chant during the Red River Showdown when the Sooners take on the Texas Longhorns (D-1 FBS). And the excitement doesn’t stop at college football—OKC is home to a handful of professional sports teams, as well. Root for the OKC Thunder (NBA) as they shoot three-pointers, or head out to watch bull-riding with the Oklahoma Wildcatters (PBR) at the Paycom Center. Cheer on OKC Energy FC (USL) at Taft Stadium. Or get your baseball fix with an Oklahoma City Comets (MiLB) game at the Chickasaw Bricktown Ballpark!
+
+Enjoy a Variety of OKC Food Options
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Red Rooster (@redroosterokc)
+
+
+
+Oklahoma City offers restaurants with a diverse array of cuisines. Try brunch in OKC with meals like the Stuffed French Toast, Cheever&#8217;s Chicken Fried Steak, or Italian Kale Salad at Cheever&#8217;s Cafe. Delight in the authentic taste of refined Laotian cuisine with dishes like Crispy Rice Salad, Fried Pork Spare Ribs, and Sabai Sabai at Ma Der Lao Kitchen. Savor vegetarian-friendly meals like Bagel n Lox, Frito Chili Pie, and Rancheros Verdes at artsy eatery, The Red Cup. Discover delicious farm-to-table menu items like Masa Grit Cakes, the B-MLT, and Chicken Pot Pie at Red Rooster, one of the best restaurants in Oklahoma City. Enjoy a variety of steaks—from Filet Mignon to Pepper Steak or Ham Steak—at Cattlemen’s Steakhouse. And check out 125+ food trucks in OKC—including Big Truck Tacos, where you can order the Flaming Lips or Cripsy’cado with a Spicy Bloody Mary!
+Visit Oklahoma City Breweries
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Bricktown Brewery (@bricktownbrewery)
+
+
+
+There&#8217;s no shortage of breweries in OKC to choose from! Sample craft and local brews like the Bluesberry Ale, Bar Hop Hazy IPA, and Wiley&#8217;s Blood Orange Wheat at Bricktown Brewery. Test your knowledge during Trivia Night at Angry Scotsman Brewing, a Downtown Oklahoma City microbrewery that offers seasonal brews like Coffin Dodger and Fall Back alongside the beloved, year-round Scotsman IPA. Enjoy the rotating selection of beers like the Soul Shine, Oklahoma Sunset, and Malted Legacy at Core4 Brewing Company. Play board games while sipping a Hoparazzi or Golden One at Anthem Brewing. Find beer-inspired ciders like Elani and Double Hop Transition—vegan or gluten-free drink options at OKC’s first and only cidery, OK Cider Co. Or hang out at The Big Friendly, which takes its name from the city’s nickname, to enjoy their selection of local and international brews—including Spring Light, You Think I&#8217;m Joking, and more!
+Paint OKC’s Bricktown Red
+
+
+  
+
+
+
+
+
+
+
+
+
+
+View this post on Instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A post shared by Bricktown (@bricktown)
+
+
+
+If you&#8217;re searching for diverse nightlife, Oklahoma City&#8217;s Bricktown district is a must-visit. Take a relaxing ride through the canal aboard the Bricktown Water Taxi. See performances from bands like Paramore and Rainbow Kitten Surprise or shows from comedians like David Spade at The Criterion. Get a group of friends together and knock down some pins at the sports bar and bowling alley, Revolutions by HeyDay. Experience the Southern influence in OKC’s country dance bar, Oklahoma Ranch. Grab a beer or enjoy an evening with friends playing miniature golf, laser tag, and arcade games at Brickopolis. And take a stab at stand-up during open mic night—or leave it to the professionals and catch one of the many A-List comedians in OKC at Bricktown Comedy Club.
+***
+Relocating to Oklahoma City? Extra Space Storage has convenient self storage facilities throughout the OKC metro to help ease your transition. Find Oklahoma City storage near you!
+"""
+
+[R7] Cost of Living in Oklahoma City OK
+(https://www.apartments.com/cost-of-living/oklahoma-city-ok/)
+"""
+Compare Cost of Living Between Cities Determine the income needed to maintain your lifestyle when moving to a new city. Cost of Living Summary in Oklahoma City, OK by Household Type The cost of living in Oklahoma City for a renter is 27.3% lower than the national average. If you are a renter, you can expect to pay around $3,466/month to cover basic household expenses. The following categories represent a breakdown of average monthly spending. Costs may vary based on location or market conditions. Groceries $658 per month -5.3% lower than US avg. Housing $1,117 per month -48.8% lower than US avg. Utilities $363 per month -2.2% lower than US avg. Transportation $318 per month -13.4% lower than US avg. Healthcare $143 per month -2.1% lower than US avg. Goods & Services $867 per month -13.6% lower than US avg. The cost of living in Oklahoma City for a home owner is 17.6% lower than the national average. If you are a home owner, you can expect to pay around $6,952/month to cover basic household expenses. The following categories represent a breakdown of average monthly spending. Costs may vary based on location or market conditions. Groceries $1,295 per month -5.3% lower than US avg. Housing $1,554 per month -38.2% lower than US avg. Utilities $811 per month -2.4% lower than US avg. Transportation $698 per month -13.4% lower than US avg. Healthcare $393 per month -2.0% lower than US avg. Goods & Services $2,201 per month -12.7% lower than US avg. The cost of living in Oklahoma City for a married couple with children under 6 is 18.8% lower than the national average. If you are a married couple with children under 6, you can expect to pay around $6,224/month to cover basic household expenses. The following categories represent a breakdown of average monthly spending. Costs may vary based on location or market conditions. Groceries $1,308 per month -5.4% lower than US avg. Housing $1,288 per month -42.5% lower than US avg. Utilities $781 per month -2.3% lower than US avg. Transportation $620 per month -13.5% lower than US avg. Healthcare $331 per month -2.4% lower than US avg. Goods & Services $1,896 per month -13.3% lower than US avg. The cost of living in Oklahoma City for a married couple with children 6-17 is 18.2% lower than the national average. If you are a married couple with children 6-17, you can expect to pay around $7,204/month to cover basic household expenses. The following categories represent a breakdown of average monthly spending. Costs may vary based on location or market conditions. Groceries $1,434 per month -5.3% lower than US avg. Housing $1,483 per month -41.5% lower than US avg. Utilities $846 per month -2.2% lower than US avg. Transportation $753 per month -13.5% lower than US avg. Healthcare $419 per month -1.6% lower than US avg. Goods & Services $2,269 per month -12.5% lower than US avg. Cost of Living Details for Oklahoma City, OK Is Oklahoma City expensive to live in? Oklahoma City’s overall cost of living is 18.8% lower than the national average, making it a less expensive city compared to other US locations. What salary do I need to live comfortably in Oklahoma City, OK? To live comfortably in Oklahoma City, OK, as a single adult with no dependents, you should aim for a salary around $55,000 before taxes. Expect to pay around $13,404/year for housing, $7,896/year for groceries, and $10,404 for goods and services. These costs will vary based on family size and location. Average Housing Cost in Oklahoma City, OK vs. National Average Cost of Renting The average rent in Oklahoma City, OK is $926, which is 43.1% lower than the national average.Start your search for an apartment in Oklahoma City, OK, and view the average rent. Oklahoma City, OK National Average Apartment $926/month $1,627/month -43% Cost of Buying a Home The average listing price for a home in Oklahoma City, OK is $328,541, which is 38.5% lower than the national average. Oklahoma City, OK National Average Average House Cost $328,541 $534,127 -38% Groceries The average cost of groceries in Oklahoma City, OK is 5.3% lower than the national average. Oklahoma City, OK National Average Steak $16.39 $16.92 -3% Ground Beef $7.70 $7.71 -0% Sausage $4.41 $4.97 -11% Frying Chicken $1.52 $1.66 -8% Chunk Light Tuna $1.18 $1.28 -8% Whole Milk $4.59 $4.75 -3% Eggs $4.73 $4.69 +1% Margarine $1.30 $1.46 -11% Parmesan Cheese $4.50 $4.87 -8% Potatoes $5.45 $5.25 +4% Bananas $0.74 $0.77 -4% Lettuce $1.93 $1.99 -3% Bread $3.79 $4.10 -8% Fresh Orange Juice $4.92 $5.00 -2% Coffee $6.20 $6.52 -5% Sugar $4.71 $5.05 -7% Corn Flakes $4.74 $5.50 -14% Sweet Peas $1.59 $1.72 -8% Peaches $2.72 $2.82 -4% Detergent $20.35 $20.83 -2% Cooking Oil $8.01 $9.06 -12% Frozen Meal $3.64 $3.80 -4% Frozen Corn $2.24 $2.28 -2% Potato Chips $4.05 $4.26 -5% Soft Drink $2.88 $3.00 -4% Hamburger $5.07 $5.80 -13% Pizza $11.99 $12.77 -6% Fried Chicken $4.95 $5.36 -8% Utilities The average cost of utilities in Oklahoma City, OK is 2.3% lower than the national average. Oklahoma City, OK National Average Energy $209.86 $220.13 -5% Phone $199.49 $196.38 +2% Healthcare The average cost of healthcare in Oklahoma City, OK is 2.5% lower than the national average. Oklahoma City, OK National Average Optometrist Visit $127.43 $140.11 -9% Doctor Visit $132.99 $153.83 -14% Dentist Visit $131.52 $123.57 +6% Ibuprofen $11.46 $11.74 -2% Prescription Drug $21.61 $22.27 -3% Transportation The average cost of transportation in Oklahoma City, OK is 13.4% lower than the national average. Oklahoma City, OK National Average Gasoline (1 gallon) $2.61 $3.06 -15% Tire Balance $58.45 $65.24 -10% Goods & Services The average cost of good and services in Oklahoma City, OK is 12.8% lower than the national average. Oklahoma City, OK National Average Toothpaste $3.98 $4.09 -3% Shampoo $1.50 $1.54 -3% Dry Cleaning $14.24 $18.00 -21% Man Dress Shirt $24.46 $38.86 -37% Boy Jeans $21.60 $29.19 -26% Women Slacks $20.45 $37.78 -46% Washer Repair $84.52 $98.03 -14% Newspaper $6.75 $12.63 -47% Movie $12.15 $12.91 -6% Yoga $15.40 $19.66 -22% Tennis Balls $4.18 $4.08 +2% Veterinary Services $65.81 $71.68 -8% Beer $9.95 $10.58 -6% Wine $12.13 $12.05 +1% Facial Tissues $2.14 $2.25 -5% Haircut $18.67 $27.59 -32% Beauty Salon $54.40 $51.17 +6% Compare Oklahoma City to Other Top Cities Apartments for Rent in Oklahoma City, OK Houses for Rent in Oklahoma City, OK Explore Cost of Living in Popular Cities What is a cost of living index? A cost of living index is a numerical tool designed to compare expenses in different locations. It tracks the prices of essential goods and services, such as housing, food, utilities, transportation, and healthcare and assigns a score to each region. This index helps renters understand how costly one city is compared to another, helping with financial planning and decision-making before moving to a new place. How is cost of living calculated? Cost of living is calculated by looking at the prices of a variety of recurring expenses that people typically need. This can include housing, food, healthcare, and other everyday expenses. Each of these categories is weighted based on its importance in a typical budget. The prices are then compared across different locations to determine how much more or less expensive it is to live in one place compared to another. Housing Housing refers to the money you spend on where you live. This includes paying rent if you live in an apartment or making mortgage payments if you own a home. Food and Groceries Food and groceries cover the cost of buying food and everyday items like fruits, vegetables, snacks, and drinks. It's all the food you eat at home and the basic supplies you need to keep your house running smoothly. Utilities Utilities are the basic services that keep your home comfortable and functional. This includes bills for electricity, water, and internet and phone services. Healthcare Healthcare includes the expenses for medical needs. This means the cost of seeing doctors and dentists, buying medicine, and paying for related healthcare services. Transportation Transportation costs cover the expenses involved in commuting and travel, including costs associated with personal vehicle upkeep. Goods & Services Goods and services cover other everyday expenses that you have. This includes buying clothes, paying for entertainment like movies or sports, and other services you might use, such as haircuts or gym memberships. These are the things you spend money on outside of basic necessities. How to interpret your results Knowing whether you’ll save or spend more on expenses in a new city can help you with budgeting. There are a few practical applications of this knowledge. If you're thinking of moving to a more expensive area, you may need to adjust your spending. A region with particularly high rent may encourage you to allocate more of your budget toward housing and less toward entertainment and restaurants, for example. A region with a lower cost of living overall means you may be able to increase your spending in certain areas. Calculating your estimated cost of living in a new city helps you plan your budget accordingly. Play around with numbers to find a balance between essential spending and disposable income. Learn More with Helpful Articles It's time to break down your budget and calculate costs. Move in stress-free - the first time's a charm! Money isn't the only matter. Go the distance and find your new home.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

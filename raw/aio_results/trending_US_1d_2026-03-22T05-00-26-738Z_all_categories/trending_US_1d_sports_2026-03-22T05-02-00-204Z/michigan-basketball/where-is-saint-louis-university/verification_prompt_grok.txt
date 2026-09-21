@@ -1,0 +1,102 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where is saint louis university"
+
+Claims:
+[1] "Saint Louis University is a private Jesuit research university."
+[2] "Saint Louis University's main campus is located in the heart of St. Louis, Missouri."
+[3] "Saint Louis University's main campus is in midtown St. Louis."
+[4] "Saint Louis University's main campus is largely positioned north of Interstate 64."
+[5] "Saint Louis University operates a campus in Madrid, Spain."
+[6] "Saint Louis University's Main Campus is Frost Campus."
+[7] "Frost Campus features residential halls."
+[8] "Frost Campus features the Chaifetz Arena."
+[9] "Frost Campus features academic buildings."
+[10] "Saint Louis University's Health Sciences Center is located in St. Louis."
+[11] "Saint Louis University's Health Sciences Center hosts medical and health-related schools."
+[12] "Saint Louis University's Madrid Campus is a separate campus located in Spain."
+
+Cited text snippets from the AI Overview (for additional context):
+- Saint Louis University's St. Louis Campus : SLU: "Saint Louis University (SLU) has two campuses:,Louis Bread Company * **Madrid, Spain campus**"
+- About SLU : SLU - Saint Louis University: "Saint Louis University (SLU) is a Catholic,,service** Strong commitment to faith and service"
+Reference Sources:
+
+[R1] Maps and Directions
+(https://www.slu.edu/about/maps-directions.php)
+"""
+Getting Around SLU's St. Louis Campus Most of SLU's St. Louis campus is easily walkable. The portion of campus north of Interstate 64 comprises SLU's residence halls and apartments, administrative functions, several schools and colleges, and Chaifetz Arena. Explore SLU's Campus Maps Portions south of the interstate comprise SLU's medical and health-related schools, the track, the Doisy Research Center and related activities. A shuttle runs between the campuses, as well as to SLU's School of Law in downtown St. Louis and Parks College of Engineering, Aviation and Technology's hangar in Cahokia on a regular basis. Learn More About Campus Transportation Options Getting to SLU Saint Louis University's main campus is located in the heart of St. Louis and is easily accessible by air, car and train. Directions from Lambert-St. Louis International Airport Directions from St. Louis Downtown Airport (Illinois) If you are driving to SLU in St. Louis, our visitor parking garage is located near the intersection of Grand Boulevard and Laclede Avenue, at 3642 Laclede Ave, St. Louis, Mo., 63103. You can also take MetroLink, St. Louis' lightrail system, from Lambert International Airport to the Grand Station stop via the Red Line. From there, the University offers two transportation options to campus: the SLU Shuttle or SLU Ride. Learn More About Off Campus Transportation Options SLU's School of Law is located in Scott Hall in downtown St. Louis. We also have a dedicated campus in Madrid, Spain.
+"""
+
+[R2] Saint Louis University | Catholic, Jesuit, Education
+(https://www.britannica.com/topic/Saint-Louis-University-Saint-Louis-Missouri)
+"""
+Top Questions What is the main goal of medical education? What are the four stages of medical education? How has medical education evolved in the 21st century? medical education, the formal training process by which individuals acquire the knowledge, skills, and professional competencies required to practice as physicians. Medical education also develops the methods and objectives appropriate to the study of the still unknown factors that produce disease or favor well-being.Among the goals of medical education is the production of physicians sensitive to the health needs of their patients, capable of ministering to those needs, and aware of the necessity of continuing their own education. Although there may be basic elements common to all, the details vary from place to place and from time to time. Whatever form the curriculum takes, ideally it will be flexible enough to allow modification as circumstances alter, medical knowledge grows, and needs change.Attention in this article is focused primarily on general medical education. History of medical education Although it is difficult to identify the origin of medical education, authorities usually consider that it began with the ancient Greeks’ method of rational inquiry, which introduced the practice of observation and reasoning regarding disease. Rational interpretation and discussion, it is theorized, led to teaching and thus to the formation of schools such as that at Cos, where Greek physician Hippocrates is said to have taught in the 5th century bce and originated the Hippocratic oath that became a credo for practitioners through the ages. Later, the Christian religion greatly contributed to both the learning and the teaching of medicine in the West because it favored not only the protection and care of the sick but also the establishment of institutions where collections of sick people encouraged observation, analysis, and discussion among physicians by furnishing opportunities for comparison. Apprenticeship training in monastic infirmaries and hospitals dominated medical education during the early Middle Ages. A medical school in anything like its present form, however, did not evolve until the establishment of the one at Salerno in southern Italy between the 9th and 11th centuries. Even there teaching was by the apprentice system, but an attempt was made at systemization of the knowledge of the time, a series of health precepts was drawn up, and a form of registration to practice was approved by the Holy Roman emperor Frederick II. During the same period, medicine and medical education were flourishing in the Muslim world at such centers as Baghdad, Cairo, and Córdoba. With the rise of the universities in Italy and later in Cracow, Prague, Paris, Oxford, and elsewhere in western Europe, the teachers of medicine were in some measure drawn away from the life of the hospitals and were offered the attractions and prestige of university professorships and lectureships. As a result, the study of medicine led more often to a familiarity with theories about disease than with actual sick persons. However, the establishment in 1518 of the Royal College of Physicians of London, which came about largely through the energies of Thomas Linacre, produced a system that called for examination of medical practitioners. The discovery of the circulation of the blood by William Harvey provided a stimulus to the scientific study of the processes of the body, bringing some deemphasis to the tradition of theory and doctrine. Gradually, in the 17th and 18th centuries, the value of hospital experience and the training of the students’ sight, hearing, and touch in studying disease were reasserted. In Europe, medical education began slowly to assume its modern character in the application of an increasing knowledge of natural science to the actual care of patients. There was also encouragement of the systematic study of anatomy, botany, and chemistry, sciences at that time considered to be the basis of medicine. The return to the bedside aided the hospitals in their long evolution from dwelling places of the poor, the diseased, and the infirm, maintained by charity and staffed usually by religious orders, into relatively well-equipped, well-staffed, efficient establishments that became available to the entire community and were maintained by private or public expense. The trusted destination for professionals, college students, and lifelong learners. SUBSCRIBE It was not until the mid-19th century, however, that an ordered pattern of science-oriented teaching was established. This pattern, the traditional medical curriculum, was generally adopted by Western medical schools. It was based upon teaching, where the student mostly listens, rather than learning, where the student is more investigative. The clinical component, largely confined to hospitals (charitable institutions staffed by unpaid consultants), was not well organized. The new direction in medical education was aided in Britain by the passage of the Medical Act of 1858, which has been described as the most important event in British medicine. It established the General Medical Council, which thenceforth controlled admission to the medical register and thus had great powers over medical education and examinations. Further interest in medicine grew from these advances, which opened the way for the discoveries of Louis Pasteur, which showed the relation of microorganisms to certain diseases, Joseph Lister’s application of Pasteur’s concepts to surgery, and the studies of Rudolf Virchow and Robert Koch in cellular pathology and bacteriology. In the United States, medical education was greatly influenced by the example set in 1893 by the Johns Hopkins Medical School in Baltimore. It admitted only college graduates with a year’s training in the natural sciences. Its clinical work was superior because the school was supplemented by the Johns Hopkins Hospital, created expressly for teaching and research carried on by members of the medical faculty. The adequacy of medical schools in the United States was improved after the Carnegie Foundation for the Advancement of Teaching published in 1910 a report by the educator Abraham Flexner. In the report, which had an immediate impact, he pointed out that medical education actually is a form of education rather than a mysterious process of professional initiation or apprenticeship. As such, it needs an academic staff, working full-time in their departments, whose whole responsibility is to their professed subject and to the students studying it. Medical education, the report further stated, needs laboratories, libraries, teaching rooms, and ready access to a large hospital, the administration of which should reflect the presence and influence of the academic staff. Thus the nature of the teaching hospital was also influenced. Aided by the General Education Board, the Rockefeller Foundation, and a large number of private donors, U.S. and Canadian medical education was characterized by substantial improvements from 1913 to 1929 in such matters as were stressed in the Flexner report.
+"""
+
+[R3] About SLU
+(https://www.slu.edu/about/index.php)
+"""
+Educating the Whole Person — Mind, Body, Heart and Spirit Saint Louis University — located in St. Louis, Missouri, with a campus in Madrid, Spain, is one of the nation’s oldest and most prestigious Catholic universities. Founded in 1818, SLU is recognized for world-class academics, life-changing research, compassionate health care, and a strong commitment to faith and service. Guided by our enduring Jesuit mission, we offer our more than 13,300 students a highly rigorous and deeply transformative education that helps them develop into bold, confident leaders. Rated among the nation’s top research universities, SLU boasts 12 graduate and undergraduate programs ranked among the top 50 in the country by U.S. News & World Report. Academically, ethics, spirituality and compassion take center stage, while outside the classroom, members of the SLU community provide more than 1.6 million service hours each year — just one reason we’re among the nation's top colleges for making an impact. In fact, more than 180 of SLU's courses integrate community engagement into academics. Saint Louis University earned the highly revered “R1” designation by the Carnegie Foundation for the Advancement of Teaching, joining an elite group of U.S. research universities. It is the highest classification universities can attain for research activity. Learn More About SLU 13,307 Students enrolled in SLU academic programs 134,336 Alumni in 50 states and 154 countries 100 countries represented by SLU community members
+"""
+
+[R4] Saint Louis University's St. Louis Campus
+(https://www.slu.edu/about/st-louis/index.php)
+"""
+About SLU's Campus If you’re thinking about attending Saint Louis University, one of the first things we suggest is to visit campus. That’s because there is something special about seeing SLU in person. A view of SLU's clock tower and fountain, one of the most popular gathering places on campus on warm days. Scattered among our state-of-the-art classroom buildings and historic halls are reminders of what makes the 271-acres of SLU a community — the amphitheater at Lipic Clock Tower Plaza where students gather on warm days, the chairs clustered around a fire pit at Fusz Hall on cool nights and the touch-football games on green spaces around campus that break out spring or fall. You’ll feel our spirit in the cheers coming from Chaifetz Arena and in the ritual of Sunday Evening Student Mass. Run your hands down the same oak banisters brought to a gloss by generations of students before you and rub the bronze belly of the Billiken statue for good luck. Someplace between posing for a picture in front of the campus gateways, testing out a hammock on the quad or hearing the St. Francis Xavier College Church bells toll, you realize you’re finally home. By the Numbers 12 residence halls and on-campus apartment complexes 120000 square feet of space to work out and compete at Simon Recreation Center 15+ dining options, including a state-of-the-art dining hall, Qdoba Mexican Grill, Starbucks and St. Louis Bread Company 3 museums: Saint Louis University Museum of Art, Historic Cupples House & Galleries, & the Museum of Contemporary Religious Art Where is Saint Louis University? Saint Louis University has two campuses — a flagship in St. Louis, Missouri and a campus in Madrid, Spain. Located in the middle of the city that shares its name, SLU's main campus is walking distance St. Louis’ performing arts center, Cortex Innovation District (a key reason St. Louis is among the top startup cities in America) and Prospect Yards, a new urban social and business hub. An easy drive from more than 300 cities, SLU offers tour options that allow you to see campus in a day, or spend an entire weekend getting to know the city of St. Louis. Directions to SLU Campus Honors With such a vibrant campus, it's no wonder Saint Louis University has received recognition for its beautiful historic buildings and parklike setting. Most Beautiful Campus Churches: St. Francis Xavier College Church was recognized by collegeranker.com on its “50 Most Beautiful College Campus Wedding Venues” list. At No. 2, SLU is the only university in Missouri, and the only Jesuit school in the nation, on the list. Top College Museums: Saint Louis University Museum of Art is No. 4 among the top 50 college and university museums in the nation, according to collegerank.net. SLUMA was the only museum in Missouri on the list. Top Green Colleges: SLU was named one of the nation’s top green schools in The Princeton Review’s 2018 Guide to 399 Green Colleges. The guide profiled colleges with exceptional commitments to sustainability in their academic offerings, campus policies and programming. Tree Campus USA: SLU is one of eight institutions in Missouri, and only the second Jesuit institution, to be rewarded the Arbor Day Foundation's "Tree Campus USA" designation for promoting healthy trees and engaging students and staff in the spirit of conservation.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

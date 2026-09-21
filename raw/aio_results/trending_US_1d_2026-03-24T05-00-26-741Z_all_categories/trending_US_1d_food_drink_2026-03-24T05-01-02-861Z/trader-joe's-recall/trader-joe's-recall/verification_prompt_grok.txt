@@ -1,0 +1,108 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "trader joe's recall"
+
+Claims:
+[1] "As of March 23, 2026, a recall affects nearly 10 million pounds of Trader Joe's Vegetable Fried Rice, Chicken Fried Rice, Japanese Style Fried Rice, and Chicken Shu Mai."
+[2] "The recall is due to potential contamination with glass fragments."
+[3] "The affected items were sold in 43 states."
+[4] "Affected products have best-buy dates ranging between Feb. 28, 2026, and Aug. 19, 2027."
+[5] "Some reports mention October 2026 for best-buy dates of specific items."
+[6] "The recall reason is possible presence of foreign objects, specifically hard, clear glass 1–3 cm long from a vegetable ingredient."
+[7] "Ajinomoto Foods North America Inc. initiated the recall."
+[8] "The recall is an expansion of earlier safety alerts."
+[9] "The products were distributed nationwide to 43 states, excluding Hawaii, Maine, New Mexico, South Dakota, Vermont, West Virginia, and Iowa."
+
+Cited text snippets from the AI Overview (for additional context):
+- Trader Joe's frozen fried rice recalled over glass shards in 43 states: "Ajinomoto Foods North America Inc,two to four mm wide.&text=The recalled products were sold,as Kroger and Tai Pei.&text=Impacted items include Trader Joe's,adverse health consequences is remote.""
+- 10 million pounds of popular foods in Trader Joe's recall: "Advertisement,What do you think?"
+- Trader Joe's recalls nearly 10M pounds of frozen food due to ...: "Nearly 10 million pounds of,about its safety or quality.""
+- Over 9M pounds of popular Trader Joe’s product recalled - PIX11: "NEW YORK (PIX11) — More,the presence of foreign objects.&text=The recall notice stated that,the following best-by dates:&text=The nationwide recall already included,broadcast, rewritten, or redistributed."
+- Trader Joe’s massive recall expands as millions of pounds of frozen meals may contain glass: "The recalled foods are sold,Trader Joe's and Kroger stores."
+Reference Sources:
+
+[R1] Trader Joe's recalls nearly 10M pounds of frozen food due to glass
+(https://www.usatoday.com/story/grocery/2026/03/23/trader-joes-glass-frozen-food-recall/89293488007/)
+"""
+March 23, 2026, 9:13 p.m. ETNearly 10 million pounds of Trader Joe's products are being pulled from shelves as part of an ongoing recall of frozen foods.Ajinomoto Foods North America Inc. said in a notice posted by the Food and Drug Administration that over 400,000 cases, or about 9.8 million pounds, of Trader Joe's Vegetable Fried Rice are being recalled due to the presence of "foreign objects."The notice said that the products were being pulled due to "glass varying in size from 1-3cm long and 2-4mm wide."The vegetable fried rice packages were listed in a March 3 news release from Trader Joe's as being included in the recall. Other products mentioned by Trader Joe's included its Chicken Fried Rice, Japanese Style Fried Rice and Chicken Shu Mai.The Department of Agriculture’s Food Safety and Inspection Service (FSIS) said in a March 3 announcement that carrots were "the likely source of the glass contamination" after it received multiple complaints of glass being present in the packages."We err on the side of caution and are proactive in addressing issues," Trader Joe's said in a statement to USA TODAY. "We voluntarily take action quickly, aggressively investigating potential problems and removing the product from sale if there is any doubt about its safety or quality."USA TODAY has reached out to Ajinomoto Foods for comment.Trader Joe's recall detailsThe recalled vegetable fried rice packages have best-by dates ranging from Feb. 28 to Nov. 19 and a UPC of 00521482.The FDA said in the notice that the recall is classified as a Class II recall. The risk classification from the federal agency indicates that the recalled products could cause "temporary or medically reversible adverse health consequences" but that the chances of serious adverse health consequences are "remote."FSIS said in its March 3 announcement that any of the recalled products, which include brand names Kroger, Tai Pei and others, should be thrown away or returned to the point of sale. It was initiated on Feb. 19 and expanded on March 3.The full product list and product labels connected to the recall are available on the FSIS website.Where were recalled Trader Joe's products sent?The recalled Vegetable Fried Rice packages were distributed in 43 states: Alaska, Alabama, Arkansas, Arizona, California, Colorado, Connecticut, Delaware, Florida, Georgia, Idaho, Illinois, Indiana, Kansas, Kentucky, Louisiana, Massachusetts, Maryland, Michigan, Minnesota, Missouri, Mississippi, Montana, North Carolina, North Dakota, Nebraska, New Hampshire, New Jersey, Nevada, New York, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, Tennessee, Texas, Utah, Virginia, Washington, Wisconsin and Wyoming.
+"""
+
+[R2] Trader Joe's frozen food recall expands to 10M pounds of popular items sent to 43 states
+(https://nypost.com/2026/03/23/lifestyle/10-million-pounds-of-popular-foods-in-trader-joes-recall/)
+"""
+More popular Trader Joe’s items have been tacked onto a nationwide recall that involved millions of pounds of foodstuffs that were potentially contaminated by foreign objects. Ajinomoto Foods North America Inc. recalled a massive 9,885,240 pounds of Trader Joe’s Vegetable Fried Rice after slivers of glass were found in the one-pound meals, according to the FDA advisory. The shards ranged from 1 to 3 cm long and 2 to 4 mm wide. Nearly 10 million pounds of Trader Joe’s Vegetable Fried Rice has been tacked onto a nationwide food recall. Trader Joe's Customers enter a Trader Joe’s in Midtown Manhattan. Robert Miller Per the notice, the affected items had best-buy dates ranging from Feb. 28, 2026, to Nov. 19, 2026, and were sold in 43 states. The seven states unaffected by the recall were Hawaii, Maine, New Mexico, South Dakota, Vermont, West Virginia and Iowa. The measure was the expansion of a preexisting recall that was issued on Feb. 19 and later expanded on March 3, per an FDA advisory. Trader Joe’s Chicken Fried Rice and other items are on the recall list. Trader Joe's Affected items included Trader Joe’s Chicken Shu Mai — chicken and veggie dumplings with soy sauce — and Trader Joe’s Chicken Fried Rice with stir-fried rice, veggies, eggs and seasoned dark meat chicken. They had best-buy dates ranging between Feb. 28, 2026, and Aug. 19, 2027. According to the recall notice, an investigation revealed that a “vegetable source ingredient, specifically carrots, was the likely source of the glass contamination.” All told, nearly 37 million pounds of various ready-to-eat items were recalled in the food retraction, which affected 16 brands under popular brand names such as Kroger and Tai Pei. However, health authorities cautioned that tainted items could still be lurking inside customers’ freezers. The full list of products can be found here. Thankfully, there have been no injuries associated with the contamination, per the FDA, which urged anyone concerned about an injury to report to a “healthcare provider.” They also advised impacted customers to refrain from consuming the products and to throw them away or return them to their place of purchase.
+"""
+
+[R3] Trader Joe’s recall expands, millions of pounds of frozen meals may contain glass
+(https://www.bostonglobe.com/2026/03/23/metro/frozen-food-recall-fda-trader-joes-ri/)
+"""
+More frozen food products sold at Trader Joe’s are being recalled in 43 states — including Rhode Island and Massachusetts — because they may contain “foreign objects” including glass, according to a recent notice from the US Food and Drug Administration.Foods sold at Rhode Island Trader Joe’s stores in Providence and Warwick are included in the recall.The recalled foods could contain pieces of glass from 1 to 3 centimeters long, according to the FDA. To continue reading, please login or subscribe to Globe.comGet 6 Months of Unlimited Access for $1Get 6 Months of Unlimited Access for $1Get Rhode Island News AlertsSign up to get breaking news and interesting stories from Rhode Island in your inbox each weekday.Trader Joe’s Chicken Shu Mai chicken and vegetable dumplings.Ling Ling Restaurant Style Fried Rice Yakitori Chicken with chicken and vegetables.Trader Joe’s Chicken Fried Rice with rice, vegetables, chicken and eggs.Ajinomoto Japanese-Style Yakitori Chicken Fried Rice Char Grilled Chicken with chicken and vegetables.Ajinomoto Yakitori Chicken with Japanese-Style Fried Rice Poulet Yakitori Avec Riz Frit À La Japanaise with chicken and vegetables.Ajinomoto Fried Rice Authentic Japanese Style Yakitori Chicken / Ajinomoto Riz Frit De Style Japonaise Authentique Poulet Yakitori with chicken and vegetables.Ajinomoto Japanese-Style Kurobuta Pork Fried Rice with pork, vegetables and eggs.Ajinomoto Tokyo Style Shoyu (Soy Sauce) Ramen With Chicken and vegetables.Ling Ling Tokyo-Style Ramen Shoyu Chicken with vegetables.Ajinomoto De Style Tokyo Ramen À La Shoyu (Sauce Soya) Avec Poulet.Ling Ling Tokyo-Style Ramen Tonkotsu Chicken with vegetables.Tai Pei Ultimate Fried Rice with chicken, rice, pork, bacon, vegetables and eggs.Tai Pei Chicken Fried Rice with chicken, vegetables, and rice.Kroger Chinese Inspirations Chicken Fried Rice with rice, chicken, vegetables and eggs.Ajinomoto Fried Rice Authentic Japanese Style.Ajinomoto Japanese-Style Yakitori Chicken Fried Rice Char Grilled Chicken with chicken and vegetables.Ajinomoto Japanese-Style Yakitori Chicken Fried Rice Char Grilled Chicken with chicken and vegetables.Ajinomoto Yakitori Chicken with Japanese-Style Fried Rice Poulet Yakitori Avec Riz Frit À La Japanaise with chicken and vegetables.
+"""
+
+[R4] Over 9M pounds of popular Trader Joe’s product recalled
+(https://pix11.com/news/local-news/trader-joes-adds-over-9m-pounds-of-popular-food-item/)
+"""
+NEW YORK (PIX11) — More food items have been added to a nationwide recall that involves millions of pounds of food sold nationwide in stores, including Trader Joe’s. Ajinomoto Foods North America Inc. is recalling around 9,885,240 pounds of Trader Joe’s Vegetable Fried Rice due to the presence of foreign objects. The recall notice stated that the recall was issued due to glass varying in size, from 1 to 3 cm long and 2 to 4 mm wide. The recalled products have the following best-by dates: 2/28/2026, 3/3/2026, 3/4/2026, 3/8/2026, 3/10/2026, 3/17/2026, 3/18/2026, 3/20/2026, 3/22/2026, 3/25/2026, 3/31/2026, 4/1/2026, 4/2/2026, 4/9/2026, 4/10/2026, 4/11/2026, 4/12/2026, 4/23/2026, 4/24/2026, 4/28/2026, 4/29/2026, 4/30/2026, 5/3/2026, 5/8/2026, 5/12/2026, 5/13/2026, 5/14/2026, 5/16/2026, 5/21/2026, 5/22/2026, 5/27/2026, 5/28/2026, 5/29/2026, 5/31/2026, 6/4/2026, 6/14/2026, 6/19/2026, 6/20/2026, 6/26/2026, 6/27/2026, 7/7/2026, 7/10/2026, 7/11/2026, 7/14/2026, 7/21/2026, 7/26/2026, 7/28/2026, 7/30/2026, 7/31/2026, 8/7/2026, 8/8/2026, 8/11/2026, 8/12/2026, 8/18/2026, 8/19/2026, 8/20/2026, 8/21/2026, 8/25/2026, 8/26/2026, 9/2/2026, 9/3/2026, 9/10/2026, 9/11/2026, 9/15/2026, 9/16/2026, 9/17/2026, 9/24/2026, 9/25/2026, 9/29/2026, 10/2/2026, 10/6/2026, 10/7/2026, 10/13/2026, 10/14/2026, 10/18/2026, 10/22/2026, 10/23/2026, 10/25/2026, 10/27/2026, 11/5/2026, 11/6/2026, 11/8/2026, 11/19/2026. Video Player is loading.Current Time 0:00Duration 1:27Loaded: 6.85%How does the FDA determine food is safe? NOW PLAYING How does the FDA determine food is safe? The nationwide recall already included Trader Joe’s Chicken Fried Rice with stir-fried rice, vegetables, seasoned dark chicken meat, and eggs, and Trader Joe’s Chicken Shu Mai. The products have best buy dates between March 5, 2026, and Oct. 23, 2026. Click here to see the full list of recalled products. Recalled products should be thrown away or returned to the place of purchase. Ben Mitchell is a digital content producer from Vermont who has covered both local and international news since 2021. He joined PIX11 in 2024. See more of his work here.
+"""
+
+[R5] Nearly 10M pounds of frozen fried rice sold at Trader Joe's added to recall: USDA
+(https://www.foxbusiness.com/economy/nearly-10m-pounds-frozen-fried-rice-sold-trader-joes-added-recall-usda)
+"""
+A nationwide recall has expanded to include close to 10 million pounds of frozen vegetable fried rice sold at Trader Joe's stores in dozens of states, according to the U.S. Department of Agriculture (USDA) Food Safety and Inspection Service. Ajinomoto Foods North America Inc. announced a recall of 9,885,240 pounds of Trader Joe’s Vegetable Fried Rice after small pieces of glass were found in the frozen meals.The glass shards ranged from one to three cm long and 2 to 4 mm wide. 90,000 BOTTLES OF CHILDREN'S IBUPROFEN RECALLED NATIONWIDE, FDA SAYS A nationwide recall has expanded to include close to 10 million pounds of frozen vegetable fried rice sold at Trader Joe's stores. (Plexi Images/GHI/UCG/Universal Images Group via Getty Images / Getty Images)The recalled products were sold in stores across 43 states, with the seven unaffected states being Hawaii, Maine, New Mexico, South Dakota, Vermont, West Virginia and Iowa.The affected items had best-buy dates ranging from Feb. 28, 2026, to Nov. 19, 2026.The latest notice was an expansion of a recall initially issued last month and expanded earlier this month. Nearly 37 million pounds of ready-to-eat items were affected in the total recall effort, which impacted more than a dozen brands in addition to Trader Joe's, such as Kroger and Tai Pei. The recalled products were sold in stores across 43 states. (Scott Olson/Getty Images / Getty Images)Impacted items include Trader Joe’s Chicken Shu Mai and Trader Joe’s Chicken Fried Rice with stir-fried rice, vegetables, seasoned dark chicken meat and eggs.The USDA classified the alert as a Class II recall in its latest notice, which means "use of or exposure to a violative product may cause temporary or medically reversible adverse health consequences or where the probability of serious adverse health consequences is remote."GM RECALLS 17K VEHICLES OVER REAR TOE LINK FRACTURE THAT COULD LEAD TO CRASHES The latest notice was an expansion of a recall initially issued last month and expanded earlier this month. (Tess Crowley/Chicago Tribune/Tribune News Service via Getty Images / Getty Images) CLICK HERE TO GET FOX BUSINESS ON THE GOCustomers are urged not to consume the recalled items. They should dispose of the product or return it to the place of purchase for a full refund.No injuries have been reported thus far in connection with the recall, but the USDA said anyone concerned about potential injuries should contact a healthcare provider.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

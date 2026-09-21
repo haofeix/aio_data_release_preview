@@ -1,0 +1,92 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "spurs game tonight"
+
+Claims:
+[1] "San Antonio Spurs defeated the Memphis Grizzlies 123-98 on Wednesday, March 25, 2026."
+[2] "Devin Vassell led the San Antonio Spurs with 19 points on March 25, 2026."
+[3] "San Antonio Spurs' next game is away against the Milwaukee Bucks on March 28, 2026."
+[4] "1441 tickets left for the San Antonio Spurs' game against the Milwaukee Bucks on March 28, 2026."
+[5] "San Antonio Spurs vs Bulls on March 30, 2026."
+[6] "San Antonio Spurs @ Warriors on April 1, 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- San Antonio Spurs Scores, Stats and Highlights - ESPN: "Find Tickets,hidden"
+- SPURS at GRIZZLIES | FULL GAME HIGHLIGHTS | March 25 ...: "The Spurs defeated the Grizzlies, 123-98 tonight,points along with 7 rebounds and 4"
+- San Antonio vs. Memphis, Final Score: Spurs blow out short-handed Grizzlies, 123-98: "San Antonio vs. Memphis, Final,5"
+- Spurs 123-98 Grizzlies (26 Mar, 2026) Game Recap: "Table_title: San Antonio Spurs @ Memphis Grizzlies,| 1: 19 | T: 98 |"
+Reference Sources:
+
+[R1] Spurs 123-98 Grizzlies (26 Mar, 2026) Game Recap - ESPN (PH)
+(https://www.espn.ph/nba/recap/_/gameId/401810911)
+"""
+MEMPHIS, Tenn. -- — Victor Wembanyama had 19 points, 15 rebounds and seven blocks as the San Antonio Spurs built an early lead and coasted to a 123-98 victory over the Memphis Grizzlies on Wednesday night. Devin Vassell matched Wembanyama's 19 points, while Stephon Castle and Keldon Johnson finished with 15 points each, as seven Spurs finished in double figures. With its seventh straight victory, San Antonio moved within two games of Oklahoma City for the top spot in the Western Conference as the Boston Celtics stopped the Thunder's 12-game winning streak with a 119-109 victory on Wednesday night. GG Jackson led Memphis with 20 points. Olivier-Maxence Prosper finished with 17 and DeJon Jarreau added 15 as the Grizzlies lost their fourth in a row. From the opening play — a lob to Wembanyama — the Spurs dominated. An early 22-4 lead became a 57-44 margin at the half. The Spurs used Wembanyama's height to open the second half, and San Antonio extended the lead to 20 points or more in the third. When Wembanyama converted a 3-pointer as the third quarter ended, the Spurs' lead was 98-64. While San Antonio is jockeying for postseason seeding, Memphis is focusing on next season. Memphis has dropped 12 of the last 13 and won only four since the All-Star break. Injuries continue to plague Memphis. Ten players did not dress for the Spurs game, and the team announced Tuesday that starters Ja Morant and Zach Edey, along with key frontline reserve Brandon Clarke, are done for the season after undergoing various medical procedures. That left Memphis with its tallest starter at 6-9 against the 7-foot-4 Wembanyama. San Antonio outscored Memphis in the paint 56-34 and held a 59-33 advantage on the boards. Up next Spurs: Close out a three-game road trip at Milwaukee on Saturday night. Grizzlies: Host Houston on Friday night. ------ AP NBA: https://apnews.com/hub/NBA
+"""
+
+[R2] San Antonio vs. Memphis, Final Score: Spurs blow out short-handed Grizzlies, 123-98
+(https://www.poundingtherock.com/game-recaps/98347/san-antonio-vs-memphis-final-score-spurs-blow-out-short-handed-grizzlies-123-98)
+"""
+Another inferior, short-handed opponent, another Spurs blowout victory. It seems San Antonio is done taking lesser teams lightly as they continued their trend of blowing everyone out, both good and bad. This time, the Memphis Grizzlies were the victim. While the Spurs admittedly got complacent and took the second quarter off after a 38-19 start, they came back out with renewed focus to put the game away for good in the third, which was one massive highlight reel of dunks and threes, for the 123-98 win.Victor Wembanyama led seven Spurs in double figures with 19 points, 15 rebounds, 7 blocks, 3 assists and 3 steals. (The odds of a triple-double and/or 5x5 game would have been pretty decent had he be needed in the fourth quarter.) GG Jackson led the severely short-handed Grizzles with 20 points and 7 rebounds.ObservationsSpurs play-by-play announcer Jacob Tobey revealed on X earlier today that at least for this year, the local broadcasters will not be doing the first round of the playoffs (or any postseason at all). I’m guessing this is a result of the NBA having contracts with so many different streaming services now (which has drawn criticism for the impact on everyday viewers), but I for one will miss them. As a League Pass user, I’ve had to put up with listening to a lot of national announcers (or the other team’s announcers, in Prime’s case) who don’t know what they’re talking about. I know Jacob and Sean Elliott get their share of flack, but they’re better for the Spurs viewing experience than the other options at least 90% of the time.As the regular season winds down and the rest-a-thon continues, it was De’Aaron Fox and Luke Kornet’s turn to nurse their boo-boos (lower back and right knee, respectively). It hardly mattered in the first quarter. The Spurs hit 10-13 to start the game, including 8 makes in a row and went on a 17-0 run. It was a dunk and three-fest against the hapless Grizzlies, whose best available player was rookie Cedric Coward. (Oh, and Taj Gibson! Who knew he was still around?) Overall, the Spurs shot 15-24 to lead 38-19 after 12 minutes. For a while, it was looking like it would be worse, with Memphis stuck at 9 points nine minutes in, but they hit a few threes to make it look less terrible.After all that beautiful ball movement in the first quarter, the Spurs’ offense fell off a cliff as they only scored 5 points across the first six minutes and 19 overall in the second, but the Grizzlies only managed to put a six-point dent in the lead because of the Spurs’ defense, especially Wemby with swatting everything Memphis put up. But, the Spurs got the message at halftime and returned to wheeling, dealing, dunking and scoring, outscoring the Grizzlies 41-20 on a Wemby buzzer-beater three to get up 98-64 and put the game awayThis whole game was about posterizations. Just off the top of my head, I remember massive dunks from Wemby, Stephon Castle, Julian Champagnie, Devin Vassell, Keldon Johnson and Carter Bryant. I’ll let Highlights take care of showing them all off tomorrow, but goodness, I’m not sure I’ve seen so many dunks from different players in one game before.I know the Spurs’ peak didn’t exactly combine with the Ja Morant-era Grizzlies’ peak, but whether it was Marc Gasol, Zach Randolph, Morant or Jaren Jackson Jr., Memphis has found a way to be a thorn in their side for the last 15 years. Even last year, when they were also the most injured team in the league and often JJJ (who is now with Utah) plus a G-League group, they found ways to make the Spurs work for the win. As a result, watching this kind of onslaught against this team in that arena feels kind of surreal.Despite having a harder remaining schedule, I don’t foresee the Thunder losing two more games than the Spurs with nine remaining to allow them to tie things up and take the top seed, but they had to lose someday for there to be a chance, and they finally did tonight in Boston. (Reverse jinx activated.) You don’t have to give up standings watching just yet. Also, one more Spurs win or Lakers loss will clinch the second seed for the Spurs, since they also hold the tiebreaker in that series.66 Comments
+"""
+
+[R3] San Antonio Spurs Scores, Stats and Highlights - ESPN
+(https://www.espn.com/nba/team/_/name/sa/san-antonio-spurs)
+"""
+Skip to main contentSkip to navigationTop EventsNCAAWNCAAMMLBNBANHLPGA TourLPGA TourTop SoccerTGLWorld Baseball ClassicTennis (M)Tennis (W)NFLNASCARNCAAFUFCNLL (Lacrosse)PLL (Lacrosse)F1Men's NCAA Ice HockeyWomen's NCAA Ice HockeyNCAA SoftballNCAA BaseballMen's NCAA LacrosseWomen's NCAA LacrosseAugusta National Women's AmateurUEFA Women's Champions LeagueNBAMar 31Apr 1Apr 2Apr 1GamecastTicketsPHI41-34WSH17-5811:00 PMGamecastTicketsATL43-33ORL40-3511:00 PMGamecastTicketsBOS50-25MIA40-3611:30 PMESPNGamecastTicketsNY48-28MEM25-50Thu12:00 AMGamecastTicketsSAC19-57TOR42-33Thu12:00 AMGamecastTicketsIND17-58CHI29-46Thu12:00 AMGamecastTicketsMIL30-45HOU46-29Thu12:00 AMGamecastTicketsDEN48-28UTAH21-55Thu1:00 AMGamecastTicketsSA57-18GS36-39Thu2:00 AMESPNFull Scoreboard »San AntonioSpursFollow57-181st in Southwest Division2025-26 ScheduleRegular Season@Warriors4/22:00 amESPNvsBullsW129-114@BucksW127-95@GrizzliesW123-98@HeatW136-111vsPacersW134-119vsSunsW101-100@KingsW132-104@ClippersW119-115vsHornetsW115-102vsNuggetsL136-131vsCelticsW125-116vsRocketsW145-120vsClippersW116-112vsPistonsW121-106@76ersW131-91@KnicksL114-89@NetsW126-110@RaptorsW110-107@PistonsW114-103vsKingsW139-122vsSunsW121-94@WarriorsW126-113@LakersW136-108vsMavericksW138-125@MavericksW135-123Full ScheduleHour 1: Willy PhillyHarry Douglas along with Gabe Neitzel get into the… 2hNBA Futures: Lakers' championship odds shortening, Wemby making MVP…5hDoug GreenbergIssac Baldizon/NBAE via Getty ImagesAndscapeSan Antonio Spurs rookie guard Dylan Harper couldn't be in a better posit…The No. 2 pick of the 2025 NBA draft is the rare top 5 pick contributing immediately to a… 5hMarc J. SpearsDaniel Dunn-Imagn ImagesHour 1: Owners Meeting ReactionsTons of storylines came out of the NFL Owners… 11hNBA Power Rankings: What to watch over the final two weeks for all 30 te…11hESPNESPN IllustrationHour 4: Old School Tracking SystemFreddie Coleman and David Dennis Jr. take more calls… 1dHour 2: Old Technology We MissFreddie Coleman along with David Dennis Jr. and the… 1dHour 1: Free Agent JuJuFreddie Coleman along with David Dennis Jr. wonder if… 1dBest of UnSportsmanLike 3/31/26Who is going to win NBA MVP: Wemby or SGA? Could… 1dHour 3: or is it Busco?ESPN Radio host Mark Zinno took issue with how… 1dBack to TopTeamWLPCTGBSTRKSan Antonio5718.760-W9Houston4629.61311W3Memphis2550.33332L1New Orleans2551.32932.5L5Dallas2452.31633.5L2Points Per GameVictor WembanyamaF #124.5MIN29.3FG%50.4Assists Per GameStephon CastleG #57.2PPG16.7TO3.2Field Goal PercentageKeldon JohnsonF #353.2MIN23.2PPG13.1Points Per Game119.5Rebounds Per Game47.0Assists Per Game27.9RD(PK)PLAYERPOSSCHOOL1(2)Dylan HarperGRutgers1(14)Carter BryantFArizona2(8)Kam JonesGMarquetteSpurs @ WarriorsChase Center - Thu 4/2/26, 2:00Tickets as low as $35Buy Spurs tickets with VividSeatsYearWLPCT2025-265718.7602024-253448.4152023-242260.2682022-232260.2682021-223448.415Terms of UsePrivacy PolicyYour US State Privacy RightsChildren's Online Privacy PolicyInterest-Based AdsAbout Nielsen MeasurementYour Privacy ChoicesContact UsDisney Ad Sales SiteWork for ESPNCorrectionsGAMBLING PROBLEM? CALL 1-800-GAMBLER, (800) 327-5050 or visit gamblinghelplinema.org (MA). Call 877-8-HOPENY/text HOPENY (467369) (NY). Please Gamble Responsibly. 888-789-7777/visit ccpg.org (CT), or visit www.mdgamblinghelp.org (MD). 21+ and present in most states. (18+ DC/KY/NH/WY). Void in ONT/OR/NH. Eligibility restrictions apply. On behalf of Boot Hill Casino & Resort (KS). Terms: sportsbook.draftkings.com/promos.Copyright: © 2026 ESPN Enterprises, LLC. All rights reserved. Notice of Right to Opt Out of Sale/SharingSome US states provide residents (or their authorized agents) with the right to opt out of “targeted advertising,” “selling,” or “sharing” of personal information, as defined by applicable laws. You can move the toggle to the left and click “Submit” to opt out of such activities occurring through this digital property. If you are logged in, we may be able to associate your choice with your account and apply it to data sharing occurring through this digital property (across your browsers and devices) as well as other digital properties of The Walt Disney Family of Companies. You can confirm the status of your choice or opt out or in by clicking “Do Not Sell or Share My Personal Information” or “Your Privacy Choices” on each property. Manage Consent PreferencesSelling, Sharing, Targeted Advertising Selling, Sharing, Targeted Advertising If you are not logged in, your opt-out will be specific to this property and device or browser. For our other digital properties, to opt out, select “Do Not Sell or Share My Personal Information” or “Your Privacy Choices” on each. If you clear your tracking history or use another browser or device, you’ll need to opt out again.You can also submit this opt-out form, which may enable us to apply your opt-out more broadly, for example, to stop data sharing in connection with advertising intended to reach you on platforms not operated by Disney (e.g., social media platforms). You may enable online, where available, a universal tool that automatically communicates your opt-out, such as Global Privacy Control (“GPC”), which we’ll process as if you had opted out through the toggle.Even if you opt out, you may continue to see advertising, including ads that may be based on personal information processed before you opted out. Please visit Your US State Privacy Rights for more information about your rights and how to exercise them.Back ButtonCookie List Search IconFilter IconClear checkbox label labelApply CancelConsent Leg.Interest checkbox label label checkbox label label checkbox label label Submit
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

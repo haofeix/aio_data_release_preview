@@ -1,0 +1,93 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "beauty in black season 3"
+
+Claims:
+[1] "Netflix has renewed Tyler Perry's "Beauty in Black" for a third and final season."
+[2] "Season 3 of "Beauty in Black" is scheduled to arrive in 2026."
+[3] "Season 2, Part 2 of "Beauty in Black" is scheduled to release in March 2026."
+[4] ""Beauty in Black" is confirmed to end with its third season."
+[5] "Tyler Perry serves as creator, director, and writer for the Netflix drama "Beauty in Black"."
+[6] "The first season of "Beauty in Black" reached No. 1 in 28 countries."
+[7] "Taylor Polidore Williams plays Kimmie in "Beauty in Black"."
+[8] "In the season 3 plot of "Beauty in Black", Kimmie controls the Bellarie business."
+[9] "In season 3 of "Beauty in Black", Kimmie faces rivalry from Mallerie."
+[10] "In season 3 of "Beauty in Black", Kimmie protects her friends Rain and Sylvie."
+
+Cited text snippets from the AI Overview (for additional context):
+- Tyler Perry's ‘Beauty in Black’ Renewed for Season 3 at Netflix, New ...: "Tyler Perry's 'Beauty in Black' Renewed for,New To Episodes Release in Early 2026."
+Reference Sources:
+
+[R1] Tyler Perry's 'Beauty in Black' Renewed for 3rd and Final Season at Netflix
+(https://www.thewrap.com/beauty-in-black-season-3-ending-netflix-tyler-perry/)
+"""
+The streamer also sets a March premiere date for Season 2, Part 2 December 11, 2025 @ 6:00 AM Taylor Polidore Williams as Kimmie in episode 212 of "Beauty in Black" (Credit: Quantrell Colbert/Netflix) Tyler Perry’s “Beauty in Black” has been picked up for its third and final season at Netflix. The renewal comes months ahead of the release of the series’ Season 2, Part 2 debut. “Beauty in Black” will pick back up on March 19 with eight more episodes to conclude the second season. Start for $1 – Select a Plan Annual (Most Popular) $3.83/week (billed annually) Monthly $6.25/week (billed monthly) Unlimited access to TheWrap Data insights & deep-dive features Exclusive videos & analysis Invite-only member events $1 for 14 days, then $4/week (billed annually at $199) or $6.25/week (billed every 4 weeks at $24.99). Plans renew automatically. Cancel anytime during your 14-day trial to avoid full-plan charges. Comments
+"""
+
+[R2] Tyler Perry's 'Beauty in Black' Ending With Season 3
+(https://variety.com/2025/tv/news/tyler-perry-beauty-in-black-ending-season-3-1236605993/)
+"""
+Tyler Perry‘s “Beauty in Black” has been renewed for a third and final season at Netflix, ahead of the March 19 debut of Season 2, Part 2. The final batches of episodes promise to bring “Kimmie’s journey with the Bellarie family to an epic conclusion,” per Netflix. “Beauty in Black” follows Kimmie (Taylor Polidore Williams), the once-unassuming sex worker under the employ of a ruthless family that runs an underground sex trafficking ring underneath their beauty brand. According to the logline, Kimmie “becomes an unstoppable force and is now the one calling the shots after inheriting sole ownership of the family business.” Crystle Stewart, Amber Reign Smith, Xavier Smalls, Ricco Ross, Julian Horton, Steven G. Norfleet, Richard Lawson, Terrell Carter, Bryan Tanaka, Charles Malik Whitfield and Debbi Morgan star in “Beauty in Black” alongside Williams. Guest stars include Bailey Tippen, Randall J. Bacon, Greg Clarkson, Ace Small, George Middlebrook, Kajanee Smith, Philemon Chambers, Aria Celeste Castillo, Rodrigo Aburto, Jasmine Burke and Phylicía Lloyd. Popular on Variety Visit Advertiser websiteGO TO PAGE The series debuted in October 2024. The first part of Season 2 debuted on Netflix in September, with the final eight episodes of the season coming in March. Tyler Perry created “Beauty in Black” and serves as executive producer, writer and director. Angi Bones and Tony Strickland produce for Tyler Perry Studios. The music from the series comes from Wow Jones & Jimijame$. Perry is under a multiyear first-look deal with Netflix. His other recent projects for the streamer include the political sitcom “Miss Governor” and the faith-based romance film “Ruth & Boaz.”
+"""
+
+[R3] Tyler Perry's ‘Beauty in Black’ Renewed for Season 3 at Netflix, New To Episodes Release in Early 2026
+(https://www.whats-on-netflix.com/news/beauty-in-black-renewed-for-final-season-3-at-netflix-season-2-volume-2-confirms-early-2026-release/)
+"""
+Tyler Perry’s Beauty in Black will also return in March 2026 with the final batch of episodes making up season 2 volume 2. Beauty In Black. (L to R) Bryan Tanaka as Officer Alex, Amber Reign Smith as Rain in episode 215 of Beauty In Black. Cr. Quantrell Colbert/Netflix © 2025 It’s official: Beauty in Black is returning for a third season. Netflix has confirmed that the hit Tyler Perry drama has been renewed for a third and final season. The announcement comes with the reveal of the release date for Season 2 Part 2, which is set to arrive in March 2026. Beauty in Black is a Netflix Original crime-drama series created by Tyler Perry, marking his sixth major project for the streamer. The series follows Kimmie, an exotic dancer who becomes entangled with a violent pimp and the dangerous, dysfunctional family behind a cosmetics dynasty. Since its debut, the series has been a massive ratings juggernaut. Season 1 spent 7 weeks in the global top ten and has ranked in the top 10s in 81 countries. The success continued with Season 2 Part 1, which featured in the top 10s for three weeks, picking up 18.4M views globally. Beauty in Black Renewed for Third and Final Season Over the past few weeks, we’ve been hearing reports that filming is slated for December 2025, and now Netflix has officially confirmed the news: Beauty in Black will return for a third season, which will also serve as the show’s conclusion. The final season is filming in Atlanta and Chicago. In a press release, Netflix stated the renewal comes “ahead of its Season 2 Part 2 debut, bringing Kimmie’s journey with the Bellarie family to an epic conclusion.” Further details regarding the plot and release window for the final season are expected to be shared at a later time. Season 2 Part 2 Premieres in March 2026 Fans waiting for the resolution to the latest cliffhangers finally have a date to mark on their calendars. Tyler Perry’s Beauty in Black Season 2 Part 2 will premiere globally on Netflix on March 19, 2026. The second half of the season will consist of 8 episodes. The official logline for the upcoming episodes teases a power shift: “The ruthless, backstabbing family behind a beauty brand — and an underground trafficking ring — will face a reckoning. Kimmie, the once-unassuming sex worker in their employ, becomes an unstoppable force and is now the one calling the shots after inheriting sole ownership of the family business.” Cast and Credits The series continues to be executive produced, created, written, and directed by Tyler Perry, with Angi Bones and Tony Strickland producing for Tyler Perry Studios. The confirmed cast for Season 2 Part 2 includes: Taylor Polidore Williams as Kimmie Crystle Stewart as Mallory Amber Reign Smith as Rain Xavier Smalls as Angel Ricco Ross as Horace Julian Horton as Roy Steven G. Norfleet as Charles Richard Lawson as Norman Terrell Carter as Varney Bryan Tanaka as Officer Alex Charles Malik Whitfield as Jules Debbi Morgan as Olivia Guest stars for the new batch of episodes include Bailey Tippen, Randall J. Bacon, Greg Clarkson, Ace Small, George Middlebrook, Kajanee Smith, Philemon Chambers, Aria Celeste Castillo, Rodrigo Aburto, Jasmine Burke, and Phylicía Lloyd. Here’s all the first looks at the new upcoming episodes in addition to the first look poster: Beauty In Black. Bailey Tippen as Sylvie in episode 210 of Beauty In Black. Cr. Courtesy of Netflix © 2025 Beauty In Black. (L to R) Terrell Carter as Varney, Steven G. Norfleet as Charles in episode 29 of Beauty In Black. Cr. Quantrell Colbert/Netflix © 2025 Beauty In Black. Julian Horton as Roy in episode 210 of Beauty In Black. Cr. Quantrell Colbert/Netflix © 2025 Beauty In Black. (L to R) Crystle Stewart as Mallory, Debbi Morgan as Olivia in episode 29 of Beauty In Black. Cr. Quantrell Colbert/Netflix © 2025 Beauty In Black. Xavier Smalls as Angel in episode 215 of Beauty In Black. Cr. Quantrell Colbert/Netflix © 2025 Beauty In Black. Taylor Polidore Williams as Kimmie in episode 212 of Beauty In Black. Cr. Quantrell Colbert/Netflix © 2025 Beauty In Black. Crystle Stewart as Mallory in episode 212 of Beauty In Black. Cr. Quantrell Colbert/Netflix © 2025 Beauty In Black. Ricco Ross as Horace in episode 209 of Beauty In Black. Cr. Courtesy of Netflix © 2025 Beauty In Black. (L to R) Charles Malik Whitfield as Jules, Taylor Polidore Williams as Kimmie in episode 212 of Beauty In Black. Cr. Quantrell Colbert/Netflix © 2025 Are you excited for the final chapters of Beauty in Black? Let us know in the comments below! More on Beauty in BlackRating: TV-MALanguage: EnglishGenre: DramaCast: Taylor Polidore Williams, Crystle Stewart, Amber Reign Smith Season Additions:Season 2 - Part 1 was added to Netflix on September 11th, 2025Season 1 - Part 2 was added to Netflix on March 6th, 2025Season 1 - Part 1 was added to Netflix on October 24th, 2024 More Beauty in Black Articles
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

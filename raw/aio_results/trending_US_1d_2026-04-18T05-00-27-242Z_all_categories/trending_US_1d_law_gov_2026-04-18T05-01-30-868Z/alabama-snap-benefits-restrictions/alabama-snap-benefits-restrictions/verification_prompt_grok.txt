@@ -1,0 +1,241 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "alabama snap benefits restrictions"
+
+Claims:
+[1] "Alabama Governor Kay Ivey signed SB57 into law as of April 2026."
+[2] "SB57 restricts the purchase of candy, soda, and certain high-caffeine energy drinks over 65mg per 8oz using SNAP benefits."
+[3] "The new restriction requires federal approval from the USDA."
+[4] "The law targets a ban on candy, soda, and energy drinks containing stimulants like guarana or taurine."
+[5] "Alabama SNAP benefits cannot be used for alcohol, tobacco, vitamins, medicine, hot prepared foods, pet food, or non-food household items."
+[6] "Sports drinks aimed at hydration, such as Gatorade, are not included in the ban."
+[7] "Alabama is seeking a waiver."
+[8] "The new restrictions are not yet in effect."
+[9] "The new restrictions require approval from the USDA Food and Nutrition Service."
+[10] "For a family of three, SNAP gross income cannot exceed $2,694 per month."
+[11] "$2,694 per month is 130% of the federal poverty level."
+[12] "SNAP households must have assets such as cash or savings below $2,750."
+
+Cited text snippets from the AI Overview (for additional context):
+- SNAP restriction bill clears Alabama House after debate and changes: "Alabama's SNAP restriction bill passed the House,,drinks with over 65mg caffeine per 8oz."
+- SNAP profile (Alabama): "As a result, a family of three,like cash or savings greater than $2,750."
+- Snap - Heart of Alabama Food Bank: "You can use SNAP at most supermarkets,,buy any food except prepared hot foods."
+- Soda and candy face being cut from SNAP benefits: "Alabama's Senate Bill 57 prohibits using SNAP,with over 65mg of caffeine per 8oz."
+- Alabama lawmakers pass bill restricting candy, soda purchases ...: "Alabama lawmakers passed a bill on the,SNAP recipients from buying sodas and candy."
+Reference Sources:
+
+[R1] Governor Ivey Signs Bills to Enhance Alabamians’ Health and Healthcare Delivery -
+(https://governor.alabama.gov/newsroom/2026/04/governor-ivey-signs-bills-to-enhance-alabamians-health-and-healthcare-delivery/)
+"""
+MONTGOMERY – Governor Kay Ivey has signed several bills into law this session to improve the availability and delivery of healthcare services for all Alabamians. She also signed a bill to encourage people using Supplemental Nutrition Assistance Program (SNAP) benefits to make healthier choices in their food purchases. “In December, I announced Alabama’s participation in a new Trump Administration program funded by the ‘One Big Beautiful Bill’ passed by Congress to expand rural healthcare delivery,” said Governor Ivey. “Not wasting a moment, I worked with legislative leaders this session to remove legal barriers to ensure healthcare providers are able to work together to improve healthcare delivery in our rural areas. We have also freed first responders to deliver more life-saving services during ambulance calls, and we have joined other states in streamlining approval of out-of-state physician assistants to practice in Alabama. We are promoting healthier diets for Alabama SNAP beneficiaries by restricting the purchase of sugary foods that contribute to obesity and diabetes. These efforts along with several other pieces of legislation lay a solid foundation as we partner with the Trump Administration in improving rural healthcare delivery to better meet the needs of the public.” Healthcare priorities for Governor Ivey this session included: Alabama Rural Health Antitrust Immunity Act (HB605) Provides limited antitrust protections to allow collaboration among healthcare providers to maximize efficiency and to sustain and expand healthcare services in rural areas. Activities that may be authorized by HB605 include use of shared clinical, administrative and support services; coordinated staffing arrangements; joint quality improvement initiatives; and purchase and use of shared facilities and equipment. Alabama Physician Assistant Licensure Compact (HB156) Streamlines state license approval of out-of-state physician assistants to practice in Alabama, attracting more medical professionals to serve patients in the state. Alabama becomes the 24th state to approve this compact, joining Tennessee and Arkansas in the South. Treat in Place (SB269) Allows ambulance operators to be paid for medical services they perform on-site. Presently, Emergency Medical Services (EMS) providers are not paid unless they transport a patient to the hospital, even if the patient does not require full emergency department or inpatient care. Removing the patient-transport mandate for service reimbursement is expected to increase the availability of EMS care and reduce patient overcrowding in hospitals. Expansion of EMS Tuition Reimbursement Program (HB116) Expands the EMS training tuition program by adding the Alabama Department of Public Health’s six regional Emergency Medical Services offices to places offering eligible instruction. Graduates of EMS training would be required to perform a two-year service commitment to qualify for tuition reimbursement. Accepting Military Training for EMS Licensure (HB182) Requires the Alabama Department of Public Health to accept an applicant’s education, training and experience gained during U.S. military service as credit toward meeting state EMS license requirements. Eliminating Breast Cancer Examination Co-Pay (HB300) Beginning January 1, 2027, no health benefit plan sold in Alabama will be able to impose a copayment or similar expense on an insured person for a supplemental breast examination or a diagnostic breast examination. Eliminating Prostate Cancer Screening Co-Pay for Older and High-Risk Men (SB19) Beginning October 1, 2027, no health benefit plan sold in Alabama will be able to impose a copayment, deductible, or similar expense on an insured person for prostate screening for men older than 50, or men at “high risk” who are older than 40. Ensuring Healthy Choices for SNAP Benefits (SB57) Alabama joins 22 other states in requesting a waiver from the U.S. Department of Agriculture to prohibit SNAP benefits from being used to purchase high-sugar candies and sodas. Indoor Vaping Restrictions for Public Places (SB9) Extends the current ban on smoking cigarettes, pipes and cigars in a public space or in public meetings to include the use of a vaping device, electric cigarette or any other “electronic nicotine delivery system”, whether the e-liquid contains nicotine, THC or another substance. Governor Ivey and the Alabama Legislature also made appropriations for the Rural Health Transformation Program. The Centers for Medicare and Medicaid Services this year awarded $203.4 million to Alabama, for projects the state proposed to improve healthcare for rural residents. These common-sense measures will improve the health of many Alabamians. They also represent big steps in the state’s effort to expand rural healthcare access. A photo of Governor Ivey signing SB57 is attached. ###
+"""
+
+[R2] SNAP benefits update as junk food ban to hit hundreds of thousands
+(https://www.newsweek.com/snap-benefits-update-as-junk-food-ban-to-hit-hundreds-of-thousands-11836838)
+"""
+Alabama has passed a law that moves the state toward restricting the purchase of candy and soda under the Supplemental Nutrition Assistance Program (SNAP), pending federal approval.Why It MattersSNAP is a federal program that provides low-income individuals and families with funds to purchase food. Alabama lawmakers argued that restricting the purchase of high-sugar items under the program would improve public health.Critics of the legislation argue that the policy is unlikely to significantly improve health outcomes and instead places additional restrictions on low-income households, who often opt to purchase more calorie dense foods on SNAP as they are cheaper than healthier alternatives.What To KnowAlabama Governor Kay Ivey signed SB57 into law on Wednesday, which requires the state to seek a federal waiver to exclude candy and soda from being eligible to purchase on SNAP.If approved by the Department of Agriculture Food and Nutrition Service, the changes will affect around 750,000 Alabamians on the program and would be in effect from October 1.According to the bill’s text, candy is defined as “food products that list sugar, cane sugar, corn syrup, or high fructose corn syrup as a primary ingredient.”This definition includes chocolate bars, candy and chewing gum, but not prepared desserts, bakery items and ingredients used for baking and cooking.SNAP and EBT Accepted here sign pictured in Chicago around April 2022. | Getty ImagesSoda is described as “beverages that list, as the first two ingredients, any combination of: (i) carbonated water; and (ii) sugar, cane sugar, corn syrup, or high fructose corn syrup.” Diet sodas would still be allowed as the definition does not include drinks with low or non-caloric sweeteners.If the waiver is approved, Alabamian retailers who accidentally accept SNAP benefits for the purchase of candy and soda more than three times in a fiscal year could be subject to fines or penalties.The legislation was sponsored by Republican state Senator Arthur Orr and state Representative Reed Ingram.Orr argued that Alabama has one of the highest rates of obesity in the country and that the bill could help reduce obesity and in turn lower Medicaid costs.The Alabama Senate passed the bill last week after the House agreed to remove an amendment that would have also banned the purchase of energy drinks.What People Are SayingAlabama Governor Kay Ivey said: “We are promoting healthier diets for Alabama SNAP beneficiaries by restricting the purchase of sugary foods that contribute to obesity and diabetes. These efforts along with several other pieces of legislation lay a solid foundation as we partner with the Trump Administration in improving rural healthcare delivery to better meet the needs of the public.”Is This Article Fair?Select an option to vote. You can change it anytime.Republican state Senator Arthur Orr, who sponsored the bill, said, according to local outlet WAFF: “Our state is unfortunately one of the most obese states in the country. And a large proportion of the Medicaid population, which we pay for at the state level and the federal level, is on the SNAP program,” adding that we "may affect the obesity rate and thereby also reduce our Medicaid cost.”Chelsea Edwards, a dietician who works with Huntsville Nutrition Collective and has worked with low-income families, told WAFF: “Low-income houses often rely on higher-calorie foods to meet their energy needs because they need to maximize the calories per dollar when they’re purchasing foods. I don’t think it will do as much to improve health, whereas creating access to fruits and vegetables within food deserts could do a lot more.”What Happens NextThe Alabama Department of Human Resources will submit the waiver request to the federal Department of Agriculture Food and Nutrition Service. If approved, the state will begin implementing the restrictions from October 1.
+"""
+
+[R3] Food Stamps And Junk Food Bans: What You Need To Know | Propel
+(https://www.propel.app/snap/food-stamps-and-junk-food/)
+"""
+Food stamps, technically called SNAP, is a benefit program that allows recipients to use their benefits to buy any eligible groceries. That includes things like fruits, vegetables, meat, beans, grains, cereal, and foods sometimes considered “junk foods,” including soda, chips, cookies, pretzels, energy drinks, and candy.But some states are changing the rules about what you can buy with SNAP starting in 2026, and banning SNAP-recipients from using their benefits to buy certain “junk foods.”Several other states are also reconsidering whether SNAP benefits can be used to buy candy, soft drinks, and other processed foods. Here's what you need to know about upcoming SNAP restrictions on certain foods and drinks. Propel is the #1-rated EBT balance checking app What junk food can you buy with food stamps?#what-junk-food-can-you-buy-with-food-stampsIn most places, you can use your SNAP benefits to buy pretty much any food in the grocery store—SNAP basically allows purchase of anything with a “nutrition facts” label.That includes staples like produce, dairy, grains, meat, seafood, beans, and nuts, as well as snack foods and treats like chips, candy, popcorn, soda, chocolate, cookies, and ice cream.But starting in 2026, some states will ban specific items from SNAP purchases. The most common restrictions include:Soda and soft drinks: This includes regular soda, diet soda, and carbonated beverages. Some states will also restrict energy drinks, fruit drinks with less than 50 percent natural juice, and other sweetened beveragesCandy: Hard candy, chocolate bars, gum, and other confections will be ineligible for EBT in several statesSnack foods: Some states are considering banning chips, cookies, and other packaged snacks from SNAP, though specific rules vary by stateFrozen convenience foods: While basic frozen fruits and vegetables remain covered, some prepared frozen meals may face restrictions Each state has different rules about what counts as restricted food, so what you can and can’t buy will depend on where you live. If your state hasn’t added specific food restrictions to SNAP, then you’ll still be able to use food stamps to buy treats like soda and candy.Which states are changing SNAP rules about junk food?#which-states-are-changing-snap-rules-about-junk-foodThe federal government hasn’t changed what groceries you can buy with SNAP benefits nationwide, but some states have received permission to create their own restrictions around certain foods.As of March 2026, 22 states now have approval to limit what you can buy with SNAP benefits: image/svg+xml Alabama No bans or restrictions Alabama No bans or restrictions Alaska No bans or restrictions Alaska No bans or restrictions Arkansas Ban in place as of 7/1/26 Arkansas Ban in place as of 7/1/26 California No bans or restrictions California No bans or restrictions Colorado Ban in place as of 3/1/26 Colorado Ban in place as of 3/1/26 Connecticut No bans or restrictions Connecticut No bans or restrictions Delaware No bans or restrictions Delaware No bans or restrictions Florida Ban in place as of 4/20/26 Florida Ban in place as of 4/20/26 Guam No bans or restrictions Guam No bans or restrictions Hawaii Ban in place as of 8/1/26 Hawaii Ban in place as of 8/1/26 Idaho Ban in place as of 2/15/26 Idaho Ban in place as of 2/15/26 Illinois No bans or restrictions Illinois No bans or restrictions Indiana Ban in place as of 1/1/26 Indiana Ban in place as of 1/1/26 Iowa Ban in place as of 1/1/26 Iowa Ban in place as of 1/1/26 Kansas Ban in place as of 2/15/27 Kansas Ban in place as of 2/15/27 Kentucky No bans or restrictions Kentucky No bans or restrictions Louisiana Ban in place as of 2/18/26 Louisiana Ban in place as of 2/18/26 Maine No bans or restrictions Maine No bans or restrictions Maryland No bans or restrictions Maryland No bans or restrictions Massachusetts No bans or restrictions Massachusetts No bans or restrictions Minnesota No bans or restrictions Minnesota No bans or restrictions Missouri Ban in place as of 10/1/26 Missouri Ban in place as of 10/1/26 Nebraska Ban in place as of 1/1/26 Nebraska Ban in place as of 1/1/26 Nevada Ban in place as of 2/1/28 Nevada Ban in place as of 2/1/28 New Hampshire No bans or restrictions New Hampshire No bans or restrictions New Jersey No bans or restrictions New Jersey No bans or restrictions New Mexico No bans or restrictions New Mexico No bans or restrictions New York No bans or restrictions New York No bans or restrictions North Carolina No bans or restrictions North Carolina No bans or restrictions North Dakota Ban in place as of 9/1/26 North Dakota Ban in place as of 9/1/26 Ohio Ban in place as of 10/1/26 Ohio Ban in place as of 10/1/26 Oklahoma Ban in place as of 2/15/26 Oklahoma Ban in place as of 2/15/26 Oregon No bans or restrictions Oregon No bans or restrictions Pennsylvania No bans or restrictions Pennsylvania No bans or restrictions Puerto Rico No bans or restrictions Puerto Rico No bans or restrictions Rhode Island No bans or restrictions Rhode Island No bans or restrictions South Carolina Ban in place as of 8/31/26 South Carolina Ban in place as of 8/31/26 South Dakota No bans or restrictions South Dakota No bans or restrictions Tennessee Ban in place as of 7/31/26 Tennessee Ban in place as of 7/31/26 Texas Ban in place as of 4/1/26 Texas Ban in place as of 4/1/26 Utah Ban in place as of 1/1/26 Utah Ban in place as of 1/1/26 Vermont No bans or restrictions Vermont No bans or restrictions Virginia Ban in place as of 4/1/26 Virginia Ban in place as of 4/1/26 Washington No bans or restrictions Washington No bans or restrictions Washington D.C. No bans or restrictions Washington D.C. No bans or restrictions West Virginia Ban in place as of 1/1/26 West Virginia Ban in place as of 1/1/26 Wisconsin No bans or restrictions Wisconsin No bans or restrictions Wyoming Ban in place as of 2/1/27 Wyoming Ban in place as of 2/1/27 Arkansas is cutting soda, candy, and fruit drinks that contain less than half real juice from the SNAP program. The state is also evaluating “ other unhealthy drinks” that will be restricted. This is set to go into effect on July 1, 2026. Colorado will ban soft drinks, which the state defines as nonalcoholic beverages made with natural or artificial sweeteners. This does not include drinks that contain milk or milk alternatives (like soy or rice milk) or any beverages that are more than 50 percent fruit or vegetable juice. This is expected to go into effect on March 1, 2026. Florida will no longer allow SNAP to be used to buy soda, energy drinks, candy, and prepared desserts. Prepared desserts refers to pre-packaged sweets that are ready-to-eat when you buy them. This should go into effect on April 20, 2026.Hawaii will ban soft drinks, defined as nonalcoholic carbonated beverages that are have more than 10 grams of sugar per serving (this doesn't include drinks that contain milk or milk substitutes, or drinks that are more than 50% fruit or vegetable juice). This is set to go into effect on August 1, 2026. Idaho will ban soda and candy purchases. All nonalcoholic beverages containing natural or artificial sweeteners are included under the “soda” category, except for milk-based drinks, beverages that are more than half juice, and products you need to mix or prepare before drinking. This should go into effect on February 15, 2026. Indiana will ban soft drinks and candy. The state has defined “soft drinks” as any non-alcoholic sweetened drinks, including drinks with sugar or artificial sweeteners, but not including milk-based drinks, soy milk, rice milk, or drinks sweetened only with 100 percent fruit or vegetable juice. The state has defined “candy” as treats made with sugar, honey, or other sweeteners mixed with chocolate, fruit, nuts, or flavorings. The definition doesn't include items that need to be kept cold. This should go into effect on January 1, 2026. Iowa plans to exclude most items that get taxed under state law–this may include candy, gum, dried fruit, or fruit candy with natural or artificial sweeteners, packaged popcorn, marshmallows, soda, flavored water, and juice drinks with less than half fruit content. This is expected to go into effect on January 1, 2026.Kansas will ban candy and soft drinks. Candy is defined as treats made with sugar, honey, or other sweeteners combined with chocolate, fruit, nuts, or flavorings. Soft drinks are nonalcoholic beverages that contain natural or artificial sweeteners. This is set to go into effect on February 15, 2027. Louisiana is banning soft drinks, energy drinks, and candy from SNAP. The state defines soft drinks as sweetened, carbonated drinks and energy drinks as beverages with added stimulants, like fortified caffeine, meant to boost energy. This is set to go into effect on February 18, 2026.Missouri will ban using SNAP on any candy, processed and pre-packaged prepared desserts, and "unhealthy drinks," which includes soft drinks, lemonade, drink mixes and concentrates, and energy drinks that contain stimulants like caffeine, guarana, glucuronolactone, or taurine. This should go into effect on October 1, 2026. Nebraska will ban soft drinks and energy drinks, including any fizzy drinks that contain water, sweeteners (like sugar or artificial sweeteners), and flavoring. Energy drinks include drinks with stimulants like caffeine, guarana, or taurine that are made to boost energy or alertness. They can be fizzy or flat and may include vitamins, herbs, or fruit juice. Sports drinks that are marketed for hydration, like Gatorade, are not included in the ban. This is expected to go into effect on January 1, 2026. Nevada will ban candy and sugar-sweetened beverages. The state defines “sugar-sweetened beverages” as ready-to-drink or ready-to-mix nonalcoholic beverages that contain added caloric sweeteners, including soft drinks and fruit drinks with less than 50% real juice. This is expected to go into effect on February 1, 2028. North Dakota is banning candy, soft drinks, and energy drinks containing stimulants. The restrictions also include baking supplies like cake decorations, marshmallows, and chocolate chips. This is set to go into effect on September 1, 2026.Ohio will ban sugar-sweetened beverages from SNAP purchases. These are drinks that contain added caloric sweeteners, such as sugar or high-fructose corn syrup. This is expected to go into effect on October 1, 2026. Oklahoma will ban candy and soft drinks. Candy is defined as any sweet, sugar, or chocolate-based treat, like gummies, caramels, and chewing gum. Baked goods, like cookies or cake, are not considered “candy.” This is expected to go into effect on January 1, 2026.South Carolina will ban candy, energy drinks, soft drinks, and "sweetened beverages," unless they're made with milk or milk products or contain 50% or more natural fruit or vegetable juice, with no added caloric sweetener." Formula, carbonated water, sports drinks meant for rehydration, and drinks that are meant for necessary nutrition or rehydration after an illness (like Pedialyte) are also not part of the ban. This should go into effect on August 31, 2026. Tennessee will ban " processed foods" that have sugar, cane sugar, com syrup, or high fructose com syrup as the first ingredient and any drinks that that list carbonated water and sugar, cane sugar, com syrup, and high fructose com syrup as the first two ingredients. This is set to go into effect on July 31, 2026. Texas is banning the use of SNAP benefits to buy sweetened drinks and candy, including chocolate, gum, and other sugary treats. Sweetened drinks refers to “nonalcoholic beverages made with water that contain five grams or more of added sugar or any amount of artificial sweetener.” This is expected to go into effect on April 1, 2026. Utah will ban soft drinks, which the state is defining as “a nonalcoholic beverage that is made with carbonated water and that is flavored and sweetened with sugar or artificial sweeteners.” This is set to go into effect on January 1, 2026. Virginia will ban sweetened beverages. That includes anything typically referred to as soda, diet soda, zero soda, pop, and energy drinks. The ban will not include sparkling water, drinks made with milk or milk substitutes, iced tea, lemonade, juice, formula, or any sports drinks meant for rehydration. This should go into effect on April 1, 2026. West Virginia will not allow residents to use their SNAP benefits to buy soda, pop, or other carbonated sweetened drinks. These are defined as carbonated beverages with water, sweeteners (like sugar or artificial sweeteners), flavoring, and sometimes caffeine or other added ingredients. This is expected to go into effect on January 1, 2026.Wyoming will ban sweetened, carbonated beverages from SNAP purchases. These are defined as carbonated drinks that contain added sweeteners, such as sugar or artificial sweeteners. This is set to go into effect on February 1, 2027. Balance your grocery budget and get access to deals with Propel Where else will restrictions on SNAP purchases happen?#where-else-will-restrictions-on-snap-purchases-happenSeveral other states are exploring similar changes. Lawmakers in Arizona, Michigan, Mississippi, Montana, and Georgia have introduced bills to limit junk food purchases with SNAP.Altogether, these potential restrictions could impact over seven million people who depend on SNAP for groceries.
+"""
+
+[R4] Snap - Heart of Alabama Food Bank
+(https://hafb.org/snap/)
+"""
+Supplemental Nutrition Assistance Program The Heart of Alabama Food Bank helps people access SNAP (Supplemental Nutrition Assistance Program, formerly known as food stamps), which provides monthly benefits via an EBT card—usable much like a debit card—to purchase groceries that support good health. SNAP funds can be spent at many supermarkets, grocery stores, and select farmers’ markets, covering almost all food items (excluding hot prepared meals), as well as seeds and plants intended for growing food. The organization offers an online eligibility screener and assistance with the application process to make accessing benefits easier for those in need. What is SNAP? SNAP (formerly known as food stamps) stands for the Supplemental Nutrition Program which helps people buy the food needed for good health. SNAP benefits are deposited onto an electronic card (EBT) that is used like an ATM or bank card. Where can I use SNAP? You can use SNAP at most supermarkets, grocery stores, and even some farmers’ markets. SNAP can be used to buy any food except prepared hot foods. You can also buy seeds and plants that grow food. Am I eligible for SNAP? Use the screener below to find out if you are eligible for SNAP benefits. How can I apply for SNAP? Our team can help you get started with the application process by using the screener below. Help your fellow Alabamians in the River Region and beyond $1 provides 5 meals.Your donation will provide hope to your neighbors in need. Donate
+"""
+
+[R5] Alabama State Profile Summary, SNAP flexibilities supporting low-income families 5/7/24
+(https://www.nccp.org/wp-content/uploads/2024/08/SNAP-profile-Alabama-.pdf)
+"""
+Alabama State Profile Summary, SNAP flexibilities supporting low-income families 5/7/24
+
+ Overview of SNAP Policy: Alabama’s adoption of flexibilities under Broad-Based Categorical
+Eligibility (BBCE) for SNAP receipt did not target expansion of SNAP eligibility to families with children;
+instead, the state has only used the framework to remove the asset limit for households with elderly or
+disabled members. As a result, a family of three cannot qualify for SNAP benefits if their gross income
+exceeds $2,694/month (130% FPL). Likewise, families cannot retain assets like cash or savings greater
+than $2,750.
+Alabama has modified its ban on eligibility for adults convicted of drug-related felonies to extend
+access to those who have completed their sentence or are compliant with the terms relating to their
+supervision, probation, and/or treatment. Additionally, the state offers online services for its initial
+application, change reporting, and renewal of SNAP benefits, thereby easing the administrative
+burdens that can limit families from accessing nutritional support even when they are eligible, as seen in
+other states. Alabama has also increased the recertification period from six to twelve months for all
+households with children.
+ Assessment of SNAP Policy: Under the BBCE flexibilities provided to Alabama, the state could
+greatly increase the number of households eligible for SNAP by raising its gross income limit up to 200%
+FPL for all families with children and either removing or increasing its asset limit. Families with savings
+or “rainy day funds” are less likely to experience cumulative material hardships, remain dependent on
+social benefit programs, or return to dependence on them later.1
+Additionally, treating child support payments to non-household members as income exclusions rather
+than deductions would expand eligibility to more families. Further, providing families that are losing
+access to TANF cash assistance with transitional SNAP benefit assistance for several months would
+offer more consistent support to low-income families through a critical period of acute need.
+Finally, using state funds to provide SNAP to immigrant households with children who are ineligible
+under federal regulations would benefit young children’s development and support economic security,
+particularly for newly-arrived families.
+
+1
+ For research detailing effects of some state-level policies and administrative practices on children and families, see
+https://www.nccp.org/ec-profiles-pes-policies-related-research-and-resources/#parenting.
+ 1
+Alabama State Profile Summary, SNAP flexibilities supporting low-income families 5/7/24
+
+ Alabama’s Food Stamps (SNAP) Policy
+
+ WHO IS ELIGIBLE FOR FOOD STAMPS?
+
+ Flexibility Current policy Potential improvement
+
+ Gross income limit
+
+ How much can family members $2,694* (or 125% FPL for an Consider extending gross
+ earn while being eligible? Alabama family of three in income limit to 200% FPL for
+ 2024). BBCE-eligible families, as many
+ other states have done (e.g.,
+ Louisiana).
+
+ Asset Limit
+
+ How many assets can families Families can retain up to Remove the asset limit so that
+ retain in savings while still being $2,750. households with children can
+ eligible for food stamps? retain savings while receiving
+ nutritional support (e.g.,
+ Georgia).
+
+ Alternatively, raise the asset
+ limit (e.g., Texas permits up to
+ $5,000 in assets).
+
+ Transitional Benefit Alternative
+ (TBA)
+
+ Does Alabama provide families No. Consider providing TBA to
+ who are losing TANF cash families transitioning from
+ assistance with automatic SNAP TANF cash assistance, as other
+ eligibility for a few months? states are doing (e.g., North
+ Carolina, Georgia).
+
+ * Current administrative guidelines may present different income amounts depending on when
+ updates to the current federal poverty guidelines are implemented.
+
+ ADDITIONAL RULES AND RESTRICTIONS
+
+ Flexibility Current policy Potential improvement
+
+ Treatment of child support
+ payments to non-household
+ members
+
+ Does Alabama treat child support No. Enable more families to
+ payments made to non- qualify for SNAP by treating
+ household members as an child support payments as
+
+ 2
+Alabama State Profile Summary, SNAP flexibilities supporting low-income families 5/7/24
+
+ income exclusion rather than a income exclusions in the
+ deduction? eligibility process (e.g.,
+ Virginia, South Dakota).
+
+ Lifting drug felony bans
+
+ Are persons convicted of drug- Alabama modified its ban to Consider fully eliminating
+ related felonies eligible for provides access to those who have the ban on those convicted
+ nutritional assistance? completed their sentence or are of drug-related felonies, as
+ compliant with the terms relating other states have done
+ to their supervision, probation, (e.g., Louisiana).
+ and/or treatment.
+
+ Extending eligibility to some
+ federally ineligible noncitizens
+ using state assistance programs
+
+ Has Alabama extended SNAP No. Provide nutritional
+ eligibility to immigrants who are assistance to newly-arrived
+ ineligible for SNAP under federal families in which parents
+ guidelines? are awaiting work
+ authorization (e.g., Illinois,
+ Maine, and Minnesota).
+
+ ADMINISTRATIVE REQUIREMENTS
+
+ Flexibility Current policy Potential improvement
+
+ Less frequent recertification
+ periods
+
+ Has Alabama extended the Yes. N/A
+ recertification period to 12
+ months for all recipients?
+
+ Online services for all
+ application processes
+
+ Does Alabama offer online Yes. N/A
+ services for its initial benefit
+ application, reporting of changes,
+ and renewal?
+
+ 3
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

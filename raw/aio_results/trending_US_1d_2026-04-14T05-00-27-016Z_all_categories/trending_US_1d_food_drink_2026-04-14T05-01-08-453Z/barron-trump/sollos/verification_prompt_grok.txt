@@ -1,0 +1,115 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "sollos"
+
+Claims:
+[1] "SOLLOS Yerba Mate is a new Florida-based beverage company."
+[2] "Barron Trump is listed as a director of SOLLOS Yerba Mate."
+[3] "SOLLOS Yerba Mate is set to launch in May 2026."
+[4] "SOLLOS Yerba Mate features caffeine-packed plant-based ready-to-drink tea in pineapple and coconut flavors."
+[5] "SOLLOS Yerba Mate raised $1 million in private funding."
+[6] "SOLLOS Yerba Mate will debut with 12-pack pineapple and coconut flavors."
+[7] "Barron Trump is 20 years old."
+[8] "SOLLOS Yerba Mate is registered in Florida."
+[9] "SOLLOS Yerba Mate is registered in Delaware."
+[10] "SOLLOS Yerba Mate is based near Mar-a-Lago in Palm Beach."
+[11] "Sollos Labs is an audio-wellness app."
+[12] "Sollos Labs has the website findsollos.com."
+[13] "Sollos Labs is a different entity from SOLLOS Yerba Mate."
+[14] "Sollos Labs specializes in focus and sleep sounds"
+
+Cited text snippets from the AI Overview (for additional context):
+- Sollos: "Sollos is available on: * **Apple Music**,to their quality and quantity of sleep."
+- Barron Trump launches SOLLOS, a yerba mate ready-to-drink ...: "Barron Trumps new beverage,gourd with a metal straw."
+- Barron Trump SOLLOS yerba mate brand announces ...: "SOLLOS Yerba Mate launches a,It Begins Where It Ends.""
+- SOLLOS Yerba Mate | LinkedIn: "LOS,” which is “Sol,92 21 Comments"
+- Barron Trump is reportedly associated with a startup called SOLLOS ...: "Barron Trump is getting into,entrepreneur in his own right"
+- Barron Trump's new beverage startup, SOLLOS, officially ... - Instagram: "First son Barron Trump is,📸: AP, Getty Images"
+- Barron Trump Launches SOLLOS Yerba Mate Beverage Company: "The 20-year-old co,with a plant-based alternative.&text=Got story updates?,›&text=Barron Trump, the youngest son,plant-based, healthier alternative."
+Reference Sources:
+
+[R1] What is Barron Trump's SOLLOS drink? What's in it
+(https://www.palmbeachpost.com/story/news/trump/2026/04/10/barron-trump-sollos-yerba-mate-ready-to-drink-beverage-florida/89550159007/)
+"""
+April 10, 2026, 12:59 p.m. ETBarron Trump has launched a new beverage brand called SOLLOS Yerba Mate.The brand's first products are pineapple and coconut flavored yerba mate drinks.Yerba mate is a caffeinated herbal tea from South America gaining popularity in the U.S.The new beverage is expected to be available for purchase in stores starting in May.Barron Trump, President Donald Trump's youngest son, launched a new soft beverage with Latin American roots that is expected to hit store shelves next month.SOLLOS Yerba Mate, Barron's beverage brand, unveiled its first two flavors this week in a social media post, announcing its 12-packs will be available for purchase as soon as May.Yerba Mate, a bitter tea from South America, has been gaining popularity in the United States as an alternative to coffee and caffeinated canned drinks, USA Today reported.The Trump-backed company is betting on the Latin American staple to gain ground on the U.S. ready-to-drink beverage market.Here is what you need to know about yerba mate and the latest on Barron Trump's new beverage brand.Who is Barron Trump?Baron Trump, 20, is the only child of President Trump and first lady Melania Trump.He graduated from Oxbridge Academy in West Palm Beach in 2024 and is now a student at New York University's Stern School of Business.Barron Trump amassed over $150 million from his role in family's cryptocurrency venture, World Liberty Financial. In 2024, he registered a luxury real estate company under the name Trump, Fulcher & Roxburgh Capital Inc. but it was disolved four months later.How tall is Barron Trump?Barron Trump is 6 feet, 9 inches tall, according to Google. However, during his 2024 graduation from Oxbridge Academy in West Palm Beach, his height was reportedly 6 feet, 7 inches.He is the tallest of his siblings and also towers above his father, who is listed as 6 feet, 3 inches.What is SOLLOS Yerba Mate? Barron Trumps new beverageSOLLOS Yerba Mate is a beverage compnay that makes ready-to-drink yerba mate beverage with pineapple and coconut flavors.Its name is inspired in the Spanish word "sol," meaning sun, spelled forward and backwards. The company said the name represents the sunrise and sunset, symbolizing the sun's full cycle in a day.Barron Trump is listed as one of the directors of Sollos Yerba Mate Inc., a company registered in Delaware in December and in Florida since January. Other directors listed include Spencer Bernstein, Rodolfo Castello, Stephen Hall, and Valentino Gomez.The company has raised $1 million in private capital, according to filling in the U.S. Securities and Exchange CommissionSOLLOS Yerba Mate is registered in an address is located in Palm Beach, a few blocks north of President Trump's Mar-a-Lago estate.What is yerba mate?Yerba mate is a caffeinated, herbal tea that is popular with South America, especially Argentina, Uruguay, Paraguay and Brazil.Yerba mate is made from the leaves and stems of the Ilex paraguariensis plant, which is packed with antioxidant, caffeine and theobromine. Its leaves are dried and then steeped in hot water to make tea, which is usually consumed in group from a shared gourd with a metal straw.Yerbas mates has a reputation of "relaxed energy," as its ingredients provide relaxed, long-lasting energy boost without the jitteriness or crash of coffee.When will SOLLOS Yerba Mate sell in stores?SOLLOS Yerba Mate is expected to be sold in stores in May.The company unveiled its two flavors pineapple and coconut in a Linked-in post and said they will be sold in 12-packs.The company has not announced which stores will carry SOLLOS Yerba Mate starting next month.Valentina Palm covers immigration and Palm Beach County's western communities for The Palm Beach Post. Email her at vpalm@pbpost.com and follow her on X, the platform formerly known as Twitter, at @ValenPalmB. Support local journalism: Subscribe today
+"""
+
+[R2] Sollos
+(https://findsollos.com/)
+"""
+Select “Accept all” to agree to our use of cookies and similar technologies to enhance your browsing experience, security, analytics and customization. Select ”Manage cookies” to make more choices or opt out. For more information please see the Universal Music Cookie Policy.Manage cookiesAccept all 0 Meet Sollos. Available now in Sound Therapy on Apple Music Science-powered sounds for focus, relaxation & sleep.Search for Sound Therapy on Apple Music. Listen on Apple Music The soundtrack to a better state of mind Better focus, relaxation and sleep. As easy as pressing play. Play00:0000:00UnmuteMuteSettingsSpeedNormalSpeedGo back to previous menu0.5x0.75xNormal1.25x1.5x1.75x2xExit fullscreenEnter fullscreen% buffered00:00 We combine music from some of the world’s best artists with sound supplements. These are special sound waves that have positive effects on your body, mind and mood. Focus Science-powered music to help you work through that to-do list Relax Soft, soothing sounds, designed to help you unwind Sleep Music fine-tuned to gently lull you to sleep Jayne - Sollos listener“Sollos has made such a difference to my quality and quantity of sleep, it’s phenomenal.”
+"""
+
+[R3] About — Sollos
+(https://findsollos.com/about)
+"""
+Throughout human history, people have turned to music for comfort and support. Now Sollos is here to take it to the next level. What is Sollos? Sollos is a new audio-wellness venture, brought to you by Universal Music Group. Exclusively available in Sound Therapy, on Apple Music. We combine music and audio from some of the world’s best artists with cutting edge research into cognitive science and psychoacoustics, to create music and soundscapes which have been specifically engineered to help you focus, relax and sleep. What do we do? We curate tracks from Universal Music’s world-class roster, using a rigorous science-backed criteria to assess the audio’s suitability to support better focus, relaxation and sleep.Our in-house engineers then use a proprietary algorithm to add special sound waves: auditory beats or coloured noise.Scientific research has shown that these sound waves can help improve mood and enhance cognition. We call these additives sound supplements — you may not even notice them, but they’re there to infuse our music with extra goodness.We also work closely with artist teams to produce extended remixes of tracks, reimagined to support our listeners’ daily routines. So you can listen to creative takes on tracks like Glass Animal’s summer hit ‘Heat Waves’, or Sam Smith’s heartfelt ballad ‘How Do You Sleep?’, all while unlocking better focus, relaxation and sleep. What makes Sollos Special? We sound good Most music designed to help you do things is boring. Sollos works closely with artists and their teams to produce high-quality music to impact your wellbeing. We support human artistsUnlike other offerings in the audio wellness space, we are music-centric. Our music has been hand-crafted by talented humans, featuring instrumental music from well-known artists.We’re backed by science Our cognitive scientists run in-house studies and partner with research institutions to inform our work and ensure our music has a real impact.We’re highly curatedWe specially curate every session, using the psychology of attention and musical expectation. We select our tracks based on the pitch, dynamics, tempo, harmonic structure, texture and genre of the audio, to support focus, relaxation and sleep. Hear it first on Apple Music
+"""
+
+[R4] Barron Trump Launches SOLLOS Yerba Mate Beverage Company - Washington Today
+(https://nationaltoday.com/us/dc/washington/news/2026/04/12/barron-trump-launches-sollos-yerba-mate-beverage-company/)
+"""
+Got story updates? Submit your updates here. ›SOLLOS Yerba Mate's debut flavors aim to capture the refreshing, energizing appeal of a premium plant-based beverage.Washington TodayBarron Trump, the youngest son of former President Donald Trump, is launching a new herbal tea-based energy drink company called SOLLOS Yerba Mate. The company has raised $1 million from private investors and plans to debut its first flavors, pineapple and coconut, in May. Barron Trump is listed as one of five directors of the Florida-based startup, which is also registered in Delaware. The global energy drink market is projected to exceed $125 billion by the early 2030s, highlighting the potential opportunity for SOLLOS to gain traction as a plant-based, healthier alternative. Why it matters Barron Trump's foray into the beverage industry, particularly the fast-growing energy drink market, represents his latest business venture outside of politics. At 20 years old, he is pursuing entrepreneurial opportunities rather than directly following in his father's footsteps into public office. The success of SOLLOS could establish Barron as a rising business leader in his own right, separate from his family's political legacy. The details SOLLOS Yerba Mate Inc. was incorporated in Florida in December and is also registered in Delaware. Barron Trump is listed as one of five directors, along with Rodolfo Castello, Valentino Gomez, Stephen Hall, and Spencer Bernstein. Bernstein serves as the company's chairman, while Hall is the vice president. Hall and Bernstein are reported to be former classmates of Trump's from Oxbridge Academy in West Palm Beach, Florida. The company has raised $1 million from private investors and plans to debut its first flavors, pineapple and coconut, in May. SOLLOS is positioning itself as a caffeinated, plant-based alternative to traditional coffee-based energy drinks. SOLLOS Yerba Mate Inc. was incorporated in Florida in December.SOLLOS plans to debut its first flavors, pineapple and coconut, in May. The players Barron TrumpThe 20-year-old son of former President Donald Trump and co-founder of SOLLOS Yerba Mate Inc.SOLLOS Yerba Mate Inc.A herbal tea-based energy drink startup co-founded by Barron Trump, aiming to tap into the growing energy drink market.Spencer BernsteinThe chairman of SOLLOS Yerba Mate Inc.Stephen HallThe vice president of SOLLOS Yerba Mate Inc. and a former classmate of Barron Trump's. Got photos? Submit your photos here. › What’s next SOLLOS Yerba Mate Inc. plans to debut its first flavors, pineapple and coconut, in May. The takeaway Barron Trump's foray into the energy drink market with SOLLOS Yerba Mate represents his latest entrepreneurial venture outside of politics, showcasing his growing business interests and potential to establish himself as a rising leader separate from his family's political legacy.
+"""
+
+[R5] Barron Trump’s beverage brand unveils first flavors ahead of launch
+(https://www.foxbusiness.com/retail/barron-trumps-beverage-brand-unveils-first-flavors-ahead-launch)
+"""
+First son Barron Trump’s new beverage venture has announced its first two flavors ahead of its planned launch, now set for May. SOLLOS Yerba Mate, headquartered near Mar-a-Lago, revealed the news in a LinkedIn post last week."Introducing our 12-pack: Pineapple + Coconut," the company said. "Launching May 2026." The announcement comes after the 19-year-old, the youngest son of President Donald Trump, was listed as a director of the Palm Beach, Florida-based beverage company, according to January SEC filings in Florida and Delaware. BARRON TRUMP LINKED TO BEVERAGE COMPANY BASED NEAR MAR-A-LAGO Barron Trump's new beverage venture has announced its first two flavors ahead of its May launch. (Mike Segar/Reuters / Reuters)The product will be available for purchase online at sollos.com, the company said.The company also shared videos showcasing the design of its new beverage packaging ahead of launch.In one video, light blue cans featuring "SOLLOS" in bold lettering over an orange-and-yellow sun graphic appear to move through a factory during mass production.Another clip shows packaging for the 12-pack, including a light blue box with yellow graphic accents.A LOOK AT THE TRUMP FAMILY'S BUSINESS EMPIRE SOLLOS Yerba Mate launches a 12-pack pineapple and coconut beverage line. (SOLLOS Yerba Mate/LinkedIn / Fox News)Yerba mate, a caffeinated herbal tea native to South America, has recently gained popularity in the U.S. as an alternative to coffee.SOLLOS was previously announced as a beverage brand designed to complement life in the "Sunshine State," with branding centered on the sun."SOL," meaning sun in Spanish, represents sunrise and the beginning of the day, the company said. "LOS," spelled backwards from "SOL," represents sunset. The startup emphasized that the name is intended to capture the full cycle of the sun, reflecting the idea that "It Begins Where It Ends."HERE'S HOW MUCH TRUMP ACCOUNT BALANCES COULD GROW OVER TIME Light blue cans, featuring the logo "SOLLOS," move through a factory line. (SOLLOS Yerba Mate/LinkedIn / Fox News)According to SEC filings dated Jan. 23, SOLLOS raised $1 million through a private placement and lists at least five partners. Barron, a student at New York University's Stern School of Business, along with four others named in the SEC filing, are listed as executive officers and members of the company's board of directors.Others involved in the company include Spencer Bernstein, Rudolfo Castello, Stephen Hall and Valentino Gomez, some of whom attended the same high school as Barron. GET FOX BUSINESS ON THE GO BY CLICKING HEREBernstein, a Villanova University student who previously attended Oxbridge Academy in Palm Beach with Trump, was listed as an executive officer."I’ve decided to postpone my final semester at Villanova University to focus on something I’ve been building for the past 8 months," Bernstein previously posted on LinkedIn. "Since the end of last school year I have been working alongside my co-founder, Stephen Hall, and a few close friends on SOLLOS Yerba Mate, a lifestyle beverage brand built around clean + functional ingredients."Hall, now a student at the University of Notre Dame who also attended Oxbridge Academy, was listed as an executive officer and director. FOX Business' Sophia Comptom contributed to this report.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

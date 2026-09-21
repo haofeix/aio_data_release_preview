@@ -1,0 +1,117 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is rec room shutting down"
+
+Claims:
+[1] "Rec Room is shutting down."
+[2] "Rec Room is scheduled to close permanently on June 1, 2026."
+[3] "Rec Room cited insurmountable profitability challenges."
+[4] "Rec Room cited high operating costs."
+[5] "Rec Room cited changing market conditions."
+[6] "Rec Room has over 150 million users."
+[7] "Rec Room has started winding down operations."
+[8] "New account creation on Rec Room is now blocked."
+[9] "Friend requests on Rec Room are now blocked."
+[10] "New Rec Room Plus subscriptions are now blocked."
+[11] "Token purchases on Rec Room will end on May 1."
+[12] "Creator earnings on Rec Room will stop on May 18, 2026."
+[13] "Rec Room will go fully dark on June 1, 2026, at noon Pacific Time."
+[14] "Snap Inc. acquired certain assets from Rec Room."
+[15] "Users can download their photo archives from the official Rec Room website before the final shutdown."
+[16] "Users can download a final "report card" from the official Rec Room website before the final shutdown."
+[17] "Rec Room had significant layoffs in 2025."
+
+Cited text snippets from the AI Overview (for additional context):
+- 150 million users later, Roblox competitor Rec Room is shutting down: "Rec Room, a Roblox-like,, not months of funding.”"
+- Social gaming platform Rec Room is shutting down | wcnc.com: "Rec Room laid off 16,be refunded through June 15."
+- School's Out for Rec Room — ‎: "You can no longer create,Room keys, consumables, and currencies"
+- Why is Rec Room shutting down? Developer makes big future call as fans mourn; ‘Shattered…’ | World News: "Rec Room will shut down,room,” one fan wrote."
+- Rec Room will be closing down June 1, 2026. Thank you for ...: "Rec Room will be closing down June,details at the link in our bio."
+- Snap acquires assets from Rec Room as social gaming platform announces shutdown: "Snap acquires assets from Rec,gaming platform announces shutdown – GeekWire"
+Reference Sources:
+
+[R1] School’s Out for Rec Room  — ‎ 
+(https://blog.recroom.com/posts/schools-out-for-rec-room)
+"""
+Rec Room will be closing down on June 1st 2026 at noon Pacific time.Over the past decade, Rec Room grew into something amazing, reaching over 150 million players and creators along the way. Players made over half a billion friends on the platform. In total, people all around the world spent a cumulative 68 thousand years in Rec Room. The top UGC rooms saw over 500 years of play time each. That’s a lot of people having a lot of fun.What this community built together is incredible, and something we'll always be proud of. Even today, millions of people are showing up to spend time in this fun and welcoming place every month.Despite this popularity, we never quite figured out how to make Rec Room a sustainably profitable business. Our costs always ended up overwhelming the revenue we brought in.We spent a long time trying to find a way to make the numbers work. But with the recent shift in the VR market, along with broader headwinds in gaming, the path to profitability has gotten tough enough that we've made the difficult decision to shut things down.We're making this decision now, while we still have the ability to wind things down thoughtfully and do right by the people who built this with us. So what does this mean exactly? On June 1st:You will no longer be able to login to and play Rec RoomThe rec.net website will go offline.Online services related to Rec Room Studio will no longer be available.In preparation for the impending shutdown, as of this update the following things are changing:You can no longer create new accountsYou can no longer add someone as a friendYou can no longer sign up for Rec Room+ (RR+)If you have an active RR+ membership, that membership is extended to June 1st.We have removed the RR+ requirement from Partnered Creator. Anyone with sufficient tokens can choose to cash them out.New registrations for Partnered Creator will be halted on May 1st.You will no longer receive token rewards (e.g., at the end of an RRO)You can no longer create new monetized UGC content, including:Room inventory items and offersRoom keys, consumables, and currenciesAvatar items (in-game and Avatar Studio)The Room Rewards program has ended. March Room Rewards will be paid out in early April.You can no longer purchase or receive new Roomie EnergyAs a thank you to our players:We are discounting first party content in all stores by 80%Some RR+ only features (e.g., avatar items, custom emoji, auras, body paint) will no longer require RR+On May 1st:You will no longer be able to purchase tokens or any $-denominated offers.You can no longer redeem gift cards for tokens.After May 18th (at 11:59 PM UTC): You will not be able to earn any more tokens as a creator. You can still collect any previously-earned tokens.You can continue to spend the tokens you have until June 1st. Thank youOn behalf of the team we’d like to thank you for being a part of the Rec Room community and helping us create a fun and welcoming place for players from all walks of life over the past ~10 years. Your boundless creativity and enthusiasm has been a source of great inspiration and joy. We wish we could have found a way to keep things rolling, but unfortunately this is the end of the road.We’d also like to thank everyone who has been part of the amazing Rec Room team over the years. It has been an honor and a career highlight to work with the talented, creative and dedicated Rec Room team. Thank you for your innumerable contributions to something that brought a lot of joy (and some heartache!) into the world.Over the years, Gribbly often described Rec Room as "an explosion of love and creativity all around the world". We hope it was that for you. It certainly was for us. Q&AQ: What happens to my RR+ subscription? Your current membership will be extended to June 1st. We encourage you to manually cancel any recurring payments by following the instructions here. We will attempt to automatically cancel monthly RR+ renewals but cannot guarantee that our attempts will succeed on all platforms.Three, six and 12-month subscribers will automatically receive a refund for the unused portion of their subscription.Q: What happens to my Rec Room tokens after June 1st? Rec Room tokens can no longer be spent after June 1st.Q: I am a creator who has been earning $ from my Rec Room creations, what happens? You will not be able to earn tokens as a creator after May 18th. We will process a final creator payout on June 1st. Q: I have a Rec Room gift card, can I still use it? You can redeem gift cards and use wallet funds until April 30th. Between May 1st - June 15th, you can request a refund for unused funds via rec.net. You can reach out to support@recroom.com for more information.Q: What happens to Rec Room Studio? The Rec Room Studio build servers will go offline on June 1st. Until then you can update your rooms as normal. You can also use the in-game tools to download the non-RRS contents of your room. After the shutdown, Rec Room Studio will continue to operate in a limited offline mode, allowing you to open your cached rooms on your local computer.Q: I want to login but I can’t remember my password! If you have forgotten your login credentials, please follow the instructions here to use the standard “forgot password” flow. You will receive an email - if you don’t see it check your spam folder. The email link is valid for one hour.
+"""
+
+[R2] Snap acquires assets from Rec Room as social gaming platform announces shutdown
+(https://www.geekwire.com/2026/snap-acquires-assets-from-rec-room-as-social-gaming-platform-announces-shutdown/)
+"""
+Rec Room, the social gaming platform that reached more than 150 million players, is shutting down on June 1. (Rec Room Image) Snap Inc. confirmed late Monday that it has acquired select assets from Rec Room Inc., following the news that the Seattle-based company plans to shut down its longtime social gaming platform. Some of Rec Room’s employees will be joining Snap — but this does not appear to signal that Rec Room will be resurrected at Snap, at least not in its current form. Specifically, the Rec Room employees will work at Specs Inc., the Snap hardware subsidiary, to support its Specs eyewear and augmented reality initiatives, the California-based company said in response to an inquiry from GeekWire. Snap, the parent company of Snapchat, has maintained a Seattle engineering center since 2015. The company did not disclose deal terms, pricing, or other details of the asset sale. It’s not clear how many Rec Room employees will be hired as part of the transition. The move comes in advance of the expected launch later this year of Specs, Snap’s next-generation glasses. Snap has been betting on high-tech glasses for years, and in January established Specs Inc. as a wholly owned subsidiary to focus on its Spectacles/Specs hardware business. Snap said it was impressed with the Rec Room team’s expertise in building social, multiplayer XR experiences, the industry term for virtual reality, augmented reality, and mixed reality technologies. Reached via phone, Nick Fajt, the Rec Room co-founder and CEO, said he was “very proud of the team,” thankful to the Rec Room community, and excited for what’s next. Rec Room surprised the community earlier Monday with the news that it would shut down its platform on June 1, saying it had never found a way to make the business sustainably profitable despite reaching more than 150 million players since it was founded a decade ago. “Our costs always ended up overwhelming the revenue we brought in,” it said, noting that recent changes in the VR market and broader challenges in gaming contributed to its decision. Rec Room raised $294 million across six rounds of funding and was valued at $3.5 billion in 2021, making it part of a select group of Seattle-area startups to reach unicorn status. PREVIOUSLY: Rec Room shutting down: Once valued at $3.5B, social gaming platform finds profits elusive
+"""
+
+[R3] Social gaming platform Rec Room is shutting down
+(https://www.wcnc.com/article/news/nation-world/social-gaming-platform-rec-room-shutting-down/507-539bab9a-38a3-4a00-bfcd-bc603cdb5e3e)
+"""
+The social gaming platform drew more than 150 million players over a decade of operation. SEATTLE — Rec Room, the social gaming platform that drew more than 150 million players over a decade of operation, announced Monday it will permanently shut down on June 1. The company said it could not find a path to profitability even after building one of the largest user bases in social gaming. "Despite this popularity, we never quite figured out how to make Rec Room a sustainably profitable business," the company said in a statement posted to its blog. "Our costs always ended up overwhelming the revenue we brought in." Rec Room was founded in 2016 by Nick Fajt, Cameron Brown and other co-founders under the name Against Gravity. The startup built a cross-platform social gaming app that let players create and share games, virtual goods and experiences across phones, consoles, PCs and VR headsets. Rec Room laid off 16% of its staff in March 2025 and then cut roughly half its remaining workforce five months later, eliminating 141 positions and shrinking from about 310 employees to just over 100. The company blamed the "recent shift in the VR market" and "broader headwinds in gaming" for its inability to turn a profit. It's not alone: Meta announced this month it was scaling back its Metaverse and shutting down Horizon Worlds, the virtual reality social network. Users logging on Monday found the platform already beginning to wind down. Rec Room immediately blocked account creation, friend requests and new subscriptions to its Rec Room Plus membership. Token purchases will end May 1, creator earnings will stop May 18, and the platform will go fully dark at noon Pacific Time on June 1. Cameron Brown, Rec Room's chief creative officer known to users as "Gribbly," "often described Rec Room as 'an explosion of love and creativity all around the world,'" the company wrote. "We hope it was that for you. It certainly was for us." Rec Room users can download their photo archives and a personal "final report card" via the platform's website before June 1. Gift cards can be redeemed through April 30, and unused balances can be refunded through June 15.
+"""
+
+[R4] Why is Rec Room shutting down? Developer makes big future call as fans mourn; ‘Shattered…’ | World News
+(https://www.hindustantimes.com/world-news/why-is-rec-room-shutting-down-developer-makes-big-future-call-as-fans-mourn-shattered-101774918892344.html)
+"""
+Rec Room will shut down June 1, 2026, due to profitability issues, despite millions of users, sparking backlash from fans. Rec Room, the multiplayer VR video game that enjoyed niche popularity with millions of loyal players worldwide, is shutting down. The Seattle-based eponymous developer behind the game announced Monday that the platform will no longer be live on June 1.Representational. (Rec Room/X)The company's decision has caused fans to mourn the departure of the game. It has also raised eyebrows in the video game community as the game was dubbed as an alternative to Roblox and was valued at $3.2 billion in 2021 with over 150 million users.The company said that its decision was prompted by profitability issues despite the game's significant and loyal user base. But it has not left fans happy, as is evident from the slew of reactions on social media in the aftermath of the closure announcement.“Sad to see it go. Its how I survived most of covid and was a huge way to feel connected to IRL's I couldn't see due to it. Met some awesome people and some of the best memories ive made on any game ever was on rec room,” one fan wrote.“This is honestly so sad I grew up with this game a lot and made so many friends/memories during those years,” wrote another.“Sucks to see the rec room shutting down, made lots of videos on the game and played it for years,” noted one.“I’m extremely sad to learn that Rec Room is shutting down on June 1st. It was VR’s first social Lego-style experience,” a VR content creator said.“Rec Room shutting down has left me speechless. Its hard to believe a game I once held so dearly is leaving for good. While the community sucked, and the games were arguably worse, it takes me back to a simpler time whenever I play,” wrote one.“Rec Room shutting down my heart just shattered,” added one.What Rec Room Said About The ClosureRec Room announced the closure of the platform in a statement shared as a blog post on the website. The blog post did not reveal what will happen to the company itself, as Rec Room has been their only offering. The fate of the employees was also not revealed.Also read: What is Pokemon champions? Everything you need to know about the Nintendo switch and switch 2 gameThe statement read: "Despite this popularity, we never quite figured out how to make Rec Room a sustainably profitable business. Our costs always ended up overwhelming the revenue we brought in.We spent a long time trying to find a way to make the numbers work. But with the recent shift in the VR market, along with broader headwinds in gaming, the path to profitability has gotten tough enough that we've made the difficult decision to shut things down."Though once valued at over $3.2 billion at its peak in 2021 after a series of funding, the company's valuation has since more than halved. Current estimates value the Rec Room at around $1.4billion.Shamik is a journalist covering the United States for Hindustan Times. He has more than four years of experience reporting on US politics, sports, and major breaking stories across fast-moving cycles. He previously worked at Times Now and Sportskeeda, building strong newsroom instincts and digital storytelling skills. At HT.com, he focuses on day-to-day coverage of US political developments while also handling high-impact stories that demand speed, accuracy, clarity, and context under pressure. Shamik has extensive experience covering NFL game days over the past two years, coordinating live updates, analysis, and explainers. He is particularly drawn to large news moments such as US elections and the Super Bowl, where he thrives at the news desk working alongside the team. He holds degrees in Media Studies from Jamia Millia Islamia and English Literature from Jadavpur University. Before entering journalism, he briefly worked in digital marketing and political consultancy roles. Currently a Senior Content Producer at HT Digital, he is driven by curiosity, discipline, and a constant desire to explore new and obscure topics. Outside work, he enjoys reading, films, sports, and learning continuously.Read MoreGamePc GameClosureVideo GameGet the latest headlines from US news and global updates from Pakistan, Nepal, UK, Bangladesh, Russia, and get all the latest headlines in one place on Hindustan Times.
+"""
+
+[R5] 150 million users later, Roblox competitor Rec Room is shutting down
+(https://www.theverge.com/games/903885/150-million-users-later-roblox-competitor-rec-room-is-shutting-down)
+"""
+Jay Peters is a senior reporter covering technology, gaming, and more. He joined The Verge in 2019 after nearly two years at Techmeme.Rec Room, a Roblox-like social gaming platform that lets users create games and experiences for others to play, is shutting down on June 1st. Despite reaching more than 150 million players and creators and, at one point, being valued at $3.5 billion, the company says in a blog post that “we never quite figured out how to make Rec Room a sustainably profitable business” and that “our costs always ended up overwhelming the revenue we brought in.”The company also notes that “with the recent shift in the VR market, along with broader headwinds in gaming, the path to profitability has gotten tough enough that we’ve made the difficult decision to shut things down.” Rec Room laid off half of its staff in August, and a few days after the cuts were announced, Rec Room CEO and co-founder Nick Fajt said that that doing the layoffs when it did “gave us the ability to take care of people, while still setting up Rec Room for years, not months of funding.”Rec Room isn’t the only social gaming platform that’s struggled as of late. Starting in June, Meta’s Horizon Worlds won’t get new VR experiences as the company shifts the focus of the platform to mobile. Last week, Epic Games laid off more than 1,000 employees due to a “downturn in Fortnite engagement” that meant the company was “spending significantly more than we’re making,” according to CEO Tim Sweeney.2 CommentsFollow topics and authors from this story to see more like this in your personalized homepage feed and to receive email updates.Jay Peters
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

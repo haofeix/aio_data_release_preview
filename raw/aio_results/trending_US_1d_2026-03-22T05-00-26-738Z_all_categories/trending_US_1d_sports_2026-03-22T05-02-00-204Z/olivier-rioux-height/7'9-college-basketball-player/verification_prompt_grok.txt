@@ -1,0 +1,101 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "7'9 college basketball player"
+
+Claims:
+[1] "Olivier Rioux is a 7-foot-9 Canadian center for the Florida Gators."
+[2] "Olivier Rioux became the tallest player in college basketball history."
+[3] "Olivier Rioux made his debut as a freshman in 2026."
+[4] "Olivier Rioux held the Guinness World Record for the tallest teenager before starting his NCAA career."
+[5] "Olivier Rioux is a freshman for the Florida Gators in the 2025-26 season."
+[6] "Olivier Rioux's height is 7'9"."
+[7] "Olivier Rioux is from Terrebonne, Quebec, Canada."
+[8] "Olivier Rioux is confirmed as the tallest player in NCAA history."
+[9] "Olivier Rioux recorded his first bucket in the 2026 NCAA tournament."
+[10] "Olivier Rioux reached 7 feet tall before entering 7th grade."
+[11] "Olivier Rioux previously represented Canada in various FIBA events"
+
+Cited text snippets from the AI Overview (for additional context):
+- Florida's 7'9 Olivier Rioux met up with the viral buff Gators fan from ...: "Florida Gators just won the,the Gators defend their title."
+- Who is Florida's Olivier Rioux? Everything you need to know about the 7-foot-9 redshirt freshman center: "Who is Florida's Olivier Rioux,redshirt freshman center - Yahoo Sports"
+- Olivier Rioux, the 7’9 Canadian slams in his first bucket of # ...: "Première présence et premiers points,#olivierrioux #marchmadness"
+- Olivier Rioux (7’9”) makes Hassane Diallo (6’8”) look like a child 🤣 # ...: "Olivier Rioux checked in and,first round win 🔥 @marchmadnessmbb"
+- 7-foot-9 Florida basketball player Olivier Rioux met the viral, ...: "#Olivier_Rioux, a 7-foot,😳😳 #fblifestyle #NCAA"
+- Florida's 7-9 center has his moment: Tallest player in college basketball history dunks to bench's delight: "Olivier Rioux enters near the,Stack Up Against St. John's?"
+- 'You're a big boy!' Florida giant Olivier Rioux's height shocks Prairie ...: "How tall is Olivier Rioux,player in NCAA basketball history."
+- Florida buff guy posing with 7'9 Olivier Rioux. (: r/AbsoluteUnits): "Incoming Florida Gators freshman Olivier,tallest player in NCAA history!"
+Reference Sources:
+
+[R1] Florida's 7-9 center has his moment: Tallest player in college basketball history dunks to bench's delight - 247Sports
+(https://247sports.com/video/floridas-7-9-center-has-his-moment-tallest-player-in-college-basketball-history-dunks-to-benchs-delight-13667747)
+"""
+JoinMARCH MADNESS SALE! 50% Off Annual VIP MembershipFlorida's 7-9 center has his moment: Tallest player in college basketball history dunks to bench's delightCloseOlivier Rioux enters near the end of Florida's rout of Prairie View and delivers a putback slam.Mar 20th, 2026 - 11:42 PM00:09Magnifying GlassCloseSearchNewest Page1234...3218Oldest PagePlay01:22Illinois-UConn Final Four Preview: Who Has the Coaching Edge?Apr 1st, 2026 - 7:21 PMBJ Taylor joins CBS Sports HQ to break down which team has the coaching edge in the Final Four game between 3-seed Illinois and 2-seed UConn on Saturday, April 4thPlay01:32Illinois-UConn Final Four Preview: Who Has the Frontcourt Edge?Apr 1st, 2026 - 7:16 PMBJ Taylor joins CBS Sports HQ to break down which team has the frontcourt edge in the Final Four game between 3-seed Illinois and 2-seed UConn on Saturday, April 4thPlay01:25Illinois-UConn Final Four Preview: Who Has the Backcourt Edge?Apr 1st, 2026 - 7:13 PMBJ Taylor joins CBS Sports HQ to break down which team has the backcourt edge in the Final Four game between 3-seed Illinois and 2-seed UConn on Saturday, April 4thPlay04:47Bill Self Set to Return to Kansas for 24th SeasonApr 1st, 2026 - 6:36 PMMatt Norlander joins CBS Sports HQ to discuss Bill Self returning to Kansas for his 24th season as the head coachPlay01:54Examining How Self's Decision Impacts UNC HC OpeningApr 1st, 2026 - 6:30 PMMatt Norlander joins CBS Sports HQ to break down how Bill Self's decision to stay at Kansas impacts the UNC HC openingPlay01:15Deciding Factors for Bill Self Returning to KansasApr 1st, 2026 - 6:25 PMMatt Norlander joins CBS Sports HQ to discuss the deciding factors for Bill Self to return to Kansas next seasonPlay00:43BREAKING NEWS: Bill Self to Return to Kansas Next SeasonApr 1st, 2026 - 6:22 PMTaking a look at the news surrounding Bill Self returning to Kansas next seasonPlay01:58Final Four Preview: Pick to Win National ChampionshipApr 1st, 2026 - 5:25 PMB.J. Taylor and Mike O'Donnell join Katie Mox to discuss their picks to win the national championship.Play01:59Final Four Preview: Best Coach in the Final Four?Apr 1st, 2026 - 5:22 PMB.J. Taylor and Mike O'Donnell join Katie Mox to discuss who's the best coach in the Final Four.Newest Page1234...3218Oldest Page1247 LogoNCAA BKVIPLatest on Tommy Lloyd to UNC rumors: Arizona insider shares details on extension talks amid AD tensions2247 LogoNCAA BKVIPCollege Basketball Transfer Portal Best Available: New talent wave hits as top programs circle big names3247 LogoNCAA BKVIPTallest player in college basketball enters transfer portal: What's next for Florida's 7-foot-9 Olivier Rioux?4FB RecVIPTom's Take: Yet another great trip to Notre Dame for 2028 QB Brady Quinn5247 LogoFB RecVIPSEC program vaults to No. 1 for four-star EDGE Desmond Malpress Your Privacy Choices <div style="position: absolute; width: 0px; height: 0px; border: 0px; padding: 0px; margin: 0px; overflow: hidden;"><button></button><a href="https://yahoo.com"></a><input></div>
+"""
+
+[R2] 'You're a big boy!' Florida giant Olivier Rioux's height shocks Prairie View A&M player
+(https://www.usatoday.com/story/sports/ncaab/2026/03/21/olivier-rioux-height-prairie-view-am-player-shocked-how-tall-florida-basketball-march-madness/89261370007/)
+"""
+Updated March 21, 2026, 6:57 p.m. ETPrairie View A&M men's basketball player Hassane Diallo looked like he was in genuine shock.No, not because his team was handed the second-largest defeat in NCAA Tournament history at the hands of No. 1 Florida on Friday, March 20. Rather, it was a moment near the end of the game that made Diallo's reaction go viral.With under two minutes left in the game, Florida redshirt freshman Olivier Rioux entered the game with the Gators ahead by 62 points. With the Panthers on offense, Diallo — who is listed at 6-8 on the PVAM roster — stood next to the 7-9 center for Florida and could not believe how tall the tallest player in NCAA basketball history was.With his appearance in Friday's game, Rioux became the tallest player to ever appear in an NCAA Tournament game. Of course, setting records is nothing new for Rioux, who was 7-7 when he was 16, making him the Guinness World Record holder for the world's tallest teenager.On Nov. 6, 2025, Rioux entered Florida's game against North Florida to become the tallest player to ever play in an NCAA basketball game, beating out Manut Bol, who was 7-7 and played at Division II Bridgeport.Fifteen days later, Rioux became the tallest player to ever score a point when he made a free throw against Merrimack. On Dec. 17, he made a dunk to become the tallest player to ever score a basket.He finished the game with two points on 1-of-3 shooting to go along with two offensive rebounds and an assist. He hardly had to get off the floor to complete his dunk for his lone score.Rioux, who redshirted last season for the Gators. He is from Terrebonne, Quebec, Canada.How tall is Olivier Rioux?The Florida Gators basketball redshirt freshman is 7 foot, 9 inches, making him the tallest player in NCAA basketball history.
+"""
+
+[R3] Who is Florida's Olivier Rioux? Everything you need to know about the 7-foot-9 redshirt freshman center
+(https://sports.yahoo.com/mens-college-basketball/article/who-is-floridas-olivier-rioux-everything-you-need-to-know-about-the-7-foot-9-redshirt-freshman-center-021219666.html)
+"""
+In a sport full of tall players, Rioux is an anomaly. The 20-year-old stands at 7-foot-9 — the tallest college basketball player on record. As the Florida Gators make their way through the NCAA tournament, Rioux has been turning heads as he takes the national stage.Here’s everything you need to know about the redshirt freshman:From world’s tallest teenager to NCAA’s tallest basketball playerRioux grew up in Terrebonne, Quebec, a suburb of Montreal, and has always been very, very tall. According to his bio on the Florida website, Rioux was 6-foot-1 when he was 8 years old, and passed the 7-foot mark just before entering seventh grade.AdvertisementWhen he was 16, Rioux, measuring just over 7-5, earned a spot in the Guinness Book of World Records as the world’s tallest teenager. He then grew four more inches over the next two years, and was listed at his current 7-9 ahead of the 2024-25 season.Draft your Yahoo Fantasy Baseball team for the 2026 MLB SeasonThe rest of the Rioux family is tall as well. His father is 6-foot-8, his mother (a former volleyball player) is 6-foot-1, and his older brother (who also played basketball) is 6-foot-9. Rioux told Yahoo Sports at the Final Four last year that his family often drew attention when they went out together.“Everybody would come up to my dad and say, ‘Oh my God, how tall are you? Oh, even your child is tall?’” Rioux said, saying that his father was always “respectful.”AdvertisementRioux then committed to Florida after graduating high school in 2024.Limited minutes as a redshirt freshmanPer the Gators’ website, Rioux took a “developmental redshirt season” last year. As a result, he participated in Florida’s national championship-winning season as part of the scout team, but did not play in any games.This season, as a redshirt freshman, Rioux has played limited minutes, stepping in for 13 minutes across 10 games in the 2025-26 season. He scored five points in that span — including his first dunk against Saint Francis in December.During the postseason, Rioux played two minutes in the Gators’ first-round blowout over No. 16-seed Prairie View A&M, dropping another dunk late in the 59-point win.AdvertisementIt’s unclear if Rioux will get more minutes next season. Florida’s starting center, Rueben Chinyelu, is a junior this year. The second center in the depth chart, Micah Handlogten, is a senior this year.Rioux has been turning headsIt’s not a surprise that someone as tall as Rioux would draw attention, even in the basketball world. Rioux has been mobbed for pictures and autographs over the past year, becoming one of the most recognizable players on Florida’s team despite not playing many minutes.“It’s a lot sometimes,” Rioux said of the attention, in last year’s interview with Yahoo Sports. “Sometimes you’ve got to learn to say no.”AdvertisementStill, Rioux can’t help but attract that attention. During Florida’s win over Prairie View, an interaction between the redshirt freshman and Panthers forward Hassane Diallo — who is 6-8 — went viral, as Diallo marveled at Rioux’s height.During the break between the first and second rounds of the 2026 NCAA tournament, Rioux continued his trend of being the Gators’ most visible player, joining a Florida fan who went viral for being exceptionally buff for a photo.As the 2026 NCAA tournament continues, it’s unlikely that Rioux will play more than a couple of minutes per game, but he’ll certainly keep drawing plenty of attention.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,108 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is kroger open on easter"
+
+Claims:
+[1] "Most Kroger stores will be open on Easter Sunday, April 5, 2026, with regular operating hours."
+[2] "Pharmacies and clinics inside Kroger locations will be closed on Easter Sunday, April 5, 2026."
+[3] "The Kroger store locator states Easter Sunday hours are regular hours (typically 6 a.m. to 10 p.m. or 11 p.m.)."
+[4] "The Kroger store locator states pharmacies and clinics are closed on Easter Sunday."
+[5] "Other stores in the Kroger family of stores (e.g., Ralphs, Fred Meyer, King Soopers) are expected to be open on Easter Sunday, April 5, 2026."
+[6] "Ralphs is in the Kroger family of stores."
+[7] "Fred Meyer is in the Kroger family of stores."
+[8] "King Soopers is in the Kroger family of stores."
+
+Cited text snippets from the AI Overview (for additional context):
+- Kroger Easter Hours 2026: Will Stores Be Open This Year?: "Is Kroger Open on Easter 2026?,Kroger store locator right here."
+- Are grocery stores open on Easter? What to know for Trader ...: "When is Easter 2026?,according to the company's website."
+- Holiday Store Hours - Kroger: "We're Open This Easter,. 05 - 1 day left!"
+- Which stores will be open or closed on Easter Sunday 2026 ...: "Yes, most stores owned by,and Smith's Food and Drug."
+- Are Walmart, H-E-B, Target, Kroger open on Easter Sunday in Texas? What to know: "on Easter Sunday?-,Yes.,store for exact closing times."
+- EASTER SUNDAY 2026: WHAT WILL BE OPEN? Here's a ...: "🐣 EASTER SUNDAY 2026: WHAT,a safe and happy Easter!"
+Reference Sources:
+
+[R1] Which stores will be open or closed on Easter Sunday 2026? Here's the full list
+(https://www.wcnc.com/article/news/nation-world/easter-2026-open-closed-stores-list-costco-walmart-target/507-5b8c7163-e74b-4b2e-8d73-83c812770126)
+"""
+While many retailers scale back their hours or close entirely for the holiday, a number of major retail and restaurant chains will keep their doors open. WASHINGTON — Easter Sunday falls on April 5 this year, and if the holiday arrives and you're scrambling for last-minute groceries, a quick pharmacy run or just need to grab something on the go, knowing which stores will be open — and which won't — can save you a trip. While many retailers scale back their hours or close entirely for the holiday, a number of major retail and restaurant chains will keep their doors open. Here's what you need to know before you head out. Which stores are closed on Easter? These grocery stores and other retailers will close all locations to observe the holiday. AldiBest BuyThe Container StoreCostcoDick's Sporting GoodsH-E-BHobby LobbyHomeGoodsKohl'sLowe'sMacy's Marshall'sMichaelsNatural GrocersNordstrom/Nordstrom RackPublixSam's ClubTargetT.J. Maxx What is open on Easter Sunday? Some of these stores will be open on Easter for reduced hours, but individual locations may be closed. Check with individual locations for specific store and pharmacy hours. 7-ElevenAlbertson'sBarnes & NobleBass Pro ShopsBig LotsBJ's WholesaleBurger KingCVSCracker BarrelDollar GeneralDomino'sDunkin’Family DollarFood LionGiant EagleGolden CorralHarris TeeterHome DepotIHOPIKEAKroger (stores include Baker’s, City Market, Dillons, Food 4 Less, Foods Co, Fred Meyer, Fry’s, Gerbes, Jay C Food Store, King Soopers, Kroger, Mariano’s, Metro Market, Pay-Less Super Markets, Pick’n Save, QFC, Ralphs, Ruler, Smith’s Food and Drug)LidlMcDonald’sMeijerPetcoPetSmartSafewayStarbucksTaco BellTrader Joe'sWalgreensWalmartWegman'sWendy'sWhole Foods Is Target open on Easter? No, all Target stores will be closed on Easter 2026. Is Walmart open on Easter? Yes, Walmart stores are open on Easter Sunday for 2026. Is Costco open on Easter? No, Costco is not open on Easter 2026. Easter Sunday is one of the seven holidays that Costco closes its U.S. warehouses. Is Sam's Club open on Easter? No, Sam's Club will be closed on Easter. Is Macy's open on Easter? No, Macy's will be closed on Easter. Is T.J. Maxx open on Easter? No, T.J. Maxx and other stores part of the TJX company, including HomeGoods and Marshalls, will be closed on Easter. Is Kohl's open on Easter? No, Kohl's will be closed on Easter. Is Kroger open on Easter? Yes, most stores owned by Kroger should be open their normal hours on Easter, but may have reduced hours. The Kroger Co. Family of Stores includes Baker’s, City Market, Dillons, Food 4 Less, Foods Co, Fred Meyer, Fry’s, Gerbes, Jay C Food Store, King Soopers, Kroger, Mariano’s, Metro Market, Pay-Less Super Markets, Pick’n Save, QFC, Ralphs, Ruler and Smith’s Food and Drug. Is Aldi open on Easter? No, Aldi will be closed on Easter. Is Trader Joe's open on Easter? Yes, most Trader Joe's locations will be open on Easter. Confirm hours with your individual location. Is Whole Foods open on Easter? Yes, Whole Foods will be open on Easter. Is CVS open on Easter? Is Walgreens open on Easter? Yes, Walgreens will be open Easter Sunday but hours will vary by location.
+"""
+
+[R2] Are Kroger Stores Open on Easter? What to Know for 2026
+(https://www.today.com/life/holidays/is-kroger-open-easter-2026-rcna262771)
+"""
+Kroger Easter Hours 2026: Will Stores Be Open This Year?Find out if the grocery chain will be welcoming customers on Sunday, April 5, plus holiday hours. April 4, 2026, 2:00 PM CDTWill Kroger grocery stores be open this Easter? What to know for Sunday, April 5, 2026.Bloomberg / Getty ImagesCreate your free account or log in to save this articleEaster falls on Sunday, April 5, this year. Whatever you've got on the calendar to mark the Christian holiday, whether it's going out for Easter brunch with loved ones or hosting dinner at home, you may be in need of a few essentials to ensure the April holiday goes off without a hitch. If you're planning a trip to the grocery store this Sunday, you may be wondering if Kroger will be open on Easter in 2026.Given that many retailers, restaurants and businesses are closed in observance of the Easter holiday, as well as some major grocery chains, including Target, Costco and Publix, it's a fair question.For the most up-to-date information on Kroger Easter hours, TODAY.com reached out directly to the grocer for the latest on whether or not store locations will be open on Sunday, April 5, along with open and close times. See below to learn Kroger's hours, as well as other stores that fall under the Kroger brand, including Baker’s, City Market, Dillons, Food 4 Less, Foods Co, Fred Meyer, Fry’s, Gerbes, Metro Market, Pick ‘n Save, QFC, Ralphs, Smith’s Food and Drug, and others. Whatever you've got planned for Easter, here's what to know about Kroger stores this weekend.According to a Kroger spokesperson, a majority of Kroger grocery stores will be open during regular business hours on Easter Sunday.Standard store hours are typically 6 a.m. to 10 p.m. or 7 a.m. to 11 p.m., but hours may vary by location. Because of that, it's a good idea to confirm local open and close times ahead of visiting your nearest Kroger on Easter.For specific store details, check the Kroger store locator right here. Grocery Stores Open on Easter 2026Along with Kroger, see below for other grocery stores that are open this Sunday or find a complete list right here. Harris Teeter: Stores will be open during normal business hours. Find local hours here.Meijer: Stores will be open from 6 a.m. to midnight. Find local hours here.Stop and Shop: Stores will be open from 7 a.m. to 5 p.m. Pharmacies are closed. Find local hours here. Trader Joe’s: Stores will be open during regular business hours. Find local hours here.Walmart: Stores will be open during normal business hours. Find local hours here.Whole Foods: Stores will be open until 6 p.m. Find local hours here.Winn-Dixie: Stores will be open during normal business hours. Find local hours here.
+"""
+
+[R3] Are grocery stores open on Easter? What to know for Trader Joe's, more
+(https://www.usatoday.com/story/grocery/stores/2026/04/03/grocery-stores-open-closed-easter-2026/89422156007/)
+"""
+Updated April 3, 2026, 2:08 p.m. ETEaster is this Sunday, marking an important holiday in the Christian faith.The holiday, which follows a 40-day period known as Lent, celebrates the resurrection of Jesus Christ. The date Easter is celebrated on changes from year to year because it is one of several "moveable feasts" in the liturgical year, according to the History Channel.The History Channel says the Christian church determined in the fourth century A.D. that Easter should be observed on the first Sunday after the first full moon occurring on or after the spring equinox. In Western Christianity, this means Easter always falls on a Sunday between March 22 and April 25.This year, the holiday falls on April 5 and some retail and restaurant chains will be closed in observance of Easter Sunday. That will also be the case for grocery stores.Here's what you need to know about which grocery stores will be open and closed on Easter in 2026. It is always a good idea to check online for your local store's hours, as store hours can vary by location.When is Easter 2026?This year, Easter falls on Sunday, April 5.Is Walmart open on Easter?Yes, Walmart stores will be open regular hours on Easter, according to the company's website. Most Walmart stores are open from 6 a.m. to 11 p.m. daily.Is Kroger open on Easter?According to Kroger's website, stores will be open regular hours on Sunday, April 5. Pharmacies and clinics, however, will be closed.The Kroger family of stores includes: Baker’s, City Market, Dillons, Food 4 Less, Foods Co, Fred Meyer, Fry’s, Gerbes, Jay C Food Store, King Soopers, Kroger, Mariano’s, Metro Market, Pay-Less Super Markets, Pick’n Save, QFC, Ralphs, Ruler, Smith’s Food and Drug.Is Costco open on Easter?No, Costco warehouses will be closed on Easter, according to the company's website.Is Sam's Club open on Easter?No, Sam's Club warehouses will be closed on Easter Sunday, according to the company's website.Is BJ's Wholesale Club open on Easter?Yes, most BJ's warehouses will be open from 8 a.m. to 6 p.m. on Easter Sunday, according to the company's website.Is Trader Joe's open on Easter?Yes, Trader Joe's stores will be open during normal hours on Easter.Is Whole Foods open on Easter?According to the company's website, most Whole Foods stores will be open on Easter, but many will close earlier than usual.Customers can use the company's store locator tool to confirm their local store's hours.Is Aldi open on Easter?No, Aldi stores will be closed on Sunday, April 5, according to the company's website.Is Meijer open on Easter?Yes, Meijer stores will be open from 6 a.m. to midnight on April 5, the company confirmed to USA TODAY.Is Food Lion open on Easter?Yes, Food Lion stores will be open during their normal business hours on Easter.Is Publix open on Easter?No, Publix stores will be closed on Sunday, April 5, the company told USA TODAY.Is Safeway open on Easter?Most Albertson's banner stores will be open on Easter, the company told USA TODAY. Customers are encouraged to check with their local store for pharmacy hours on Easter.Those stores include Safeway, Albertsons, Jewel-Osco, ACME, Vons and Tom Thumb.Is Lidl open on Easter?Yes, Lidl stores will be open regular hours on April 5, the company confirmed to USA TODAY.Is Harris Teeter open on Easter?Harris Teeter stores will be open regular hours on Easter, the company told USA TODAY.Is Giant Eagle open on Easter?All Giant Eagle, Market District and Market District Express stores will close at 4 p.m. local time on Easter, the company told USA TODAY. Giant Eagle Express will be open regular hours.All Giant Eagle pharmacy locations will be closed on Easter.Is Wegman's open on Easter?Yes, Wegman's stores will be open during regular hours on Easter.Is Winn-Dixie open on Easter?All Winn-Dixie grocery and liquor stores will be open regular hours on Easter Sunday, the company told USA TODAY.Gabe Hauari is a national trending news reporter at USA TODAY. You can follow him on X @GabeHauari or email him at Gdhauari@gannett.com.
+"""
+
+[R4] Are Walmart, H-E-B, Target, Kroger open on Easter Sunday in Texas? What to know
+(https://www.star-telegram.com/news/business/fort-worth/article315290292.html)
+"""
+Easter Sunday is a big day for many families across Texas, whether it’s spent at church, around the dinner table or celebrating with loved ones.But when it comes to shopping, the day doesn’t always look like a typical Sunday. Depending on where you go, you may find some doors closed.Several major retailers shut down for Easter, while others remain open, sometimes with adjusted hours.That can make it harder to plan if you need to pick up groceries or grab last-minute items for an Easter basket.Here’s what to know before you head out.Yes. Walmart stores will be open on during regular hours on Easter Sunday, from 6 a.m. to 11 p.m.Hours can vary by location, so it’s best to check with your local store.Is H-E-B open on Easter Sunday?No. H-E-B stores are closed on Easter Sunday. That includes curbside and home delivery services.Stores are expected to reopen at 9 a.m the following day, according to its website.Is Target open on Easter Sunday?No. Target stores are closed on Easter Sunday.The retailer is one of several major chains that shut down operations for the holiday.Is Costco open on Easter Sunday?No. Costco warehouses are closed on Easter Sunday.Easter is one of several holidays when all locations close nationwide.Is Sam’s Club open on Easter Sunday?No. Sam’s Club locations are closed on Easter Sunday, according to its website.The company follows a similar holiday schedule to Costco.Is Kroger open on Easter Sunday?Yes. Kroger stores are open on Easter Sunday and operate during regular hours, typically from 6 a.m to 11 p.m.However, pharmacy and clinic services inside stores will be closed, according to its website.Is Aldi open on Easter Sunday?No. Aldi stores are closed on Easter Sunday.The chain regularly closes for major holidays, including New Years, Thanksgiving, and Christmas.Is Whole Foods open on Easter Sunday?Yes. Most Whole Foods locations are open on Easter Sunday, but many operate on reduced hours.Check with your local store for exact closing times. Tiffani is a service journalism reporter for the Fort Worth Star-Telegram. She is part of a team of local journalists who answer reader questions about life in North Texas. Tiffani mainly writes about Texas laws and health news.
+"""
+
+[R5] Kroger
+(https://www.kroger.com/f/holiday-hours)
+"""
+Return to top navigationWe’re Open This EasterWith regular store hours. Pharmacies and clinics will be closed.Seasonal FavoritesAvailable Offers Cash Back$0.50 Cash Back on Sumo CitrusExp. Apr. 20 - 4 days left!Save Save $0.50 on Sumo CitrusExp. Apr. 20 - 4 days left!4X Fuel Points4X Fuel Points on Produce Purchases 4/15 - 4/21 excluding Floral items. Points load within 24 hrsExp. Apr. 21 - 5 days left!Available Offers4X Fuel Points4X Fuel Points on Produce Purchases 4/15 - 4/21 excluding Floral items. Points load within 24 hrsExp. Apr. 21 - 5 days left!$17.99 discounted from $20.99Available OffersBuy 1, Get 1 50% offExp. Jan. 05 $11.99 discounted from $13.99about​$10.99 discounted from $17.99​each​SNAP EBTAvailable OffersBuy 1, Get 1 50% offExp. Jan. 05 Available Offers4X Fuel Points4X Fuel Points on Produce Purchases 4/15 - 4/21 excluding Floral items. Points load within 24 hrsExp. Apr. 21 - 5 days left!$15.99 discounted from $16.99Available Offers4X Fuel Points4X Fuel Points on Produce Purchases 4/15 - 4/21 excluding Floral items. Points load within 24 hrsExp. Apr. 21 - 5 days left!$3.99 discounted from $5.49$2.99 discounted from $4.99SNAP EBTAvailable Offers4X Fuel Points4X Fuel Points on Produce Purchases 4/15 - 4/21 excluding Floral items. Points load within 24 hrsExp. Apr. 21 - 5 days left!$7.99 discounted from $9.99Available Offers4X Fuel Points4X Fuel Points on Produce Purchases 4/15 - 4/21 excluding Floral items. Points load within 24 hrsExp. Apr. 21 - 5 days left!about​$12.85​each​SNAP EBTAvailable Offers4X Fuel Points4X Fuel Points on Produce Purchases 4/15 - 4/21 excluding Floral items. Points load within 24 hrsExp. Apr. 21 - 5 days left!Available Offers4X Fuel Points4X Fuel Points on Produce Purchases 4/15 - 4/21 excluding Floral items. Points load within 24 hrsExp. Apr. 21 - 5 days left!Available OffersSave Save $0.50 on Kro Hotdog or Hamburger BunsExp. May. 05 $7.99 discounted from $9.99SNAP EBT$14.99 discounted from $19.99$3.99 discounted from $5.00SNAP EBT$15.99 discounted from $20.99about​$13.25​each​SNAP EBT$12.99 discounted from $13.99SNAP EBT$4.69 discounted from $4.99SNAP EBTAvailable Offers4X Fuel Points4X Fuel Points on Produce Purchases 4/15 - 4/21 excluding Floral items. Points load within 24 hrsExp. Apr. 21 - 5 days left!$3.49 discounted from $3.99SNAP EBT$7.99 discounted from $9.99SNAP EBT$24.99 discounted from $29.99$9.99 discounted from $11.99SNAP EBTAvailable OffersSave Save $0.50 on Kro Hotdog or Hamburger BunsExp. May. 05 Get Ready for EasterFrom menu makers to basket fillers, you’ll find just what you need.Get Ready for EasterFrom menu makers to basket fillers, you’ll find just what you need.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

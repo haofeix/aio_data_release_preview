@@ -1,0 +1,97 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "kid rock house"
+
+Claims:
+[1] "Kid Rock owns a 27,000-square-foot mansion in Whites Creek, Tennessee, near Nashville."
+[2] "Kid Rock's mansion in Whites Creek, Tennessee is designed as a "mini White House" replica."
+[3] "Kid Rock's property is known as the "Southern White House"."
+[4] "The "Southern White House" features an imitation Oval Office."
+[5] "The "Southern White House" features a swimming pool with a Statue of Liberty replica."
+[6] "The "Southern White House" features a bowling alley."
+[7] "The "Southern White House" features a 24-karat gold-plated urinal."
+[8] "Kid Rock's property is situated on a large estate about 11 miles outside downtown Nashville, TN."
+[9] "Kid Rock's mansion took approximately 20 years to build."
+[10] "Kid Rock's mansion includes a bar styled after the White House Mess."
+[11] "Kid Rock's mansion includes a massive backyard deck."
+[12] "In March 2026, the US Army initiated an investigation into a video posted by Kid Rock."
+[13] "The video posted by Kid Rock showed Apache helicopters flying low over his swimming pool."
+[14] "During the construction of the main home, Kid Rock lived in a nearby large manufactured home."
+[15] "Kid Rock's large manufactured home is often referred to as his "double-wide"."
+
+Cited text snippets from the AI Overview (for additional context):
+- Kid Rock shows off his incredible house in Nashville 🤩 - Facebook: "Kid Rock's new 27,000-sq,🥰🥰😍😍"
+- Kid Rock's Video of U.S. Army Helicopter Flyby Sparks Backlash: "The U.S. Army raised its,the U.S. Army is investigating."
+- Kid Rock shows off his incredible house in Nashville 🤩 #axstv # ...: "The man oozes success.&text=We're jumping the players,going to touch that line."
+- Kid Rock's 27,000-square-foot mini White House in Nashville is packed ...: "11󰞋󱟠-,Kid Rock's 27,000-square-foot mini White House in Nashville,golden urinal and matching shower."
+- Kid Rock's Whites Creek Estate - House Of Celebs - Facebook: "Whites Creek Estate-,🤠 Kid Rock's Whites Creek Estate – $5 Million “Mini White,of grand Southern style."
+- Kid Rock, Multi-millionaire Entertainer, Lives in a Double-Wide: "Kid Rock, Multi-millionaire Entertainer,Lives in a Double-Wide"
+Reference Sources:
+
+[R1] Kid Rock, Multi-millionaire Entertainer, Lives in a Double-Wide
+(https://lightersideofrealestate.com/news/kid-rock-multi-millionaire-entertainer-lives-double-wide)
+"""
+When you think of your average rock star, you probably picture him living in a multi-million dollar mansion, surrounded by luxury items galore. But rather than be bothered with flashy art work, a one-of-a-kind wine cellar, or a pricy infinity pool, Michigan native Kid Rock prefers to keep it real. Real simple, that is. The multi-platinum artist, who’s sold more than 26 million albums across the globe, hangs his cowboy hat inside a doublewide trailer he placed on the 102 acres he owns outside of Nashville, Tennessee. During The Big Interview with Dan Rather, the artist, whose music spans hip-hop, country, rap, and rock-n-roll, invited the longtime journalist inside his “troublewide.” There, he offered a glimpse into the “simple” life and explained why he enjoys his unconventional residence so darn much. “I live in a doublewide trailer,” he told Rather. “It’s not like I require a lot. You know, I’ve learned to downsize through the years and it’s really made me more happy.” So, just what is it about this trailer-living that’s got the “Born Free” singer so enthralled? “It comes in two weeks,” he told Rather. “I’m a very impatient person. It comes delivered to the door in two weeks. You can customize a few things in there as you go along. You can put a cool wrap on it. I wrapped mine in mossy oak. Very easy to clean. Simplicity at its finest.” Those wishing to catch a glimpse of the trailer Kid Rock calls home need look no further than the musician’s latest video “Po-Dunk,” released on July 13, in which his residence makes a prominent appearance. “It’s a great conversation piece,” said the rocker, whose real name is Robert James Ritchie. Sure, he’s got plenty of land, but with all his money, wouldn’t Kid want to spread out a bit when he’s indoors? Apparently not. While visiting friends in his industry, the musician has certainly seen some impressive homes, but rather than make him reconsider his decision to life humbly, it only reinforces it. “You go to these houses and I go, ‘Where do you start in this thing?’ Like, ‘How many times do you use the movie theater?’ I’ve built one. I maybe went in there once. Usually, because I was too drunk and couldn’t find the bedroom. It’s just like a freakin’ maintenance nightmare,” the “Bawitdaba” singer told Rather. The Grammy nominee may also be a bit sour on splashy homes these days after recently selling the Malibu estate he purchased in 2006 for a $2.1 million loss, according to The New York Post. (Unless he dips it in gold, he’ll never take a hit like that on a doublewide!) But the ability to replace his home should anything happen to it probably ranks highest among the attributes he likes best about it. “If that trailer burns down or blows off the mountain, order another one,” he said. “It’ll be here in two weeks.” And there you have it. Real estate wisdom from an unexpected source. If Rock ever gets bored with music, he’s got a great career ahead of him as a doublewide salesman.
+"""
+
+[R2] U.S. Attack Helicopters Flew to Kid Rock’s House. The Army Is Investigating
+(https://www.rollingstone.com/music/music-news/kid-rock-army-helicopter-flyby-1235538903/)
+"""
+Skip to main content U.S. Attack Helicopters Flew to Kid Rock’s House. The Army Is Investigating The singer posted a video of himself saluting one of the aircraft, which reportedly circled his home four times Kid Rock saluted and waved at U.S. Army helicopters during an apparent flyby of his Nashville-area home this weekend. Tom Williams/CQ-Roll Call, Inc/Getty Images The U.S. Army raised its maximum age for enlistment to 42, which means Kid Rock, 55, still can’t join up. But that didn’t stop the MAGA mouthpiece from playing military man this past weekend in Nashville when he posted a video of himself saluting a pair of U.S. Army attack helicopters that, for reasons unknown, were hovering over his home in Whites Creek, Tennessee, a rural area about 11 miles outside of downtown. In a video shared to Rock’s Instagram, the singer can be seen clapping for the two Apache helicopters from the pool deck of his home — a replica of the White House that he’s dubbed “The Southern White House.” A miniature Statue of Liberty watches over the pool. (Note: The real White House does not have a Statue of Liberty replica, yet.) “This is a level of respect that shit-for-brains governor of California will never know,” Rock captioned the video, a dig at Gavin Newsom. “God bless America and all those who have made the ultimate sacrifice to defend her.” Rock’s caption suggests that someone is paying respect somewhere: The pilots to the rapper? The rocker to the military? Either way, the flyby stunt sparked a slew of comments online asking if the drop-in was approved, by whom, and if it cost taxpayer dollars. Now, the U.S. Army is investigating. In a statement to Nashville news channel WKRN, a spokesperson for the 101st Airborne Division, based at Fort Campbell, Kentucky, where a hologram of the late Charlie Daniels is slated to perform this Independence Day, said an investigation is underway. “Fort Campbell leadership is aware of a video circulating on social media depicting AH-64 Apache helicopters operating in the vicinity of a private residence associated with Mr. Robert Ritchie (also known as ‘Kid Rock’),” Maj. Jonathon Bless, public affairs officer for the 101st Airborne Division, said. “The command has initiated an investigation to review the circumstances surrounding this activity.” According to flight-tracking data online, at least one of the helicopters circled Rock’s estate four times over a three-minute span. In a statement to The Washington Post, Bless said that the aircraft were on a training mission; the flyby was not planned as part of that mission. Trending Stories “An administrative review is underway to assess the mission and verify compliance with regulations and airspace requirements,” said another Army spokesperson, Maj. Montrell Russell. “Appropriate action will be taken if any violations are found.” The helicopters’ sojourn to Rock’s home occurred on the same day as No Kings protests in Nashville. Music Music News More News Most Popular You might also like UPDATED Terms of Use/Your Privacy RightsClose privacy/terms of use policyPMC has recently updated its Terms of Use. By continuing to use our services, you agree to our updated Terms of Use, including waiver and arbitration. PMC, its service providers, and third-party partners process information about you and how you use our services, including clicks and screen recordings, using first and third-party cookies, pixels, and similar technologies. Where applicable, you can opt out of certain uses of cookies via the Your Privacy Choices link in our footer. Learn more about our data practices in our Privacy Policy.Your Privacy Choices: Targeted Ad and Personal Information Sale Opt Out (Virginia Residents)As explained in our Privacy Policy, we and our ad partners collect certain information from our visitors through cookies and similar technologies and combine it with information from other businesses to deliver more relevant ads to you and for related advertising activities. We may also share certain contact information for these purposes. This is processing your personal information ("PI") for targeted ads and may be considered “selling” PI under applicable law. We may also sell or license certain information, such as contact or subscription information, to third parties to provide you offers and opportunities that may interest you. If you are a Virginia resident, to opt out of these activities on this service to the extent they are for target ads or are a sale, use the toggle below. If you want to opt out for information that is not cookie based, please complete the opt out form below. Privacy PolicyOpt-Out Form Manage PreferencesStrictly Necessary CookiesThese cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work. These cookies do not store any personally identifiable information.Allow Targeted Ads or Sale of Personal Information Allow Targeted Ads or Sale of Personal Information Move the toggle to the left (grey color) and click “Confirm My Choices,” to indicate that you do not want us to sell or process your personal information for targeted ads as described above. You must indicate your choice on each computer/browser you use to access our services and fill out the opt out form above for non-cookie based data. If you clear your cookies or your browser is set to do so, you must opt out using the toggle again.Cookie List
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

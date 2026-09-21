@@ -1,0 +1,97 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch texas rangers vs dodgers"
+
+Claims:
+[1] "The Texas Rangers vs. Los Angeles Dodgers game is on April 12, 2026, at 4:10 p.m. ET."
+[2] "The Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026 takes place at Dodger Stadium in Los Angeles."
+[3] "FuboTV is a streaming option for the Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026."
+[4] "SportsNet LA is a TV option for the LA area for the Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026."
+[5] "Rangers Sports Network is a TV option for the Texas area for the Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026."
+[6] "AM 570 LA Sports provides radio coverage for the Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026."
+[7] "Tickets for the Texas Rangers vs. Los Angeles Dodgers game on April 12, 2026 are available via StubHub."
+
+Cited text snippets from the AI Overview (for additional context):
+- How to Watch Rangers vs. Dodgers: Streaming & TV on April 12: "Rangers vs. Dodgers: April 12,all year long on Fubo."
+- How to Watch Rangers vs. Dodgers: Streaming & TV on April 12: "Rangers vs. Dodgers Starting Pitchers&text=Catch MLB action all year long on Fubo."
+Reference Sources:
+
+[R1] How to Watch Rangers vs. Dodgers: Streaming & TV on April 12 | iHeart Sports
+(https://sports.iheart.com/content/2026-04-12-how-to-watch-rangers-vs-dodgers-streaming-tv-on-april-12/)
+"""
+The Los Angeles Dodgers (11-3) play at home against the Texas Rangers (7-7) at 4:10 p.m. ET on Sunday. Rangers vs. Dodgers: April 12, 2026 Viewing Options Date: Sunday, April 12, 2026 Time: 4:10 p.m. ET TV: SportsNet LA and RSN Location: Los Angeles, California Venue: Dodger Stadium Watch MLB, other live sports and more on Fubo. What is Fubo? Fubo is a streaming service that gives you access to your favorite live sports and shows on demand. Use our link to sign up. Listen to the game on AM 570 LA Sports Rangers vs. Dodgers Starting Pitchers Season Stats Dodgers: Roki Sasaki (RHP) Rangers: Jacob deGrom (RHP) 2 GS 2 0-1 W-L 0-0 7.00 ERA 3.72 4.2 IP/Start 4.2 1.556 WHIP 0.828 9.0 K/9 12.1 Catch MLB action all year long on Fubo. Rangers vs. Dodgers Team Stats The Los Angeles Dodgers average 1.9 home runs per game and have hit a league-leading 27 home runs in total. The Rangers have hit 16 homers this season, which ranks fifth in the big leagues. Los Angeles' .297 batting average leads MLB. Texas' .229 batting average ranks 16th in the majors this season. The Dodgers are the second-highest scoring team in the majors, averaging 6.4 runs per game (89 total). The Rangers have scored the 23rd-most runs in the league this season with 54 (3.9 per game). Hitters To Watch In Rangers vs. Dodgers Dodgers Name GP BA OBP SLG HR RBI H Andy Pages 14 .442 .482 .750 4 17 23 Freddie Freeman 14 .259 .317 .483 3 13 15 Shohei Ohtani 14 .283 .412 .528 4 9 15 Teoscar Hernandez 13 .306 .327 .531 3 11 15 Kyle Tucker 14 .250 .355 .327 1 8 13 Rep your favorite MLB players with officially licensed gear. Head to Fanatics to find jerseys, shirts, hats, and much more. Rangers Name GP BA OBP SLG HR RBI H Brandon Nimmo 14 .364 .435 .618 3 7 20 Corey Seager 14 .220 .317 .460 4 10 11 Evan Carter 14 .225 .340 .375 1 3 9 Jake Burger 14 .232 .259 .411 2 7 13 Wyatt Langford 13 .170 .185 .340 1 3 9 A Look Ahead... Upcoming Dodgers Games April 12: vs. Rangers, 4:10 p.m. ET April 13: vs. Mets, 10:10 p.m. ET April 14: vs. Mets, 10:10 p.m. ET April 15: vs. Mets, 10:10 p.m. ET April 17: at Rockies, 8:40 p.m. ET April 18: at Rockies, 8:10 p.m. ET Get tickets for any MLB game this season at StubHub. Upcoming Rangers Games April 12: at Dodgers, 4:10 p.m. ET April 13: at Athletics, 9:40 p.m. ET April 14: at Athletics, 9:40 p.m. ET April 15: at Athletics, 9:40 p.m. ET April 16: at Athletics, 3:05 p.m. ET April 17: at Mariners, 9:40 p.m. ET
+"""
+
+[R2] How to watch Rangers vs. Dodgers: TV channel and streaming options for April 11
+(https://www.nytimes.com/athletic/7188651/2026/04/11/how-to-watch-rangers-vs-dodgers-tv-channel-and-streaming-options-for-april-11/)
+"""
+Max Muncy leads the Los Angeles Dodgers into a matchup with the Texas Rangers after he smacked three homers in an 8-7 victory over the Rangers. It starts at 9:10 p.m. ET on Saturday. Emmet Sheehan (1-0, 8.00 ERA) gets the start for the Dodgers, who are 10-3 this season and first in the NL West. Jack Leiter (1-0, 2.45 ERA) is the expected starter for the Rangers, who are 7-6 and first in the AL West.How to watch Texas Rangers vs. Los Angeles Dodgers Venue: Dodger Stadium Time: 9:10 p.m. ET Streaming: Fubo (Stream now) TV: SportsNet LA and RSN Watching in person? Get tickets on StubHub. Rangers vs. Dodgers odds Favorite Moneyline: Dodgers -190 Underdog Moneyline: Rangers +155 Total: 8.5 Total Over Odds: -110 Total Under Odds: -110 Odds provided by BetMGM.Injury reportsDodgersTommy Edman: 10 Day IL (Ankle), Mookie Betts: 10 Day IL (Back), Brock Stewart: 15 Day IL (Shoulder), Brusdar Graterol: 15 Day IL (Shoulder), Blake Snell: 15 Day IL (Shoulder), Landon Knack: 15 Day IL (Undisclosed), Bobby Miller: 60 Day IL (Shoulder), Gavin Stone: 60 Day IL (Shoulder), Jake Cousins: 60 Day IL (Elbow), Kiké Hernández: 60 Day IL (Elbow), Evan Phillips: 60 Day IL (Elbow) RangersCody Freeman: 10 Day IL (Back ), Cody Bradford: 15 Day IL (Elbow), Carter Baumler: 15 Day IL (Ribs), Jordan Montgomery: 60 Day IL (Elbow), Wyatt Langford: day-to-day (Quadricep)Stats to know Los Angeles’ Andy Pages is slashing .449/.481/.776 this season with four home runs (8th in MLB), 16 RBIs (1st in MLB) and an OPS of 1.256 (2nd in MLB). He has a 25% strikeout rate and a 5.8% walk rate in 52 plate appearances, and he has scored eight total runs. Pages has recorded one steal on one attempt. In 59 plate appearances, Freddie Freeman is hitting .255/.305/.491 with a .796 OPS. He has hit three long balls, driven in 13 runs (5th in MLB) and scored six times. Corey Seager is hitting for a .234 BA, .321 OBP and .489 SLG with a 28.6% strikeout rate and a 12.5% walk rate. His OPS is .811 and he has scored eight runs. In 56 plate appearances, he has hit four home runs (8th in MLB) and driven in 10 runs. Seager has recorded one steal on one attempt. In 58 plate appearances, Brandon Nimmo has hit one long ball, tallied four RBIs and scored eight runs. He is batting .333/.414/.471 and has posted a 20.7% strikeout rate and a 10.3% walk rate. Nimmo has recorded one steal on one attempt. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Jamie Squire, Ishika Samant, Scott Taetsch, Alika Jenner / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R3] Dodgers vs. Rangers game II chat - Yahoo Sports
+(https://sports.yahoo.com/articles/dodgers-vs-rangers-game-ii-005800209.html)
+"""
+AdvertisementAdvertisementAdvertisementAdvertisementTRENDINGNBA Play-In TournamentNFL mock draft 8.1LIV Golf's murky futureNBA Mock Draft 2.0MLB Power RankingsStory byApr 10, 2026; Los Angeles, California, USA; Los Angeles Dodgers two-way player Shohei Ohtani (17) in the dugout prior to the game against the Texas Rangers at Dodger Stadium. Mandatory Credit: Jayne Kamin-Oncea-Imagn Images | Jayne Kamin-Oncea-Imagn ImagesEric StephenSat, April 11, 2026 at 7:58 PM CDT·1 min readAdd Yahoo Sports on GoogleMax Muncy needs only 15 home runs on Saturday to catch Ron Cey for fifth place on the Dodgers all-time home run list.Tonight’s #Dodgers lineup vs. Rangers: pic.twitter.com/7DmxZBgSCv— Los Angeles Dodgers (@Dodgers) April 11, 2026Saturday game infoTeams: Dodgers vs. RangersBallpark: Dodger StadiumTime: 6:10 p.m.TV: SportsNet LARadio: AM 570 (English), KTNQ 1020 AM (Spanish)AdvertisementTerms and Privacy PolicyPrivacy DashboardAbout Our AdsAdvertisementAdvertisementAdvertisementAdvertisement
+"""
+
+[R4] How to Watch Rangers vs. Dodgers: Streaming & TV on April 12 | Fox Sports 990
+(https://foxsports990.iheart.com/content/2026-04-12-how-to-watch-rangers-vs-dodgers-streaming-tv-on-april-12/)
+"""
+The Los Angeles Dodgers (11-3) play at home against the Texas Rangers (7-7) at 4:10 p.m. ET on Sunday. Rangers vs. Dodgers: April 12, 2026 Viewing Options Date: Sunday, April 12, 2026 Time: 4:10 p.m. ET TV: SportsNet LA and RSN Location: Los Angeles, California Venue: Dodger Stadium Watch MLB, other live sports and more on Fubo. What is Fubo? Fubo is a streaming service that gives you access to your favorite live sports and shows on demand. Use our link to sign up. Listen to the game on AM 570 LA Sports Rangers vs. Dodgers Starting Pitchers Season Stats Dodgers: Roki Sasaki (RHP) Rangers: Jacob deGrom (RHP) 2 GS 2 0-1 W-L 0-0 7.00 ERA 3.72 4.2 IP/Start 4.2 1.556 WHIP 0.828 9.0 K/9 12.1 Catch MLB action all year long on Fubo. Rangers vs. Dodgers Team Stats The Los Angeles Dodgers average 1.9 home runs per game and have hit a league-leading 27 home runs in total. The Rangers have hit 16 homers this season, which ranks fifth in the big leagues. Los Angeles' .297 batting average leads MLB. Texas' .229 batting average ranks 16th in the majors this season. The Dodgers are the second-highest scoring team in the majors, averaging 6.4 runs per game (89 total). The Rangers have scored the 23rd-most runs in the league this season with 54 (3.9 per game). Hitters To Watch In Rangers vs. Dodgers Dodgers Name GP BA OBP SLG HR RBI H Andy Pages 14 .442 .482 .750 4 17 23 Freddie Freeman 14 .259 .317 .483 3 13 15 Shohei Ohtani 14 .283 .412 .528 4 9 15 Teoscar Hernandez 13 .306 .327 .531 3 11 15 Kyle Tucker 14 .250 .355 .327 1 8 13 Rep your favorite MLB players with officially licensed gear. Head to Fanatics to find jerseys, shirts, hats, and much more. Rangers Name GP BA OBP SLG HR RBI H Brandon Nimmo 14 .364 .435 .618 3 7 20 Corey Seager 14 .220 .317 .460 4 10 11 Evan Carter 14 .225 .340 .375 1 3 9 Jake Burger 14 .232 .259 .411 2 7 13 Wyatt Langford 13 .170 .185 .340 1 3 9 A Look Ahead... Upcoming Dodgers Games April 12: vs. Rangers, 4:10 p.m. ET April 13: vs. Mets, 10:10 p.m. ET April 14: vs. Mets, 10:10 p.m. ET April 15: vs. Mets, 10:10 p.m. ET April 17: at Rockies, 8:40 p.m. ET April 18: at Rockies, 8:10 p.m. ET Get tickets for any MLB game this season at StubHub. Upcoming Rangers Games April 12: at Dodgers, 4:10 p.m. ET April 13: at Athletics, 9:40 p.m. ET April 14: at Athletics, 9:40 p.m. ET April 15: at Athletics, 9:40 p.m. ET April 16: at Athletics, 3:05 p.m. ET April 17: at Mariners, 9:40 p.m. ET
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

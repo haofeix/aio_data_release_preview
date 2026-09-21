@@ -1,0 +1,110 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "has anyone won the masters three times in a row"
+
+Claims:
+[1] "No golfer has ever won the Masters three consecutive times."
+[2] "Jack Nicklaus (1965-1966), Nick Faldo (1989-1990), Tiger Woods (2001-2002), and Rory McIlroy."
+[3] "Nick Faldo finished T12 in the 1991 Masters when attempting a third consecutive win."
+[4] "Tiger Woods finished T15 in the 2003 Masters when attempting a third consecutive win."
+[5] "Jack Nicklaus missed the cut in the 1967 Masters when attempting a third consecutive win."
+[6] "Jack Nicklaus holds the record with six total Masters victories."
+[7] "Jimmy Demaret won the Masters three or more times in his career."
+[8] "Sam Snead won the Masters three or more times in his career."
+[9] "Gary Player won the Masters three or more times in his career."
+[10] "Nick Faldo won the Masters three or more times in his career."
+[11] "Phil Mickelson won the Masters three or more times in his career."
+
+Cited text snippets from the AI Overview (for additional context):
+- Golfers to win consecutive Masters Tournament green jackets: "How many times has a,ever won three straight tournaments."
+- Could Rory McIlroy three-peat at Masters in 2027? - USA Today: "Jack Nicklaus - 6 (1963, 1965, 1966,,Arnold Palmer - 4 (1958, 1960, 1962,"
+- How Many Golfers Have Won Back-To-Back Masters Titles?: "To date, no one has,winning twice in a row."
+- 3-time Masters winners: Who Scottie Scheffler would join in ...: "Jimmy Demaret, 3,Phil Mickelson, 3"
+- Masters back-to-back champions: Here's who did it at Augusta: "Back-to-back Masters champions * Jack Nicklaus: 1965,1990. * Tiger Woods: 2001 and 2002."
+Reference Sources:
+
+[R1] How many Masters champions have won back-to-back titles in Augusta?
+(https://www.usatoday.com/story/sports/golf/masters/2026/04/11/masters-back-to-back-champions-augusta/89568506007/)
+"""
+April 11, 2026, 2:33 p.m. ETThe first ever Masters tournament at Augusta National Golf Club was held in 1934. Since its inception, there has only ever been three individuals to win the Masters tournament in consecutive years.Defending champion Rory McIlroy put on a performance through the first two rounds that has him leading by six strokes. He looks in prime shape to position himself to be the fourth-ever back-to-back champion.The tournament's only back-to-back champions consist of Jack Nicklaus, Nick Faldo and Tiger Woods.Nicklaus, who also holds the record for most Masters victories with six, was the first ever back-to-back champion claiming the honor in 1965 and 1966.Faldo won three Masters overall, but became the second to win it in consecutive years in 1989 and 1990.Woods, who became the youngest Masters winner in 1997, won a total of five Masters tournaments. He joined the lucrative list of back-to-back Masters champions when he won the Augusta National course in 2001 and 2002.McIlroy can become the first person in two decades to become a repeat Masters champion, the first since Woods. McIlroy will begin Round 3 in a pairing with Sam Burns, teeing off at 2:50 p.m. ET in Group 27.Back-to-back Masters championsJack Nicklaus: 1965 and 1966.Nick Faldo: 1989 and 1990.Tiger Woods: 2001 and 2002.
+"""
+
+[R2] Which Players Have Successfully Defended The Masters? The Back-To-Back Champions Rory McIlroy Is Hoping To Join...
+(https://www.golfmonthly.com/news/which-players-have-successfully-defended-the-masters-the-back-to-back-champions-rory-mcilroy-is-hoping-to-join)
+"""
+Is it the weight of expectation? Is it the pressure players put on themselves? All the media duties cannot help. Whatever it is, successfully defending the Masters title is hard.The inaugural Masters was played in 1934, with Horton Smith draining a 20-footer for birdie on the 17th hole (now the 8th) to beat Craig Wood to the title.Masters 2026 - Day 1 Wrap UpIn this episode of Kick Point Tour Issue, Barry Plummer and Joe Ferguson discuss the main talking points from day one at the Masters0 seconds of 0 secondsVolume 0%Loading ad00:2500:0033:08Jack Nicklaus: 1965-66Jack Nicklaus became the first back-to-back champion at the Masters in 1965-66(Image credit: Getty Images)His name was Jack Nicklaus. The "Golden Bear" won six Green Jackets, the first one of which came in 1963.Nicklaus missed the cut as an amateur on debut in 1959, but four years later, he secured his first title at Augusta National with a one-shot victory over Tony Lema.The following year, he was a distant second (tied) to Arnold Palmer, but in 1965-66, he won successive Green Jackets.Subscribe to the Golf Monthly newsletter to stay up to date with all the latest tour news, equipment news, reviews, head-to-heads and buyer’s guides from our team of experienced experts.In 1965, Nicklaus beat Palmer by nine strokes, a record that stood until 1997, and the following year, he won an 18-hole playoff against Tommy Jacobs and Gay Brewer.How close did he come to making it three in a row? Not very.With rounds on 72 and 79, Nicklaus became the first defending champion to miss the cut.Nick Faldo: 1989-90 Nick Faldo wins the first of his three Green Jackets in 1989(Image credit: Getty Images)Nick Faldo became only the second Masters champion to win back-to-back titles, with the Englishman recording his double in 1989-90.Sir Nick dodged a bullet in 1989, when Scott Hoch missed a two-foot par putt at the first playoff hole for victory.Faldo made the most of the reprieve, holing a 25-footer for birdie on the second extra hole (11th) to deliver Hoch a cruel blow.The following year, Faldo did it the hard way again, this time defeating Raymond Floyd in a playoff.Faldo was four strokes down with six holes to play, but the defending champion reeled off crucial birdies at 13, 15 and 16.1991 was Ian Woosnam's year. Faldo put in a valiant effort for the hat-trick, but he finished five shots adrift of the Welshman in T12.Tiger Woods: 2001-02 Vijay Singh helps Tiger Woods into his Green Jacket in 2001(Image credit: Getty Images)When Tiger Woods won the Masters in 1997, he set records tumbling: the youngest winner, the lowest 72-hole score, and the largest victory margin.In winning the Masters in 2001, he made it an unprecedented fourth consecutive professional Major title, holding off David Duval and Phil Mickelson by two and three shots, respectively, with a winning score of 16-under-par (272).The following year, posting 12-under-par, Woods established the record for the lowest 72-hole score by a defending champion.Woods' hat-trick effort came up short in 2003, with rounds of 76 and 75 bookending what was a disappointing tournament (T15) by his own very high standards.Over two decades later, no champion has managed to successfully defend since.Has anyone won the masters three times in a row?To date, no one has ever won three Masters titles in a row.The closest anyone has got was Sir Nick Faldo, who finished T12th in his second title defense in 1991.Tiger Woods managed a T15 in 2003 while back-to-back champion, and Jack Nicklaus missed the cut in 1967 after winning twice in a row.
+"""
+
+[R3] 3-time Masters winners: Who Scottie Scheffler would join in golf history with 2026 green jacket win
+(https://sports.yahoo.com/articles/3-time-masters-winners-scottie-205301120.html)
+"""
+3-time Masters winners: Who Scottie Scheffler would join in golf history with 2026 green jacket win originally appeared on The Sporting News. Add The Sporting News as a Preferred Source by clicking here.Scottie Scheffler's pursuit of the career grand slam at the U.S. Open could be the dominant storyline of the year in golf, but Scheffler has a chance to make some more history in Augusta.AdvertisementAlready a two-time Masters champion, Scheffler is aiming for a third green jacket that would place him in rare territory among some of the game's greats.Even years seem to be the charm for Scheffler at the Masters. He won at Augusta National in both 2022 and 2024, which might be a good omen for his chances in 2026.Here's a look at every golfer to win the Masters three or more times.SN's MASTERS HQ:Live Masters leaderboard | Masters TV coverage | Live streamingWho has won the Masters three times?Eight players have won the Masters three or more times:Jack Nicklaus, 6No golfer has won the Masters more than Nicklaus, whose first and sixth green jackets came 23 years apart. Nicklaus won three times in his 20s, claiming titles in 1963, 1965 and 1966, and he added to his totals even as he got older with with wins in 1972 and 1975. Though he already had the record for most wins at the time Nicklaus remains the oldest player to ever win the Masters after winning at age 46 in 1986.AdvertisementTiger Woods, 5It looked like Nicklaus' record might fall when Tiger Woods rattled off four wins before turning 30, but Woods would only add one more green jacket in 2019 as the next stage of his career was dominated by chronic injury and personal struggles. Still, Woods turned in some of the most dominant performances in Masters history, becoming the youngest to ever win at age 21 in 1997 and adding green jackets in 2001, 2002 and 2005 before the ultimate comeback story was completed in 2019.Arnold Palmer, 4Even years also treated Arnold Palmer well in Augusta, as he won the Masters in 1958, 1960, 1962 and 1964 to become the all-time leader in the event until Nicklaus won his fifth in 1975.AdvertisementMORE:How many kids does Scottie Scheffler have?Jimmy Demaret, 3Jimmy Demaret was the first three-time Masters champion, winning in 1940, 1947 and 1950. Demaret never won another major, but three wins at Augusta National were enough to secure him a place in golf history.Sam Snead, 3Snead was the second to join Demaret as a three-time winner, but his success came at a later point in his career than some of his fellow green jacket winners. Snead won the Masters for the first time in 1949 at age 36, and he followed it up with wins in 1952 and at 41 in 1954.Gary Player, 3Still a regular part of Masters weekend even without playing in the tournament, Gary Player went 13 years before his first and second Masters wins but made history with a third in 1978. Player first won in 1961 at age 25, but it wasn't until 1974 that he found his way to a second green jacket. When he won in 1978, Player became the fifth golfer to win the Masters at least three times.AdvertisementNick Faldo, 3An Open Championship winner in 1987, Nick Faldo catapulted himself to stardom with back-to-back Masters wins in 1989 and 1990. He added a third green jacket in 1996, giving him three Masters wins in a span of eight years and a piece of history.Phil Mickelson, 3Phil Mickelson is the most recent player to win his third green jacket, as he won in 2004 and 2006 before pulling in front of Lee Westwood during the final round in 2010 and claiming another victory. Mickelson would later become the oldest player to win a major when he won the 2021 PGA Championship.MORE MASTERS 2026:How many Masters has Scottie Scheffler won?Scheffler has won the Masters twice, earning a green jacket in both 2022 and 2024. That alone is enough to make Scheffler one of 18 players to win the Masters at least twice, but a third win — whether in 2026 or beyond — would make him one of nine to win three.AdvertisementThe 2022 green jacket marked Scheffler's first career major championship, and his stardom was well-established by the time he climbed the mountaintop again in 2024. While Scheffler couldn't make it three in four years in 2025, he did added wins in the PGA Championship and Open Championship.MORE MASTERS NEWS:Who has won the most Masters?Nicklaus has the most Masters wins in history with six. He holds the record by one win, as Tiger Woods has won five, followed by Arnold Palmer's four. No other players have won more than three.Here is the leaderboard:PlayerWinsYearsJack Nicklaus61963, 1965, 1966, 1972, 1975, 1986Tiger Woods51997, 2001, 2002, 2005, 2019Arnold Palmer41958, 1960, 1962, 1964Jimmy Demaret31940, 1947, 1950Nick Faldo31989, 1990, 1996Phil Mickelson32004, 2006, 2010Gary Player31961, 1974, 1978Sam Snead31949, 1952, 1954A third Masters win for Scheffler would only put him halfway to Nicklaus' record, but his dominance would at least make the possibility of a record chase a conversation.
+"""
+
+[R4] Could Rory McIlroy three-peat at Masters in 2027?
+(https://www.usatoday.com/story/sports/golf/2026/04/12/masters-three-peat-ever-been-done/89584730007/)
+"""
+April 12, 2026, 10:36 p.m. ETRory McIlroy has accomplished his mission of winning back-to-back Masters tournaments.McIlroy had previously admitted that he was unsure if he would ever win at the Masters, but with two green jackets in his wardrobe, he will have the opportunity in 2027 to go for his third.He would become the first golfer to reach the feat.McIlroy mentioned after the first victory that he looked forward to coming back and presenting himself with the jacket. While he addressed that Sunday and jokingly said that he couldn't actually present it to himself, this time he didn't allude to the desire of going for the three-peat but stated he looks forward to coming back in 2027 and for years to come.There have been eight players who have at least three Masters victories, but none of them have come in back-to-back-to-back tournaments.He joined an exclusive club on Sunday, becoming one of four golfers to win back-to-back Masters tournaments along with Jack Nicklaus (1965-66), Nick Faldo (1989-90) and Tiger Woods (2001-02).Woods is the closest to winning the tournament again after originally winning it back-to-back years. He would not win again until 2005. Nicklaus and Faldo would not win the Masters again for another six years, respectively.McIlroy and Scottie Scheffler are already being considered the favorites for the 2027 Masters. Scheffler is listed at +400 on DraftKings Sportsbook, followed by McIlroy at +600.Multi-time Masters Tournament winnersJack Nicklaus - 6 (1963, 1965, 1966, 1972, 1975, 1986)Tiger Woods - 5 (1997, 2001, 2002, 2005, 2019)Arnold Palmer - 4 (1958, 1960, 1962, 1964)Jimmy Demaret - 3 (1940, 1947, 1950)Sam Snead - 3 (1949, 1952, 1954)Gary Player - 3 (1961, 1974, 1978)Nick Faldo - 3 (1989, 1990, 1996)Phil Mickelson - 3 (2004, 2006, 2010)Rory McIlroy - 2 (2025, 2026)
+"""
+
+[R5] How many golfers have won consecutive Masters Tournaments?
+(https://www.nbcmiami.com/news/sports/golf/golfers-win-consecutive-masters-green-jackets/3279452/)
+"""
+It's two green jackets in as many years for Rory McIlroy. The 36-year-old from Northern Ireland defended his Masters Tournament title in the 2026 edition of the golf major, closing out the wire-to-wire win with a one-stroke edge in the final round. McIlroy had a share of the lead after round one, then pulled out to a six-shot lead after 36 holes before entering Sunday tied for the lead. In 2025, McIlroy held off Justin Rose in a playoff at Augusta National Golf Club in Georgia to win his first green jacket. The major tournament triumph made McIlroy just the sixth golfer to ever win the sport's career grand slam (winning all four majors). But just how rare is it for a golfer to win consecutive Masters? Here's what to know: Has a golfer ever won consecutive Masters Tournaments? Yes, but it's extremely rare. 0:56Rory McIlroy becomes first player to repeat at Masters since Tiger Woods Rory McIlroy won the 2026 Master tournament, becoming the first player to win back-to-back Masters since Tiger Woods in 2001-2002. How many times has a golfer won consecutive Masters Tournaments? There have been just four golfers to go back-to-back at the Masters: Jack Nicklaus, Nick Faldo, Tiger Woods and now McIlroy. No one has ever won three straight tournaments. Who was the last golfer to win consecutive Masters? Before McIlroy, there hadn't been a repeat Masters winner in more than two decades. Woods was the last to accomplish the feat, winning the tournament in 2001 and 2002. Here's a full look at each back-to-back Masters triumph: Jack Nicklaus: 1965-66 Nick Faldo: 1989-90 Tiger Woods: 2001-02 Rory McIlroy: 2025-26 Who gives the Masters winner the green jacket if it's a repeat winner? The Masters chairman presents the jacket to the winner if it is a repeat from the year prior. Fred Ridley is the current Masters chairman, holding the title since 2017. Who has won the most Masters? Nicklaus has the most Masters titles with six followed by Woods with five. Arnold Palmer is the only other golfer to win the tournament at least four times, while Faldo, Mickelson, Gary Player, Jimmy Demaret and Sam Snead have three titles. Editor's note: The original version of this story was published in April 2024. 1:045 things to know about Augusta National Golf Club Here are five things you should know about Augusta National, home of the Masters Tournament.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

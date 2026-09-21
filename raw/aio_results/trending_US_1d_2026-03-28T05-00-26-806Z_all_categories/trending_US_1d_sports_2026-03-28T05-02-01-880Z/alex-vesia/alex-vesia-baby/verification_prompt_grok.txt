@@ -1,0 +1,90 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "alex vesia baby"
+
+Claims:
+[1] "Alex Vesia is a pitcher for the Los Angeles Dodgers."
+[2] "Alex Vesia's wife is Kayla."
+[3] "Alex Vesia and Kayla's newborn daughter Sterling passed away on October 26, 2025."
+[4] "Sterling passed away due to complications from a large hematoma."
+[5] "Sterling's death caused Alex Vesia to miss the World Series."
+[6] "Alex Vesia and Kayla shared their loss on Instagram."
+[7] "Players from the Los Angeles Dodgers wore Alex Vesia's #51 on their caps as a tribute."
+[8] "Players from the Toronto Blue Jays wore Alex Vesia's #51 on their caps as a tribute."
+[9] "Alex Vesia returned to the mound for the 2026 season."
+[10] "Alex Vesia and Kayla started therapy to cope with their loss."
+[11] "Alex Vesia stated the Los Angeles Dodgers team served as light during their darkness"
+
+Cited text snippets from the AI Overview (for additional context):
+- Alex Vesia, wife Kayla mourning loss of their daughter - MLB.com: "LOS ANGELES -- Dodgers reliever,to heaven Sunday October 26th."
+- Dodgers star Alex Vesia's heartbroken wife attends 'bitter sweet' ...: "'Ten minutes is all it,me and myself and baseball.'"
+- Alex Vesia received a heartfelt ovation at Dodger Stadium as he ...: "Alex Vesia, Los Angeles Dodgers,Mariners, receiving a standing ovation"
+Reference Sources:
+
+[R1] Dodgers star Alex Vesia's heartbroken wife attends 'bitter sweet' MLB opener after baby daughter's death
+(https://www.dailymail.co.uk/sport/mlb/article-15685391/dodgers-alex-vesia-wife-baby-daughter-death.html)
+"""
+Published: 13:09 EDT, 27 March 2026 | Updated: 13:23 EDT, 27 March 2026 The wife of Los Angeles Dodgers pitcher Alex Vesia admits the start of the new MLB season is 'bittersweet' five months after their newborn daughter's tragic death.Vesia, 29, missed the entirety of the Dodgers' World Series victory last year after he and wife Kayla lost their baby girl, Sterling.The left-hander made his return to the mound earlier this month when LA reported for Spring Training, before he was at Dodger Stadium for their MLB opener against the Arizona Diamondbacks on Thursday. After attending the game, Kayla shared a photo of herself at the stadium on what was a 'very bittersweet opening day' in light of Sterling's passing.'What I would give to have my Sterling girl here, carrying her in my heart always,' she wrote alongside the picture on Instagram.Vesia was not involved in Thursday's game, nevertheless, as the Dodgers got their title defense up and running with an opening 8-2 win over the Diamondbacks. Dodgers pitcher Alex Vesia's wife admits the start of the new MLB season is 'bitter sweet' Kayla, who attended LA's opening game, and her husband recently lost their baby daughter Vesia returned to the mound in Spring Training after missing the Dodgers' World Series winThe reliever read an emotional statement upon his return for Spring Training last month, thanking Kayla, the Dodgers, the Toronto Blue Jays and fans for their support during a difficult experience.'The lessons we've learned from this is that life can change in an instant for us,' he said. 'Ten minutes is all it took. Sterling's soul was the most beautiful girl in the world. We got to hold her, change her diaper, read to her and love her. Our time together was far too short.'He said missing the World Series was difficult but 'an easy decision, because my family needed me.' The Dodgers beat the Blue Jays in seven games to win their second straight title.In Game 6, all the Blue Jays' relievers wore his No. 51 on their caps. Vesia's bullpen teammates had the number inscribed throughout the series.Vesia also thanked the NFL's Los Angeles Rams, who sent him a jersey with all of the team's signatures, which he said he'll have framed in his home. He said he and his wife started therapy at the start of the year and that 'talking to someone has made a difference.'The baseball star encouraged those who were struggling with a difficult situation to talk to somebody.Vesia added last month that he had rediscovered his love and enthusiasm for the sport after a long, challenging winter of grieving.'I just want to have fun on the mound,' he said. 'I just want to be able to spazz out and be myself out there. Because right now, I feel really good out there. It's just me and myself and baseball.'
+"""
+
+[R2] Alex Vesia, wife Kayla mourning loss of their daughter
+(https://www.mlb.com/news/alex-vesia-wife-announce-death-of-daughter)
+"""
+LOS ANGELES -- Dodgers reliever Alex Vesia and his wife, Kayla, shared in an Instagram post on Friday that their newborn daughter, Sterling, died on Oct. 26."Our little angel we love you forever & you’re with us always," the Vesias wrote in the post. "Our beautiful daughter went to heaven Sunday October 26th. There are no words to describe the pain we’re going through but we hold her in our hearts and cherish every second we had with her."Thank you to the Dodgers for their understanding and support during this time. Our baseball family showed up for us and we wouldn’t be able to do this without them."The Vesias were expecting their first child during the Dodgers' postseason run. On Oct. 23, one day before the World Series began in Toronto, the team announced that the lefty reliever would be away from the club to navigate a "deeply personal family matter."The Dodgers shared no further updates, allowing the Vesias to process the death of their daughter on their own time. There was no expectation that Alex Vesia would return amid what his family was going through, and he was away for the rest of the team's run to a second straight championship."We just didn't want to have any potential for any kind of pressure. This is so much bigger than baseball," president of baseball operations Andrew Friedman said before the Series. "For us, it was doing whatever small part we could to just 100% be supportive."Dodgers and Blue Jays relievers etched No. 51 onto their hats during the World Series to honor Alex Vesia's family."I think it really speaks to the brotherhood of athletes, Major League Baseball players, that they'll all say that baseball is what we do, but it's not who we are," manager Dave Roberts said. "For these guys to recognize Alex and what he and Kay have gone through, it's -- heartbreaking is not even a good enough descriptor. But for them to acknowledge that, it just speaks to how much respect and love they have for one another."The Vesias expressed their gratitude for the support they've received from the baseball world, as well as the medical professionals who worked with them, as they mourn Sterling's passing."Thank you Dodger Nation, Blue Jays organization and all baseball fans for your love and support," the Vesias wrote on Instagram. "We have seen ALL your messages, comments and posts. It’s brought us so much comfort."Lastly, we’d like to thank Cedars Sinai and all the medical staff who helped Kayla and Sterling. Every person we came across was truly so incredible."Skenes back to Cy Young form in win after tough Opening Day start7:33 PM UTCCINCINNATI -- Pirates ace Paul Skenes rebounded from the shortest outing of his career to post five strong innings Wednesday and earn his first win of the season, 8-3, against Cincinnati at Great American Ball Park.After allowing five runs on four hits, walking two and hitting a batter while retiring just two batters last Thursday, Skenes (1-1) allowed just one run on three hits, striking out five and walking two. He tossed 77 pitches (51 strikes) and lowered his season ERA from 67.50 to 9.53. Skenes left with a 4-1 lead thanks to an Oneil Cruz three-run homer off Cincinnati starter Andrew Abbott (0-1) in the first. Pirates Home Opener is Friday vs. the Orioles -- Get your tickets now! Mason Montgomery relieved Skenes to start the sixth, and allowed a pinch-hit two-run homer to Eugenio Suárez as the Reds cut the Pirates’ lead to one run. But Isaac Mattson, Justin Lawrence and Gregory Soto finished off the final 3 1/3 innings for Pittsburgh’s first series victory of the season.The Pirates have Thursday off before their home opener Friday afternoon against Baltimore.Bryan Reynolds blasted a two-run homer deep to the seats in right in a four-run ninth for his 140th as a Pirate, moving him into sole possession of ninth place all-time in Pirates history.Skenes didn’t give up a hit until Elly De La Cruz swatted a 90.1 mph changeup to right field for a single to open the bottom of the fourth. After Sal Stewart’s grounder moved De La Cruz to second, Nathaniel Lowe doubled him home, snapping Skenes’ scoreless streak against Cincinnati at 31 innings, dating to his first career start against the Reds on June 17, 2024.Coming into Wednesday’s game, the opponent figured to be the perfect elixir for the flame-throwing Pittsburgh ace after his shortest career outing six days earlier against the Mets in Queens.In five previous starts against the Reds, Skenes was 4-0 with a 0.31 ERA, covering 29 innings. He struck out 40 and walked just two batters. Skenes had not allowed a run against Cincinnati since the first inning of his first start against the Reds.Like his Opening Day start last Thursday, Skenes had an early lead to work with, this time thanks to Cruz belting his third homer of the series and season, and his second in as many at-bats.With two outs, Reynolds singled and Marcell Ozuna walked. Cruz then hopped all over a hanging curve from Abbott and unloaded it a Statcast-projected 407 feet to right for a 3-0 Pirates lead in the first.Skenes needed a batter to find his rhythm, walking leadoff man TJ Friedl on five pitches. But unlike his outing against the Mets, he quickly found a groove, striking out Matt McLain and De La Cruz before retiring the red-hot Stewart on a force out at second.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

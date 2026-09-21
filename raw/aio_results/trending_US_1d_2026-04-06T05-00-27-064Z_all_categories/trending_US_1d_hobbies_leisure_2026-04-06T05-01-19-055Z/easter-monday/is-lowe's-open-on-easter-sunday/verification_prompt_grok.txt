@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is lowe's open on easter sunday"
+
+Claims:
+[1] "Easter Sunday falls on April 5, 2026."
+[2] "Lowe's stores are closed on Easter Sunday."
+[3] "Lowe's closes all locations to allow associates to spend time with their families."
+[4] "Lowe's doors are set to reopen on Monday, April 6, 2026."
+[5] "Lowe's reopens for normal business hours on April 6, 2026."
+[6] "Lowe's Easter Hours are closed on April 5, 2026."
+[7] "You can shop online at Lowes.com on Easter Sunday."
+
+Cited text snippets from the AI Overview (for additional context):
+- Lowe's Will Close Stores on Easter Sunday, Giving Associates ...: "Share:,Boxes to Save Holiday Surprises"
+- Is Lowe's Open or Closed on Easter? What to Know for 2026: "Is Lowe's Open on Easter 2026?,a full list right here."
+- Is Home Depot Open on Easter? Details on 2026 Holiday Hours: "Is Home Depot Open on Easter 2026?,you'll find right here."
+- What stores are open on Easter? Details on Sam's Club, Costco, Walmart: "Home Depot will open from,Cracker Barrel open on Easter?"
+Reference Sources:
+
+[R1] Is Lowe’s open on Easter 2026?
+(https://shopping.yahoo.com/home-garden/home-improvement/articles/lowe-open-easter-2026-130114767.html)
+"""
+Easter, which falls on April 5, marks the official start of spring, and with that, spring cleaning and home improvement planning begins to prepare for the holiday and the new season.This is a time Lowe’s shoppers head to the store to find everything from patio furniture and tools to Easter decorations to enjoy the warm weather and deck out their home for the special day.But with it being a holiday, it might not be clear if you’ll be able to shop at Lowe’s the day of.So here’s what you need to know about Lowe’s store hours this Sunday.Is Lowe’s open on Easter Sunday 2026?No, Lowe’s will not be open on Easter 2026.However, you can visit the store before then on April 3 (Good Friday) or April 4 from 6 a.m. to 10 p.m. to make any last-minute purchases before the holiday.Lowe’s tends to close on Easter as well as the following holidays:If you’d like to stop at Lowe’s before Easter Sunday, you can find your local store here.Is Lowe’s having an Easter sale?Lowe’s isn’t holding an Easter sale specifically, but that doesn’t mean there are no sales available.You can visit before Sunday to shop the SpringFest sale now through April 22.The sale features major markdowns storewide, including on grilles, gardening supplies, patio furniture and appliances.If you’re planning to shop on Easter, the deals are available on Lowe’s website to check out here.Like Lowe’s, Costco will be closed, but you can still shop in-store at Walmart, which will be open on Sunday. You can also stop by Dunkin’ for you favorite coffee while running errands.More Easter 2026 Store HoursRead the original article on NJ.com. Add NJ.com as a Preferred Source by clicking here.
+"""
+
+[R2] What restaurants are open on Easter Sunday? What about stores?
+(https://www.elpasotimes.com/story/news/2026/04/05/what-stores-are-open-on-easter-details-on-sams-club-costco-walmart/89451710007/)
+"""
+April 5, 2026, 6:02 a.m. MTIf your plans involve shopping for last-minute Easter baskets or confetti-filled eggs on Easter Sunday, some stores will be closed.Easter Sunday is April 5, and while some will celebrate by attending mass and participating in Easter egg hunts, you might want to stop by a store or head out to eat after the holiday festivities. Some retail and grocery chains, like Walmart, Whole Foods and Walgreens, are open on the holiday, but others, like Sam's Club, Target and Costco, will be closed.Meanwhile, if you're hungry, fast-food restaurants like McDonald's and Whataburger will be open.Here's what to know about what's open and closed on Easter Sunday.When is Easter 2026?This year, Easter falls on Sunday, April 5.Is Walmart open on Easter?Yes, Walmart stores will be open regular hours on Easter, according to the company's website. Most Walmart stores are open from 6 a.m. to 11 p.m. daily.Is Costco open on Easter?No, Costco warehouses will be closed on Easter, according to the company's website.Is Sam's Club open on Easter?No, Sam's Club warehouses will be closed on Easter Sunday, according to the company's website.Is Whole Foods open on Easter?According to the company's website, most Whole Foods stores will be open on Easter, but many will close earlier than usual.Customers can use the company's store locator tool to confirm their local store's hours.Is Walgreens open on Easter?Yes, most Walgreens stores will be open on Easter, though hours may vary at your local store. Check the hours at your nearest store.Is CVS open on Easter?CVS will be open on Easter, although some stores may have reduced hours on the holiday.Is Trader Joe's open on Easter?Yes, Trader Joe's is open regular hours on Sunday, April 5.Is Home Depot open on Easter?Home Depot will open from 8 a.m. to 6 p.m. on Easter Sunday, according to its website.Is Lowes open on Easter?No, Lowes will be closed on Easter Sunday.Is Macy's open on Easter?No, Macy's stores will be closed on Easter Sunday. Is Chili's open on Easter?Most Chili's will be open on Easter, but some may close early. It's best to check with your closest location.Is McDonald's open on Easter?Hours vary by location, but most McDonald's locations in the United States are open on holidays.Is Starbucks open on Easter?Starbucks store hours vary by location. You can find hours for a specific store using the Starbucks app.Is Chick-fil-A open on Easter?Easter is celebrated on a Sunday, meaning Chick-fil-A will be closed.Is Chipotle open on Easter?Chipotle restaurants will be closed on Easter.Is Wendy's open on Easter?Most Wendy's locations will be open on Easter, but hours vary by location. It's best to check with your local restaurant for their specific holiday hours.Is Burger King open on Easter?Burger King hours vary by location, so customers are encouraged to confirm through the Burger King app.Is Cracker Barrel open on Easter?Yes, Cracker Barrel restaurants will be open regular hours on Easter.Is Raising Cane's open on Easter?No, Raising Cane's locations will be closed on Sunday, April 5.Is Taco Bell open on Easter?Hours of operation may vary by location, so Taco Bell customers are encouraged to check with their local restaurant regarding their holiday hours.Is IHOP open on Easter?IHOP restaurants will be open on April 5. Hours vary by location, so check with your local restaurant for their specific hours.Is Krispy Kreme open on Easter?Krispy Kreme shops will be open their regular hours on Sunday, April 5.Is Whataburger open on Easter?Yes, Whataburger restaurants will be open regular hours on Easter Sunday.Natassia Paloma may be reached at npaloma@gannett.com, @NatassiaPaloma on x; natassia_paloma on Instagram, and Natassia Paloma Thompson on Facebook.
+"""
+
+[R3] Planning a Trip to Lowe's This Easter? Find Out if Stores Will Be Open on Sunday
+(https://www.today.com/life/holidays/is-lowes-open-easter-2026-rcna262769)
+"""
+Is Lowe's Open or Closed on Easter? What to Know for 2026Whether you're painting the kitchen or shopping for new deck furniture, find out if Lowe's will be open this Sunday.April 4, 2026, 2:00 PM CDTPlanning to shop at Lowe's this Easter? Here's what to know about the home improvement retailer's hours this Sunday.Bloomberg / Getty ImagesCreate your free account or log in to save this articleEaster falls on Sunday, April 5. Whether you plan to celebrate the holiday by gathering with loved ones or you're expecting Peter Cottontail to drop by with baskets for the kids, you may need to head out for a few essentials this weekend. Much like Christmas and Thanksgiving, Easter Sunday is one of the biggest commemorations of the year. Because of that, many businesses, restaurants and stores are closed to give employees the day off to enjoy the April holiday. Among them? Costco, Target, Aldi and a variety of others. But what about Lowe's? If you are working on a home improvement project or need last-minute necessities for Easter brunch, you may be wondering if Lowe's is open on Easter.To help ensure you have everything you need to make this year's Easter celebration a success, TODAY.com reached out to the home-improvement retailer to find out the latest information on whether or not stores will be welcoming customers this Sunday. See below to find out the answer, as well as to learn what other retailers and grocers will be open on April 5. According to a Lowe's spokesperson, stores will be closed on Sunday in observance of the Easter holiday. Doors will reopen on Monday, April 6, during normal business hours. To confirm local Lowe's store hours, check the locator, which you'll find right here. Stores Open on Easter 2026While Lowe's locations will be closed this Easter, see below for a sampling of retailers that will be open on Sunday or find a full list right here. BJ’s Wholesale Club: A majority of BJ’s clubs will be open on Easter Sunday from 8 a.m. to 6 p.m. BJ’s recommends confirming local hours before going. Find local hours here.Home Depot: Stores will be open from 8 a.m. to 6 p.m. Hours may vary by location. Find local hours here.IKEA: Most stores will be open from 11 a.m. to 6 p.m. Confirm hours before going. Find local hours here.Kroger: A majority of stores will be open during normal business hours. Find local hours here.Menards: Stores will be open from 8 a.m. to 6 p.m. Find local hours here.Trader Joe’s: Stores will be open during regular business hours. Find local hours here.Walmart: Stores will be open during normal business hours. Find local hours here.Whole Foods: Stores will be open until 6 p.m. Find local hours here.
+"""
+
+[R4] Is Home Depot Open or Closed on Easter? What to Know for 2026
+(https://www.today.com/life/holidays/is-home-depot-open-on-easter-2026-rcna262768)
+"""
+Spring has finally arrived and with it comes a variety of home projects. From organizing the garage to yard cleanup, there's no shortage of work to be done this time of year. If your Easter plans include tackling one of the projects above or any other home task, you may be planning to pick up a few necessities this weekend. If that's the case and you're wondering if The Home Depot is open on Easter, you'll find all the details you need to know below.Given that Easter is one of the biggest Christian observances on the calendar, many stores and restaurants are closed in recognition of the April holiday, including popular retailers like Costco, Target and Lowe's. But what about The Home Depot?For the latest details on Home Depot's Easter hours, TODAY.com reached out to the home-improvement retailer for the most up-to-date information on whether or not stores will be open on Sunday, April 5.Since store openings, closings and hours may vary by location, it's a good idea to check local store hours before heading out to any retailer this Easter to ensure you don't find an empty parking lot when you arrive.Whatever you need to get the job done this Easter, you’ll be happy to know that The Home Depot will be open for business on Sunday, April 5.According to a Home Depot spokesperson, stores will be open from 8 a.m. to 6 p.m.To ensure your local Home Depot is open on Sunday, or to confirm store details, use the Home Depot locator, which you'll find right here.Stores Open on Easter 2026Along with The Home Depot, see below for a sampling of stores that will be open on Sunday, April 5, or find a complete list right here. BJ’s Wholesale Club: A majority of BJ’s clubs will be open on Easter Sunday from 8 a.m. to 6 p.m. BJ’s recommends confirming local hours before going. Find local hours here.Dollar General: Stores will be open during normal business hours. Find local hours here.Kroger: A majority of stores will operate during normal business hours. Find local hours here.Trader Joe’s: Stores will be open during regular business hours. Find local hours here.Walmart: Stores will be open during normal business hours. Find local hours here.Whole Foods: Stores are open until 6 p.m. Find local hours here.
+"""
+
+[R5] Lowe’s Will Close Stores on Easter Sunday, Giving Associates a Day Off for the Seventh Year | Lowe’s Corporate
+(https://corporate.lowes.com/newsroom/stories/inside-lowes/lowes-will-close-stores-easter-sunday-giving-associates-day-seventh-year)
+"""
+Skip to main content Story Image Story Image Story Image Home Newsroom Stories Inside Lowe's Lowe’s Will Close Stores on Easter Sunday, Giving Associates a Day Off for the Seventh Year Mar 25, 2026 Lowe’s Will Close Stores on Easter Sunday, Giving Associates a Day Off for the Seventh Year Madelaine Vander WoudeMar 25, 2026 Share: FacebookXLinkedInEmailCopy Link Lowe’s will close all stores on Easter Sunday, April 5, so associates can take the day off and spend it with the people who matter most. This is the seventh year in a row Lowe’s has made this commitment, and it is one way the company recognizes the teams who support customers and communities throughout the year, especially during the busy spring season. What customers should know Stores will be closed on Easter Sunday, April 5. Customers can still shop and find project ideas anytime at Lowes.com. Stores will reopen the next day with regular hours. Closing stores on Easter Sunday is a small pause in a busy season, but it reflects Lowe’s continued focus on associate well-being and recognition. The holiday closure underscores the company’s commitment to supporting the teams who keep stores running and serve customers every day. Featured news Off Related Stories View All Company 01/23/2026 Steady in the Storm: Inside Lowe’s Command Center Winter Response Read More Company 12/22/2025 Lowe’s 2025 Openings: 8 New Stores, Over 800 Jobs and Investment in Local Communities Read More Company 12/03/2025 No Peeking: Lowe's Launches Sneaky Gift Boxes to Save Holiday Surprises Read More × Location Alert You have not selected location from suggestion drop down: location Please select correct location from suggestion box Close Copy link✓Thanks for sharing!Find any serviceAddToAnyMore…
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

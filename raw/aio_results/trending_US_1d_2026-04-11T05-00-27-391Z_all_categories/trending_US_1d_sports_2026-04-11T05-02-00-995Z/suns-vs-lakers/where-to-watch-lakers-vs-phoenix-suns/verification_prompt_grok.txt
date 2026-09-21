@@ -1,0 +1,110 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "where to watch lakers vs phoenix suns"
+
+Claims:
+[1] "The Los Angeles Lakers host the Phoenix Suns on April 10, 2026, at 10:30 p.m. ET at Crypto.com Arena."
+[2] "Crypto.com Arena is in Los Angeles, CA."
+[3] "The game is on Friday, April 10, 2026, at 10:30 p.m. ET / 7:30 p.m. PT."
+[4] "In-market viewers can watch on Spectrum SportsNet (Lakers)."
+[5] "In-market viewers can watch on AZFamily/Suns+ (Suns)."
+[6] "Out-of-market viewers can stream via NBA League Pass."
+[7] "Live streaming options include Fubo (free trial)."
+[8] "SportsNet LA is a TV channel (Lakers)."
+[9] "AZFamily/3TV/CBS 5 is a TV channel (Suns)."
+[10] "Scripps is a TV channel."
+[11] "Fubo is a streaming service (in-market)."
+[12] "NBA League Pass is a streaming service (out-of-market)."
+[13] "Tickets are available on StubHub."
+
+Cited text snippets from the AI Overview (for additional context):
+- Suns at Lakers: How to Watch Live NBA | DIRECTV Insider: "Where Can I Watch the,watch with NBA League Pass."
+- How to watch Suns vs. Lakers: TV channel and streaming options for April 10: "By Data Skrive,Get tickets on StubHub."
+- Battle in LA Los Angeles Lakers 7:30PM azfamily 3TV CBS 5 ...: "Battle in LA 💥 🆚,Phoenix Suns's post"
+Reference Sources:
+
+[R1] Phoenix Suns at Los Angeles Lakers - Where to Watch, Stream Info, TV Channel, and Live Updates (April 10, 2026)
+(https://www.fubo.tv/news/nba/phoenix-suns-at-los-angeles-lakers-where-to-watch-stream-info-tv-channel-and-live-updates-april-10-2026/)
+"""
+The Phoenix Suns (44-36) are set to face off against the Los Angeles Lakers (51-29) in a crucial matchup at Crypto.com Arena. Both teams enter the game on a one-game winning streak, with the Lakers currently holding the top position in their division. The Suns, ranked second in their division, will be challenged by the absence of key players, including points leader Devin Booker, who is sidelined due to an ankle injury. The Lakers, while boasting a strong record, will also be without their star player Luka Dončić, who is out for the remainder of the regular season with a hamstring injury. This game presents an opportunity for both teams to solidify their playoff positioning as the regular season draws to a close. Phoenix Suns at Los Angeles Lakers Game Information Game Date: April 10, 2026 Game Time: 10:30 PM ET TV Channel: KPHE Location: Crypto.com Arena, Los Angeles, CA Live Stream: Fubo (free trial) Los Angeles Lakers Team Statistics and Rankings Win-Loss Record: 51-29 Conference Record: 31-19 Division Record: 9-7 Streak: 1 win Phoenix Suns Team Statistics and Rankings Win-Loss Record: 44-36 Conference Record: 28-22 Division Record: 10-6 Streak: 1 win Stat Leaders Los Angeles Lakers (51-29, #1 in division) Points Leader: Luka Dončić, 33.5 PPG Rebounds Leader: Deandre Ayton, 8 RPG Assists Leader: Luka Dončić, 8.3 APG Steals Leader: Luka Dončić, 1.64 SPG Blocks Leader: Deandre Ayton, 0.94 BPG Phoenix Suns (44-36, #2 in division) Points Leader: Devin Booker, 26.1 PPG Rebounds Leader: Mark Williams, 8 RPG Assists Leader: Devin Booker, 6 APG Steals Leader: Jordan Goodwin, 1.51 SPG Blocks Leader: Mark Williams, 0.92 BPG Los Angeles Lakers Injury Report Austin Reaves – Rib (Out) – Reaves underwent imaging recently and may not play in Sunday’s game against Dallas, Khobi Price of The California Post. Marcus Smart – Ankle (Day To Day) – Smart did not play on Thursday’s (Apr. 9) game against the Warriors. Jaxson Hayes – Foot (Day To Day) – Hayes did not play on Thursday’s (Apr. 9) game against the Warriors. Luka Dončić – Hamstring (Out) – Doncic will miss the remainder of the regular season due to a Grade 2 left hamstring strain, and his status for the playoffs is uncertain, according to Chris Haynes of NBA TV. Phoenix Suns Injury Report Devin Booker – Ankle (Out) – The Suns listed Booker as Out for Friday’s (Apr. 10) game against the Lakers. Haywood Highsmith – Knee (Out) – The Suns listed Highsmith as Out for Friday’s (Apr. 10) game against the Lakers. Jalen Green – Knee (Day To Day) – The Suns listed Green as Questionable for Friday’s (Apr. 10) game against the Lakers. Jordan Goodwin – Ankle (Out) – The Suns listed Goodwin as Out for Friday’s (Apr. 10) game against the Lakers. Los Angeles Lakers Upcoming 2026 Schedule April 10, 2026 vs Phoenix Suns April 12, 2026 vs Utah Jazz Phoenix Suns Upcoming 2026 Schedule April 10, 2026 at Los Angeles Lakers April 12, 2026 at Oklahoma City Thunder Our game previews are produced programmatically using real-time data via Sportradar and AI writing tools. Articles are regularly reviewed for accuracy before publication.
+"""
+
+[R2] Phoenix Suns vs Los Angeles Lakers Live Stream: How to Watch NBA
+(https://www.fubo.tv/news/nba/phoenix-suns-vs-los-angeles-lakers-live-stream-how-to-watch-nba/)
+"""
+The Phoenix Suns and Los Angeles Lakers will play a rare fifth game in this season’s series finale on Friday. The Los Angeles Lakers look to keep pace in the Western Conference standings when they host the Phoenix Suns in this season series finale on Friday night. It will be more difficult with Luka Doncic and Austin Reaves out until May 1 due to hamstring and oblique injuries, respectively. The Lakers ended a three-game losing streak since their stars went out with a win over the Golden State Warriors on Thursday. In the meantime, the Denver Nuggets leapfrogged LA for the third spot in the West, while the Lakers are now a game back. Phoenix is secure in the seventh seed, holding a three-game lead over the Los Angeles Clippers with two games left in the regular season. The Suns will still compete in the play-in tournament, likely against the Warriors. Phoenix won this series against the Lakers in its last game, beating Los Angeles 113-110 at home on Feb. 26. Royce O’Neale hit a clutch three with just 0.9 seconds remaining, after blowing a late 12-point lead. Doncic led all scorers with 41, while Grayson Allen led the Suns with 28, who were without Devin Booker. The Suns are slight 1.5-point favorites to extend their series lead to 4-1 on Friday. How to Watch Phoenix Suns vs Los Angeles Lakers today: Game Date: Friday, April 10, 2026 Game Time: 10:30 p.m. ET TV: KTVK TV Location: crypto.com Arena – Los Angeles, CA Live stream Phoenix Suns vs Los Angeles Lakers on Fubo: Start watching now! The Lakers ended their three-game losing streak on Thursday with a 119-103 win on the road against Golden State. LeBron James stepped up big, nearly putting up a triple-double with 26 points, 11 assists, and eight rebounds to lead Los Angeles in all three categories. The Lakers didn’t see Steph Curry, and they took advantage, breaking away in the second half to win the season series 3-1. Curry played in the Warriors’ last two matchups after missing 27 games, but Golden State didn’t play him on consecutive nights. Now it’s the Lakers and Suns’ turn to play on consecutive nights. The Suns are coming off a close 112-107 victory over the Dallas Mavericks on Thursday to clinch the seventh seed. Devin Booker went off for 37 points, and Dillon Brooks added another 28 to help earn the Suns the 3-0 series sweep. Phoenix was up 18 early in the third, but the Mavericks went on an 18-1 run to get back in the game, even though they had just 10 available players with much of the lineup out with injuries. Jalen Green was hurt in the matchup and is a game-time decision tonight with a knee injury. Booker will not be available tonight either, listed as out with an ankle injury. What Time Is the Phoenix Suns vs Los Angeles Lakers? The Phoenix Suns vs Los Angeles Lakers game will take place on Friday, April 10, 2026, at 10:30 p.m. ET. Tune in and catch some great NBA action. What Channel Is the Phoenix Suns vs Los Angeles Lakers Game On? Looking to watch this game? Fans can tune into KTVK TV to see the action. Make sure you subscribe to Fubo now to watch this matchup, as well as numerous other sports leagues. Live stream Phoenix Suns vs Los Angeles Lakers on Fubo: Start watching now! Regional restrictions may apply.
+"""
+
+[R3] How to watch Suns vs. Lakers: TV channel and streaming options for April 10
+(https://www.nytimes.com/athletic/7186936/2026/04/10/how-to-watch-suns-vs-lakers-tv-channel-and-streaming-options-for-april-10/)
+"""
+The Phoenix Suns (44-36) visit the Los Angeles Lakers (51-29) in a matchup of Pacific Division rivals at Crypto.com Arena on April 10, 2026. This is the fifth matchup between the squads this season.How to watch Phoenix Suns vs. Los Angeles Lakers Venue: Crypto.com Arena Time: 10:30 p.m. ET TV: SportsNet LA, AZFamily, Suns+ Streaming (in-market viewers): Fubo (try for free) Streaming (out-of-market viewers): NBA League Pass Watching in person? Get tickets on StubHub. Phoenix vs. Los Angeles odds Spread: Phoenix -2.5 (-105), Los Angeles +2.5 (-115) Favorite Moneyline: Phoenix -140 Underdog Moneyline: Los Angeles +115 Total: 216.5 Total Over Odds: -115 Total Under Odds: -105 Odds provided by BetMGM.Injury reportsSunsDevin Booker: Out (Ankle), Haywood Highsmith: Out (Knee), Jalen Green: Questionable (Knee), Jordan Goodwin: Out (Ankle)LakersLuke Kennard: Questionable (Finger), Jaxson Hayes: Out (Foot), Luka Doncic: Out (Hamstring), Austin Reaves: Out (Rib)Stats to know The Suns put up only 2.4 fewer points per contest (112.8) than the Lakers surrender (115.2). The Lakers’ 116.4 points-per-game average is 5.0 more points than the 111.4 the Suns give up. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R4] How to watch Suns vs. Lakers: TV channel and streaming options for April 10
+(https://www.nytimes.com/athletic/7186936/2026/04/10/suns-vs-lakers-stream-how-to-watch-april-10/)
+"""
+The Phoenix Suns (44-36) visit the Los Angeles Lakers (51-29) in a matchup of Pacific Division rivals at Crypto.com Arena on April 10, 2026. This is the fifth matchup between the squads this season.How to watch Phoenix Suns vs. Los Angeles Lakers Venue: Crypto.com Arena Time: 10:30 p.m. ET TV: SportsNet LA, AZFamily, Suns+ Streaming (in-market viewers): Fubo (try for free) Streaming (out-of-market viewers): NBA League Pass Watching in person? Get tickets on StubHub. Phoenix vs. Los Angeles odds Spread: Phoenix -2.5 (-105), Los Angeles +2.5 (-115) Favorite Moneyline: Phoenix -140 Underdog Moneyline: Los Angeles +115 Total: 216.5 Total Over Odds: -115 Total Under Odds: -105 Odds provided by BetMGM.Injury reportsSunsDevin Booker: Out (Ankle), Haywood Highsmith: Out (Knee), Jalen Green: Questionable (Knee), Jordan Goodwin: Out (Ankle)LakersLuke Kennard: Questionable (Finger), Jaxson Hayes: Out (Foot), Luka Doncic: Out (Hamstring), Austin Reaves: Out (Rib)Stats to know The Suns put up only 2.4 fewer points per contest (112.8) than the Lakers surrender (115.2). The Lakers’ 116.4 points-per-game average is 5.0 more points than the 111.4 the Suns give up. This watch guide was created using technology provided by Data Skrive.Betting/odds, ticketing and streaming links in this article are provided by partners of The Athletic. Restrictions may apply. The Athletic maintains full editorial independence. Partners have no control over or input into the reporting or editing process and do not review stories before publication.Photo: Sam Hodde, Pool, Mark Blinch/NBAE, Angela Weiss/AFP / Getty Images Apr 16, 2026Connections: Sports EditionSpot the pattern. Connect the termsFind the hidden link between sports terms
+"""
+
+[R5] Suns at Lakers: How to Watch Live NBA
+(https://www.directv.com/insider/lakers-vs-suns/)
+"""
+How to Watch Lakers vs. Suns on April 10, 2026 You can watch the Phoenix Suns take on the Los Angeles Lakers live on DIRECTV on Spectrum Sportsnet, Scripps or NBA League Pass on April 10, 2026 at 10:30 PM ET. Phoenix Suns at Los Angeles Lakers – Game Preview The Phoenix Suns (43-36) head into a Western Conference matchup with Play-In stakes on the line: The Suns currently hold the seventh seed as the regular season winds down. Phoenix has exceeded expectations after trading Kevin Durant to Houston and parting ways with Bradley Beal before the season, building around Jalen Green and Dillon Brooks in a reboot that has kept them in post-season contention. The Los Angeles Lakers (50-29) are playing back-to-back after Thursday’s trip to Golden State, with the fourth seed in the West already locked up. Los Angeles is managing several injuries, including Luka Doncic and Austin Reaves, which gives Phoenix an opportunity to pick up a road win against a shorthanded Lakers squad before the Play-In Tournament tips off. Regional Coverage Spectrum SportsNet, Scripps League Packages NBA League Pass What Time is the Lakers vs. Suns Game Tonight? The Los Angeles Lakers vs. Phoenix Suns game tips off at 10:30 p.m. ET. Where Can I Watch the Suns vs. Lakers? You can watch the Suns vs. Lakers on your local regional sports network: Spectrum Sportsnet (Los Angeles Lakers) or Scripps (Phoenix Suns). You can also watch with NBA League Pass. Watch NBA Live on DIRECTV You can watch NBA games live every day right on DIRECTV. Get started today! Interested in a service that lets you access live sports, and only live sports and includes ESPN Unlimited at no extra cost? Check out MySports™ Genre Pack™ pack today. DIRECTV Insider brings you our views on what’s happening in streaming, t.v., movies and sports. Companies and persons mentioned are not necessarily associated with and do not necessarily endorse DIRECTV. We will disclose sponsored content on our site when we show it to you, and some of the links on the site may be ads or affiliate links which means DIRECTV may earn compensation from your purchases.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

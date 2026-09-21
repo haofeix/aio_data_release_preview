@@ -1,0 +1,82 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "cruz azul vs lafc lineups"
+
+Claims:
+[1] "LAFC advanced to the 2026 Concacaf Champions Cup semifinals."
+[2] "LAFC had a 1-1 draw (4-1 agg) with Cruz Azul on April 14, 2026."
+[3] "LAFC's starting XI featured Hugo Lloris, Sergi Palencia, Ryan Porteous, Nkosi Tafari, Eddie Segura, Mathieu Choinière, Marco Delgado, Timothy Tillman, David Martínez, Denis Bouanga, and Heung-Min Son."
+
+Cited text snippets from the AI Overview (for additional context):
+- LAFC vs Cruz Azul - live score, predicted lineups and H2H stats: "delivered on FotMob.-,Real-time extensive stats powered by Opta: Possession, shots,if you can't watch."
+- LAFC oust Cruz Azul to reach Concacaf Champions Cup ...: "Match Reaction-,LAFC oust Cruz Azul to reach Concacaf Champions Cup semifinals,review call against Sergi Palencia."
+- LAFC @ Cruz Azul | Starting XI - Reddit: "LAFC @ Cruz Azul | Starting XI,for LAFC's success in MLS"
+Reference Sources:
+
+[R1] Cruz Azul vs LAFC - live score, predicted lineups and H2H stats
+(https://www.fotmob.com/en-GB/matches/cruz-azul-vs-los-angeles-fc/4veiwyoj)
+"""
+FotMobCONCACAF Champions Cup · 1/4Cruz Azul-vs-Los Angeles FC_Wed, Apr 15, 2026, 01:00 UTCCruz Azul1 - 1Los Angeles FCFT (Agg: 1 - 4)Tuesday, 14 April 2026 - 20:00 | Estadio Cuauhtémoc, Puebla | Capacity: 51,726 | Ref: Iván Arcides Barton Cisneros | Att: 24,965Weather: Mostly Cloudy, 18°CMatch Events12Agustín Palavecino YC12Gabriel Fernández YC12Denis Bouanga YC13Carlos Rodolfo Rotondi YC13Carlos Rodríguez YC18Gabriel Fernández (pen)1-020Ryan Porteous YC41Eddie Segura YC68Jacob Shaffelburg > David Martínez68José Paradela > Andrés Montaño76Christian Ebere > Jeremy Márquez79José Paradela YC82Mateo Levy > Érik Lira87Ryan Hollingshead > Timothy Tillman90'+2Gonzalo Piovi RC90'+71-1Denis Bouanga (pen)Top PlayersGabriel Fernández *ST8.7Agustín PalavecinoDM8.3Omar CamposRWB7.9Hugo LlorisGK8.6Ryan PorteousCB7.7Mathieu ChoinièreDM7.5Post-match Oddsvia Bet365_MissouriLineupsCruz Azul (3-4-2-1)23Kevin Mier6.24Willer Ditta6.66Érik Lira6.833Gonzalo Piovi 🟥6.53Omar Campos7.98Agustín Palavecino 🟨8.316Jeremy Márquez7.029Carlos Rodolfo Rotondi 🟨7.410Andrés Montaño6.419Carlos Rodríguez 🟨7.621Gabriel Fernández 🟨 ⚽8.7Substitutes20José Paradela (68') 🟨6.411Christian Ebere (76')5.834Mateo Levy (82')-1Andrés Gudiño-30Emmanuel Ochoa-32Cristian Jiménez-22Jorge Rodarte-31Amaury Morales-35Karol Velázquez-18Luka Romero-36Rogelio González-42Ariel Castro-Coach: Nicolás LarcamónLos Angeles FC (4-2-3-1)1Hugo Lloris8.614Sergi Palencia6.85Ryan Porteous 🟨7.791Nkosi Tafari6.74Eddie Segura 🟨7.166Mathieu Choinière7.58Marco Delgado7.130David Martínez6.211Timothy Tillman7.499Denis Bouanga 🟨 ⚽7.27Heung-Min Son6.4Substitutes18Jacob Shaffelburg (68')6.124Ryan Hollingshead (87')-31Cabral Carter-12Thomas Hasal-33Aaron Long-29Artem Smolyakov-21Ryan Raposo-22Jude Terry-70Matthew Evans-17Jeremy Ebobisse-27Nathan Ordaz-19Tyler Boyd-Coach: Marc Dos SantosUnavailable PlayersLos Angeles FCStephen Eustáquio(injury)Match StatisticsTop stats71Ball possession292.80Expected goals (xG)0.9632Total shots610Shots on target17Big chances16Big chances missed0425 (86%)Accurate passes151 (74%)18Fouls committed1311Corners3ShotsShots32Total shots611Shots off target310Shots on target111Blocked shots20Hit woodwork018Shots inside box214Shots outside box4Expected goals (xG)Expected goals (xG)2.80Expected goals (xG)0.961.78xG open play0.080.23xG set play0.092.01xG non-penalty0.172.73xG on target (xGOT)0.80PassesPasses492Passes203425 (86%)Accurate passes151 (74%)146Own half75279Opposition half7612 (50%)Accurate long balls29 (45%)9 (22%)Accurate crosses1 (13%)30Throws1934Touches in opposition box80Offsides0DefenceDefence14Tackles146Interceptions92Blocks1113Clearances400Keeper saves8DuelsDuels41Duels won4230 (47%)Ground duels won34 (53%)11 (58%)Aerial duels won8 (42%)5 (38%)Successful dribbles4 (29%)DisciplineDiscipline5Yellow cards31Red cards0Recent FormCruz AzulD 1 - 1·D 1 - 1·L 1 - 2·L 3 - 0·D 1 - 1Los Angeles FCW 1 - 2·D 0 - 0·W 6 - 0·W 3 - 0·L 2 - 1Head to HeadCruz Azul 0W, 0D, Los Angeles FC 2W07 Apr 2026Los Angeles FC3 - 0Cruz AzulCONCACAF Champions Cup16 Dec 2020Los Angeles FC2 - 1Cruz AzulCONCACAF Champions LeagueAbout the MatchCruz Azul faces Los Angeles FC at Estadio Cuauhtémoc on Wed, Apr 15, 2026, 01:00 UTC. This match is part of the CONCACAF Champions Cup. You can check the recent head-to-head encounters, as well as full H2H record on this page to see how Cruz Azul and Los Angeles FC have fared against each other in the past. On FotMob, you can follow the Cruz Azul vs Los Angeles FC live score with a full set of match features, including:Live updates: Every goal, card, substitution and key moment instantly delivered on FotMob.Real-time extensive stats powered by Opta: Possession, shots, corners, big chances created, xG, momentum, and shot maps.The lineups are: Cruz Azul (3-4-2-1): Kevin Mier - Willer Ditta, Érik Lira, Gonzalo Piovi - Omar Campos, Agustín Palavecino, Jeremy Márquez, Carlos Rodolfo Rotondi - Andrés Montaño, Carlos Rodríguez - Gabriel Fernández. Los Angeles FC (4-2-3-1): Hugo Lloris - Sergi Palencia, Ryan Porteous, Nkosi Tafari, Eddie Segura - Mathieu Choinière, Marco Delgado - David Martínez, Timothy Tillman, Denis Bouanga - Heung-Min Son.Cruz Azul does not have any unavailable players. Unavailable players for Los Angeles FC: Stephen Eustáquio (injury).Team form & Head-to-head history: Compare recent results and see how Cruz Azul and Los Angeles FC have performed against each other. The current head to head record for the teams are Cruz Azul 0 win(s), Los Angeles FC 2 win(s), and 0 draw(s).TV and streaming info: Find out where to watch the match.Live standings: Follow league tables and tournament info in real time.Live odds & insights: Track match favorites and before, during and post match.Commentary & ticker: Rich text commentary for major matches to follow the action even if you can't watch.All of these features make FotMob the best way to follow Cruz Azul vs Los Angeles FC, whether you're checking the scores or diving into detailed stats. FotMob also covers every team and competition worldwide, with fixtures, results, and squad info available on team pages.FotMob is available on the web and as a free app for iOS and Android. Install the app to get notifications, live scores, and full match coverage so you never miss a moment.
+"""
+
+[R2] LAFC oust Cruz Azul to reach Concacaf Champions Cup semifinals
+(https://www.mlssoccer.com/competitions/concacaf-champions-cup/news/lafc-oust-cruz-azul-to-reach-concacaf-champions-cup-semifinals)
+"""
+LAFC oust Cruz Azul to reach Concacaf Champions Cup semifinals LAFC earned a 1-1 draw at LIGA MX giants Cruz Azul on Tuesday night to qualify for the 2026 Concacaf Champions Cup semifinals. Denis Bouanga buried a penalty kick in second-half stoppage time to complete the 4-1 aggregate quarterfinal victory at Estadio Cuauhtémoc, following the Black & Gold's dominant 3-0 home win in Leg 1. Gabriel Fernández struck early for the hosts, scoring from the penalty spot after a Video Review call against Sergi Palencia. The reigning CCC champions stayed on the attack, inspiring a Man-of-the-Match performance from LAFC goalkeeper Hugo Lloris, who made eight saves. In the game's dying moments, Bouanga put the series to bed. LAFC will face either bitter rivals LA Galaxy or back-to-back LIGA MX champions Toluca later this month in the semifinals. That series gets decided Wednesday night, with Toluca holding a 4-2 advantage. Goals 18' - CAZ - Gabriel Fernández (PK) | WATCH 90+7' - LAFC - Denis Bouanga (PK) | WATCH Three Things THE BIG PICTURE: Job done in Mexico. The Black & Gold bent but didn’t break and got a positive result in hostile territory for a well-deserved spot in the semifinals. They’re now one step closer to their third Champions Cup final, after runner-up finishes in 2020 and 2023. MOMENT OF THE MATCH: Hugo Lloris prevented Cruz Azul from getting a second goal just before the halftime break with this spectacular save. MAN OF THE MATCH: A game-changing goalkeeper for over two decades, Lloris continues to grow his legend at age 39. Next Up CAZ: Saturday, April 18 vs. Club Tijuana | 7 pm ET | LIGA MX Clausura LAFC: Sunday, April 19 vs. San Jose Earthquakes | 7 ET (Apple TV) | MLS regular season CONCACAF Champions Cup Match Reaction Los Angeles Football Club LAFC & Nashville SC carry MLS dreams into Champions Cup semifinals Seattle Sounders, LA Galaxy exit in Champions Cup quarterfinals Nashville SC stun Club América for historic Champions Cup semifinal berth LAFC oust Cruz Azul to reach Concacaf Champions Cup semifinals LA Galaxy vs. Toluca FC: How to watch, stream Concacaf Champions Cup Leg 2 Vancouver Whitecaps: What's the response from CCC heartbreak? Vancouver or Seattle: Who had the better Concacaf Champions Cup run? Sebastian Berhalter: How should Vancouver replace him in CCC final? Vancouver Whitecaps: What will decide Concacaf Champions Cup final?
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

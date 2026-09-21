@@ -1,0 +1,321 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "easter vigil mass"
+
+Claims:
+[1] "The Easter Vigil is held on Holy Saturday night."
+[2] "The Easter Vigil marks the Resurrection of Jesus."
+[3] "The Easter Vigil starts in darkness with a service of light."
+[4] "The Easter Vigil includes the celebration of Baptism/Confirmation for new members."
+[5] "The Easter Vigil includes the first Eucharist of Easter."
+[6] "The Service of Light begins after nightfall outside the church."
+[7] "The Service of Light includes blessing a new fire."
+[8] "The Service of Light includes lighting the Paschal Candle."
+[9] "The Service of Light includes singing the Exsultet (Easter Proclamation)."
+[10] "The Liturgy of the Word includes seven Old Testament readings."
+[11] "The Liturgy of the Word includes two New Testament readings (Epistle and Gospel)."
+[12] "Some readings may be omitted in the Liturgy of the Word."
+[13] "The Baptismal Liturgy includes the blessing of baptismal water."
+[14] "The Baptismal Liturgy includes the celebration of baptism."
+[15] "The Baptismal Liturgy includes the reception of new members into the Church."
+[16] "The Baptismal Liturgy is followed by the renewal of baptismal promises."
+[17] "The Liturgy of the Eucharist is the final part of the Easter Vigil Mass."
+[18] "The Liturgy of the Eucharist celebrates the Eucharist with newly baptized members."
+[19] "According to a guide by Hallow, the Easter Vigil is not an anticipated Mass for Sunday."
+[20] "According to a guide by Hallow, the Easter Vigil fulfills the Easter obligation."
+[21] "According to the USCCB, the Easter Vigil is considered the greatest and most noble of all solemnities."
+[22] "The Easter Vigil is the "mother of all vigils" in the Catholic Church."
+
+Cited text snippets from the AI Overview (for additional context):
+- The Roman Missal and the Easter Vigil | USCCB: "Introduction to the Easter Vigil,passage from death to life."
+- The Easter Vigil with Bishop Sis: "The Easter Vigil has four parts: service,baptismal liturgy, and liturgy of the Eucharist."
+- The Easter Vigil liturgy is the most beautiful liturgy in the ...: "The Easter Vigil liturgy is,marks the beginning of Easter."
+- Liturgical Year : Activities : Easter Vigil - Catholic Culture: "2) Liturgy of the Word,Luke 24:1-12."
+- Questions on the Easter Vigil - Archdiocese of Newark: "The Easter Vigil is never to be,Vigil does fulfill the Easter Sunday obligation."
+- Easter Vigil Mass| LIVE from St. Peter's Basilica: "Easter Vigil Mass,https://shalomtidings...."
+Reference Sources:
+
+[R1] NOTES ON THE LITURGY
+(https://rcan.org/wp-content/uploads/2023/07/07qotvigil.pdf)
+"""
+NOTES ON THE LITURGY
+ Office of Divine Worship - Archdiocese of Newark
+
+ Questions on the Easter Vigil
+ How many Easter Vigil celebrations
+ may a parish have? Ideally, every community ought to gather in its entirety
+Each parish church is to have only one celebration of the each Sunday for Mass, but due to the large size of many
+Easter Vigil. This directive is liturgical law and can be parishes and a certain pastoral sensitivity to the schedules
+found in the Sacramentary and in the Circular Letter of people, multiple Sunday Masses are offered. This is not
+Concerning the Preparation and Celebration of the to be the case for the Easter Vigil when, on these very spe-
+Paschal Feasts, 94: “The celebration of the Easter Vigil cial holy days, we return to our roots as a people of faith
+for special groups is not to be encouraged, since above all gathered together in one assembly.
+in this vigil the faithful should come together as one and
+should experience a sense of ecclesial community.” It would obviously be inauthentic to repeat the rites partic-
+ ular to the Easter Vigil. It makes no liturgical sense to bless
+For many people, it comes as a surprise that a parish would a fire and light a candle for use throughout the year and
+even think of having more than one Vigil celebration, and then extinguish it afterwards and start over again with the
+it should. After all, this liturgy is not only awesome and same candle as if the first blessing did not take. Consider
+inspiring but also lengthy and complex. Still, some parish- the illogic of blessing gallons of water for Easter and then
+es are faced with unique pastoral situations such as Masses pretending like it was not done and repeating the process in
+in different languages or multiple worship sites in a partic- another Vigil a few hours later. The rites particular to the
+ular parish. Some of these issues will be looked at in more Easter Vigil are meant to be binding on the entire commu-
+detail below, but to answer this question, it is enough to nity whether or not every member is present.
+state that there is to be one and only one Easter Vigil cele-
+bration in each parish.
+ Is the Vigil a Saturday night Mass for Easter Sunday?
+ Why can there be only one Vigil? The Easter Vigil is never to be compared to a Saturday
+The purpose of celebrating the liturgies of the Church is evening anticipated Mass, but rather, it is in itself its own
+always to give witness to the faith as a community, not as unique liturgy. The Vigil is not an anticipated Mass for
+an individual or private group. Liturgical celebrations are Easter Sunday; however, attendance at the Easter Vigil
+public acts, open to all members of the Church. The Easter does fulfill the Easter Sunday obligation.
+Vigil, being the liturgy par excellence, is above all meant
+to gather the entire people of a parish community to cele- “‘The entire celebration of the Easter Vigil takes place at
+brate the Paschal Mystery in its fullness. Masses are not night. It should not begin before nightfall; it should end
+permitted on Holy Saturday; priests are not permitted to before daybreak on Sunday.’ (Sacramentary, p 170) This
+celebrate private Masses. In order to participate in the rule is to be taken according to its strictest sense.
+Eucharist on Holy Saturday, one must attend the Easter Reprehensible are those abuses and practices which have
+Vigil. crept in many places in violation of this ruling, whereby the
+ Easter Vigil is celebrated at the time of day that it is cus-
+The power of the gathered assembly in prayer fuels the life tomary to celebrate anticipated Sunday Masses.” (Circular
+of the Church. There is even a sense of the universal People Letter Concerning the Preparation and Celebration of the
+of God gathered together for this special night in the texts Paschal Feasts, 78).
+for the Vigil found in the Sacramentary itself:
+ No Masses whatsoever are to be celebrated on Holy
+“Dear friends in Christ, on this most holy night, when our Saturday before the Easter Vigil, and the Easter Vigil may
+Lord Jesus Christ passed from death to new life, the never be celebrated until well after sunset on Holy
+Church invites its sons and daughters throughout the world Saturday. In the northeastern USA, this would mean after
+to come together in vigil and prayer.” (p 171) 8 PM and possibly as late as 8:30 PM.
+ Questions on the Easter Vigil 2
+ What are some considerations for the Easter Vigil
+ Can there be an Easter Mass on Saturday night after the in multi-lingual parishes?
+ Easter Vigil has concluded? Parishes which ordinarily have Masses in multiple languages
+Yes. “In the United States, although it is never permitted to should still have only one celebration of the Easter Vigil. The
+celebrate the entire Easter Vigil more than once in a given parish can make use of multiple languages during the liturgy,
+church or to anticipate the Mass of Easter before the vigil, in but there may be only one Vigil. Considering the many read-
+those places where the local Ordinary permits the anticipation ings, psalms, prayers and musical needs of this liturgy, there
+of the Sunday Masses on Saturday evening, for pastoral rea- are ample opportunities to use more than one language.
+sons an additional Mass may be celebrated after the Mass of
+the Easter Vigil. Such a Mass may follow the liturgy of the As stated above, Easter Masses may be celebrated any time
+word of the Easter Vigil…and should include the renewal of after the Easter Vigil is completed. This would include a Mass
+baptismal promises.” (Sacramentary, p 170). after the Vigil in a language other than that used at the Vigil
+ itself. However, as also stated above, none of the rites partic-
+Once the Easter Vigil has been completed, Masses of Easter ular to the Easter Vigil may be repeated, and full initiation of
+may be celebrated, even if it is still Saturday evening or very the Elect is only to be celebrated at the Easter Vigil.
+early Sunday morning. However, this should in no way affect
+the starting time of the Easter Vigil, which is to be at least 30
+minutes after sunset.
+
+It should be clear that the rites particular to the Easter Vigil are
+not to be repeated at any other Easter Mass. This means that What are some considerations for the Easter Vigil if a
+at any Mass following the Vigil, there would be no service of parish has more than one worship site?
+light, no proclamation of the exsultet, no full initiation of the In these times of closings and mergers, a parish may have
+Elect, no blessing of Easter water. The paschal candle is light- more than one worship site. An individual parish with more
+ed before the Mass starts and would remain in its place near than one church building needs to take this into consideration
+the ambo for the entire liturgy.1 It may be incensed at the when planning the Easter Triduum because even in this situa-
+beginning of Mass. tion, ideally only one Vigil may occur.
+
+As stated in the rubric above, an extended liturgy of the word As stated in the Circular Letter Concerning the Preparation
+as at the Vigil would be permissible at an Easter Mass follow- and Celebration of the Paschal Feasts: “It would be desirable
+ing the Vigil on Saturday evening. Required at all Easter if on occasion provision were made for several communities
+Masses by the Sacramentary (p 209) is the renewal of bap- to assemble in one church wherever their proximity one to
+tismal promises and sprinkling rite. another or small numbers mean that a full and festive celebra-
+ tion could not otherwise take place.” (94)
+ How long should the Easter Vigil last?
+The Easter Vigil should be as long as it takes to meaningfully “It is fitting that small religious communities, both clerical
+and fully celebrate the rites of this special night. Given the and lay, and other lay groups should participate in the celebra-
+additional rites of the Vigil and the likely presence of the Elect tion of the Easter Triduum in neighboring principal churches.
+for full initiation, it should easily take a minimum of two Similarly, where the number of participants and ministers is so
+hours to celebrate. This should not be looked upon as a bur- small that the celebrations of the Easter Triduum cannot be
+den. carried out with the requisite solemnity, such groups of the
+ faithful should assemble in a larger church. Also, where there
+A successful Easter Vigil is not determined by how short it is, are small parishes with only one priest it is recommended that
+but by how short it feels. It is necessary to create a sense of such parishes should assemble, as far as possible, in a princi-
+flow in any liturgy, but especially one as lengthy as the Easter pal church and there participate in the celebrations.” (43)
+Vigil. This ordinarily requires some rehearsal on the part of
+the liturgical ministers, including the presider and the RCIA This statement indicates that parishes which are merged
+sponsors (but not the Elect themselves who should experience should come together as a single entity to celebrate this holy
+it unrehearsed). When ministers know what they are doing; night.2
+when items are in the right place before the Vigil begins; when
+musicians are aware of proper cues, a sense of flow ensues Note: In a parish with multiple worship sites, no Easter Masses
+and awareness of earthly time (kronos) will fade as the assem- may take place at any of the sites until that parish’s Easter Vigil
+bly enters God’s time (kairos). is completed.
+ Questions on the Easter Vigil 3
+ May more than one paschal candle Do all the readings of the Easter Vigil
+ be blessed at an Easter Vigil celebration? need to be read?
+
+No. “The paschal candle should be prepared, which “The restored order for the vigil has seven readings from
+for effective symbolism must be made of wax, never the Old Testament, chosen from the Law and the Prophets,
+ which are everywhere in use according to the most ancient
+be artificial, be renewed each year, be only one in
+ tradition of East and West, and two readings from the New
+number, and be of sufficiently large size so that it may
+ Testament, namely from the Apostle and from
+evoke the truth that Christ is the light of the the Gospel. Thus the church, ‘beginning with
+world.” (Circular Letter Concerning the Moses and all the prophets’ explains Christ's
+Preparation and Celebration of the paschal mystery. Consequently, wherever this
+Paschal Feasts, 82) is possible all the readings should be read in
+ order that the character of the Easter Vigil,
+The Church does not envision multiple which demands that it be somewhat prolonged,
+paschal candles at the Easter Vigil. The be respected at all costs.
+multiplication of symbols would have a
+negative effect on the Vigil, causing confu- “Where, however, pastoral conditions require
+ that the number of readings be reduced, there
+sion and even diffusing the symbolic
+ should be at least three readings from the Old
+power of the paschal candle itself.
+ Testament, taken from the Law and the
+ Prophets, and the reading from Exodus 14 with
+Consider the sign value of the paschal can- its canticle must never be omitted.” (Circular
+dle. It represents Christ, the light of the Letter Concerning the Preparation and
+world, as it leads the assembly into the Celebration of the Paschal Feasts, 85)
+darkened church. It reminds the people of
+the pillar of light leading the Israelites out Only in the most exceptional of cases should
+of Egypt. The power of a single light in the one eliminate a significant number of readings.
+darkness leading God’s people is lost when A military setting, for example, might be a case
+there are multiple paschal candles. The where the readings would need to be signifi-
+ cantly reduced, but certainly not a parish set-
+practice of using multiple paschal candles
+ ting. Recall that the Easter Vigil is not an antic-
+for any reason is incongruent with the
+ ipated Mass for Easter Sunday, but rather it is a
+Church’s liturgical practices. true vigil. Ancient vigils included lengthy read-
+ ings from the scriptures.
+Certainly a worship space in which bap-
+tisms and funerals take place must have a The setting of the readings must follow the
+paschal candle, and it should be renewed liturgy of the Church as well, meaning that the
+each year. However, if there is no Easter reading is to be proclaimed, followed by the
+Vigil at the site of a particular worship appropriate psalm (or a significant period of
+space, the candle should be replaced for the first litur- silence) and the appropriate collect is prayed by the
+gy of Easter Sunday and needs only to be lit before presider.
+Mass begins, and it may be incensed during the open-
+ Settings of the readings which do not follow this format or
+ing rites.
+ the official readings and texts of the Lectionary for Mass
+ and the Sacramentary should not be used. Further, elec-
+Note: In a parish with multiple worship sites, no tronic media such as videos, slideshows or dramatic pre-
+Easter Masses may take place at any of the sites until sentations should never replace the proclamation of the
+that parish’s Easter Vigil is completed. Scriptures at the Vigil (or at any other liturgy of the
+ Church).
+ Questions on the Easter Vigil 4
+ Do real wax candles have to be used Can a baptized Catholic be confirmed
+ at the Easter Vigil? at the Easter Vigil?
+
+Yes. Electric candles, flashlights and other such accou- No. In the Archdiocese of Newark, the required delegation
+trements should never be used to replace the wax paschal is not given to confirm baptized Catholics at the Easter
+candle or tapers given to the members of the assembly. Vigil.
+Inauthentic symbols compromise the liturgy.
+ Upon written request, delegation is given only to pastors to
+Is the litany of the saints sung at the Easter Vigil even confirm adult baptized Catholics (18 years or older) on any
+when there is no one to be baptized? of the Sundays of Easter, including Easter Sunday itself
+ and Pentecost.
+Two questions need to be asked when deciding the answer
+to this question: Baptized Catholics under the age of 18 must be confirmed
+ by a bishop.
+1. Does the worship site have a canonical rite
+ to a font?3 Adult non-Catholics who are validly baptized may be
+2. Will baptism take place at the Vigil? brought into full communion and confirmed at the Easter
+ Vigil, but this is not a preferred practice. Baptism is intrin-
+If the answer to either or both of these questions is “yes,” sic to the Easter Vigil. It would be better to baptize an
+then the litany is sung. infant at the Easter Vigil,4 even though the infant would not
+ be fully initiated, than to receive a baptized non-Catholic
+If the worship site has no rite to a font, that is, it is a chapel into full communion with the Church.
+where baptisms do not take place, and if no one is to be
+baptized at the Vigil, the litany is not sung. (However, even Baptized non-Catholics may be received into full commun-
+where there is no font, water is always blessed at the Vigil ion and confirmed on one of the Sundays of Easter (or even
+for the renewal of baptismal promises and sprinkling rite). a Sunday of Ordinary Time). Any priest may receive and
+ confirm a baptized non-Catholic; no delegation is required.
+
+ Endnotes
+
+ 1. The blessed fire of the Vigil could be maintained for the 50 days of Easter by using the flame from the paschal candle at the Vigil
+to light the tabernacle lamp and taking the flame from there to light the paschal candle at all Masses and liturgical services during the
+50 days of Easter.
+
+ 2. A possible pastoral approach could be to alternate the location used for the Vigil between the worship sites from year to year.
+Also, all three of the Triduum liturgies do not have to take place in the same location, so, for example, the Evening Mass of the
+Lord’s Supper and/or the Celebration of the Lord’s Passion could take place at one worship site in the parish and the Easter Vigil at
+another. Consideration should also be given to the celebration of the Easter sacraments; does one worship site have a font that is
+more suitable for baptizing adults?
+
+ 3. In other words, is the worship site a place where baptisms ordinarily take place, or is it a chapel in a hospital or other place where
+baptisms are not ordinarily celebrated.
+
+ 4. “The third part of the vigil is the baptismal liturgy. Christ's passover and ours is now celebrated. This is given full expression in
+those churches which have a baptismal font and more so when the Christian initiation of adults is held or at least the baptism of
+infants.” (Circular Letter Concerning the Preparation and Celebration of the Paschal Feasts, 88).
+"""
+
+[R2] The Roman Missal and the Easter Vigil
+(https://www.usccb.org/prayer-and-worship/liturgical-year-and-calendar/triduum/roman-missal-and-the-easter-vigil)
+"""
+The rubrics for Holy Saturday found in the Missale Romanum, editio typica tertia address several matters which will be helpful to those involved in the preparation of the celebration of the Easter Vigil.Introduction to the Easter VigilThe rubrics of the Missale Romanum remind us that this "mother of all vigils" is the "greatest and most noble of all solemnities" and "there is to be only one celebration in each church" (Missale Romanum, "Rubrics for the Easter Vigil" (EV), no. 2). On this holy night, the Church keeps watch, celebrating the resurrection of Christ in the sacraments and awaiting his return in glory. It is the turning point of the Triduum, the Passover of the new covenant, which marks Christ's passage from death to life. Therefore, the Easter Vigil does not correspond to the usual Saturday evening Mass and its character is unique in the cycle of the liturgical year.The Vigil, by its very nature, "must take place during the night" (EV, no. 3). It is not begun before nightfall1 and should end before daybreak on Easter Sunday. The celebration of the Easter Vigil takes the place of the Office of Readings (EV, no. 5).The role of the deacon assisting the priest is highlighted in the new Missale, although it is noted that in his absence his duties may be exercised by the priest celebrant himself or by a concelebrant (EV, no. 6).The Elements and Parts of the Easter VigilThe Solemn Beginning of the Vigil (Lucernarium)In a suitable place outside the Church, a "blazing fire" (rogus ardens) is to be prepared so that the people may gather around it and experience the flames dispelling the darkness and lighting up the night. Thus do the beauty of the fire, its warmth and its light, draw the liturgical assembly together. The rubrics, however, acknowledge that when this cannot be done adaptations may be made. The Missale also states that cross and candles are not to be carried in this procession (EV, no. 8).Having reached the fire, the celebrant and faithful sign themselves with the sign of the cross while the priest says: In the name of the Father, and of the Son, and of the Holy Spirit (EV, no. 9). After this new beginning, he greets the people and then gives the instruction (EV, no. 9). As the celebrant blesses the fire, he says the prayer with hands outstretched (EV, no. 10).The Paschal Candle is brought forward. This candle should be made of wax, never be artificial, be renewed each year, be only one in number, and be of sufficiently large size that it may convey the truth that Christ is the light of the world (Cf. Congregation for Divine Worship and the Discipline of the Sacraments, Circular Letter Concerning the Preparation and Celebration of the Easter Feasts [1988], no. 82). This description is developed in no. 94 of Built of Living Stones which reminds us that the Paschal Candle is the symbol of the "light of Christ, rising in glory," scattering the "darkness of our hearts and minds": "Above all, the paschal candle should be a genuine candle, the preeminent symbol of the light of Christ. Choices of size, design, and color should be made in relationship to the sanctuary in which it will be placed."The candle is then prepared in rites which are no longer optional. The celebrant cuts a cross into the candle with a stylus. Then he makes the Greek letter Alpha above the cross, the letter Omega below it, and the four numerals of the current year between the arms of the cross, saying the words indicated. After these rites, the priest lights the candle from the new fire and says: May the light of Christ rising in glory / dispel the darkness of our hearts and minds (EV, no. 14).The organization of the procession is more clearly described in the new Missale Romanum. One of the ministers takes burning coals from the fire and places them in a censer (thurible) and the priest, in the usual way, places incense into it. The deacon, or in his absence another appropriate minister, accepts the Easter candle from the celebrant and a procession is formed. The order of procession is the thurifer with smoking thurible, preceding the minister holding the candle, followed by the ministers and the priest and the people. All hold unlit candles (EV, no. 15). Just as the children of Israel were guided at night by the pillar of fire, so Christians follow the risen Christ.The places at which the proclamation, Light of Christ, are sung now differ from what was in the previous Missale.The new places are: at the door of the Church (after which the priest lights his candle), in the middle of the Church (after which all light their candles), and before the altar, facing the people. The Missale instructs the deacon to place the candle in a large candle stand prepared either next to the ambo or in the middle of the sanctuary (EV, no. 17). The lights of the Church are then lit with the exception of the altar candles which are lit just before the intonation of the Gloria (EV, nos. 17 and 31).Before the Easter Proclamation, the priest gives his candle to one of the ministers and blesses incense as at the Gospel during Mass. Having asked for and received the blessing, the deacon announces the Easter proclamation from the ambo or at a lectern. This poetic text captures the whole Easter mystery placed within the context of the economy of salvation. In the absence of a deacon the priest himself or another concelebrating priest may announce the Easter proclamation. If, however, a lay cantor announces the proclamation, the words, Therefore, dearest friends, up to the end of the invitation are omitted, along with the greeting, The Lord be with you (nos. 18-19). The reference to the Conference of Bishops adapting the text by inserting acclamations is no longer mentioned.The Liturgy of the WordOne of the unique aspects of the Easter Vigil is the recounting of the outstanding deeds of the history of salvation. These deeds are related in seven readings from the Old Testament chosen from the law and the prophets and two readings from the New Testament, namely from the apostles and from the gospel. Thus, the Lord "beginning with Moses and all the prophets" (Lk 24:27, 44-45) meets us once again on our journey and, opening up our minds and hearts, prepares us to share in the breaking of the bread and the drinking of the cup. The faithful are encouraged to meditate on these readings by the singing of a responsorial psalm, followed by a silent pause, and then by the celebrant's prayer. The Missale adds a sentence about the nine readings proposed, saying that "all of [these] should be read whenever this can be done, so that the character of the Vigil, which demands an extended period of time, may be preserved" (EV, no. 20).The new Missale recognizes that "nevertheless, where more serious pastoral circumstances demand it, the number of readings from the Old Testament may be reduced" (EV, no. 21). At least three readings from the Old Testament should be read always including Exodus 14 (EV, no. 21). The reference found previously in the Missale to the possibility of having only two Old Testament readings in extreme necessity is omitted.The Missale is very specific about the priest singing the Alleluia before the Gospel: "After the Epistle has been read, all rise, then the Priest solemnly intones the Alleluia three times, raising his voice by a step each time, with all repeating it. If necessary, the psalmist intones the Alleluia." Mention is then made of the psalmist or cantor singing Psalm 117 and the people responding, 'Alleluia' (EV, no. 34). This psalm is often recited by the apostles in their Easter preaching (Acts 4:11-12; Mt 21:42; Mk 12:10; Lk 20:17).The Missale directs explicitly that the homily, even if it is brief, is not to be omitted (EV, no. 36). This requires that the homilist carefully prepare and craft the homily so that it captures the tremendous mysteries being celebrated on this most holy of nights.Baptismal LiturgyThe Missale has reorganized the rubrics for this entire section of the Vigil (nos. 37-58). Nevertheless, the Order of Christian Initiation of Adults should always be consulted in conjunction with the rubrics mentioned here in the Missale. This is especially true when Baptisms are taking place by means of immersion.Christ's Passover and ours are given full expression when baptismal water is blessed in the font and when the Christian Initiation of adults, or at least the baptism of infants, takes place at the Easter Vigil. Even if there are no candidates for baptism, the blessing of baptismal water should take place in parish churches. At the very least, baptism should be commemorated by the blessing of water intended for sprinkling upon the people.The rubrics describe two instances of Baptism at the Vigil. If there is a procession to the baptistery or the font, the catechumens are called forward and presented by their godparents. If there are children, they are carried by their parents and godparents to the front of the assembly. Those who are to be baptized, along with their godparents, are led first by a minister with the Easter candle; the other ministers, deacons and priest follow after them. This procession is accompanied by the singing of the Litany of the Saints. The priest then gives the introductory statement.If the Baptisms take place in the sanctuary, the priest makes the introductory statement, and this is followed by the singing of the Litany of the Saints.When there are no Baptisms and the font is not to be blessed, the litany is omitted and the blessing of water takes place at once (EV, nos. 39-41).The Missale reminds the celebrant that during the blessing of the water his hands are outstretched (EV, no. 44).Numbers 48 to 53 of the rubrics for the Easter Vigil of the Missale Romanum describe the initiation process. As was mentioned before, it is important to consult closely the Order of Christian Initiation of Adults on this matter. Number 48 of the rubrics for the Easter Vigil mentions that after the renunciation and profession of faith "If the anointing of the adults with the Oil of Catechumens has not taken place beforehand, as part of the immediately preparatory rites, it occurs at this moment." Of course no. 33 of the Order of Christian Initiation of Adults points out: "In the United States, the Anointing is permitted only in the Periods of the Catechumenate and of Purification and Enlightenment, and is thus to be omitted both in the Rites of Immediate Preparation and at the celebration of the Sacraments of Initiation.."Number 49 of the rubrics for the Easter Vigil notes that when there are many to be baptized, the priest may ask for the renewal of baptismal promises of all present immediately after the profession of faith made by those to be baptized, along with the godparents and parents.The celebration of Confirmation is to take place in the sanctuary as indicated in the Pontifical or the Roman Ritual.The Liturgy of the EucharistCare should be taken that, particularly in regard to this night's celebration of the Eucharist, the liturgy is not done in haste and that all the rites and words should be given their full force.The Missale has incorporated into itself rubrics found in nos. 241-243 of the Order of Christian Initiation of Adults. These allow for a commemoration of the baptized and their godparents to be made in the Eucharistic Prayer. Proper formulas are found in the Roman Missal for each of the Eucharistic prayers (EV, no. 63). The Order of Christian Initiation of Adults indicates that these formulas are found in the section for ritual Masses, "For the Conferral of the Sacraments of Christian Initiation: For the Conferral of Baptism."The Missale reminds the priest that before he says, Behold the Lamb of God, he may make a brief remark to the neophytes about their first Communion and "the excellence of this great mystery, which is the climax of Initiation and the center of the whole of Christian life" (EV, no. 64). In no. 65 the rubrics for the Easter Vigil indicate the desirability for the neophytes as well as all the faithful, if the Diocesan Bishop consents, to receive Communion under both kinds.The Missale provides a solemn blessing to conclude the liturgy (EV, no. 68). It is also possible to use the formula of the final blessing in the Order of Baptism of Children, according to circumstances.The very last rubric reminds us that "the paschal candle is lit in all the more solemn liturgical celebrations of this period" (EV, no. 70).Notes1 When Holy Saturday occurs during Daylight Saving Time, pastoral planners should contact local weather stations for the time sunset will occur. Another 45 minutes or one hour should be added to that time in order to determine the approximate time of nightfall.
+"""
+
+[R3] Liturgical Year : Activities : Easter Vigil
+(https://www.catholicculture.org/culture/liturgicalyear/activities/view.cfm?id=1043)
+"""
+Catholic Activity: Easter Vigil Supplies None Prep Time N/A Difficulty • • • • Cost n/a For Ages All show Activity Types (1) Linked Activities (0) Files (0) Linked Recipes (0) show Linked Prayers (1) show Feasts (3) show Seasons (1) The Easter Vigil liturgy is the most beautiful liturgy in the Roman Catholic Church. This walks through the Easter Vigil, and includes the words to the Exsultet. DIRECTIONS Although celebrated Holy Saturday evening, it is the dramatic Easter vigil liturgy that marks the beginning of Easter. We are awaiting our master's return with our lamps full and burning, so that he will find us awake and seat us at his table (cf. Luke 12:35ff). All Catholics should try to attend this beautiful service. The vigil is divided into four parts: Service of Light, Liturgy of the Word, Liturgy of Baptism, and Liturgy of the Eucharist. 1) Service of Light The atmosphere in the church is different: the holy water fonts are drained, all the lights are out, the tabernacle is empty. The service begins outside the church. A new fire is lit and blessed: Dear brethren, on this most sacred night, in which our Lord Jesus Christ passed over from death to life, the Church calls upon her sons and daughters, scattered throughout the world, to come together to watch and pray. If we keep the memorial of the Lord's paschal solemnity in this way, listening to his word and celebrating his mysteries, then we shall have the sure hope of sharing his triumph over death and living with him in God. Let us pray, O God, who through your Son bestowed upon the faithful the fire of your glory, sanctify + this new fire, we pray, and grant that, by these paschal celebrations, we may be so inflamed with heavenly desires, that with minds made pure we may attain festivities of unending splendor. Through Christ our Lord.After the blessing of the new fire, one of the ministers brings the paschal candle to the priest, who cuts a cross into the candle with a stylus. Then he makes the Greek letter Alpha above the cross, the letter Omega below, and the four numerals of the current year between the arms of the cross, saying meanwhile: Christ yesterday and today (he cuts a vertical line); the Beginning and the End (he cuts a horizontal line); the Alpha (he cuts the letter Alpha above the vertical line); and the Omega (he cuts the letter Omega below the vertical line); All time belongs to him (he cuts the 1st numeral of the current year in the upper left corner of the cross); and all the ages (he cuts the 2nd numeral of the current year in the upper right corner of the cross); To him be glory and power (he cuts the 3rd numeral of the current year in the lower left corner of the cross); through every age and for ever. Amen (4th numeral of the current year in the lower right corner of the cross). Then the priest may insert five grains of incense into the candle in the form of a cross, meanwhile saying: 1. By his holy 2. and glorious wounds, 3. may Christ the Lord 4. guard us 5. and protect us. Amen. The priest lights the candle from the new fire, saying: May the light of Christ, rising in glory, dispel the darkness of our hearts and minds. The candle is then processed through the church, with the deacon lifting the candle at three different times, singing: The Light of Christ. (or Lumen Christi) and the congregation sings in reply: Thanks be to God (or Deo gratias). Everyone lights their candle from the Easter candle and continue in procession until the whole church is alight. The Paschal candle symbolizes Christ, the Light of the World. Next follows the glorious Easter song of the Catholic Church: the Exsultet (the Easter Proclamation). "This magnificent hymn, which is remarkable for its lyric beauty and profound symbolism, announces the dignity and meaning of the mystery of Easter; it tells of man's sin, of God's mercy, and of the great love of the Redeemer for mankind, admonishing us in turn to thank the Trinity for all the graces that have been lavished upon us" (©1947 With Christ Through the Year, by Bernard Strasser). This is usually sung by the deacon. The Easter Proclamation or Exsultet: Exult, let them exult, the hosts of heaven, exult, let Angel ministers of God exults, let the trumpet of salvation sound aloud our mighty King's triumph! Be glad, let earth be glad, as glory floods her, ablaze with light from her eternal King, let all corners of the earth be glad, knowing an end to gloom and darkness. Rejoice, let Mother Church also rejoice, arrayed with the lightning of his glory, let this holy building shake with joy, filled with the mighty voices of the peoples. (Therefore, dearest friends, standing in the awesome glory of this holy light, invoke with me, I ask you, the mercy of God almighty, that he, who has been pleased to number me, though unworthy, among the Levites, may pour into me his light unshadowed, that I may sing this candle's perfect praises). (V. The Lord be with you. R. And with your spirit.) V. Lift up your hearts. R. We lift them up to the Lord. V. Let us give thanks to the Lord our God. R. It is right and just. It is truly right and just, with ardent love of mind and heart and with devoted service of our voice, to acclaim our God invisible, the almighty Father, and Jesus Christ, our Lord, his Son, his Only Begotten. Who for our sake paid Adam's debt to the eternal Father, and, pouring out his own dear Blood, wiped clean the record of our ancient sinfulness. These, then, are the feasts of Passover, in which is slain the Lamb, the one true Lamb, whose Blood anoints the doorposts of believers. This is the night, when once you led our forebears, Israel's children, from slavery in Egypt and made them pass dry-shod through the Red Sea. This is the night that with a pillar of fire banished the darkness of sin. This is the night that even now, throughout the world, sets Christian believers apart from worldly vices and from the gloom of sin, leading them to grace and joining them to his holy ones. This is the night when Christ broke the prison-bars of death and rose victorious from the underworld. Our birth would have been no gain, had we not been redeemed. O wonder of your humble care for us! O love, O charity beyond all telling, to ransom a slave you gave away your Son! O truly necessary sin of Adam, destroyed completely by the Death of Christ! O happy fault that earned so great, so glorious a Redeemer! O truly blessed night, worthy alone to know the time and hour when Christ rose from the underworld! This is the night of which it is written: The night shall be as bright as day, dazzling is the night for me, and full of gladness. The sanctifying power of this night dispels wickedness, washes faults away, restores innocence to the fallen, and joy to mourners, drives out hatred, fosters concord, and brings down the mighty. On this, your night of grace, O holy Father, accept this candle, a solemn offering, the work of bees and your servants' hands. an evening sacrifice of praise, this gift from your most holy Church. But now we know the praises of this pillar, which glowing fire ignites for God's honor, a fire into many flames divided, yet never dimmed by sharing of its light, for it is fed by melting wax, drawn out by mother bees to build a torch so precious. O truly blessed night, when thing of heaven are wed to those of earth, and divine to the human. Therefore, O Lord, we pray you that this candle, hallowed to the honor of your name, may persevere undimmed, to overcome the darkness of this night, Receive it as a pleasing fragrance, and let it mingle with the lights of heaven. May this flame be found still burning by the Morning Star: the one Morning Star who never sets, Christ your Son, who, coming back from death's domain, has shed his peaceful light on humanity, and lives and reigns for ever and ever. R. Amen.For more information about this ancient part of the Easter Vigil Liturgy, please see The Exsultet from the Catholic Culture Library. 2) Liturgy of the Word During the Easter vigil, nine readings are provided: seven Old Testament and two New Testament. Not all are required to be read due to time constraints, but at least three Old Testament readings must be read, including Exodus 14. These readings help us meditate on the wonderful works of God for his people since the beginning of time. The readings are: Creation, Gen 1:1-2; 2; Abraham and Isaac, Gen 22:1-18; Crossing of the Red Sea, Exodus 14:15–15:1; Isaiah 54:5-14; Isaiah 55:1-11; Baruch 3:9-15.32–4:4; Ezekiel 36:16-17.18-28; Romans 6:3-11; and Gospel Reading, Year A: Matthew 28:1-10; Year B: Mark 16:1-7; Year C: Luke 24:1-12. The Gloria is sung before the reading of the Epistle of the Romans, and the Alleluia is sung before the Gospel. 3) Liturgy of Baptism During this time the Easter water is blessed, new members are brought into the Church through baptism, part of the liturgy includes the Litany of the Saints. There are also those who were baptized, but haven't received the other sacraments of initiation. The catechumens and these faithful are confirmed and will later receive the Holy Eucharist. Afterwards the faithful are blessed with water and all renew their baptismal promises. Renewal of Baptismal Promises Dear brethren, through the Paschal Mystery we have been buried with Christ in Baptism, so that we may walk with him in newness of life. And so, now that our Lenten observance is concluded, let us renew the promises of Holy Baptism, by which we once renounced Satan and his works and promised to serve God in the holy Catholic Church. And so I ask you: Priest: Do you renounce Satan? All: I do. Priest: And all his works? All: I do. Priest: And all his empty show? All: I do. Priest: Do you renounce sin, so as to live in the freedom of the children of God? All: I do. Priest: Do you renounce the lure of evil, so that sin may have no mastery over you? All: I do. Priest: Do you renounce Satan, the author and prince of sin? All: I do. Priest: Do you believe in God, the Father almighty, Creator of heaven and earth? All: I do. Priest: Do you believe in Jesus Christ, his only Son, our Lord, who was born of the Virgin Mary, suffered death and was buried, rose again from the dead and is seated at the right hand of the Father? All: I do. Priest: Do you believe in the Holy Spirit, the holy Catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting? All: I do. And may almighty God, the Father of our Lord Jesus Christ, who has given us new birth by water and the Holy Spirit and bestowed on us forgiveness of our sins, keep us by his grace, in Christ Jesus our Lord. All: Amen.4) Liturgy of Eucharist The Mass continues, with the special prayers inserted during the Eucharist Prayer. The whole church is called to join at the sacrificial table that Christ prepared for us through his death and resurrection. Proper Form of the Communicantes: From the Mass of the Easter Vigil until the Second Sunday of Easter: Celebrating the most sacred night of the Resurrection of our Lord Jesus Christ in the flesh, and in communion with those whose memory we venerate, especially the glorious ever-Virgin Mary, Mother of our God and Lord, Jesus Christ.... Therefore, Lord, we pray: graciously accept this oblation of our service, that of your whole family, which we make to you also for those to whom you have been pleased to give the new birth of water and the Holy Spirit, granting them forgiveness of all their sins; order our days in your peace, and command that we be delivered from eternal damnation and counted among the flock of those you have chosen.The Mass continues. After Communion and the Prayer After Communion the Mass concludes with the Solemn Blessing: May almighty God bless you through today's Easter Solemnity and, in his compassion, defend you from every assault of sin. R. Amen. And may he, who restores you to eternal life in the Resurrection of his Only Begotten, endow you with the prize of immortality. R. Amen. Now that the days of the Lord's Passion have drawn to a close, may you who celebrate the gladness of the Paschal Feast come with Christ's help, and exulting in spirit, to those feasts that are celebrated in eternal joy. R. Amen. And may the blessing of almighty God, the Father, the Son, + and of the Holy Spirit, come down on you and remain with you for ever. R. Amen.and closes with the glorious sung dismissal: V. Go forth, the Mass is ended, alleluia, alleluia. or Go in peace, alleluia, alleluia. R. Thanks be to God, alleluia, alleluia. Activity Source: Original Text (JGM) by Jennifer Gregory Miller, © Copyright 2003-2026 by Jennifer Gregory Miller
+"""
+
+[R4] Holy Saturday:  The Easter Vigil
+(https://ourladyofhopegrafton.org/easter-vigil)
+"""
+Sunday Mass Schedule Saturday: 4:00 PM English English EN Saint Mary Church (Confessions 2:45-3:45 PM) Sunday: 7:30 AM English English EN Saint James Church 9:00 AM English English EN Saint James Church 11:00 AM English English EN Saint Mary Church Daily Mass Schedule Monday: 12:00 PM English English EN Saint Mary Church Wednesday: 12:00 PM English English EN Saint Mary Church Thursday: 7:00 PM English English EN Saint James Church (Adoration 3:00-6:45 PM; Confessions 6:00-6:45 PM) Friday: 8:00 AM English English EN Saint James Church (Confessions 7:00-7:45 AM) Saturday: 8:00 AM English English EN Saint James Church Need another time? Click here to find others nearby. ||| Home Mass & Confession Times Flocknote: Stay Connected Parish Leadership Alpha Welcome Mass & Confession Times Contact Us / Locations Becoming Catholic Sacraments Histories of Our Churches Meet Our Clergy & Staff New Parishioner Registration Online Giving Safe Environment Liturgy & Prayer Liturgy Mass & Confession Times Holy Days of Obligation The Liturgy The Mass Symbols and Signs of the Liturgy Order of the Mass Preparation for the Mass The Mass Explained: Videos Prayer Parish Year of Prayer The Pope's Worldwide Prayer Network Prayers Prayers before the Mass Prayers during Advent Images of Faith Lectio Divina Novena Rosary Prayer Requests Devotions Eucharistic Adoration Pray the Rosary Stations of the Cross Blessed Virgin Mary Saints Liturgical Seasons of the Catholic Church Liturgical Year Solemnities, Feasts and Memorials Advent Season Christmas Season Ordinary Time Season of Lent Sacred Paschal Triduum (Holy Week) Easter Season Ordinary Time Faith Formation Our Faith What is Faith? Core Catholic Beliefs Divine Revelation Christ: True God and True Man Deposit of Faith Small Groups Faith Sharing The Holy Bible The Blessed Trinity Ten Commandments The Catholic Church Primacy of Peter Apostolic Succession Magisterium Marks of the Church Precepts of the Church Church as the Mystical Body of Christ Catechism of the Catholic Church A Call for Unity The Sacraments Sacraments Baptism The Eucharist Confirmation Reconciliation Anointing of the Sick Matrimony Holy Orders Religious Education Becoming Catholic Religious Education Introduction Religious Education Adult Faith Formation Catechesis of the Good Shepherd Catholic Youth News Catholic Young Adults Catholic Terms and Definitions Catholic Signs and Symbols For Catechists and Aides Faith Based Videos Stewardship Stewardship To Be A Catholic Steward Three Convictions of Stewardship Stewardship: A Disciple's Response Stewardship of Time, Talent, and Treasure A Stewardship Prayer Ministries Brides of Christ Knights of Columbus Knitted/Crocheted Prayer Ministry Music Ministry Prayer Ministry Property Committee Respect Life Ministry Outreach Market Sunday Mustard Seed Soup Kitchen St. James Outreach St. Vincent de Paul Conference Tithing Committee Veterans Outreach Community Harvest Project Special Events Partners In Charity News & Events Our Parish Calendar Our Parish News Catholic Diocese News Catholic World News Catholic Youth News Photo Albums Communications Bulletins Flocknote: Stay Connected Helpful Links Resources Special Articles Videos Calendar
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

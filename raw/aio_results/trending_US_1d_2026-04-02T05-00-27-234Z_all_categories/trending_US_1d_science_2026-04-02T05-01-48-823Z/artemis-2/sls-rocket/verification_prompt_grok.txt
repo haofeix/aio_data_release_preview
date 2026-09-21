@@ -1,0 +1,606 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "sls rocket"
+
+Claims:
+[1] "NASA's Space Launch System (SLS) is a super heavy-lift rocket."
+[2] "NASA's Space Launch System (SLS) is an expendable rocket."
+[3] "NASA's Space Launch System (SLS) is designed for deep space missions."
+[4] "NASA's Space Launch System (SLS) is designed for the Artemis program."
+[5] "NASA's Space Launch System (SLS) is the only rocket capable of sending the Orion crew capsule, astronauts, and large cargo directly to the Moon in one launch."
+[6] "Artemis I flight was successful in 2022."
+[7] "NASA's Space Launch System (SLS) is scheduled for the crewed Artemis II mission in April 2026."
+
+Cited text snippets from the AI Overview (for additional context):
+- Space Launch System (SLS): "Combining power and capability, NASA's,More SLS News"
+- NASA returns its SLS rocket back to the launch pad ahead of planned April flight of Artemis 2: "The test flight is a,lunar lander, or potentially both."
+- Space Launch System - NASA: "NASA's SLS (Space Launch System,Moon on a single launch.&text=NASA's SLS (Space Launch System) rocket carrying the Orion spacecraft,Kennedy Space Center in Florida."
+- The Cost of SLS and Orion | The Planetary Society: "The Space Launch System (SLS) rocket program,development of future rockets and upgraded equipment"
+- SLS Rocket Components for Deep Space Missions - Boeing: "Space launch system: PUTTING IT,the Moon and ultimately Mars."
+- NASA’s giant moon rocket ready for Florida Artemis 2 launch. What ...: "When did the SLS rocket,rocket NASA has ever launched."
+- SLS (Space Launch System) - NASA: "Space Launch System Missions,the Moon on Artemis III."
+- Space Launch System | L3Harris® Fast. Forward.: "For trips to Earth's Moon,means of in-space transportation."
+Reference Sources:
+
+[R1] Space Launch System
+(https://www.l3harris.com/all-capabilities/space-launch-system)
+"""
+Greatest Payload Mass: SLS’s increased payload capability results in fewer launches and less complex operations to place infrastructure in deep space. Fewer launches also means decreased risk and cost associated with these complex missions. For trips to Earth’s Moon, SLS’s first configuration is able to lift more than 27 metric tons (59,500 lbs) to the lunar vicinity. By its fourth configuration, the lift capability of SLS to the Moon will grow to 46 metric tons (about 101,400 lbs).Largest Payload Volume: The capacity to launch the largest payload volume equates to the lowest mission complexity, risk and cost. It also allows for the greatest flexibility in the size and number of payloads that can be launched at once. More instruments and larger apertures can be accommodated by SLS, resulting in greater returns from the nation’s highest-priority science missions. At 8.4 meters, a future configuration of SLS (Block 1B) will have the largest fairing in the world.Unmatched Speed: Faster speeds mean shorter duration trips and less exposure to harsh space environments for crew and cargo. It also means great scientific discoveries will return more quickly to Earth, and that costs will be reduced as a result of these accelerated timelines. SLS will carry crew and cargo to deep space faster and more efficiently than any other launch vehicle – enabling earlier arrival at destinations than by other means of in-space transportation.Our RoleRS-25 Engines: The RS-25 is derived from the Space Shuttle Main Engine (SSME), which flawlessly powered 135 flights of the Space Shuttle. Between the shuttle and SLS programs, the RS-25 and SSME engines have experienced more than 1.1 million seconds of testing – making it the safest and most reliable liquid-booster engine in the world.Four RS-25 engines are mounted to the bottom of the SLS rocket. In just 4 seconds, they reach over 2 million pounds of thrust and fire non-stop for 500 seconds to ensure SLS reaches space.To do this, the RS-25 uses a staged-combustion engine cycle that combines liquid hydrogen and liquid oxygen propellants at a very high pressure to produce thrust. These engines operate in temperature extremes from minus 423 degrees Fahrenheit to 6,000 degrees Fahrenheit and at pressures exceeding 7,000 pounds per square inch. To fly SLS, the required power level for the RS-25 engines is 512,000 pounds vacuum thrust (109 percent of rated power level). Future evolutions will have even higher thrust capabilities.RL10 Engines: L3Harris' RL10 engine powers the upper stage of the SLS, providing the main propulsion once the rocket has reached space. One RL10 engine was used on SLS when it made its inaugural flight on the Artemis I mission. On the second flight (Artemis II), the RL10 will provide the power to send the Orion spacecraft and astronauts on the first mission to the Moon with humans since 1972. As the SLS rocket evolves to even more powerful configurations, it will incorporate four RL10 engines on the Exploration Upper Stage.For over 50 years, the RL10 engine has been the nation’s premier upper-stage rocket engine. To date, more than 500 RL10 engines have launched hundreds of satellites to orbit and have sent spacecraft to every planet in our solar system.
+"""
+
+[R2] The Cost of SLS and Orion
+(https://www.planetary.org/space-policy/cost-of-sls-and-orion)
+"""
+From its inception through the year of its first flight in 2022, the Space Launch System rocket program cost NASA $23.8 billion. The Orion deep space capsule cost NASA $20.4 billion from 2006 to 2022. Related related launch infrastructure cost an additional $5.7 billion through 2022.NASA reports the official cost of the SLS as $11.8 billion over that same period ($2.7 billion in formulation/design and $9.1 billion for development and implementation). The discrepancy is explained by noting that the $11.8 billion value only includes expenses related to the first launch of the SLS, and does not capture pre-formulation work nor costs associated with the production and development of future rockets and upgraded equipment already underway. As of 2022, NASA states that the development of the Artemis I SLS cost 42.5% more than originally projected.There is a similar explanation behind the multiple amounts quoted for the Orion capsule, which NASA estimates will cost $13.8 billion to develop through its first crewed launch in 2024. The project began in 2006 as part of NASA’s now-defunct Constellation program. Congress saved it from cancelation in 2010, repurposing it as a deep space crew vehicle exclusively for launch on the SLS. NASA’s accounting for the current program officially began in 2012, and it is from this date that the $13.8 billion amount applies. This amount is 37.4% higher than originally planned to get Orion crew-ready for Artemis II.Exploration Ground Systems (EGS) provides for the launch services and hardware necessary to launch SLS and Orion into space. It includes such projects at the mobile launcher platforms, crawler-transporters, software development, and upgrades to the Vehicle Assembly Building to accommodate the SLS. Due to “poorly defined requirements, poor contractor performance, and increased material cost” NASA states that the EGS program has cost 40% more than originally expected.
+"""
+
+[R3] Space Launch System - NASA
+(https://www.nasa.gov/reference/space-launch-system/)
+"""
+Download SLS Factsheet (PDF) NASA’s SLS (Space Launch System) is a super heavy-lift rocket that provides the foundation for human exploration beyond Earth orbit. With its unprecedented capabilities, SLS is the only rocket that can send NASA’s Orion spacecraft, four astronauts, and large cargo directly to the Moon on a single launch. Offering more payload mass, volume, and departure energy than any other single rocket, SLS can support a range of mission objectives, while reducing mission complexity. The SLS rocket is designed to be evolvable, which makes it possible to increase its capability to fly more types of missions, including human missions to the Moon and Mars and robotic scientific missions to the Moon, Mars, and the outer planets. On Nov. 16, 2022, SLS took to the sky from Launch Complex 39B at NASA’s Kennedy Space Center in Florida, making history as the most powerful rocket NASA has ever launched.The successful Artemis I mission ushered in a new era of exploration, as NASA prepares to send astronauts to the Moon as a prelude to human exploration of Mars. Post-flight data reviews determined that SLS met or exceeded performance expectations, and the rocket is ready to support a crewed flight on Artemis II and future crewed missions. SLS is part of NASA’s backbone for deep space exploration, along with the Orion spacecraft, supporting ground systems, advanced space- suits and rovers, the Gateway in orbit around the Moon, and commercial human landing systems. To fulfill America’s future needs for deep space missions, SLS will evolve into increasingly more powerful configurations. Hardware is currently in production for the next three SLS flights, and development is underway on the more powerful Block 1B and Block 2 variants that will succeed the current Block 1 variant. SLS is designed for deep space missions and will send Orion or other cargo to the Moon, which is nearly 1,000 times farther than where NASA’s International Space Station resides in low Earth orbit. The high-performance rocket provides the power to help Orion reach a speed of 24,500 mph—the speed needed to send it to the Moon. Every SLS configuration uses the core stage with four RS-25 engines. The first SLS variant, called Block 1, can send more than 27 metric tons (t) or 59,500 pounds (lbs.) to the Moon. It is powered by twin five-segment solid rocket boosters in addition to the four RS-25 liquid propellant engines. After reaching space, the interim cryogenic propulsion stage (ICPS) helps send Orion on to the Moon. Like Artemis I, the SLS rockets that will power Artemis II and III will use the Block 1 configuration. The Block 1B crew vehicle will use a new, more powerful exploration upper stage (EUS) to enable more ambitious missions beginning with Artemis IV. The Block 1B rocket can, in a single launch, carry the Orion spacecraft along with large cargos needed to support a long-term presence on the Moon. The Block 1B rocket can send 38 t (84,000 lbs.) to deep space, including Orion and its crew. Launching with cargo only, SLS has a large volume payload fairing to send larger exploration systems to the Moon and Mars or robotic science probes on solar system exploration missions. The final SLS configuration, Block 2, will provide 9.4 million lbs. of launch thrust, compared to the Block 1’s 8.8 million lbs. and will be the workhorse vehicle for sending cargo to the Moon, Mars, and other deep space destinations. SLS Block 2 will be designed to lift up to 46 t (101,000 lbs.) to deep space. An evolvable design provides the nation with a rocket able to pioneer new human and robotic spaceflight missions. Artemis I, the first integrated flight of SLS and Orion, used the Block 1 configuration, which stands 322 ft. — taller than the Statue of Liberty — and weighs 5.75 million lbs. fueled. During launch and ascent, SLS produces 8.8 million lbs. of maximum thrust, 15% more thrust than the Saturn V rocket. For Artemis I, Block 1 launched an uncrewed Orion spacecraft to an orbit 38,000 miles beyond the Moon, or nearly 270,000 miles from Earth. This successful mission demonstrated the integrated system performance of SLS, Orion, and NASA’s Exploration Ground Systems prior to a crewed flight. The Artemis II mission will be the first crewed mission under Artemis and send four astronauts around the Moon and back. Together, Artemis I and II pave the way for landing astronauts on the Moon on Artemis III. NASA is building the rockets needed for several future missions. To reduce cost and development time, NASA is using existing proven hardware and designs from the space shuttle and other exploration programs while making use of cutting-edge manufacturing technology and inspection techniques such as 3D printing and structured light scanning. Some parts of the rocket are new, and other parts have been upgraded with modern features that meet the needs of deep space missions, which require higher performance levels. The Boeing Company in Huntsville, Alabama, is the lead contractor for SLS core stage manufacturing, including the flight computers that control the rocket during flight. Towering more than 212 ft. with a diameter of 27.6 ft., the core stage stores 733,000 gallons of super-cooled liquid hydrogen and liquid oxygen that power the RS-25 engines. Core stages are built at NASA’s Michoud Assembly Facility in New Orleans using state-of-the-art manufacturing equipment, including a friction stir welding tool that is the largest of its kind in the world. The core stage is the newest part of the rocket. Boeing is building stages for several upcoming Artemis missions. The SLS avionics computer software is developed at NASA’s Marshall Space Flight Center in Huntsville, Alabama. Propulsion for the SLS core stage will be provided by four RS-25 engines powered by liquid hydrogen and liquid oxygen. L3Harris Technologies of Sacramento, Cailfornia, is upgrading an inventory of 16 RS-25 engines to SLS performance requirements, including a new engine controller, nozzle insulation, and required operation at a maximum of 512,000 lbs. of thrust. The four engines provide about 2 million lbs. of thrust for the eight-minute climb to Earth orbit. The NASA SLS Program and L3Harris began test firing heritage space shuttle engines in 2016 using SLS thrust profile and operating environments. The tests included new engine controllers and software, added nozzle insulation for the higher launchpad heating environment, and several new production engine components. By the time Artemis I launched, the test program had amassed 52 tests for 23,171 total seconds. L3Harris has also restarted engine production with the goal of a 30% cost reduction compared to the shuttle RS-25. It is currently building 24 engines. In early 2024 at NASA’s Stennis Space Center in Bay St. Louis, Mississippi, the engine team completed a comprehensive test firing program to certify new-production engines for flight, beginning with Artemis V. Two shuttle-derived solid rocket boosters provide more than 75% of the rocket’s thrust during the first two minutes of flight. The prime contractor for the boosters, Northrop Grumman’s Northern Utah team, has modified the original configuration of four propellant segments to a more powerful five-segment version. Each modified booster is 177 ft. tall, 12 ft. in diameter, weighs 1.6 million lbs., and produces a maximum of 3.6 million lbs. of thrust during launch. The design also includes new avionics, propellant grain design, and case insulation, and eliminates the recovery parachutes to allow greater payload to orbit. The company has completed motor segments for the Artemis II and Artemis III missions and is working on boosters for future missions. Trains transport booster segments from the Utah plant to Kennedy, where they are stacked with forward and aft assemblies to create the largest, most powerful boosters ever flown for spaceflight. The boosters’ avionics systems are tested at Kennedy and Marshall. The initial capability to propel Orion out of Earth’s orbit for the first three Artemis missions is provided by the interim cryogenic propulsion stage, based on the Delta Cryogenic Second Stage used successfully on United Launch Alliance’s Delta IV family of rockets. The ICPS uses one RL10 engine made by L3Harris. The engine is powered by liquid hydrogen and liquid oxygen and generates 24,750 lbs. of thrust. United Launch Alliance is under contract to produce stages for the first three Artemis missions. Teledyne Brown Engineering of Huntsville, Alabama, builds the launch vehicle stage adapter that partially encloses the ICPS and connects it to the core stage. The Orion stage adapter connects Orion to the ICPS on the SLS Block 1 rocket. The Orion stage adapter can accommodate several CubeSat payloads in 6U or 12U sizes, depending on mission parameters. For Artemis I, the adapter carried several 6U-sized CubeSats to deep space for various science and technology demonstration missions. Beginning with Artemis IV, the ICPS will be replaced by the exploration upper stage under contract to Boeing. It is powered by four RL10C-3 engines that produce almost four times more thrust than the one RL10B-2 engine that powers the ICPS. This 97,000 lbs. of thrust will allow more than 38 t (84,000 lbs.) for Block 1B crew and more than 42 t (93,000 lbs.) for Block 1B cargo to be sent to the Moon. With the EUS plus a new 10,000-cubic-foot universal stage adapter, NASA can use a Block 1B crew configuration to send Orion, astronauts, and large, unique payloads to the Moon or replace the Orion and universal stage adapter with a payload fairing to send nearly 22,000 cubic ft. of payload to the Moon, Mars, or more distant destinations. NASA completed the critical design review for the EUS in 2019. Boeing is building the EUS at Michoud. L3Harris has completed manufacturing and testing of several engines. SLS is America’s rocket with more than 1,100 companies from across the U.S. and at every NASA center supporting the development of the world’s most capable rocket. The SLS Program, managed at Marshall, works closely with the Orion Program, managed at NASA’s Johnson Space Center in Houston, and the Exploration Ground Systems Program, managed at Kennedy. National Aeronautics and Space Administration George C. Marshall Space Flight CenterHuntsville, AL 35812www.nasa.gov/marshall www.nasa.gov For more information about SLS, visit: http://www.nasa.gov/Artemishttp://www.nasa.gov/SLShttps://www.facebook.com/NASAArtemis/https://x.com/NASAArtemishttp://www.instagram.com/NASAArtemis MSFC-12-2025-SLS-5640
+"""
+
+[R4] National Aeronautics and Space Administration
+(https://www.nasa.gov/wp-content/uploads/2023/07/0080-sls-fact-sheet-jun2023-508-1.pdf)
+"""
+•
+National Aeronautics and Space Administration
+
+Space Launch System
+
+ NASAfacts
+America’s Rocket for
+Deep Space Exploration
+NASA’s SLS (Space Launch System) is a super
+heavy-lift rocket that provides the foundation
+for human exploration beyond Earth orbit. With
+its unprecedented capabilities, SLS is the only
+rocket that can send the Orion spacecraft, four
+astronauts, and large cargo directly to the Moon
+on a single mission.
+Offering more payload mass, volume, and
+departure energy than any other single rocket,
+SLS can support a range of mission objectives,
+while reducing mission complexity. The SLS
+rocket is designed to be evolvable, which makes
+it possible to increase its capability to fly more
+types of missions, including human missions
+to the Moon and Mars and robotic scientific
+missions to other deep space destinations like
+the Moon, Mars, Saturn, and Jupiter.
+On Nov. 16, 2022, SLS launched from NASA
+Kennedy Space Center’s Launch Complex NASA’s SLS (Space Launch System) rocket carrying
+ the Orion spacecraft launches on the Artemis I flight test,
+39B in Florida, making history as the most
+ Wednesday, Nov. 16, 2022, from Launch Complex 39B at
+powerful rocket NASA has ever launched. NASA’s Kennedy Space Center in Florida.
+The successful Artemis I mission ushered in
+a new era of exploration, as NASA prepares
+to send astronauts to the Moon as a prelude
+ provides the power to help Orion reach a speed
+to human exploration of Mars. Post-flight data
+ of 24,500 mph—the speed needed to send it to
+reviews determined that SLS met or exceeded
+ the Moon.
+performance expectations, and the rocket is
+ready to support a crewed flight on Artemis II Every SLS configuration uses the core stage
+and future crewed missions. with four RS-25 engines. The first SLS vehicle,
+ called Block 1, can send more than 27 metric
+The Power to Explore Beyond tons (t) or 59,500 pounds (lbs.) to the Moon.
+Earth’s Orbit It is powered by twin five-segment solid rocket
+ boosters in addition to the four RS-25 liquid
+To fulfill America’s future needs for deep space propellant engines. After reaching space, the
+missions, SLS will evolve into increasingly more interim cryogenic propulsion stage (ICPS)
+powerful configurations. Hardware is currently sends Orion on to the Moon. Like Artemis I, the
+in production for the next four SLS flights, and SLS rockets that will power Artemis II and III will
+development is underway on the more powerful use the Block 1 configuration with the ICPS.
+Block 1B and Block 2 variants that will succeed
+the current Block 1 variant. The Block 1B crew vehicle will use a new, more
+ powerful exploration upper stage (EUS) to
+SLS is designed for deep space missions and enable more ambitious missions beginning with
+will send Orion or other cargo to the Moon, Artemis IV. The Block 1B rocket can, in a single
+which is nearly 1,000 times farther than where launch, carry the Orion spacecraft along with
+NASA’s International Space Station resides in large cargos needed to support a long-term
+Low Earth orbit. The high-performance rocket presence on the Moon.
+Block 1 - Initial SLS Configuration
+ Launch Abort System
+ Crew Module
+ Service Module
+ Solid Rocket Booster (2) Encapsulated Service Module Panels
+ Spacecraft Adapter
+ Orion Stage Adapter
+ Interim Cryogenic Propulsion Stage
+ RL10 Engine
+ Orion
+ Launch Vehicle Stage Adapter
+
+ Core Stage
+ •
+ \
+ __\_
+
+ ~y u! I
+ RS-25 __l
+ Engine (4)
+
+ SLS Block 1 Crew
+
+The Block 1B rocket can send 38 t (83,700 lbs.) to deep Building the Rocket
+space, including Orion and its crew. Launching with cargo
+only, SLS has a large volume payload fairing to send larger NASA is building the rockets needed for several future
+exploration systems to the Moon and Mars or robotic missions. To reduce cost and development time, NASA
+science probes on solar system exploration missions. is using existing proven hardware and designs from
+ the space shuttle and other exploration programs while
+The final SLS configuration, Block 2, will provide making use of cutting-edge manufacturing technology
+9.5 million lbs. of launch thrust, compared to the Block 1’s and inspection techniques such as 3D printing and
+8.8 million lbs. and will be the workhorse vehicle for structured light scanning.
+sending cargo to the Moon, Mars, and other deep space
+destinations. SLS Block 2 will be designed to lift up to Some parts of the rocket are new, and other parts have
+46 t (101,400 lbs.) to deep space. An evolvable design been upgraded with modern features that meet the
+provides the nation with a rocket able to pioneer new needs of deep space missions, which require higher
+human and robotic spaceflight missions. performance levels.
+
+Space Launch System Missions Core Stage
+Artemis I, the first integrated flight of SLS and Orion, The Boeing Company in Huntsville, Alabama, is the lead
+used the Block 1 configuration, which stands 322 feet — contractor for SLS core stage manufacturing, including
+taller than the Statue of Liberty — and weighs 5.75 million the flight computers that control the rocket during flight.
+lbs. fueled. During launch and ascent, SLS produces Towering more than 212 feet with a diameter of 27.6 feet,
+8.8 million lbs. of maximum thrust, 15% more thrust than the core stage stores 733,000 gallons of super-cooled liquid
+the Saturn V rocket. hydrogen and liquid oxygen that power the RS-25 engines.
+For Artemis I, Block 1 launched an uncrewed Orion spacecraft Core stages are built at NASA’s Michoud Assembly
+to an orbit 40,000 miles beyond the Moon, or nearly 280,000 Facility in New Orleans using state-of-the-art
+miles from Earth. This successful mission demonstrated manufacturing equipment, including a friction stir
+the integrated system performance of SLS, Orion, and welding tool that is the largest of its kind in the world.
+Exploration Ground Systems prior to a crewed flight. The core stage is the newest part of the rocket.
+The Artemis II mission will be the first crewed mission Boeing is building stages for several upcoming Artemis
+under Artemis and send four astronauts around the Moon missions. The SLS avionics computer software is
+and back. Together, Artemis I and II pave the way for developed at NASA’s Marshall Space Flight Center
+landing astronauts on the Moon on Artemis III. in Huntsville, Alabama.
+
+Space Launch System NASA Facts
+SLS Evolution
+ Payload to TLI/Moon > 27 t (59 5k lbs.) > 27 t (59.5k lbs.) 38 t (83 7k lbs.) 42 t (92.5k lbs.) > 43 t (94.7k lbs.) > 46 t (101 4k lbs.)
+
+ Payload Volume 516ft 3 (14.6m') 8,118ft 3 (229.9m') 10,1001t'(286m'r 21,930ft 3 (621.1m') 10,1001t'(286m'r 34,910tt 3 (988m')
+
+ • DOES NOT INCLUDE
+ ORION/SERVICE MODULE VOLUME
+
+ 0
+ 0
+
+ Maximum Thrust
+ SLS Block 1 Crew
+
+ 8.8 M lbs
+ I•. l
+
+ ••
+ SLS Block 1 Cargo
+
+ 8.8 M lbs.
+ SLS Block 1 B Crew
+
+ 8 9 M lbs
+ ••
+ SLS Block 1 B Cargo
+
+ 8.9 M lbs.
+ -··-
+ SLS Block 2 Crew
+
+ 9.5 M lbs
+ SLS Block 2 Cargo
+
+ 9.5 M lbs
+
+NASA has designed the SLS (Space Launch System) as the foundation for a generation of human exploration missions to deep
+space, including missions to the Moon and Mars. SLS will leave Low Earth orbit and send the Orion spacecraft, its astronaut crew, and
+cargo to deep space. A maneuver known as trans-lunar injection, or TLI, accelerates the spacecraft from its orbit around Earth onto
+a trajectory toward the Moon. The ability to send more mass to the Moon on a single mission makes exploration simpler and safer.
+
+RS-25 Engines Boosters
+Propulsion for the SLS core stage will be provided by Two shuttle-derived solid rocket boosters provide more
+four RS-25 engines powered by liquid hydrogen and than 75% of the rocket’s thrust during the first two
+liquid oxygen. Aerojet Rocketdyne of Sacramento, minutes of flight. The prime contractor for the boosters,
+California, is upgrading an inventory of RS-25 engines to Northrop Grumman’s Northern Utah team, has modified
+SLS performance requirements, including a new engine the original configuration of four propellant segments
+controller, nozzle insulation, and required operation at to a more powerful five-segment version. The modified
+a maximum of 512,000 lbs. of thrust. The four engines booster is 177 feet tall, 12 feet in diameter, weighs
+provide about 2 million lbs. of thrust for the eight-minute 1.6 million pounds, and produces a maximum of
+climb to Earth orbit. 3.6 million pounds of thrust during launch. The design
+ also includes new avionics, propellant grain design, and
+The SLS Program and Aerojet Rocketdyne began test case insulation, and eliminates the recovery parachutes
+firing heritage space shuttle engines in 2016 using SLS to allow greater payload to orbit.
+thrust profile and operating environments. The tests
+included new engine controllers and software, added The company has completed motor segments for the
+nozzle insulation for the higher launchpad heating Artemis II and Artemis III missions and is working on
+environment, and several new production engine boosters for future missions. Trains transport booster
+components. By the time Artemis I launched, the test segments from the Utah plant to Kennedy, where they
+program had amassed 52 tests for 23,171 total seconds. are stacked with forward and aft assemblies to create the
+ largest, most powerful boosters ever built for spaceflight.
+Aerojet Rocketdyne has also restarted engine production The boosters’ avionics systems are tested at Kennedy
+with the goal of a 30% cost reduction compared to the and Marshall.
+shuttle RS-25. It is currently building 24 engines. In early
+2023, the engine team began test firing the first new
+engine to certify the design for flight at NASA’s Stennis
+Space Center near Bay St. Louis, Mississippi.
+.
+
+NASA Facts Space Launch System
+Integrated Spacecraft/Payload Element RL10C-3 engines that produce almost four times more
+ thrust than the one RL10B-2 engine that powers the
+The initial capability to propel Orion out of Earth’s orbit ICPS. This 97,000 lbs. of thrust will allow more than
+during Artemis I came from the ICPS, based on the Delta 38 t (83,700 lbs.) for Block 1B crew and more than 42 t
+Cryogenic Second Stage used successfully on United (92,500 lbs.) for Block 1B cargo to be sent to the Moon.
+Launch Alliance’s Delta IV family of rockets.
+ With the EUS plus a new universal stage adapter (USA),
+The ICPS uses one RL10 engine made by Aerojet NASA can use a Block 1B crew configuration to send
+Rocketdyne. The engine is powered by liquid hydrogen Orion, astronauts, and large, unique payloads to the
+and liquid oxygen and generates 24,750 lbs. of thrust. Moon or replace the Orion and USA with a payload
+United Launch Alliance is under contract to produce fairing to send nearly 22,000 cubic feet of payload to
+upper stages for the first three Artemis missions. the Moon, Mars, or more distant destinations.
+Teledyne Brown Engineering of Huntsville, Alabama, NASA completed the critical design review for the EUS
+builds the launch vehicle stage adapter that partially in 2019. Boeing is building the EUS at Michoud. Aerojet
+encloses the ICPS and connects it to the core stage. Rocketdyne has completed manufacturing and testing
+The Orion stage adapter (OSA) connects Orion to of several engines.
+the ICPS on the SLS Block 1 vehicle. The OSA can
+accommodate several CubeSat payloads in 6U or 12U The SLS Team
+sizes, depending on mission parameters. For Artemis I,
+the OSA carried several 6U-sized CubeSats to deep SLS is America’s rocket, with more than 1,100 companies
+space for various science and technology demonstration from across the U.S. and every NASA center supporting
+missions. its development. The SLS Program, managed at
+ Marshall, works closely with the Orion Program,
+ managed at NASA’s Johnson Space Center in Houston,
+Exploration Upper Stage and the Exploration Ground Systems Program,
+Beginning with Artemis IV, the ICPS will be replaced by managed at Kennedy.
+the EUS under contract to Boeing. It is powered by four
+
+Artemis I stacked in the Vehicle Artemis I launch vehicle stage adapter SLS Block 1B crew with exploration
+Assembly Building at Kennedy upper stage cutaway (illustration)
+
+National Aeronautics and Space Administration For more information about SLS, visit:
+George C. Marshall Space Flight Center http://www.nasa.gov/artemis
+Huntsville, AL 35812
+ http://www.nasa.gov/sls
+www.nasa.gov/marshall
+ http://www.twitter.com/NASA_SLS
+www.nasa.gov
+ http://www.facebook.com/NASASLS
+FS-2023-05-119-MSFC http://www.instagram.com/exploreNASA
+"""
+
+[R5] NASA returns its SLS rocket back to the launch pad ahead of planned April flight of Artemis 2 – Spaceflight Now
+(https://spaceflightnow.com/2026/03/19/live-coverage-nasa-to-roll-its-sls-rocket-back-to-the-launch-pad-ahead-of-planned-april-flight-of-artemis-2/)
+"""
+NASA’s Space Launch System rocket and Orion spacecraft photographed during the final hour of its four-mile journey to the launch pad on Friday, March 20, 2026. Image: John Pisani/Spaceflight Now Update March 20, 12 p.m. EDT (1600 UTC): NASA confirmed completion of the Space Launch System rocket’s rollout. NASA’s Moon rocket returned to the launch pad after repairs inside the cavernous Vehicle Assembly Building at the Kennedy Space Center. The 322-foot-tall Space Launch System (SLS) rocket, atop the 400-foot-tall Mobile Launcher 1 (ML-1), was set start the slow trek to the pad Thursday night with call to stations happening that afternoon. The rocket’s rollout to pad 39B sets up a launch attempt for the Artemis 2 mission no earlier than April 1. First motion of the crawler transporter, that carries the launch platform, was expected around 8:00 p.m. EDT (0000 UTC), but didn’t end up moving until closer to 12:20 a.m. EDT (0420 UTC) due to high winds at NASA’s Kennedy Space Center. NASA anticipated that the journey will take roughly 12 hours to complete. The agency confirmed Friday morning that hard down – the term meaning that the rocket and ML-1 was set down onto the pedestals at the pad – was accomplished at 11:21 a.m. EDT (1521 UTC). <span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start"> </span> NASA returned its SLS rocket and Orion spacecraft to the Vehicle Assembly Building to fix a helium flow problem on the rocket’s upper stage. That discovery on Feb. 21, after a successful fueling test at pad 39B, caused NASA to forgo a March launch attempt and pivot to April instead. While the helium issue was resolved, technicians conducted other prelaunch work, including replacing the batteries connected to the flight termination system on the solid rocket boosters, core stage and upper stage. Technicians and engineers perform prelaunch work on the Space Launch System rocket and Orion spacecraft inside the Vehicle Assembly Building on Feb. 26, 2026. Image: Adam Bernstein/Spaceflight Now The Artemis 2 mission will see NASA astronauts Reid Wiseman, Victor Glover and Christina Koch alongside Canadian Space Agency (CSA) astronaut Jeremy Hansen fly around the Moon and splashdown in the Pacific Ocean about 10 days after liftoff. It will be the first time that a crew lives and works onboard the Orion spacecraft. The test flight is a precursor to other crewed missions for the Artemis program, which will see astronauts heading down to the surface of the Moon starting with Artemis 4 in 2028. <span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start"> </span> NASA Administrator Jared Isaacman recently announced changes to the Artemis program. Including moving the first Moon landing from the third to the fourth Artemis mission and making the Artemis 3 flight a demonstration in Earth orbit of Orion docking with SpaceX’s Starship lunar lander or Blue Origin’s Blue Moon Mk.2 lunar lander, or potentially both. During a March 12 sit-down interview with Spaceflight Now, Isaacman said within the next 60 to 90 days, the American public would get greater clarity about the specifics of the Artemis 3 mission. Isaacman also teased ahead to a gathering in Washington D.C. to discuss the changes with its industry and international partners. During a briefing with members of the press on Thursday, European Space Agency (ESA) Director General Josef Aschbacher commented on the event and said he was looking forward to learning more himself. “We look forward to the meeting next week. We will learn from NASA what the administration is planning on the Artemis architecture. This obviously is the Gateway and several other aspects,” Aschbacher said. “I cannot obviously preempt what this discussion will be, but what is extremely important is that we had a very intense and good discussion within the ESA member states who gave their full support to me as Director General to coordinate activities among all the member states. NASA will see a very united Europe appearing in Washington.” <span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start"> </span>
+"""
+
+[R6] National Aeronautics and Space Administration
+(https://www.nasa.gov/wp-content/uploads/2024/10/sls-4960-sls-fact-sheet-oct2024-508.pdf?emrc=7e096d)
+"""
+•
+National Aeronautics and Space Administration
+
+SLS (Space Launch System)
+
+ NASAfacts
+America’s Rocket for
+Deep Space Exploration
+NASA’s SLS (Space Launch System) is a super
+heavy-lift rocket that provides the foundation
+for human exploration beyond Earth orbit. With
+its unprecedented capabilities, SLS is the only
+rocket that can send NASA’s Orion spacecraft,
+four astronauts, and large cargo directly to the
+Moon on a single launch.
+
+Offering more payload mass, volume, and
+departure energy than any other single rocket,
+SLS can support a range of mission objectives,
+while reducing mission complexity. The SLS
+rocket is designed to be evolvable, which makes
+it possible to increase its capability to fly more
+types of missions, including human missions to the NASA’s SLS (Space Launch System) rocket carrying
+Moon and Mars and robotic scientific missions to the Orion spacecraft launches on the Artemis I test flight,
+ Wednesday, Nov. 16, 2022, from Launch Complex 39B
+the Moon, Mars, and the outer planets.
+ at NASA’s Kennedy Space Center in Florida.
+
+On Nov. 16, 2022, SLS took to the sky from
+Launch Complex 39B at NASA’s Kennedy
+Space Center in Florida, making history as the powerful configurations. Hardware is currently
+most powerful rocket NASA has ever launched. in production for the next four SLS flights, and
+The successful Artemis I mission ushered in development is underway on the more powerful
+a new era of exploration, as NASA prepares Block 1B and Block 2 variants that will succeed
+to send astronauts to the Moon as a prelude the current Block 1 variant.
+to human exploration of Mars. Post-flight data
+reviews determined that SLS met or exceeded SLS is designed for deep space missions and
+performance expectations, and the rocket is will send Orion or other cargo to the Moon,
+ready to support a crewed flight on Artemis II which is nearly 1,000 times farther than where
+and future crewed missions. NASA’s International Space Station resides in
+ low Earth orbit. The high-performance rocket
+NASA is working to land the first woman, first provides the power to help Orion reach a speed
+person of color, and its first international partner of 24,500 mph—the speed needed to send it to
+astronaut on the Moon under the agency’s the Moon.
+Artemis campaign. SLS is part of NASA’s
+backbone for deep space exploration, along Every SLS configuration uses the core stage
+with the Orion spacecraft, supporting ground with four RS-25 engines. The first SLS variant,
+systems, advanced spacesuits and rovers, called Block 1, can send more than 27 metric
+the Gateway in orbit around the Moon, and tons (t) or 59,500 pounds (lbs.) to the Moon. It
+commercial human landing systems. is powered by twin five-segment solid rocket
+ boosters in addition to the four RS-25 liquid
+The Power to Explore Beyond propellant engines. After reaching space, the
+Earth’s Orbit ICPS (interim cryogenic propulsion stage) helps
+ send Orion on to the Moon. Like Artemis I, the
+To fulfill America’s future needs for deep space SLS rockets that will power Artemis II and III will
+missions, SLS will evolve into increasingly more use the Block 1 configuration.
+ Launch Abort System---.........__
+ Crew Module............_
+ Service Module ---.........__
+ ..............
+ ,_.,_\
+ Encapsulated Service Module Panels ------------ ··
+ Spacecraft Adapter..______ '
+ Orion Stage Adapter-------...._-............_
+
+ Interim Cryogenic Propulsion Stage ~
+
+ RL10 Engine~
+
+ ~- ._,_
+ ,..,""'"'"'""
+
+ I I
+ _l I
+ L
+
+ Engine (4)
+
+ SLS Block 1
+
+The Block 1B crew vehicle will use a new, more powerful 8.8 million lbs. of maximum thrust, 15% more thrust than
+EUS (exploration upper stage) to enable more ambitious the Saturn V rocket.
+missions beginning with Artemis IV. The Block 1B rocket
+can, in a single launch, carry the Orion spacecraft along For Artemis I, Block 1 launched an uncrewed Orion
+with large cargos needed to support a long-term presence spacecraft to an orbit 38,000 miles beyond the Moon, or
+on the Moon. nearly 270,000 miles from Earth. This successful mission
+ demonstrated the integrated system performance of SLS,
+The Block 1B rocket can send 38 t (84,000 lbs.) to deep Orion, and NASA’s Exploration Ground Systems prior to a
+space, including Orion and its crew. Launching with crewed flight.
+cargo only, SLS has a large volume payload fairing to
+send larger exploration systems to the Moon and Mars The Artemis II mission will be the first crewed mission
+or robotic science probes on solar system exploration under Artemis and send four astronauts around the Moon
+missions. and back. Together, Artemis I and II pave the way for
+ landing astronauts on the Moon on Artemis III.
+The final SLS configuration, Block 2, will provide 9.4
+million lbs. of launch thrust, compared to the Block 1’s Building the Rocket
+8.8 million lbs. and will be the workhorse vehicle for
+sending cargo to the Moon, Mars, and other deep space NASA is building the rockets needed for several future
+destinations. SLS Block 2 will be designed to lift up to missions. To reduce cost and development time, NASA
+46 t (101,000 lbs.) to deep space. An evolvable design is using existing proven hardware and designs from
+provides the nation with a rocket able to pioneer new the space shuttle and other exploration programs while
+human and robotic spaceflight missions. making use of cutting-edge manufacturing technology and
+ inspection techniques such as 3D printing and structured
+Space Launch System Missions light scanning.
+
+Artemis I, the first integrated flight of SLS and Orion, Some parts of the rocket are new, and other parts have
+used the Block 1 configuration, which stands 322 feet — been upgraded with modern features that meet the
+taller than the Statue of Liberty — and weighs 5.75 million needs of deep space missions, which require higher
+lbs. fueled. During launch and ascent, SLS produces performance levels.
+
+Space Launch System NASA Facts
+ to the Moon > 27 t (59 5k lbs.) > 27 t (59.5k lbs.) 38 t (83 7k lbs.) 42 t (92.5k lbs.) > 43 t (94. 7k lbs.) > 46 t (101.4k lbs.)
+
+ Payload Volume 516 ft' (14.6 m') 8,118 ft' (229.9 m') 10,100 ft' (286 m')* 21,930 ft' (621.1 m') 10,100 ft' (286 m')* 34,910 ft' (988 m')
+
+ * DOES NOT INCLUDE
+ ORION/SERVICE MODULE VOLUME
+ 11
+
+ /'
+
+ -:::: --s z
+ F I
+ I
+ _J_
+ I
+ L
+ 4
+ I
+ I
+ I
+ L
+ I
+ _J
+ I
+ I
+ c-
+
+ ~
+ 7
+ ~_J " ~
+ I ~ H ~ <
+ H
+ I L I L _J L
+
+ ... ... ••
+ c- ;1 ::" "'.'
+
+ ,' ',
+ ,, ,' ' ,,
+ -•· -•·-
+ SLS Block 1 Crew SLS Block 1 Cargo SLS Block 1B Crew SLS Block 1B Cargo SLS Block 2 Crew SLS Block 2 Cargo
+
+ Maximum Thrust 8 8 M lbs 8.8 M lbs. 8.9 M lbs 8.9 M lbs. 9.5 M lbs 9.5 M lbs
+
+Core Stage 512,000 lbs. of thrust. The four engines provide about
+ 2 million lbs. of thrust for the eight-minute climb to
+The Boeing Company in Huntsville, Alabama, is the lead Earth orbit.
+contractor for SLS core stage manufacturing, including
+the flight computers that control the rocket during flight. The NASA SLS Program and Aerojet Rocketdyne began
+Towering more than 212 feet with a diameter of 27.6 feet, test firing heritage space shuttle engines in 2016 using
+the core stage stores 733,000 gallons of super-cooled liquid SLS thrust profile and operating environments. The
+hydrogen and liquid oxygen that power the RS-25 engines. tests included new engine controllers and software,
+ added nozzle insulation for the higher launchpad heating
+Core stages are built at NASA’s Michoud Assembly environment, and several new production engine
+Facility in New Orleans using state-of-the-art components. By the time Artemis I launched, the test
+manufacturing equipment, including a friction stir program had amassed 52 tests for 23,171 total seconds.
+welding tool that is the largest of its kind in the world.
+The core stage is the newest part of the rocket. Aerojet Rocketdyne has also restarted engine production
+ with the goal of a 30% cost reduction compared to the
+Boeing is building stages for several upcoming Artemis shuttle RS-25. It is currently building 24 engines. In early
+missions. The SLS avionics computer software is 2024 at NASA’s Stennis Space Center in Bay St. Louis,
+developed at NASA’s Marshall Space Flight Center Mississippi, the engine team completed a comprehensive
+in Huntsville, Alabama. test firing program to certify new-production engines for
+ flight, beginning with Artemis V.
+RS-25 Engines
+ Boosters
+Propulsion for the SLS core stage will be provided by four
+RS-25 engines powered by liquid hydrogen and liquid Two shuttle-derived solid rocket boosters provide more
+oxygen. Aerojet Rocketdyne, an L3Harris Technologies than 75% of the rocket’s thrust during the first two minutes
+company, of Sacramento, California, is upgrading an of flight. The prime contractor for the boosters, Northrop
+inventory of 16 RS-25 engines to SLS performance Grumman’s Northern Utah team, has modified the original
+requirements, including a new engine controller, nozzle configuration of four propellant segments to a more
+insulation, and required operation at a maximum of powerful five-segment version. Each modified booster
+
+NASA Facts Space Launch System
+ The ICPS uses one RL10 engine made by Aerojet
+ Rocketdyne. The engine is powered by liquid hydrogen
+ and liquid oxygen and generates 24,750 lbs. of thrust.
+ United Launch Alliance is under contract to produce
+ upper stages for the first three Artemis missions.
+
+ Teledyne Brown Engineering of Huntsville, Alabama,
+ builds the launch vehicle stage adapter that partially
+ encloses the ICPS and connects it to the core stage.
+
+ The Orion stage adapter connects Orion to the ICPS
+ on the SLS Block 1 rocket. The Orion stage adapter
+ can accommodate several CubeSat payloads in 6U
+ or 12U sizes, depending on mission parameters.
+ For Artemis I, the adapter carried several 6U-sized
+ CubeSats to deep space for various science and
+ technology demonstration missions.
+
+ Exploration Upper Stage
+(Left) An Artemis II solid rocket booster motor segment inside Beginning with Artemis IV, the ICPS will be replaced by
+the Rotation, Processing, and Surge Facility at NASA Kennedy. the exploration upper stage under contract to Boeing.
+(Right) Crew lifts the Artemis III SLS core stage liquid oxygen
+ It is powered by four RL10C-3 engines that produce
+tank into Cell D at NASA Michoud.
+ almost four times more thrust than the one RL10B-2
+ engine that powers the ICPS. This 97,000 lbs. of thrust
+ will allow more than 38 t (84,000 lbs.) for Block 1B crew
+ and more than 42 t (93,000 lbs.) for Block 1B cargo to
+is 177 feet tall, 12 feet in diameter, weighs 1.6 million be sent to the Moon.
+pounds, and produces a maximum of 3.6 million pounds
+of thrust during launch. The design also includes new With the EUS plus a new 10,000-cubic-foot universal
+avionics, propellant grain design, and case insulation, stage adapter, NASA can use a Block 1B crew
+and eliminates the recovery parachutes to allow greater configuration to send Orion, astronauts, and large,
+payload to orbit. unique payloads to the Moon or replace the Orion and
+ universal stage adapter with a payload fairing to send
+The company has completed motor segments for the nearly 22,000 cubic feet of payload to the Moon, Mars,
+Artemis II and Artemis III missions and is working on or more distant destinations.
+boosters for future missions. Trains transport booster
+segments from the Utah plant to Kennedy, where they NASA completed the critical design review for the EUS
+are stacked with forward and aft assemblies to create the in 2019. Boeing is building the EUS at Michoud. Aerojet
+largest, most powerful boosters ever flown for spaceflight. Rocketdyne has completed manufacturing and testing
+The boosters’ avionics systems are tested at Kennedy of several engines.
+and Marshall.
+ The SLS Team
+Integrated Spacecraft/Payload Element
+ SLS is America’s rocket with more than 1,100 companies
+The initial capability to propel Orion out of Earth’s orbit for from across the U.S. and at every NASA center supporting
+the first three Artemis missions is provided by the interim the development of the world’s most capable rocket.
+cryogenic propulsion stage, based on the Delta Cryogenic The SLS Program, managed at Marshall, works closely
+Second Stage used successfully on United Launch with the Orion Program, managed at NASA’s Johnson
+Alliance’s Delta IV family of rockets. Space Center in Houston, and the Exploration Ground
+ Systems Program, managed at Kennedy.
+
+National Aeronautics and Space Administration For more information about SLS, visit:
+George C. Marshall Space Flight Center http://www.nasa.gov/artemis
+Huntsville, AL 35812
+ http://www.nasa.gov/sls
+www.nasa.gov/marshall
+ http://www.twitter.com/NASA_SLS
+www.nasa.gov
+ http://www.facebook.com/NASASLS
+ http://www.instagram.com/nasaartemis
+
+MSFC-10-2024-SLS-4960 NASA Facts
+"""
+
+[R7] Space Launch System (SLS) - NASA
+(https://www.nasa.gov/humans-in-space/space-launch-system/)
+"""
+Editor’s Note: NASA is updating this webpage to align with the latest Artemis program updates announced in February and National Space Policy initiatives announced in March. Learn more about upcoming missions and the agency’s plans to advance Moon to Mars goals, including America’s return to the lunar surface. NASA Releases Hooray for SLS! Children's Book Hooray for SLS! is the first in a series of illustrated children's books that aims to introduce young explorers to NASA's Artemis campaign. In addition to a downloadable version of the book, coloring sheets, and student activities, parents and educators can watch and listen to a read aloud version of the book on YouTube. We Are Going Artemis Blog As NASA prepares for the first crewed flights of SLS, the Artemis blog is a source of information on Artemis launch and exploration progress and preparations. Learn More Additional Resources Media Resources Access program fact sheets, archived news, imagery assets for media, soundbites, and media contact information Public Engagement Explore outreach opportunities and events, hands-on activities, monthly highlights, educator guides, and other downloadable content about SLS SLS Video Galleries Watch the latest videos to learn more about the rocket and its progress to the pad for future flights Launching Science & Technology Learn how the SLS rocket’s evolvable design makes it possible to fly more types of missions and enable science and discovery to other deep space destinations Featured Video “Fuel” and Fire: NASA’s Artemis Missions to the Moon, feat. Metallica What do Metallica and NASA’s Artemis missions to the Moon have in common? Both love “Fuel” and fire. See footage of the Artemis I launch scored by Metallica’s “Fuel.” Learn More about Artemis Keep Exploring Discover More Topics From NASA
+"""
+
+[R8] NASA’s giant moon rocket ready for Florida Artemis 2 launch. What to know
+(https://www.floridatoday.com/story/tech/science/space/2026/03/27/nasa-sls-rocket-size-florida/89334298007/)
+"""
+Updated March 27, 2026, 2:10 p.m. ETNASA's Space Launch System (SLS) rocket will launch the Artemis 2 mission, the first human moon mission in over 50 years.At 322 feet tall, the SLS is taller than the Statue of Liberty and is NASA's most powerful rocket ever launched.The Artemis 2 mission, carrying four astronauts, is scheduled to launch as early as April 1 from Kennedy Space Center.This mission will be a 10-day trip circling the moon without landing to test the Orion crew capsule.Towering over Florida's eastern coastline, NASA's imposing Space Launch System rocket has stood still as a sentinel since it was rolled back to the launch pad.But in a matter of days, the rocket could burst with life, sending plumes of exhaust and steam billowing around it as it blasts off at the Kennedy Space Center. Propelling a crew of astronauts on NASA's first human moon mission in more than 50 years, the SLS rocket will be among the largest vehicles to ever launch from Florida's Space Coast near the Atlantic Ocean.At 322 feet tall, the Space Launch System rocket is almost as tall as an American football field is long from endzone to endzone. Put another way, the giant rocket, which is set to launch the Artemis 2 moon-circling mission as early as April 1, even towers over the 305-foot-tall Statue of Liberty near New York City.In addition to its colossal size, the SLS rocket is also the most powerful NASA has ever launched. The space agency's iconic Saturn V, active during the Apollo era, may still have the edge on the SLS in terms of height, but it pales in comparison when it comes to thrust.Ahead of the Artemis 2 launch from Cape Canaveral, here' what to know about NASA's SLS rocket, including how it compares in height to other behemoths and how Floridians can see in vertical on the launch pad.What is NASA's Space Launch System rocket?The Space Launch System (SLS) is the gigantic rocket NASA developed specifically for its Artemis lunar program, which the agency's ambitious campaign to put astronauts back on the moon for the first time since 1972.Built by Boeing and Northrop Grumman, what the SLS rocket lacks in a catchy name it more than makes up for in sheer power.Topped with an Orion crew capsule where astronauts will ride, the SLS will launch atop a staggering 8.8 million pounds of thrust – a measure of the amount of force used to push the vehicle off the ground. For space nerds, that's about 15% more power than the SLS rocket's Saturn V predecessor, pivotal in the U.S. space agency's historic Apollo lunar missions of the 1960s and 1970s, according to NASA.Classified as a super-heavy lift launch vehicle, the SLS carried 27 metric tons (59,000 pounds) to the moon during its debut launch. The rocket is also the only one capable of sending NASA's Orion capsule occupied by up to four astronauts, along with "large cargo" directly to the moon, according to NASA.How tall is the Artemis moon rocket?The Space Launch System stands at 322 feet tall, making it one of NASA's largest rockets ever much taller than the 184-feet-tall space shuttles.The SLS rocket is composed of a 212-foot core stage propelled by four engines powered by a mix of liquid hydrogen and liquid oxygen, as well as two 177-feet-tall solid rocket boosters mounted to the sides providing the bulk of the initial burst of thrust at liftoff.In NASA's rocket arsenal, the SLS is only outdone in terms of height by the retired 363-foot-tall Saturn V, which was a three-stage heavy-lift launch vehicle.Comparing SLS height to Starship, New Glenn, Saturn VBut as for the world's largest rocket? That honor still belongs to Starship, the approximately 400-foot megarocket that billionaire Elon Musk's SpaceX has been developing with a series of test flights in South Texas.Still, the SLS towers over most other rockets that are active today in the United States.That includes SpaceX's 230-foot Falcon 9, the world's most active rocket responsible for deploying the company's Starlink internet satellites and launching astronauts to orbit on missions to the International Space Station.The SLS rocket is also just slightly taller than the 320-foot-tall New Glenn, a two-stage heavy-lift launch vehicle manufactured by billionaire Jeff Bezos' spaceflight company Blue Origin for commercial, civil and military launches.When did the SLS rocket make its debut launch?NASA's Space Launch System rocket has only launched once from Florida, making its maiden flight Nov. 16, 2022 during the Artemis 1 mission to send the Orion capsule around the moon without a crew.The mission made history, with the SLS rocket becoming the most powerful rocket NASA has ever launched.Where to see the SLS rocket from Florida before liftoffAt the Kennedy Space Center, perhaps no launch site is more iconic than Launch Complex 39A. After all, the historic launch pad is where the majority of NASA's Apollo moon missions got off the ground – including the groundbreaking Apollo 11 moon landing.But because SpaceX has construction underway at 39A ahead of a highly-anticipated Florida debut of Starship, the launch pad has been closed for weeks. That means the Artemis 2 mission will instead lift off a little further north from the less prolific Launch Complex 39B, which, in fairness, was the site of one Saturn V launch on the Apollo 10 mission in 1969.The Space Launch System should be easily visible from the pad along the Kennedy Space Center's skyline, including from the nearby Playalinda Beach.NASA 24/7 live Artemis II video feedWhen is the Artemis 2 rocket launch date?NASA is working toward an April 1 launch of the Artemis 2 mission from the Kennedy Space Center.Ahead of the launch, the crew of Artemis 2 – NASA astronauts Reid Wiseman, Victor Glover and Christina Koch, and the Canadian Space Agency's Jeremy Hansen – entered quarantine at the Johnson Space Center in Houston and will soon fly to Florida.Hitching a ride atop the SLS rocket, the Artemis 2 astronauts are due to pilot an Orion capsule on a 10-day trip around the moon without landing in a major test of the vehicle while traveling farther from Earth than any humans before them.A moon landing is now due to take place as early as 2028 during a mission known as Artemis 4. Prior to that mission, Artemis 3 astronauts aboard the Orion capsule are due to meet and dock in 2027 in Earth orbit with at least one of the commercial lunar landers being developed by Elon Musk's SpaceX and Jeff Bezos' Blue Origin.Eric Lagatta is the Space Connect reporter for the USA TODAY Network. Reach him at elagatta@usatodayco.com. Subscribe to the free Florida TODAY newsletter.
+"""
+
+[R9] SLS Rocket Components for Deep Space Missions
+(https://www.boeing.com/space/space-launch-system/launch/rocket.html)
+"""
+The Rocket Space launch system: PUTTING IT ALL TOGETHER NASA’s Space Launch System (SLS) is the backbone of a sustainable deep space exploration program that will yield breakthrough discoveries for years to come. It cements U.S. leadership in space while engaging global partners aspiring to contribute to a sustained presence on and around the Moon and ultimately Mars. Meet the Rocket CLICK THE + ICONS TO LEARN MORE ABOUT THE DIFFERENT COMPONENTS THAT FORM SLS SWIPE LEFT OR RIGHT TO LEARN MORE ABOUT THE DIFFERENT COMPONENTS THAT FORM SLS Orion Spacecraft Built by Lockheed Martin Launched on SLS, the Orion spacecraft will serve as the exploration vehicle that will carry up to four crew members to space, provide emergency abort capability, sustain the crew during multiweek missions and provide a safe reentry to Earth from deep space return velocities. It’s composed of a crew module, service module and launch abort system. NASA photo ICPS Built by United Launch Alliance and Boeing The Interim Cryogenic Propulsion Stage (ICPS) for SLS Block 1 is the initial configuration that can deliver 59,500 pounds (27 metric tons) of payload to the Moon. Based on the proven Delta Cryogenic Second Stage and powered by one Aerojet Rocketdyne RL10 engine, ICPS will propel an uncrewed Orion spacecraft to fly beyond the Moon and back on the Artemis I mission. NASA photo LVSA Built by Teledyne Brown The Launch Vehicle Stage Adapter (LVSA) connects the initial version of the core stage to the upper stage while providing structural, electrical and communication paths. It separates the core stage from the second stage that includes astronauts in the Orion crew vehicle. The cone-shaped adapter is roughly 30 feet (9.1 meters) in diameter by 30 feet tall. The LVSA consists of 16 aluminum-lithium 2195 alloy panels. NASA photo Avionics Built by Boeing Avionics are aerospace electronics, including the flight computers, power distribution, camera equipment, gyros and other devices housed in the SLS core stage forward skirt, intertank and engine section. They process data and give commands to guide the rocket’s trajectory while communicating with Orion, with one another and with ground control teams. NASA photo Forward Skirt Built by Boeing As the brains of SLS, the forward skirt is responsible for the rocket reaching its destination. It houses flight computers, cameras and avionics — the routers, processors, power, other boxes and software that control stage functions and communications. Along with the liquid oxygen tank and the intertank, it makes up the top half of the core stage. NASA photo LOX Tank Built by Boeing The liquid oxygen (LOX) tank holds 196,000 gallons (742,000 liters) of LOX cooled to minus 297 degrees Fahrenheit (minus 183.8 degrees Celsius). Its thermal foam coating protects it from extreme temperatures — the cold of the propellants and the heat of friction. A test article at NASA’s Marshall Space Flight Center in Alabama in 2020 was subjected to 170% maximum predicted flight loads — far beyond the pressures of liftoff and launch — before rupturing and spilling 197,000 gallons (746,000 liters) of water across the test stand. NASA photo Intertank Built by Boeing Joining the liquid hydrogen and liquid oxygen (LOX) tanks, the intertank houses avionics and electronics that will control the rocket in flight. It also anchors two massive solid rocket boosters. The avionics units on the SLS core stage work with the flight software to perform various functions during the first eight minutes of flight. Some control the navigation, some communicate with the Orion spacecraft, and some control how the engines perform. The intertank makes up the top half of the core stage, along with the LOX tank and forward skirt. NASA photo Core Stage Built by Boeing The aluminum 2219 alloy core stage supports the thrust from the engines beneath, the tug of the boosters, and the weight of the Orion spacecraft and other payloads. It is 212 feet (64.6 meters) tall, 188,000 pounds (85,300 kilograms) empty and 2.3 million pounds (1 million kilograms) fully fueled. Designed by Boeing engineers in Alabama, built in Louisiana and tested in Mississippi, it will launch from Kennedy Space Center in Florida. NASA photo LH2 Tank Built by Boeing The liquid hydrogen (LH2) tank comprises two-thirds of the core stage, weighs 150,000 pounds (68,000 kilograms) and holds 537,000 gallons (2 million liters) of LH2 cooled to minus 423 degrees Fahrenheit (minus 253 degrees Celsius). Thermal foam keeps the LH2 at the right temperature and pressure. A test article, structurally identical to the flight hardware, at NASA’s Marshall Space Flight Center in Alabama in 2019 withstood more than 260% of expected flight loads for over five hours before buckling. NASA photo Solid Rocket Boosters Built by Northrop Grumman The largest human-rated solid rocket boosters ever built for flight, the SLS twin boosters stand 17 stories tall and burn 1.4 million pounds (628,000 kilograms) of propellant in two minutes. Each booster generates more thrust than 14 four-engine 747 airplanes. Together, the SLS twin boosters provide more than 75% of the total thrust at launch. NASA photo Engine Section Built by Boeing In addition to its miles of cabling and hundreds of sensors, the engine section is a crucial attachment point for the four RS-25 engines that work with two solid rocket boosters to produce a combined 8.8 million pounds (4 million kilograms) of thrust at liftoff. Avionics here steer the engines, too. It was built vertically and rotated to horizontal to connect with the liquid hydrogen tank. NASA photo RS-25 Engines Built by Aerojet Rocketdyne Four RS-25 engines will deliver more than 2 million pounds (907,000 kilograms) of thrust at altitude. Combined with two five-segment solid rocket boosters, the propulsion system will give SLS more lift than any current rocket and 15% more than the Saturn Vs that launched the Apollo missions. An RS-25 variant is in production for Artemis missions past the first four. Aerojet Rocketdyne photo Meet the RocketCLICK THE + ICONS TO LEARN MORE ABOUT THE DIFFERENT COMPONENTS THAT FORM SLSSWIPE LEFT OR RIGHT TO LEARN MORE ABOUT THE DIFFERENT COMPONENTS THAT FORM SLSNASA photoOrion SpacecraftBuilt by Lockheed MartinLaunched on SLS, the Orion spacecraft will serve as the exploration vehicle that will carry up to four crew members to space, provide emergency abort capability, sustain the crew during multiweek missions and provide a safe reentry to Earth from deep space return velocities. It’s composed of a crew module, service module and launch abort system.NASA photoICPSBuilt by United Launch Alliance and BoeingThe Interim Cryogenic Propulsion Stage (ICPS) for SLS Block 1 is the initial configuration that can deliver 59,500 pounds (27 metric tons) of payload to the Moon. Based on the proven Delta Cryogenic Second Stage and powered by one Aerojet Rocketdyne RL10 engine, ICPS will propel an uncrewed Orion spacecraft to fly beyond the Moon and back on the Artemis I mission.NASA photoLVSABuilt by Teledyne BrownThe Launch Vehicle Stage Adapter (LVSA) connects the initial version of the core stage to the upper stage while providing structural, electrical and communication paths. It separates the core stage from the second stage that includes astronauts in the Orion crew vehicle. The cone-shaped adapter is roughly 30 feet (9.1 meters) in diameter by 30 feet tall. The LVSA consists of 16 aluminum-lithium 2195 alloy panels.NASA photoAvionicsBuilt by BoeingAvionics are aerospace electronics, including the flight computers, power distribution, camera equipment, gyros and other devices housed in the SLS core stage forward skirt, intertank and engine section. They process data and give commands to guide the rocket’s trajectory while communicating with Orion, with one another and with ground control teams.NASA photoForward SkirtBuilt by BoeingAs the brains of SLS, the forward skirt is responsible for the rocket reaching its destination. It houses flight computers, cameras and avionics — the routers, processors, power, other boxes and software that control stage functions and communications. Along with the liquid oxygen tank and the intertank, it makes up the top half of the core stage.NASA photoLOX TankBuilt by BoeingThe liquid oxygen (LOX) tank holds 196,000 gallons (742,000 liters) of LOX cooled to minus 297 degrees Fahrenheit (minus 183.8 degrees Celsius). Its thermal foam coating protects it from extreme temperatures — the cold of the propellants and the heat of friction. A test article at NASA’s Marshall Space Flight Center in Alabama in 2020 was subjected to 170% maximum predicted flight loads — far beyond the pressures of liftoff and launch — before rupturing and spilling 197,000 gallons (746,000 liters) of water across the test stand.NASA photoIntertankBuilt by BoeingJoining the liquid hydrogen and liquid oxygen (LOX) tanks, the intertank houses avionics and electronics that will control the rocket in flight. It also anchors two massive solid rocket boosters. The avionics units on the SLS core stage work with the flight software to perform various functions during the first eight minutes of flight. Some control the navigation, some communicate with the Orion spacecraft, and some control how the engines perform. The intertank makes up the top half of the core stage, along with the LOX tank and forward skirt.NASA photoCore StageBuilt by BoeingThe aluminum 2219 alloy core stage supports the thrust from the engines beneath, the tug of the boosters, and the weight of the Orion spacecraft and other payloads. It is 212 feet (64.6 meters) tall, 188,000 pounds (85,300 kilograms) empty and 2.3 million pounds (1 million kilograms) fully fueled. Designed by Boeing engineers in Alabama, built in Louisiana and tested in Mississippi, it will launch from Kennedy Space Center in Florida.NASA photoLH2 TankBuilt by BoeingThe liquid hydrogen (LH2) tank comprises two-thirds of the core stage, weighs 150,000 pounds (68,000 kilograms) and holds 537,000 gallons (2 million liters) of LH2 cooled to minus 423 degrees Fahrenheit (minus 253 degrees Celsius). Thermal foam keeps the LH2 at the right temperature and pressure. A test article, structurally identical to the flight hardware, at NASA’s Marshall Space Flight Center in Alabama in 2019 withstood more than 260% of expected flight loads for over five hours before buckling.NASA photoSolid Rocket BoostersBuilt by Northrop GrummanThe largest human-rated solid rocket boosters ever built for flight, the SLS twin boosters stand 17 stories tall and burn 1.4 million pounds (628,000 kilograms) of propellant in two minutes. Each booster generates more thrust than 14 four-engine 747 airplanes. Together, the SLS twin boosters provide more than 75% of the total thrust at launch.NASA photoEngine SectionBuilt by BoeingIn addition to its miles of cabling and hundreds of sensors, the engine section is a crucial attachment point for the four RS-25 engines that work with two solid rocket boosters to produce a combined 8.8 million pounds (4 million kilograms) of thrust at liftoff. Avionics here steer the engines, too. It was built vertically and rotated to horizontal to connect with the liquid hydrogen tank.Aerojet Rocketdyne photoRS-25 EnginesBuilt by Aerojet RocketdyneFour RS-25 engines will deliver more than 2 million pounds (907,000 kilograms) of thrust at altitude. Combined with two five-segment solid rocket boosters, the propulsion system will give SLS more lift than any current rocket and 15% more than the Saturn Vs that launched the Apollo missions. An RS-25 variant is in production for Artemis missions past the first four. July 2024:Artemis II Core Stage Rollout July 2024:Core Stage 2 Delivery to Kennedy Space Center SLS Stacking Complete Orion Mate with SLS Complete SLS Rollout to the Pad Wet Dress Rehearsal Complete Artemis II Launch Follow the Timeline CLICK THE + ICONS TO LEARN MORE ABOUT THE PATH TO LAUNCH SWIPE LEFT OR RIGHT TO LEARN MORE ABOUT THE PATH TO LAUNCH Artemis II Core Stage Rollout July 2024 Boeing successfully rolled out the second Space Launch System (SLS) Core Stage 2 (CS2) to NASA on July 16, 2024, a major milestone in the agency’s Artemis campaign to return astronauts to the moon. Watch the video Core Stage 2 Delivery to Kennedy Space Center July 2024 On July 23, CS2 was delivered to NASA’s Kennedy Space Center in Cape Canaveral. It was transported to the Vehicle Assembly Building on July 24 where it will be integrated with the upper stage, boosters, and NASA’s Orion spacecraft. Watch the video Green Run Tests Complete March 2021 The Green Run test series for the core stage took place over the next year. “Green” refers to the new hardware and “run” refers to operating it all together. Engineers turned the components on one by one to assess the stage, then fully fueled it. Green Run culminated in an eight-minute firing of the four engines through a “launch” and “ascent” while the fully operational stage remained locked into the test stand. NASA photo Delivery to Kennedy Space Center April 2021 Teams inspected and refurbished the core stage before removing it from the B-2 test stand at Stennis Space Center in Mississippi and preparing it for shipment to Kennedy Space Center in Florida. The stage traveled 900 miles (1,400 kilometers) on the NASA Pegasus barge, then was offloaded and rolled into the Vehicle Assembly Building. There, it was stacked on its mobile launcher between two solid rocket boosters. NASA photo SLS Stacking Complete October 2021 A launch vehicle stage adapter, Interim Cryogenic Propulsion Stage and Orion spacecraft stage adapter were added to the top of the Artemis I SLS core stage in a series of lifts in the Vehicle Assembly Building. Tests performed during stacking included release and retraction of the rocket’s “umbilical” connections to the mobile launcher. SLS also successfully completed its design certification review. NASA photo Orion Stacked on Artemis I SLS October 2021 Crews added the Orion spacecraft and its launch abort system on top of the Orion stage adapter to complete the launch system for Artemis I. The uncrewed Orion will be launched by SLS and boosted on a trajectory to the Moon by the rocket’s Interim Cryogenic Propulsion Stage. NASA photo SLS Rollout March 2022 Boeing and other industry partners supported NASA as it completed more tests of the Artemis I system in the Vehicle Assembly Building (VAB) and practiced launch and mission operations. On March 17, NASA rolled the entire rocket through the VAB’s 456-foot (139-meter) door for the first time for a nearly 11-hour trip to the launch pad to undergo its final prelaunch tests. NASA photo Follow the TimelineCLICK THE + ICONS TO LEARN MORE ABOUT THE PATH TO LAUNCHSWIPE LEFT OR RIGHT TO LEARN MORE ABOUT THE PATH TO LAUNCHArtemis II Core Stage Rollout July 2024 Boeing successfully rolled out the second Space Launch System (SLS) Core Stage 2 (CS2) to NASA on July 16, 2024, a major milestone in the agency’s Artemis campaign to return astronauts to the moon. Watch the video Core Stage 2 Delivery to Kennedy Space CenterJuly 2024 On July 23, CS2 was delivered to NASA’s Kennedy Space Center in Cape Canaveral. It was transported to the Vehicle Assembly Building on July 24 where it will be integrated with the upper stage, boosters, and NASA’s Orion spacecraft. Watch the video Join the Artemis Generation on humanity’s return to deep space — this time to stay. With NASA’s Space Launch System rocket as the launch vehicle, we have the power and speed to send people and infrastructure to the Moon and Mars to advance science and exploration. Sign up to be part of every mission
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

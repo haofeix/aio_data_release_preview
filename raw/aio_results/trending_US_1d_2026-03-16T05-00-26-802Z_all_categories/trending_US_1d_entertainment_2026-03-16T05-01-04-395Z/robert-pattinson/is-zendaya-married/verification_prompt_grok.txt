@@ -1,0 +1,81 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "is zendaya married"
+
+Claims:
+[1] "Reports indicate that Zendaya and Tom Holland are married as of March 2026."
+[2] "Zendaya's stylist is Law Roach."
+[3] "Law Roach stated at the Actor Awards in early March 2026 that the wedding had already taken place, according to Instagram posts by fans and media."
+[4] "Reports surfaced in March 2026 that Zendaya and Tom Holland had a secret wedding."
+[5] "Law Roach stated 'The wedding has already happened. You missed it' as seen in an Instagram reel."
+[6] "Homecoming in 2016."
+[7] "Zendaya and Tom Holland reportedly got engaged in late 2024."
+[8] "Zendaya and Tom Holland kept their engagement private for several months."
+[9] "In February 2026, Zendaya was spotted in Los Angeles wearing a plain gold band instead of her previous engagement ring, according to a BBC article."
+
+Cited text snippets from the AI Overview (for additional context):
+- Zendaya and Tom Holland are married, according to her longtime ...: "Wait, are Zendaya and Tom Holland married?!,more at the link in our bio."
+- Hollywood Reporter on Instagram: "Law Roach responds to going viral ...: "722 likes, 13 comments - hollywoodreporter on,Tom Holland were married at the #Oscars."."
+Reference Sources:
+
+[R1] Zendaya and Tom Holland: Have the Spider-Man stars secretly got married?
+(https://www.bbc.co.uk/newsround/articles/cz7gy52jl52o)
+"""
+Image source, Getty ImagesImage caption, Tom Holland and Zendaya met as they were making Spider-ManSpidey-senses are tingling all over the world, as people wonder: Have a Hollywood super-couple had a secret wedding?Tom Holland and Zendaya are very private people - they got engaged in late 2024 and kept it a secret for a couple of months.It had already been hinted that they both wanted to plan a wedding away from the cameras, but a few things have happened which are leading some people to believe it has already taken place.Here's what's going on and why it's got fans talking.A red her-ring?Image source, Getty ImagesImage caption, Zendaya showed her engagement ring off in early 2025Tom and Zendeya's engagement wasn't really announced and instead she was spotted wearing an engagement ring at the 2025 Golden Globes.Then in February 2026, Zendaya was spotted in Los Angeles appearing to have swapped her big diamond engagement ring for what looked like a plain gold band on her left hand.That got people talking because that's a more traditional style for a wedding ring.Since then, both her stylist and her mum have made comments adding fuel to the rumours that their wedding has already taken place.'You missed it!'Image source, Getty ImagesImage caption, Zendaya's stylist has seemingly broken the news that Zendaya and Tom are already marriedTwo weeks after Zendaya was spotted wearing what looked like a wedding ring, her stylist Law Roach was interviewed at a red carpet event at the Actor Awards ceremony.When he was asked if he was busy planning looks for Zendaya's wedding, he responded: "The wedding has already happened... you missed it."Image source, Getty ImagesImage caption, They're one of the most famous couples in the worldAnd to add more mystery, Zendaya's mum Claire Stoermer shared the video of Law's interview on her socials, not saying it was untrue, but with just a laughing face emoji.What could it all mean?!Keeping up their plan to keep their private lives private, the two stars haven't commented on the situation themselves at all.How did Tom Holland and Zendaya meet?Media caption, Tom Holland and Zendaya met Ricky before the premiere of No Way HomeThe pair met on the set of Spider-Man: Homecoming in 2016 when Tom played the Marvel hero and she starred as MJ.Their real-life romance was confirmed in 2021.When's the next Spiderman film coming out?Media caption, Filming has been underway for some time - here you can see Tom Holland doing some scenes in GlasgowThe potential newlyweds will be on the big screen again later this year, for the next instalment of the Spider-Man franchise.Spider-Man: Brand New Day will see Peter Parker (Tom Holland) setting off to college, and trying to leave the spider life behind.If you remember, at the end of the last film, everyone had forgotten the connection between Peter and his webslinger identity, and MJ had forgotten Peter altogether!However, when he finds out his friends are in danger, he'll suit up once more to save them, and the world.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

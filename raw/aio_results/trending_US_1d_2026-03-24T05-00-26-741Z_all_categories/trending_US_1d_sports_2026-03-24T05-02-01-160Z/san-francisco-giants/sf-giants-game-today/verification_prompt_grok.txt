@@ -1,0 +1,91 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "sf giants game today"
+
+Claims:
+[1] "The SF Giants play the Sultanes de Monterrey in an exhibition game on Monday, March 23, 2026, at 6:45 p.m. PT at Oracle Park, according to McCovey Chronicles and this Threads post."
+[2] "The SF Giants' exhibition game against the Sultanes de Monterrey on Monday, March 23, 2026, at 6:45 p.m. PT will be broadcast on NBC Sports Bay Area, according to McCovey Chronicles and this Threads post."
+[3] "The SF Giants' exhibition game against the Sultanes de Monterrey on Monday, March 23, 2026, at 6:45 p.m. PT will be broadcast via radio on KNBR, according to McCovey Chronicles and this Threads post."
+[4] "The SF Giants play the Sultanes de Monterrey on Tuesday, March 24, 2026, at 6:45 p.m. PT."
+[5] "The SF Giants' Opening Day is against the New York Yankees on Wednesday, March 25, 2026, at 5:05 p.m. PT on Netflix."
+[6] "NBC Sports Bay Area & California says there is an additional exhibition game against the Sultanes de Monterrey on Tuesday, March 24, 2026, at 6:45 p.m. PT."
+
+Cited text snippets from the AI Overview (for additional context):
+- SF Giants News: What’s on deck for this week?: "Giants this week.-,Monday,Sunday"
+- Game one against the @sultanesoficial! 6:45 p.m. PT ...: "Game one against the @sultanesoficial,2026 at 5:49 PM"
+- San Francisco Giants Schedule - USA TODAY Sports: "vs-,Cleveland Guardians,6:40 PM PDT"
+Reference Sources:
+
+[R1] What Giants manager Tony Vitello learned from Steve Kerr, Kyle Shanahan meetings
+(https://www.nbcsportsbayarea.com/mlb/san-francisco-giants/tony-vitello-steve-kerr-kyle-shanahan/1925549/)
+"""
+SAN FRANCISCO -- Giants manager Tony Vitello has taken a much different path than the two biggest coaching stars in the Bay Area. Long before he became the coach of the Warriors, Steve Kerr played 15 years in the NBA. Kyle Shanahan's path was paved by his dad, two-time Super Bowl champion Mike Shanahan, and he was an accomplished offensive coordinator before taking over the 49ers. Vitello on Wednesday will become the first to manage a Major League Baseball game with no prior professional experience, and Buster Posey believes he one day will be viewed in a similar light as the other big-time coaches in the Bay Area. That's in part because of the way Vitello has prepared for this job, including the fact that he considers himself a fan of coaches. Vitello, the son of a high school coach, has gone out of his way over the years to meet successful coaches in other sports, and in recent months he got a chance to hang with both Kerr and Shanahan. The manager and some of his players went up to San Francisco after FanFest in San Jose in January to take in a Warriors game and then shoot around on a practice court. That was a memorable experience for a specific reason. "It's hard to stand there and keep your composure when you're talking to Steve Kerr, especially (as) a guy that was a Bulls fan," Vitello said on Monday's Giants Talk podcast. "I'm from St. Louis but my dad is from Chicago and we didn't have an NBA team." That meeting took place on the same day that Vitello wore a 49ers cap to FanFest to show support for a team that had a playoff game that night. A few weeks later, he found himself in a suite at the Super Bowl with Shanahan. He called that his highlight of the game. San Francisco Giants Find the latest San Francisco Giants news, highlights, analysis and more with NBC Sports Bay Area and California. Vitello said chatting with Shanahan "was a big box that I wanted to check" this offseason. He has always been a big fan of Mike Shanahan's teams and knows some people who played with Kyle Shanahan and had nothing but positive things to say. "I know everyone thinks the guy that wins the trophy at the end of the year is the best coach, and maybe he did the best job that given year, but it's hard to say he's not the best coach in the NFL," Vitello said on Giants Talk. "Fans sometimes get a little too excited. You've got to take into account injuries, and when you start the playoffs in any sport, chaos can happen. But consistency to me is what makes a mark and he's pretty special." While Shanahan works in Santa Clara, Vitello's new office will be walking distance from Kerr's, and he said the two talked a bit about life in the city. Vitello said both coaches told him to stay true to his roots, which is the same advice he has gotten from others over the years, including former Boston Celtics coach Brad Stevens, another coach that Vitello has idolized. They met years ago when Stevens still was at Butler and Vitello was a college assistant. That advice shouldn't be hard to follow for Vitello, who talked often of authenticity in his first spring with the Giants. The plan is for that to lead to better days for the Giants, who have lagged behind the Warriors and 49ers for the past decade. Vitello saw at Tennessee that winning programs sometimes build off one another, and he's hopeful that's the same in the Bay Area in the future. "I don't know what it is but there's some sort of synergy where one feeds off the other and it just creates a vibe, and we certainly want to do our part with that," he said. Download and follow the Giants Talk Podcast
+"""
+
+[R2] Monday BP: What’s on deck for this week
+(https://www.mccoveychronicles.com/san-francisco-giants-scores-standings/104153/mlb-2026-san-francisco-giants-upcoming-schedule)
+"""
+Good morning, baseball fans!Welcome to the first week of the regular season! It’s time to take a look at what’s on deck for the San Francisco Giants this week.MondayThe Giants welcome the Sultanes de Monterrey to Oracle Park for an exhibition game tonight at 6:45 p.m. PT. The game will have television coverage on NBC Sports Bay Area and radio coverage on KNBR.TuesdayThe exhibition series with the Sultanes continues Tuesday at 6:45 p.m. PT. The game will have television coverage on NBC Sports Bay Area and radio coverage on KNBR and KSFN.WednesdayOPENING DAY! The Giants will welcome the New York Yankees to Oracle Park for Opening Day at 5:05 p.m. PT. This will be the only game on Wednesday, which means you can only watch it on Netflix. Naturally. Radio coverage will be available on KNBR and KSFN.ThursdayOff DayFridayThe Yankees series continues on Friday, starting at 1:35 p.m. PT. The game will have television coverage on NBC Sports Bay Area and radio coverage on KNBR and KSFN.SaturdayThe final game of the Yankees series will start at 4:15 p.m. PT. This will be a national broadcast on Fox, with radio coverage available on KNBR and KSFN.SundayAn extremely rare Sunday off. What a weird schedule to start the season.399 Comments
+"""
+
+[R3] San Francisco Giants Schedule - USA TODAY Sports
+(https://sportsdata.usatoday.com/baseball/mlb/teams/san-francisco-giants/250/schedule)
+"""
+Let us know what you think about the new scores and odds experience.Gannett may earn revenue from sports betting operators for audience referrals to betting services. Sports betting operators have no influence over nor are any such revenues in any way dependent on or linked to the newsrooms or news coverage. Terms apply, see operator site for Terms and Conditions. If you or someone you know has a gambling problem, help is available. Call the National Council on Problem Gambling 24/7 at 1-800-GAMBLER (NJ, OH), 1-800-522-4700 (CO), 1-800-BETS-OFF (IA), 1-800-9-WITH-IT (IN). Must be 21 or older to gamble. Sports betting and gambling are not legal in all locations. Be sure to comply with laws applicable where you reside.Gambling involves risk. Please only gamble with funds that you can comfortably afford to lose. While we do our upmost to offer good advice and information we cannot be held responsible for any loss that maybe be incurred as a result of gambling. We do our best to make sure all the information that we provide on this site is correct. However from time to time mistakes will be made and we will not be held liable. Please check any stats or information if you are unsure how accurate they are. No guarantees are made with regards to results or financial gain. All forms of betting carry financial risk and it is down to the individual to make bets with or without the assistance of information provided on this site and we cannot be held responsible for any loss that maybe be incurred as a result of following the betting tips provided on this site. Past performances do not guarantee success in the future and betting odds fluctuate from one minute to the next. The material contained on this site is intended to inform, entertain and educate the reader and in no way represents an inducement to gamble legally or illegally. Betting is illegal in some countries, or areas of countries. It is the sole responsibility of the user to act in accordance with their local laws.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

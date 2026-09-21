@@ -1,0 +1,116 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "artemis ii launch watch"
+
+Claims:
+[1] "The Artemis II mission is scheduled to launch as early as April 1, 2026."
+[2] "Artemis II marks the first crewed flight test of the SLS rocket and Orion spacecraft around the Moon."
+[3] "The scheduled launch time for Artemis II is 6:24 p.m. ET on April 1, 2026."
+[4] "Fueling operations coverage for Artemis II begins at 7:45 a.m. ET on April 1, 2026."
+[5] "The primary stream for the Artemis II launch is on NASA+ and the NASA YouTube channel."
+[6] "The primary stream for the Artemis II launch provides 24/7 coverage of operations."
+[7] "Live coverage of the Artemis II launch is available on X (formerly Twitter)."
+[8] "Live coverage of the Artemis II launch is available on Facebook."
+[9] "Live coverage of the Artemis II launch is available on Twitch."
+[10] "CBS News will provide live coverage of the Artemis II launch."
+[11] "FOX Weather will provide live coverage of the Artemis II launch."
+[12] "The European Space Agency will stream the Artemis II event."
+[13] "The Artemis II mission is a 10-day mission."
+[14] "The Artemis II mission will test the systems necessary for long-term human exploration of the Moon and Mars."
+
+Cited text snippets from the AI Overview (for additional context):
+- NASA's Artemis II Crew Launches To The Moon (Official Broadcast): "After launching into space atop,NASA #NASA #Artemis #Space"
+- Ready to go to the moon? Watch Artemis II launch coverage live with ...: "The Artemis II mission — humans,Twitter) @NASA The power."
+- Artemis II launch livestream: Watch the historic NASA launch live - Mashable: "NASA will stream the launch,ET Wednesday on Youtube."
+- Watch: NASA launches Artemis II astronauts into space in historic moon mission: "Prior to takeoff, the shuttle,the shuttle was fully fueled."
+- ESA - Watch live: Artemis II launch - European Space Agency: "ESA - Watch live: Artemis II launch"
+- How to Watch NASA’s Artemis II Moon Launch Online: "Where can I watch the,The New York Times website."
+- Where to watch the Artemis II launch live on TV, online or in person: "Where to watch the Artemis II launch on TV,have walked on the moon."
+- LIVESTREAM: Artemis II Moon Rocket Historic Launch ...: "Watch LIVE the Artemis II moon rocket,coverage on FOX Weather's exclusive YouTube livestream."
+Reference Sources:
+
+[R1] Artemis II launch livestream: Watch the historic NASA launch live
+(https://mashable.com/article/artemis-2-launch-livestream-april-1)
+"""
+NASA is set to send four astronauts on a mission around the moon for the first time in more than 50 years, and viewers can watch the launch countdown live on April 1.Artemis II is a test flight of the U.S. space agency's Space Launch System rocket and Orion capsule. The mission follows Artemis I, the successful uncrewed inaugural voyage of the spacecraft in 2022. NASA will stream the launch from Kennedy Space Center in Cape Canaveral, Florida, on its website, social media, and its YouTube channel. Live coverage of filling the rocket's tanks with fuel is expected to begin at 7:45 a.m. ET Wednesday on Youtube. Viewers can watch the event on NASA+, the space agency's free streaming service, starting at 12:50 p.m. ET. The broadcast will track the four-person crew — Christina Koch, Victor Glover, Reid Wiseman, and Jeremy Hansen — as they board Orion. The actual two-hour launch window opens at 6:24 p.m. ET. This mission is designed as a roughly 10-day deep space excursion that will loop around Earth before slingshotting around the moon and returning home. If successful, it would mark a major step toward future missions that aim to land astronauts on the lunar surface and establish a moon base there. Mashable Light Speed The flight also carries historic milestones. Koch is set to become the first woman to travel to the moon, and Glover the first Black astronaut to do so. Hansen, a Canadian astronaut, would be the first non-American assigned to a lunar mission. Their journey's estimated distance of 248,700 miles also could set a new record for farthest humans have ever traveled from Earth. Watch the launch livestream here beginning at 7:45 a.m. ET on Wednesday, April 1. NASA's live coverage typically includes real-time updates from the firing room, views from the launchpad, and commentary explaining each stage of the countdown. The agency will also provide rolling updates on its official Artemis blog.The forecast so far shows an 80 percent chance of good weather conditions for launch day. Mission managers are mostly concerned about cloud coverage and high winds. If the launch attempt is called off for weather or technical issues, the agency could try again any day through April 6. There is one other launch opportunity at the end of this month on April 30. NASA has declined to provide future launch windows beyond April to the public.
+"""
+
+[R2] Watch live: Artemis II launch
+(https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Watch_live_Artemis_II_launch)
+"""
+Science & Exploration 31/03/2026 284253 views 752 likes The first launch opportunity for Artemis II, the first mission to bring astronauts towards the Moon in over 50 years, is set for 1 April at 18:24 local time (2 April at 00:24 CEST). Tune in from one hour before launch at 22:24 BST / 23:24 CEST on ESA Web TV to watch the launch. Key moments for the European Service Module Shortly after launch, around eight minutes in, Orion’s European-built solar arrays will deploy and begin providing power to the spacecraft.About three hours after liftoff, Orion will separate from the rocket’s upper stage and astronauts will take manual control, using the ESM’s engines to practise proximity operation manoeuvres for future Artemis missions.Around 14 hours into the mission, ESM will carry out a perigee raise burn to adjust Orion’s orbit, followed by the crucial trans-lunar injection burn at roughly 25 hours, which sets Orion and its crew on its trajectory towards the Moon.Throughout the journey, the ESM will perform several trajectory correction burns, and after the ten-day flight, the crew module will separate from the ESM before safely splashing down on Earth.Watch the Artemis II launch live here from an hour before launch until the end of the broadcast at 00:56 CEST. How Europe will power the journey to the Moon and back Access the video
+"""
+
+[R3] How to Watch NASA’s Artemis II Moon Launch Online - The New York Times
+(https://www.nytimes.com/2026/04/01/science/nasa-artemis-ii-moon-launch-how-to-watch.html)
+"""
+AdvertisementSKIP ADVERTISEMENT See more of our coverage in your search results.Encuentra más de nuestra cobertura en los resultados de búsqueda. Add The New York Times on GoogleAgrega The New York Times en Google The first crewed mission around the moon in more than 50 years is scheduled to launch Wednesday, and it should be quite the spectacle.For those tuning in online, there’s plenty to see, including a virtual launch event and live conversations with the crew as they fly. Here’s how to tune in.What time does it start?Subscribe to The Times to read as many articles as you like.Jonathan Wolfe is a Times reporter based in London, covering breaking news.Ceylan Yeğinsu is a travel reporter for The Times who frequently writes about the cruise industry and Europe, where she is based.See more on: National Aeronautics and Space AdministrationRead 63 commentsShare full article63Related ContentAdvertisementSKIP ADVERTISEMENTSupport independent journalism with a subscription. Already a subscriber? Log in.Enjoy unlimited access for $1 a week.Welcome offer$7.50 $1/weekBilled as $4 every four weeks for your first six months, then $30 thereafter. Continue with cardPayPalCancel or pause anytime.All Access includes news, plus Games, Cooking, Audio, Wirecutter and The Athletic.Offer for a New York Times All Access subscription. Current subscribers and those who have previously accepted a sale/introductory offer from The New York Times may be ineligible for another sale/introductory offer. Subscription excludes print edition. Some games may be available without a subscription. You will be automatically charged in advance $4.00 every 4 weeks for 6 months, and $30.00 every 4 weeks thereafter. Cancel before October 29, 2026 to avoid the transition to the standard price that will be charged on that date. You can cancel prior to renewal from your account settings online or during limited hours via chat or phone. Cancellation is effective at the end of the current billing period unless an exception applies; see our Terms of Sale. For U.S. subscribers, cancellation takes effect at the end of your current billing period. For international subscribers, see our Terms of Sale for further information. Taxes may apply. Offer terms are subject to change.©2026 The New York Times CompanyHelp Feedback
+"""
+
+[R4] Where to watch the Artemis II launch live on TV, online or in person
+(https://www.cbsnews.com/news/where-to-watch-artemis-ii-launch/)
+"""
+Updated on: April 1, 2026 / 10:39 AM EDT / CBS News Add CBS News on Google As launch time approaches for NASA's first moonshot in more than half a century, anticipation is building for the Artemis II mission, which will send a crew of four astronauts on a nine-and-a-half-day voyage around the moon and back. Here's how to watch today's launch — and where it will be visible to skywatchers in person. What time will the Artemis II launch happen? The launch window for Artemis II opens at 6:24 p.m. EDT Wednesday and closes two hours later, at 8:24 p.m. EDT. If the countdown and pre-flight checks go exactly according to plan, the giant Space Launch System rocket will roar to life and lift off from the Kennedy Space Center in Florida at 6:24 p.m. EDT. But there could be a variety of delays along the way, so launch could slide to a later point within that two-hour window. If it's delayed further, the next opportunity for launch would be a two-hour window beginning at 7:22 p.m. EDT Thursday. Where to watch the Artemis II launch on TV CBS News will broadcast a Special Report with live coverage of the launch, anchored by Tony Dokoupil at the Kennedy Space Center, beginning at 6 p.m. EDT. Watch on your local CBS station. A team of CBS News correspondents and expert guests will be joining the coverage, including astronomer Derrick PItts and former astronauts Peggy Whitson, Mike Hopkins and Harrison Schmitt, who piloted the Apollo 17 flight in 1971 and is the last person to have walked on the moon. Where to watch the Artemis II launch online CBS News' streaming channel, CBS News 24/7, will have coverage throughout the day and extended live coverage beginning at 4 p.m. EDT. Watch here on CBSNews.com or download the free CBS News app on your mobile or streaming device. CBS News coverage is also streaming on YouTube and Paramount+. Where will the Artemis II launch be visible in person? NASA offers viewing packages to watch launches from the Kennedy Space Center Visitor Complex, but those tickets are all sold out. If the weather is clear, people across most of Florida and southeastern Georgia may be able to spot the rocket on its way to space if they look up at the right time. NASA shared a visibility map showing where and when people can see it, between about 10 seconds to 70 seconds after liftoff, depending on their distance from the launch site. This map from NASA illustrates the visibility range for watching the Artemis II launch. NASA In: Artemis Program Space NASA
+"""
+
+[R5] NASA's Artemis II successfully launches astronauts into space in historic moon mission. What's next?
+(https://www.yahoo.com/news/us/article/watch-live-nasa-launches-artemis-ii-astronauts-into-space-in-historic-moon-mission-230337145.html)
+"""
+After weeks of delays, NASA launched the Artemis II into space on Wednesday, the start of a 10-day journey that will take its four-member crew around the moon and back.The Artemis II lifted off from pad B at Kennedy Space Center in Cape Canaveral, Fla., at 6:35 p.m. ET. Twin solid rocket boosters, which provided 80% thrust, detached two minutes into the flight, and the shuttle entered Earth’s orbit nine minutes after takeoff.The astronauts — NASA commander Reid Wiseman, pilot Victor Glover, mission specialist Christina Koch and Canadian space agency mission specialist Jeremy Hansen — were safe, secure and “in great spirits,” NASA Administrator Jared Isaacman said during a postlaunch press conference.Wiseman told NASA controllers on the ground that the crew could see their destination.“We have a beautiful moonrise, we’re headed right at it,” he said.What is the goal of the Artemis II mission?Artemis II crew members, from right, Reid Wiseman, Victor Glover, Christina Koch and Canadian Space Agency astronaut Jeremy Hansen.(Aubrey Gemignani/NASA)The Artemis II is the first U.S. human lunar spaceflight in over 50 years, marking a “key step toward long-term return to the moon and future missions to Mars,” according to NASA.The four astronauts on Artemis II won’t be landing on the moon; instead, they’ll venture 600,000 miles around the moon and will return at 30 times the speed of sound, according to NASA. During their 10-day trip, the astronauts will collect critical information for those future missions, including conducting experiments as “both scientists and test subjects” to help scientists understand how long-distance space travel may affect the human body.They will test life-support systems in the Orion capsule for future crewed missions to the moon’s surface. A moon landing would occur during Artemis III, which NASA is hoping to launch sometime in 2027.Also read: Artemis will take Americans to the moon for the 1st time since 1972. Why has it been so hard to go back?“The information we learn from the Artemis II test flight will inform future missions and help NASA pave the way for the next era of exploration on the moon and Mars,” the agency said in a video posted to social media.NASA’s long-term goal is to return humans to the moon to establish a continuous human presence and develop a lunar settlement on the south pole, a region where it’s believed water ice is abundant and could be used for drinking and breathing and as a source for rocket fuel.Artemis’s long-term mission is to also lay the foundation for future crewed missions to Mars. The program is building on the legacy of the Apollo-era missions to the moon in the late 1960s and early ’70s. The Artemis program is named after the ancient Greek goddess of the moon, twin sister of Apollo.Where is Artemis II now, and when will it reach the moon?NASA's Artemis II lifts off from the Kennedy Space Center in Cape Canaveral, Fla., on April 1.(ASSOCIATED PRESS)According to the latest flight update from NASA, the Orion fired its main engine for nearly six minutes to complete the “translunar injection (TLI) burn,” sending the crew out of Earth’s orbit and on a trajectory toward the moon.If all goes well, the Orion will reach the moon on April 6, according to NASA.During a six-hour flyby window, the crew members will observe the moon’s surface to “help scientists understand how the Moon and solar system formed,” per NASA.And they’ll witness a solar eclipse, giving them “an opportunity for them to look for flashes of light from meteoroids striking the Moon’s surface, dust lofting above the edge of the Moon, and deep space targets, including planets,” NASA said.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

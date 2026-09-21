@@ -1,0 +1,113 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "first day of spring 2026 usa"
+
+Claims:
+[1] "The first day of spring 2026 in the USA (Northern Hemisphere) is Friday, March 20, 2026."
+[2] "The vernal equinox occurs at 10:46 a.m. Eastern Time on Friday, March 20, 2026."
+[3] "The vernal equinox occurs at 9:46 a.m. Central Time on Friday, March 20, 2026."
+[4] "The vernal equinox occurs at 8:46 a.m. Mountain Time on Friday, March 20, 2026."
+[5] "Friday, March 20, 2026 marks equal daylight and darkness."
+[6] "The spring season lasts until the summer solstice on June 21."
+[7] "The vernal equinox is when the sun passes directly over the Earth's equator."
+[8] "Meteorological spring began on March 1."
+
+Cited text snippets from the AI Overview (for additional context):
+- Spring 2026 is here! Here's what to know about today's vernal equinox: "Learn how to bet the,First day of winter 2026"
+- Is it spring yet? Exact time of vernal equinox, myths, rituals: "What time does spring start,shines directly over Earth's equator."
+- It's the first day of spring 2026. When is the equinox? - Yahoo: "When is the first day,2026 is Friday, March 20."
+- When is the March equinox? What to know about the official start of spring: "When does spring 2026 start,March 19, 20 or 21."
+- Is today the first day of spring? What to know about the equinox.: "Melina Khan,day and darkness at night."
+Reference Sources:
+
+[R1] Is it spring yet? Exact time of vernal equinox, myths, rituals
+(https://www.cincinnati.com/story/news/2026/03/20/spring-officially-start-exact-time-vernal-equinox-myths-rituals/89226718007/)
+"""
+NEWSToday is the first day of spring. Exact equinox time, myths, ritualsAlex Perry Mariyam MuhammadCincinnati EnquirerMarch 20, 2026, 6:22 a.m. ETDespite months of cold weather and frigid Ohio temperatures, the March equinox marks the official astronomical start of spring, and it's finally upon us.Spring officially arrives today. Here's the exact time it happens.What time does spring start on March 20, 2026?Spring officially begins at 10:46 a.m. ET on Friday, March 20, 2026, with the arrival of the vernal equinox (spring equinox). The equinox marks the moment the sun shines directly over Earth's equator.
+"""
+
+[R2] Is today the first day of spring? What to know about the equinox.
+(https://www.usatoday.com/story/news/nation/2026/03/19/first-day-of-spring-equinox/89223340007/)
+"""
+March 19, 2026Updated March 20, 2026, 12:05 p.m. ETAfter a brutal winter for much of the country, spring is finally in the air.Spring officially begins on Friday, March 20, at 10:46 a.m. ET, according to the U.S. Naval Observatory.It marks the spring equinox, or the astronomical start to spring. The spring equinox occurs when the Earth's axis is tilted neither toward nor away from the sun, resulting in equal daylight during the day and darkness at night.This year, the start of spring caps off winter weather that impacted parts of the country in vastly different ways. In the Northeast, frigid cold temperatures and massive snowstorms struck over the last two months. But out West, scorching high temperatures have been feeding a drought.Despite the weather whiplash many Americans faced, meteorologists reported that winter across the country was overwhelmingly warm.With the official start of spring nearly here, forecasters are projecting lingering cold temperatures in the East through the beginning of April. In the western half of the country, prolonged heat is still expected.Here's what to know about the spring equinox.When is the first day of spring?Friday, March 20, is the first day of astronomical spring in the Northern Hemisphere.The spring equinox will happen on that day at 10:46 a.m. ET.What is the spring equinox?Twice a year, Earth's axis is tilted neither toward nor away from the sun. The first time it happens, in March, is the spring equinox. The other, which falls in September, is the autumn equinox.The sun shines precisely over the equator during the equinox, so everywhere on Earth will experience almost exactly 12 hours of daylight and 12 hours of nighttime as a result.The equal day and night hours are caused by a refraction of sunlight that makes the sun appear above the horizon while the actual position of the sun is below the horizon, according to the National Weather Service.Until the summer solstice takes place on June 21, the amount of daylight will keep growing every day.Contributing: Doyle Rice and Janet Loehrke, USA TODAYMelina Khan is a national trending reporter for USA TODAY. She can be reached at melina.khan@usatoday.com.
+"""
+
+[R3] It's the first day of spring 2026. When is the equinox?
+(https://www.yahoo.com/news/articles/first-day-spring-2026-equinox-174043775.html)
+"""
+It's officially the first day of spring. The vernal equinox is March 20, which means winter is finally over.Unfortunately, it also means the ants that survived the mild cold season will be out in full force to ruin family picnics and pester people who don't fortify their homes against the little critters.Here's what to know about the first day of spring and the 2026 spring equinox.When is the first day of Spring 2026?The first day of Spring 2026 is Friday, March 20.What is the spring equinox?The spring equinox marks the exact moment the center of the sun crosses Earth's equator, meaning a person could see the sun directly overhead at noon if they were standing on the equator, according to NASA.After the March equinox, the sun's path continues shifting north each day until it reaches its northernmost point during the June solstice. It then begins moving south again, crossing the equator during the September equinox before continuing south to the December solstice.At the March equinox, the Northern Hemisphere will begin moving into spring, while the Southern Hemisphere heads into fall.An amazing view of the Earth at the spring equinox was taken in 2013 by NOAA's GOES-13 satellite.What does vernal equinox mean?The vernal equinox is the name for the spring equinox in the Northern Hemisphere.It is one of two equinoxes that occur each year. During these events, Earth's equator is not tilted toward or away from the sun, resulting in nearly equal lengths of day and night across all latitudes, according to the National Weather Service.The equinox that occurs in spring is called the vernal equinox, while the one in fall is called the autumnal equinox.Why do days get longer in spring?The days grow longer throughout spring because the Northern Hemisphere gradually tilts more toward the sun.It continues to tilt until it reaches its maximum point during the summer solstice, known as the longest day of the year.When is daylight saving time 2026?Oregonians will need to spring their clocks forward for daylight saving time on Sunday, March 8.Ginnie Sandoval is the Oregon Connect reporter for the Statesman Journal. Sandoval can be reached at GSandoval@statesmanjournal.com or on X at @GinnieSandoval.This article originally appeared on Salem Statesman Journal: Spring has sprung in Oregon. When is the equinox?
+"""
+
+[R4] Spring 2026 is here! Here's what to know about today's vernal equinox
+(https://www.courier-journal.com/story/news/local/2026/03/20/spring-2026-vernal-equinox-seasonal-dates/89226253007/)
+"""
+March 20, 2026, 4:03 a.m. ETSpring is here, which means warmer days will soon be upon us. The season officially kicks off at 10:46 a.m. Easter, on Friday, March 20, when the sun's rays fall directly on the equator, according to EarthSky. Here's what to know.When is the first day of spring 2026?The first day of spring in the Northern Hemisphere is Friday, March 20, 2026. This is also the date of the vernal equinox.What is the vernal equinox? Spring equinox means nearly 12 hours of sunshineThe vernal, or spring, equinox marks the changing of seasons. For the Northern Hemisphere, winter recedes into spring, but in the Southern Hemisphere, it's reversed. Countries such as Australia, New Zealand and Brazil welcome the start of autumn.On March 20, the sun will shine directly over Earth's equator, creating roughly 12 hours of day and night across the world. Equinox means "equal night" in Latin, when nighttime and daytime are about equal lengths everywhere on the planet.What are the spring months?March, April, May and June are spring months in the Northern Hemisphere. This year, spring lasts from March 20, 2026 until the summer solstice on June 21, 2026.When is the first day of spring, according to meteorologists?For meteorologists, spring began on March 1. Meteorological spring runs from March through May because it's easier to keep weather records.What are the dates for the four seasons in 2026?March 20: First day of spring 2026June 21: First day of summer 2026Sept. 22: First day of fall 2026Dec. 21: First day of winter 2026Contributing: John Tufts, USA TODAY Network. Reach Marina Johnson at Marina.Johnson@courier-journal.com.
+"""
+
+[R5] Spring 2026 officially begins this week. What to know
+(https://www.providencejournal.com/story/weather/2026/03/19/spring-2026-begins-this-week-what-to-know/89223682007/)
+"""
+WEATHERWhen is the March equinox? What to know about the official start of springCatherine MessierUSA TODAY NETWORK - New EnglandMarch 19, 2026, 10:31 a.m. ETLooking forward to the arrival of spring after the long, snowy winter in New England?You're in luck – the official start to spring is this week, falling on Friday, March 20. While meteorologists consider the beginning of March to mark the beginning of spring, the official arrival of the season depends on an astronomical event called the spring equinox. Wondering what exactly that means?
+"""
+
+[R6] When does Spring begin in the US in 2026?
+(https://en.as.com/latest_news/when-does-spring-begin-in-the-us-in-2026-f202603-n/)
+"""
+The arrival of Spring has finally arrived in the United States. Most Americans had to change the time on their clocks earlier in March, which coincides with the beginning of Spring, then in November.When does spring begin in 2026?Meteorologically, the first official day of spring is March 1. However, the astronomical start comes later. According to Farmers’ Almanac, in 2026 the Northern Hemisphere will welcome spring on Friday, March 20 at 10:46 a.m. ET, with the arrival of the spring equinox. The equinox in March occurs when the Sun crosses the celestial equator from south to north.During an equinox, the Northern and Southern Hemispheres receive approximately equal amounts of sunlight because neither hemisphere is tilted more toward or farther away from the Sun than the other.What is the Spring equinox?In the northern hemisphere, the Spring equinox occurs when the Sun crosses the celestial equator from South to North. It is called the “celestial” equator because it is an imaginary line in the sky above the Earth’s equator.At the March equinox, the northern hemisphere and the southern hemisphere receive approximately equal amounts of sunlight, since neither half is tilted more toward or away from the Sun than the other.Related storiesGet closer to the game! Whether you like your soccer of the European variety or that on this side of the pond, our AS USA app has it all. Dive into live coverage, expert insights, breaking news, exclusive videos, and more. Plus, stay updated on NFL, NBA and all other big sports stories as well as the latest in current affairs and entertainment. Download now for all-access coverage, right at your fingertips – anytime, anywhere.And there’s more: check out our TikTok and Instagram reels for bite-sized visual takes on all the biggest soccer news and insights.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

@@ -1,0 +1,125 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "saja boys breakfast meal"
+
+Claims:
+[1] "The McDonald's Saja Boys Breakfast Meal is a limited-time offering."
+[2] "The McDonald's Saja Boys Breakfast Meal is inspired by the Netflix film KPop Demon Hunters."
+[3] "The McDonald's Saja Boys Breakfast Meal launches March 31, 2026."
+[4] "The McDonald's Saja Boys Breakfast Meal features a Spicy Sausage McMuffin with Egg topped with peppery Spicy Saja Sauce."
+[5] "The McDonald's Saja Boys Breakfast Meal features hash browns."
+[6] "The McDonald's Saja Boys Breakfast Meal features a small soft drink."
+[7] "Each McDonald's Saja Boys Breakfast Meal includes 1 of 8 collectible photocard packs featuring Jinu and the Saja Boys."
+[8] "Each McDonald's Saja Boys Breakfast Meal includes a "Derpy" access card."
+[9] "The "Derpy" access card contains a QR code."
+[10] "The QR code unlocks exclusive app content."
+[11] "The Spicy Saja McMuffin is a standard Sausage McMuffin with Egg featuring a new peppery Spicy Saja Sauce."
+[12] "The McDonald's Saja Boys Breakfast Meal has approximately 800 calories."
+[13] "The McDonald's Saja Boys Breakfast Meal is available for a limited time at participating McDonald's."
+[14] "The McDonald's Saja Boys Breakfast Meal is available via the app for pickup."
+[15] "The McDonald's Saja Boys Breakfast Meal is available via McDelivery."
+[16] "The McDonald's Saja Boys Breakfast Meal is released alongside a competing "HUNTR/X Meal"."
+[17] "The McDonald's Saja Boys Breakfast Meal is released alongside the "Derpy McFlurry"."
+[18] "The McDonald's Saja Boys Breakfast Meal is released as part of a KPop Demon Hunters collaboration."
+
+Cited text snippets from the AI Overview (for additional context):
+- Trying The New McDonald’s Saja Boys Breakfast Meal! ... - Instagram: "Whether you're a fan,featuring varying degrees of rarity."
+- Limited Time Only The Saja Boys Breakfast Meal - McDonald's: "Coca-Cola® (Small),The Coca-Cola Company. “"
+- Saja Boys Breakfast Meal @mcdonalds ...: "The first meal, called the,."
+- McDonald's unveils new 'KPop Demon Hunters' meals: "For those who want breakfast,a new Spicy Saja Sauce."
+- 'KPop Demon Hunters' meals arrive at McDonald's. What's inside?: "Amaris Encinas Mike Snider,content on the McDonald's app."
+- When do McDonald's 'KPop Demon Hunters' meals come out?: "The Saja Boys Breakfast Meal,X and the Saja Boys."
+- I Ate McDonald’s ‘KPop Demon Hunters’ Saja Boys Breakfast Meal: "As for the sandwiches, they,diet of Spicy Sausage McMuffins."
+Reference Sources:
+
+[R1] McDonald's KPop Demon Hunters meals are here! What time to get them
+(https://www.cincinnati.com/story/entertainment/dining/2026/03/31/kpop-demon-hunters-mcdonalds-where-to-get-saja-boy-breakfast-huntrx-meal-mcdonalds-near-me/89398162007/)
+"""
+March 31, 2026Updated April 1, 2026, 10:30 a.m. ETThe McDonald's "KPop Demon Hunters" meal is here!The fast-food giant began offering a pair of meals inspired by the Netflix film on Tuesday, March 31.One meal honors the animated movie's female girl group, Huntr/X, who battle demons with music. The other meal celebrates the Saja Boys, a boy band made up of demons, who attempt to disrupt that mission.McDonald's also released a McFlurry inspired by the movie's adorable character, Derpy the Tiger.So, what exactly is in the meals? And when and where can you buy them? Here's what to know:Huntr/X Meal10-piece chicken McNuggetsMedium soft drinkRamyeon McShaker Fries: Fries with a soy, garlic, sesame and spice seasoning. The side is inspired by Rumi, Mira and Zoey's go-to noodle snack. You sprinkle the seasoning into the McShaker bag, add fries and shake to distribute the seasoning on the ries.Hunter Sauce: A sweet chili sauce with notes of chili, garlic and pepper. Inspired by HUNTR/X's "fierce, yet fun-loving personalities," according to the McDonald's release.Demon Sauce: A mustard sauce with heat and tang. The sauce is made purple as a nod to the color of demon patterns.Saja Boys Breakfast MealSpicy Saja McMuffin: The Sausage McMuffin with Egg, topped with a peppery Spicy Saja Sauce. The sauce is "inspired by the fire of Gwi-Ma."Hash browns: "Crispy on the outside and soft on the inside − just like the Saja Boys' leader Jinu," the release reads.Small soft drink: "Your choice of a little 'Soda Pop' to cool down from the heat," the release reads. "Soda Pop" is the name of one of the Saja Boys' songs.The Derpy McFlurryThe Derpy McFlurry blends vanilla soft serve with berry-popping pearls in a wild berry sauce.'KPop Demon Hunters' McDonald's cardsEach meal also comes with a collectible card pack. Each pack consists of a photocard for either Huntr/X or the Saja Boys and a Derpy access card with a QR code that unlocks exclusive content via the McDonald's app. That content is "a special reveal of the group that wins the Battle for the Fans," according to a McDonald's news release.What time does McDonald's stop serving breakfast?Local breakfast menus and hours may vary by restaurant, which Co-Ops and franchisees decide at their discretion, according to the McDonald's website. However, most McDonald's locations serve breakfast items until 10:30 a.m. or 11 a.m. local time.When does McDonald's start serving lunch?Local lunch menus and hours also may vary by restaurant, which Co-Ops and franchisees decide at their discretion. However, the lunch menu generally becomes available when the breakfast menu changes over. So, most McDonald's start serving lunch around 10:30 a.m. or 11 a.m. local time.McDonald's locations around Greater Cincinnati302 Philadelphia St., Covington.15 Donnermeyer Drive, Bellevue.1126 E. McMillan St., Walnut Hills.1930 Monmouth St., Newport.413 Martin Luther King Drive, Avondale.3738 Warsaw Ave., East Price Hill.3903 Winston Ave., Covington.255 W. Mitchell Ave., Spring Grove Village.4594 Montgomery Road, Norwood.10573 Springfield Pike, Woodlawn.4025 Mt. Carmel Tobasco Road, Springfield Township.2513 Hazelwood Drive, Crescent Springs.8530 U.S. Highway 42, Union.8300 Arbor Square Drive, Mason.7679 Doc Drive, West Chester.2930 W. Montgomery Road, Maineville.7085 Liberty Centre Drive, West Chester.9142 Cincinnati Columbus Road, West Chester.8969 Fields Ertel Road, Symmes Township.738 Corwin Nixon Blvd., South Lebanon.3880 Paxton Ave., Oakley. 6726 Dixie Highway, Florence. 5427 Ridge Ave., Columbia Township.7337 Wooster Pike, Columbia Township.3050 Dixie Highway, Erlanger.7671 Beechmont Ave., Anderson Township.7916 Montgomery Road, Sycamore Township.4025 Mount Carmel Tobasco Road, Beechmont.5341 Glenway Ave., West Price Hill.7909 Dream St., Florence.6707 Alexandria Pike, Alexandria.6 Sperti Drive, Edgewood.5010 Delhi Road, Delhi Township.5055 Old Taylor Mill Road, Taylor Mill.3720 Alexandria Pike, Cold Spring.7142 Reading Road, Roselawn.8908 Reading Road, Reading.1450 Saint Johns Lane, Wilder.8339 Colerain Ave., Colerain Township.4140 Hunt Road, Blue Ash.6840 Hamilton Ave., North College Hill.919 W. North Bend Road, Winton Hills.6433 Glenway Ave., Green Township.9254 Winton Road, Springfield Township.55 Kibby Lane, Sayler Park.1980 Petersburg Road, Hebron.5425 North Bend Road, Green Township.9677 Colerain Ave., Colerain Township.1202 Omniplex Drive, Forest Park.10748 Montgomery Road, Sycamore Township.4640 Cornell Road, Blue Ash.812 Eastgate North Drive, Eastgate.5985 Centennial Circle, Florence.2088 Declaration Drive, Independence.1695 E. Kemper Road, Sharonville.11723 Princeton Pike, Springdale.990 Lila Ave., Milford.2290 Waycross Road, Forest Park.3900 Hauck Road, Sharonville.1259-1/2, Ohio Pike, Amelia.306 Richwood Road, Walton.5800 Boymel Drive, Fairfield.1101 St. State Route 28, Milford.9160 Allen Road, West Chester Township.650 Loveland Madeira Road, Loveland.563 Nilles Road, Fairfield.4760 OH-4, Fairfield.8251 Princeton Glendale Road, Hamilton.10570 Harrison Ave., Harrison. 225 Mary Grubbs Highway, Walton.1771 S. Erie Blvd., Hamilton.2001 Hospital Drive, Batavia.5301 Kings Island Drive, Mason.1420 Millville Ave., Hamilton.McDonald's near meIf you don't live in the Greater Cincinnati or Northern Kentucky area, you can look for a McDonald's near you on the fast food chain's site.
+"""
+
+[R2] Does McDonald's 'KPop Demon Hunters' meals come out today?
+(https://www.app.com/story/news/2026/03/30/does-mcdonalds-kpop-demon-hunters-come-out-today-huntrix-adult-happy-meal-toys-mcdonalds-near-me/89390437007/)
+"""
+NEWSWhen do McDonald's 'KPop Demon Hunters' meals come out? Lori ComstockUSA TODAY NETWORKMarch 30, 2026, 4:32 p.m. ETMcDonald's is giving "KPop Demon Hunters" fans a K-pop battle for the ages, with its first-ever dueling adult Happy Meals featuring Netflix animated icons HUNTR/X vs Saja Boys duking it out for McDonald's "Battle of the Fans." And Huntrix fans say it's gonna be "Golden."The limited-edition McDonald's "KPop Demon Hunters" meals drop Tuesday, March 31, 2026, featuring two new Happy Meals: The Huntr/X Meal, featuring the girls who make up the fictional K-pop group HUNTR/X — Rumi, Mira and Zoey — and a Saha Boys meal for you McDonald's breakfast run.
+"""
+
+[R3] McDonald's unveils new 'KPop Demon Hunters' meals
+(https://www.coloradoan.com/story/life/food/2026/03/31/mcdonalds-unveils-new-kpop-demon-hunters-meals/89348415007/)
+"""
+FOODMcDonald’s releasing South Korean-inspired 'KPop Demon Hunters' meals Abigail Flores-JohnsonFort Collins ColoradoanUpdated March 31, 2026, 9:18 a.m. MTMcDonald's is having a moment, and it's golden.Inspired by "KPop Demon Hunters," winner of two Oscars in 2026, the global fast-food giant is set to release two new meals themed after girl group HUNTR/X and their rivals, the Saja Boys, on March 31.Each meal lets fans choose a side and comes with a collectible card pack featuring an exclusive photocard from that group, along with a Derpy access card — named after a tiger character in the film. Guests can scan the card’s QR code and enter it in the McDonald’s app by April 26 to unlock exclusive content and a special reveal of the group that wins the ‘Battle for the Fans.’”
+"""
+
+[R4] 'KPop Demon Hunters' meals arrive at McDonald's. What's inside?
+(https://www.usatoday.com/story/money/food/2026/03/31/kpop-demon-hunters-mcdonalds/89391173007/)
+"""
+March 31, 2026Updated April 1, 2026, 1:10 p.m. ETAn epic K-pop battle, one that features Huntr/X and the Saja Boys, is already underway at McDonald's.Beginning Tuesday, March 31, the fast-food giant will begin offering a pair of meals inspired by the hit (and award winning) Netflix film "KPop Demon Hunters."Each meal comes with a collectible set of photocards featuring Huntr/X or the Saja Boys as well as a Derpy the Tiger access card with a QR code that unlocks exclusive content on the McDonald's app.The "special reveal," according to McDonald's, is the identity of the group that is crowned victor of the Battle for the Fans.A K-pop superstar trio, who moonlight as "badass demon hunters," have no choice but to battle the Saja Boys, an irresistible rival boy band of demons in disguise, in order to keep humanity safe from supernatural threats — for good.Between two Oscars and a hit soundtrack, "KPop Demon Hunters" quickly earned worldwide acclaim in the months following its release. A sequel is in the works."With McDonald's, we were able to turn the rivalry between The Saja Boys and Huntr/X into something fans can actually experience, drawing inspiration from Korean culture and food traditions that sit at the heart of the film," Marian Lee, chief marketing officer for Netflix, said in the March 26 news release.Here's what to know about the KPop Demon Hunters' meals landing at McDonald's, including what's inside.Huntr/X, Saja Boys meals land at McDonald'sFrom the Huntr/X Meal, featuring McNuggets, and Saja Boys breakfast meal, McDonald's has a meal suitable for any fan at just about any time of day."From Ramyeon McShaker Fries to Demon sauces paired with Soda Pop, every detail was designed to feel like it could have come straight out of a scene in the movie," Lee added.Here's what's inside:The Huntr/X Meal - A 10-piece Chicken McNuggets meal, complete with a medium drink, Ramyeon McShaker Fries, Demon Sauce and Hunter Sauce. Seasoned with a blend of soy, garlic, sesame and spice, the Ramyeon McShaker Fries are inspired by Rumi, Mira and Zoey's go-to noodle snack.The Saja Boys Breakfast Meal: A Sausage McMuffin with Egg meal. The breakfast sandwich comes topped with a peppery Spicy Saja Sauce. Hashbrowns and a small soft drink are included in the meal.According to McDonald's, the Huntr/X Meal comes with Hunter Sauce, "a sweet chili sauce mixing notes of chili, garlic and pepper with just enough heat" and Demon Sauce, "a bold mustard sauce with heat and tang – made purple, just like demon patterns."Derpy the Tiger inspires 'Derpy McFlurry'And who could forget Derpy the Tiger? Not McDonald's.The clumsy yet lovable feline serves as the inspiration for McDonald's Derpy McFlurry, which blends creamy vanilla soft serve with berry flavored popping pearls in a wild berry sauce.The Derpy McFlurry as well as McDonald's other "KPop Demon Hunters" offerings are now available for purchase at participating restaurants nationwide.
+"""
+
+[R5] I Ate McDonald’s ‘KPop Demon Hunters’ Saja Boys Breakfast Meal
+(https://www.aol.com/articles/ate-mcdonald-kpop-demon-hunters-145255387.html)
+"""
+For the fans!(Of saturated fats!)Today, nine months after KPop Demon Huntersdebuted on Netflix and became one of the biggest pop-cultural phenomenons of 2025, McDonald’s has unveiled not one but two different KPop-inspired meals. And since one is a breakfast meal and one is a dinner option, you need to visit McDonald’s twice to try them both. That’s a business model so diabolical Gwi-Ma would surely approve.I had a few hours to kill this morning and I don’t see my nutritionist until he dismisses his lawsuit against me, so I decided to try the breakfast option — “The Saja Boys Breakfast Meal”— first. (Rest assured, I will also eat “The Huntr/x Meal,” which comes with Chicken McNuggets “Hunter Sauce,” “Demon Sauce,” “Ramyeon McShaker™ Fries, because for some reason Ihave to eat every food inspired by movies and then write about them.)On its official website, here is how McDonald’s describes the Saja Boys Breakfast Meal:Breakfast gets a remix inspired by KPop Demon Hunters with The Saja Boys Breakfast Meal. It features a Spicy Sausage McMuffin®—a Sausage McMuffin® with Egg covered in Spicy Saja Sauce for that peppery kick—alongside Hash Browns, a small soft drink (maybe a soda pop) and 1 of 8 photocards of Jinu and the rest of the boys. It’s the ultimate encore to start your day and it’s only here for a limited time.I’ve seen KPop Demon Hunters approximately 800 times over the last year with my children. And never — not once! — did I think to myself “Hm, I wonder what a Saja Boys sauce would taste like?”I did not ask, but now McDonald’s has answered. And look, I once ate “Thing Sauce.” No tie-in food will ever sound as disgusting as that (or at least that is what I tell myself on the weeks when my therapist is away on vacation).Here’s the video of my unboxing and first tasting of the Saja Boys meal.READ MORE:Once-Beloved Fast Food Items That No Longer ExistOh, also I got a photocard of Mystery, who I think we can all agree is among the top four or five best Saja Boys.Because I am an extremely serious journalist and wanted to compare the two (and not at all because I am a glutton who just wanted one), I also bought a standard Sausage McMuffin (with egg, obviously) for a taste test.As you can see, the Spicy Sausage McMuffin does come in a special wrapper with some of the demon “patterns” from the film and other KPop Demon Hunters design elements.As for the sandwiches, they’re absolutely identical except for the addition of that “Spicy Saja Sauce.” Ah, but as we all remember from KPop Demon Hunters, most of the Saja Boys couldn’t handle spice when they appeared on Who Can Chug the Most Hot Sauce?(My main man Mystery was history real quick.) So it seems like a slight contradiction in terms to make a Saja Boys-themed item spicy.That said, I have to give McDonald’s credit; when they advertise something as spicy lately — like last year’s Minecraft Nether Flame Sauce, something that I also ate because I live a really meaningful and fulfilled life — they deliver in the heat department. This McMuffin is spicy; probably too spicy for a lot of people.I’m not a big fast food breakfast guy, but if I was at McDonald’s around breakfast time while this KPop Demon Hunters meal was still on the menu, I would probably eat another one of these things. I will note, however, that McDonald’s website states that the full Saja Boys Breakfast Meal contains 800 Cal. There’s no way the Boys are maintaining those gorgeous KPop bods on a regular diet of Spicy Sausage McMuffins.KPOP DEMON HUNTERS
+"""
+
+[R6] KPDH Saja Boys Breakfast Meal: McMuffin®, Hash Browns & a Drink | McDonald’s
+(https://www.mcdonalds.com/us/en-us/meal/saja-boys-breakfast-meal.html)
+"""
+Important Note : At McDonald's, we take great care to serve quality, great-tasting menu items to our customers each and every time they visit our restaurants. We understand that each of our customers has individual needs and considerations when choosing a place to eat or drink outside their home, especially those customers with food allergies. As part of our commitment to you, we provide the most current ingredient information available from our food suppliers for the nine most common allergens as identified by the U.S. Food and Drug Administration (eggs, dairy, wheat, soy, peanuts, tree nuts, fish, shellfish and sesame), so that our guests with food allergies can make informed food selections. However, we also want you to know that despite taking precautions, normal kitchen operations may involve some shared cooking and preparation areas, equipment and utensils, and the possibility exists for your food items to come in contact with other food products, including allergens. We encourage our customers with food allergies or special dietary needs to visit www.mcdonalds.com for ingredient information, and to consult their doctor for questions regarding their diet. If you have questions about our food, please reach out to us directly using our contact us forms. Percent Daily Values (DV) and RDIs are based on unrounded values. **Percent Daily Values (DV) are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs. The nutrition information on this website is derived from testing conducted in accredited laboratories, published resources, or from information provided from McDonald's suppliers. The nutrition information is based on standard product formulations and serving sizes. Calories for fountain beverages are based on standard fill levels plus ice. If you use the self-service fountain inside the restaurant for your drink order, see the sign posted at the beverage fountain for beverage calories without ice. All nutrition information is based on average values for ingredients and is rounded in accordance with current U.S. FDA NLEA regulations. Variation in serving sizes, preparation techniques, product testing and sources of supply, as well as regional and seasonal differences may affect the nutrition values for each product. In addition, product formulations change periodically. You should expect some variation in the nutrient content of the products purchased in our restaurants. Beverage sizes may vary in your market. McDonald’s USA does not certify or claim any of its US menu items as Halal, Kosher or meeting any other religious requirements. We do not promote any of our US menu items as vegetarian, vegan or gluten-free. This information is correct as of January 2022, unless stated otherwise.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

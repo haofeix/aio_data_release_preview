@@ -1,0 +1,92 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "disaster alert test drill"
+
+Claims:
+[1] "A statewide emergency alert system drill will take place in Texas on Thursday, April 2, 2026."
+[2] "The statewide emergency alert system drill will take place between 10 a.m. and 12:30 p.m. (CT)."
+[3] "Residents can expect to receive test alerts on mobile phones (Wireless Emergency Alerts)."
+[4] "Residents can expect to receive test alerts on television."
+[5] "Residents can expect to receive test alerts on radio."
+[6] "Residents can expect to receive test alerts via outdoor warning sirens."
+[7] "The emergency alert tests are authorized."
+[8] "No action is required from the public."
+[9] "The statewide emergency alert system drill is a coordinated effort involving multiple levels of government."
+[10] "The statewide emergency alert system drill is led by the Texas Division of Emergency Management (TDEM)."
+[11] "The statewide emergency alert system drill is led by local jurisdictions."
+
+Cited text snippets from the AI Overview (for additional context):
+- TDEM conducts statewide drill testing public warning systems: "Statewide emergency alert drill in,was announced on March 18."
+- Statewide emergency alert drill set for April 2: What to expect in Austin: "During the test, TDEM said,, Llano, Travis and Williamson."
+- A Statewide Emergency Alert drill (via cell phones), ... - Instagram: "The Texas Division of Emergency Management is conducting a drill,more than one alert test."
+- Texas to run statewide test of emergency alert systems: "Texas will test its emergency alert systems,to ensure they work before disasters strike."
+- Tarrant County | Statewide emergency alert system tests ...: "As part of this drill, local jurisdictions,hear outdoor warning sirens during the testing"
+Reference Sources:
+
+[R1] Statewide emergency alert drill set for April 2: What to expect in Austin
+(https://www.kxan.com/news/local/austin/austin-travis-county-officials-prepare-residents-for-statewide-emergency-alert-drill/)
+"""
+AUSTIN (KXAN) — Austin and Travis County officials shared details Tuesday morning about an upcoming emergency alert drill. The drill will occur statewide and test local alert systems on Thursday, April 2, to ensure Texans can be alerted effectively during disasters and emergencies, according to the Texas Division of Emergency Management (TDEM). Mayor Kirk Watson and other city and county officials discussing an emergency alert drill that will happen Thursday, April 2. (Todd … TDEM is asking local authorities, school districts, universities, river authorities, law enforcement and other emergency agencies to participate in the drill and share a recap afterward on how it went. Designated testing windows have been set up for the different authorities and agencies. During the test, TDEM said cities and counties will use their primary, alternate, and contingency systems. Austin and Travis County emergency officials want to prepare residents for the upcoming drill and share reasons why it’s important. They said the test alert messages could bleed beyond county or city limits, and people living near county borders may receive multiple alerts from different agencies on test day. “This is critical. This is important. This is literally a matter of life and death. And that is not an overstatement of the role of warning systems and receiving these messages. They can save your life, and they can save those you love,” Austin Mayor Kirk Watson said. Video Player is loading.Emergency Alert Drill Thursday: Austin & Travis County Prepare Residents Emergency Alert Drill Thursday: Austin & Travis County Prepare Residents NOW PLAYINGEmergency Alert Drill Thursday: Austin & Travis County Prepare Residents The city of Austin encouraged the public to turn on their emergency alerts in their phone notification settings and also register for alerts through Warn Central Texas online. Warn Central Texas alerts can be received through phone calls, emails and/or text messages. This system covers 10 counties: Bastrop, Blanco, Burnet, Caldwell, Fayette, Hays, Lee, Llano, Travis and Williamson. During Tuesday’s press conference, city and county officials shared they understand alert fatigue is real, but they urged residents to keep those notifications on throughout the testing period and in the future. Williamson County also notified residents on social media that it would be participating in the drill. The county said its alerts would happen sometime between 10 a.m. and 12:30 p.m., and you may get more than one.
+"""
+
+[R2] TDEM conducts statewide drill testing public warning systems
+(https://www.fox4news.com/news/tdem-conducting-statewide-drill-testing-public-warning-systems)
+"""
+Updated April 2, 2026 10:36am CDT AUSTIN, Texas - The Texas Division of Emergency Management conducted a statewide test of local alerting systems on Thursday. Timeline: TDEM announced the public warning statewide drill would be taking place today (4/2/26) between 10 a.m. and 12:30 p.m. (CT). What to expect during drill During the test, officials say you may receive an alert on your phone, see messages on your television, hear them on the radio and hear outdoor warning sirens. Cities and counties will use their primary, alternate and contingency systems during the drill. What they're saying: "Regular training and testing of public warning systems builds readiness before disaster strikes and is an important component of community safety," said Texas Emergency Management Chief Nim Kidd in a news release when the drill was announced on March 18. "Conducting drills to reaffirm procedures, promote confidence in technological tools, and identify potential shortfalls is key to ensuring these systems operate with precision, accuracy, and timeliness when they are needed the most," Kidd added. Local perspective: In Austin, Austin Emergency Management and Travis County Office of Emergency Management will be participating in this drill jointly. The public is encouraged to turn on emergency alerts on their mobile devices in the notifications settings and register to receive alerts via phone call, text message, and email with WarnCentralTexas.org. Officials say that because of how cell towers and signals operate, the test messages may bleed into areas beyond county or city limits. People living or working near county borders may receive alerts from bordering counties when they test their respective systems. For more information about this test and the emergency alert system, please visit ReadyCentralTexas.org. The Source: Information from Texas Division of Emergency Management and City of Austin. TexasCrime and Public Safety
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

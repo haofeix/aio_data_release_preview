@@ -1,0 +1,97 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "kieran culkin oscar"
+
+Claims:
+[1] "According to reports in early 2026, Kieran Culkin won the Academy Award for Best Supporting Actor for his role as Benji Kaplan in the film A Real Pain."
+[2] "Kieran Culkin was announced as the winner for Best Supporting Actor for his performance in A Real Pain."
+[3] "A Real Pain is a film written and directed by Jesse Eisenberg."
+[4] "Kieran Culkin was a presenter at the 98th Academy Awards on March 15, 2026."
+[5] "Kieran Culkin mentioned a running joke about having more children with his wife Jazz Charton at the 98th Academy Awards."
+[6] "Earlier in 2025, Kieran Culkin was associated with winning a Best Supporting Actor award for his role as Benji Kaplan in A Real Pain."
+[7] "Kieran Culkin's association with winning a Best Supporting Actor award for his role as Benji Kaplan in A Real Pain sparked rumors that the win occurred in 2025."
+[8] "Kieran Culkin is known for his role as Roman Roy on HBO's Succession."
+[9] "Macaulay Culkin is Kieran Culkin's brother."
+[10] "Macaulay Culkin was reported to be moved to tears by Kieran Culkin's Oscar win"
+
+Cited text snippets from the AI Overview (for additional context):
+- Kieran Culkin’s Oscar-winning performance as Benji Kaplan ...: "Kieran Culkin's Oscar-winning performance as Benji Kaplan,Culkin winning Actor in a Supporting Role."
+- Kieran Culkin gives update on Oscars baby pact with wife: "Kieran Culkin revisits baby pact,a week before the Emmys."
+- Macaulay Culkin 'Cried' Over Brother Kieran's Oscar Win and Only ... - IMDb: "I cried.,(“The Brutalist”)."
+- Kieran Culkin accepted Sean Penn's Best Supporting Actor #Oscar ...: "follow (us) @CINEMATICWIRE to,it look effortless every time."
+- Kieran Culkin on Why Sean Penn Missed Oscars 2026: "Presenting the Best Supporting Actor Oscar to,year's winner Kieran Culkin had a characteristic"
+Reference Sources:
+
+[R1] Macaulay Culkin ‘Cried’ Over Brother Kieran’s Oscar Win and Only Watched His Category: ‘There Was No Way He Was Not Going to Win’ - IMDb
+(https://www.imdb.com/news/ni65160494/)
+"""
+Similar NewsDemi MooreJacob Elordi, between Kendall Jenner and Nicki Nicole: the unexpected triangle setting social media alight3/26/2026by info@xmag.liveXMAGKeke Palmer Pushes Fashion Limits With Sheer Top Styled as Tiny Dress3/25/2026by Josip KraljikFiction HorizonKeke Palmer Shows off Fearless Style With Sheer Top Reimagined as Short Dress3/25/2026by Josip KraljikComic BasicsJesse EisenbergMarshals Villain Actor Michael Cudlitz Played One Of DC's Most Terrifying Bad Guys3/25/2026by Ryan ScottSlash FilmBest Picture Oscar Winners Of The 21st Century, Ranked3/24/2026by Russell MurraySlash FilmFantasy Life (2025) Movie Review: Amanda Peet Is Remarkable in This Charmingly Subdued Dramedy3/24/2026by Akash DeshpandeHigh on FilmsEntertainment WeeklyDaredevil: Born Again Star Charlie Cox Reveals Season 3 Plans And Drops A Big Matt Murdock Spoiler3/26/2026ComicBookMovie.comBrian Baumgartner Reveals Cut Joke From ‘The Office’ He Was “Mad” About Losing From Original Broadcast3/26/2026by Valentina KraljikComic BasicsGwyneth Paltrow to star in Netflix's Strangers: A Memoir of Marriage adaptation3/26/2026by James Adam LeyfieldBang ShowbizIMDb.com, Inc. takes no responsibility for the content or accuracy of the above news articles, Tweets, or blog posts. This content is published for the entertainment of our users only. The news articles, Tweets, and blog posts do not represent IMDb's opinions nor can we guarantee that the reporting therein is completely factual. Please visit the source responsible for the item in question to report any concerns you may have regarding content or accuracy.More to exploreTop news‘Lord of the Rings’ Superfan Stephen Colbert to Write New Movie for Peter Jackson3/25/2026by Charisma MadarangRollingstone.comApple TV’s ‘For All Mankind’ Renewed for 6th and Final Season3/24/2026by Drew TaylorThe WrapGwyneth Paltrow to Star in ‘Strangers’ as Netflix Wins Movie Rights to Belle Burden’s Blockbuster Memoir3/25/2026by Matt DonnellyVariety Film + TVCelebrity newsGwyneth Paltrow to Star in ‘Strangers’ as Netflix Wins Movie Rights to Belle Burden’s Blockbuster Memoir3/25/2026by Matt DonnellyVariety Film + TVTennessee Police: Alan Ritchson Acted in Self Defense, “No Criminal Charges Pursued” After Altercation With Neighbor3/24/2026by Chris GardnerThe Hollywood Reporter - Movie NewsIndie news‘Kontinental ’25’ Review: A Transylvanian Bailiff Tries to Ease Her Guilty Conscience in Radu Jude’s Droll and Biting iPhone Comedy3/23/2026by David EhrlichIndiewire‘Miroirs No. 3’ Review: Christian Petzold’s Minor Key Is a Major One for His Beautifully Concussed Protagonist, Played by Paula Beer3/20/2026by Ryan LattanzioIndiewireWhat Went Wrong at One of Hollywood’s Newest Indie Distributors3/23/2026by Alison ForemanIndiewireMovie news‘Lord of the Rings’ Superfan Stephen Colbert to Write New Movie for Peter Jackson3/25/2026by Charisma MadarangRollingstone.com‘Spider-Man: Brand New Day’ Makes History as First Movie Trailer to Cross 1 Billion Views (Exclusive)3/24/2026by Jordan MoreauVariety - Film NewsGwyneth Paltrow to Star in ‘Strangers’ as Netflix Wins Movie Rights to Belle Burden’s Blockbuster Memoir3/25/2026by Matt DonnellyVariety Film + TVTV newsApple TV’s ‘For All Mankind’ Renewed for 6th and Final Season3/24/2026by Drew TaylorThe WrapNobody Wants This Season 3 Starts Production3/24/2026by Jean BentleyTudum - NetflixCriminal Minds Renewed At Paramount+ Ahead Of Season 19 Premiere — Heated Rivalry's Connor Storrie To Guest Star3/24/2026by Ryan SchwartzTVLine.comHomicide New York Season 2: Trailer and True Story of Each Case3/26/2026by Krutika MallikarjunaTudum - Netflix
+"""
+
+[R2] Kieran Culkin Has Hilarious Reaction to Winner Sean Penn Missing the Oscars
+(https://www.eonline.com/news/1429765/kieran-culkin-on-why-sean-penn-missed-oscars-2026)
+"""
+It's a tie. I'm not joking. It's actually a tie. It was a historic nightOscars 2026 Must-See Moments: A Shocking Tie, 'Sinners' Makes History, Robert Downey Jr.'s Flub0 seconds of 3 minutes, 27 secondsVolume 0%Oscars 2026 Must-See Moments: A Shocking Tie, 'Sinners' Makes History, Robert Downey Jr.'s FlubAlas, the Best Supporting Actor succession didn't go according to plan at the 2026 Oscars. Kieran Culkin, who won last year for A Real Pain, got all dressed up in a Paul Smith ensemble to present the honor, but—even though his odds had gone up since his BAFTA and Actor Award wins—Sean Penn was not at Hollywood's Dolby Theatre on March 15 to accept. (And, for the record, he didn't pick up either of those other awards in person, either.) "Sean Penn couldn't be here this evening—or, didn't want to," Culkin suggested, "so I'll be accepting the award on his behalf." (See all the stars who did attend the 2026 Oscars.) The One Battle After Another scene-stealer rose to the top of a field that included his costar Benicio del Toro, Sinners' Delroy Lindo, Sentimental Value's Stellan Skarsgärd, and Frankenstein's Jacob Elordi, all of whom heartily applauded despite coming up short. Culkin also flashed the card with Penn's name on it at the camera as he exited the stage.Del Toro won a Best Supporting Actor Oscar for 2000's Traffic, but everyone else in their category this year was a first-time nominee.Robert Gauthier / Los Angeles Times via Getty ImagesMeanwhile, this is Penn's third Oscar, the 65-year-old also a two-time Best Actor winner for 2003's Mystic River and 2008's Milk. (Statues that, as the politically minded star told Variety in 2023, he considered giving to Ukraine for the war cause, because they could "be melted down to bullets they can shoot at the Russians.") But despite being able to sneak a cigarette (as in, smoke right there at the table) in the middle of the Golden Globes in January, he's not the biggest fan of the Hollywood rigmarole—and apparently the part governed by the Academy of Motion Picture Arts and Sciences, especially.Karwai Tang/WireImage“The Academy have exercised really extraordinary cowardice when it comes to being part of the bigger world of expression," Penn said, per Variety, at the Marrakech Film Festival in 2024, where he was receiving a career tribute award, "and in fact, have largely been part of limiting the imagination and very limiting of different cultural expressions." Award ceremonies such as the Oscars were "television shows first," he said, rather than true barometers of where the culture of filmmaking is at. “So I don’t I get very excited about what we’ll call the Academy Awards," he added, "[except for] when a film like The Florida Project or I’m Still Here, or, you know, Emilia Perez, of the things that are likely to happen this year." So, even though he was likely to happen this year, Penn decided to walk the walk and put his cigarette where his mouth was—somewhere else. But so far, everyone else has shown up to accept one Oscar after another at the 98th Academy Awards. Here's the complete winners list:Best PictureBugonia F1 Frankenstein Hamnet Marty Supreme WINNER: One Battle After Another The Secret Agent Sentimental Value Sinners Train DreamsActress in a Leading RoleWINNER: Jessie Buckley - Hamnet Rose Byrne - If I Had Legs I'd Kick You Kate Hudson - Song Sung Blue Renate Reinsve - Sentimental Value Emma Stone - BugoniaActor in a Leading RoleTimothée Chalamet - Marty Supreme Leonardo DiCaprio - One Battle After Another Ethan Hawke - Blue Moon WINNER: Michael B. Jordan - Sinners Wagner Moura - The Secret AgentActress in a Supporting RoleElle Fanning - Sentimental Value Inga Ibsdotter Lilleaas - Sentimental Value WINNER: Amy Madigan - Weapons Wunmi Mosaku- Sinners Teyana Taylor - One Battle After AnotherActor in a Supporting RoleBenecio Del Toro - One Battle After Another Jacob Elordi - Frankenstein Delroy Lindo - Sinners WINNER: Sean Penn - One Battle After Another Stellan Skarsgård - Sentimental ValueDirectorChloé Zhao - Hamnet Josh Safdie - Marty Supreme WINNER: Paul Thomas Anderson - One Battle After Another Joachim Trier - Sentimental Value Ryan Coogler - SinnersOriginal ScreenplayBlue Moon It Was Just An Accident Marty Supreme Sentimental Value WINNER: SinnersCostume DesignAvatar: Fire and Ash WINNER: Frankenstein Hamnet Marty Supreme SinnersOriginal Song"Dear Me" from Diane Warren: Relentless WINNER: "Golden" from KPop Deamon Hunters "I Lied to You" from Sinners "Sweet Dreams of Joy" from Viva Verdii "Train Dreams" from Train DreamsInternational Feature FilmThe Secret Agent It Was Just an Accident WINNER: Sentimental Value Sirat The Voice of Hind RajabLive Action Short FilmButcher's Stain A Friend of Dorothy Jane Austen's Period Drama WINNER (Tie): The Singers WINNER (Tie): Two People Exchanging SalivaDocumentary Short FilmWINNER: All the Empty Rooms Armed Only With A Camera: The Life and Death of Brent Renaud Children No More: "Were and Are Gone" The Devil Is Busy Perfectly a StrangenessOriginal ScoreBugonia Frankenstein Hamnet One Battle After Another WINNER: SinnersVisual EffectsWINNER: Avatar: Fire and Ash F1 Jurassic World Rebirth The Lost Bus SinnersCinematographyFrankenstein Marty Supreme One Battle After Another WINNER: Sinners Train DreamsFilm EditingF1 Marty Supreme WINNER: One Battle After Another Sentimental Value SinnersProduction DesignWINNER: Frankenstein Hamnet Marty Supreme One Battle After Another SinnersAdapted ScreenplayBugonia Frankenstein Hamnet WINNER: One Battle After Another Train DreamsDocumentary Feature FilmThe Alabama Solution Come See Me in the Good Light Cutting Through Rocks WINNER: Mr. Nobody Against Putin The Perfect NeighborCastingHamnet Marty Supreme WINNER: One Battle After Another The Secret Agent SinnersAnimated Short FilmButterfly Forevergreen WINNER: The Girl Who Cried Pearls Retirement Plan The Three SistersMakeup & HairstylingWINNER: Frankenstein Kokuho Sinners The Smashing Machine The Ugly StepsisterAnimated Feature FilmArco Elio WINNER: Kpop Demon Hunters Little Amélie or the Character of Rain Zootopia 2SoundWINNER: F1 Frankenstein One Battle After Another Sinners Sirat
+"""
+
+[R3] Kieran Culkin gives update on Oscars baby pact with wife
+(https://www.usatoday.com/story/entertainment/movies/2026/03/15/kieran-culkin-oscars-baby-comments/89084784007/)
+"""
+March 15, 2026, 11:57 p.m. ETIt wouldn't be an awards show without Kieran Culkin bringing up his baby fever.While walking the red carpet at the Oscars on Sunday, March 15, the "Succession" actor, 43, once again mentioned his desire to have more children with his wife, Jazz Charton, extending a running joke that goes back to 2024."At the time I was on stage asking for a fourth, she was actually pregnant with the third," Culkin told Entertainment Tonight ahead of the ceremony, where he was set to be a presenter. "We found out two weeks before."When Culkin won an Emmy for "Succession" back in January 2024, he publicly pleaded with his wife to give him a third child. "Jazz, I want more [children]," he said in his acceptance speech. "You said maybe if I win!" Backstage, Culkin told reporters he had been telling his wife he wanted more kids "for a while" and reminded her of their deal after he won a Golden Globe a week before the Emmys. "Instead of just talking to her in private like a human, I blasted her on stage, which was very rude," he joked.Cut to March 2025, when Culkin won the Oscar for best supporting actor for "A Real Pain." In his speech, the star referenced his previous remarks from the Emmys."About a year ago, I was on a stage like this and I very stupidly, publicly said that I want a third kid from her, because she said if I won the award, she would give me the kid," he said. "Turns out, she said that because she didn't think I was going to win."But Culkin revealed that while leaving the Emmys that night, he told his wife that "really, I want four" kids, to which she replied, "I will give you four when you win an Oscar."The pair may not be at four quite yet, but they welcomed their third child together later in 2025.Their family may be done growing as well, he told ET on the Oscars red carpet."No. 3, he's beautiful, and he's perfect," he said. "So, if that's the last one, we did great."Contributing: Bryan Alexander, Charles Trepany and KiMi Robinson, USA TODAY
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

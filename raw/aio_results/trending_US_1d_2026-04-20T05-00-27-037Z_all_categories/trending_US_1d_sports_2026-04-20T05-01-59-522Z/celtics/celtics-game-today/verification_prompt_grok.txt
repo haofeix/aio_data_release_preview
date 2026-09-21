@@ -1,0 +1,103 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "celtics game today"
+
+Claims:
+[1] "The Boston Celtics defeated the Philadelphia 76ers 123-91 in Game 1 on Sunday, April 19, 2026."
+[2] "The Boston Celtics took a 1-0 series lead."
+[3] "Jaylen Brown led with 26 points."
+[4] "Game 2 is scheduled for Tuesday, April 21, 2026."
+[5] "Game 2 is scheduled at 4:00 PM PT."
+[6] "Game 2 is scheduled at 7:00 PM ET."
+[7] "Game 2 is at TD Garden in Boston."
+[8] "Based on search results, Game 1 was on April 19th."
+[9] "Based on search results, there is no game on April 20th."
+
+Cited text snippets from the AI Overview (for additional context):
+- #7 76ERS at #2 CELTICS | FULL GAME 1 HIGHLIGHTS | April ...: "The Celtics defeated the 76ers, 123-91 tonight,along with 4 rebounds and 3 assists,"
+- Celtics NBA Games Schedule | NBA.com: "Game 1: BOS leads 1,1 Game"
+- Sixers' VJ Edgecombe reacts to first playoff game in loss to Celtics: "Ky Carlin,the forefront in this contest."
+- Celtics CRUISE Past Sixers in Game 1 | Celtics vs 76ers ...: "The Boston Celtics opened their,www.givengain...."
+- Boston crowd mocks Philadelphia fans with chant in Celtics Game 1 rout: "The Celtics host Game 2,the Sixers on Tuesday night."
+- 76ers vs Boston Celtics Game 1 of NBA playoffs. How to watch ...: "Date: Sunday, April 19,Location: TD Garden in Boston"
+Reference Sources:
+
+[R1] Celtics NBA Games Schedule | NBA.com
+(https://www.nba.com/schedule/celtics)
+"""
+SchedulePlayoffsBAL 2026League PassGamesWatchNewsStatsStandingsTeamsPlayersNBA PlayFantasyStoreTicketsAffiliatesNBA ScheduleAdd Games to CalendarSeason TypeAll GamesPreseasonRegular SeasonNBA CupAll-StarPlayoffscalendarAll MonthsJanuaryFebruaryMarchAprilMayJuneJulyAugustSeptemberOctoberNovemberDecemberAll WeeksWeek 1Week 2Week 3Week 4Week 5Week 6Week 7Week 8Week 9Week 10Week 11Week 12Week 13Week 14Week 15Week 16Week 17Week 18Week 19Week 20Week 21Week 22Week 23Week 24Week 25Week 26TeamAll TeamsAtlanta HawksBoston CelticsBrooklyn NetsCharlotte HornetsChicago BullsCleveland CavaliersDallas MavericksDenver NuggetsDetroit PistonsGolden State WarriorsHouston RocketsIndiana PacersLA ClippersLos Angeles LakersMemphis GrizzliesMiami HeatMilwaukee BucksMinnesota TimberwolvesNew Orleans PelicansNew York KnicksOklahoma City ThunderOrlando MagicPhiladelphia 76ersPhoenix SunsPortland Trail BlazersSacramento KingsSan Antonio SpursToronto RaptorsUtah JazzWashington WizardsbroadcasterAll BroadcastersNational BroadcastersABCESPNNBA TVESPN2TelemundoPrime VideoTBDDisney+NBCPeacockNBC Sports NetworkDisney ChannelDisney XDNBCSN ExtraLEAGUE PASSbroadcaster regionArgentinaAustraliaBelgiumBosniaBrazilCanadaChinaCyprusDenmarkDominican RepublicFinlandFranceGermanyGreeceHong KongIndiaIndonesiaIsraelItalyJapanKoreaLithuaniaMalaysiaMexicoMongoliaNetherlandsNew ZealandNicaraguaNorwayPan-AfricaPan-CaribbeanPan-Latin AmericaPan-Middle EastPhilippinesPolandPortugalPuerto RicoRussiaSingaporeSouth AfricaSpainSwedenTaiwanThailandTurkeyUnited KingdomUnited StatesVenezuelaVietnamHide Previous DatesHide OddsWeek 27 (Apr 20 - Apr 26)Friday, April 241 Game11:00 PM UTCRADIOSiriusXMEast First RoundBoston CelticsPhiladelphia 76ersGame 3: Series tied 1-1Xfinity Mobile ArenaPhiladelphia, PAPreviewView seriesSunday, April 261 Game11:00 PM UTCRADIOSiriusXMEast First RoundBoston CelticsPhiladelphia 76ersGame 4: Series tied 1-1Xfinity Mobile ArenaPhiladelphia, PAPreviewView seriesWeek 28 (Apr 27 - May 3)Tuesday, April 281 Game11:00 PM UTCRADIOSiriusXMEast First RoundPhiladelphia 76ersBoston CelticsGame 5: Series tied 1-1TD GardenBoston, MAPreviewView seriesThursday, April 301 GameTBDTBDRADIOSiriusXMEast First RoundBoston CelticsPhiladelphia 76ersGame 6: If NecessaryXfinity Mobile ArenaPhiladelphia, PAYour Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I UnderstandEnter your email to create an NBA IDclose email sign up bannerGet more from the league you loveSign up for your free NBA ID to personalize your experience and earn exclusive benefits.Please enter aboveCreate My NBA IDClick "Create My NBA ID" to agree to our Terms of Use and to sign up for emails about the latest news and products from the NBA and its partners. By clicking submit, you also acknowledge our Privacy Policy.close email sign up banner
+"""
+
+[R2] Boston crowd mocks Philadelphia fans with chant in Celtics Game 1 rout
+(https://www.masslive.com/celtics/2026/04/boston-crowd-mocks-philadelphia-fans-with-chant-in-celtics-game-1-rout.html)
+"""
+CelticsBoston Celtics forward Jayson Tatum goes in for a dunk against the Philadelphia 76ers during the first half in Game 1 of a first-round NBA playoffs basketball game, Sunday, April 19, 2026, in Boston. (AP Photo/Robert F. Bukaty)APBy Brian Robb | brobb@masslive.comThe TD Garden crowd enjoyed a dominant Celtics win over the 76ers on Sunday in Game 1 of their first-round series and couldn’t help but have some fun with Sixers fans amid the rout. Philadelphia fans at Xfinity Mobile Arena chanted “We want Boston” in the closing minutes of the Sixers’ win over the Magic Wednesday night in the play-in tournament that sealed a first-round matchup with the Celtics. With the Celtics leading by as many as 35 points in their 123-91 win over the Sixers in Game 1, Boston fans took advantage of the lopsided margin to strike back against Philadelphia fans for the chant. The TD Garden crowd spontaneously chanted, “We want Boston!” on multiple occasions throughout the fourth quarter, openly mocking Sixers fans for wanting to face off with the Eastern Conference title favorites. Joe Mazzulla was asked about the creative chant after the Game 1 win for Boston. “I didn’t really think anything of it,” Mazzulla said. “There is a history to the series which you have to appreciate but at the same time, you have to focus on the task at hand. The most important thing is the stuff we can control. I thought the crowd was great tonight, helped get off to a good start. Playoff basketball. It means more and it’s different in Boston, which we appreciate.” The Celtics and Sixers have faced off in 22 playoff series before this year in what has been a historic NBA rivalry. However, Boston has won the last six series dating back to 1982. That streak looks likely to continue with Joel Embiid sidelined indefinitely, making the Celtics heavy favorites in this series in the 2 vs. 7 matchup. The Celtics host Game 2 at TD Garden against the Sixers on Tuesday night. Experts release early Celtics vs. 76ers Game 3 prediction despite Joel Embiid uncertaintySpurs star Victor Wembanyama in concussion protocol after brutal fall in Game 2Former Celtics big man has huge night in upset Game 2 win over SpursLeBron James gushes about former Celtics guard after Game 2 upset vs. Rockets Brian covers the Celtics and NBA for MassLive.com. He has covered the Celtics since 2010 with previous stops at NBA.com, Bleacher Report and Boston.com. You can reach Brian at BRobb@masslive.com or on Twitter...
+"""
+
+[R3] Sixers' VJ Edgecombe reacts to first playoff game in loss to Celtics
+(https://sixerswire.usatoday.com/story/sports/nba/sixers/2026/04/19/sixers-vj-edgecombe-reacts-to-first-playoff-game-in-loss-to-celtics/89692840007/)
+"""
+April 19, 2026, 7:45 p.m. ETBOSTON -- The Philadelphia 76ers fell to the Boston Celtics 123-91 in Game 1 of their Round 1 series on Sunday afternoon. It was a tough game all around as the Sixers did not match the intensity that the Celtics brought to the forefront in this contest.On a positive note, rookie VJ Edgecombe was able to get some playoff reps under his belt. It was a rough showing in his playoff debut as he shot just 6-for-16 from the floor, 0-for-5 from deep, and had three rebounds and three assists. It was just not a performance many are used to when it comes to Edgecombe, but if there's one thing about this rookie, he always finds a way to bounce back."I’m gonna be honest, intensity," Edgecombe said of his first playoff game. "They're a good team. I just think for us, it’s just we weren't making shots. Wide open shots. I'm gonna say wide-open. I mean, butt naked open. Just shots—ball going in and out. Like, it's deflating. Especially, against a really good team that's also shooting the ball really well. I mean, my takeaway is they got to win three more. It's on to the next game. My takeaway is that just we gotta be ready to match their intensity. Make it feel more of a playoff game than a regular game."The Sixers certainly missed their fair share of wide-open looks. The No. 3 overall pick wasn't the only one who struggled to shoot the ball as Philadelphia shot 38.9% as a team compared to 50% for Boston. So, while Edgecombe certainly had some tough moments, the Sixers just couldn't convert on their open looks as they only made four 3-pointers compared to 16 for the Celtics."If you think about it, I mean, if you play basketball—I don't care what anybody says," Edgecombe added. "If you play basketball, shots are missing, and everyone is missing shots, not just yourself, but the whole team. Missing lot of shots. Shots that we normally make. If everyone’s just missing all those shots, the whole team, it can become devastated. Especially when, like I said, you're playing against a really good team in the Celtics, that also shoots the lights out."As the Sixers now turn their attention to Game 2, this will be another new experience for Edgecombe. It's adjustment time. This is what the playoffs are all about. Philadelphia will make adjustments to get the rookie going, but the Celtics will also make adjustments of their own to be sure they don't have any letdowns on their end. This is where the cat-and-mouse game begins for everybody involved."Adjustments are gonna be made on both ends," Edgecombe finished. "Both teams. We just gotta respond. Focus on film. Lock into that. See where we got to be better on the defensive end. Offensively, where we got to be better and be ready for next game."Game 2 is on Tuesday in Boston.
+"""
+
+[R4] 76ers vs Boston Celtics Game 1 of NBA playoffs. How to watch, stream
+(https://www.delawareonline.com/story/sports/nba/76ers/2026/04/19/76ers-vs-boston-celtics-game-1-sixers-game-today-how-to-watch-stream-sixers-tickets/89689474007/)
+"""
+Updated April 19, 2026, 12:23 p.m. ETThe Philadelphia 76ers will take on the Boston Celtics in the 2026 NBA playoffs, marking the 23rd time the franchises have met in the playoffs.Here's the series schedule of the first-round matchup between the hated rivals and how to watch Game 1.How Sixers clinched playoff spotThe Sixers defeated the Magic 109-97 in the NBA Play-In tournament in Philadelphia on April 15 thanks to a spectacular night by guard Tyrese Maxey, who led the team with 31 points and added six assists in 42 minutes.Rookie guard V.J. Edgecombe played like a veteran, scoring 19 points and leading the team with 11 rebounds in 42 minutes. Forward Kelly Oubre Jr. also chipped in 19 points and center Andre Drummond added 10 rebounds and two three pointers, including a dagger in the final minutes to seal the victory.76ers playoff schedule: Sixers vs Celtics Game 1Maxey, Edgecombe and veteran Paul George will take on Jayson Tatum, Jaylen Brown and the Boston Celtics in the first round of the NBA playoffs. Here are the details for Game 1.Date: Sunday, April 19Time: 1 p.m. ETLocation: TD Garden in BostonTV channel: ABCTickets: Get tickets for this game on StubHubWatch Philadelphia 76ers vs. Boston Celtics in NBA playoffs on FuboSixers tickets for playoffs on saleSeatGeek: Buy 76ers tickets on SeatGeekStubHub: Buy 76ers tickets on StubHubBuy Philadelphia 76ers playoff tickets on StubHunSixers-Celtics scheduleGame 1: Philadelphia at Boston | Sunday, April 19 (1 ET, ABC)Game 2: Philadelphia at Boston | Tuesday, April 21 (7 ET, NBC/Peacock)Game 3: Boston at Philadelphia | Friday, April 24 (7 ET, Prime Video)Game 4: Boston at Philadelphia | Sunday, April 26 (7 ET, NBC)Game 5: Philadelphia at Boston* | Tuesday, April 28Game 6: Boston at Philadelphia* | Thursday, April 30Game 7: Philadelphia at Boston* | Saturday, May 2*If necessarySixers vs Celtics last gameThe last time the Sixers played the Celtics was a blowout win by Boston on March 25.Celtics center Neemias Queta scored a career-high 27 points and added 17 rebounds to lead Boston, while Maxey led the 76ers with 33 points and six assists. Edgecombe added 23 points for Philly.The Sixers were playing without Joel Embiid and Paul George.Sixers-Celtics season seriesOct. 22: 76ers 117, Celtics 116Oct. 31: Celtics 109, 76ers 108Nov. 11: 76ers 102, Celtics 100March 25: Celtics 114, 76ers 98Will Joel Embiid play?Embiid is officially ruled out for Game 1 with his status for the series uncertain.In a cruel twist of fate, star center underwent an emergency appendectomy in Houston on April 9.The former NBA MVP was unable to play in the Play-In game against Orlando and his status for the Boston series is still in question. The team has not provided an update on his condition other then to confirm the surgery was successful.However, it was a good sign to see Embiid courtside with his teammates during the Sixers' game against the Magic.76ers injury report76ersJoel Embiid: Out (appendectomy)Johni Broome: Out (knee)CelticsNo injuries reportedWhen is the last time the Sixers played the Celtics in the playoffs?The last time came in 2023 when Embiid and then-Sixer James Harden lost in seven games to the Celtics, dropping the final game in Boston after failing to close out the second-round series in Game 6 at Philly.The last time the Sixers defeated the Celtics in the playoffs was in 1981-1982, when they won in Game 7 of the Eastern Conference Finals before losing to the Los Angeles in the NBA Finals.76ers-Celtics playoff historyThis will be the 23rd time the 76ers and Celtics have met in the playoffs.Overall, the C's lead the Sixers 15-7 in their storied playoff history.Here's is a look at their previous matchups2023 Eastern Conference Semifinals: Celtics won in 7 games2020 Eastern Conference First Round: Celtics won in 4 games2018 Eastern Conference Semifinals: Celtics won in 5 games2012 Eastern Conference Semifinals: Celtics won in 7 games2002 Eastern Conference First Round: Celtics won in 5 games (best of 5 series)1985 Eastern Conference Finals: Celtics won in 5 games1982 Eastern Conference Finals: 76ers won in 7 games1981 Eastern Conference Finals: Celtics won in 7 games1980 Eastern Conference Finals: 76ers won in 5 games1977 Eastern Conference Semifinals: 76ers won in 7 games1969 East Division Semifinals: Celtics won in 5 games1968 East Division Finals: Celtics won in 7 games1967 East Division Finals: 76ers won in 5 games1966 East Division Finals: Celtics won in 5 games1965 East Division Finals: Celtics won in 7 game1961 East Division Finals: Celtics won in 5 games*1959 East Division Finals: Celtics won in 5 games*1957 East Division Finals: Celtics won in 3 games* (best of 5 series)1956 East Division Semifinals: Nationals won in 3 games* (best of 3 series)1955 East Division Finals: Nationals won in 3 games* (best of 5 series)1954 East Division Finals: Nationals won in 2 games* (best of 3 series)1953 East Division Semifinals: Celtics won in 2 games* (best of 3 series)*= The 76ers were the Syracuse Nationals until moving to Philadelphia in 1963.NBA Playoff backetEastern ConferenceRound 1Detroit Pistons (1) vs. (8) Orlando Magic/Charlotte HornetsBoston Celtics (2) vs. Philadelphia 76ersNew York Knicks (3) vs. Atlanta Hawks (6)Cleveland Cavaliers (4) vs. Toronto Raptors (5)Western ConferenceRound 1Oklahoma City Thunder (1) vs. (8) Phoenix Suns/Golden State WarriorsSan Antonio Spurs (2) vs. (7) Portland TrailblazersDenver Nuggets (3) vs. Minnesota Timberwolves (6)Los Angeles Lakers (4) vs. Houston Rockets (5)
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

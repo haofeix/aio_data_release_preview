@@ -1,0 +1,990 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "what is a blue alert"
+
+Claims:
+[1] "A Blue Alert is a rapid notification system used to inform the public and law enforcement when a suspect is wanted for killing, seriously injuring, or posing an imminent, credible threat to a law enforcement officer."
+[2] "A Blue Alert may also be issued if a law enforcement officer is missing in the line of duty."
+[3] "Blue Alert information is transmitted via wireless devices (cell phones), the Emergency Alert System (EAS), and media outlets."
+[4] "Congress established the National Blue Alert Network in 2015."
+[5] "The National Blue Alert Network supports plans in over 37 states."
+[6] "Blue Alert criteria generally require the suspect to be considered "armed and dangerous"."
+[7] "Local law enforcement confirms the threat or injury for Blue Alerts."
+[8] "Blue Alerts function similarly to AMBER Alerts."
+[9] "Blue Alerts are specific to law enforcement targets."
+
+Cited text snippets from the AI Overview (for additional context):
+- National Blue Alert Network | COPS OFFICE: "A Blue Alert is a plan that,currently 37 states with Blue Alert plans."
+- About Missouri Blue Alert: "A Blue Alert is a voluntary nationwide,is missing in connection with official duties"
+- Effective Blue Alert Plans: Guidance and Recommendations: "Apprehension Efforts – Guidance to aid in the apprehension of suspects."
+- SLED issues Blue Alert for armed, dangerous woman in Midlands: "SLED issues Blue Alert for,have information, call 911 immediately."
+- Blue Alert issued in South Carolina following officer shooting: "The Blue Alert program, established,through the official SLED website."
+- SLED issues Blue Alert for ‘armed and dangerous’ suspect accused of shooting law enforcement officer: "SLED said that Cushman is,asked to call 911 immediately."
+- What is a blue alert? Alert sent after Greensboro officer was shot explained: "To send a Blue Alert, a law,* Blue * Missing Endangered * Ashanti"
+Reference Sources:
+
+[R1] What is a Blue Alert? Emergency notification sent after Greensboro officer was shot explained
+(https://www.wxii12.com/article/what-is-a-blue-alert-emergency-notification-sent-after-greensboro-officer-was-shot-explained/46288368)
+"""
+Saturday night around 6 p.m., every North Carolinian who has on emergency alerts in their phone settings, heard the alert from their phone. The emergency alert read, "NC BLUE ALERT Assault on Law Enforcement Officer - Greensboro NC - KKA - 4332 (NC) Black Chevrolet Equinox, Last Seen West from Greensboro on I-40." Morrissa Moyer, the director for the North Carolina Center for Missing Persons, said it's the first Blue Alert they've ever had to active in the state. Moyer said she sent the blue alert shortly after Sgt. Philip Dale Nix was shot. “There's that initial heartbreak for the law enforcement agency, for their telecommunicators and, of course, for the family. Then the next thought was, we have to get this out, we have to get this out right now," Moyer said. What is a Blue Alert?Blue Alerts were created in 2015 when former President Barack Obama signed it into law. North Carolina adopted the Blue Alert Notification System in 2016 when North Carolina Gov. Pat McCrory signed it into law. According to the NC Center of Missing Persons, the law was named in honor of two New York City Police Detectives who were killed while sitting in their patrol car in 2014. “It's made specifically for when a law enforcement officer is seriously injured or killed, and the suspects are on the loose," Moyer said.Currently, 27 states have implemented the Blue Alert system to go along with the other alerts that are very well known, like Amber and Silver alerts. “They’re our eyes for the entire state. The general public is able to reach out and see more than even all of the law enforcement officers on the road just because of the sheer volume of numbers," Moyer said.Watch: NOWCAST streaming newscastsHow does a Blue Alert work?Moyer said after an incident happens, a law enforcement agency will contact the NC Center for Missing Persons and request a Blue Alert. The center will then approve it. There's certain criteria required before a Blue Alert can be sent out. A law enforcement officer is killed or suffers a serious injury. A law enforcement agency determines the suspect responsible poses a threat to the public and other law enforcement.The head of a law enforcement agency recommends the Blue Alert.The NC Center for Missing Persons then contacts the State Highway Patrol Troop C Communication Center in Raleigh with instructions on how to issue an Emergency Alert System message on signs on highways. How does a Blue Alert compare to other alerts? The NC Center of Missing Persons is in charge of sending all of the state's alerts, including Silver, AMBER, Blue, Missing Endangered and Ashanti.Silver Alert Issued when an elderly individual with dementia/Alzheimer's is missingEndangered Alert Issued when someone with a cognitive impairment is missing Amber Alert Issued when a child is abducted and is in danger Ashanti AlertIssued when an adult has been abductedBlue AlertIssued when a law enforcement officer is killed or injured and the suspect is on the looseKeep up with the latest news and weather by downloading the WXII app here.The alert was canceled just hours after Moyer initially sent it out. Moyer said some people reported getting the alert twice. She said that's due to background technical issues and cellphone provider issues.She said hopefully they don't have to send out another one in the future, but said she hopes more people are more aware of what a Blue Alert is now."If we send something out to your handset, you know, keep your eyes open. If you see something, don't be hesitate to call 911," Moyer said. NAVIGATE: Home | Weather | Watch NOWCAST TV | Local News | National | News We Love | GREENSBORO, N.C. —Saturday night around 6 p.m., every North Carolinian who has on emergency alerts in their phone settings, heard the alert from their phone. The emergency alert read, "NC BLUE ALERT Assault on Law Enforcement Officer - Greensboro NC - KKA - 4332 (NC) Black Chevrolet Equinox, Last Seen West from Greensboro on I-40." Morrissa Moyer, the director for the North Carolina Center for Missing Persons, said it's the first Blue Alert they've ever had to active in the state. Moyer said she sent the blue alert shortly after Sgt. Philip Dale Nix was shot. “There's that initial heartbreak for the law enforcement agency, for their telecommunicators and, of course, for the family. Then the next thought was, we have to get this out, we have to get this out right now," Moyer said. What is a Blue Alert? Blue Alerts were created in 2015 when former President Barack Obama signed it into law. North Carolina adopted the Blue Alert Notification System in 2016 when North Carolina Gov. Pat McCrory signed it into law. According to the NC Center of Missing Persons, the law was named in honor of two New York City Police Detectives who were killed while sitting in their patrol car in 2014. “It's made specifically for when a law enforcement officer is seriously injured or killed, and the suspects are on the loose," Moyer said.Currently, 27 states have implemented the Blue Alert system to go along with the other alerts that are very well known, like Amber and Silver alerts. “They’re our eyes for the entire state. The general public is able to reach out and see more than even all of the law enforcement officers on the road just because of the sheer volume of numbers," Moyer said.Watch: NOWCAST streaming newscastsHow does a Blue Alert work?Moyer said after an incident happens, a law enforcement agency will contact the NC Center for Missing Persons and request a Blue Alert. The center will then approve it. There's certain criteria required before a Blue Alert can be sent out. A law enforcement officer is killed or suffers a serious injury. A law enforcement agency determines the suspect responsible poses a threat to the public and other law enforcement.The head of a law enforcement agency recommends the Blue Alert.The NC Center for Missing Persons then contacts the State Highway Patrol Troop C Communication Center in Raleigh with instructions on how to issue an Emergency Alert System message on signs on highways. How does a Blue Alert compare to other alerts? The NC Center of Missing Persons is in charge of sending all of the state's alerts, including Silver, AMBER, Blue, Missing Endangered and Ashanti.Silver Alert Issued when an elderly individual with dementia/Alzheimer's is missingEndangered Alert Issued when someone with a cognitive impairment is missing Amber Alert Issued when a child is abducted and is in danger Ashanti AlertIssued when an adult has been abductedBlue AlertIssued when a law enforcement officer is killed or injured and the suspect is on the looseKeep up with the latest news and weather by downloading the WXII app here.The alert was canceled just hours after Moyer initially sent it out. Moyer said some people reported getting the alert twice. She said that's due to background technical issues and cellphone provider issues.She said hopefully they don't have to send out another one in the future, but said she hopes more people are more aware of what a Blue Alert is now."If we send something out to your handset, you know, keep your eyes open. If you see something, don't be hesitate to call 911," Moyer said. NAVIGATE: Home | Weather | Watch NOWCAST TV | Local News | National | News We Love |
+"""
+
+[R2] N AT I O N A L B L U E A L E R T N E T W O R K
+(https://cops.usdoj.gov/pdf/blue-alert/Blue_Alert_Guidance_2018.pdf)
+"""
+N AT I O N A L B L U E A L E R T N E T W O R K
+
+EFFECTIVE BLUE ALERT PLANS
+ G U I D A N C E A N D R E C O M M E N D AT I O N S
+Recommended citation:
+
+Office of Community Oriented Policing Services. 2017. Effective Blue Alert Plans: Guidance and
+
+Recommendations. Washington, DC: Office of Community Oriented Policing Services.
+
+All photos courtesy of the COPS Office unless otherwise noted.
+
+Published 2017
+Contents
+Letter from the Director. . . . . iii
+
+Introduction. .... 1
+
+1. Blue Alert Activation. .... 6
+
+2. Requesting an Alert .... 8
+
+3. Writing Effective Alerts. . . . 10
+
+4. Geographical Scope. . . 12
+
+5. Interstate and Intrastate Coordination. . . 11
+
+6. Duration of Blue Alert. . . 16
+
+7. Officer Privacy. . . 17
+
+8. Apprehension Efforts . . 18
+
+Conclusion . . . 20
+
+About the COPS Office . . 21
+ Birmingham, AL
+ Letter from the Director
+ Dear Law Enforcement Leaders and Protectors of Law Enforcement Professionals:
+
+ In a free society and a nation of laws, we place a great deal of responsibility and special trust on law
+ enforcement at all levels of government, including state, local, tribal and federal. Today, the burden on
+ law enforcement continues to grow as society shifts in beliefs, values and new legislation is created
+ requiring law enforcement to respond to the ever changing social landscape, within the framework of
+ the laws and our great Constitution.
+
+ Our peace keepers are routinely thrown into the position of being society’s referees; often requiring
+ extraordinary acts of bravery to safeguard our citizenry. Unfortunately, within our free society are a
+ very small number of criminal offenders who attack and cause harm to our law enforcement
+ professionals. This harm includes murdering of law enforcement officers, serious bodily harm and the
+ threat of greater harm to law enforcement and citizens alike. On December 20, 2014 such an
+ outrageous attack took place resulting in the murder of two New York City police officers. In their
+ honor and other fallen law enforcement officers, the Rafael Ramos and Wenjian Liu Blue Alert Act was
+ enacted by the United States Congress.
+
+ The Act requires the creation of the National Blue Alert Network. The COPS Office is vested with the
+ responsibility of the implementing and sustaining the Act and its provisions. Designed to enhance the
+ ability of law enforcement to track down individuals who have attacked law enforcement officers, the
+ National Blue Alert Network promotes electronic and digital notifications with actionable information
+ to law enforcement, the media, and the public when a law enforcement officer is killed, seriously
+ injured, missing in the line of duty, or when a credible threat to their safety has been detected.
+
+ Like AMBER Alerts, which are designed to speed actionable information about missing children to the
+ public, Blue Alerts provide details about possible assailants, including physical descriptions, vehicle
+ information, and other identifying characteristics—information that law enforcement uses to keep the
+ public safe, and that can be used to support their safety as well.
+
+ii Effective Blue Alert Plans: Guidance and Recommendations
+ This proven strategy and approach will provide a very efficient means of communication of critical
+ information that can galvanize states, regions, even the nation as a whole, to assist in the prevention of
+ attacks against law enforcement as well as in the capture of those responsible for such egregious acts of
+ violence against our peacekeepers. The goal of the National Blue Alert Network is to create a network
+ providing nationwide coverage and to standardize and integrate state Blue Alert plans so that all of the
+ systems operate as one.
+
+ To achieve the intent and goals of the Congressional Act, the COPS Office has prepared this publication,
+ which offers practical guidance for adopting and using Blue Alert Plans. Included are recommendations
+ from states and other governmental entities leading the way for the implementation of the National Blue
+ Alert Network.
+
+ The COPS Office is honored to implement the National Blue Alert Network. In keeping with the strategic
+ interest of the COPS Office, we rely on input, guidance and recommendations from law enforcement
+ practitioners, public safety experts, communications professionals, and other stakeholders. Making safety
+ for law enforcement in our great nation, is a priority with the COPS Office, however a team effort is needed
+ to create and expand the safeguards provided by the National Blue Alert Network. We call on law
+ enforcement professionals, elected officials and the citizens of our nation to promote the adoption of the
+ Blue Alert plans in every state, tribe, territory and the District of Columbia. Together we can expand Blue
+ Alert protections from coast to coast while promoting safety for our law enforcement professionals.
+
+ Sincerely,
+
+ Phil Keith
+ Director
+ Office of Community Oriented Policing Services
+
+iii Effective Blue Alert Plans: Guidance and Recommendations
+ Introduction
+ On May 19, 2015, the Rafael Ramos and Wenjian Liu National Blue Alert Act of 2015, 42 U.S.C.
+ § 14165 et seq. (the Blue Alert Act), became law. Named for two fatally ambushed New York
+ Police Department (NYPD) officers, the Blue Alert Act establishes a voluntary nationwide
+ system to give an early warning of threats against law enforcement officers.
+
+ By facilitating rapid dissemination of information to law
+ enforcement agencies, the media, and the public, the Blue
+ Alert Act is intended to aid in apprehending violent criminals
+ wanted for killing or seriously injuring a law enforcement
+ officer in the line of duty; in finding officers who are missing
+ in connection with their official duties; or in sharing notice of
+ imminent and credible threats that an individual intends to
+
+ Photo: Getty Images
+ cause the serious injury or death of a law enforcement officer.
+
+ The U.S. Department of Justice (DOJ) is committed to
+ Scene of Rafael Ramos and Wenjian Liu ambush
+ implementing the Blue Alert Act as part of its drive to advance
+ officer safety and wellness. Because of its extensive previous work and collaborative research
+ on officer safety and wellness, the DOJ’s Office of Community Oriented Policing Services (COPS
+ Office) was assigned to oversee implementation of the Blue Alert Act through the creation of a
+ National Blue Alert Network.
+
+ The National Blue Alert Network provides resources and technical assistance to states, law
+ enforcement agencies, and other stakeholders seeking to establish or enhance an existing
+ Blue Alert plan. The network also maintains a secure data repository, for law enforcement only,
+
+1 Effective Blue Alert Plans: Guidance and Recommendations
+containing many Blue Alert resources collected
+ Definitions
+from around the nation, including examples of
+legislation, policies, forms, and a directory of state 1. Blue Alert Network – The national
+
+Blue Alert officials. communications network established by the
+ Attorney General of the United States pursuant to
+Blue Alert plans should be considered one
+ the Rafael Ramos and Wenjian Liu Blue Alert Act
+tool in a larger, comprehensive approach to
+ of 2015.
+information sharing and suspect apprehension.
+This publication, Effective Blue Alert Plans: Guidance 2. Blue Alert Plan – The plan of a state, unit of local
+
+and Recommendations, is designed to guide state government, or federal agency participating in
+
+and local law enforcement agencies through the the Blue Alert Network for the dissemination of
+
+development of a Blue Alert plan by identifying information received as a Blue Alert.
+
+elements and issues to be considered when drafting 3. Blue Alert Issuing Authority – An entity (typically
+a plan. a state agency) responsible for issuing Blue Alerts
+
+This resource can also be used to enhance and on behalf of law enforcement agencies within the
+
+standardize existing Blue Alert policies and plans. entity’s jurisdiction.
+
+Although entirely voluntary, the guidance and 4. Blue Alert Requesting Agency – A law
+recommendations contained herein are highly enforcement agency seeking the issuance of a
+encouraged in order to promote compatible and Blue Alert.
+integrated Blue Alert plans throughout the United
+ 5. Law Enforcement Officer – An individual involved
+States. In addition to providing this and other
+ in crime and juvenile delinquency control or
+published resources, the National Blue Alert Network
+ reduction, or enforcement of the criminal laws
+provides direct technical assistance and no-cost
+ (including juvenile delinquency), including but
+consultation to states and local law enforcement
+ not limited to police, corrections, probation,
+agencies seeking to establish or enhance a Blue
+ parole, and judicial officers.
+Alert plan.
+ 6. State – Each of the 50 states, the District of
+ Columbia, Puerto Rico, the United States Virgin
+ Islands, Guam, American Samoa, and the
+ Commonwealth of the Northern Mariana Islands.
+
+2 Effective Blue Alert Plans: Guidance and Recommendations
+7. Covered Event – A incident involving one of the Blue Alert plans can use the Emergency Alert
+ following for which a Blue Alert can be issued: System (EAS) and Wireless Emergency Alerts (WEA)
+
+ a. The serious injury or death of a law to alert the public and aid in the identification and
+
+ enforcement officer in the line of duty. apprehension of a wanted suspect or the recovery
+ of a missing officer. To use these systems effectively,
+ b. A law enforcement officer who is missing in
+ states and many jurisdictions rely on the Integrated
+ connection with the officer’s official duties.
+ Public Alert and Warning System (IPAWS).
+ c. An imminent and credible threat that an
+ IPAWS is operated by FEMA and provides for the
+ individual intends to cause the serious injury
+ integration of Blue Alerts into the national alert
+ or death of a law enforcement officer.
+ and warning infrastructure. It allows alerting
+ authorities to write their own emergency alerts
+Blue Alert technology using commercially available, FEMA-approved
+
+G O V E R N M E N T S TA K E H O L D E R S software applications that comply with common
+ alerting protocols. These alerts are authenticated
+The Federal Emergency Management Agency
+ and delivered simultaneously through multiple
+(FEMA) is responsible for maintaining and operat-
+ communication pathways to reach the public as
+ing the nation’s emergency alert infrastructure. In
+ quickly as possible. Figure 1 on page 4 depicts the
+order to ensure that alerting capabilities keep up
+ architecture of this integrated alert system.
+with current and emerging technologies, FEMA
+partners with various stakeholders from both the
+public and private sectors representing broadcast-
+ing, mobile device manufacture, and many other
+interested industries.
+
+The Federal Communications Commission (FCC)
+also plays a key role in this infrastructure, as it
+establishes technical requirements and other rules
+for broadcasters, cable system operators, mobile
+commercial service providers, and other participants
+in the Emergency Alert System (EAS) and voluntary
+mobile alerting programs.
+
+ FEMA’s IPAWS national emergency alert gateway equipment
+
+ 3 Effective Blue Alert Plans: Guidance and Recommendations
+Figure 1. Elements of IPAWS system architecture
+
+ ALERTING AUTHORITIES A L E R T D I S S E M I N AT O R S PUBLIC
+
+ Designated Alert Emergency Alert BLUE
+ ALERT
+ alerting official aggregator System (EAS)
+ BLUE
+ ALERT
+
+ Wireless Emergency BLUE
+ ALERT
+
+ Alerts (WEA)
+ BLUE
+ ALERT
+
+ BLUE
+ ALERT
+ Internet services
+ Integrated IPAWS
+Public Alert and gateway
+Warning System
+ (IPAWS) alert Unique state and
+ origination local alert systems
+ terminal
+
+Source: COPS Office
+
+4 Effective Blue Alert Plans: Guidance and Recommendations
+Blue Alert plan elements
+Any assault of a law enforcement officer that leads
+ BLUE ALERT PLAN ELEMENTS
+to death or serious injury constitutes a public safety
+emergency and requires the swiftest possible
+ 1. Activation Criteria – Explicit activation
+response to apprehend all suspects and locate any
+ criteria to guide alert decision making
+missing officers. The same is true when an officer is
+missing in connection with official duties and there is 2. Requesting an Alert – Mechanisms and
+
+reason to suspect foul play. Blue Alert plans provide protocols for requesting an alert
+
+a ready response that can be activated at a moment’s 3. Writing Alerts – Guidance on writing
+notice. Dozens of states and many local law effective EAS- and WEA-compliant alerts
+enforcement agencies have already developed plans
+ 4. Geographical Scope – Guidance on
+and are prepared in the event that tragedy strikes.
+ geographical targeting for effectiveness
+Blue Alert plans typically vary from one jurisdiction
+ 5. Interstate Coordination – Protocols to
+to another, depending on local statutes, ordinances,
+ facilitate interstate coordination
+and policy preferences. While such local nuances
+ 6. Apprehension Efforts – Guidance to aid
+are inevitable, differing alert criteria and protocols
+ in the apprehension of suspects
+among jurisdictions can cause dangerous delays. It
+is crucial that Blue Alert plans incorporate certain 7. Duration of Alerts – Guidance on the
+core elements in order to achieve a uniform, duration and cancellation of alerts
+interoperable network of plans across the country.
+ 8. Officer Privacy – Practices and policies to
+The National Blue Alert Network has identified
+ protect the privacy of involved officers
+the following elements as crucial to a coordinated
+national framework:
+
+ 5 Effective Blue Alert Plans: Guidance and Recommendations
+1. Blue Alert Activation
+ Activation criteria and protocols should be established describing
+ the specific circumstances that can give rise to the issuance of a
+ Blue Alert and subsequent actions.
+
+ Decision to activate Blue Alert
+ In most states, Blue Alerts require careful coordination between the appropriate alerting
+ authority and the law enforcement agency investigating a covered event. Each plays a sup-
+ portive, yet distinct, role in the Blue Alert decision-making process. The decision to request
+ a Blue Alert should rest with the law enforcement agency investigating a covered event. There
+ may be situations where a law enforcement agency chooses not to request an alert in order
+ to further a particular investigative objective or strategy.
+
+ In some cases, investigators may already possess reliable information about the identity and
+ location of a suspect but may not want that information to be made public before they can
+ attempt apprehension efforts. In other cases, investigators may not believe that the known
+ suspect information and identifiers are sufficient to enlist the public’s assistance. Beyond these
+ examples, there are any number of other fact-based reasons why an investigating agency may
+ choose not to ask for Blue Alert issuance.
+
+ If an investigating agency determines that public notification through Blue Alert is not
+ warranted or not prudent at the time, it should still consider using all available peer-to-peer
+ communication resources to provide other law enforcement agencies and personnel with
+ early warning of credible threats. Such resources include the National Law Enforcement
+ Telecommunications System (Nlets), the National Crime Information Center (NCIC), and any
+ other statewide or local systems capable of carrying such messages.
+
+ 6 Effective Blue Alert Plans: Guidance and Recommendations
+ Activation criteria
+ Although the decision to request b. Any suspect involved has not been apprehended.
+ a Blue Alert is up to the investi- c. There is sufficient descriptive information
+ gating agency, the decision about the suspect, including any relevant
+The logo of the National
+Blue Alert Network to actually issue a Blue Alert is vehicle and license tag information.
+ ultimately made by the Blue
+ 2. Threat to cause death or serious injury to a law
+ Alert issuing authority after evaluating the request
+ enforcement officer.
+ and confirming that it meets activation criteria.
+ a. The requesting agency confirms that the threat
+ Activation criteria should be explicit and should be
+ is imminent and credible.
+ codified in statute, policy, or both. Criteria should
+ b. At the time of receipt of the threat, any suspect
+ also be defined in a way that makes it easy for a
+ involved is wanted by a law enforcement agency.
+ reviewer to apply available facts about a covered
+ event and quickly determine whether it qualifies c. Any suspect involved has not been apprehended.
+
+ for issuance of a Blue Alert. The National Blue Alert d. There is sufficient descriptive information
+ Network has identified the following activation cri- about the suspect, including any relevant
+ teria as crucial to a coordinated national framework: vehicle and license tag information.
+
+ RECOMMENDATION: The Blue Alert issuing 3. Law enforcement officer missing in connection
+ authority should issue an alert when a request has with official duties.
+ been made by a law enforcement agency having a. The agency concludes that the law
+ primary jurisdiction over the incident in question, enforcement officer is missing in connection
+ and one of the following three sets of threshold with the officer’s official duties.
+ criteria has been met:
+ b. There is an indication of serious injury to or
+ 1. Death or serious injury of a law enforcement death of the law enforcement officer.
+ officer in the line of duty.
+ c. Any suspect involved has not been apprehended.
+ a. The agency confirms that a law enforcement
+ d. There is sufficient descriptive information
+ officer has been
+ about the suspect, including any relevant
+ i. killed, vehicle and license tag information.
+ ii. seriously injured,
+
+ iii. attacked and with indications of death
+ or serious injury.
+
+ 7 Effective Blue Alert Plans: Guidance and Recommendations
+2. Requesting an Alert
+ Common protocols and mechanisms should be established
+ to facilitate requests for a Blue Alert activation.
+
+ A Blue Alert issuing authority (typically a state agency) should develop protocols and mechan-
+ isms to facilitate an alert request from law enforcement agencies. The goal should be to
+ make the process of requesting a Blue Alert simple to understand and as efficient as possible.
+ Specific procedures and tools for achieving this will vary among states and localities based
+ on their existing interagency communication infrastructure and policies. Many states with
+ Blue Alert plans have modeled the alert request process on the longstanding AMBER Alert
+ protocols. This is particularly advantageous for states where the alerting authority is the same
+ agency or office for AMBER Alerts.
+ OD-011 (01/2016)
+ MICHIGAN STATE POLICE
+
+ At present, most states employ activation protocols BLUE ALERT REQUEST FORM
+ AUTHORITY: MCL 28.697; COMPLIANCE: Voluntary.
+
+ Email the completed form and call to confirm the receipt of the email.
+
+ that require law enforcement agencies to either call I. General Information
+ Is this the initial request or an update? Date of Request
+ Initial Update
+
+ in an alert request or fax a standard request form II. Investigating Law Enforcement Agency Information
+ Name of Agency Contact Number FAX Number
+
+ to a designated twenty-four hour office. Several Name/Title of Investigating Officer Phone Number of Investigating Officer Phone Number for Media Inquiries
+
+ III. Suspect Information
+ Name of Suspect Race Sex (M/F) Date of Birth
+
+ states have implemented web-based protocols for Height Weight Eye Color Hair Color
+
+ Blue Alert requests. Web-based systems can save
+ The investigating law enforcement agency has determined that the suspect poses a serious risk or threat to the Does the suspect have a weapon?
+ public and other law enforcement personnel. Yes No Unknown
+ Yes No
+ Clothing Description
+
+ time by allowing for immediate data entry and Unique Physical Characteristics
+
+ electronic submission; however, they should have IV. Suspect Vehicle Information
+ Vehicle Make Model Year Color Registration Plate State
+
+ backup procedures in case of internet outages. Additional Descriptors
+
+ V. Incident Description/Additional Information
+ Incident Description/Additional Information
+
+ RECOMMENDATION: The Blue Alert issuing
+ Name of Injured/Fallen Officer
+
+ authority should provide law enforcement agencies Important: In accordance with MCL 28.697, a Blue Alert will only be activated if one of the following is provided for
+
+ Credit: Michigan State Police
+ broadcast to the public:
+  Suspect’s name
+
+ with a central point of contact for requesting an 
+ 
+ Detailed physical description of the suspect
+ Detailed description of the suspect’s vehicle
+  Full or partial vehicle registration plate numbers or letters
+
+ alert. The point of contact should be accessible If a Blue Alert is activated, your request is only valid for a 48-hour period. Requests for an extension must be made by
+ contacting the Michigan State Police
+
+ Sample Blue Alert request form
+
+ 8 Effective Blue Alert Plans: Guidance and Recommendations
+around the clock without exception. In many 4. Incident description (brief and suitable for
+cases, this point of contact will be a statewide public release)
+
+emergency communications component (state 5. Officer identification (NOT for public release
+police, emergency management, etc.). unless officer is missing):
+
+A standardized activation request form should be a. Name, agency, rank, title
+made available to law enforcement agencies in b. Nature of injuries
+paper or electronic format. If using a paper form,
+ c. (If missing) Personal identifiers, including
+the form should include clear instructions for faxing
+ race, sex, age, height, weight, hair, eyes,
+or submitting the completed form to the issuing
+ clothing, etc.
+authority point of contact. Regardless of which
+ d. (If missing) Last known location
+format is used, form elements should include
+the following: 6. Suspect information:
+
+1. Requesting agency and officials: a. Name, if known
+
+ a. Name of requesting agency b. Personal identifiers, including race, sex, age,
+ height, weight, hair, eyes, clothing, etc.
+ b. Name, title, and contact information of
+ requesting official c. Vehicle information if known:
+
+ c. Name, title, and contact information of i. Make, model, year, color, license state
+
+ investigating official and number (or partial number)
+ ii. Outstanding characteristics
+ d. Name, title, and contact information of
+ chief executive or designee d. Suspect location:
+
+ i. Last known location
+2. Signature of chief executive or designee
+ confirming that that agency has primary ii. Direction of travel
+
+ investigative authority for the incident in question iii. Possible destinations
+
+3. Activation criteria confirmation, formatted as a e. Weapons, known or suspected
+
+ checklist corresponding to the activation criteria
+ described in element one
+
+ 9 Effective Blue Alert Plans: Guidance and Recommendations
+ Birmingham, AL
+3. Writing Effective Alerts
+ Blue Alerts should be written as concise messages aimed at getting the public’s
+ attention and prompting specific actions to aid in the desired outcome.
+
+ How a message is written can be just as important as its contents. Blue Alerts should be written
+ to convey a concise message that is immediately understood, using the fewest words possible
+ without compromising clarity. Individuals who have been designated as alerting authorities
+ receive specialized training from IPAWS on how to write effective alerts that comply with
+ common alerting protocols.
+
+ The most effective Blue Alert messages are those that result in the public taking the recom-
+ mended action to protect themselves while aiding law enforcement. In the search for a
+ dangerous suspect, a Blue Alert should advise the public never to approach a suspect and
+ call 911 or another number if the suspect is seen or if they have information that could be
+ helpful to the search. According to IPAWS training guidelines, the following items should be
+ considered when writing alerts.
+
+ WRITING EFFECTIVE ALERT AND WARNING MESSAGES
+
+ Specificity. If the message is not specific enough about the Who, What, When, Where,
+
+ Why, and How of the threat, the public will spend more time seeking specific informa-
+ tion to confirm the risk. If necessary, be specific about what is or is not known.
+
+ Consistency. An alert or warning should be internally consistent; that is, one part of the
+
+ message should not contradict another part. It should also be consistent with messages
+ that are distributed via other channels. To the extent possible, alerts and warnings
+
+ 10 Effective Blue Alert Plans: Guidance and Recommendations
+ for similar hazards should use consistent lan-
+ guage and format from event to event, chang-
+ ing only the necessary details.
+
+Certainty. Avoid conveying a sense of uncer-
+
+ tainty, either in content or in tone. Confine the
+ message to what is known—or, if necessary,
+ describe what is unknown in certain terms. Do
+ not guess or speculate.
+
+Clarity. Use common words that can easily be
+
+ understood. Do not use technical terminology
+ or jargon.
+
+Accuracy. Do not overstate or understate the
+
+ facts. Do not omit important information. Con-
+ vey respect for the intelligence and judgment
+ of the public.
+
+ 11 Effective Blue Alert Plans: Guidance and Recommendations
+ Birmingham, AL
+4. Geographical Scope
+ The geographical scope of a Blue Alert should target areas most likely to
+ facilitate apprehension and should not be limited by state lines.
+
+ Careful consideration should be given when choosing the area or geographical boundaries for
+ alert distribution. In some cases, there may be reliable information that suggests the general
+ location of a suspect (specific neighborhood, city, county, etc.), but in other cases, there may
+ be no indication as to a location or direction
+ E
+ of travel. Geographic scope of an alert should
+ IN
+ L
+ E
+ T
+ TA
+ S
+ ultimately be based on the best information
+ available at the time of alert issuance.
+
+ Alerting software allows for alerts to be
+ targeted to an entire state or any subdivision
+ thereof, depending on the delivery capabilities
+ of the system used for public dissemination.
+ For example, Blue Alerts relayed through
+ the EAS to local television stations will be
+ broadcast throughout the entire viewing area
+
+When choosing the area or geographical boundaries for of the station—but the station’s viewing area
+Blue Alert distribution, make sure to target areas most
+ may be too broad or too narrow, depending
+likely to facilitate apprehension.
+ on the situation. Alerting authorities should
+ be cognizant of any bleed-over into areas not necessarily targeted by the alert, as well as any
+ other limitations of their alerting software and outlets.
+
+ 12 Effective Blue Alert Plans: Guidance and Recommendations
+RECOMMENDATION: Blue Alerts should be focused
+on the geographic areas most likely to facilitate the
+apprehension of the suspect. Alerts should not be
+targeted beyond a reasonable distance from where
+the suspect is thought to be or could reasonably
+have traveled. Disseminating an alert too broadly
+could cause unnecessary alarm and dilute the alert’s
+intended effect. This is a difficult balance that should
+be informed by the best information available at the
+time of alert issuance.
+
+The geographic scope of an alert should not be
+limited by state lines if there is information to
+suggest interstate travel. If the originating juris-
+diction is close to a state line, it should contact the
+neighboring state or states to discuss the possibility
+and prudence of a concurrent Blue Alert. Blue Alert
+plans should include provisions for communication
+and information sharing with neighboring states,
+as discussed in section 5.
+
+ 13 Effective Blue Alert Plans: Guidance and Recommendations
+ Birmingham, AL
+5. Interstate and
+ Intrastate Coordination
+ Blue Alert plans should anticipate the need for interstate coordination,
+ especially with neighboring states and adjacent jurisdictions.
+
+ The ease and speed of travel throughout the United States makes it possible for wanted
+ persons to quickly flee one location for another. The possibility that a suspect would flee across
+ state lines should always be accounted for in Blue Alert plans.
+
+ Interstate coordination is best achieved through prior planning and proactive arrangements
+ between alerting authorities. Alerting officials are encouraged to maintain active professional
+ relationships with their counterparts in nearby jurisdictions.
+
+ One of the primary goals of the National Blue Alert Network is to promote interoperability
+ and coordination among all Blue Alert plans nationwide. In order to facilitate communication
+ between Blue Alert plans, the network maintains a list of alerting officials from around the
+ nation and makes that information available
+ to law enforcement agencies, alerting officials,
+ and other potential Blue Alert stakeholders.
+
+ RECOMMENDATION: When the subject of
+ an active Blue Alert is thought to be traveling
+
+Photo: HHLtDave5/iStock
+ to another jurisdiction beyond the alert’s
+ geographical scope but within the same state,
+
+ Alerting authorities and local law enforcement
+ agencies may both be responsible for reaching out
+ to neighboring jurisdictions.
+
+ 14 Effective Blue Alert Plans: Guidance and Recommendations
+the alerting authority should consult with the law
+enforcement agency responsible for the criminal
+investigation to determine if additional alerts in
+other areas are called for.
+
+If, however, the suspect is thought to be traveling
+to another state, beyond the reach of the original
+alerting authority, the law enforcement agency
+responsible for the investigation should immediately
+contact the law enforcement authorities in the
+suspected destination state or jurisdiction to
+coordinate efforts. In addition, the original Blue Alert
+issuing authority should establish communication
+with the alerting authority of any other affected
+state or jurisdiction to determine whether alerting
+coordination is needed.
+
+The National Blue Alert Network is available as a
+resource to assist with contact information and
+other information sharing among Blue Alert plans
+throughout the nation.
+
+ 15 Effective Blue Alert Plans: Guidance and Recommendations
+ Birmingham, AL
+6. Duration of Blue Alert
+ Blue Alerts should remain active for a limited period of time, determined by the
+ situation, and should be cancelled promptly when a suspect is apprehended.
+
+ The purpose of a Blue Alert is to rapidly disseminate information to all those who may be in a
+ position to assist with the apprehension of a wanted suspect or to locate a missing officer. In
+ most states with Blue Alert plans, an alert remains active for 24–48 hours. If the suspect has not
+ been apprehended within the active time frame, an alert is typically suspended or cancelled.
+ This does not affect the work of investigators, who will continue to search for a suspect.
+
+ RECOMMENDATION: Blue Alerts should remain active for a period of at least 24 hours, but
+ not longer than is reasonably necessary; the exact time should be determined on a case-by-
+ case basis. A Blue Alert should be cancelled as soon as the situation has been resolved—the
+ suspect has been captured or no longer poses a threat or a missing officer has been located.
+
+ 16 Effective Blue Alert Plans: Guidance and Recommendations
+ Birmingham, AL
+7. Officer Privacy
+ Blue Alert plans should include provisions to protect the privacy, dignity, and
+ autonomy of any law enforcement officer who is the subject of a Blue Alert.
+
+ Special attention should be taken to protect the privacy and dignity of any law enforcement
+ officer who may be the subject of a Blue Alert. The same consideration should be given to the
+ family of the officer in question.
+
+ RECOMMENDATION: To ensure that Blue Alerts comply with all applicable federal, state,
+ and local privacy laws and regulations, issuing entities should consult with their legal advisors
+ responsible for privacy enforcement and protection (state attorney general, city attorney, etc.).
+ Issuing entities should follow legal guidance to include the appropriate standards in their Blue
+ Alert plans to protect the privacy and civil liberties of affected officers and their families.
+
+ Blue Alert issuing authorities should not release any information about the identity of an
+ officer who is the subject of a Blue Alert unless the alert was issued because that officer is
+ missing in connection with official duties. In those cases, the Blue Alert issuing authority
+ should defer to the investigating agency about the nature and limits of the officer information
+ to be made public.
+
+ 17 Effective Blue Alert Plans: Guidance and Recommendations
+ Birmingham, AL
+8. Apprehension Efforts
+ Blue Alert plans should include protocols describing and regulating activities
+ designed to aid in the apprehension of a wanted subject.
+
+ The primary responsibility for apprehending any suspect wanted in connection with a
+ Blue Alert lies with the law enforcement agency responsible for the underlying criminal
+ investigation. Even so, alerting authorities should play an active role, to the extent possible, by
+ providing subject matter expertise, the use of public safety communications, and any other
+ technical resources. Blue Alert plans should describe the various protocols and resources that
+ could be employed by the issuing authority to support
+ apprehension efforts.
+
+ RECOMMENDATION: The Blue Alert issuing authority
+ should work closely with the lead investigating agency to
+ ensure that alert resources are made available in support of
+
+ Photo: YakobchukOlena/iStock
+ suspect apprehension, including
+
+ the use of public safety communications;
+
+ command center operations;
+ Blue Alert plans should include an inventory
+ of resources that can aid local agencies’
+ incident review, evaluation, debriefing, and public
+ apprehension efforts.
+ information procedures.
+
+ A Blue Alert issuing authority should confirm with the investigating agency that the suspect
+ information has been entered into the National Crime Information Center (NCIC) database
+ operated by the FBI.
+
+ 18 Effective Blue Alert Plans: Guidance and Recommendations
+ Birmingham, AL
+ Conclusion
+ Summary
+ Violent attacks on law enforcement officers constitute an assault on the American way of
+ life and require the swiftest of responses by federal, state, and local governments. Blue
+ Alert plans can provide an important framework for quick response. Our nation’s emergency
+ alerting infrastructure is a valuable resource that can expedite information sharing and
+ facilitate the quick apprehension of dangerous criminals who pose an immediate threat to
+ law enforcement.
+
+ Since most emergency alerting is conducted on a state-by-state basis, the effectiveness of
+ Blue Alerts can be diminished when a wanted suspect flees beyond the reach of an active
+ Blue Alert. Also, manual coordination with adjoining states or other jurisdiction can become
+ complicated since Blue Alert plans and protocols tend to vary from place to place. These are
+ the two primary problems that the National Blue Alert Network is designed to mitigate.
+
+ The National Blue Alert Network establishes a framework with voluntary guidelines and
+ recommendations which can be used by all states and local jurisdictions to promote Blue
+ Alert plan consistency and interoperability. It also provides resources and technical assistance
+ to states, law enforcement agencies, and other stakeholders seeking to establish or enhance
+ an existing Blue Alert plan. The network also maintains a secure data repository, for law
+ enforcement only, containing many Blue Alert resources collected from around the nation,
+ including examples of legislation, policies, forms, and a directory of state Blue Alert officials.
+
+ For more information, visit the COPS Office website at www.cops.usdoj.gov/bluealert,
+ email the COPS Office at BlueAlert@usdoj.gov, or call the COPS Office Response Center at
+ 800-421-6770.
+
+19 Effective Blue Alert Plans: Guidance and Recommendations
+Other resources
+ Federal Emergency Management Agency
+ Integrated Public Alerting and Warning
+ System (IPAWS)
+
+ https://www.fema.gov/integrated-
+ public-alert-warning-system
+
+ Federal Communications Commission
+ Emergency Alert System (EAS)
+
+ https://www.fcc.gov/general/emergency-
+ alert-system-eas
+
+ Federal Communications Commission
+ Wireless Emergency Alerts (WEA)
+
+ https://www.fcc.gov/consumers/guides/
+ wireless-emergency-alerts-wea
+
+20 Effective Blue Alert Plans: Guidance and Recommendations
+ Birmingham, AL
+ About the COPS Office
+ The Office of Community Oriented Policing Services (COPS Office) is the component of the
+ U.S. Department of Justice responsible for advancing the practice of community policing by
+ the nation’s state, local, territorial, and tribal law enforcement agencies through information
+ and grant resources.
+
+ Community policing begins with a commitment to building trust and mutual respect between
+ police and communities. It supports public safety by encouraging all stakeholders to work
+ together to address our nation’s crime challenges. When police and communities collaborate,
+ they more effectively address underlying issues, change negative behavioral patterns, and
+ allocate resources.
+
+ Rather than simply responding to crime, community policing focuses on preventing it
+ through strategic problem solving approaches based on collaboration. The COPS Office
+ awards grants to hire community police and support the development and testing of
+ innovative policing strategies.
+
+ COPS Office funding also provides training and technical assistance to community members
+ and local government leaders, as well as all levels of law enforcement. The Collaborative
+ Reform Initiative for Technical Assistance (CRI-TA), a program that promotes organizational
+ transformation through analysis of policies, practices, and training related to issues of concern,
+ is also available to law enforcement agencies
+
+ Since 1994, the COPS Office has invested more than $14 billion to provide training and
+ technical assistance, enhance crime fighting technology, and add more than 125,000 officers
+ to our nation’s streets. We also offer a wide variety of information resources to help law
+ enforcement and community leaders address specific crime issues at www.cops.usdoj.gov.
+
+21 Effective Blue Alert Plans: Guidance and Recommendations
+In honor of two New York City police officers killed in an ambush attack on December 20, 2014,
+Congress enacted the Rafael Ramos and Wenjian Liu Blue Alert Act in 2015. Created to aid in the
+apprehension of individuals who have committed acts of violence targeted at police officers, it calls
+for the development of a nationwide network for rapid dissemination of actionable information
+in cases where an officer is killed, seriously injured, or missing in the line of duty or when there is a
+credible and imminent threat against law enforcement. Twenty-seven states now have Blue Alert
+plans. Expanding Blue Alert plans to cover all states and U.S. territories can enhance the network’s
+effectiveness. This report offers guidance to help state and local law enforcement develop a Blue
+Alert Plan aligned with and integrated into a national system. Presented by the COPS Office, which
+oversees the National Blue Alert Network, it provides practical recommendations gathered from law
+enforcement practitioners, communications professionals, and other experts.
+
+U.S. Department of Justice
+Office of Community Oriented Policing Services
+145 N Street NE
+Washington, DC 20530
+To obtain details on COPS Office programs, call
+the COPS Office Response Center at 800-421-6770.
+Visit the COPS Office online at www.cops.usdoj.gov.
+ e031702817
+ Published 2017
+"""
+
+[R3] U.S. Department of Justice
+(https://cops.usdoj.gov/pdf/blue-alert/Blue_Alert_Fact_Sheet.pdf)
+"""
+U.S. Department of Justice
+Office of Community Oriented Policing Services
+
+ Fact Sheet www.cops.usdoj.gov
+
+ National Blue Alert Network
+ History
+ In 2015, Congress passed the Rafael Ramos and
+ Wenjian Liu National Blue Alert Act, named in
+ honor of two New York City police officers killed in
+ an ambush attack on December 20, 2014. The Act
+ establishes a voluntary nationwide system to give police
+ an early warning of threats against police officers and
+ to aid in the apprehension of suspects who have killed
+ or seriously injured an officer. In 2016, the COPS
+ Photo: 101cats/iStock
+ Office was asked to implement the Blue Alert Act and
+ establish a National Blue Alert Network.
+
+ Blue Alerts Blue Alert Resources
+
+ Blue Alerts provide for rapid dissemination of The COPS Office provides resources and technical
+ information to law enforcement agencies, media, assistance to states, law enforcement agencies, and
+ and the public about violent offenders who have other stakeholders seeking to establish or enhance
+ killed, seriously injured, or pose an imminent and an existing Blue Alert plan. The National Blue Alert
+ credible threat to law enforcement. Blue Alerts can Network also maintains a secure data repository, for
+ be transmitted via wireless devices and through the law enforcement only, containing many Blue Alert
+ Emergency Alert System (EAS). The National Blue Alert resources collected from around the nation, including
+ Network works to encourage, enhance, and integrate examples of legislation, policies, forms, and a directory
+ Blue Alert plans throughout the United States. of state Blue Alert officials.
+
+ For more information, visit the COPS Office website
+ Blue Alert Activation Criteria at www.cops.usdoj.gov/bluealert, email the COPS
+ Office at BlueAlert@usdoj.gov, or call the COPS Office
+ Blue Alerts may be issued in any of the following Response Center at 800-421-6770.
+ circumstances, provided there is actionable information
+ known about a suspect (e.g., name, physical description, or
+ vehicle description): Other Resources
+ • When a law enforcement officer is killed or seriously injured in Federal Emergency Management Agency Integrated Public
+ the line of duty Alerting and Warning System (IPAWS)
+ • When an officer is missing in connection with official duties https://www.fema.gov/integrated-public-alert-warning-system
+ • When there is an imminent and credible threat to kill or Federal Communications Commission Emergency Alert
+ seriously injure a law enforcement officer System (EAS)
+ https://www.fcc.gov/general/emergency-alert-system-eas
+
+ November 2018
+"""
+
+[R4] 404 / Page Not Found
+(https://www.wistv.com/2026/04/21/sled-issues-blue-alert-armed-dangerous-suspect-accused-shooting-law-enforcement-officer/)
+"""
+Sorry, we couldn't locate the page you requested. Here are some of our most read articles that might interest you.State NewsSheriff renews call for Horry County law enforcement merger, supported by Scott Spivey’s sisterUpdated: 15 minutes ago|By Jessica Joe and Sydney RyanThe sheriff and the sister of a man killed in a 2023 road-rage shooting are calling leaders to merge the Horry County Police Department with the Horry County Sheriff’s Office.Palmetto Sports Colonial Life Charity Classic brings Korn Ferry Tour to ColumbiaUpdated: 29 minutes ago|By Julia WestermanThe Colonial Life Charity Classic will bring professional golf to the Midlands next month as one of the newest stops on the Korn Ferry Tour.Military Fort Jackson hosts drill sergeant of the year competitionUpdated: 32 minutes ago|By Kaila PaigeCompetitors test technical and tactical abilities over four days of demanding eventsState News SC Ethics Commission investigating solicitor running for attorney generalUpdated: 42 minutes ago|By Live 5 Web StaffA newly obtained document shows the South Carolina Ethics Commission is investigating a solicitor in the Upstate, who is running for state attorney general, following a complaint over alleged violations of ethics laws.Midlands News Ferrara Candy Company to build $675M Orangeburg County plant, create 1,000 jobs, officials sayUpdated: 1 hour ago|By Deric RushFerrara Candy Company plans to open its first South Carolina operation in Orangeburg County, a $675 million investment expected to create 1,000 jobs over the next 10 years, according to the S.C. Department of Commerce.First Alert Weather FIRST ALERT WEATHER DAY: Smoke from Georgia wildfires brings air quality concernsUpdated: 1 hour ago|By Adam ClarkSouthwest winds will continue to bring some smoke from wildfires to our south in Georgia into parts of the Midlands through sunset. Related SearchesYahoo | SponsoredSponsoredUndoCognitive Decline Has Been Linked to This Everyday Food. Did You Eat It Today?Memory Lab Reports | SponsoredSponsoredUndoDoctors Identify 10 Medications Now Adding to Cognitive Decline (See the List)Mind Wellness Info | SponsoredSponsoredUndoSavannah Guthrie's Salary Is Just Unacceptable.33 Bridges | SponsoredSponsoredUndoby Taboolaby TaboolaYou might be interested in the content above- | SponsoredSponsoredUndoThe hidden trigger behind Cognitive Decline and memory loss revealedNeuro-Therapy Lab | SponsoredSponsoredUndoSurgeon Says, "If You Have Dark Spots, Do This Tonight" (It's Genius!)Surgeon explains simple tip for dark spots on skin.The Dark Spot Experts | SponsoredSponsoredUndoDoctors Identify 10 Medications Now Related to Cognitive Decline (See the List)Brain Trends Journal | SponsoredSponsoredUndoby Taboolaby TaboolaBrought to you by- | SponsoredSponsoredUndoTop MD: This 1 Mineral Reduces Knee Pain "Unlike Any other"Osteo ResearchUndoThe Secret Revealed: Why All Hummingbirds Go To My Neighbor's Garden?Wooden Hummingbird HouseUndoSavannah Guthrie's Salary Is Just Unacceptable33 Bridges | SponsoredSponsoredUndoTemu Clearance SaleTemu Clearance Sale, where unbeatable discounts meet your shopping needsTEMU | SponsoredSponsoredUndoThe Average Walk-In Shower Cost In 2026See why thousands of homeowners are getting an affordable walk-in shower installed within daysWest Shore Home Partner | SponsoredSponsoredUndoby Taboolaby TaboolaWould you like to know more?- | SponsoredSponsoredUndoChoking Victims Don’t Have Time. Most Die Before Help ArrivesHeroic DailyUndoThe Average Walk-In Shower Cost in 2026West Shore Home PartnerUndoThe surprising truth behind forgetfulness and cognitive decline.Cerebral Institute Press | SponsoredSponsoredUndoProtestors gather at SC State House after ICE officer kills woman in MinneapolisWIS News 10Undo5+ Billion Threats Stopped. Trusted By Cybersecurity ExpertsMalwarebytes | SponsoredSponsoredUndoSouth Carolina to participate in National Drug Take Back DayWIS News 10UndoSheriff: Sumter man charged with attempted murder after stabbing coworkerWIS News 10Undo ' ' ' ' ' ' by Taboolaby TaboolaWould you like to know more?- | SponsoredSponsoredUndoHere’s The Average Gutter Price For a 1500 Sq Ft HouseHomebuddy.com | SponsoredSponsoredUndoThis Is How Much New Windows Should Cost In 20261 Day Windows Replacement | SponsoredSponsoredUndoWho Has The Cheapest Car Insurance For Retirees in Virginia? (Check Zip Code)OTTO InsuranceUndoHow Much Does It Cost To Replace Old Windows With New, Energy Efficient Ones?1 Day Windows ReplacementUndoby Taboolaby TaboolaBrought to you by- | SponsoredSponsoredUndoMore Spam Calls? Your Personal Data May Have LeakedMalwarebytes | SponsoredSponsoredUndoHearing aids shouldn’t cost $5,000Experience effortless hearing control at your fingertips with the easiest, simplest hearing experience to date.Audien Hearing | SponsoredSponsoredUndoThe AI That Just Outperformed Every Human Expert.Money Facts | SponsoredSponsoredUndo2026 SEC Women's Basketball ChampionshipWIS News 10UndoVirginia: The True Cost Of A 1-Day Shower Installation (See Prices)Forbes | SponsoredSponsoredUndoSiouxland business leaders ask for support for 185thWIS News 10UndoSoda City Living: South Carolina Pediatric Alliance Opens New After-Hours Care OptionWIS News 10Undo ' ' ' ' ' ' Here's What A Shower Installation Costs in 2026 (See Prices)Forbes | SponsoredSponsoredUndoHere's The Estimated Walk-In Shower Price in 2026Homebuddy | SponsoredSponsoredUndoEvery Tax Paying American Should Be Using This Retirement Loophole In 2026Protecting My SavingsUndoThe affordability of a new gutter system will surprise you!​LeafFilter Gutter ProtectionUndoFormer South Carolina football coach Lou Holtz dead at 89WIS News 10UndoWho Charges The Least For Car Insurance In Virginia? (Check Zip Codes)OTTO Insurance | SponsoredSponsoredUndo‘Sometimes being strong is reaching out’: Teen’s message on depression goes nationalWIS News 10UndoWoman charged with shooting Midlands police chief had history of domestic violence, drugsWIS News 10Undo ' ' ' ' ' ' Here`s The Walk-In Shower That Fits A Tight BudgetHomebuddy | SponsoredSponsoredUndoSpend Less. Get the Cleanest Yard on the Block.Jetterix Pro | SponsoredSponsoredUndoDon't wait for business financing. Apply once to over 75 lenders and funding partners.LendioUndoA Simple Rewards Card That Starts With Your Housing CostsNerdWalletUndo
+"""
+
+[R5] National Blue Alert Network | COPS OFFICE
+(https://cops.usdoj.gov/bluealert)
+"""
+The National Blue Alert Network supports the use and integration of Blue Alert plans throughout the United States in order to rapidly disseminate information to law enforcement agencies, the media and the public to aid in the apprehension of violent criminals who have killed, or seriously injured an officer in the line of duty. Blue Alerts can also be issued when a suspect poses an imminent and credible threat to law enforcement, or when an officer is missing in the line of duty. Blue Alerts can be transmitted to television and radio stations; to cellphones and wireless devices, to overhead highway message signs, and other secondary alerting mechanisms – in the same way that AMBER Alerts are commonly issued. There are currently 37 states with Blue Alert plans. The COPS Office provides resources and technical assistance to states, territories, law enforcement agencies, and tribes seeking to establish or enhance Blue Alert plans; including, voluntary activation guidelines, examples of legislation, policies, and forms gathered from around the nation in a central Blue Alert data repository. Created with Raphaël 2.1.0ALAKAZARCACOCTDEDCFLGAHIIDILINIAKSKYLAMEMDMAMIMNMSMOMTNENVNHNJNMNYNCNDOHOKORPARISCSDTNTXUTVTVAWAWVWIWY SECURE BLUE ALERT INFORMATION REPOSITORY - LAW ENFORCEMENT ONLY Officers Shot in the Line of Duty Law Enforcement Officers Shot in the Line of Duty - 2024 Year-End Summary Report This report contains data on law enforcement officers shot in the line of duty, both fatally and non-fatally, for the purpose of better understanding the nature and frequency of incidents that could give rise to the issuance of a Blue Alert. The report is compiled from publicly available information using media monitoring software and general research to monitor and track shootings of law enforcement officers in the United States and its territories. OTHER GOVERNMENT RESOURCES White House White House statement of support for policing – “Standing up for our Law Enforcement Community”. Federal Communications Commission (FCC) The FCC establishes technical requirements and rules for broadcasters, cable system operators, mobile commercial service providers, and other participants in voluntary mobile alerting programs. NON-FEDERAL RESOURCES For more information, contact us at BlueAlert@usdoj.gov or call the Response Center at 800-421-6770.
+"""
+
+[R6] 
+(https://www.moalerts.mo.gov/MoAlerts/BlueAlert/GetAboutBlueAlert)
+"""
+History In 2015, Congress passed the Rafael Ramos and Wenjian Liu National Blue Alert Act, named in honor of two New York City police officers killed in an ambush attack on December 20, 2014. The Act establishes a voluntary nationwide system to give police an early warning of threats against police officers and to aid in the apprehension of suspects who have killed or seriously injured an officer. In 2016, the COPS Office was asked to implement the Blue Alert Act and establish a National Blue Alert Network. Reason for Blue Alerts Blue Alerts provide for rapid dissemination of information to law enforcement agencies, media, and the public about violent offenders who have killed, seriously injured, or pose an imminent and credible threat to law enforcement. Blue Alerts can be transmitted via wireless devices and through the Emergency Alert System (EAS). The National Blue Alert Network works to encourage, enhance, and integrate Blue Alert plans throughout the United States. BLUE Alert Activation Criteria (RSMo 650.520) A Blue Alert is authorized when: a law enforcement officer is killed or seriously injured in the line of duty; or an officer is missing in connection with official duties; or there is an imminent and credible threat to kill or seriously injure a law enforcement officer; and there is actionable information known about a suspect for a public notification to be helpful to law enforcement; and the law enforcement agency involved requests or approves the alert being issued Activation The local law enforcement agency will fill out the Missouri Blue Alert Form. Email (moalerts@mshp.dps.mo.gov) or fax (573-751-6814) the Blue Alert form with the attachments such as photographs, area maps, etc. to the Missouri State Highway Patrol; Troop F Headquarters. Email is the preferred method to receive the forms. Contact the Missouri State Highway Patrol; Troop F Headquarters at (573)-751-1000 to verify the emailed or faxed forms and attachments have been received. The local agency should also fill out the Blue Alert request form in MULES 5 (type BLUE in the command line). This form sends a message via MULES to Troop F Communications to notify them of the pending Blue Alert request. If the agency needs assistance filling out the Blue form, Troop F Communications can assist the agency. Make sure dispatchers or call takers are prepared to handle phone calls. Consider allocating additional resources from other law enforcement agencies. A public information officer (PIO) should be appointed to handle the media. Once the alert has been activated, media coverage may be overwhelming, especially for a small department. The PIO should be constantly updated to utilize the media as much as possible and receive the maximum exposure for the case. The Blue Alert does not preclude any in-house procedures, policies, or practices used by each law enforcement agency. THE FOLLOWING WILL HAPPEN AFTER THE ALERT IS ACTIVATED All Missouri law enforcement agencies are notified through a MIAC email alert. Broadcasters and media are notified. The public will receive a Wireless Emergency Alert (WEA) message on their cell phone. The Missouri Department of Transportation will be notified to activate message signs, if practicable. The Missouri Lottery will be notified to activate message signs, if practicable. Additional Resources The Missouri State Highway Patrol local Troop Headquarters can provide additional resources if requested. The Missouri State Highway Patrol Public Information and Education Division can provide a PIO to help your agency. The Missouri Information Analysis Center (573-751-6422) can be contacted to provide information that can assist with the investigation.
+"""
+
+[R7] Bond denied for woman accused of shooting SC police chief, prompting Blue Alert
+(https://www.foxcarolina.com/2026/04/21/sled-issues-blue-alert-armed-dangerous-woman-midlands/)
+"""
+BARNWELL, S.C. (WIS) - A woman charged with opening fire at a Midlands police chief on Monday will remain behind bars.A judge in Blackville denied bond for 37-year-old Lacey Cushman on Tuesday. Cushman faces multiple charges, including attempted murder, failure to stop for a blue light and assault of a high and aggravated nature.She appeared virtually for her hearing.Lacey Cushman(WIS)Officials later identified Springfield Police Chief Adam Evans as being injured in the shooting, which happened in neighboring Barnwell County. Springfield, a town of less than 500 people, is located in Orangeburg County. Midlands police chief recovering after being shot during incident that sparked Blue Alert(WIS)Evans was at home and off duty when the Orangeburg County Sheriff’s Office called him in to assist with a shots-fired call involving Cushman. Springfield Mayor Trent Still said that Evans got to the scene of the incident before OCSO deputies, but later found Cushman at a place she frequently visits. A chase then ensued, with Evans getting close enough to identify Cushman’s license plate.That’s when authorities said Cushman opened fire, hitting Evans close to his ribs. A large bullet hole was also seen in the passenger-side window of Evans’s patrol vehicle. Midlands police chief recovering after being shot during incident that sparked Blue Alert(Tanner Gilmartin)After the shooting, the South Carolina Law Enforcement Division then put out a Blue Alert in search of Cushman, which is issued when a suspect is at large for harming a police officer. Still said that she was someone known to law enforcement. Cushman was taken into custody just before midnight Tuesday. She’s being held at the Barnwell County Detention Center. Evans, meanwhile, is reportedly home and in stable condition as of Tuesday. He was brought on by Still to serve as chief after the latter was elected mayor last November. Evans is the town’s only police officer. Still said he has asked OCSO and the South Carolina Law Enforcement Division for help with patrolling while Evans is still recovering.At around 10:35 p.m., officials said they were looking for Cushman, who they described a white woman who is 5 feet 9 inches tall and weighs about 200 pounds.Deputies said she was last seen driving a 2011 white Chevrolet Traverse with an S.C. tag, 706IRU, in Barnwell County.This was not the first South Carolina shooting involving an officer on Monday. In Anderson County, a suspect was killed after shooting a deputy during a traffic stop on I-85 on Monday.Feel more informed, prepared, and connected with FOX Carolina. For more free content like this, download our apps.Copyright 2026 WHNS. All rights reserved.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

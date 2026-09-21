@@ -1,0 +1,106 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "miley cyrus boyfriend"
+
+Claims:
+[1] "As of late 2025, Miley Cyrus is engaged to musician Maxx Morando."
+[2] "Miley Cyrus and Maxx Morando have been together since 2021."
+[3] "Miley Cyrus and Maxx Morando confirmed their engagement in December 2025."
+[4] "Fire and Ash premiere in Los Angeles."
+[5] "Maxx Morando is a 27-year-old drummer and musician."
+[6] "Maxx Morando is best known for playing in the Los Angeles rock band Liily."
+[7] "Miley Cyrus and Maxx Morando met on a blind date in 2021."
+[8] "Miley Cyrus described their blind date as "blind for me and not really for him" in a 2023 British Vogue interview."
+[9] "Maxx Morando co-wrote and produced the tracks "Handstand" and "Violet Chemistry" on Miley Cyrus's 2023 album Endless Summer Vacation."
+[10] "Maxx Morando co-wrote and produced songs on Miley Cyrus's 2026 album Something Beautiful."
+[11] "Miley Cyrus and Maxx Morando have been living together in Malibu since at least 2024."
+[12] "Miley Cyrus and Maxx Morando appeared together at the 2024 Grammy Awards."
+[13] "Miley Cyrus and Maxx Morando appeared together at the 2025 Grammy Awards."
+[14] "Miley Cyrus was married to actor Liam Hemsworth."
+[15] "Miley Cyrus and Liam Hemsworth's divorce was finalized in 2020."
+
+Cited text snippets from the AI Overview (for additional context):
+- Who Is Miley Cyrus's Fiancé, Maxx Morando? - Vogue: "Miley Cyrus and boyfriend Maxx,told British Vogue in 2023.)"
+- Miley Cyrus is engaged to boyfriend Maxx Morando after 4 years of ...: "Culture-,Miley Cyrus is engaged to boyfriend Maxx Morando after 4,have been linked since 2021.&text=Miley Cyrus shares reason behind,have surgery to change it.&text=Miley Cyrus is getting married,to be an engagement ring."
+- Who Is Miley Cyrus' Fiancé? All About Drummer Maxx Morando: "NEED TO KNOW,with her fiancé, Maxx Morando."
+Reference Sources:
+
+[R1] Miley Cyrus and Maxx Morando Are Engaged
+(https://www.nytimes.com/2025/12/02/style/miley-cyrus-engagement-maxx-morando.html)
+"""
+AdvertisementSKIP ADVERTISEMENTThe Grammy Award-winning singer debuted a 14-karat gold, cushion-set natural diamond ring while posing with her longtime boyfriend at the Los Angeles premiere of “Avatar: Fire and Ash.”Listen · 3:02 min Miley Cyrus and Maxx Morando on the red carpet at the Los Angeles premiere of “Avatar: Fire and Ash,” where Ms. Cyrus debuted her engagement ring.Credit...Axelle/Bauer-Griffin, via FilmMagicDec. 2, 2025Miley Cyrus appeared on the red carpet with her boyfriend, Maxx Morando, a musician, at the Los Angeles premiere of “Avatar: Fire and Ash,” where she debuted an engagement ring crafted by the Beverly Hills designer Jacquie Aiche. A person with knowledge of the event confirmed their engagement to The New York Times.Representatives for Ms. Cyrus and Mr. Morando did not immediately respond to a request for comment.Ms. Cyrus, 33, whose song “Dream as One” appears on the film’s soundtrack, posted on her Instagram account photos of herself and Mr. Morando, 27, at the premiere with a lyric from the song: “Baby, when we dream we dream as one.” Fans responded with congratulatory comments and heart emojis.Subscribe to The Times to read as many articles as you like.AdvertisementSKIP ADVERTISEMENT
+"""
+
+[R2] Who Is Miley Cyrus’s Fiancé, Maxx Morando?
+(https://www.vogue.com/article/who-is-miley-cyrus-boyfriend-2025-oscars)
+"""
+Miley Cyrus and boyfriend Maxx Morando have kept things pretty low-key across their four-year relationship—so low-key, in fact, that their sporadic public appearances tend to be followed by questions on social media like, “Who’s Miley’s hot date?” Well, it’s Maxx Morando, drummer for the Los Angeles rock band Lilly—and now, Cyrus’s fiancé.On December 1, when Cyrus and Morando attended the premiere of Avatar: Fire and Ash in Los Angeles, the 33-year-old pop star posed for photos on the red carpet with her hand placed upon the 27-year-old musician’s chest—and a diamond ring sparkling on her left ring finger. (It’s a cushion-cut stone on a 14k yellow gold band by Jacquie Aiche, the jeweler tapped by everyone from Rihanna to Gigi Hadid.) Sources confirmed the news to Page Six, and Morando’s father shared a congratulatory post on social media, showing the couple hugging and smiling with the caption: “❤️ 💍🍾🎉.”Below, find everything you need to know about Maxx Morando.Maxx Morando and Miley Cyrus at the Avatar: Fire and Ash premiere in Los Angeles on December 1. Photo: Getty ImagesHe and Cyrus met in 2021.Cyrus and Morando met on a blind date in 2021. (“Well, it was blind for me and not really for him,” Cyrus told British Vogue in 2023.) They’ve been living together in Malibu since at least 2024.Morando and Cyrus at the Guicci Love Parade show in Los Angeles in November 2021. Photo: Getty ImagesHe has an impressive music-industry résumé.Before joining Liily, Morando played drums for indie rock band the Regrettes from 2015 to 2018.He’s collaborated professionally with Cyrus before.Cyrus invited Morando and Liily to perform on her New Year’s Eve special on NBC in 2022, with a source saying at the time: “Miley insisted that Maxx’s band perform at her NYE special, and this was not something up for debate. Music is what bonds them together and they love nothing more than creating beautiful sounds when it is just the two of them.” Additionally, Morando and Cyrus worked together on the songs “Handstand” and “Violet Chemistry” from her 2023 album Endless Summer Vacation.The couple at the 2024 Grammy Awards. Photo: Getty ImagesMorando and Cyrus like to keep their high-profile appearances few and far between.Cyrus and Morando made their official red carpet debut at Gucci’s “Love Parade” show in November 2021. Years later, they stepped out for the 2024 and 2025 Grammys together (at the former, Cyrus thanked “my love” onstage after winning record of the year), as well as the 2025 Oscars, where Cyrus was a presenter.Miley Cyrus and Maxx Marando at the 2025 Grammys. Photo: Getty ImagesMost PopularHe’s the designated phone carrier in the relationship.If you were Miley Cyrus, wouldn’t you ditch your phone occasionally? Apparently, that’s exactly what the star does, telling British Vogue of the couple’s phone protocol: “My boyfriend brings his phone and I don’t bring one.” If he’s willing to be plugged into the extremely online world for you, he might just be a keeper.
+"""
+
+[R3] Miley Cyrus is engaged to boyfriend Maxx Morando after 4 years of dating
+(https://abcnews.com/GMA/Culture/miley-cyrus-engaged-boyfriend-maxx-morando-after-4/story?id=128043079)
+"""
+CultureThe Grammy winner and Liily band member have been linked since 2021.December 2, 2025, 11:49 PMMiley Cyrus is getting married.The Grammy winner, 33, is engaged to singer Maxx Morando, 27, after four years of dating, she confirmed to "Good Morning America" on Tuesday while being interviewed for "Avatar: Fire and Ash."Watch "Good Morning America" on Wednesday on ABC from 7 am to 9 am ET for the full interview with Cyrus about "Avatar: Fire and Ash."Cyrus sings "Dream As One" for the film, which she co-wrote and co-produced with Andrew Wyatt and Mark Ronson.The singer sparked engagement rumors after she was photographed with Morando at the "Avatar: Fire and Ash" premiere Monday night wearing what appeared to be an engagement ring. US singer actress Miley Cyrus and US singer Maxx Morando attend the premiere of Disney's "Avatar: Fire and Ash" at the Dolby theatre in Hollywood, California on December 1, 2025.Valerie Macon/AFP via Getty ImagesThe duo were all smiles as they posed for photographers. Morando, 27, who is in the band Liily, has been linked to Cyrus since 2021, according to People. Popular ReadsThat year, they were photographed holding hands while they sat front row at the Gucci Love Parade in Hollywood. In 2023, when Cyrus released her album "Endless Summer Vacation," Morando took to Instagram and shared that he produced the track "Handstand" and co-produced the song, "Violet Chemistry." He also shared in an Instagram post in May that he helped "produce and write a handful of tunes" on Cyrus' recent album, "Something Beautiful." Maxx Morando and Miley Cyrus attend the Global Premiere of 20th Century Studios' "Avatar: Fire And Ash" at Dolby Theatre on December 01, 2025 in Hollywood, California.Kevin Winter/WireImageCyrus opened up about her relationship with Morando in an interview with British Vogue in 2023. The "End of the World" singer said that she and Morando met on a blind date -- sort of. "Well, it was blind for me and not really for him," she said. "I thought, 'The worst that can happen is I leave.'" In an interview with The Cut in September, Cyrus also shared how much Morando means to her. "I ended up with a person who means a lot to me and treats me really well and respects me," she said. "I had to learn that the hard way because my mommy taught me the wrong way and then I had to learn the right way by myself." Cyrus' and Morando's engagement comes six years after she and actor Liam Hemsworth filed for divorce. The former couple, who met on the set of "The Last Song" in 2009, married in 2018 and split in 2019. Sponsored Content by Taboola
+"""
+
+[R4] Who Is Miley Cyrus' Fiancé? All About Drummer Maxx Morando
+(https://people.com/who-is-maxx-morando-miley-cyrus-11860479)
+"""
+NEED TO KNOW Miley Cyrus and her fiancé, Maxx Morando, have been romantically linked since December 2021The "Flowers" singer told The Cut in September 2025 that she found someone who treats her with "respect"A source confirmed their engagement to PEOPLE on Dec. 2 Miley Cyrus has Something Beautiful with her fiancé, Maxx Morando. The "Flowers" singer and the drummer were first romantically linked in December 2021, when they were photographed getting close backstage during the singer's NBC special, Miley's New Year's Eve Party. A month prior, Cyrus shared photos on Instagram after attending the Gucci "Love Parade" fashion show in Los Angeles with Morando — though it was unclear if they were a couple or just friends at the time. The pair eventually went public with their romance, with Cyrus later confirming they met on a blind date. After four years of dating, a source confirmed to PEOPLE on Dec. 2 that the pair are engaged, one day after Cyrus was spotted wearing a diamond ring on a red carpet in L.A. During a conversation with The Cut in September 2025, Cyrus opened up about learning lessons from past relationships, explaining how her mom always wanted her to "stay with the wrong guy 'cause they're hot," but she had ended up with someone who treats her "with respect." "I ended up with a person who means a lot to me and treats me really well and respects me," the Hannah Montana alum said. "I had to find someone who treats me with respect [...] My man’s hot as hell too. But my man also respects me." Morando was also there to support Cyrus at the premiere of the Hannah Montana 20th Anniversary Special, which is now streaming on Disney+, in March 2026. So, who is Miley Cyrus' fiancé? Here's everything to know about Maxx Morando. He plays multiple instruments Miley Cyrus and Maxx Morando arrive at Gucci Love Parade on Nov. 2, 2021, in Los Angeles. Donato Sardella/Getty Morando is best known for playing drums, but he can also play guitar, which he showed during an Instagram Live video from 2020. He is currently the drummer for a band called Liily. Before that, Morando was the drummer for the Regrettes from 2015 to 2018. He's a fashion designer Miley Cyrus and Maxx Morando attend the 97th Annual Oscars on March 2, 2025, in Hollywood, Calif. Mike Coppola/Getty During a September 2021 interview with Vogue, Cyrus revealed that Morando helped create one of her festival looks alongside designer Shane Kastl. "This look is a one-of-a-kind collaboration between two of my favorite emerging artists, Maxx Morando and Shane Kastl," she told the publication about one of her outfits. "Their collaboration is the perfect example of sustainability becoming the next fashion phase, and it proves that anything can be reinvented, which resonates with me deeply." He's been linked to Cyrus since 2021 Maxx Morando and Miley Cyrus. Matt Baron/BEI/Shutterstock Though the couple first sparked dating rumors in December 2021, they first stepped out together at the Gucci "Love Parade" fashion show in L.A. in November 2021. That December, the two were seen getting close at Miley's New Year's Eve Party special in Miami. Related Stories In April 2022, the two seemingly went public with their romance as they were photographed sharing a passionate kiss out in West Hollywood. They were later seen together at the Versace show in L.A. in March 2023, posing for photos and walking the red carpet hand-in-hand. They met on a blind date Maxx Morando, Miley Cyrus and Pete Davidson. Vijat Mohindra/NBC In a June 2023 interview with British Vogue, the Grammy winner detailed the story of how she met Morando. "We got put on a blind date," Cyrus said. "Well, it was blind for me and not really for him," she clarified to the outlet. "I thought, 'The worst that can happen is I leave.' " Morando and Cyrus have collaborated professionally Maxx Morando and Miley Cyrus attend the 2025 Vanity Fair Oscar Party on March 2, 2025, in Beverly Hills, Calif. Taylor Hill/FilmMagic Morando worked on two tracks — "Handstand" and "Violet Chemistry" — from Cyrus' album, Endless Summer Vacation, and he shared a celebratory post about the project on Instagram. Her lead single from the album, "Flowers," won two Grammy awards in February 2024, and Morando was on hand to celebrate with her at the event. Though Morando and Cyrus didn't walk the red carpet together, the couple was photographed kissing at their table during the ceremony. More recently, Morando produced several songs and wrote the title track of Cyrus' ninth album, Something Beautiful. Cyrus gave him a special shout-out at the 2024 Grammys Maxx Morando and Miley Cyrus at The 66th Annual Grammy Awards in Los Angeles. Francis Specker/CBS Cyrus gave her boyfriend a sweet shout-out as she took home record of the year for "Flowers." In addition to thanking her team, Cyrus paid tribute to her mom and sister sitting in the audience, as well as Morando, whom she referred to as "my love." During the show, the couple were photographed sharing a kiss as they sat together during the ceremony with Cyrus' family. A source said Cyrus is "very happy with him" Miley Cyrus and Maxx Morando attend the 'SNL50: The Anniversary Special' on Feb. 16, 2025, in New York City. TheStewartofNY/WireImage In February 2024, a source told PEOPLE that Cyrus and Morando are living together and shared some insight about their relationship. "She is very happy with him," the insider added. "Miley has changed a lot in the past couple of years. She seems more calm and harmonious. Everyone loves Maxx. He’s a great guy. He’s private and doesn’t like being in the press. It’s been good for her." That same month, Cyrus' mom, Tish Cyrus, gave her stamp of approval while speaking with PEOPLE. "He's cute," she said, adding that she's never seen her daughter happier. "I think it shows just by looking at Miley, her face and her smile at the Grammys and just everything about her that she's in an amazing place." They are engaged Maxx Morando and Miley Cyrus attend the premiere of 'Avatar: Fire And Ash' on Dec. 1, 2025, in Hollywood, Calif. Kevin Winter/WireImage On Dec. 2, a source confirmed to PEOPLE that Cyrus and Morando are engaged, one day after the "Flowers" singer stepped out to the Avatar: Fire and Ash world premiere in L.A. sporting a diamond ring on her left-hand ring finger. Though some outlets report that Cyrus has been spotted wearing the ring since November, the couple have not revealed when they got engaged.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

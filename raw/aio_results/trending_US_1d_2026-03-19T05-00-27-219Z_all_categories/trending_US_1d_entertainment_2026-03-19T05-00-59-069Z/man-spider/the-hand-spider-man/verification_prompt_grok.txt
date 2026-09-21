@@ -1,0 +1,107 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "the hand spider man"
+
+Claims:
+[1] "The Hand is a mystical ninja clan from Marvel Comics."
+[2] "Brand New Day (2026)."
+[3] "Brand New Day (2026)."
+[4] "The Hand has historically been led by villains like Kingpin and Gorgon."
+[5] "The Hand has frequently clashed with Daredevil."
+[6] "Brand New Day shows red-clad ninjas fighting Spider-Man."
+[7] "Brand New Day is seen on the Threads platform."
+[8] "The Nerdist article notes that The Hand is known as a sinister supernatural organization often involved in New York City's criminal underworld."
+[9] "Brand New Day is the MCU’s fourth Spider-Man film."
+[10] "Brand New Day is set four years after No Way Home."
+[11] "Brand New Day features appearances by the Punisher."
+[12] "The Menkind product page notes that the "3D Hand Wall Mounted Deco Light" is a product inspired by Spider-Man."
+[13] "The "3D Hand Wall Mounted Deco Light" is unrelated to the Hand organization."
+
+Cited text snippets from the AI Overview (for additional context):
+- Every reveal in the 'Spider-Man: Brand New Day' trailer: "'Spider-Man: Brand New Day' trailer teases Peter,on various villains, including Boomerang.&text=This is read by an,powers appear to be mutating."
+- The emergence of The Hand in Spider-Man’s story signals a ...: "4949 likes, 67 comments - movietitan on,striking—it suggests he's now facing an enemy"
+- Who Are SPIDER-MAN: BRAND NEW DAY’s Red Ninjas?: "Fans of the Netflix era,Murdock as the series progresses."
+- Why Spider-Man Is Fighting The Hand In Brand New Day - Screen Rant: "It's just been confirmed that,MCU's fourth Spider-Man movie."
+- Why Spider-Man Is Fighting The Hand In Brand New Day - Threads: "The full trailer for Spider,clan known as The Hand.&text=Netflix's sequel to Once Upon,: bit.ly/4lD6q…&text=As of this week, Microsoft,: bit.ly/4bPAV…&text=An incredible slow-motion shot,🕷️ bit.ly/477Xz…&text=Why Bruce Banner Isn't,: bit.ly/4sS0g…&text=·Author-,Bruce Banner isn't Smart Hulk anymore in Spider-Man,undergone such a big change.&text=DC reveals Riddler's brand-new,: bit.ly/4uIlO…"
+- irst look at The Hand in ‘SPIDER-MAN: BRAND NEW DAY’ They got ...: "This first glimpse already feels,👀🔥&text=#spidermanbrandnewday #spiderman #marvel #mcu"
+Reference Sources:
+
+[R1] Every reveal in the 'Spider-Man: Brand New Day' trailer - Los Angeles Times
+(https://www.latimes.com/entertainment-arts/movies/story/2026-03-18/spider-man-brand-new-day-trailer-punisher-hulk-peter-parker-rebirth)
+"""
+Your friendly neighborhood Spider-Man is finally back. It’s been nearly five years since audiences last saw Tom Holland’s Peter Parker suit up as the webslinger in “Spider-Man: No Way Home,” and a lot has happened in the Marvel Cinematic Universe since. (10 movies’ worth, for those keeping track.) But Sony Pictures released the first trailer for “Spider-Man: Brand New Day” on Wednesday, and it appears our hero has been dutifully continuing as a full-time masked crimefighter while remaining an anonymous entity to those he loves most. “Sometimes Spider-Man has to do the hard thing, even if it breaks Peter Parker’s heart,” Peter says in a voiceover on the new footage. According to the film’s logline, it has been four years since the events of “No Way Home,” which saw Peter have to make everyone forget who he is to save the world. “Brand New Day” will see Spider-Man take on “one of the most powerful threats he has ever faced.” The trailer shows Peter cross paths with former besties MJ (Zendaya) and Ned (Jacob Batalon), who still don’t know who he is. But like everyone else in New York, it does appear they are at least familiar with Spider-Man. Among those Spidey crosses paths with in the teaser are Frank Castle (Jon Bernthal), also known as the Punisher. It doesn’t seem like Spider-Man and the “Daredevil: Born Again” anti-hero are on very friendly terms, though. The trailer also features glimpses of Spider-Man battling Scorpion (Michael Mando), Boomerang (whose casting has yet to be announced) and the Hand — as well as a seemingly invisible foe. Peter is also shown seeking out Bruce Banner (Mark Ruffalo) in his non-Hulk form to try to figure out what is going on with his own body. It appears Spider-Man’s DNA could be mutating, as he has gained the ability to produce organic webs, which could be alarming. The trailer concludes with a mysterious voiceover (which sounds like Keith David) teasing what it could mean. “Spiders have three life cycles,” the unnamed voice says. “When between cycles, it can leave the spider vulnerable to threats. ... And for those spiders who make it through, it amounts to a kind of rebirth.” Directed by Destin Daniel Cretton, “Spider-Man: Brand New Day” opens in theaters July 31. Spider-Man battling the Hand in “Spider-Man: Brand New Day.” (Sony Pictures) More to Read
+"""
+
+[R2] Why Spider-Man Is Fighting The Hand In Brand New Day
+(https://screenrant.com/spiderman-brand-new-day-the-hand-fight-explained/)
+"""
+It's just been confirmed that Spider-Man: Brand New Day will see Tom Holland's Peter Parker fighting none other than The Hand. A sinister ninja clan operating in New York City, The Hand will be featured as a major threat among several villains in the MCU's fourth Spider-Man movie. The first trailer for Spider-Man: Brand New Day has just been released, confirming that the upcoming movie will be a street-level epic as Peter Parker grapples with his more isolated status quo four years afer Spider-Man: No Way Home while also dealing with dramatic changes to his powers amid rising threats in New York. With that in mind, here's what we know about The Hand and why they'll be fighting Spider-Man in Brand New Day. The new Spider-Man: Brand New Day trailer footage makes one thing perfectly clear: Peter Parker is in for one of his most exciting and chaotic adventures yet. Clashing with multiple classic foes, the Spider-Man: Brand New Day trailer features new looks at Mac Gargan's Scorpion (returning after a 9-year absence), Boomerang, and Tarantula, an impressive gauntlet of street-level threats. While not featured in the trailer, the major crime boss Tombstone is also expected to make an appearance as well. Brand New Day will also feature appearances from Bruce Banner's Hulk, The Punisher, and the heavily speculated MCU debut of Sadie Sink as Jean Grey (likely the figure wearing the yellow hood in the trailer). Not only is there a shot of Spider-Man unmasked fighting the Hand in what looks to be a prison, but there's another epic slow motion shot that sees the Webslinger in the air between buildings, leaping directly at a full force of the ninja warriors. All that said, one has to wonder why Spider-Man is fighting the Hand in the first place. A Brief History Of The Hand Explained (Why Is Spider-Man Fighting Them?) Adapted from their origins in the comics, The Hand is a global, centuries-old ninja criminal organization deeply tied to mysticism, resurrection rituals, and supernatural warfare. Given their established history, The Hand's role in Spider-Man: Brand New Day suggests something bigger is unfolding in New York, which would tie into the film's official synopsis, confirming that Peter Parker will uncover "a new pattern of crimes that gives rise to one of the most powerful threats Spider-Man has ever faced." While Spider-Man doesn't have a history with The Hand, it's worth noting that Frank Castle's Punisher does. As a result, an uneasy team-up between Frank Castle and Peter Parker against The Hand does feel likely. Furthermore, there's honestly no better threat to justify the Daredevil/Spider-Man team up in the MCU fans have desperately been wanting for years (though Daredevil has yet to be confirmed for Brand New Day). Either way, The Hand's involvement in Spider-Man: Brand New Day truly is the perfect way to maintain high stakes with more street-level MCU storytelling, especially when you have a hero as powerful as Spider-Man. Release Date July 31, 2026 Director Destin Daniel Cretton Writers Chris McKenna, Erik Sommers, Steve Ditko, Stan Lee
+"""
+
+[R3] Who Are SPIDER-MAN: BRAND NEW DAY's Red Ninjas?
+(https://nerdist.com/article/spider-man-brand-new-day-hand-red-ninjas-explained-marvel-comics/)
+"""
+Poor old Peter Parker has a lot of trouble by the looks of the first Spider-Man: Brand New DayOpens in a new tab trailer. Between the Scorpion, Frank Castle being a dick, and knowing his friends don’t remember him, he’s also dealing with a weird spider disease or whatever. Unclear. So his brand new day is pretty bad. But above and beyond all that, he’s got a pack of ninjas to fight. The ninjas, dressed in red, are of particular interest to fans of Marvel Comics. The Hand have acted as a thorn in heroes’ sides since the early ’80s.Sony/Marvel StudiosWho Are the Hand in Spider-Man: Brand New Day?The Hand first appeared in Daredevil #174Opens in a new tab from 1981. That was during the Frank Miller years, wherein he also introduced DD universe staples like Elektra and Matt Murdock’s training under the mysterious blind sensei, Stick. In the years since, the Hand have been retconned to be among the oldest and most mystical of all Marvel baddies. Aside from many clandestine criminal activities, the Hand also perform assassinations and practice occult magic which can resurrect those they have killed in order to serve them. Marvel ComicsThe Hand primarily face off against Daredevil and ground-level New York heroes, or against Wolverine, Psylocke, and other more ninja-adjacent members of the X-Men roster. Ninjas were big in the 1980s and both Frank Miller and Chris Claremont were huge fans of Japanese culture. When the pair teamed up for the first Wolverine solo miniseries in 1982Opens in a new tab, Logan went to Japan and took on the Hand.Marvel ComicsThe Hand Return to the Marvel Cinematic UniverseFans of the Netflix era of Marvel TV shows will be very familiar with the Hand. They provided constant irritation for Daredevil in the first and second seasons of that series. The first season established them as a major player in the NYC drug and slum empires. They make an alliance with Wilson Fisk, a.k.a. the Kingpin, and that’s when we first meet Madame Gao and Nobu Yoshioka, both continued nuisances to Matt Murdock as the series progresses.Marvel StudiosThough Matt sets Nobu on fire at the end of the first season of Daredevil, the Hand resurrect him in the second. That’s when Matt’s former flame and current problem Elektra reappears. The Hand end up the persistent threat of the season, with Daredevil and the Punisher working together to defeat them and Elektra dying.The Hand later act as the main antagonists of both Iron Fist and The Defenders. Since the end of the Netflix shows, we hadn’t seen the Hand…until now!Will the Hand Be Spider-Man: Brand New Day‘s Main Enemy?We see two fairly major moments of Spider-Man facing off against the Hand in the trailer for Brand New Day. He grabs one of their swords in a prison, while unmasked. Then at the very end, Spider-Man jumps down as a horde of ninjas jump up at him. Both are the kind of 1-vs-100 battles we haven’t seen Spider-Man partake in much in the MCU thus far. The big question is whether the Hand are the main threat of the movie or merely a persistent irritation. Since we don’t really know who is behind Peter’s weird mutation, it’s possible the Hand and its shady dealings are behind it. It’s also possible they are involved in whatever the Punisher is doing. My guess would be Spider-Man will weave in and out of various plots as the film goes on, as he is wont to do.The Hand are an excellent and tough threat for any Marvel hero, but in my humble opinion, I doubt Sony’s interests would allow for a non-Spider-Man baddie to be the main baddie in a Spider-Man movie. I’ve been wrong before, of course. Sony/Marvel StudiosWe should find out soon. Spider-Man: Brand New Day will hit theaters July 31.Kyle Anderson is the Senior Editor for Nerdist. He hosts the weekly pop culture deep-dive podcast Laser FocusOpens in a new tab. You can find his film and TV reviews hereOpens in a new tab. Follow him on LetterboxdOpens in a new tab.This post has affiliate links, which means we may earn advertising money if you buy something. This doesn’t cost you anything extra, we just have to give you the heads up for legal reasons. Click away!
+"""
+
+[R4] Marvel Spider-Man 3D Hand Wall Mounted Deco Light
+(https://www.menkind.co.uk/marvel-spider-man-hand-3d-deco-light)
+"""
+Not Available MENKIND ABERDEEN Unit GS14A Union Square Shopping Centre Aberdeen, Scotland AB11 5RG Not Available MENKIND BASINGSTOKE Unit 33 Wesley Walk Basingstoke, England RG21 7BE Not Available MENKIND BIRMINGHAM BULLRING SU516A Birmingham, England B5 4BL Not Available MENKIND BLACKPOOL N16 Houndshill Blackpool, England FY1 4HU Not Available MENKIND BLUEWATER Unit U044 Upper Thames Walk Dartford, England DA9 9SH Not Available MENKIND BRADFORD SU22 Broadway Bradford, England BD1 1HA Not Available MENKIND BRIGHTON 55 Churchill Square Brighton and Hove, England BN1 2RG Not Available MENKIND BRISTOL 7 Broadmead Bristol, England BS1 3HF Not Available MENKIND BROMLEY Unit 51 Bromley, England BR1 1DD Not Available MENKIND CARDIFF Unit LG35 Saint Davids 2 Cardiff, Wales CF10 2ER Not Available MENKIND CHELMSFORD Unit 30-31 Chelmsford, England CM1 1XR Not Available MENKIND CRIBBS 124 The Mall Patchway, England BS34 5UP Not Available MENKIND CWMBRAN 1 The Mall Cwmbran Shopping Centre Cwmbran, Wales NP44 1PB Not Available MENKIND DERBY Unit 134 West Mall Derbion Shopping Centre Derby, England DE1 2BJ Not Available MENKIND DUNDEE Unit L16 Dundee, Scotland DD1 1UQ Not Available MENKIND EASTBOURNE The Beacon Unit 23 Eastbourne, England BN21 3NW Not Available MENKIND GATESHEAD 120 Saint Michaels Way Metrocentre, England NE11 9YG Not Available MENKIND GLASGOW BRAEHEAD Unit 104 Kings Inch Drive Glasgow, Scotland G51 4BS Not Available Menkind Glasgow Buchanan 220 Buchanan Street Glasgow, Scotland G1 2FF Not Available MENKIND GLASGOW FORT Unit B3 Garthamlock Road Glasgow, Scotland G34 9DL Not Available MENKIND Gloucester Quays Gloucester Quays Designer Outlet Saint Ann Way Gloucester, England GL1 5SH Not Available Menkind Guildford North St North Street Guildford, England GU1 4YT Not Available Menkind Hanley The Potteries Centre Quadrant Road, City Centre, Stoke-on-Trent, England ST1 1PS Not Available MENKIND HIGH WYCOMBE 33 Newlands Meadow High Wycombe, England HP11 2DQ Not Available MENKIND HULL Unit G32 Princes Quay Shopping Centre Hull, England HU1 2PQ Not Available MENKIND LAKESIDE 51 West Thurrock Way Grays, England RM20 2ZF Not Available MENKIND LEEDS WHITE ROSE Unit 24A White Rose Shopping Centre Leeds, England LS11 8LU Not Available MENKIND LEICESTER Unit 20 Highcross Lane Leicester, England LE1 4EP Not Available MENKIND LIVERPOOL 46 Lord Street Liverpool, England L2 1TD Not Available MENKIND LIVINGSTON 116 Almondvale North The Centre Livingston, Scotland EH54 6HT Not Available MENKIND MAIDSTONE 19-21 Fremlin Walk Maidstone, England ME14 1QG Not Available MENKIND MANCHESTER 29a Barbirolli Mall Manchester, England M4 3AQ Not Available MENKIND MEADOWHALL LANES Unit 24 Meadowhall Road Sheffield, England S9 1EP Not Available MENKIND MERRY HILL U69 Merry Hill Brierley Hill, England DY5 1QX Not Available MENKIND MILTON KEYNES 115 Silbury Boulevard Milton Keynes, England MK9 3AQ Not Available MENKIND NEWCASTLE Percy St Percy Street Newcastle upon Tyne, England NE1 7JB Not Available MENKIND NOTTINGHAM Unit 314 Lower Parliament Street Nottingham, England NG1 3QN Not Available MENKIND OXFORD Unit 19B Oxford, England OX1 1TR Not Available MENKIND PETERBOROUGH 87 Queensgate Peterborough, England PE1 1NS Not Available MENKIND PLYMOUTH 37 New George Street Plymouth, England PL1 1RA Not Available MENKIND PORTSMOUTH Unit 3 Portsmouth, England PO1 4RJ Not Available MENKIND READING Unit 33 Upper Ground Level The Oracle Centre Reading, England RG1 2AQ Not Available MENKIND REDDITCH 50 Evesham Walk Redditch, England B97 4EX Not Available MENKIND SOUTHAMPTON Unit SU48 Southampton, England SO15 1QB Not Available MENKIND Stirling 44 Thistle Centre Stirling, Scotland FK8 2EE Not Available MENKIND SWANSEA The Quadrant The Quadrant Swansea, Wales SA1 3QW Not Available MENKIND TELFORD 142 New Street Telford, England TF3 4BP 5 Available for Click & Collect MENKIND TRAFFORD 27 The Trafford Centre Manchester, England M17 8AR Not Available MENKIND WARRINGTON Unit su48 Warrington, England WA1 1QP Not Available MENKIND WESTFIELD LONDON 4006 Ariel Way London, England W12 7SL Not Available MENKIND WORCESTER Chapel Walk Chapel Walk Worcester, England WR1 3LD Not Available MENKIND YORK - CITY CENTRE 40 Coney Street York, England YO1 9ND
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

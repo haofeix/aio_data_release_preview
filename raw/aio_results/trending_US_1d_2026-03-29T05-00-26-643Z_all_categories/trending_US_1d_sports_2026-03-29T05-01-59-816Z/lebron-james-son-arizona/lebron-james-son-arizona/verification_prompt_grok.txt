@@ -1,0 +1,113 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "lebron james son arizona"
+
+Claims:
+[1] "Bryce James is the youngest son of LeBron James."
+[2] "Bryce James is a 6'5" freshman guard for the Arizona Wildcats as of the 2025-2026 season."
+[3] "Bryce James committed to the University of Arizona in early 2026."
+[4] "Bryce James opted to redshirt his freshman year."
+[5] "Bryce James practiced with the Arizona Wildcats during their 2026 NCAA tournament run."
+[6] "Bryce James was born June 14, 2007."
+[7] "Bryce James played high school basketball at Sierra Canyon."
+[8] "Bryce James chose Arizona over other offers, including Ohio State and Duquesne."
+[9] "Bryce James did not appear in games during the 2025-26 season due to his redshirt status."
+[10] "Bryce James is part of the Wildcats' roster."
+[11] "Bryce James is active in team development."
+[12] "Bryce James is the younger brother of Bronny James."
+[13] "Bryce James is the second son of LeBron and Savannah James."
+
+Cited text snippets from the AI Overview (for additional context):
+- Bryce James, LeBron's son, will redshirt as a freshman - NBA: "Bryce James, youngest son of,top-ranked Wildcats this season.&text=Bryce James, youngest son of LeBron James, will redshirt his,TUCSON, Ariz."
+- LeBron James Sends 4-Word Message on Bryce James, Arizona in Final Four: "King James' son, Bryce James,game in the Final Four."
+- Bryce James, LeBron's Son, Redshirts Freshman Season at Arizona: "The 18-year-old guard,over the next four years."
+- BREAKING 🚨: The college basketball world fell into stunned silence ...: "BREAKING: Bryce James, the son,to join the Arizona Wildcats."
+- LeBron supporting his son Bryce's squad as they punched their ...: "Los Angeles Lakers star LeBron,his youngest son's basketball decision."
+- Is Bryce James Related to LeBron James? A Look at the Arizona ...: "to LeBron James?-,A Look at the Arizona Guard's Family and Ties to,guard and the Lakers legend.&text=Bryce James is the second,FREE College Basketball Bracket Predictor!"
+Reference Sources:
+
+[R1] Is Bryce James Related to LeBron James? A Look at the Arizona Guard's Family and Ties to the Lakers Legend
+(https://www.profootballnetwork.com/mens-cbb/is-bryce-james-related-to-lebron-james-march-2026/)
+"""
+Bryce James is the second son of NBA superstar LeBron James and his wife, Savannah James. Born June 14, 2007, in Cleveland, Bryce Maximus James is a freshman guard for the Arizona Wildcats. He is following in the footsteps of his legendary father and older brother, Bronny James, who plays for the Los Angeles Lakers. Bryce James’ Arizona Journey Begins With Redshirt Decision The 18-year-old shooting guard stands 6-foot-5 and weighs 195 pounds. He wears No. 6 for the Wildcats, though he has redshirted his freshman season and has not appeared in any games during the 2025-26 campaign. Bryce is the middle child of the James family. His older brother, Bronny, made history in October 2024 when he and LeBron became the first active father-son duo to play together in the NBA. His younger sister, Zhuri Nova James, was born in 2014 and has already made a name for herself in the fashion world, and plays volleyball. MARCH MADNESS: Fill In Your Bracket Now! While Bryce graduated from Sierra Canyon in 2025, he did not spend all four years there. He briefly transferred to Campbell Hall and then Notre Dame High School in Sherman Oaks in 2023 before returning to Sierra Canyon for his junior and senior seasons. He averaged 7.4 points, 2.4 rebounds, and 2.1 assists per game in high school. During his senior season, he was named MVP of a game against Grayson High School in the Spalding Hoophall Classic after posting 16 points, five rebounds, and four steals in 17 minutes off the bench. His senior year also saw him play alongside Bronny before the latter left for college. In the summer of 2024, Bryce played on the Nike EYBL circuit with Strive For Greatness, where he averaged 6.9 points, 2.2 rebounds, and shot 36.8% from 3-point range over 14 games. He was also invited to the USA Basketball U17 national team training camp in June 2024, showcasing his potential at the national level. His recruitment garnered significant attention, and on Aug. 22, 2022, he received his first Division I scholarship offer from Duquesne University while still just 15 years old. On Jan. 1, 2025, Bryce announced his commitment to the University of Arizona to play for head coach Tommy Lloyd and the Wildcats. He officially signed with the program on April 17, 2025, graduating from Sierra Canyon in May 2025 before heading to Tucson. However, after not appearing in any games to start the 2025-26 season, Bryce decided to redshirt his freshman year, preserving four years of eligibility for future seasons. MORE: Koa Peat NBA Draft Projections: How High Will the Arizona Star Get Drafted? In December 2022, Bryce signed with Klutch Sports for NIL representation, the agency founded by Rich Paul that also represents his father and brother. He has endorsement deals in place and is expected to have significant earning potential from his name, image, and likeness opportunities at Arizona. Like Bronny before him, Bryce has built a large social media following and will continue to live under the spotlight as he develops his game in college. LeBron James has been vocal about his desire to eventually play in the NBA alongside both of his sons, a dream he has already fulfilled with Bronny. Whether Bryce will follow that same path to the professional level remains to be seen, but his talent, pedigree, and work ethic have him positioned to make his own mark on the basketball world in the coming years.
+"""
+
+[R2] LeBron James sends 5-word message on Bryce James, Arizona in Final Four
+(https://www.newsweek.com/sports/nba/lebron-james-sends-4-word-message-on-bryce-james-arizona-in-final-four-11752960)
+"""
+LeBron James never played any college basketball, but he has a strong interest in the game at all levels, including the recent March Madness games that have now yielded two Final Four teams.On Saturday, the Elite Eight officially tipped off with Illinois taking on Iowa in the first game. The Fighting Illini fought back to take a lead in the second half and ultimately cruised to a 72-59 win to claim their region and earned the first spot of the four available in the Big Dance.The nightcap brought the No. 1 seed Arizona Wildcats to the court as they battled a tough Purdue Boilermakers team from the Big Ten. Arizona trailed early but found its momentum in the second half and got things rolling, en route to a 79-64 victory that gave them the second spot in the Final Four.Koa Peat scored 20 points in the win, while Ivan Kharchenkov contributed 18. Braden Burries and Jaden Bradley added 14 apiece as the Wildcats continue to look like a solid contender for the National Championship.Read more: Lakers’ Bronny James Upsetting LeBron in 1-on-1 With Wild AftermathMIAMI, FLORIDA - MARCH 19: LeBron James #23 of the Los Angeles Lakers looks on against the Miami Heat during the fourth quarter at Kaseya Center on Ma... | Photo by Rich Storry/Getty ImagesArizona's win over Purdue had plenty of fans excited as they'll now return to the Final Four for the sixth time in school history, hoping to add another championship to their program. One of the fans celebrating the win was proud father, LeBron James, who sent a four-word message on X (formerly Twitter)."[Cat emoji] DOWN!!!! FINAL [four emoji] BOUND," he shared in his simple message, also tagging the Wildcats' men's basketball X account.King James' son, Bryce James, a 6-foot-4 shooting guard and small forward, is currently a member of the Arizona Wildcats roster. Although he chose to redshirt as a freshman, he's still associated with the squad's run in the NCAA Tournament and practices with the team.The Wildcats now await the winner of the Michigan vs. Tennessee game in the Final Four.LeBron's other son, Bronny James, attended the University of Southern California for one year, then opted to take his talents to the NBA. He played in 25 games and started six, finishing with averages of 4.8 points, 2.8 rebounds, and 2.1 assists in 19.3 minutes per game.After becoming a second-round draft pick last year, Bronny has spent time in the G League and also comes off the bench for the Lakers. He and LeBron achieved a historic father-son moment in last night's win over the Brooklyn Nets when Bronny received an assist from LeBron to knock down a three-pointer.Following the game, LeBron spoke highly of Bronny's progress with his basketball skills following a cardiac arrest scare in 2023, and it seems to show how proud he is of his sons following in his footsteps.Read more: LeBron James Says Bronny Is Returning to Form After Lakers WinFor more about college basketball, visit Newsweek Sports.
+"""
+
+[R3] Bryce James - Men's Basketball - University of Arizona Athletics
+(https://arizonawildcats.com/sports/mens-basketball/roster/bryce-james/18563)
+"""
+Skip To Main Content Pause All Rotators 2025-26 Men's Basketball Roster Choose a Player: Aristode, Dwayne Arnold, Addison Awaka, Tobe Bradley, Jaden Burries, Brayden Cook, Jackson Dell'Orso, Anthony Djopmo, Sven Francois, Jackson Gueye, Sidi James, Bryce Kharchenkov, Ivan Krivas, Motiejus Mawut, Mabil Nelson, Evan Peat, Koa Go Bio Related Stats Biography FOLLOW ON SOCIAL MEDIA @_justbryce @brycemaximusjames_ PRIOR TO ARIZONA Played all four years of high school basketball at Sierra Canyon High School, where he helped them to the CIF State Division 1 championship in 2025 Averaged eight points and four rebounds per game as a senior at Sierra Canyon Posted 16 points in 17 minutes off the bench and was named MVP of the game against Grayson (Georgia) in the Spalding Hoophall Classic; he also added five rebounds and four steals Played on the Nike EYBL circuit with Strive For Greatness in 2024 and averaged 6.9 points, 2.2 rebounds and shot 36% from the 3-point line over 14 games Was invited to USA Basketball U17 national team training camp in June 2024 Parents are Lebron and Savannah James Has one older brother, Bronny, and a younger sister, Zhuri Related Content There is no related content available. Related Headlines Related Press Clips Related Videos Related Photos Statistics Partners Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window Opens in new window PreviousNext Ad Blocker Detected Thanks for visiting arizonawildcats.com! The use of software that blocks ads hinders our ability to serve you the content you came here to enjoy. We ask that you consider turning off your ad blocker so we can deliver you the best experience possible while you are here. Thank you for your support! Learn More About Ad Blockers Close
+"""
+
+[R4] Bryce James, LeBron's Son, Redshirts Freshman Season at Arizona - Cleveland Today
+(https://nationaltoday.com/us/oh/cleveland/news/2026/03/28/bryce-james-lebrons-son-redshirts-freshman-season-at-arizona/)
+"""
+Mar. 28, 2026 at 7:23pm Got story updates? Submit your updates here. ›The James family's basketball legacy continues as Bryce, the middle child, begins his own college journey at Arizona.Cleveland TodayBryce James, the second son of NBA legend LeBron James, has decided to redshirt his freshman season with the Arizona Wildcats. The 18-year-old 6'5" guard, who wears No. 6 for the Wildcats, graduated from Sierra Canyon High School in 2025 and committed to play for head coach Tommy Lloyd and the University of Arizona. Though he did not appear in any games this season, Bryce is expected to have significant earning potential from NIL deals as he develops his game over the next four years. Why it matters The James family has a long history in basketball, with LeBron becoming an NBA superstar and his older son Bronny recently joining him in the league. Bryce's decision to redshirt his freshman season at Arizona allows him to preserve four years of eligibility and continue honing his skills before potentially following in his father and brother's footsteps to the professional ranks. The details Bryce James was born in 2007 in Cleveland, Ohio to LeBron and Savannah James. He is the middle child, with an older brother Bronny who plays for the Los Angeles Lakers and a younger sister Zhuri who is making a name for herself in fashion and volleyball. Bryce played high school basketball at Sierra Canyon, Campbell Hall, and Notre Dame High School, averaging 7.4 points, 2.4 rebounds, and 2.1 assists per game. He was named MVP of a game at the Spalding Hoophall Classic during his senior season. Bryce signed with Klutch Sports, the agency founded by his father's agent Rich Paul, and has endorsement deals in place to capitalize on his NIL opportunities at Arizona. Bryce James was born on June 14, 2007 in Cleveland, Ohio.In 2023, Bryce briefly transferred to Campbell Hall and Notre Dame High School before returning to Sierra Canyon for his junior and senior seasons.In the summer of 2024, Bryce played on the Nike EYBL circuit with Strive For Greatness.In June 2024, Bryce was invited to the USA Basketball U17 national team training camp.On August 22, 2022, Bryce received his first Division I scholarship offer from Duquesne University at age 15.On January 1, 2025, Bryce announced his commitment to the University of Arizona.Bryce officially signed with Arizona on April 17, 2025 and graduated from Sierra Canyon in May 2025.For the 2025-26 season, Bryce decided to redshirt his freshman year at Arizona. The players Bryce JamesThe 18-year-old freshman guard for the Arizona Wildcats, and the second son of NBA superstar LeBron James.LeBron JamesAn NBA legend and Bryce's father, who has expressed a desire to one day play in the NBA alongside both of his sons.Bronny JamesBryce's older brother, who made history in 2024 by becoming the first active father-son duo to play together in the NBA when he joined the Los Angeles Lakers.Zhuri Nova JamesBryce's younger sister, who has already made a name for herself in the fashion world and plays volleyball.Tommy LloydThe head coach of the Arizona Wildcats, who Bryce committed to play for in 2025. Got photos? Submit your photos here. › What’s next Bryce James will look to make an impact for the Arizona Wildcats in the 2026-27 season after redshirting his freshman year. His development and potential to follow in his father and brother's footsteps to the NBA will be closely watched. The takeaway The James family's basketball legacy continues with Bryce James, who is taking a patient approach to develop his game at the college level before potentially making a run at the NBA like his father LeBron and older brother Bronny.
+"""
+
+[R5] Bryce James, LeBron's son, will redshirt as a freshman
+(https://www.nba.com/news/bryce-james-lebron-son-redshirt)
+"""
+SchedulePlayoff PictureBAL 2026League PassGamesWatchNewsStatsStandingsTeamsPlayersNBA PlayFantasyStoreTicketsAffiliatesTop StoriesBryce James, youngest son of LeBron, will redshirt freshman year at ArizonaThe 6-foot-5 guard has yet to appear in a game for the top-ranked Wildcats this season.The Associated PressFebruary 4, 2026 12:41 AMBryce James, youngest son of LeBron James, will redshirt his freshman year with the Arizona Wildcats. TUCSON, Ariz. (AP) — Bryce James, youngest son of NBA star LeBron James, is going to redshirt his freshman year at Arizona. James has yet to appear in a game for the top-ranked Wildcats this season and coach Tommy Lloyd confirmed on Tuesday the 6-foot-5 guard will redshirt. “The redshirting decision was just a long play, to give Bryce the most options in his career as his career unfolds,” Lloyd told the Big 12 Network. “I have real strong belief that Bryce will be a contributor at Arizona in the near future. He’s really shown a lot of progress, not only learning our system but just physically maturing.” James arrived at Arizona as part of a heralded freshman class headlined by Koa Peat and Brayden Burries. The Wildcats (22-0) are off to the best start in program history, so Lloyd and his staff have been able to take their time in developing James, whose older brother, Bronny, plays with their father for the Los Angeles Lakers. RelatedRelatedJanuary 10, 2024June 28, 2024October 7, 2024October 1, 2025Latest4 hours ago4 hours ago8 hours ago5 hours ago5 hours ago10 hours agoYour Privacy ChoicesWe use cookies and other tracking technologies on our online services. Through these technologies, we and certain third parties may collect information about your interactions with our online services to enhance the browsing experience, analyze site traffic, and personalize content and ads. By using our online services, you confirm your agreement to the use of these technologies. See our Cookie Policy for more details. By using our online services, you agree to our Terms of Use and acknowledge our Privacy Policy. Reject Advertising Cookies I UnderstandEnter your email to create an NBA IDclose email sign up bannerGet more from the league you loveSign up for your free NBA ID to personalize your experience and earn exclusive benefits.Please enter aboveCreate My NBA IDClick "Create My NBA ID" to agree to our Terms of Use and to sign up for emails about the latest news and products from the NBA and its partners. By clicking submit, you also acknowledge our Privacy Policy.close email sign up banner
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

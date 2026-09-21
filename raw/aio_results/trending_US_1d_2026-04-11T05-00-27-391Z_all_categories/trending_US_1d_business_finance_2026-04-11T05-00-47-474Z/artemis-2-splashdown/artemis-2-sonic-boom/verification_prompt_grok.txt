@@ -1,0 +1,105 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "artemis 2 sonic boom"
+
+Claims:
+[1] "The Artemis II Orion spacecraft is expected to create a powerful sonic boom over Southern California on April 10, 2026."
+[2] "The sonic boom occurs during the Artemis II Orion spacecraft's high-speed re-entry at ~24,000 mph."
+[3] "The sonic boom occurs around 5 p.m. to 5:15 p.m. PT."
+[4] "A video explains how researchers will use the sonic boom from the Artemis II re-entry to calibrate their sensors."
+
+Cited text snippets from the AI Overview (for additional context):
+- 2 sonic booms possible in California? Artemis II splashdown, SpaceX launch: "The thunderous vibration will likely,fly at a southern trajectory."
+- San Diego may hear sonic boom before Artemis II splashdown: "The Artemis II mission,2:51"
+- Artemis II reentry will create a sonic boom. Here's how to report it: "Southern Californians might hear a sonic boom,off the coast of San Diego Friday"
+- Artemis II reentry: Will a sonic boom be heard? https://www.cbs42. ...: "💥 What people might experience,more local to national stories."
+- Did you feel it? As Artemis II nears reentry, scientists want to know ...: "For example, meteorites and space,appeared in Los Angeles Times."
+- Artemis reentry sonic boom off San Diego - Facebook: "Artemis crew to splash down near San Diego&text=The Artemis crew is scheduled,coverage on their YouTube channel.&text=🚨 It's happening tonight!,leap toward future lunar missions."
+- Sonic Booms from Artemis II's Return to Earth May Reach Santa Barbara ...: "Ahead of the historic moment,parts of Santa Barbara County."
+Reference Sources:
+
+[R1] Did you feel it? As Artemis II nears reentry, scientists want to know how far the sonic boom travels
+(https://www.yahoo.com/news/articles/did-feel-artemis-ii-nears-200453091.html)
+"""
+Southern Californians may hear a distinct "boom" around 5 p.m. Friday as NASA's Artemis II moon flyby mission makes its energetic reentry off the coast of San Diego, the U.S. Geological Survey said.USGS does not know how far up and down the coast — or how far inland — Californians will be able to hear this sonic boom, produced as the capsule breaks the sound barrier as it slows down, said John Bellini, a geophysicist with the agency.For this reason, USGS is asking for the public's help: Californians can report whether or not they heard the boom to the agency's "Did You Feel It" survey.This information, Bellini said, will help scientists better predict sonic booms in the future, which are dependent on a variety of atmospheric conditions."Since this is a known source with a relatively known location and time of occurrence, people reporting this can help us in the future to better characterize unknown sources of a similar type," he said.NASA astronaut and Artemis II Pilot Victor Glover in the Orion spacecraft during the Artemis II lunar flyby. (NASA via Getty Images)For example, meteorites and space debris piercing the atmosphere can produce sonic booms — as can supersonic tests from the military and private aerospace companies.While Southern Californians might hear the intense reentry, NASA isn't so confident they'll be able to see it.However, Aaron Rosengren, assistant professor of space systems at UC San Diego, is more optimistic."The weather is quite nice today," he said. "If you have any view along the Southern Coast and you're looking westward along the horizon, you should be able to see a faint light in the sky as it reenters."Rosengren expects that streak in the sky to last less than a minute.The Artemis II crew, the first to reach the moon in a half-century, will slam into the atmosphere at 30 times the speed of sound, generating a fireball of nearly 5,000 degrees Fahrenheit around the capsule.When Artemis II pilot and SoCal native Victor Glover was asked Wednesday evening about the moments from this mission he’ll carry with him for the rest of his life, he joked: “We’ve still got two more days, and riding a fireball through the atmosphere is profound as well.”This story originally appeared in Los Angeles Times.
+"""
+
+[R2] San Diego may hear sonic boom before Artemis II splashdown
+(https://www.nbcsandiego.com/news/local/san-diego-may-hear-sonic-boom-during-artemis-ii-splashdown/4008141/)
+"""
+NASA scientists say you probably won't see Artemis II splash down off San Diego's coast on Friday — but you might hear it or feel it, according to the U.S. Geological Survey. The San Diego-based USS John P. Murtha was staged in the Pacific Ocean about 50 miles from San Diego, ready to recover the astronauts and the space capsule. The USGS says a sonic boom as the spacecraft re-enters the atmosphere and could potentially be felt and heard throughout Southern California at some point between 5 p.m. and 5:15 p.m. on Friday. The agency also wants people to report hearing it on their "Did You Feel It" survey. 4:23San Diego families watch Artemis II splash down off coast Families witnessed history in the making as Artemis II returned home miles off San Diego's coast. NBC 7's Joe Little reports live from the San Diego's Air & Space Museum in Balboa Park. To space, and beyond! 2:26Hundreds gathered in San Diego to watch the historic Artemis II return to Earth At a time of world conflict, politics and heavy news, this event proved to be a tonic to celebrate scientific achievement, unity, and to inspire. NBC 7's Jeanette Quezada has the excitement from a watch party at the San Diego Air & Space Museum in Balboa Park. The Artemis II mission The Artemis II mission sent humans to lunar orbit for the first time since the 1972 Apollo 17 mission. The four-person crew is expected to return with a splashdown about 50 miles off the coast of San Diego on Friday. Spacecraft pilot Glover, NASA astronauts Reid Wiseman and Christina Koch, and Canadian Space Agency astronaut Jeremy Hansen, were the first to return to Earth from an orbit around the moon in more than 50 years. The Artemis II mission also made history as the furthest humans have ever soared away from Earth. While all eyes are on the launch and 10-day lunar orbit that will follow, there is the splashdown, the final phase of the mission. “The mission isn't complete until we ensure the safety and the return of the crew back home,” Seiler said. 2:51Naval ship staged for Artemis II recovery off San Diego coast USS John P. Murtha amphibious naval ship is already staged in the Pacific, ready for the recovery. NBC 7's Brooke Martell walks us through the splashdown process, and the key role San Diego plays in getting the four astronauts safely back to land. Around 100 NASA and contractor personnel, in addition to support from the United States Navy, are in place for when the Orion spacecraft splashes down in the Pacific Ocean, some 50 miles off the coast of San Diego. In the recovery operation, a naval ship will be out at sea to transport the astronauts and spacecraft after splashdown. “We deploy from the Naval Base San Diego, approximately three to four days before splashdown. What we do is we position ourselves about what we consider our midway point, and we will be ready at the splashdown location within 24 hours, just prior,” Seiler said. They’ll be waiting for the entry interface, which is when the spacecraft and astronauts will re-enter the atmosphere. The team waiting at sea will follow the spacecraft with their imagery helicopter equipment through splashdown, monitoring any jettison debris that comes off the spacecraft once it hits the atmosphere, according to Seiler.
+"""
+
+[R3] Artemis II reentry will create a sonic boom. Here’s how to report it - Los Angeles Times
+(https://www.latimes.com/science/story/2026-04-10/artemis-ii-reentry-will-create-sonic-boom-heres-how-to-report-it)
+"""
+Jared Daum, an aerospace engineer at NASA’s Johnson Space Center, displays the Orion spacecraft’s parachute system on Thursday in Houston. (Ronaldo Schemidt / AFP via Getty Images) Click here to listen to this article Southern Californians may hear a distinct “boom” around 5 p.m. Friday as NASA’s Artemis II moon flyby mission makes its energetic reentry off the coast of San Diego, the U.S. Geological Survey said.USGS does not know how far up and down the coast — or how far inland — Californians will be able to hear this sonic boom, produced as the capsule breaks the sound barrier as it slows down, said John Bellini, a geophysicist with the agency.For this reason, USGS is asking for the public’s help: Californians can report whether or not they heard the boom to the agency’s “Did You Feel It” survey.This information, Bellini said, will help scientists better predict sonic booms in the future, which are dependent on a variety of atmospheric conditions.“Since this is a known source with a relatively known location and time of occurrence, people reporting this can help us in the future to better characterize unknown sources of a similar type,” he said. NASA astronaut and Artemis II Pilot Victor Glover in the Orion spacecraft during the Artemis II lunar flyby. (NASA via Getty Images) For example, meteorites and space debris piercing the atmosphere can produce sonic booms — as can supersonic tests from the military and private aerospace companies.While Southern Californians might hear the intense reentry, NASA isn’t so confident they’ll be able to see it.However, Aaron Rosengren, assistant professor of space systems at UC San Diego, is more optimistic. “The weather is quite nice today,” he said. “If you have any view along the Southern Coast and you’re looking westward along the horizon, you should be able to see a faint light in the sky as it reenters.”Rosengren expects that streak in the sky to last less than a minute.The Artemis II crew, the first to reach the moon in a half-century, will slam into the atmosphere at 30 times the speed of sound, generating a fireball of nearly 5,000 degrees Fahrenheit around the capsule.When Artemis II pilot and SoCal native Victor Glover was asked Wednesday evening about the moments from this mission he’ll carry with him for the rest of his life, he joked: “We’ve still got two more days, and riding a fireball through the atmosphere is profound as well.” More to Read Noah Haggerty is an environment and science reporter at the Los Angeles Times covering wildfire in the American West. A graduate of Northeastern University, he has a background in physics research, focusing on spacecraft propulsion and fusion energy. Haggerty joined The Times in 2024 as an AAAS Mass Media Fellow. More From the Los Angeles Times
+"""
+
+[R4] Sonic Booms from Artemis II’s Return to Earth May Reach Santa Barbara County
+(https://www.independent.com/2026/04/10/sonic-booms-from-artemis-iis-return-to-earth-may-reach-santa-barbara-county/)
+"""
+USGS Asks Residents to Fill Out Its ‘Did You Feel It’ Survey Following Friday’s Splashdown NASA’s Orion spacecraft captures the Moon and the Earth in one frame during the Artemis II crew’s deep space journey at 6:42 p.m. ET on the sixth day of the mission. | Credit: Courtesy USGS After circling the moon and in the process traveling farther into space than any humans in history, Artemis II’s crew is returning to Earth. This Friday, the capsule carrying the four record-setting astronauts — NASA astronauts Reid Wiseman, Victor Glover (a Cal Poly alum), and Christina Koch and Canadian Space Agency astronaut Jeremy Hansen — is scheduled to splash down in the Pacific Ocean off the coast of San Diego, concluding a 10-day voyage that marks NASA’s first crewed mission to the moon in more than 50 years. Ahead of the historic moment, the U.S. Geological Survey put out a notice that the spacecraft’s return is expected to produce sonic booms that could be felt and heard throughout Southern California, including parts of Santa Barbara County. “During Friday’s Artemis II re-entry, we will be deploying seismic and acoustic instrumentation at sea across the Southern California Bight to record the sonic boom produced by the capsule’s re-entry,” the USGS wrote in an email shared by a user on Reddit. “Modelling indicates that the acoustic signal may be audible on land in some areas Santa Barbara County and Baja California, including the Channel Islands.” On its Facebook, the USGS states the sonic booms are expected between 5 and 5:15 p.m. local time as the spacecraft reenters Earth’s atmosphere. Whether or not you hear or feel sonic booms, the USGS asks residents to fill out its “Did You Feel It” survey, which can be found here. You can watch a livestream of the splashdown on NASA’s YouTube or X accounts, as well as on its website or TV app.
+"""
+
+[R5] Sonic booms in California? Possibly from Artemis II splashdown, SpaceX launch
+(https://www.floridatoday.com/story/tech/science/space/2026/04/10/sonic-boom-california-artemis-splashdown-spacex-rocket-launch/89558103007/)
+"""
+SPACE2 sonic booms possible in California? Artemis II splashdown, SpaceX launchWhat are sonic booms? Thunderous vibration will likely take place between 5 and 5:15 pm PT Friday, April 10, 2026. SpaceX Falcon 9 rocket launch set for 7:39 PT same night.Eric Lagatta Natalie Neysa Alund Jennifer SangalangUSA TODAY NETWORK - FloridaApril 10, 2026, 5:26 p.m. ETA sonic boom will herald the end of the record-setting Artemis II mission after a California splashdown.Hours later, there might be another one.The U.S. Geological Survey said to expect a sonic boom after NASA Artemis II's Orion capsule streaks through the atmosphere during its return to Earth in a planned water landing off the coast of San Diego.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

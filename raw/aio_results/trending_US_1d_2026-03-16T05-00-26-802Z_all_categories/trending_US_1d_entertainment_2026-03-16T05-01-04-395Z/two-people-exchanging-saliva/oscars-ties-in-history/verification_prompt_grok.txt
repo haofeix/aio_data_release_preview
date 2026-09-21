@@ -1,0 +1,92 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "oscars ties in history"
+
+Claims:
+[1] "Seven ties have been officially recorded at the Oscars."
+[2] "The Academy Awards have nearly 100 years of history."
+[3] "The most recent tie at the Oscars occurred at the 2026 ceremony."
+[4] "Ties at the Oscars require exact vote matches."
+[5] "Ties at the Oscars occur primarily in short-film, documentary, or technical categories."
+[6] "Acting awards at the Oscars have tied in the past."
+[7] "Major awards at the Oscars have tied in the past."
+
+Cited text snippets from the AI Overview (for additional context):
+- A (Brief) History of Ties at the Oscars - Vogue: "By Emma Specter,category at the 2026 Oscars."
+- Oscars shock with one of the only ties in history — 'I'm not joking': "Brendan Morrow,up to give a speech."
+- Has there ever been a tie at the Oscars?: "That gives you an idea,Entertainment Reporter"
+Reference Sources:
+
+[R1] From Barbra Streisand to ‘Zero Dark Thirty’: A (Brief) History of Ties at the Oscars
+(https://www.vogue.com/article/brief-history-of-ties-at-the-oscars-since-1932)
+"""
+March 15, 2026Ingrid Bergman, shocked and awed to announce the tie between Barbra Streisand (for Funny Girl) and Katharine Hepburn (for The Lion in Winter) at the 1969 Academy Awards.The Oscars aren’t immune from unplanned strangeness (after all, who can forget 2017’s Moonlight vs. La La Land best-picture mix-up and all the inimitable celebrity reactions it spawned?), but sometimes, the shocker is coming from inside the Academy.There have been a whopping seven ties over the Oscars’ nearly 100-year history, with the latest taking place on Sunday night, when Sam Davis’s The Singers and Alexandre Singh and Natalie Musteata’s Two People Exchanging Saliva both won in the best-live-action-short category at the 2026 Oscars.Get the latest fashion stories, style, and tips, handpicked for you, everyday.Vogue Daily NewsletterHere—for the Hollywood trivia fans out there—we’ve rounded up the rest of the Oscars’ shocking ties. Revisit every one below.Fredric March and Wallace Beery for Best Actor, 1932Photo: Getty ImagesMarch technically beat out Beery by one vote, but they both took home Oscar statuettes that night (and forced the Academy to change its rules with their tandem wins).So Much for So Little and A Chance to Live for Best Documentary Short, 1950Thanks to the magic of YouTube, you can actually watch at least one of these Oscar-winning short films above (and marvel at how far we’ve come).Katharine Hepburn and Barbra Streisand for Best Actress, 1969Oh, Ingrid Bergman was delighted about this one, you could tell. It’s only too bad that Hepburn wasn’t there to share in the excitement.Artie Shaw: Time is All You’ve Got and Down and Out in America for Best Documentary (Feature), 1987Sure, a tie might not be any filmmaker’s explicit Oscars dream, but it’s still pretty damn good (especially when Oprah is informing you that you’ve made one of the two top documentary features of the year!).Most PopularTrevor and Franz Kafka’s It’s A Wonderful Life for Best Live-Action Short Film, 1995“It’s a tie! Oh, mon Dieu,” said presenter Tim Allen as he awarded the Oscar to two different live-action short films for the first (but not last!) time in Oscars history.Zero Dark Thirty and Skyfall for Best Sound Editing, 2013Both of these films were nominated for a slew of different Oscars in 2013, so it’s safe to say that nobody went home a loser.The Singers and Two People Exchanging Saliva for Best Live-Action Short, 2026Most PopularAm I the only one who thought presenter Kumail Nanjiani was doing a comedy-boy prank when he announced that these two films had tied for the Oscar? As it turns out, he was not.Emma Specter is the Culture Writer at Vogue, where she covers film, TV, books, politics, news, and (almost) anything queer. She has previously worked at Garage and LAist and has freelanced for outlets including The Hairpin, Bon Appetit, them, The Hollywood Reporter, and more. Her first book, More Please: On ... Read MoreGet the latest fashion stories, style, and tips, handpicked for you, everyday.Vogue Daily Newsletter
+"""
+
+[R2] Has there ever been a tie at the Oscars?
+(https://mashable.com/article/oscars-ties-academy-awards)
+"""
+In what is sure to be one of the most surprising moments of the 2026 Oscars, two films tied for the Academy Award for Best Live Action Short: The Singers and Two People Exchanging Saliva.As surprising as the moment was, it's not the first time the Oscars have seen a tie. In fact, it has happened six times before. The first tie occurred at the 5th Academy Awards in 1932, when Fredric March and Wallace Beery won for their performances in Dr. Jekyll and Mr. Hyde and The Champ, respectively. March actually received one more vote than Beery. However, due to rules stating that anyone who came within three votes of the winner would also receive the award, both actors took home the trophy. The rules have since been changed so that only an exact tie will count. That gives you an idea of just how rare the next ties were. In 1950, at the 22nd Academy Awards, documentary shorts A Chance to Live and So Much for So Little tied for Best Documentary (Short Subject). At the 41st Academy Awards in 1969, Katharine Hepburn (The Lion in Winter) and Barbra Streisand (Funny Girl) tied for Best Actress for their work. Mashable Top Stories Documentaries Artie Shaw: Time Is All You've Got and Down and Out in America tied for Best Documentary at the 59th Oscars in 1987.The Singers and Two People Exchanging Saliva aren't the first Best Live Action Shorts to tie. Back in 1995, Franz Kafka's It's a Wonderful Life and Trevor both won the Oscar.The last tie before 2026 was in 2013, at the 85th Academy Awards, when Skyfall and Zero Dark Thirty took home the Oscar for Best Sound Editing.With The Singers and Two People Exchanging Saliva join these films in the Oscar Tie club, which is rare enough that "you just ruined 22 million Oscar pools," host Conan O'Brien joked.Mashable’s covering all things Oscars 2026, from Academy Awards live updates to red carpet style and the wildest moments from the show. Check back at Mashable.com throughout the night for winners announcements and more. UPDATE: Mar. 16, 2026, 9:57 a.m. EDT An earlier version of this article incorrectly identified "The Singers" as "The Swimmers."
+"""
+
+[R3] Oscars shock with one of the only ties in history — 'I'm not joking'
+(https://www.usatoday.com/story/entertainment/movies/2026/03/15/oscars-tie-how-many-in-history/89174063007/)
+"""
+March 15, 2026Updated March 16, 2026, 11:13 a.m. ETIt's a tie!The Oscars on Sunday featured one of the only ties in the awards show's nearly 100-year history. In the category of best live-action short film, there were not one, but two winners: "The Singers" and "Two People Exchanging Saliva."This was only the seventh tie ever at the Oscars, and the first in the live-action short category since 1995. The most recent Oscar tie was in 2013, when there were two winners in the category of sound editing: "Skyfall" and "Zero Dark Thirty."Before that, the previous Oscar tie was in 1995, when there were two winners for the live-action short Oscar: "Franz Kafka's It's a Wonderful Life" and "Trevor."'I'm not joking,' says Kumail Nanjiani, announcing Oscars tieThe category was presented by Kumail Nanjiani, who, upon opening the envelope, announced, "It's a tie. I'm not joking. It's actually a tie. So everyone, calm down, we're going to get through this."The comedian went on to name "The Singers," and its filmmakers came up to give a speech. He then named "Two People Exchanging Saliva," and the winners from that short came up to give their own, separate speech."Ironic that the short film Oscar is going to take twice as long," Nanjiani quipped before setting up the second speech.Host Conan O'Brien soon after returned to the stage to joke, "I just want to say congratulations to both winners: You just ruined 22 million Oscar pools."Other previous Oscar ties have occurred in categories including best actor and best actress; in 1969, both Katharine Hepburn from "The Lion in Winter" and Barbra Streisand from "Funny Girl" received the Academy Award for best actress.There was also a best actor tie at the 1932 Oscars, between Fredric March from "Dr. Jekyll and Mr. Hyde" and Wallace Beery from "The Champ." The Academy notes, though, that this was not a true tie because March earned one more vote, but the rules dictated that a nominee would receive an award if they came within three votes of the actual winner. That rule has since been changed.Mark Wahlberg presented the most recent Oscar tie in 2013, where he was joined by the animated character Ted, voiced by Seth MacFarlane. "We have a tie," Wahlberg said at the time, drawing gasps. "No BS. We have a tie."'The Singers,' 'Two People Exchanging Saliva' winners react to shocking Oscars tieThe Oscars may be a competition, but in the pressroom, "The Singers" and "Two People Exchanging Saliva" filmmakers were all smiles as they reflected on their shocking tie."For me, that was incredible," Jack Piatt, producer for "The Singers," said. "We got to know all the filmmakers in our category, so that was really special. I wish there could be a five-way tie, to be honest with you.""The Singers" director Sam Davis added that it was an honor to tie, giving kudos to the "Two People Exchanging Saliva.""I told them if we lost, I hope we lost to them, because I saw sort of how incredible their film was, and none of us could imagine what the outcome would be," Davis said. "And certainly we didn’t imagine this."Natalie Musteata and Alexandre Singh, the directors of "Two People Exchanging Saliva," were equally complimentary. "We're also a little bit Oscar geeks, so we actually discussed that this could happen, but couldn’t possibly imagine," Singh said.Full list of every Oscars tie in historyWith Sunday's added into the pack, these are all the ties in the history of the Oscars to date:Best actor, 1932: Fredric March ("Dr. Jekyll and Mr. Hyde)" and Wallace Beery ("The Champ")Best documentary short subject, 1950: "A Chance to Live" and "So Much for So Little"Best actress, 1969: Katharine Hepburn ("The Lion in Winter") and Barbra Streisand ("Funny Girl")Best documentary, 1987: "Artie Shaw: Time Is All You've Got" and "Down and Out in America"Best live-action short, 1995: "Franz Kafka's It's a Wonderful Life" and "Trevor"Best sound editing, 2013: "Skyfall" and "Zero Dark Thirty"Best live-action short, 2026: "The Singers" and "Two People Exchanging Saliva"Contributing: Charles Trepany
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

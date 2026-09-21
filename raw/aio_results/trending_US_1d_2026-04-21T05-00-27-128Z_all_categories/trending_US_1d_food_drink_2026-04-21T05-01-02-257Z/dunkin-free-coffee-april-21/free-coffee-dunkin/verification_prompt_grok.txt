@@ -1,0 +1,101 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "free coffee dunkin"
+
+Claims:
+[1] "Dunkin' is giving away 1 million free coffees on April 21, 2026, starting at 9 a.m. local time."
+[2] "Dunkin' Rewards members can use the promo code FREECOFFEE1 in the Dunkin' app to receive a free medium hot or iced coffee"
+[3] "The free coffee offer is available while supplies last"
+[4] "Cold brew and extra-large hot coffees are excluded"
+[5] "Dunkin' Rewards membership is required for the free coffee"
+[6] "The free coffee is limited to one per customer"
+[7] "The promo code is valid for 7 days after redeeming the code"
+[8] "Dunkin's free coffee promotion follows a similar April Fools' Day giveaway"
+[9] "Dunkin's free coffee promotion is part of a series of "ProDUNKtivity" boosts for customers"
+
+Cited text snippets from the AI Overview (for additional context):
+- Dunkin' is giving away 1 million free coffees again. How to get yours: "Dunkin' is giving away 1,menu, launches new canned coffee"
+- Dunkin' Donuts giving away 1 million free coffees again. How to get yours: "Why this week could be,new spring menu, will drop."
+- Dunkin' Donuts Is Offering 1 Million Free Coffees Again: Here's How to Get Yours: "The chain hinted at the,line, “Another million coffees?"
+- Dunkin' is giving ANOTHER MILLION free coffees away next ...: "Dunkin is expected to give away 1,21, 2026, starting at 9 a.m. ET."
+Reference Sources:
+
+[R1] Blog | Dunkin'
+(https://news.dunkindonuts.com/blog?t=free+coffee)
+"""
+Sign up for Email Alerts Newsroom Behind the Beans Find out what's brewin' at Dunkin' Tagged with free coffee Food + Beverages Still Not A Joke: Dunkin’® is Giving Away 1,000,001 Free Coffees This April Fools’ Day Fun Stuff When the To-Do List Can Wait, the Donut Can’t – Treat Yourself in 2026 Fun Stuff Dunkin’® is Giving Away One Million Free Coffees in the Spirit of ProDUNKtivity This is Coffee Celebrate National Coffee Day at Dunkin’® with Free Coffee for Rewards Members Fun Stuff No Joke: Dunkin’® is Giving Away One Million Free Coffees This April Fools' Day This is Coffee Dunkin’® is Brewing Up Free Coffee to Celebrate National Coffee Day This is Coffee CELEBRATE NATIONAL COLD BREW DAY WITH FREE DUNKIN’ What's New ‘Tis the Season for December Dunkin’ Deals Our Community Dunkin’ Honors Military Members on Veterans Day What's New Dunkin’ Deals for Daylight Savings and Beyond What's New Fall for Dunkin’ Rewards This October Our Community Dunkin’ Keeps Educators Runnin’ on World Teachers’ Day with FREE Coffee 1 2 3 © 2026. DD IP Holder LLC and BR IP Holder LLC. All rights reserved. The Dunkin' and Baskin-Robbins trademarks,trade names, designs, logos, service marks, and related marks are registered trademarks of DD IP Holder LLC and BR IP Holder LLC, respectively. Privacy Policy | Terms of Use
+"""
+
+[R2] Dunkin' is giving away 1 million free coffees again. How to get yours
+(https://www.usatoday.com/story/money/2026/04/20/dunkin-free-coffee-april-21/89700755007/)
+"""
+April 20, 2026Updated April 21, 2026, 12:14 p.m. ETAfter giving away over a million free coffees on April Fools' Day, Dunkin' is at it again.The coffee chain is giving away another million coffees on Tuesday, April 21, the company confirmed to USA TODAY.Dunkin' Rewards members can use promo code "FREECOFFEE1" in their Dunkin' app beginning 9 a.m. local time on April 21 to redeem the offer, while supplies last. The company teased the promotion on social media on Friday, April 17.The chain also told USA TODAY consumers have seven days after getting the offer to redeem it. Cold brew and extra-large hot coffees are not included as part of the promotion, and there is a limit of one per customer.Dunkin' unveils spring menu, launches new canned coffeeThe free coffee giveaway comes on the heels of Dunkin' unveiling its spring menu, which includes several banana-flavored drinks as well as the return of the $6 meal deal.The coffee chain also recently announced the launch of Dunkin' Double 15 oz. cans "that bring fans more of the smooth iced espresso taste they love in a format built to power busy days."Dunkin’ Double contains the equivalent of two espresso shots, Dunkin said, and comes in three fan-favorite flavors including original, café mocha and salted caramel.Dunkin' Double joined the brand's lineup of ready-to-drink beverages, which includes bottled iced coffees. The canned beverages are available to purchase at major retailers, including Walmart, Kroger, Publix, QuikTrip and Amazon.Contributing: Mike Snider, USA TODAY; Saman Shafiq, USA TODAYGabe Hauari is a national trending news reporter at USA TODAY. You can follow him on X @GabeHauari or email him at Gdhauari@gannett.com.
+"""
+
+[R3] Dunkin' Donuts giving away 1 million free coffees again. How to get yours
+(https://www.nbcchicago.com/news/local/dunkin-donuts-giving-away-1-million-free-coffees-again-this-month-how-to-get-yours/3925486/)
+"""
+The giveaway comes alongside what could be Easter eggs for new summer menu items. NBC Universal, Inc. Dunkin’ Donuts (or simply Dunkin’) is one of the largest coffee and doughnut shop chains in the world, with more than 13,000 locations worldwide. Dunkin' Donuts is giving away 1 million free coffees for the second time this month after the chain posted a cryptic message on social media. In a message on Instagram Friday, Dunkin' posted an image of a "notes" app with line items that included things like "make content for a new spring menu next week." "Just gonna leave this here," the caption for the image read. But fans were quick to spot that one of the lines read "Another million coffees? April 21st?" The drop begins at 9 a.m. local time Tuesday in the Dunkin' app, where customers can use the code "freecoffee1" to redeem the offer. The chain confirmed the drop to People on Monday, saying in a statement that it "accidentally" leaked the promo code and some "Easter eggs on the summer menu" on social media. The chain added that Tuesday's Free Coffee Certificate is valid for seven days after the promo code entry, and will be limited to one per customer while supplies last. Cold Brew and Extra-Large Hot Coffees are not included. The move follows an April Fools promo in which the chain opted to give away 1,000,001 free coffees, literally one-upping its own prank from 2025 in which it gave away one million coffees. As for the summer menu hints, if Friday's message is to be believed, it appears Dunkin' could be bringing back its Oreo Coolatta, with one of the note items saying "things I miss" and citing the beverage. Another note seemed to indicate the beginnings of a recipe, though it was not clear if that was related to the new menu. The ingredients included a "medium iced latte with 1 blueberry 1 butter peca..." It's not clear when the summer menu, or potential new spring menu, will drop. Cerebral Insight Hub | Mayo Clinic doctors warn about 8 medications now linked to memory loss in older adultsUndoBrain Trends Journal | Doctors Identify 10 Medications Now Related to Cognitive Decline (See the List)UndoNerve Pain | Neuropathy Cases Grow as Experts Point to a Beverage Millions Drink DailyUndoCelebrity NewsElizabeth Smart reveals she's now a bodybuilder. She her jaw-dropping bikini competition photoUndoVirginiaFormer Virginia Lt. Gov. Justin Fairfax kills wife and self in apparent murder-suicideUndoBesyner | Son Refused To Put his 97-Year-Old Father In Memory Care (Today He Thrives At Home)UndoNerve Pain | When Neuropathy Strikes, Do This (It's Brilliant!)UndoSciatiEase | Doctors Beg: Rub This on Your Hip for Sciatic Nerve PainUndoWhite HouseAppeals court allows Trump's White House ballroom construction to continue into JuneUndoChicago River20-year-old woman found dead in Chicago River, police sayUndochicago politicsFormer Chicago Mayor Richard M. Daley suffers stroke, family saysUndoDes PlainesHeavy rains, severe weather cause rivers in Des Plaines and other suburbs to swellUndoO'HareFlight from Chicago to New York diverted, passengers evacuated due to ‘security concern’UndoLouisiana'He murdered his children': Man facing divorce targets his family in deadly Louisiana shootingUndoOnline Shopping Tools | Amazon Nightmare Comes True: Shoppers Canceling Prime For This Clever HackUndoBesyner | This Son Watched His Father Forget Him. Then He Found What Japan Had Been Hiding.UndoFloridaTeen charged with killing Florida stepsister on cruise ship pleads not guiltyUndoCrime and CourtsTeen found in singer D4vd's trunk died from 'multiple penetrating injuries,' officials sayUndoLoggers World | This $29 Tool Is Making Chainsaw Chain Replacement ObsoleteUndoCubaCouple accused of kidnapping child for what family feared was gender reassignment in Cuba, DOJ saysUndoCelebrity NewsVictoria Beckham on estrangement from son Brooklyn: 'We've always tried ... to be the best parents'Undo
+"""
+
+[R4] Dunkin' Donuts Is Offering 1 Million Free Coffees Again: Here's How to Get Yours
+(https://people.com/dunkin-donuts-is-offering-1-million-free-coffees-again-heres-how-to-get-yours-11954282)
+"""
+Credit : Ron Antonelli/Bloomberg via Getty NEED TO KNOW Dunkin' is giving away one million free coffees on April 21Guests can get a Free Coffee Certificate using the promo code “FREECOFFEE1” starting at 9 a.m. local timeThe announcement was teased through a Notes app screenshot on the chain's Instagram, which also hinted at summer menu updates Dunkin' Donuts is about to make a million people's day. The chain confirmed to PEOPLE that it is handing out one million free coffees on April 21 after sharing the deal's promo code and clues for its summer menu in a cryptic social media post on Friday, April 17. The brand shared a screenshot of a Notes app on its Instagram with text above that said, “just a girl and her notes app One note had the subject line, “Another million coffees? April 21st?,” and a note following that said, “drop @ 9am code could be freecoffee1.” “Just gonna leave this here,” the brand wrote in its caption. As it turns out, the casual Notes app drop had deeper implications. “On April 21, Dunkin' is serving up one million free coffees after accidentally leaking both the promo code and a few Easter eggs on the summer menu on social media,” the brand said in a statement shared with PEOPLE. Starting at 9 a.m. local time on April 21, a million guests can get a free coffee using the promo code “FREECOFFEE1.” The Free Coffee Certificate is valid for seven days after the promo code entry, and the deal is limited to one per customer while supplies last. The deal does not include Cold Brew or Extra-Large Hot Coffee orders. Dunkin' Donuts announced on Instagram that they are giving away a million free coffees on April 21. Patrick T. Fallon/Bloomberg/Getty Menu hints could also be found in the Notes screenshot. One note remarked, “Things I miss. oreo coolatta,” referencing the Oreo-flavored frozen beverage the chain featured on its menu in 2015 and potentially indicating its return for the chain's summer menu. Another note said “Work to do. Make content for new spring menu next week,” seemingly hinting at another spring menu. The chain already released a banana-focused spring menu on March 4. In a release shared with PEOPLE, the chain declared banana “the flavor of the season.” It announced banana syrup and cold foam, which fans can add to espresso drinks, iced coffee, matcha and Refreshers. Related Stories The menu came with new drinks like a Banana Puddin' Cloud Latte, Banana Daydream Refresher and Bananarama Matcha. The chain also launched a zero-sugar energy drink called Dunkin' Zero. The free coffee announcement follows the chain giving away 1,000,001 free hot or iced coffees on April Fools' Day. After giving away a million coffees to celebrate the unofficial holiday in 2025, the chain decided to outdo itself. “Remember last April Fools' when Dunkin' gave away a million free coffees and people thought it was a prank? Well, this year, Dunkin' is going even bolder!” said a release the company shared with PEOPLE. The chain gave away coffees of any size on Wednesday, April 1. 0 seconds of 46 secondsVolume 0%Loading ad00:2500:0000:46 3 Things to Know About Harry Styles and Zoë Kravitz's Relationship
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

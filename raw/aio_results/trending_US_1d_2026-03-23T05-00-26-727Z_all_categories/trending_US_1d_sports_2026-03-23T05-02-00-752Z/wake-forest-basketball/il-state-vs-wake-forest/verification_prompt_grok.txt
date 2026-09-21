@@ -1,0 +1,104 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "il state vs wake forest"
+
+Claims:
+[1] "Illinois State defeated Wake Forest 78-75."
+[2] "Wake Forest was the top seed."
+[3] "Illinois State was the 4th seed."
+[4] "The game was in the 2026 NIT second round."
+[5] "The game occurred on March 22, 2026."
+[6] "Johnny Kinziger made a go-ahead 3-pointer with two seconds left."
+[7] "Ty Pence scored 23 points for Illinois State."
+[8] "Illinois State rallied from a nine-point second-half deficit."
+[9] "The victory marks Illinois State's first multi-win NIT performance in 30 years."
+[10] "The game location was Winston-Salem, N.C."
+[11] "The game was on Wake Forest's home court."
+[12] "Johnny Kinziger scored 19 points for Illinois State."
+[13] "Johnny Kinziger had 5 assists for Illinois State."
+[14] "Tre'Von Spillers scored 24 points for Wake Forest."
+[15] "Juke Harris scored 20 points for Wake Forest."
+[16] "Illinois State trailed 53-44 with 11:28 left."
+[17] "Illinois State advances to the NIT quarterfinals."
+[18] "Illinois State is scheduled to play No. 2 seed Dayton in the NIT quarterfinals."
+[19] "This victory was Illinois State's first over an ACC opponent since 2006, according to the Illinois State University Athletics news release."
+
+Cited text snippets from the AI Overview (for additional context):
+- Pence and Kinziger Lead Illinois State to NIT Quarterfinals: "WINSTON-SALEM, N.C. – A,Mount Saint Mary's and Wisconsin."
+- Illinois State beats Wake Forest 78-75, winning twice in NIT for first ...: "Sports-,Illinois State beats Wake Forest 78-75, winning twice in,first time in 30 years&text=WINSTON-SALEM, N.C.,Chase Walker scored 15."
+- Men's Basketball vs Wake Forest on 3/22/2026 - Box Score - Illinois ...: "Table_title: Wake Forest 75 Table_content: header: |,Player: 08 Mason,Mekhi | PTS: 3 |"
+Reference Sources:
+
+[R1] Illinois State beats Wake Forest 78-75, winning twice in NIT for first time in 30 years
+(https://www.greenwichtime.com/sports/article/illinois-state-beats-wake-forest-78-75-winning-22090813.php)
+"""
+WINSTON-SALEM, N.C. (AP) — Ty Pence had 23 points, Johnny Kinziger scored 19, including a go-ahead 3-pointer with two seconds left, and Illinois State rallied to beat top seed Wake Forest 78-75 on Sunday in the second round of the NIT.Fourth-seeded Illinois State (22-12) heads to No. 2 seed Dayton for a campus-site quarterfinal. The last time the Redbirds won twice in a NIT appearance was in 1996.Illinois State trailed 53-44 with 11:28 remaining before rallying to tie it on Landon Wolf's 3-pointer with 6:29 to go and then taking the lead on a Pence 3-pointer on its next possession.Article continues below this adThere were four lead changes and five ties from there — the final tie came on Tre'Von Spillers layup with 28 seconds left to set the stage for Kinziger.Pence made 8 of 11 shots with three 3-pointers and all four of his free throws. Kinziger buried 5 of 10 from beyond the arc and added five assists. Chase Walker scored 15.Spillers made all 11 of his shots and scored 24 to pace the Demon Deacons (18-17), adding eight rebounds. Juke Harris totaled 20 points, eight rebounds and four assists. Harris finished with 750 points this season — the second highest total in program history. Len Chappell set the record with 932 points during the 1961-62 season. Chappell had 745 points his prior season. Dickie Hemric scored 746 in 1954-55.Article continues below this adOmaha Biliew added 11 points and six boards for Wake Forest, while Myles Colvin scored 10 off the bench.Cooper Schwieger's dunk for Wake Forest in the final minute tied it 32-all at halftime.___Article continues below this adGet poll alerts and updates on the AP Top 25 throughout the season. Sign up here and here (AP News mobile app). AP college basketba spurtll: https://apnews.com/hub/ap-top-25-college-basketball-poll and https://apnews.com/hub/college-basketball
+"""
+
+[R2] Pence and Kinziger Lead Illinois State to NIT Quarterfinals
+(https://goredbirds.com/news/2026/3/22/mens-basketball-pence-and-kinziger-lead-illinois-state-to-nit-quarterfinals.aspx)
+"""
+WINSTON-SALEM, N.C. – A Johnny Kinziger three-point basket with two seconds on the clock gave the Illinois State an exciting 78-75 win over the Wake Forest Demon Deacons on Sunday afternoon, as the Redbirds trailed by nine in both the first and second halves, picking up the program's first win over an ACC opponent since winning against the Miami Hurricanes on December 5, 2006. Kinziger and Ty Pence each scored 17 points in the second half – Pence's en route to a career-high 23 points, and the win was the first time ISU has had at least two wins in the NIT since the 1995-96 season when the Redbirds topped Mount Saint Mary's and Wisconsin. HOW IT HAPPENED In a game of runs, after ISU scored the first points on a three-pointer from Landon Wolf, Wake Forest came back with 10 straight to lead 10-3. The Redbirds rebounded by scoring six of the next eight points, before the Demon Deacons answered right back with six straight. With ISU trailing 18-9, the visitors scored 15 of the next 19 points – Including a stretch of nine in a row – as the Birds pushed ahead to a 24-22 lead with 5:13 to play in the opening half. The game was tightly contested over the final minute-plus, as the teams went into the locker room tied at 32. The Redbirds trailed by one at 38-37 before the hosts ran off six straight points to stretch to a seven-point, 44-37 lead. The Wake Forest lead grew to as many as nine points with 9:21 to play in the game, before ISU answered with five consecutive points, capped by a Johnny Kinziger three-pointer, to close the gap to four. ISU took its first lead of the second half amid an 8-0 run, as ISU stretched ahead to a 63-60 lead following a Ty Pence three-pointer. From there the lead changed hands four times and was tied five times, capped by Kinziger's clutch long-range, game-winning shot. KEY STATISTICS / NOTES The Redbirds opened with the starting lineup of 3 Mason Klabo, 4 Landon Wolf, 11 Johnny Kinziger, 14 Boden Skunberg, and 35 Chase Walker This is ISU's eighth game with this starting lineup The Redbirds played in their first NIT road game since March 23, 2015 ISU wore its throwback red uniform Illinois State won the opening tip ISU's first points of the game came from Landon Wolf on a three-pointer at 19:20 on the first half clock This game was the fourth time that he scored the Redbirds' first points this season The Redbirds and Demon Deacons were tied at 32-32 after the completion of the first half It was the fourth time this season that ISU and their opponent were tied at the break Illinois State improved to 2-0 all-time against Wake Forest, after topping the Demon Deacons during the 1975-76 season The win is ISU's fifth consecutive postseason tournament win, after sweeping through the three-game Purple CBI en route to that tournament title last March With the team's 22 wins, it marks the first time since Kevin Stallings' first four seasons that under a new head coach has matched or bettered the win total every season from the first year to the fourth The game was ISU's second consecutive, and the 13th this season committing single-digit turnovers in a game Scoring 19 points, Johnny Kinziger climbed three spots in the school career scoring record book With his 19 points, he has now scored 1,182 career points, moving past Richard Thomas (1,170, 1990-93), John Cruser (1,174, 1962-65), and Trey Guidry (1,180, 2003-05) He dished out five assists, his 21st game with 3+ assists, and his 10th of 5+ assists With 23 points, Ty Pence recorded a career-high scoring total, reaching double-figure scoring for the 14th time this season, and 20+ points for the fourth time this year He set a career-high with three three-point field goals Chase Walker scored 15 points, and reached double-digit scoring for the 22nd time this season and 49th time in his college career He is two points away from 1,000 for his career, now with 998 career collegiate points Boden Skunberg pulled down a game-high nine rebounds, his second-highest rebounding total of the season, and the eighth time this season he has led ISU in rebounds in a game NEXT UP The Redbirds advance after beating the region's top seed and will travel to face off against the Dayton Flyers on Wednesday, March 25 with the game time and broadcast network to be announced later.
+"""
+
+[R3] Men's Basketball vs Wake Forest on 3/22/2026 - Box Score
+(https://goredbirds.com/boxscore.aspx?id=23629)
+"""
+Wake Forest (75, 18-17,7-11 ACC) vs Illinois St. (78, 22-12,12-8 MVC) Box Score Menu Box Score Illinois St. 78 Illinois St. 78 ##PlayerGSMINFG3PTFTORB-DRBREBPFATOBLKSTLPTS 11 11 Kinziger, Johnny * 40 6-14 5-10 2-2 0-3 3 2 5 2 0 2 19 35 35 Walker, Chase * 17 5-11 0-2 5-5 2-2 4 4 1 2 1 2 15 04 04 Wolf, Landon * 29 3-10 2-8 0-2 1-3 4 1 2 1 0 0 8 14 14 Skunberg, Boden * 29 2-9 0-5 3-4 4-5 9 3 2 0 0 0 7 03 03 Klabo, Mason * 22 1-3 0-2 2-2 0-2 2 2 1 0 0 0 4 22 22 Pence, Ty 28 8-11 3-4 4-4 2-2 4 3 1 1 0 2 23 12 12 Lieb, Brandon 10 0-0 0-0 2-2 0-1 1 0 0 1 1 0 2 01 01 Moore, Landon 13 0-2 0-2 0-0 0-1 1 2 0 1 0 0 0 10 10 Coleman, Ty'Reek 12 0-1 0-0 0-0 0-2 2 1 0 1 0 0 0 TM TM TEAM 0 0-0 0-0 0-0 1-0 1 0 0 0 0 0 0 Totals-20025-6110-3318-2110-2131181292678 Team Summary FG 3PT FT First Half 10-31 1-12 11-13 32.26 % 8.33 % 84.62 % Second Half 15-30 9-21 7-8 50.00 % 42.86 % 87.50 % Total 25-61 10-33 18-21 41.0 % 30.3 % 85.7 % Technical Fouls: none Second Chance Points: 14 Scores Tied: 12 time(s) Points in the Paint: 30 Fast Break Points: 5 Lead Changed: 12 time(s) Points off Turnovers: 19 Bench Points: 25 Wake Forest 75 Wake Forest 75 ##PlayerGSMINFG3PTFTORB-DRBREBPFATOBLKSTLPTS 25 25 Spillers,Tre'Von * 29 11-11 0-0 2-3 1-7 8 3 1 2 1 1 24 02 02 Harris,Juke * 39 7-19 2-7 4-6 2-6 8 2 4 1 0 1 20 00 00 Biliew,Omaha * 32 3-3 1-1 4-4 2-4 6 3 0 0 3 1 11 08 08 Mason,Mekhi * 18 1-2 1-2 0-0 0-0 0 1 2 0 0 1 3 01 01 Calmese,Nate * 21 1-6 0-2 0-0 0-2 2 1 5 2 0 0 2 06 06 Colvin,Myles 25 3-7 1-2 3-4 1-1 2 0 2 0 0 0 10 07 07 Carr,Isaac 11 1-2 0-0 1-2 1-2 3 2 0 1 0 1 3 13 13 Schwieger,Cooper 17 1-5 0-2 0-0 0-1 1 3 1 3 0 1 2 10 10 Akins,Sebastian 8 0-1 0-0 0-2 0-2 2 0 0 1 0 1 0 TM TM TEAM 0 0-0 0-0 0-0 1-2 3 0 0 1 0 0 0 Totals-20028-565-1614-218-27351515114775 Team Summary FG 3PT FT First Half 13-30 4-12 2-4 43.33 % 33.33 % 50.00 % Second Half 15-26 1-4 12-17 57.69 % 25.00 % 70.59 % Total 28-56 5-16 14-21 50.0 % 31.3 % 66.7 % Technical Fouls: none Second Chance Points: 17 Scores Tied: 12 time(s) Points in the Paint: 40 Fast Break Points: 5 Lead Changed: 12 time(s) Points off Turnovers: 9 Bench Points: 15
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

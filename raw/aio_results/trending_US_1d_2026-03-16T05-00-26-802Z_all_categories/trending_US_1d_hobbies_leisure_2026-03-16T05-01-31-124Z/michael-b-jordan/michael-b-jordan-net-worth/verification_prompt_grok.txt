@@ -1,0 +1,79 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "michael b jordan net worth"
+
+Claims:
+[1] "As of 2026, actor and producer Michael B. Jordan has an estimated net worth of approximately $30 million."
+[2] "As of early 2026, actor and director Michael B. Jordan has an estimated net worth of $50 million."
+[3] "Celebrity Net Worth reports Michael B. Jordan's net worth as approximately $50 million."
+[4] "Articles from Yahoo and Koimoi state that Michael B. Jordan earned $4 million for his role in Sinners (2026)."
+[5] "An article from Tempo.co English states that Michael B. Jordan earned a $5 million salary plus backend profits as director and star for Creed III (2023)."
+[6] "An article from Yahoo states that Michael B. Jordan earned $2 million for his role as Erik Killmonger in Black Panther (2018)."
+[7] "Michael B. Jordan has a production company called Outlier Society Productions."
+[8] "NBA legend Michael Jordan has an estimated net worth of $4.3 billion."
+
+Cited text snippets from the AI Overview (for additional context):
+- List of celebrities by net worth - Wikipedia: "Table_title: Forbes Table_content: header: | Celebrity |,States | Net worth: $2.5 billion |"
+Reference Sources:
+
+[R1] List of celebrities by net worth
+(https://en.wikipedia.org/wiki/List_of_celebrities_by_net_worth)
+"""
+From Wikipedia, the free encyclopedia The following is a list of billionaire celebrities, based on calculations by reputable publications such as Forbes and The Sunday Times Rich List. Through its history, Forbes have included among their "Celebrity Billionaires" lists, tech moguls such as Steve Jobs, or former celebrity and current U.S. president Donald Trump.[1] The list include celebrities in fields[a] from music, cinema to sports and television, while excluding former celebrities. Reports from others business-related publications such as Bloomberg L.P. could differ; for instance, they valued David Geffen at US$9.1 billion in 2023,[2] while Forbes estimated his net worth at $8.6 billion as of 2024. Some milestones include, J. K. Rowling, labeled as the first author to achieve a billionaire status according to Forbes in 2004.[3] The following celebrities have become billionaire at some point, either during their lifetime or through posthumous earnings, according to Forbes estimations. Key † Indicates deceased celebrities ‡ Indicates former billionaires The following celebrities have become billionaire at some point, either during their lifetime or through posthumous earnings, according to estimations by other reputable business-related publications, such as Bloomberg and Sunday Times Rich List. ^ Based on fields in lists like Forbes Celebrity 100 ^ Combined during his life and after his death ^ Paul McCartney's estimation includes his wife Nancy Shevell's wealth, hence Forbes disputed McCartney's status as a billionaire. Shevell's family owns a trucking company which generates over $300 million per year in revenue. In 2008, McCartney disclosed personal net assets of £387,012,000 (about $600 million) as part of divorce proceedings with ex-wife Heather Mills. In 2013, Forbes estimates his net worth roughly at $650 million.[38] As of 2024, McCartney has yet to appear on Forbes's world's billionaires list.[39] ^ However, Forbes estimates Selena Gomez net worth at $700 million, as of 2025.[41] The World's Billionaires Bloomberg Billionaires Index Forbes Top 40 (1987–1998) Forbes Celebrity 100 (1999–2020) Forbes list of the world's highest-paid musicians Forbes list of the world's highest-paid dead celebrities List of music artists by net worth ^ Goldman, Lea (March 8, 2007). "Celebrity Billionaires". Forbes. Archived from the original on March 29, 2007. Retrieved December 10, 2024. ^ "Bloomberg Billionaires Index: David Geffen". Bloomberg. October 3, 2023. Retrieved December 14, 2024. ^ "J.K. Rowling And The Billion-Dollar Empire". Forbes. February 26, 2004. Retrieved December 10, 2024. ^ "Profile: David Geffen". Forbes. Retrieved November 12, 2025. ^ "Profile: Steven Spielberg". Forbes. Retrieved November 12, 2025. ^ "Profile: Mark Cuban". Forbes. Retrieved December 10, 2024. ^ "Profile: George Lucas". Forbes. Retrieved December 10, 2024. ^ "Profile: Walther Moreira Salles Junior". Forbes. Retrieved November 12, 2025. ^ "Profile: Michael Jordan". Forbes. Retrieved August 30, 2025. ^ "Profile: Vincent McMahon". Forbes. Retrieved November 12, 2025. ^ "Profile: Oprah Winfrey". Forbes. Retrieved November 12, 2025. ^ Martin, Devin Sean (April 2, 2024). "The World's Celebrity Billionaires 2024". Forbes. Retrieved May 30, 2024. ^ "Profile: Taylor Swift". Forbes. Retrieved October 5, 2024. ^ "Profile: Kim Kardashian". Forbes. Retrieved November 12, 2025. ^ "Profile: Peter Jackson". Forbes. Retrieved December 10, 2024. ^ "Profile: Magic Johnson". Forbes. Retrieved December 10, 2024. ^ "Profile: Tyler Perry". Forbes. Retrieved November 12, 2025. ^ "Profile: Tiger Woods". Forbes. Retrieved December 10, 2024. ^ "Inside Tiger Woords' $1.7 billion career". Forbes. April 8, 2022. Retrieved December 10, 2024. ^ "Profile: Dick Wolf". Forbes. Retrieved December 10, 2024. ^ Craig, Matt. "'South Park' Creators Trey Parker and Matt Stone Are Now Billionaires". Forbes. Retrieved July 27, 2025. ^ "Profile: J.K. Rowling". Forbes. Retrieved July 28, 2025. ^ "Profile: Bruce Springsteen". Forbes. Retrieved December 10, 2024. ^ "Profile: LeBron James". Forbes. Retrieved December 10, 2024. ^ "Profile: Arnold Schwarzenegger". Forbes. Retrieved July 28, 2025. ^ "Profile: Jerry Seinfeld". Forbes. Retrieved December 10, 2024. ^ "Profile: Roger Federer". Forbes. Retrieved 2025-08-23. ^ "Profile: Rihanna". Forbes. Retrieved May 30, 2024. ^ Dellatto, Marisa (April 7, 2023). "Forbes' Hollywood Walk Of Fame: The Richest Celebrities Of All Time". Forbes. Retrieved June 1, 2024. ^ Craig, Matt (December 29, 2025). "Beyoncé Is Now A Billionaire". Forbes. Retrieved December 29, 2025. ^ "Forbes Profile: Jimmy Buffett". Forbes. April 4, 2023. Archived from the original on April 6, 2023. Retrieved December 10, 2024. ^ Robehmed, Natalie (March 7, 2019). "At 21, Kylie Jenner Becomes The Youngest Self-Made Billionaire Ever". Forbes. Archived from the original on October 10, 2024. Retrieved December 10, 2024. ^ "Profile: Kylie Jenner". Forbes. Retrieved December 11, 2024. ^ "Profile: Kanye West". Forbes. Retrieved May 30, 2024. ^ Voytko, Lisette (April 5, 2023). "Here's Why Kanye West Dropped Off The Forbes Billionaires List". Forbes. Retrieved May 30, 2024.{{cite magazine}}: CS1 maint: deprecated archival service (link) ^ Bacher, Danielle (March 25, 2024). "Inside the Fight over Michael Jackson's $2 Billion Estate — and His Mom's Battle with Her Grandson Bigi". People. Retrieved June 7, 2024. ^ Dillon, Nancy (March 9, 2024). "Michael Jackson Estate, Katherine Jackson Clash in Court Over $600 Million Catalog Deal". Rolling Stone. ^ O'Malley Greenburg, Zack (October 28, 2013). "Why Paul McCartney Isn't on the Forbes Billionaires List". Forbes. Retrieved December 10, 2024. ^ "Forbes Billionaires 2024". Forbes. Retrieved December 10, 2024. ^ Rothenberg, Eva (May 17, 2024). "At 81, Paul McCartney is worth £1 billion for the first time". CNN. Retrieved December 23, 2024. ^ Craig, Matt (June 3, 2025). "America's Richest Women Celebrities 2025". Forbes. Retrieved June 5, 2025."Profile: Selena Gomez". Forbes. Retrieved June 5, 2025. ^ Dailey, Hannah (July 9, 2024). "Sele Gomez is now a Billionarie, according to Bloomberg". Billboard. Retrieved May 30, 2024. Sherman, Natalie (September 6, 2024). "Selena Gomez joins billionaire celebrity rich list". BBC. Retrieved October 9, 2024. ^ "Andrew Lloyd Webber net worth — Sunday Times Rich List 2023". The Sunday Times. June 4, 2024. ^ "Ed Sheeran tops Adele as Stormzy joins Sunday Times Rich List". BBC News. 2019-05-09. Retrieved July 13, 2024. Forbes' Real-Time Billionaires List > Media & Entertainment figures
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

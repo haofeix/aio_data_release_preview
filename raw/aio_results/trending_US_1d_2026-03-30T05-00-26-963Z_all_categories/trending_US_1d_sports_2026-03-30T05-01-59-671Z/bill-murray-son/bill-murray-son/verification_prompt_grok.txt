@@ -1,0 +1,99 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "bill murray son"
+
+Claims:
+[1] "Luke Murray was born circa 1985."
+[2] "Luke Murray is the son of actor Bill Murray."
+[3] "Luke Murray is the son of Margaret Kelly."
+[4] "Margaret Kelly is Bill Murray's first wife."
+[5] "Luke Murray was hired as the head coach for Boston College in March 2026."
+[6] "Luke Murray served as a key assistant coach for two national championship teams at UConn."
+[7] "Luke Murray had previous assistant coaching roles at Louisville, Xavier, Towson, Wagner, Arizona, Post, and Quinnipiac."
+[8] "Luke Murray attended St. Luke's School in New Canaan, Connecticut, according to Wikipedia."
+[9] "Luke Murray graduated from Fairfield University in 2007, according to Wikipedia."
+[10] "Luke Murray was hired by Boston College to lead their basketball program in March 2026, according to AP News."
+[11] "The March 2026 hiring marks Luke Murray's first head coaching position, according to AP News."
+[12] "Bill Murray has sons named Homer, Jackson, Caleb, and Cooper."
+
+Cited text snippets from the AI Overview (for additional context):
+- Luke Murray - Wikipedia: "Murray was born to actor,his final years in college."
+- Boston College hires UConn assistant Luke Murray, son of ...: "your morning routine-,Boston College hires UConn assistant Luke Murray, son of actor,Matt Slocum/AP, File)"
+- Boston College hires UConn assistant Luke Murray, son of actor Bill ...: "In five years with UConn,of the last two years.&text=Copyright 2026 The Associated Press,rewritten or redistributed without permission."
+- Actor Bill Murray’s son, Luke, is now a two-time national champion as an assistant coach for UConn 🔥 (🎥 @marchmadnessmbb) | Instagram: "Bill Murray's son, Luke, is an assistant,and has won the national championship twice."
+- Luke Murray - Wikipedia: "For the cricketer, see Luke Murray (cricketer).,for the UConn Huskies men's basketball team."
+Reference Sources:
+
+[R1] Boston College hires UConn assistant Luke Murray, son of actor Bill Murray, as basketball coach
+(https://ny1.com/nyc/all-boroughs/ap-top-news/2026/03/27/boston-college-hires-uconn-assistant-luke-murray-son-of-actor-bill-murray-as-basketball-coach)
+"""
+CHESTNUT HILL, Mass. (AP) — Boston College hired UConn assistant Luke Murray on Thursday as coach of a slumping men's basketball program that has gone 17 years without an appearance in the NCAA Tournament. Murray, the son of actor Bill Murray, will be a first-time head coach. He replaces Earl Grant, who was fired earlier this month after the Eagles had a losing record in four of his five seasons. Grant went 72-92 overall and 30-67 in Atlantic Coast Conference games. In five years with UConn under coach Dan Hurley, Murray has been a part of two national championship teams, with Bill Murray often in attendance at games. The Huskies play Michigan State on Friday in the Sweet 16. “In Luke Murray, we have found a leader who does not just understand the modern landscape of college basketball, he has helped define it,” Boston College athletic director Blake James said. “His role in building a national championship caliber program, his sophisticated offensive vision, and his relentless pursuit of excellence make him the perfect fit.” Prior to UConn, Murray spent three years each as an assistant at Louisville and Xavier. He also had stints on staffs at Towson, Wagner, Arizona, Post and Quinnipiac. The 2007 graduate of Fairfield will be the 14th head coach in Boston College program history. The Eagles have been buried in the supersized ACC for more than a decade, with a 10th-place finish in 2022-23 their highest since the league expanded from 12 to 15 teams in the 2013-14 season. They were second-to-last in the newly expanded 18-team conference in each of the last two years. ___ AP March Madness bracket: https://apnews.com/hub/ncaa-mens-bracket and coverage: https://apnews.com/hub/march-madness Copyright 2026 The Associated Press. All rights reserved. This material may not be published, broadcast, rewritten or redistributed without permission.
+"""
+
+[R2] Boston College hires UConn assistant Luke Murray, son of actor Bill Murray, as men's basketball coach
+(https://www.wbur.org/news/2026/03/27/boston-college-luke-murray-uconn-head-coach)
+"""
+UConn assistant coach Luke Murray gestures during the first half of an exhibition NCAA basketball game against Boston College, Oct. 13, 2025, in Uncasville, Conn. (Jessica Hill/AP, File)Boston College hired UConn assistant Luke Murray on Thursday as coach of a slumping men's basketball program that has gone 17 years without an appearance in the NCAA Tournament.Murray, the son of actor Bill Murray, will be a first-time head coach. He replaces Earl Grant, who was fired earlier this month after the Eagles had a losing record in four of his five seasons. Grant went 72-92 overall and 30-67 in Atlantic Coast Conference games.In five years with UConn under coach Dan Hurley, Murray has been a part of two national championship teams, with Bill Murray often in attendance at games. The Huskies play Michigan State on Friday in the Sweet 16.Bill Murray reacts during the first half between UConn and UCLA in the second round of the NCAA college basketball tournament, Sunday, March 22, 2026. (Matt Slocum/AP, File)“In Luke Murray, we have found a leader who does not just understand the modern landscape of college basketball, he has helped define it,” Boston College athletic director Blake James said. “His role in building a national championship caliber program, his sophisticated offensive vision, and his relentless pursuit of excellence make him the perfect fit.”Prior to UConn, Murray spent three years each as an assistant at Louisville and Xavier. He also had stints on staffs at Towson, Wagner, Arizona, Post and Quinnipiac. The 2007 graduate of Fairfield will be the 14th head coach in Boston College program history.The Eagles have been buried in the supersized ACC for more than a decade, with a 10th-place finish in 2022-23 their highest since the league expanded from 12 to 15 teams in the 2013-14 season. They were second-to-last in the newly expanded 18-team conference in each of the last two years.
+"""
+
+[R3] Luke Murray
+(https://en.wikipedia.org/wiki/Luke_Murray)
+"""
+From Wikipedia, the free encyclopedia Luke MurrayMurray in 2023Current positionTitleHead coachTeamBoston CollegeConferenceACCRecord0–0 (–)Biographical detailsAlma materFairfieldCoaching career (HC unless noted)2008–2009Post (assistant)2009–2010Arizona (GA)2010–2011Wagner (assistant)2011–2013Towson (assistant)2013–2015Rhode Island (assistant)2015–2018Xavier (assistant)2018–2021Louisville (assistant)2021–2026UConn (assistant)2026–presentBoston CollegeAdministrative career (AD unless noted)2007–2008Quinnipiac (DBO)Accomplishments and honorsChampionshipsAs assistant: 2 NCAA Division I tournament (2023, 2024) Luke Murray (born April 1, 1985) is an American college basketball coach who is the head coach for the Boston College Eagles men's basketball team. Murray was born to actor Bill Murray and Margaret Kelly.[1] He attended St. Luke's School in New Canaan, Connecticut, where he played basketball and football.[2] Murray attended Fairfield University and graduated in 2007.[3] He began coaching AAU basketball during his freshman year at Fairfield.[4] He later served as an assistant on an AAU team coached by former Boston Celtics head coach John Carroll during his final years in college.[5] Murray began his college coaching career in 2007 as the director of basketball operations at Quinnipiac under coach Tom Moore.[6] After one season he was hired as an assistant coach at Post University. Murray left Post to take a graduate assistant position at Arizona in 2009.[7] In 2010, Murray was hired as an assistant coach at Wagner by head coach Dan Hurley.[8] He joined to the coaching staff at Towson in 2011[2] before reuniting as an assistant with Hurley at Rhode Island in 2013.[5] Murray was hired by head coach Chris Mack at Xavier in 2015 after two seasons at Rhode Island.[9] He followed Mack when he was hired as the head coach at Louisville in 2018.[10] There, Murray served as the primary recruiter for the Cardinals in addition to his assistant coaching duties.[11] His contract was not renewed at the end of the 2020–21 season.[12] Murray was hired a third time by Dan Hurley, now the head coach at UConn, on May 3, 2021.[13] He began coordinating the Huskies' offense prior to the start of the team's 2022–23 national championship season.[14] He continued as offensive coordinator the following season as UConn repeated as national champion.[15][16] Murray signed a three-year contract extension on July 8, 2024 to stay with Hurley and UConn.[17] ^ Bacardi, Francesca (September 22, 2015). "Bill Murray Skipped the Emmys to Attend Son Luke Murray's Wedding". E! Online. Retrieved April 11, 2024. ^ Jump up to: a b "Luke Murray, son of actor Bill, is helping turn around Towson's basketball team". Baltimore Sun. January 28, 2012. Retrieved April 9, 2024. ^ "UConn's new coach is a familiar face". The Bulletin. May 4, 2021. Retrieved April 23, 2024. ^ "Xavier's Luke Murray: Good at coaching, not so much at comedy". USA Today. March 24, 2017. Retrieved April 9, 2024. ^ Jump up to: a b McNamara, Kevin (May 30, 2013). "Murray's move to URI is no laughing matter". The Providence Journal. Retrieved April 9, 2024. ^ Amore, Dom (May 4, 2021). "Five things to know about new UConn men's basketball assistant coach Luke Murray". Hartford Courant. Retrieved April 9, 2024. ^ D'Andrea, Niki (August 24, 2009). "Actor Bill Murray's Son Joins Basketball Staff at University of Arizona". Phoenix New Times. Retrieved April 9, 2024. ^ Sullivan, Tim (April 30, 2010). "New Wagner assistant Bil Murray's son". New York Post. Retrieved April 9, 2024. ^ Russell, Shannon (May 8, 2015). "Catching up with new XU assistant Luke Murray". Cincinnati Enquirer. Retrieved April 9, 2024. ^ "Luke Murray joins Chris Mack at Louisville". Cincinnati Enquirer. March 23, 2018. Retrieved April 9, 2024. ^ Borges, David (May 7, 2021). "UConn assistant Luke Murray has always been about recruiting: 'I'm blessed to do it as a profession'". New Haven Register. Retrieved April 9, 2024. ^ "Louisville basketball: Luke Murray, Dino Gaudio's contracts ending". Cincinnati Enquirer. March 18, 2021. Retrieved April 9, 2024. ^ "Luke Murray rejoins Dan Hurley as assistant coach for UConn Huskies men's basketball team". ESPN.com. Associated Press. May 3, 2021. Retrieved April 9, 2024. ^ O’Connell, Robert (April 6, 2024). "Bill Murray's Son Designed UConn's Offense. It's No Joke". The Wall Street Journal. Retrieved April 9, 2024. ^ Moore, CJ (April 8, 2024). "How UConn built the 'most complex' — and efficient —offense in college basketball". The Athletic. Retrieved April 9, 2024. ^ Schnurr, Samantha (April 9, 2024). "Bill Murray Celebrates UConn's NCAA Championship With Son Luke -- the Team's Assistant Coach". Entertainment Tonight. Retrieved April 9, 2024. ^ "Five things to note in new contracts for Dan Hurley, UConn men's basketball assistant coaches". Hartford Courant. July 8, 2024. Retrieved July 9, 2024. UConn Huskies bio
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

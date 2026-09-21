@@ -1,0 +1,98 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "free coffee dunkin"
+
+Claims:
+[1] "Dunkin' is offering 1,000,001 free coffees to Dunkin' Rewards members on April 1, 2026."
+[2] "The free coffees are redeemed using the code STILLNOTAJOKE in the Dunkin' app."
+[3] "The deal applies to any size hot or iced coffee while supplies last."
+[4] "The free Dunkin' coffee offer is on Wednesday, April 1, 2026."
+[5] "The offer is for free hot or iced coffee of any size."
+[6] "The offer requires being a Dunkin' Rewards member."
+[7] "Dunkin' Rewards membership is free to join."
+[8] "Dunkin' Rewards members earn 100 points per $1 spent on qualifying purchases."
+[9] "Dunkin' Rewards members can redeem 600 points for free coffee or tea."
+[10] "Dunkin' Rewards provides a free beverage on the member's birthday"
+
+Cited text snippets from the AI Overview (for additional context):
+- April Fools! Starting 4/1, get a FREE @Dunkin' Coffee with ...: "Use code: STILLNOTAJOKE Valid for any size,possible since it may go quickly. Once"
+- Dunkin'® is Giving Away 1000001 Free Coffees This April ...: "On Wednesday, April 1, Dunkin' Rewards members,tricks, just your coffee run, on us."
+- Dunkin' Rewards: "Members can redeem points for free food,from the App Store or Google Play."
+- Free coffee heads up!!! 🚨☕️ Dunkin’ is bringing back their ...: "☕️ Dunkin' is bringing back their April,and you had a week to redeem"
+- FREE coffee from Dunkin' --hurry!! Add the promo code ... - Facebook: "Runnn ☕️ FREE Hot Or,The Way Down To View."
+- No Joke: Dunkin’® is Giving Away One Million Free Coffees This ...: "April 01, 2025-,No Joke: Dunkin'® is Giving Away One Million Free,Coffees This April Fools' Day&text=While everyone else is,because April 2 is coming…"
+Reference Sources:
+
+[R1] Still Not A Joke: Dunkin’® is Giving Away 1,000,001 Free Coffees This April Fools’ Day | Dunkin'
+(https://news.dunkindonuts.com/blog/april-fools-2026)
+"""
+Sign up for Email Alerts Newsroom Blog Post Food + Beverages April 01, 2026 Still Not A Joke: Dunkin’® is Giving Away 1,000,001 Free Coffees This April Fools’ Day Last April Fools’, we gave away a million free coffees, and some of you thought it was a prank. We didn’t forget that. So this year, we’re doing it again. Just a little bigger We’re giving away 1,000,001 free coffees. That extra one is for anyone still not convinced. On Wednesday, April 1, Dunkin’ Rewards members can get a FREE Cup of Coffee*. No tricks, just your coffee run, on us. All you have to do is open your Dunkin’ app and enter the promo code StillNotAJoke. April Fools’ might come with some trust issues, but we’re here to help you get through it. Whether you’re dodging office pranks or scrolling past one too many fake announcements, we’ve got your back – and your coffee. Happy April Fools’ Day. And yes, this is still not a joke. Stay up-to-date on all things Dunkin’ by following on social media (Instagram, X, TikTok, YouTube) and subscribe to the Dunkin’ blog to receive notifications at news.dunkindonuts.com/blog. *Promo Code valid on 4/1. Free Coffee Certificate valid for 7 days after promo code entry. Cold Brew and Extra-Large Hot Coffee not included. Limit 1 per customer. Additional terms and exclusions may apply. Tags: Dunkin' Rewards April Fools Day Free Coffee Recommended No Joke: Dunkin’® is Giving Away One Million Free Coffees This April Fools' Day ‹› Stay Connected Get Dunkin’ stories and news delivered to your inbox. Enter your email Subscribe Find Your Dunkin' Get directions and details on the Dunkin' nearest to you! Search Now Learn More Downloads Dunkin' Hot and Iced Coffees View | Download Dunkin' Hot and Iced Coffees Download (952.0 kB) Dunkin' Hot and Iced Coffees View | Download Dunkin' Hot and Iced Coffees Download (513.8 kB) Dunkin' Hot Coffee View | Download Dunkin' Hot Coffee Download (1.7 MB) Dunkin' Iced Coffee View | Download Dunkin' Iced Coffee Download (8.2 MB) Dunkin' April Fools Day 2026 View | Download Dunkin' April Fools Day 2026 Download (2.7 MB) © 2026. DD IP Holder LLC and BR IP Holder LLC. All rights reserved. The Dunkin' and Baskin-Robbins trademarks,trade names, designs, logos, service marks, and related marks are registered trademarks of DD IP Holder LLC and BR IP Holder LLC, respectively. Privacy Policy | Terms of Use
+"""
+
+[R2] Dunkin' Rewards | Dunkin'®
+(https://www.dunkindonuts.com/en/dunkinrewards)
+"""
+The best things in life are free — like Dunkin’ Rewards! Join millions of members who save on Dunkin’ every day with exclusive offers and use their points for FREE food and drinks. We double Dunkin' dare ya. As a member, you’ll earn 10 POINTS PER $1 SPENT on qualifying purchases in-store and in the Dunkin’ App. Visit 12 times in a calendar month to unlock Boosted Status and start earning 12 POINTS PER $1 SPENT for 3 months. Exclusive offers, discounts and surprises – including an annual 3X POINTS BONUS for your birthday – are waiting for you! Start earning exclusive Dunkin’ Rewards badges, and check out your collection any time in the Dunkin’ App. A slider having 1 slides per page and moves 1 slides when goes to next or previous page. *Exclusions apply. Check the Dunkin’ App to learn more. *Exclusions apply. Check the Dunkin’ App to learn more. 3-count MUNCHKINS® Donut Hole Treats, 6-count Hash Browns, Cold Foam drink topping, or Espresso Shot, Extra Swirl, Extra Syrup, Coffee Milk or Lemonade drink add-in. A small, medium or large Hot or Iced Coffee or Tea. A small, medium or large Dunkin’ Refresher, Hot Chocolate, or Hot or Iced Chai Latte or Matcha Latte. 10-count MUNCHKINS® Donut Hole Treats, muffin or Iced Loaf slice. A breakfast sandwich with your choice of meat, egg, cheese and bread. Wake-Up Wrap® with or without meat, Stuffed Bagel Minis, Croissant Stuffers, Snackin’ Bacon or bagel with cream cheese spread. Any size hot or iced espresso drink, frozen drink, Shakin’ Espresso, Cold Brew, Signature Latte or Dunkalatte™. Get the Dunkin’ App and sign in as a member for the best Dunkin’ Rewards experience, including points and offers! /content/dam/dd/img/brand/third-party/app-stores/apple-appstore.png /content/dam/dd/img/brand/third-party/app-stores/google-play.png
+"""
+
+[R3] No Joke: Dunkin’® is Giving Away One Million Free Coffees This April Fools' Day
+(https://news.dunkindonuts.com/blog/april-fools-2025)
+"""
+On April 1, trust no one…except us. 😉 While everyone else is busy pulling pranks this April Fools' Day, we here at Dunkin’® are skipping the tricks and serving up something real: a free coffee to fuel you on the one day you might need it the most. On Tuesday, April 1, we’re giving away one million FREE Hot or Iced Coffees or Cold Brews of any size* to Dunkin’ Rewards members, while supplies last. All you need to do to enjoy a free coffee on us is enter the promo code ThisIsNotAJoke in the Dunkin’ app. Let’s be honest, if there was ever a day you deserve a treat, it’s today. Trust issues are everywhere on April Fools' Day, and we’re here to help you get through it, one sip at a time. Still feeling skeptical? We get it. Go ahead and enter the code. No tricks, just delicious coffee! Remember, stay strong out there, because April 2 is coming… Stay up-to-date on all things Dunkin’ by following us on social media (Instagram, X, TikTok, YouTube) and subscribe to the Dunkin’ blog to receive notifications at news.dunkindonuts.com/blog. *Promo Code valid on 4/1/25 only or until code limit is reached. Free Coffee and Cold Brew Reward is valid until 4/8. Single-use only. Reward must be used on coffee and cold brew beverages only. Espresso not included.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

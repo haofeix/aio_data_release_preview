@@ -1,0 +1,113 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "chivas vs atlas amistoso"
+
+Claims:
+[1] "Chivas defeated Atlas 1-0 in the Clásico Tapatío friendly match."
+[2] "The Clásico Tapatío friendly match was held on Sunday, March 29, 2026."
+[3] "The Clásico Tapatío friendly match was held at BMO Stadium in Los Angeles."
+[4] "Ángel Sepúlveda scored the only goal of the Clásico Tapatío friendly match."
+[5] "Ángel Sepúlveda scored the goal with a header in the 56th minute."
+[6] "The goal followed a cross from Efraín Álvarez"
+
+Cited text snippets from the AI Overview (for additional context):
+- Chivas derrota al Atlas en el Clásico Tapatío amistoso - TUDN: "Sería hasta los 56 minutos,en favor de las Chivas."
+- Boletos para Chivas vs. Atlas por el amistoso en Los Ángeles: "Atlas por el amistoso en Los Ángeles: Cómo comprar y precios,-Renzo Desaunet&text=El Clásico Tapatío tendrá una,y presuma su orgullo futbolero."
+- Resumen del partido: Chivas vs. Atlas. GOL - Mediotiempo: "La diferencia llegó en la,el domingo 5 de abril."
+- Boletos para Chivas vs. Atlas por el amistoso en Los Ángeles: "¿Cuándo y dónde juegan Chivas,Ángeles, California, Estados Unidos."
+- THE CLÁSICO TAPATÍO RETURNS TO LOS ANGELES: "strengthened their roster with international,to media@ptimesports.com."
+- Con un marcador de 1-0 Chivas venció an Atlas en un partido ...: "GANARON LAS CHIVAS!,noticia.chivas"
+- Chivas de Guadalajara 1-0 Atlas: El Rebaño Sagrado se lleva ...: "Chivas de Guadalajara 1-0,Santos Laguna Tigres Tijuana Toluca"
+Reference Sources:
+
+[R1] THE CLÁSICO TAPATÍO RETURNS TO LOS ANGELES - BMO Stadium
+(https://bmostadium.com/news/the-clasico-tapatio-returns-to-los-angeles/)
+"""
+A Five-Hour Tapatío Fest will culminate with the thrilling match between Chivas de Guadalajara and Atlas F.C. at BMO Stadium Los Angeles, CA (January 16, 2026) – PRIMETIME Sports, Chivas de Guadalajara, Atlas F.C., and BMO Stadium announced today that the Clásico Tapatío is returning to Los Angeles with the Guadalajara derby between Chivas de Guadalajara and Atlas F.C. at BMO Stadium on Sunday, March 29 at 6:30 p.m. PT. Both teams begin the Clausura 2026 with several additions to their rosters. Guadalajara added young star Brian Gutiérrez and Liga MX veteran Angel Sepulveda, while Ricardo Marín returns to the squad. Atlas F.C. strengthened their roster with international signings Rodrigo Schlegel and Gustavo Ferrareis, along with Mexican midfielder Arturo González. The Clásico Tapatío is Mexico’s oldest rivalry that has existed for over a century dating back to 1916. Both teams boast large fan bases, and their passionate rivalry is seen and felt beyond borders. The last time these two teams played at this stadium the game ended in a draw in front of a sold-out crowd in March, 2024. The excitement and passion around the 2026 summer of soccer is strongly felt, and in honor of all Angelenos with ties to Jalisco, a five-hour Tapatío Fest will take place prior to the game outside the stadium. Fans will be able to enjoy the biggest Guadalajara-themed party the city has ever seen with live music, birria, tortas ahogadas, trophies, club legends, and much more. Please register for the pre-sale at www.clasicotapatio.com. The ticket pre-sale will take place on Wednesday, January 21, at 10:00 a.m. PT. Tickets will be available to the public starting on Thursday, January 22, at 10:00 a.m. PT at ticketmaster.com, and ticketon.com. For media credentials, please visit https://ptimesports.co/clasicotapatio2026. For any other media-related inquiries, please send an e-mail to media@ptimesports.com. PRIMETIME SPORTS PRIMETIME Sports works with multinational brands, agencies, and rights holders, as well as organizing and promoting international soccer matches in the United States. For more information, please visit www.ptimesports.com
+"""
+
+[R2] Resumen del partido: Chivas vs. Atlas. GOL
+(https://www.mediotiempo.com/futbol/liga-mx/resumen-del-partido-chivas-vs-atlas-amistoso-de-fecha-fifa)
+"""
+El BMO Stadium fue escenario de una nueva edición del Clásico Tapatío en carácter amistoso, donde C.D. Guadalajara se impuso 1-0 sobre Atlas F.C. en un duelo que sirvió como primera prueba para el Rebaño sin varios de sus seleccionados.El encuentro generaba expectativa, pues representaba una oportunidad para medir qué tanto puede ofrecer Guadalajara cuando pierde piezas clave. Del otro lado, Atlas buscaba confirmar señales de mayor solidez y orden en su funcionamiento. Te Recomendamos ¿Cómo fue el partido?Sin embargo, la expectativa terminó por superar a la realidad. Durante buena parte del partido hubo pocas acciones claras frente al arco. Los disparos apenas exigieron a los guardametas y tanto Óscar Whalley, por parte del Rebaño, como Antonio Sánchez, en la portería rojinegra, respondieron con solvencia en un duelo que careció de profundidad en las áreas.La diferencia llegó en la segunda mitad. Al minuto 56, Efraín Álvarez desbordó por la banda y la jugada derivó en un tiro de esquina. El propio Álvarez cobró con la zurda y envió un centro preciso al área, donde Ángel Sepúlveda se anticipó en el primer poste y, con un certero cabezazo, marcó el único gol del encuentro, dejando sin opción a César Ramos, quien había ingresado momentos antes.Atlas intentó reaccionar con mayor insistencia en el complemento, pero sin lograr generar verdadero peligro. La más clara llegó al 86, cuando Sergio Aguayo aprovechó un rebote en el área y quedó frente al arquero; su disparo fue desviado y terminó estrellándose en el poste antes de que la defensa despejara en la línea.Minutos después, un remate en el corazón del área obligó a Ramos a volar y evitar el segundo tanto del Guadalajara, equipo que marcha como líder en el Clausura 2026. Ambos equipos volverán ahora a la actividad de la Liga MX en la jornada 13. Atlas visitará a Club León el próximo sábado, mientras que Guadalajara recibirá en el Estadio Akron a Pumas UNAM el domingo 5 de abril. Paulinho revela que se encargó de tranquilizar a compañeros en Portugal ante temas de inseguridad en México Medio portugués se burla del himno nacional mexicano; lo comparan con ‘La Cucaracha’ ​​
+"""
+
+[R3] Boletos para Chivas vs. Atlas por el amistoso en Los Ángeles: Cómo comprar y precios | Sporting News
+(https://www.sportingnews.com/us-es/tickets/news/boletos-chivas-atlas-amistoso-los-angeles-precios-como-comprar/54d14f23dfd066ec10ad491e)
+"""
+Si compras un producto o registras una cuenta a través de alguno de los links de nuestro sitio, podríamos recibir una retribución. El Clásico Tapatío tendrá una edición muy especial lejos de casa. Chivas y Atlas volverán a verse las caras el próximo 29 de marzo, aprovechando la Fecha FIFA, para disputar un amistoso de alto voltaje en el BMO Stadium de Los Ángeles. Aunque no habrá puntos de por medio, el orgullo rojiblanco y rojinegro viajará completo a California, donde miles de aficionados tapatíos radicados en Estados Unidos ya preparan una fiesta futbolera que promete ser inolvidable.Antes del silbatazo inicial, la ciudad angelina será sede del Tapatío Fest más grande que se haya organizado, un evento que busca celebrar la identidad, la pasión y los sabores de Jalisco. Habrá birria, tortas ahogadas, música en vivo, exhibición de trofeos, presencia de leyendas de ambos clubes y una amplia gama de actividades para que los fans vivan una jornada completa de tradición y rivalidad. Será una oportunidad única para que la comunidad tapatía se reúna, conviva y presuma su orgullo futbolero. COMPRA AQUÍ: Boletos para Chivas vs. Atlas por el amistoso en Los ÁngelesEn ese ambiente de fiesta y nostalgia, Chivas y Atlas saldrán a la cancha a defender su historia y a mantener encendida la llama del clásico más antiguo y apasionado del occidente mexicano. Aunque se trate de un amistoso, el duelo llega en un momento perfecto para que ambos equipos mantengan ritmo competitivo durante la pausa internacional y prueben variantes de cara a la reanudación del torneo. Un choque con sabor a Guadalajara, pero bajo las luces de Los Ángeles.A continuación, todo lo que se sabe sobre la venta de boletos para este enfrentamiento entre Chivas y Atlas en el BMO Stadium que promete ser imperdible.¿Cuándo y dónde juegan Chivas vs. Atlas el Clásico Tapatío en Estados Unidos?Chivas y Atlas disputarán un amistoso el domingo 29 de marzo desde las 18:30 hora local en el BMO Stadium de Los Ángeles, California, Estados Unidos.¿Cuándo salen a la venta y cómo comprar los boletos para el partido entre Chivas vs. Atlas?Los boletos para el partido amistoso entre Chivas y Atlas pueden conseguirse a través de uno de los líderes en el mercado de venta de tickets como StubHub.Los precios de los boletos para el partido entre Chivas y AtlasLos precios de los boletos para el partido entre Chivas y Atlas y la Tapatío Fest varían dependiendo de la ubicación en el BMO Stadium. Hay oportunidades diversas que puedes consultar aquí.
+"""
+
+[R4] Boletos para Chivas vs. Atlas por el amistoso en Los Ángeles: Cómo comprar y precios | Sporting News Mexico
+(https://www.sportingnews.com/mx/tickets/news/boletos-chivas-atlas-amistoso-los-angeles-precios-como-comprar/54d14f23dfd066ec10ad491e)
+"""
+Si compras un producto o registras una cuenta a través de alguno de los links de nuestro sitio, podríamos recibir una retribución. El Clásico Tapatío tendrá una edición muy especial lejos de casa. Chivas y Atlas volverán a verse las caras el próximo 29 de marzo, aprovechando la Fecha FIFA, para disputar un amistoso de alto voltaje en el BMO Stadium de Los Ángeles. Aunque no habrá puntos de por medio, el orgullo rojiblanco y rojinegro viajará completo a California, donde miles de aficionados tapatíos radicados en Estados Unidos ya preparan una fiesta futbolera que promete ser inolvidable.Antes del silbatazo inicial, la ciudad angelina será sede del Tapatío Fest más grande que se haya organizado, un evento que busca celebrar la identidad, la pasión y los sabores de Jalisco. Habrá birria, tortas ahogadas, música en vivo, exhibición de trofeos, presencia de leyendas de ambos clubes y una amplia gama de actividades para que los fans vivan una jornada completa de tradición y rivalidad. Será una oportunidad única para que la comunidad tapatía se reúna, conviva y presuma su orgullo futbolero. COMPRA AQUÍ: Boletos para Chivas vs. Atlas por el amistoso en Los ÁngelesEn ese ambiente de fiesta y nostalgia, Chivas y Atlas saldrán a la cancha a defender su historia y a mantener encendida la llama del clásico más antiguo y apasionado del occidente mexicano. Aunque se trate de un amistoso, el duelo llega en un momento perfecto para que ambos equipos mantengan ritmo competitivo durante la pausa internacional y prueben variantes de cara a la reanudación del torneo. Un choque con sabor a Guadalajara, pero bajo las luces de Los Ángeles.A continuación, todo lo que se sabe sobre la venta de boletos para este enfrentamiento entre Chivas y Atlas en el BMO Stadium que promete ser imperdible.¿Cuándo y dónde juegan Chivas vs. Atlas el Clásico Tapatío en Estados Unidos?Chivas y Atlas disputarán un amistoso el domingo 29 de marzo desde las 18:30 hora local en el BMO Stadium de Los Ángeles, California, Estados Unidos.¿Cuándo salen a la venta y cómo comprar los boletos para el partido entre Chivas vs. Atlas?Los boletos para el partido amistoso entre Chivas y Atlas pueden conseguirse a través de uno de los líderes en el mercado de venta de tickets como StubHub.Los precios de los boletos para el partido entre Chivas y AtlasLos precios de los boletos para el partido entre Chivas y Atlas y la Tapatío Fest varían dependiendo de la ubicación en el BMO Stadium. Hay oportunidades diversas que puedes consultar aquí.
+"""
+
+[R5] Chivas de Guadalajara 1-0 Atlas: El Rebaño Sagrado se lleva el Clásico Tapatío antes de regresar a la Liga MX
+(https://www.tvazteca.com/aztecadeportes/chivas-guadalajara-vs-atlas-ver-en-vivo-gratis-el-resultado-hoy-domingo-29-de-marzo-del-clasico-tapatio-amistoso-marcador-online/)
+"""
+Clásico Tapatío desde Los Angeles, California en esta Fecha FIFA de finales de marzo. Las Chivas del Guadalajara y los Rojinegros del Atlas se vieron las caras en el BMO Stadium en busca de mantener el ritmo y las sensaciones en pleno Torneo Clausura 2026. Ángel Sepúlveda fue el encargado de anotar el único tanto del cotejo y darle una nueva victoria a Gabriel Milito en su gestión. Cabe recordar que, el 'Rebaño Sagrado' no contó con varias de sus figuras como Raúl Rangel, Brian Gutiérrez o Armando González. Ahora, ambos conjuntos tapatíos regresarán a la actividad de la Liga MX en busca de mantenerse en zona de liguilla en este Clausura 2026.Última Actualización : 03/30/2026 2:20 PMFinalizó el partido en el BMOLas Chivas lo ganaron por la mínima diferencia al Atlas gracias al gol de Ángel SepúlvedaTiro de esquina para ChivasVendrá Efraín Álvarez a cobrar desde el sector derechoSe reanudó el cotejoBalón a tierra para las Chivas en el mediocampo después de que se dispersó el humoSe detiene el compromisoBombas de humo fueron lanzadas al terreno de juego10 minutos finalesLos Rojinegros van con todo por el empate, las Chivas esperan sentenciar el partido vía contragolpeBuenas noticias para los RojiblancosSe fue Govea y entró Luis Romo tras recuperarse de su lesiónCambio de las ChivasSe fue Yael Padilla y entró Jiménez al terreno de juegoSe prenden las alarmas en ChivasOmar Govea se duele del tobillo derechoEl gol de las ChivasÚltimos 20 minutos de juegoLos Rojinegros salieron con otra cara despiés de la pausa, quieren darle el empate a su aficiónPausa de hidrataciónCocca pide a sus futbolistas presionar más, especialmente a WhalleyModificaciones del AtlasSalen Ríos y Hernández, entraron Blanco y TrejoAmarilla para PadillaDura entrada de Yael sobre el Tuti en el mediocampoCambio del AtlasSe fue Capasso y entró Ramos al terreno de juegoLlegamos a la hora del juegoChivas capitalizó su dominio, Atlas tiene que adelantar líneas en busca del empateGÓMEEEEEEZCasi cae el segundo de las Chivas tras un disparo que apenas pasa por un costado del arcoGOOOOOOOOOOL DE LAS CHIVASÁngel Sepúlveda remata a primer poste y el cuadro rojiblanco ya lo gana ante AtlasTiro de esquina para ChivasOportunidad para el Rebaño Sagrado desde el sector izquierdoModificación RojinegraSe fue el Ponchito González y entró Del PreteTiro de esquina para las ChivasVendrá el antes mencionado Govea para cobrar desde la banda derechaMostrar Más PublicacionesAdd Arena.im to your site
+"""
+
+[R6] Chivas derrota al Atlas en el Clásico Tapatío amistoso
+(https://www.tudn.com/futbol/liga-mx/atlas-vs-chivas-en-vivo-goles-resumen-resultado-partido-amistoso-liga-mx)
+"""
+El Rebaño Sagrado mantiene su paso ganador hasta en amistosos, recupera a Luis Romo, pero pierde a Omar Govea.Publicado el 30 mar 26 - 06:38 PM CST. Actualizado el 30 mar 26 - 09:20 PM CST.Video Resumen | Chivas se lleva el Clásico Tapatío en Los ÁngelesA pesar de las bajas debidas a los llamados a Selección Mexicana por la Fecha FIFA, las Chivas mantuvieron su paso victorioso aún en amistosos y, con gol de Ángel Sepúlveda, se impusieron 1-0 al Atlas en el Clásico Tapatío disputado en el BMO Stadium de Los Ángeles.Otra de las buenas noticias es que después de más de un mes de estar fuera de las canchas, debido a una lesión muscular en la Jornada 8 de la Liga MX ante Toluca, Luis Romo está de regreso y se perfila a jugar ante Pumas luego de tener algunos minutos ante Atlas.Sin embargo, en este Clásico tapatío que nuevamente se llevaron las Chivas, también hubo un lado oscuro para el Rebaño Sagrado, ya que tras el regreso del capitán rojiblanco, se dio una lesión en el equipo, la de Omar Govea, quien había entrado de cambio y que debió salir al 73 con una dolencia en la pierna izquierda.Los comandados por Gabriel Milito mantuvieron el estilo que los ha caracterizado en la Liga MX aún con varias ausencias, impusieron condiciones ante los rojinegros y generaron la mayor parte de las acciones de peligro, a pesar de que enfrente tenían a un equipo sólido defensivamente.Sería hasta los 56 minutos, tras un tiro de esquina cerrado cobrado por Efraín Álvarez, que aparecería Ángel Sepúlveda a primer poste, para meter el cabezazo y mandar guardar la de gajos para el 1-0 en favor de las Chivas.El marcador no se movió más, Chivas se llevó una victoria importante jugando con jugadores alternos, que le da para pesar que en la Liguilla, donde no podrán contar con varios de sus titulares por la misma razón de los llamados a la Selección Mexicana, el resto de su plantilla será capaz de responder ante compromisos importantes y complicados.HORARIO Y DÓNDE VER ATLAS VS. CHIVAS Cuándo: Este domingo 29 de marzo en el BMO Stadium de Los Ángeles Horario: A las 19:00 horas de la Ciudad de México, 21:00 horas del Este, 20:00 del Centro y 18:00 del Pacífico en Estados Unidos. Dónde ver: Por Canal 5m TUDN y ViX en México y por TUDN en los Estados Unidos. ATLAS VS. CHIVAS EN VIVOOmar Govea sale por lesiónVideo ¡La lesión de Omar Govea que conmociona a todos en el Atlas vs. Chivas!Aparecen las bengalas en la canchaLa afición rojiblanca avienta bengalas al terreno de juego y se detiene por minutos el partido para retirarlos.Atlas pide penalDel Petre es derribado en el área, pero el árbitro no marca nadaNuevo arribo rojiblancoMiguel Gómez saca cañonazo que se va apenas ddesviado del arco del AtlasGol de las ChivasEfraín Álvarez mete tiro de esquina cerrado, remata de cabeza Ángel Sepúlveda y la manda guardar para el 1-0 de las ChivasJugada de lujo de ChivasYael Padilla sirve de taconazo, pero no logra conectar con un compañero en un nuevo ataque del Rebaño SagradoInicia el segundo tiempoComienza la parte complementariaTermina el primer tiempoEl árbitro determina la finalización de los primeros 45 minutosChivas toca la puerta Gómez se mete al área, pero no logra sacar el fogonazoNuevo aviso del Rebaño SagradoLos rojiblancos intentan entrar por costado izquierdo, pero el pase sale muy largo y nadie llega a la cita con el balón.Se la pierde Chivas'Poncho' Gionzález saca fogonazo, pero le pega mal y se pierded la oportunidad del Rebañño Sagrado.Atajadón de AtlasSepúlveda saca fogonazo, hay un desvío y Sánchez alcanza a regresar para evitar el gol de las Chivas.Video ¡El atajadón imposible de Antonio Sánchez que salva a Atlas vs. Chivas!Duro golpe sobre jugador de ChivasJonathan Pérez se duele de la pierna tras una fuerte entrada, pero ya se levanta.
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.

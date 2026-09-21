@@ -1,0 +1,115 @@
+Objective:
+You are a content representativeness checker. You analyze whether an AI Overview (AIO) faithfully represents the information from its cited reference sources.
+
+You will be given a list of factual claims extracted from an AI Overview, along with the text content of all reference sources cited by that AI Overview. For each claim, determine which reference(s) are relevant, whether they support or contradict the claim, and assign one of the following labels:
+
+  CLEAR: The claim is clearly and directly supported by the reference content.
+  VAGUE: The claim is supported but the reference content describes it in broader or less precise terms.
+  AMBIGUOUS: The reference sources contain contradictory information about the claim. For example, one source supports the claim while another contradicts it.
+  INCORRECT: The reference content directly contradicts the claim.
+  OMITTED: The reference content does not mention the claim at all.
+
+Here are some examples of individual claim assessments:
+
+Claim: "The Tesla Model 3 starts at $38,990 in the United States."
+Reference: "The Model 3 rear-wheel drive variant has a base price of $38,990."
+→ CLEAR — reference directly states the exact price.
+
+Claim: "The iPhone 16 has an improved camera system."
+Reference: "Apple's latest smartphone features several hardware upgrades."
+→ VAGUE — reference mentions upgrades but not the camera specifically.
+
+Claim: "The event will be held in New Orleans."
+Reference 1: "...takes place at the Caesars Superdome in New Orleans."
+Reference 2: "...scheduled for MetLife Stadium in New Jersey."
+→ AMBIGUOUS — sources contradict each other.
+
+Claim: "Python 4.0 was released in January 2026."
+Reference: "There are currently no plans for a Python 4.0 release."
+→ INCORRECT — reference directly contradicts the claim.
+
+Claim: "The restaurant offers free parking."
+Reference: "Open Monday–Saturday, serving Italian and Mediterranean cuisine."
+→ OMITTED — reference does not mention parking at all.
+
+Now verify ALL of the following claims against the reference sources below.
+
+Keyword: "países bajos - noruega"
+
+Claims:
+[1] "Países Bajos venció 2-1 a Noruega"
+[2] "El partido fue un amistoso internacional"
+[3] "El partido se disputó el 27 de marzo de 2026"
+[4] "El partido se disputó en el Johan Cruyff Arena de Ámsterdam"
+[5] "Andreas Schjeldrup marcó un gol para Noruega en el minuto 24"
+[6] "Virgil van Dijk marcó un gol para Países Bajos en el minuto 35"
+[7] "Tijjani Reijnders marcó un gol para Países Bajos en la segunda mitad"
+[8] "Noruega no contó con Erling Haaland por descanso"
+[9] "Noruega no contó con Martin Odegaard por molestias"
+[10] "Países Bajos jugó sin Memphis Depay por lesión"
+[11] "Países Bajos jugó sin Frenkie De Jong por lesión"
+[12] "Kees Smit debutó con la selección absoluta de Países Bajos"
+[13] "Kees Smit es un jugador de 20 años del AZ Alkmaar"
+[14] "El partido fue un amistoso preparatorio para el Mundial 2026"
+[15] "Ronald Koeman dirigió a Países Bajos"
+
+Cited text snippets from the AI Overview (for additional context):
+- Países Bajos vence 2-1 en amistoso contra una Noruega sin Haaland: "Países Bajos venció este viernes,de la Eurocopa Sub-19."
+- Países Bajos se lo dio vuelta a Noruega y festejó en el Johan ...: "¡PAÍSES BAJOS FESTEJÓ EN CASA CON REMONTADA,conjunto naranja se impuso por 2-1 en"
+- Países Bajos 2-1 Noruega (27 de Mar., 2026) Resultado Final: "Resumen del partido Países Bajos vs. Norway,final 2-1, jugado el 27 de Marzo,"
+- Países Bajos 2 - 1 Noruega (27/3): Resumen del partido: "Países Bajos 2 - 1 Noruega en,del partido. Goleadores, asistidores, tarjetas y más."
+- ¡En Vivo! Países Bajos vs. Noruega, Amistoso Internacional ...: "Arranca el partido y ya se juega,recibe a los vikingos en amistoso internacional"
+- 2-1: La Países Bajos de Koeman se aprovecha de una ...: "Países Bajos no se dejó sorprender por,consiguió una meritoria victoria no sin sufrimiento."
+Reference Sources:
+
+[R1] Países Bajos 2-1 Noruega (27 de Mar., 2026) Resultado Final - ESPN DEPORTES
+(https://espndeportes.espn.com/futbol/partido/_/juegoId/762549/noruega-paises-bajos)
+"""
+Salta al contenido principalIr a la navegaciónLo MejorCopa del ReyUEFA Champions LeagueCopa AméricaEurocopaNBAMLBCopa Oro WLa LigaMLSCONMEBOL LibertadoresLiga MXNWSLFormula 1Serie del CaribePFLSupercup UEFALaLiga FemenilWomen's Champions LeagueUS Open CupCopa de HolandaNFLNCAAWNCAAMNHLCopa Africana de NacionesSupercopa de EspañaElim. ÁfricaLeagues CupLigue 1UFCNCAAFLiga PremierSerie AElim. CONCACAFInternational Champions CupCopa OroAmistosos FIFACONCACAF Nations LeagueBundesligaEredivisieCopa AlemaniaCopa FACopa ItaliaChampionshipFIBACarabao CupTenis (H)Tenis (M)UEFA Europa LeagueMundial de ClubesWNBACopa MXLiga de Portugal2.BundesligaNASCARSegunda de EspañaGolf (M)UEFA Nations LeagueF. Mexicano AscensoElim. CONMEBOLAmistosos FIFA30 Mar.31 Mar.16 May.31 Mar.ResumenEstadísticasCMR2CHN0FResumenEstadísticasAUS5CUR1FResumenEstadísticasKAZ1COM0FResumenEstadísticasIRN5CRC0FResumenEstadísticasLBR2Libia2FResumenEstadísticasMNE2SVN3FResumenEstadísticasNIG0TOG1FResumenEstadísticasNOR0SUI0FResumenEstadísticasSMR0AND0FResumenEstadísticasSRB2KSA1FResumenEstadísticasZIM1ZAM0FResumenEstadísticasHUN0GRE0FResumenEstadísticasRUS0MLI0FResumenEstadísticasJOR2NGA2FResumenEstadísticasRSA1PAN2FResumenEstadísticasHAI1ISL1FResumenEstadísticasGUI0BEN1FResumenEstadísticasMAR2PAR1FResumenEstadísticasPerú2HON2FResumenEstadísticasALG0URU0FResumenEstadísticasCIV1SCO0FResumenEstadísticasAUT1KOR0FResumenEstadísticasENG0JPN1FResumenEstadísticasNED1ECU1FResumenEstadísticasIRL0MKD0FResumenEstadísticasSVK2ROM0FResumenEstadísticasUCR1ALB0FResumenEstadísticasGAL1NIR1FResumenEstadísticasSEN3GAM1FResumenEstadísticasESP0EGY0FResumenEstadísticasUSA0POR2FResumenEstadísticasARG5ZAM0FResumenEstadísticasBRA3CRO1FResumenEstadísticasCAN0TUN0FResumenEstadísticasMEX1BEL1FResumenEstadísticasQAT-ARG-CanceladoResumenEstadísticasARG-GUA-CanceladoResultados »Países Bajos v Noruega2026 International FriendlyPaíses BajosPaíses BajosNED2FNorway NoruegaNoruegaNOR1Virgil van Dijk - 35'Tijjani Reijnders - 51'Andreas Schjelderup - 24'4-2-3-14-4-21Verbruggen15van de Ven4van Dijk3van Hecke22Dumfries21Smit8Gravenberch11Gakpo14Reijnders20Koopmeiners18MalenNo.Nombre1Bart Verbruggen4Virgil van Dijk3Jan Paul van Hecke6Stefan de Vrij15Micky van de Ven22Denzel Dumfries14Tijjani Reijnders7Xavi Simons21Kees Smit26Quinten Timber8Ryan Gravenberch16Jerdy Schouten18Donyell Malen19Brian Brobbey11Cody Gakpo9Wout Weghorst20Teun KoopmeinersSuplentes12Jeremie Frimpong2Lutsharel Geertruida13Justin Bijlow23Mark Flekken5Nathan Aké25Jorrel Hato10Luciano Valente17Noa LangJohan Cruijff Arena7:45 PM, 27 de Marzo, 2026Amsterdam, Holanda Asistencia: 50,327Árbitros:Lawrence VisserPaíses BajosNorway NoruegaI2435MT51646970788283F-Final del partido, Holanda 2, Noruega 1.90'+3'Final segunda parte, Holanda 2, Noruega 1.90'+3'Kristoffer Ajer (Noruega) ha visto tarjeta amarilla.NEDNORPossession47.5%52.547.552.5%Tiros a gol52Tiros realizados145Tarjetas Amarillas01Tiros de Esquina82Salvadas13by Taboolaby TaboolaSponsoredSponsoredPromoted LinksPromoted LinksYou May LikeBurning Feet? This Is What I Use Every Night (Genius!)SeniorBetterLifeLearn MoreDeshacerAshburn: How Much Should New Windows Cost For a 2500 Sq Ft Home?Window Replacement ProsDeshacerMillions Of Women Use This Pink Powder To Bypass Middle Aged MetabolismGundry MDLearn MoreDeshacerBarco: "La lesión de Panichelli fue un momento muy duro para nosotros"El jugador de la Selección Argentina se refirió a la rotura de ligamentos que sufrió su compañero en Estrasburgo.Lo que mostró España ante Serbia y EgiptoAna Cobos, Lluis Bou, José del Valle y Moisés Llorens analizan el rendimiento de la selecció españolka en los amistosos que disputó en la última fecha FIFA.Barco y sus sensaciones tras la doble fecha FIFAEl jugador del Estrasburgo se mostró feliz por su rendimiento en la Selección Argentina y habló de la importancia del grupo.Terms of UsePrivacy PolicyYour US State Privacy RightsChildren's Online Privacy PolicyInterest-Based AdsAbout Nielsen MeasurementYour Privacy ChoicesContact UsDisney Ad Sales SiteWork for ESPNCorrectionsGAMBLING PROBLEM? CALL 1-800-GAMBLER, (800) 327-5050 or visit gamblinghelplinema.org (MA). Call 877-8-HOPENY/text HOPENY (467369) (NY). Please Gamble Responsibly. 888-789-7777/visit ccpg.org (CT), or visit www.mdgamblinghelp.org (MD). 21+ and present in most states. (18+ DC/KY/NH/WY). Void in ONT/OR/NH. Eligibility restrictions apply. On behalf of Boot Hill Casino & Resort (KS). Terms: sportsbook.draftkings.com/promos.Copyright: © 2026 ESPN Enterprises, LLC. All rights reserved. Notice of Right to Opt Out of Sale/SharingSome US states provide residents (or their authorized agents) with the right to opt out of “targeted advertising,” “selling,” or “sharing” of personal information, as defined by applicable laws. You can move the toggle to the left and click “Submit” to opt out of such activities occurring through this digital property. If you are logged in, we may be able to associate your choice with your account and apply it to data sharing occurring through this digital property (across your browsers and devices) as well as other digital properties of The Walt Disney Family of Companies. You can confirm the status of your choice or opt out or in by clicking “Do Not Sell or Share My Personal Information” or “Your Privacy Choices” on each property. Manage Consent PreferencesSelling, Sharing, Targeted Advertising Selling, Sharing, Targeted Advertising If you are not logged in, your opt-out will be specific to this property and device or browser. For our other digital properties, to opt out, select “Do Not Sell or Share My Personal Information” or “Your Privacy Choices” on each. If you clear your tracking history or use another browser or device, you’ll need to opt out again.You can also submit this opt-out form, which may enable us to apply your opt-out more broadly, for example, to stop data sharing in connection with advertising intended to reach you on platforms not operated by Disney (e.g., social media platforms). You may enable online, where available, a universal tool that automatically communicates your opt-out, such as Global Privacy Control (“GPC”), which we’ll process as if you had opted out through the toggle.Even if you opt out, you may continue to see advertising, including ads that may be based on personal information processed before you opted out. Please visit Your US State Privacy Rights for more information about your rights and how to exercise them.Back ButtonCookie List Search IconFilter IconClear checkbox label labelApply CancelConsent Leg.Interest checkbox label label checkbox label label checkbox label label Submit
+"""
+
+[R2] Países Bajos homenajea a Cruyff con triunfo ante una Noruega sin Haaland
+(https://es-us.noticias.yahoo.com/deportes/pa%C3%ADses-bajos-vence-2-1-215533023.html)
+"""
+Países Bajos venció este viernes 2-1 a Noruega en el partido disputado en Ámsterdam, un duelo en el que ambas selecciones estuvieron privadas de jugadores clave, como el visitante Erling Haaland, pero que sirvió de práctica previa al Mundial 2026.La Oranje no pudo contar ni con Memphis Depay ni con Frenkie De Jong, ambos lesionados, mientras que los nórdicos salieron sin Martin Odegaard, lastrado por molestias físicas las últimas semanas, y sin el atacante estrella Haaland, que contó con descanso.Sí estuvo presente el recuerdo a Johan Cruyff, fallecido el 24 de marzo de 2016, y a quien el estadio que lleva su nombre homenajeó de pie y con un aplauso en el minuto 14, en honor al dorsal del mítico jugador del Ajax y FC Barcelona, dos días después del décimo aniversario de su muerte.Sobre el césped, fueron los visitantes quienes se adelantaron con una gran acción individual de Andreas Schjeldrup, jugador del Benfica, quien superó a Denzel Dumfries y batió al guardameta Bart Verbruggen (24').Los neerlandeses reaccionaron rápidamente con un remate de cabeza de su capitán Virgil van Dijk (35').Ya en la segunda mitad, Tijjani Reinjders puso a los locales por delante (51').El resultado puso fin a una racha de 13 partidos sin derrota de Noruega, que ganó sus ocho partidos de la fase de clasificación al Mundial."En algunos momentos lo hicimos muy bien, me gustó el partido. Noruega es una selección de alto nivel, ganó dos veces a Italia en la fase de clasificación. Supimos jugar con intensidad, fuimos mejores y tuvimos mejores ocasiones de gol", celebró el seleccionador neerlandés, Ronald Koeman, en declaraciones a la televisión NOS de su país.La ausencia de algunos de los grandes nombres permitió brillar a Kees Smit, joven de 20 años que debutó con la Oranje. Este fue un paso más en la progresión del jugador del AZ Alkmaar, elegido en 2025 mejor jugador de la Eurocopa Sub-19.bnl/dam/dr
+"""
+
+[R3] ¡En Vivo! Países Bajos vs. Noruega, Amistoso Internacional ¡Aquí! | TUDN Amistosos internacionales | TUDN
+(https://www.tudn.com/embed/futbol/amistoso/en-vivo-paises-bajos-vs-noruega-amistoso-internacional-aqui-video)
+"""
+0 of 30 secondsVolume 0%Press shift question mark to access a list of keyboard shortcutsAtajos de TecladoEnabledDisabledShortcuts Open/Close/ or ?Reproducir/PausaEspaciadoraSubir el Volumen↑Bajar el Volumen↓Adelantar→Retroceder←Activar/Ocultar SubtítuloscPantalla Completa/Salir de la Pantalla CompletafSilenciar/Activar SonidomDecrease Caption Size-Increase Caption Size+ or =Adelantar %0-9 Automática1080p1080p720p540p360p240p En Vivo00:0600:2300:30 ¡En Vivo! Países Bajos vs. Noruega, Amistoso Internacional ¡Aquí!
+"""
+
+[R4] 2-1: La Países Bajos de Koeman se aprovecha de una Noruega sin Haaland
+(https://www.mundodeportivo.com/futbol/20260327/1004160809/paises-bajos-noruega.html)
+"""
+Países Bajos no se dejó sorprender por Noruega en el Johan Cruyff Arena y consiguió una meritoria victoria no sin sufrimiento. Y es que Schjelderup, jugador del Benfica, adelantó a la selección visitante con un magnífico tiro de rosca, pero los goles de Van Dijk primero y Tijjani Reijnders después, culminaron la remontada de la 'orange' en el primero de los dos partidos amistosos que disputará el combinado dirigido por Ronald Koeman de preparación al Mundial 2026."Hemos tenido en cuenta la carga global a la que Erling ha estado sometido durante mucho tiempo y hemos llegado a la conclusión de que lo mejor para todos es que descanse", dijo en la previa del encuentro Stale Solbakken, técnico noruego, sobre la ausencia en la convocatoria de Haaland. Alexander Sortloth y Strand Larsen se encargaron de suplir en la punta de lanza al ariete del Manchester City y no le fue nada mal a la selección escandinava, que se adelantó en el marcador en el Johan Cruyff Arena de Ámsterdam tan solo diez minutos después de una sonora ovación de todo el público presente en las gradas a la leyenda neerlandesa, portadora del mítico dorsal '14'. En el minuto 24, Schjelderup recortó hacia dentro y se inventó un tiro de rosca a media altura que tocó en el palo y acabó en el fondo de la red. Un gol de bella factura que precedió a la reacción de Países Bajos. Embotelló la selección dirigida por Koeman a su rival y no cesó hasta encontrar el premio. No sin antes perdonar en las botas de Malen, incapaz de convertir un remate a bocajarro que sacó Nyland, portero del Sevilla. Nada pudo hacer el guardameta noruego en el tanto de la igualada del capitán neerlandés Virgil Van Dijk. El central del Liverpool se elevó más que nadie en el área a la salida de un saque de esquina y conectó un potente cabezazo inapelable. Aparece ReijndersSe animó el debutante Smit con un tiro lejano que salió muy cerca del palo y ya en el añadido del primer tiempo un testarazo de Strand Larsen lamió la madera, pero ambas selecciones enfilaron el túnel de vestuarios con tablas. No tardó en moverse el luminoso en la reanudación y, tras un tiro excesivamente cruzado de Malen, Reijnders culminó la remontada 'orange' al finalizar a placer un pase de la muerte de Dumfries desde la derecha. El partido entró entonces en una fase de fútbol control por parte de ambos equipos en la que apenas hubo llegadas. Noruega acusó la baja de Haaland, y Solbakken sustituyó a Sorloth y Schjelderup, las dos mayores amenazas de la selección escandinava, prácticamente diluyendo cualquier opción de igualar la contienda. Siguió dominando el combinado de Koeman, que también cambió a varias de sus piezas clave (Male, Reijnders) y rozó el gol en un saque de esquina. Sin embargo, el cabezazo de Brobbey no encontró portería. A falta de diez minutos para el final, un taconazo de Larsen lo paró en dos tiempos el meta del Brighton Verbruggen y ya en el 88' Koopmeiners no logró sorprender a Nyland con un tiro desde la frontal. Pese a los intentos de unos y otros, el marcador ya no se movió y la selección neerlandesa logró el triunfo en el primero de los dos partidos amistosos que disputará durante este parón internacional.
+"""
+
+[R5] Países Bajos 2 - 1 Noruega (27/3): Resumen del partido
+(https://www.365scores.com/es/football/match/friendly-international-570/netherlands-norway-2376-2377-570)
+"""
+FútbolAmistoso InternacionalPaíses Bajos Vs NoruegaResultados en vivo de Amistoso InternacionalSeguir15.26MResumenPartidosNoticiasConsejosAdResumenResultadosPartidosAgrega el Widget con los resultados de Amistoso Internacional a tu Sitio WebVer más opciones para Crear Widgets personalizadosGenerar un Tag HTMLAdTambién te puede interesarCristiano RonaldoAl Nassr FC RiyadhLionel MessiInter MiamiKylian MbappeReal MadridMohamed SalahLiverpoolJames RodríguezMinnesota UnitedMundial de ClubesInternacionalMundialInternacionalCopa Árabe de la FIFAInternacionalMundial Sub 20InternacionalMundial FemeninoInternacionalReal MadridLaLigaFC BarcelonaLaLigaLiverpoolPremier LeagueChelseaPremier LeagueBrasilCopa AméricaPaíses Bajos Vs NoruegaInternacional, Amistoso InternacionalPaíses BajosFinalizado2-127/03NoruegaPartidoAlineacionesEstadísticasTendenciasNoticiasDuelos previosTiempo neto jugadoTiempo neto 58:25Tiempo total 94:30 Ver todo AdAdBusqueda recienteNo se encontraron búsquedas recientesLigasEquiposJugadores
+"""
+
+Output ONLY a valid JSON array. Each element must have the following fields:
+[
+  {
+    "claim_id": 1,
+    "claim": "<the claim text>",
+    "label": "<CLEAR | VAGUE | AMBIGUOUS | INCORRECT | OMITTED>",
+    "confidence": <0.0-1.0, how confident you are in this label>,
+    "matched_references": ["R1", "R2"],
+    "evidence": "<key phrase(s) from the reference that support your judgment>",
+    "reasoning": "<brief explanation>"
+  },
+  ...
+]
+
+Rules:
+1. You MUST output exactly one entry per claim, in the same order as the claims above.
+2. matched_references should list ALL reference IDs (R1, R2, etc.) that are relevant to the claim. Use an empty list [] for OMITTED.
+3. evidence should quote or closely paraphrase the specific text from references. Use "No relevant content found" for OMITTED.
+4. confidence reflects how clearly the references support your judgment (1.0 = unambiguous match/contradiction, 0.5 = borderline).
+5. CRITICAL: When a claim contains numbers, dates, or attributes paired with specific entities, verify that each value is assigned to the CORRECT entity. If the claim assigns value A to entity X and value B to entity Y, but the reference assigns value A to entity Y and value B to entity X, that is INCORRECT — the values are swapped. Do not label a claim CLEAR just because the same numbers appear in the reference; check that they are attributed to the same things.
+6. Only answer with the specified JSON array, no other text.
